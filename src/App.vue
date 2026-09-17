@@ -1225,12 +1225,24 @@ onBeforeUnmount(() => {
   display: flex;
   gap: 20px;
   margin-top: 56px;
+  height: calc(100vh - 56px);
   padding: 24px;
-  min-height: calc(100vh - 80px);
-  align-items: flex-start;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.t-main { flex: 1; min-width: 0; }
+.t-main {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 168, 67, 0.55) transparent;
+}
+.t-main::-webkit-scrollbar { width: 6px; }
+.t-main::-webkit-scrollbar-track { background: transparent; }
+.t-main::-webkit-scrollbar-thumb { background: rgba(212, 168, 67, 0.55); border-radius: 3px; }
+.t-main::-webkit-scrollbar-thumb:hover { background: rgba(212, 168, 67, 0.5); }
 
 .t-search {
   display: flex;
@@ -1348,9 +1360,7 @@ onBeforeUnmount(() => {
 .t-sidebar {
   width: 260px;
   flex-shrink: 0;
-  position: sticky;
-  top: 80px;
-  max-height: calc(100vh - 104px);
+  align-self: stretch;
   background: rgba(20, 20, 42, 0.85);
   border-radius: 14px;
   overflow: hidden;
