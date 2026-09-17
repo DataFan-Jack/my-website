@@ -26,4 +26,3 @@ dist-ssr
 # 学习 demo：爬虫虚拟环境与抓取数据（仅本地学习，勿提交到公开仓库）
 scraper/.venv/
 scraper/data.json
-public/tutorial-data.json

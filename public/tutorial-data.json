@@ -1,0 +1,874 @@
+{
+ "tutorials": [
+  {
+   "name": "Memcached",
+   "category": "其他",
+   "desc": "Memcached是一个自由开源的，高性能，分布式内存对象缓存系统。",
+   "file": "Memcached.json"
+  },
+  {
+   "name": "AI 入门教程",
+   "category": "人工智能",
+   "desc": "AI（Artificial Intelligence，人工智能）是一种让计算机具",
+   "file": "ai.json"
+  },
+  {
+   "name": "AI Agent(智能体)",
+   "category": "人工智能",
+   "desc": "AI Agent（Artificial Intelligence Agent） ",
+   "file": "ai-agent.json"
+  },
+  {
+   "name": "AI 数学基础",
+   "category": "人工智能",
+   "desc": "AI，全称人工智能（Artificial Intelligence）让机器从数据",
+   "file": "ai-math.json"
+  },
+  {
+   "name": "AJAX",
+   "category": "前端开发",
+   "desc": "AJAX = Asynchronous JavaScript and XML（异",
+   "file": "ajax.json"
+  },
+  {
+   "name": "AngularJS",
+   "category": "前端开发",
+   "desc": "AngularJS 通过新的属性和表达式扩展了 HTML。",
+   "file": "angularjs.json"
+  },
+  {
+   "name": "Angular 2",
+   "category": "前端开发",
+   "desc": "Angular2 是一款开源JavaScript库，由Google维护，用来协助",
+   "file": "angularjs2.json"
+  },
+  {
+   "name": "<AppML><AppML>快速和简单的Web 开发",
+   "category": "人工智能",
+   "desc": "什么是 <AppML>?",
+   "file": "appml.json"
+  },
+  {
+   "name": "ASP",
+   "category": "后端开发",
+   "desc": "ASP（Active Server Pages 动态服务器页面）是一种生成动态交",
+   "file": "asp.json"
+  },
+  {
+   "name": "ASP.NET",
+   "category": "后端开发",
+   "desc": "ASP.NET 是一个使用 HTML、CSS、JavaScript 和服务器脚本",
+   "file": "aspnet.json"
+  },
+  {
+   "name": "汇编语言 -",
+   "category": "编程语言",
+   "desc": "汇编语言（Assembly Language）是一种面向特定硬件的低级语言。",
+   "file": "assembly.json"
+  },
+  {
+   "name": "Bootstrap",
+   "category": "前端开发",
+   "desc": "Bootstrap，来自 Twitter，是目前最受欢迎的前端框架。Bootst",
+   "file": "bootstrap.json"
+  },
+  {
+   "name": "Bootstrap4",
+   "category": "前端开发",
+   "desc": "Bootstrap 是全球最受欢迎的前端组件库，用于开发响应式布局、移动设备优先",
+   "file": "bootstrap4.json"
+  },
+  {
+   "name": "Bootstrap5",
+   "category": "前端开发",
+   "desc": "Bootstrap 是全球最受欢迎的前端组件库，用于开发响应式布局、移动设备优先",
+   "file": "bootstrap5.json"
+  },
+  {
+   "name": "浏览器信息",
+   "category": "工具与运维",
+   "desc": "对于网站开发人员来说，浏览器信息和统计数据都是非常重要的。",
+   "file": "browsers.json"
+  },
+  {
+   "name": "C 语言教程",
+   "category": "编程语言",
+   "desc": "C 语言是一种通用的、面向过程式的计算机程序设计语言。1972 年，为了移植与开",
+   "file": "c.json"
+  },
+  {
+   "name": "C 语言数据结构与算法",
+   "category": "编程语言",
+   "desc": "数据结构与算法（Data Structures and Algorithms，简",
+   "file": "c-dsa.json"
+  },
+  {
+   "name": "Chart.js",
+   "category": "前端开发",
+   "desc": "Chart.js 是一个简单、灵活的 JavaScript 图表工具。",
+   "file": "chartjs.json"
+  },
+  {
+   "name": "Claude Code",
+   "category": "人工智能",
+   "desc": "Claude Code 是 Anthropic 推出的面向开发者的 AI 编程协",
+   "file": "claude-code.json"
+  },
+  {
+   "name": "CMake",
+   "category": "工具与运维",
+   "desc": "CMake 是个一个开源的跨平台自动化建构系统，用来管理软件建置的程序，并不依赖",
+   "file": "cmake.json"
+  },
+  {
+   "name": "ChatGPT (Codex)",
+   "category": "人工智能",
+   "desc": "Codex 是 OpenAI 推出的云端软件工程智能体（AI Agent）。",
+   "file": "codex.json"
+  },
+  {
+   "name": "计算机组成原理",
+   "category": "编程语言",
+   "desc": "计算机组成原理（Computer Organization）是计算机科学与技术专",
+   "file": "computer-organization.json"
+  },
+  {
+   "name": "C++ 数组",
+   "category": "编程语言",
+   "desc": "C++ 支持数组数据结构，它可以存储一个固定大小的相同类型元素的顺序集合。数组是",
+   "file": "cplusplus.json"
+  },
+  {
+   "name": "C 语言经典100例",
+   "category": "编程语言",
+   "desc": "C 语言练习实例1",
+   "file": "cprogramming.json"
+  },
+  {
+   "name": "C#",
+   "category": "编程语言",
+   "desc": "C# 是一个简单的、现代的、通用的、面向对象的编程语言，它是由微软（Micros",
+   "file": "csharp.json"
+  },
+  {
+   "name": "CSS",
+   "category": "前端开发",
+   "desc": "CSS (Cascading Style Sheets，层叠样式表），是一种用来",
+   "file": "css.json"
+  },
+  {
+   "name": "CSS3",
+   "category": "前端开发",
+   "desc": "CSS 用于控制网页的样式和布局。",
+   "file": "css3.json"
+  },
+  {
+   "name": "Dart",
+   "category": "后端开发",
+   "desc": "Dart 是 Google 开发的一门现代化编程语言，主要用于构建高性能、跨平台",
+   "file": "dart.json"
+  },
+  {
+   "name": "Dash",
+   "category": "其他",
+   "desc": "Dash 是一个基于 Python 的开源框架，用于快速构建数据驱动的 Web ",
+   "file": "dash.json"
+  },
+  {
+   "name": "数据结构与算法",
+   "category": "编程语言",
+   "desc": "数据结构（英语：data structure）是计算机中存储、组织数据的方式。",
+   "file": "data-structures.json"
+  },
+  {
+   "name": "DeepSeek Harness",
+   "category": "人工智能",
+   "desc": "DeepSeek Harness 是由深度求索（DeepSeek AI）开发、于",
+   "file": "deepseek-harness.json"
+  },
+  {
+   "name": "设计模式",
+   "category": "编程语言",
+   "desc": "设计模式（Design pattern）代表了最佳的实践，通常被有经验的面向对象",
+   "file": "design-pattern.json"
+  },
+  {
+   "name": "Django",
+   "category": "后端开发",
+   "desc": "Django 是一个用于构建 Web 应用程序的高级 Python Web 框架",
+   "file": "django.json"
+  },
+  {
+   "name": "Docker",
+   "category": "工具与运维",
+   "desc": "Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从 Apache2",
+   "file": "docker.json"
+  },
+  {
+   "name": "XML DOM",
+   "category": "前端开发",
+   "desc": "XML DOM 定义访问和操作XML文档的标准方法。",
+   "file": "dom.json"
+  },
+  {
+   "name": "DTD",
+   "category": "后端开发",
+   "desc": "DTD（文档类型定义）的作用是定义 XML 文档的合法构建模块。",
+   "file": "dtd.json"
+  },
+  {
+   "name": "ECharts",
+   "category": "前端开发",
+   "desc": "ECharts 是一个使用 JavaScript 实现的开源可视化库，涵盖各行业",
+   "file": "echarts.json"
+  },
+  {
+   "name": "Eclipse",
+   "category": "工具与运维",
+   "desc": "Eclipse 是一个开放源代码的、基于 Java 的可扩展开发平台。",
+   "file": "eclipse.json"
+  },
+  {
+   "name": "Electron",
+   "category": "后端开发",
+   "desc": "Electron（原名 Atom Shell） 是由 GitHub 开发的一个 ",
+   "file": "electron.json"
+  },
+  {
+   "name": "FastAPI",
+   "category": "后端开发",
+   "desc": "FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Python ",
+   "file": "fastapi.json"
+  },
+  {
+   "name": "Flask",
+   "category": "后端开发",
+   "desc": "Flask 是一个用 Python 编写的轻量级 Web 应用框架。",
+   "file": "flask.json"
+  },
+  {
+   "name": "Flutter",
+   "category": "前端开发",
+   "desc": "Flutter 是一个用于构建跨平台应用的 UI 工具包，由 Google 开发",
+   "file": "flutter.json"
+  },
+  {
+   "name": "Font Awesome 医疗图标",
+   "category": "前端开发",
+   "desc": "下表显示了所有的 Font Awesome 医疗图标：",
+   "file": "font-awesome.json"
+  },
+  {
+   "name": "Foundation5",
+   "category": "前端开发",
+   "desc": "Foundation 用于开发响应式的 HTML, CSS and JavaSc",
+   "file": "foundation.json"
+  },
+  {
+   "name": "Git",
+   "category": "工具与运维",
+   "desc": "Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。",
+   "file": "git.json"
+  },
+  {
+   "name": "Go 语言教程",
+   "category": "后端开发",
+   "desc": "Go 是一个开源的编程语言，它能让构造简单、可靠且高效的软件变得容易。",
+   "file": "go.json"
+  },
+  {
+   "name": "Google Maps API",
+   "category": "工具与运维",
+   "desc": "在本教程中我们将学习如何使用谷歌地图API V3创建交互式地图。",
+   "file": "googleapi.json"
+  },
+  {
+   "name": "Hermes Agent",
+   "category": "人工智能",
+   "desc": "Hermes Agent 是由 Nous Research 开发、于 2026 ",
+   "file": "hermes-agent.json"
+  },
+  {
+   "name": "Highcharts",
+   "category": "前端开发",
+   "desc": "Highcharts 是一个用纯JavaScript编写的一个图表库。",
+   "file": "highcharts.json"
+  },
+  {
+   "name": "网站主机教程",
+   "category": "工具与运维",
+   "desc": "如果您希望向全世界发布自己的网站，那么您的网站就需要被放置于一个 WEB 服务器",
+   "file": "hosting.json"
+  },
+  {
+   "name": "HTML",
+   "category": "前端开发",
+   "desc": "超文本标记语言（英语：HyperText Markup Language，简称：",
+   "file": "html.json"
+  },
+  {
+   "name": "HTML DOM",
+   "category": "前端开发",
+   "desc": "DOM (Document Object Model) 译为文档对象模型，是 H",
+   "file": "htmldom.json"
+  },
+  {
+   "name": "HTTP",
+   "category": "后端开发",
+   "desc": "HTTP（超文本传输协议，HyperText Transfer Protocol",
+   "file": "http.json"
+  },
+  {
+   "name": "ionic",
+   "category": "前端开发",
+   "desc": "ionic 是一个强大的 HTML5 应用程序开发框架(HTML5 Hybrid",
+   "file": "ionic.json"
+  },
+  {
+   "name": "Java",
+   "category": "后端开发",
+   "desc": "Java 是由 Sun Microsystems 公司于 1995 年 5 月推",
+   "file": "java.json"
+  },
+  {
+   "name": "jQuery EasyUI 应用 - 创建 CRUD 应用",
+   "category": "其他",
+   "desc": "数据收集并妥善管理数据是网络应用共同的必要。CRUD 允许我们生成页面列表，并编",
+   "file": "jeasyui.json"
+  },
+  {
+   "name": "jQuery",
+   "category": "前端开发",
+   "desc": "jQuery 是一个 JavaScript 库。",
+   "file": "jquery.json"
+  },
+  {
+   "name": "jQuery Mobile",
+   "category": "前端开发",
+   "desc": "jQuery Mobile 是用于创建移动 Web 应用的前端开发框架。",
+   "file": "jquerymobile.json"
+  },
+  {
+   "name": "jQuery UI",
+   "category": "前端开发",
+   "desc": "jQuery UI 是建立在 jQuery JavaScript 库上的一组用户",
+   "file": "jqueryui.json"
+  },
+  {
+   "name": "JavaScript",
+   "category": "前端开发",
+   "desc": "JavaScript 是 Web 的编程语言。",
+   "file": "js.json"
+  },
+  {
+   "name": "JSON",
+   "category": "前端开发",
+   "desc": "JSON: JavaScript Object Notation(JavaScr",
+   "file": "json.json"
+  },
+  {
+   "name": "JSP",
+   "category": "后端开发",
+   "desc": "JSP 与 PHP、ASP、ASP.NET 等语言类似，运行在服务端的语言。",
+   "file": "jsp.json"
+  },
+  {
+   "name": "Julia",
+   "category": "后端开发",
+   "desc": "Julia 是一个开源的编程语言，采用 MIT 许可证，每个人都可以免费使用。",
+   "file": "julia.json"
+  },
+  {
+   "name": "Jupyter Notebook",
+   "category": "工具与运维",
+   "desc": "Jupyter Notebook（前身为 IPython Notebook） 是",
+   "file": "jupyter-notebook.json"
+  },
+  {
+   "name": "Kotlin",
+   "category": "后端开发",
+   "desc": "Kotlin 是一门运行在 Java 虚拟机上的静态类型编程语言，由 JetBr",
+   "file": "kotlin.json"
+  },
+  {
+   "name": "LangChain",
+   "category": "人工智能",
+   "desc": "LangChain 是一套用于构建 AI 智能体（AI Agent）和大语言模型",
+   "file": "langchain.json"
+  },
+  {
+   "name": "LaTeX",
+   "category": "编程语言",
+   "desc": "LaTeX（发音为 \"Lay-tech\" 或 \"Lah-tech\"）是一种用于文",
+   "file": "latex.json"
+  },
+  {
+   "name": "Linux",
+   "category": "工具与运维",
+   "desc": "Linux 是一种自由和开放源码的类 UNIX 操作系统。",
+   "file": "linux.json"
+  },
+  {
+   "name": "Lua",
+   "category": "后端开发",
+   "desc": "Lua 是一种轻量小巧的脚本语言，用标准C语言编写并以源代码形式开放， 其设计目",
+   "file": "lua.json"
+  },
+  {
+   "name": "Markdown 实战",
+   "category": "编程语言",
+   "desc": "个人简历制作",
+   "file": "markdown.json"
+  },
+  {
+   "name": "Matplotlib",
+   "category": "人工智能",
+   "desc": "Matplotlib 是 Python 的绘图库，它能让使用者很轻松地将数据图形",
+   "file": "matplotlib.json"
+  },
+  {
+   "name": "Maven",
+   "category": "工具与运维",
+   "desc": "Maven 翻译为\"专家\"、\"内行\"，是 Apache 下的一个纯 Java 开",
+   "file": "maven.json"
+  },
+  {
+   "name": "机器学习教程",
+   "category": "人工智能",
+   "desc": "机器学习（Machine Learning）是人工智能（AI）的一个分支，它使计",
+   "file": "ml.json"
+  },
+  {
+   "name": "MongoDB",
+   "category": "数据库",
+   "desc": "MongoDB是一个流行的开源文档型数据库，它使用类似 JSON 的文档模型存储",
+   "file": "mongodb.json"
+  },
+  {
+   "name": "MySQL",
+   "category": "数据库",
+   "desc": "MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL 是",
+   "file": "mysql.json"
+  },
+  {
+   "name": "Next.js",
+   "category": "前端开发",
+   "desc": "Next.js 是一个基于 React 的开源框架，用于构建快速、现代化的 We",
+   "file": "nextjs.json"
+  },
+  {
+   "name": "NLP",
+   "category": "人工智能",
+   "desc": "自然语言处理(Natural Language Processing, NLP)",
+   "file": "nlp.json"
+  },
+  {
+   "name": "Node.js",
+   "category": "后端开发",
+   "desc": "简单的说 Node.js 就是运行在服务端的 JavaScript。",
+   "file": "nodejs.json"
+  },
+  {
+   "name": "网络协议",
+   "category": "工具与运维",
+   "desc": "网络协议（Network Protocol）是计算机网络中用于定义设备之间通信规",
+   "file": "np.json"
+  },
+  {
+   "name": "NumPy",
+   "category": "人工智能",
+   "desc": "NumPy(Numerical Python) 是 Python 语言的一个扩展",
+   "file": "numpy.json"
+  },
+  {
+   "name": "Obsidian",
+   "category": "工具与运维",
+   "desc": "Obsidian 是一款基于 Markdown 文件的个人知识库与笔记管理工具，",
+   "file": "obsidian.json"
+  },
+  {
+   "name": "Ollama",
+   "category": "人工智能",
+   "desc": "Ollama 是一个开源的本地大语言模型运行框架，专为在本地机器上便捷部署和运行",
+   "file": "ollama.json"
+  },
+  {
+   "name": "OpenCode",
+   "category": "人工智能",
+   "desc": "OpenCode 是一个基于命令行（CLI）的 AI 编程 Agent，能够理解",
+   "file": "opencode.json"
+  },
+  {
+   "name": "OpenCV",
+   "category": "人工智能",
+   "desc": "OpenCV（Open Source Computer Vision Libra",
+   "file": "opencv.json"
+  },
+  {
+   "name": "Pandas",
+   "category": "人工智能",
+   "desc": "Pandas 是 Python 语言的一个扩展程序库，用于数据分析。",
+   "file": "pandas.json"
+  },
+  {
+   "name": "Perl",
+   "category": "后端开发",
+   "desc": "Perl 是 Practical Extraction and Report L",
+   "file": "perl.json"
+  },
+  {
+   "name": "PHP",
+   "category": "后端开发",
+   "desc": "PHP 是一种创建动态交互性站点的强有力的服务器端脚本语言。",
+   "file": "php.json"
+  },
+  {
+   "name": "Pi Agent",
+   "category": "人工智能",
+   "desc": "Pi Agent 是一个轻量级、可扩展的个人 AI Agent 开发框架。",
+   "file": "pi-agent.json"
+  },
+  {
+   "name": "Pillow",
+   "category": "人工智能",
+   "desc": "Pillow 是 Python 中处理图像的主要库。",
+   "file": "pillow.json"
+  },
+  {
+   "name": "Playwright",
+   "category": "工具与运维",
+   "desc": "Playwright 是微软（Microsoft） 在 2020 年推出的一个开",
+   "file": "playwright.json"
+  },
+  {
+   "name": "PostgreSQL",
+   "category": "数据库",
+   "desc": "PostgreSQL 是一个免费的对象-关系数据库服务器(ORDBMS)，在灵活",
+   "file": "postgresql.json"
+  },
+  {
+   "name": "PowerShell",
+   "category": "工具与运维",
+   "desc": "PowerShell（包括 Windows PowerShell 和 Power",
+   "file": "powershell.json"
+  },
+  {
+   "name": "PyCharm",
+   "category": "工具与运维",
+   "desc": "PyCharm 是由 JetBrains 公司开发的一款专门用于 Python ",
+   "file": "pycharm.json"
+  },
+  {
+   "name": "Python 基础教程",
+   "category": "后端开发",
+   "desc": "Python 是一种解释型、面向对象、动态数据类型的高级程序设计语言。",
+   "file": "python.json"
+  },
+  {
+   "name": "设计模式",
+   "category": "编程语言",
+   "desc": "设计模式（Design Pattern）是一套被反复验证的可复用解决方案，用于解",
+   "file": "python-design-pattern.json"
+  },
+  {
+   "name": "Anaconda",
+   "category": "其他",
+   "desc": "Python 量化可以直接使用 Anaconda 工具来提高效率，免去一些安装的",
+   "file": "python-qt.json"
+  },
+  {
+   "name": "Python 3",
+   "category": "后端开发",
+   "desc": "Python 的 3.0 版本，常被称为 Python 3000，或简称 Py3",
+   "file": "python3.json"
+  },
+  {
+   "name": "PyTorch",
+   "category": "人工智能",
+   "desc": "PyTorch 是一个开源的机器学习库，主要用于进行计算机视觉（CV）、自然语言",
+   "file": "pytorch.json"
+  },
+  {
+   "name": "Python 量化交易",
+   "category": "其他",
+   "desc": "量化交易（Quantitative Trading）也可以理解为高频交易，是利用",
+   "file": "qt.json"
+  },
+  {
+   "name": "网站品质",
+   "category": "工具与运维",
+   "desc": "在本教程中，你将学习到如何创建高质量的web网站。",
+   "file": "quality.json"
+  },
+  {
+   "name": "C 语言测验",
+   "category": "工具与运维",
+   "desc": "",
+   "file": "quiz.json"
+  },
+  {
+   "name": "R 语言教程",
+   "category": "其他",
+   "desc": "R 语言是为数学研究工作者设计的一种数学编程语言，主要用于统计分析、绘图、数据挖",
+   "file": "r.json"
+  },
+  {
+   "name": "RDF",
+   "category": "后端开发",
+   "desc": "RDF(资源描述框架)是描述网络资源的 W3C 标准, ，比如网页的标题、作者、",
+   "file": "rdf.json"
+  },
+  {
+   "name": "React",
+   "category": "前端开发",
+   "desc": "React 是一个用于构建用户界面的 JAVASCRIPT 库。",
+   "file": "react.json"
+  },
+  {
+   "name": "Redis",
+   "category": "数据库",
+   "desc": "REmote DIctionary Server(Redis) 是一个由 Sal",
+   "file": "redis.json"
+  },
+  {
+   "name": "正则表达式 -",
+   "category": "编程语言",
+   "desc": "正则表达式（Regular Expression，简称 Regex 或 RegE",
+   "file": "regexp.json"
+  },
+  {
+   "name": "RESTful API 进阶",
+   "category": "后端开发",
+   "desc": "认证和授权",
+   "file": "restfulapi.json"
+  },
+  {
+   "name": "RSS",
+   "category": "后端开发",
+   "desc": "通过使用 RSS，您可以有选择地浏览您感兴趣的以及与您的工作相关的新闻。",
+   "file": "rss.json"
+  },
+  {
+   "name": "Ruby",
+   "category": "后端开发",
+   "desc": "Ruby 是一种开源的面向对象程序设计的服务器端脚本语言，在 20 世纪 90 ",
+   "file": "ruby.json"
+  },
+  {
+   "name": "Rust",
+   "category": "后端开发",
+   "desc": "Rust 是由 Mozilla 主导开发的高性能编译型编程语言，遵循\"安全、并发",
+   "file": "rust.json"
+  },
+  {
+   "name": "Scala",
+   "category": "后端开发",
+   "desc": "Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要",
+   "file": "scala.json"
+  },
+  {
+   "name": "XML Schema",
+   "category": "后端开发",
+   "desc": "XML Schema 描述了 XML文档的结构。",
+   "file": "schema.json"
+  },
+  {
+   "name": "SciPy",
+   "category": "人工智能",
+   "desc": "SciPy 是一个开源的 Python 算法库和数学工具包。",
+   "file": "scipy.json"
+  },
+  {
+   "name": "Selenium",
+   "category": "工具与运维",
+   "desc": "Selenium 是一个用于自动化 Web 浏览器操作的工具集。",
+   "file": "selenium.json"
+  },
+  {
+   "name": "Servlet",
+   "category": "后端开发",
+   "desc": "Servlet 为创建基于 web 的应用程序提供了基于组件、独立于平台的方法，",
+   "file": "servlet.json"
+  },
+  {
+   "name": "Skills",
+   "category": "其他",
+   "desc": "Skills，翻译过来就是技能，用于为 AI 智能体添加专业技能和知识。",
+   "file": "skills.json"
+  },
+  {
+   "name": "Sklearn",
+   "category": "人工智能",
+   "desc": "Sklearn（全称 scikit-learn）是一个开源的机器学习库。",
+   "file": "sklearn.json"
+  },
+  {
+   "name": "SOAP",
+   "category": "后端开发",
+   "desc": "SOAP 是一种简单的基于 XML 的协议，它使应用程序通过 HTTP 来交换信",
+   "file": "soap.json"
+  },
+  {
+   "name": "SQL",
+   "category": "编程语言",
+   "desc": "SQL（Structured Query Language，结构化查询语言）是一",
+   "file": "sql.json"
+  },
+  {
+   "name": "SQLite",
+   "category": "数据库",
+   "desc": "SQLite 是一个软件库，实现了自给自足的、无服务器的、零配置的、事务性的 S",
+   "file": "sqlite.json"
+  },
+  {
+   "name": "SVG",
+   "category": "前端开发",
+   "desc": "SVG 意为可缩放矢量图形（Scalable Vector Graphics）。",
+   "file": "svg.json"
+  },
+  {
+   "name": "SVN",
+   "category": "工具与运维",
+   "desc": "Apache Subversion 通常被缩写成 SVN，是一个开放源代码的版本",
+   "file": "svn.json"
+  },
+  {
+   "name": "Swagger",
+   "category": "工具与运维",
+   "desc": "Swagger 是一套用于设计、构建、文档化和测试 RESTful API 的开",
+   "file": "swagger.json"
+  },
+  {
+   "name": "Swift",
+   "category": "后端开发",
+   "desc": "Swift 是一种支持多编程范式和编译式的开源编程语言,苹果于2014年WWDC",
+   "file": "swift.json"
+  },
+  {
+   "name": "Tailwind CSS",
+   "category": "前端开发",
+   "desc": "Tailwind CSS 是一个开放源代码 CSS 框架。",
+   "file": "tailwindcss.json"
+  },
+  {
+   "name": "TCP/IP",
+   "category": "后端开发",
+   "desc": "TCP/IP 是因特网的通信协议。",
+   "file": "tcpip.json"
+  },
+  {
+   "name": "TensorFlow",
+   "category": "人工智能",
+   "desc": "TensorFlow 是一个数学计算的工具箱，专门为机器学习任务而设计，让开发者",
+   "file": "tensorflow.json"
+  },
+  {
+   "name": "TypeScript 抽象类",
+   "category": "前端开发",
+   "desc": "抽象类（Abstract Class）是 TypeScript 面向对象编程中的",
+   "file": "typescript.json"
+  },
+  {
+   "name": "VBScript",
+   "category": "后端开发",
+   "desc": "VBScript 是微软公司出品的脚本语言。",
+   "file": "vbscript.json"
+  },
+  {
+   "name": "Vibe Coding",
+   "category": "人工智能",
+   "desc": "Vibe Coding（氛围编程）是一种全新的软件开发方式。",
+   "file": "vibe-coding.json"
+  },
+  {
+   "name": "VSCode",
+   "category": "工具与运维",
+   "desc": "VS Code（全称 Visual Studio Code）是一款由微软推出的免",
+   "file": "vscode.json"
+  },
+  {
+   "name": "Vue.js 样式绑定",
+   "category": "前端开发",
+   "desc": "Vue.js class",
+   "file": "vue2.json"
+  },
+  {
+   "name": "Vue3",
+   "category": "前端开发",
+   "desc": "Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进",
+   "file": "vue3.json"
+  },
+  {
+   "name": "W3C",
+   "category": "前端开发",
+   "desc": "W3C 让每个人都能在互联网上分享资源。",
+   "file": "w3c.json"
+  },
+  {
+   "name": "index",
+   "category": "前端开发",
+   "desc": "",
+   "file": "w3cnote.json"
+  },
+  {
+   "name": "W3C词汇和术语表",
+   "category": "前端开发",
+   "desc": "以A字母开头的词汇",
+   "file": "web.json"
+  },
+  {
+   "name": "Web Services",
+   "category": "后端开发",
+   "desc": "通过使用 Web Services，您的应用程序可以向全世界发布信息，或提供某项",
+   "file": "webservices.json"
+  },
+  {
+   "name": "WSDL",
+   "category": "后端开发",
+   "desc": "WSDL（网络服务描述语言，Web Services Description L",
+   "file": "wsdl.json"
+  },
+  {
+   "name": "XLink 和 XPointer",
+   "category": "后端开发",
+   "desc": "XLink 定义在 XML 文档中创建超级链接的标准方法。",
+   "file": "xlink.json"
+  },
+  {
+   "name": "XML",
+   "category": "后端开发",
+   "desc": "XML 指可扩展标记语言（eXtensible Markup Language）",
+   "file": "xml.json"
+  },
+  {
+   "name": "XPath",
+   "category": "后端开发",
+   "desc": "XPath 是一门在 XML 文档中查找信息的语言。",
+   "file": "xpath.json"
+  },
+  {
+   "name": "XQuery",
+   "category": "后端开发",
+   "desc": "XQuery 之于 XML 作用就类似于 SQL 之于数据库的作用。",
+   "file": "xquery.json"
+  },
+  {
+   "name": "XSLT",
+   "category": "后端开发",
+   "desc": "XSL 指扩展样式表语言（EXtensible Stylesheet Langu",
+   "file": "xsl.json"
+  },
+  {
+   "name": "XSL-FO",
+   "category": "后端开发",
+   "desc": "XSL-FO 指可扩展样式表语言格式化对象（Extensible Stylesh",
+   "file": "xslfo.json"
+  },
+  {
+   "name": "Zig",
+   "category": "后端开发",
+   "desc": "Zig 是一个命令式、通用、静态类型、编译的系统编程语言。",
+   "file": "zig.json"
+  }
+ ]
+}
