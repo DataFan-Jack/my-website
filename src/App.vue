@@ -690,18 +690,6 @@ onBeforeUnmount(() => {
           </div>
         </section>
 
-        <section class="r-section">
-          <h2>荣誉与在校经历</h2>
-          <ul class="r-list">
-            <li>普通话二级甲等 · 驾驶证</li>
-            <li>大创俱乐部成员，参与"城院夜市"策划落地，对接 30+ 摊主，活动吸引 300+ 师生参与</li>
-          </ul>
-        </section>
-
-        <section class="r-section">
-          <h2>自我评价</h2>
-          <p class="r-note">大数据技术专业，具备 Hadoop/Hive、数仓构建与 FineBI 可视化实践经验，擅长数据采集、清洗与分析，逻辑清晰、执行力强，能快速上手数据相关任务。</p>
-        </section>
       </div>
     </main>
 
