@@ -1,0 +1,102 @@
+{
+ "tutorial": {
+  "name": "Dash",
+  "category": "其他",
+  "desc": "Dash 是一个基于 Python 的开源框架，用于快速构建数据驱动的 Web ",
+  "url": "https://www.runoob.com/dash/",
+  "chapters": [
+   {
+    "title": "Dash 回调函数",
+    "url": "https://www.runoob.com/dash/dash-callback.html",
+    "body": "Dash 允许开发者使用Python来创建动态的、响应式的用户界面。\nDash 的核心功能之一就是回调函数（Callback），它使得用户界面能够根据用户的输入或操作实时更新。\n回调函数是 Dash 中用于处理用户交互的核心机制，它允许你在用户与应用程序交互时，动态地更新应用程序的布局或数据。简单来说，回调函数是一个Python函数，它会在特定的输入发生变化时被触发，并根据这些输入的变化来更新输出。\n一个典型的 Dash 回调函数包含以下几个部分：\n输入（Input）：指定哪些组件的属性变化会触发回调函数。\n输出（Output）：指定回调函数执行后，哪些组件的属性会被更新。\n状态（State）：可选参数，用于传递一些不会触发回调但需要在回调中使用的数据。\n回调函数体：包含实际的逻辑代码，用于处理输入并生成输出。\n回调函数的基本结构\n@app.callback(\n Output(component_id='output-component', component_property='output-property'),\n Input(component_id='input-component', component_property='input-property')\n)\ndef update_output(input_value):\n # 根据输入值计算输出值\n return output_value\nOutput：\n指定回调函数的输出目标。\ncomponent_id：目标组件的 ID。\ncomponent_property：目标组件的属性（如 children、value 等）。\nInput：\n指定回调函数的输入来源。\ncomponent_id：输入组件的 ID。\ncomponent_property：输入组件的属性（如 value、n_clicks 等）。\n回调函数：\n接收输入值，计算并返回输出值。\n函数名可以自定义（如 update_output）。\n实例\n以下示例展示了如何根据输入框的值动态更新文本内容：\n实例",
+    "examples": [
+     "from dash import Dash, html, dcc, Input, Output\n\n# 创建 Dash 应用\napp = Dash(__name__)\n\n# 定义布局\napp.layout = html.Div([\n    dcc.Input(id='input', type='text', placeholder='请输入内容...'),\n    html.Div(id='output')\n])\n\n# 定义回调函数\n@app.callback(\n    Output('output', 'children'),\n    Input('input', 'value')\n)\ndef update_output(input_value):\n    return f'你输入了: {input_value}'\n\n# 运行应用\nif __name__ == '__main__':\n    app.run_server(debug=True)"
+    ]
+   },
+   {
+    "title": "Dash 核心组件",
+    "url": "https://www.runoob.com/dash/dash-core-components.html",
+    "body": "Dash 的核心组件是构建应用程序的基础，它们允许你创建用户界面并与数据进行交互。\nDash 通过 dash.html 和 dash.dcc 模块，你可以轻松地创建用户界面并与数据进行交互。\n从 Dash 2.0 版本开始，dash_html_components 和 dash_core_components 已经被整合到 dash 主包中。\n现在推荐直接从 dash 中导入 html 和 dcc，而不是使用旧的 dash_html_components 和 dash_core_components。\nDash 核心组件概述\nDash 的核心组件可以分为两大类：dash.html 和 dash.dcc。dash.html 提供了 HTML 标签的 Python 封装，而 dash.dcc 则提供了更高级的交互式组件，如滑块、下拉菜单、图形等。\n1. dash.html 组件\ndash.html 模块提供了与 HTML 标签对应的 Python 类。这些类允许你以 Python 的方式编写 HTML 代码。例如，dash.html.Div 对应 HTML 的 <div> 标签，dash.html.H1 对应 <h1> 标签。\n实例",
+    "examples": [
+     "import dash\nimport dash.html as html\n\napp = dash.Dash(__name__)\n\napp.layout = html.Div([\n    html.H1('欢迎来到 Dash 世界'),\n    html.P('这是一个简单的段落。'),\n    html.Div([\n        html.Span('这是 Span 1'),\n        html.Span('这是 Span 2')\n    ])\n])\n\nif __name__ == '__main__':\n    app.run_server(debug=True)"
+    ]
+   },
+   {
+    "title": "Dash 样式设计",
+    "url": "https://www.runoob.com/dash/dash-css.html",
+    "body": "在开发交互式 Web 应用程序时，Dash 不仅允许你使用 Python 来构建复杂的应用程序，还提供了丰富的样式设计选项，使你的应用程序看起来更加专业和美观。\n在 Dash 中，样式设计是通过 CSS 实现的。Dash 提供了多种方式来设置组件的样式，包括：\n内联样式：通过 style 属性直接设置组件的样式。\n外部 CSS 文件：通过加载外部 CSS 文件设置全局样式。\nDash Bootstrap Components：使用 Bootstrap 风格的组件和样式。\nDash DAQ：用于创建数据采集和控制应用的样式组件。\n1. 内联样式\n通过 style 属性可以直接为组件设置 CSS 样式。style 是一个字典，键是 CSS 属性，值是 CSS 值。\n实例",
+    "examples": [
+     "from dash import Dash, html\n\n# 创建 Dash 应用\napp = Dash(__name__)\n\n# 定义布局\napp.layout = html.Div(\n    style={\n        'backgroundColor': 'lightblue',  # 背景颜色\n        'padding': '20px',  # 内边距\n        'borderRadius': '10px',  # 圆角\n        'textAlign': 'center'  # 文字居中\n    },\n    children=[\n        html.H1(\"欢迎使用 Dash\", style={'color': 'darkblue'}),\n        html.P(\"这是一个带样式的 Div。\")\n    ]\n)\n\n# 运行应用\nif __name__ == '__main__':\n    app.run_server(debug=True)"
+    ]
+   },
+   {
+    "title": "Dash 数据可视化与 Plotly 集成",
+    "url": "https://www.runoob.com/dash/dash-dataviews-plotly.html",
+    "body": "在数据科学和分析领域，数据可视化是一个至关重要的环节，通过可视化，我们可以更直观地理解数据，发现其中的模式和趋势。\nDash 的核心可视化功能依赖于 Plotly，这是一个强大的开源数据可视化库，Plotly 提供了丰富的图表类型和高度可定制的选项，能够轻松创建交互式图表。\nDash 通过 dcc.Graph 组件与 Plotly 无缝集成，用户可以直接在 Dash 应用中嵌入 Plotly 图表。\n什么是 Plotly？\nPlotly 是一个基于 JavaScript 的开源数据可视化库，支持多种编程语言，包括 Python、R、Julia 等。\nPlotly 提供了丰富的图表类型，如折线图、柱状图、散点图、热力图等，并且支持交互功能，如缩放、平移、悬停提示等。\nPlotly 特点：\n丰富的图表类型：折线图、柱状图、散点图、饼图、热力图、3D 图等。\n交互性：支持缩放、平移、悬停提示等交互功能。\n高度可定制：可以自定义图表的颜色、布局、注释等。\n与 Dash 无缝集成：通过 dcc.Graph 组件直接在 Dash 应用中嵌入 Plotly 图表。\nPlotly 的核心优势\n交互性: Plotly 图表支持丰富的交互功能，用户可以通过鼠标操作与图表进行互动。\n多样性: Plotly 提供了多种图表类型，适用于不同的数据可视化需求。\n易用性: Plotly 的 API 设计简洁，易于上手，同时支持高级定制。\nDash 与 Plotly 集成\n1、安装 Dash 和 Plotly\n在开始之前，我们需要安装 Dash 和 Plotly。可以通过以下命令进行安装：\npip install dash plotly\n或\npip3 install dash plotly\ndcc.Graph 是 Dash 中用于显示 Plotly 图表的组件。它的核心参数是 figure，用于指定图表的数据和布局。\nfigure 参数：\ndata：图表的数据部分，是一个字典列表，每个字典表示一个数据系列。\nlayout：图表的布局部分，用于设置标题、坐标轴、图例等。\n实例",
+    "examples": [
+     "import dash\nfrom dash import dcc, html\nimport plotly.express as px\n\n# 创建 Dash 应用\napp = dash.Dash(__name__)\n\n# 定义布局\napp.layout = html.Div([\n    dcc.Graph(\n        id='example-graph',\n        figure={\n            'data': [{'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': '数据1'}],\n            'layout': {'title': '示例图表'}\n        }\n    )\n])\n\n# 运行应用\nif __name__ == '__main__':\n    app.run_server(debug=True)"
+    ]
+   },
+   {
+    "title": "Dash 常用交互组件",
+    "url": "https://www.runoob.com/dash/dash-dcc-component.html",
+    "body": "Dash 基于 Python，允许开发者使用纯 Python 代码构建交互式的 Web 应用。\nDash 的核心组件之一是 dash.dcc（Dash Core Components），它提供了丰富的 UI 组件，如滑块、下拉菜单、图形等，这些组件可以帮助开发者快速构建功能强大的 Web 应用。\ndash.dcc 组件包括但不限于：\nGraph：用于绘制各种图表，如折线图、柱状图、散点图等。\nDropdown：下拉菜单，允许用户从多个选项中选择一个。\nSlider：滑块，允许用户通过拖动滑块选择一个数值范围。\nInput：输入框，允许用户输入文本或数字。\nTextarea：多行文本输入框，适用于输入较长的文本内容。\nChecklist：复选框列表，允许用户选择多个选项。\nRadioItems：单选按钮列表，允许用户从多个选项中选择一个。\nDatePickerSingle 和 DatePickerRange：日期选择器，允许用户选择单个日期或日期范围。\nUpload：文件上传组件，允许用户上传文件。\n这些组件是构建交互式 Web 应用的基础，开发者可以通过组合这些组件来创建复杂的用户界面。\n在最新版本的 Dash 中，推荐使用以下方式导入 dcc：\nfrom dash import dcc\n常用交互组件\n组件\n说明\n示例代码\ndcc.Input\n创建一个文本输入框。\ndcc.Input(id='input', type='text', placeholder='请输入内容...')\ndcc.Dropdown\n创建一个下拉菜单。\ndcc.Dropdown(id='dropdown', options=[{'label': '选项1', 'value': '1'}], value='1')\ndcc.Slider\n创建一个滑块。\ndcc.Slider(id='slider', min=0, max=10, step=1, value=5)\ndcc.Graph\n创建一个交互式图表（基于 Plotly.js）。\ndcc.Graph(id='graph', figure={'data': [{'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar'}]})\ndcc.Textarea\n创建一个多行文本输入框。\ndcc.Textarea(id='textarea', value='请输入多行文本...')\ndcc.Checklist\n创建一个复选框列表。\ndcc.Checklist(id='checklist', options=[{'label': '选项1', 'value': '1'}], value=['1'])\ndcc.RadioItems\n创建一个单选按钮组。\ndcc.RadioItems(id='radio', options=[{'label': '选项1', 'value': '1'}], value='1')\ndcc.DatePickerSingle\n创建一个日期选择器（单选）。\ndcc.DatePickerSingle(id='date-picker', date='2023-10-01')\ndcc.DatePickerRange\n创建一个日期范围选择器。\ndcc.DatePickerRange(id='date-range', start_date='2023-10-01', end_date='2023-10-07')\ndcc.Markdown\n渲染 Markdown 文本。\ndcc.Markdown('''# 标题\\n- 列表项1''')\ndcc.Store\n在客户端存储数据，用于跨回调共享数据。\ndcc.Store(id='store', data={'key': 'value'})\ndcc.Upload\n创建一个文件上传组件。\ndcc.Upload(id='upload', children=html.Div('拖放或点击上传文件'))\ndcc.Tabs\n创建选项卡组件。\ndcc.Tabs(id='tabs', children=[dcc.Tab(label='标签1', value='1')])\ndcc.Tab\n创建单个选项卡（需与 dcc.Tabs 配合使用）。\ndcc.Tab(label='标签1', value='1')\ndcc.Interval\n定时触发回调的组件。\ndcc.Interval(id='interval', interval=1000)\ndcc.Location\n用于管理 URL 的组件。\ndcc.Location(id='url', pathname='/')\ndcc.Link\n创建一个超链接，用于页面导航（需与 dcc.Location 配合使用）。\ndcc.Link('跳转到首页', href='/')\ndcc.ConfirmDialog\n创建一个确认对话框。\ndcc.ConfirmDialog(id='confirm', message='确定要执行此操作吗？')\ndcc.ConfirmDialogProvider\n提供一个确认对话框（需与按钮等组件配合使用）。\ndcc.ConfirmDialogProvider(html.Button('删除'), id='confirm-provider')\ndcc.Loading\n创建一个加载动画组件。\ndcc.Loading(id='loading', children=[html.Div('加载中...')])\ndcc.Download\n用于触发文件下载的组件。\ndcc.Download(id='download')\n应用实例\n创建一个简单的 Dash 应用\n以下是一个简单的 Dash 应用示例，展示了如何使用 dash.dcc 组件：\n实例",
+    "examples": [
+     "import dash\nfrom dash import dcc, html\nfrom dash.dependencies import Input, Output\n\n# 创建一个 Dash 应用\napp = dash.Dash(__name__)\n\n# 定义应用的布局\napp.layout = html.Div([\n    dcc.Input(id='input-text', type='text', value=''),\n    html.Div(id='output-text')\n])\n\n# 定义回调函数\n@app.callback(\n    Output('output-text', 'children'),\n    [Input('input-text', 'value')]\n)\ndef update_output(value):\n    return f'你输入的内容是: {value}'\n\n# 运行应用\nif __name__ == '__main__':\n    app.run_server(debug=True)"
+    ]
+   },
+   {
+    "title": "Dash 动态更新图表",
+    "url": "https://www.runoob.com/dash/dash-dynamically-update-charts.html",
+    "body": "在现代数据可视化应用中，动态更新图表是一个非常重要的功能，它允许用户在不刷新整个页面的情况下，实时查看数据的变化。\n在 Dash 中，动态更新图表的核心机制是 回调函数（Callback），回调函数允许你在用户与页面交互时（如点击按钮、选择下拉菜单等），动态地更新图表的内容。\n回调函数的基本结构\n一个典型的回调函数包含以下几个部分：\n输入（Input）: 定义触发回调的组件及其属性。\n输出（Output）: 定义需要更新的组件及其属性。\n回调函数体: 根据输入值计算并返回输出值。\nDash 回调函数详解参见：https://www.runoob.com/dash/dash-callback.html。\n简单的动态更新图表\n通过回调函数，可以动态更新图表的数据和布局。\n以下是一个完整的 Dash 应用示例，用户可以通过下拉菜单选择数据集，动态显示对应的折线图：\n实例",
+    "examples": [
+     "from dash import Dash, html, dcc, Input, Output\nimport plotly.express as px\nimport pandas as pd\n\n# 创建 Dash 应用\napp = Dash(__name__)\n\n# 定义示例数据集\ndatasets = {\n    '数据集1': pd.DataFrame({\n        'x': [1, 2, 3, 4, 5],\n        'y': [10, 15, 13, 17, 21]\n    }),\n    '数据集2': pd.DataFrame({\n        'x': [1, 2, 3, 4, 5],\n        'y': [5, 10, 8, 12, 15]\n    }),\n    '数据集3': pd.DataFrame({\n        'x': [1, 2, 3, 4, 5],\n        'y': [20, 18, 22, 19, 25]\n    })\n}\n\n# 定义布局\napp.layout = html.Div([\n    html.H1(\"动态折线图示例\"),  # 标题\n    dcc.Dropdown(\n        id='dataset-dropdown',  # 下拉菜单的 ID\n        options=[{'label': name, 'value': name} for name in datasets.keys()],  # 下拉菜单选项\n        value='数据集1'  # 默认选中的数据集\n    ),\n    dcc.Graph(id='line-chart')  # 用于显示折线图的 Graph 组件\n])\n\n# 定义回调函数\n@app.callback(\n    Output('line-chart', 'figure'),  # 输出到 id 为 'line-chart' 的 Graph 组件的 figure 属性\n    Input('dataset-dropdown', 'value')  # 输入来自 id 为 'dataset-dropdown' 的下拉菜单的 value 属性\n)\ndef update_line_chart(selected_dataset):\n    # 获取选中的数据集\n    df = datasets[selected_dataset]\n    # 使用 Plotly Express 创建折线图\n    fig = px.line(df, x='x', y='y', title=f'{selected_dataset} 折线图')\n    return fig\n\n# 运行应用\nif __name__ == '__main__':\n    app.run_server(debug=True)  # 启动应用，debug=True 表示开启调试模式"
+    ]
+   },
+   {
+    "title": "dash-first-app",
+    "url": "https://www.runoob.com/dash/dash-first-app.html",
+    "body": "创建一个简单的 Dash 应用\n在上一章节我们已经介绍了如何安装 Dash，为了确保 Dash 安装正确，我们可以创建一个简单的 Dash 应用来测试。\n1. 创建一个 Python 文件\n在你的项目目录中创建一个新的 Python 文件，例如 app.py。\n2. 编写代码\n在 app.py 文件中，输入以下代码：\n实例",
+    "examples": [
+     "# 导入 Dash 相关库\nimport dash\nfrom dash import dcc, html  # dcc 是 Dash 核心组件库，html 是 HTML 组件库\n\n# 创建一个 Dash 应用实例\napp = dash.Dash(__name__)\n\n# 定义应用的布局\napp.layout = html.Div(children=[\n    # 添加一个标题\n    html.H1(children='你好，Dash！'),\n\n    # 添加一段描述文字\n    html.Div(children='''\n        Dash：一个用于 Python 的 Web 应用框架。\n    '''),\n\n    # 添加一个图表\n    dcc.Graph(\n        id='example-graph',  # 图表的 ID，用于回调函数\n        figure={\n            'data': [  # 图表的数据\n                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': '上海'},\n                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'bar', 'name': '北京'},\n            ],\n            'layout': {  # 图表的布局\n                'title': 'Dash 数据可视化示例'  # 图表的标题\n            }\n        }\n    )\n])\n\n# 运行应用\nif __name__ == '__main__':\n    app.run_server(debug=True)  # 启动应用，debug=True 表示开启调试模式"
+    ]
+   },
+   {
+    "title": "Dash 常用 HTML 组件",
+    "url": "https://www.runoob.com/dash/dash-html-component.html",
+    "body": "Dash 的核心组件之一是 HTML 组件，这些组件允许你在应用中嵌入标准的 HTML 元素。\n本文将详细介绍 Dash 中常用的 HTML 组件。\n1. 引入 HTML 组件\n在 Dash 的最新版本中，HTML 组件的引入方式有所变化，我们可以直接从 dash 模块中导入 html 组件，而不需要像以前那样从 dash_html_components 中导入。\nfrom dash import html\n常用 HTML 组件\n组件\n说明\n示例代码\nhtml.Div\n创建一个容器（<div>），用于包裹其他组件\nhtml.Div(children=[html.H1(\"标题\"), html.P(\"这是一个段落。\")])\nhtml.H1\n创建一级标题（<h1>）\nhtml.H1(\"一级标题\")\nhtml.H2\n创建二级标题（<h2>）\nhtml.H2(\"二级标题\")\nhtml.H3\n创建三级标题（<h3>）\nhtml.H3(\"三级标题\")\nhtml.P\n创建段落（<p>）\nhtml.P(\"这是一个段落。\")\nhtml.Span\n创建行内容器（<span>），用于包裹行内文本或元素\nhtml.Span(\"这是一段行内文本。\")\nhtml.Br\n创建换行（<br>）\nhtml.Div(children=[html.P(\"第一行\"), html.Br(), html.P(\"第二行\")])\nhtml.A\n创建超链接（<a>）\nhtml.A(\"点击这里访问 Dash 官网\", href=\"https://dash.plotly.com\")\nhtml.Img\n插入图片（<img>）\nhtml.Img(src=\"https://plotly.com/assets/images/logo.png\", height=\"50px\")\nhtml.Ul\n创建无序列表（<ul>）\nhtml.Ul(children=[html.Li(\"列表项1\"), html.Li(\"列表项2\")])\nhtml.Ol\n创建有序列表（<ol>）\nhtml.Ol(children=[html.Li(\"第一项\"), html.Li(\"第二项\")])\nhtml.Li\n创建列表项（<li>）\nhtml.Li(\"列表项\")\nhtml.Button\n创建按钮（<button>）\nhtml.Button(\"点击我\", id='my-button')\nhtml.Label\n创建标签（<label>），通常与输入组件一起使用\nhtml.Label(\"用户名:\"), dcc.Input(id='username', type='text')\nhtml.Table\n创建表格（<table>）\nhtml.Table(children=[html.Tr(children=[html.Th(\"姓名\"), html.Th(\"年龄\")])])\nhtml.Tr\n创建表格行（<tr>）\nhtml.Tr(children=[html.Th(\"姓名\"), html.Th(\"年龄\")])\nhtml.Th\n创建表头（<th>）\nhtml.Th(\"姓名\")\nhtml.Td\n创建表格单元格（<td>）\nhtml.Td(\"张三\")\nhtml.Header\n创建页眉（<header>）\nhtml.Header(children=[html.H1(\"页眉标题\")])\nhtml.Footer\n创建页脚（<footer>）\nhtml.Footer(children=[html.P(\"版权所有 © 2023\")])\nhtml.Section\n创建章节（<section>）\nhtml.Section(children=[html.H2(\"章节标题\"), html.P(\"章节内容\")])\nhtml.Nav\n创建导航栏（<nav>）\nhtml.Nav(children=[html.A(\"首页\", href=\"/\"), html.A(\"关于\", href=\"/about\")])\nhtml.Main\n创建主要内容区域（<main>）\nhtml.Main(children=[html.H1(\"主要内容\")])\nhtml.Article\n创建文章区域（<article>）\nhtml.Article(children=[html.H2(\"文章标题\"), html.P(\"文章内容\")])\nhtml.Aside\n创建侧边栏（<aside>）\nhtml.Aside(children=[html.H2(\"侧边栏\"), html.P(\"侧边栏内容\")])\nhtml.Details\n创建可折叠内容（<details>）\nhtml.Details(children=[html.Summary(\"点击展开\"), html.P(\"隐藏内容\")])\nhtml.Summary\n创建可折叠内容的标题（<summary>）\nhtml.Summary(\"点击展开\")\n2. 常用的 HTML 组件\n2.1 html.Div\nhtml.Div 是 Dash 中最常用的 HTML 组件之一，它用于创建一个 div 元素。div 元素通常用于将内容分组，并且可以通过 CSS 进行样式设置。\n实例",
+    "examples": [
+     "html.Div(children=[\n    html.H1('这是一个标题'),\n    html.P('这是一个段落。')\n])"
+    ]
+   },
+   {
+    "title": "Dash 安装指南",
+    "url": "https://www.runoob.com/dash/dash-install.html",
+    "body": "Dash 是一个基于 Python 的开源框架，用于构建交互式的 Web 应用程序，适合用于数据分析和可视化，因为它允许开发者通过简单的 Python 代码创建复杂的用户界面。\nDash 的核心组件包括 dash、dash-core-components、dash-html-components 和 dash-bootstrap-components，这些组件共同构成了一个强大的工具集，帮助开发者快速构建数据驱动的 Web 应用。\nDash 是一个基于 Python 的框架，因此安装过程非常简单，主要通过 pip 完成。\n安装 Dash 的前提条件\n在安装 Dash 之前，你需要确保你的系统已经安装了 Python，Dash 支持 Python 3.6 及以上版本。如果你还没有安装 Python，可以从 Python 官方网站 下载并安装适合你操作系统的版本。\n页可以参阅我们的 Python 教程。\n安装 Dash\n安装 Dash 非常简单，可以通过 Python 的包管理工具 pip 来完成。\npip 是 Python 的包管理工具，用于安装 Dash 及其依赖库。\n确保已安装 pip，可以通过以下命令检查：\npip --version\n注意：Python 2.7.9 + 或 Python 3.4+ 以上版本都自带 pip 工具。\n如果没有安装可以参考：Python pip 安装与使用。\n打开终端或命令行工具，运行以下命令：\npip install dash\n或\npip3 install dash\n这条命令会安装 Dash 的核心库及其依赖项，包括：\ndash：Dash 的核心库。\ndash-core-components：Dash 的核心组件库（如输入框、下拉菜单、图表等）。\ndash-html-components：Dash 的 HTML 组件库（如 div、h1、p 等）。\ndash-table：用于显示和操作表格数据的组件。\n除了核心库外，Dash 还支持一些可选依赖库，用于增强功能。\n以下是常用的可选库及其安装方法：\n1、Plotly\nPlotly 是 Dash 默认的图表渲染库。如果你需要使用 Plotly 创建图表，可以单独安装：\npip install plotly\n2、Pandas\nPandas 是一个强大的数据处理库，常用于与 Dash 结合使用。安装命令：\npip install pandas\n3、JupyterDash\n如果你希望在 Jupyter Notebook 中使用 Dash，可以安装 jupyter-dash：\npip install jupyter-dash\n4、Dash Bootstrap Components\nDash Bootstrap Components 提供了 Bootstrap 风格的组件，用于快速构建美观的布局。安装命令：\npip install dash-bootstrap-components\n验证安装\n安装完成后，你可以通过以下命令来验证 Dash 是否安装成功：\n实例",
+    "examples": [
+     "python -c \"import dash; print(dash.__version__)\"\n或\npython3 -c \"import dash; print(dash.__version__)\""
+    ]
+   },
+   {
+    "title": "Dash 简介",
+    "url": "https://www.runoob.com/dash/dash-intro.html",
+    "body": "Dash 是一个基于 Python 的开源框架，专门用于构建数据分析和数据可视化的 Web 应用程序。\nDash 由 Plotly 团队开发，旨在帮助数据分析师、数据科学家和开发人员快速创建交互式的、基于数据的 Web 应用，而无需深入掌握前端技术（如 HTML、CSS 和 JavaScript）。\nDash 的核心优势在于其简单易用性和强大的功能。通过 Dash，用户可以使用纯 Python 代码来构建复杂的 Web 应用，而无需编写繁琐的前端代码。Dash 应用通常由两个主要部分组成：布局和交互性。\nDash 是它结合了 Flask 的后端能力、Plotly.js 的可视化能力以及 React.js 的交互能力，为用户提供了一个简单而强大的开发平台。\n简单易用\n只需 Python 代码即可构建 Web 应用，无需前端开发经验。\n语法直观，学习曲线平缓。\n高度可定制\n支持自定义布局和样式。\n可以通过 React.js 创建自定义组件。\n交互性强\n内置回调机制，轻松实现用户交互。\n支持动态更新数据和图表。\n与数据科学工具无缝集成\n与 Pandas、NumPy、Scikit-learn 等数据科学库完美结合。\n使用 Plotly 创建丰富的可视化图表。\n跨平台\n可以在本地运行，也可以部署到服务器或云平台。\nDash 技术栈\nDash 并不是一个完全独立的框架，而是基于以下技术构建的：\nFlask\nDash 的后端基于 Flask，一个轻量级的 Python Web 框架。\nFlask 负责处理 HTTP 请求和响应。\nPlotly.js\nDash 使用 Plotly.js 来渲染交互式图表。\nPlotly.js 支持多种图表类型，如折线图、柱状图、散点图、热力图等。\nReact.js\nDash 的前端组件基于 React.js，一个流行的 JavaScript 库。\nReact.js 使得 Dash 的组件可以动态更新，而无需刷新页面。\n其他依赖\nDash 还依赖于其他 Python 库，如 Pandas（数据处理）、NumPy（数值计算）等。\nDash 的核心组件\n1. 布局（Layout）\n1. 导入方式\n在最新版本的 Dash 中，推荐使用以下方式导入核心组件：\n\npython\n复制\nfrom dash import Dash, html, dcc\n\n布局定义了应用程序的外观和结构。在 Dash 中，布局是通过 Python 代码来描述的，使用 dash_html_components 和 dash_core_components 这两个库来创建 HTML 元素和交互式组件。\ndash_html_components：这个库提供了与 HTML 标签对应的 Python 类。例如，html.Div 对应 HTML 中的 <div> 标签，html.H1 对应 <h1> 标签等。通过这些组件，你可以轻松地构建页面的结构。\ndash_core_components：这个库提供了更高级的交互式组件，如滑块、下拉菜单、图形等。例如，dcc.Graph 用于显示 Plotly 图表，dcc.Dropdown 用于创建下拉菜单。\n从 Dash 2.0 版本开始，dash_html_components 和 dash_core_components 已经被整合到 dash 主包中。\n现在推荐直接从 dash 中导入 html 和 dcc，而不是使用旧的 dash_html_components 和 dash_core_components。\n以下是更新后的 Dash 核心组件导入方式和使用方法：\nfrom dash import Dash, html, dcc\nhtml：替代原来的 dash_html_components，用于创建 HTML 元素。\ndcc：替代原来的 dash_core_components，用于创建交互式组件。\n2. 交互性（Interactivity）\nDash 的交互性是通过回调函数（Callback）来实现的。回调函数允许你在用户与应用程序交互时动态更新页面内容。例如，当用户选择一个下拉菜单选项时，图表可以自动更新以显示相应的数据。\n回调函数是 Dash 应用的核心机制之一。它通过 @app.callback 装饰器来定义，并指定输入（Input）和输出（Output）。输入通常是用户交互的组件（如滑块、下拉菜单等），而输出则是需要更新的组件（如图表、文本等）。\nDash 应用场景\n数据可视化: 创建交互式图表和仪表盘，展示数据分析结果。\n机器学习模型展示: 部署机器学习模型，并通过 Web 界面与用户交互。\n实时数据监控: 监控实时数据流（如传感器数据、股票价格等）。\n报告生成: 自动生成动态报告，支持用户交互和过滤。\n内部工具开发: 为企业内部开发数据驱动的工具和应用。\nDash 的优势与局限性\n优势\n快速开发：用 Python 代码即可构建 Web 应用，开发效率高。\n交互性强：支持动态更新和用户交互。\n社区支持：有活跃的社区和丰富的文档。\n可扩展性：支持自定义组件和高级功能。\n局限性\n性能瓶颈：对于非常复杂的应用，可能会遇到性能问题。\n前端定制有限：虽然支持自定义组件，但复杂的前端逻辑仍需 JavaScript。\n学习曲线：虽然简单易用，但掌握高级功能仍需一定时间。\nDash 与其他工具的比较\n工具\n优点\n缺点\n适用场景\nDash\n简单易用，适合 Python 开发者\n前端定制有限，性能可能受限\n数据可视化、内部工具\nStreamlit\n极简 API，适合快速原型开发\n功能相对简单，不适合复杂应用\n快速原型、简单仪表盘\nFlask\n高度灵活，适合全栈开发\n需要前端开发经验，开发效率较低\n全栈 Web 应用\nShiny (R)\n适合 R 语言开发者，交互性强\n仅限于 R 语言，生态系统较小\nR 语言用户的数据可视化",
+    "examples": []
+   },
+   {
+    "title": "Dash 多页面布局",
+    "url": "https://www.runoob.com/dash/dash-tabs.html",
+    "body": "在现代 Web 应用开发中，单页面应用（SPA）和多页面应用（MPA）是两种常见的架构模式。\n单页面应用通常通过动态加载内容来提供流畅的用户体验，而多页面应用则通过多个独立的页面来组织内容。\n单页面应用 vs 多页面应用\n在单页面应用中，所有的内容都在一个页面中动态加载和更新，用户通过点击链接或按钮来切换不同的视图。这种架构的优点是用户体验流畅，页面加载速度快，但缺点是随着应用规模的增大，代码结构可能会变得复杂。\n多页面应用则通过多个独立的页面来组织内容，每个页面都有自己的 URL 和布局。这种架构的优点是代码结构清晰，易于维护，但缺点是页面切换时会有一定的加载延迟。\nDash 多页面布局的实现\n在 Dash 中实现多页面布局可以通过 dcc.Location 和 dcc.Link 组件来实现。\ndcc.Location 用于跟踪当前页面的 URL，而 dcc.Link 用于在页面之间导航。通过结合回调函数，可以根据 URL 动态加载不同的页面内容。\n使用 dcc.Location 和 dcc.Link 可以实现多页面布局。\n通过回调函数根据 pathname 动态加载页面内容。\n结合模块化布局和 URL 参数，可以构建更复杂的多页面应用。\n多页面布局的基本结构\n多页面布局的核心思想是根据 URL 的路径（pathname）动态加载不同的页面内容。\n以下是实现多页面布局的基本步骤：\n定义页面布局：\n每个页面的布局可以定义为一个函数或变量。\n例如，home_layout 表示主页，about_layout 表示关于页面。\n使用 dcc.Location：\ndcc.Location 组件用于跟踪当前页面的 URL。\n通过 pathname 属性获取当前页面的路径。\n使用 dcc.Link：\ndcc.Link 组件用于创建页面导航链接。\n通过 href 属性指定目标页面的路径。\n动态加载页面内容：\n使用回调函数根据 pathname 动态返回对应的页面布局。\n实例",
+    "examples": [
+     "from dash import Dash, html, dcc, Input, Output\n\n# 创建 Dash 应用\napp = Dash(__name__)\n\napp.layout = html.Div([\n    dcc.Location(id='url', refresh=False),\n    html.Div(id='page-content')\n])"
+    ]
+   },
+   {
+    "title": "Dash 教程",
+    "url": "https://www.runoob.com/dash/dash-tutorial.html",
+    "body": "Dash 是一个基于 Python 的开源框架，用于快速构建数据驱动的 Web 应用程序。\nDash 的核心优势在于它的易用性和灵活性，使得即使是没有前端开发经验的开发人员也能轻松上手。\nDash 允许用户通过简单的 Python 代码创建交互式的数据可视化应用，而无需掌握复杂的前端技术（如 JavaScript、HTML、CSS）。",
+    "examples": []
+   }
+  ]
+ }
+}

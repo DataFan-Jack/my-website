@@ -1,0 +1,190 @@
+{
+ "tutorial": {
+  "name": "汇编语言 -",
+  "category": "编程语言",
+  "desc": "汇编语言（Assembly Language）是一种面向特定硬件的低级语言。",
+  "url": "https://www.runoob.com/assembly/",
+  "chapters": [
+   {
+    "title": "汇编语言 - 寻址方式",
+    "url": "https://www.runoob.com/assembly/assembly-addressing.html",
+    "body": "寻址方式（Addressing Mode）决定了 CPU 如何定位指令的操作数——数据从哪里来、结果存到哪里去。\n什么是寻址方式\n每条汇编指令的操作数可以是立即数、寄存器中的值或内存中的数据。\n寻址方式 就是告诉 CPU 如何计算操作数的实际地址或直接给出操作数值。\nx86 架构提供了多种灵活的寻址方式，理解每种方式的使用场景是写出高效汇编代码的基础。\n立即寻址（Immediate Addressing）\n操作数直接包含在指令中，是一个常量值。\n源操作数是立即数，CPU 直接从指令中读取，不需要访问内存或寄存器。\n实例",
+    "examples": [
+     "; 立即寻址示例\n\nmov eax, 42                 ; 42 是立即数，直接编码在指令中\nadd ebx, 100                ; 100 是立即数\nmov ecx, 0x2A               ; 十六进制立即数\nmov edx, 'A'                ; 字符 'A' = 0x41，也是立即数"
+    ]
+   },
+   {
+    "title": "汇编语言 - 算术指令",
+    "url": "https://www.runoob.com/assembly/assembly-arithmetic.html",
+    "body": "算术指令是 CPU 执行数学运算的基础。本章详细介绍 x86 架构中的加法、减法、乘法、除法以及相关进位运算指令。\nADD - 加法指令\nADD 将源操作数和目标操作数相加，结果存入目标操作数。\n实例",
+    "examples": [
+     "; 文件路径：add_demo.asm\n; ADD 指令示例：计算 100 + 200 + 300\n\nsection .data\n    a dd 100\n    b dd 200\n    c dd 300\n    sum dd 0\n\nsection .text\n    global _start\n\n_start:\n    ; 方式1：寄存器 += 立即数\n    mov eax, [a]                ; eax = 100\n    add eax, 200                ; eax = 100 + 200 = 300\n\n    ; 方式2：寄存器 += 寄存器\n    mov ebx, [b]                ; ebx = 200\n    add eax, ebx                ; eax = 300 + 200 = 500\n\n    ; 方式3：寄存器 += 内存\n    add eax, [c]                ; eax = 500 + 300 = 800\n\n    ; 存储结果\n    mov [sum], eax              ; sum = 800\n\n    ; 加法对标志位的影响\n    mov eax, 0xFFFFFFFF         ; eax = 最大的 32 位无符号数\n    add eax, 1                  ; eax = 0（溢出回绕）\n    ; CF = 1（产生进位）\n    ; ZF = 1（结果为 0）\n    ; OF = 0（有符号视角无溢出）\n\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编语言 - 数组",
+    "url": "https://www.runoob.com/assembly/assembly-array.html",
+    "body": "数组是连续存放的同类型数据集合。在汇编中，数组就是内存中一段连续的空间，通过基址加偏移的方式来访问每个元素。\n一维数组定义\n实例",
+    "examples": [
+     "; 数组的定义方式\n\nsection .data\n    ; 方式1：逐个列出元素\n    arr1 dd 10, 20, 30, 40, 50  ; 5 个双字元素的数组\n\n    ; 方式2：用 dup 初始化\n    arr2 dd 10 dup(0)            ; 10 个双字，全为 0\n\n    ; 方式3：字节数组\n    bytes db 1, 2, 3, 4, 5, 6   ; 6 个字节\n\n    ; 方式4：字符数组（字符串）\n    chars db 'runoob', 0         ; 7 字节\n\n    ; 数组长度计算（编译时）\n    arr1_len equ ($ - arr1) / 4  ; 双字数组的元素个数\n    arr2_len equ ($ - arr2) / 4\n    bytes_len equ ($ - bytes)    ; 字节数组，不需除法\n\nsection .bss\n    ; 未初始化的数组\n    buffer resd 100              ; 预留 100 个双字的空间"
+    ]
+   },
+   {
+    "title": "汇编语言 - 基础语法",
+    "url": "https://www.runoob.com/assembly/assembly-basic-syntax.html",
+    "body": "本章介绍 NASM 汇编程序的基本结构、语法规则和书写规范，帮助你理解汇编代码的骨架。\n汇编程序的基本结构\n一个完整的 NASM 汇编程序通常由以下几个部分组成：\n实例",
+    "examples": [
+     "; 文件路径：structure.asm\n; NASM 程序基本结构示例\n\nsection .data                       ; 数据段：存放已初始化的数据\n    ; 这里定义变量和常量\n    msg db 'Hello, RUNOOB!', 0xA\n    len equ $ - msg\n\nsection .bss                        ; BSS 段：存放未初始化的数据\n    ; 这里预留内存空间\n    buffer resb 64                  ; 预留 64 字节的缓冲区\n\nsection .text                       ; 代码段：存放可执行指令\n    global _start\n\n_start:\n    ; 这里写程序逻辑\n    mov eax, 4\n    mov ebx, 1\n    mov ecx, msg\n    mov edx, len\n    int 0x80\n\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编语言 - 条件判断",
+    "url": "https://www.runoob.com/assembly/assembly-condition.html",
+    "body": "条件判断是程序控制流的基石。汇编语言通过比较指令和条件跳转指令来实现 if-else、switch 等判断逻辑。\nCMP - 比较指令\nCMP 对两个操作数做减法运算（目标 - 源），但不保存结果，只更新标志位。\n本质上 CMP dest, src 等同于 SUB dest, src 但丢弃计算结果。\n实例",
+    "examples": [
+     "; CMP 比较指令示例\n\nsection .text\n    global _start\n\n_start:\n    mov eax, 10\n    cmp eax, 10                 ; eax == 10?\n    ; ZF = 1（相等，结果为零）\n    ; CF = 0（无借位）\n    ; SF = 0（结果非负）\n\n    mov eax, 5\n    cmp eax, 10                 ; eax == 10?\n    ; ZF = 0（不等，结果非零）\n    ; CF = 1（有借位：5 < 10）\n\n    mov eax, 20\n    cmp eax, 10                 ; eax == 10?\n    ; ZF = 0（不等）\n    ; CF = 0（无借位：20 >= 10）\n    ; SF = 0（结果非负：10 > 0）\n\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编语言 - 常量",
+    "url": "https://www.runoob.com/assembly/assembly-constants.html",
+    "body": "常量是在编译时确定且程序运行期间不可改变的值。在汇编中使用常量可以让代码更易读、更易维护。\n什么是汇编中的常量\n在 NASM 中，常量是通过 伪指令 定义的符号，汇编器在编译时将所有常量引用替换为实际值。\n与变量不同，常量不占用数据段内存，它们在 编译时 就被替换，相当于 C 语言中的 #define。\nEQU - 等值常量\nEQU 是最常用的定义常量方式，定义后不可重新定义：\n实例",
+    "examples": [
+     "; EQU 常量定义示例\n\n; 数值常量\nMAX_SIZE equ 256                 ; 缓冲区最大大小\nDEFAULT_PORT equ 8080            ; 默认端口号\nTRUE equ 1                       ; 真值\nFALSE equ 0                      ; 假值\n\n; 字符常量\nLF equ 0xA                       ; 换行符\nCR equ 0xD                       ; 回车符\nNULL equ 0                       ; 空字符\n\n; 表达式常量\nARRAY_SIZE equ 100 * 4           ; 100 个双字的字节数\nBUFFER_SIZE equ MAX_SIZE * 2     ; 引用另一个常量\nTOTAL equ 10 + 20 + 30           ; 计算结果\n\nsection .data\n    ; 使用常量\n    buffer db MAX_SIZE dup(0)    ; 定义 MAX_SIZE 字节的缓冲区\n\nsection .text\n    global _start\n\n_start:\n    mov eax, MAX_SIZE            ; eax = 256\n    mov ebx, BUFFER_SIZE         ; ebx = 512\n    mov ecx, ARRAY_SIZE          ; ecx = 400\n\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编语言 - 环境搭建",
+    "url": "https://www.runoob.com/assembly/assembly-env-setup.html",
+    "body": "本章将指导你在 Linux 系统上搭建 NASM 汇编开发环境，并完成你的第一个汇编程序。\nLinux 环境准备\n如果你使用的是 Windows 系统，建议安装 WSL（Windows Subsystem for Linux） 或使用虚拟机来获得 Linux 环境。\nmacOS 用户可以在虚拟机中安装 Linux 或使用 Docker 容器。\n本教程所有示例基于 Ubuntu/Debian 系统，其他发行版请自行调整包管理器命令。\n安装 NASM 汇编器\n在 Ubuntu/Debian 系统上，使用 apt 包管理器安装 NASM：\n$ sudo apt update\n$ sudo apt install nasm\n安装完成后，验证 NASM 是否安装成功：\n$ nasm -version\nNASM version 2.16.01\n如果你看到版本号输出，说明 NASM 已成功安装。\n安装链接器\n汇编器生成的是 目标文件（.o 文件），不能直接运行。\n你需要链接器将目标文件转换为可执行文件。我们使用 GCC 自带的链接器：\n$ sudo apt install gcc\n除此之外，你也可以直接使用 GNU 链接器 ld：\n$ ld --version\n在本教程中，我们主要使用 gcc 来链接，因为它会自动处理一些底层细节，更适合初学者。\n安装调试工具 GDB\nGDB（GNU Debugger） 是 Linux 下最常用的调试器，可以单步执行程序、查看寄存器状态、检查内存内容。\n$ sudo apt install gdb\n验证 GDB 安装：\n$ gdb --version\nGNU gdb (Ubuntu 12.1-0ubuntu1) 12.1\n第一个汇编程序：Hello, runoob\n创建一个新文件 hello.asm，输入以下内容：\n实例",
+    "examples": [
+     "; 文件路径：hello.asm\n; 第一个汇编程序：打印 Hello, runoob!\n; NASM 语法，Linux 32位\n\nsection .data                       ; 数据段：存放已初始化的数据\n    msg db 'Hello, runoob!', 0xA    ; 定义字符串 msg，0xA 是换行符\n    len equ $ - msg                 ; 计算字符串长度：当前地址 - msg 起始地址\n\nsection .text                       ; 代码段：存放可执行指令\n    global _start                   ; 声明 _start 为程序入口点\n\n_start:                             ; 程序入口\n    ; 系统调用 sys_write (4)：向 stdout 输出字符串\n    mov eax, 4                      ; 系统调用号 4 = sys_write\n    mov ebx, 1                      ; 文件描述符 1 = stdout（标准输出）\n    mov ecx, msg                    ; 要输出的字符串地址\n    mov edx, len                    ; 字符串长度\n    int 0x80                        ; 触发中断，执行系统调用\n\n    ; 系统调用 sys_exit (1)：正常退出程序\n    mov eax, 1                      ; 系统调用号 1 = sys_exit\n    mov ebx, 0                      ; 返回值 0 = 正常退出\n    int 0x80                        ; 触发中断，执行系统调用"
+    ]
+   },
+   {
+    "title": "汇编语言 - 文件管理",
+    "url": "https://www.runoob.com/assembly/assembly-file.html",
+    "body": "文件管理是程序与外部存储交互的基础。\n通过系统调用，汇编程序可以打开、读取、写入和关闭文件，与高级语言一样灵活地处理文件 IO。\n文件操作流程总览\n文件操作遵循打开→读写→关闭的基本流程，以及三个标准文件描述符：\n文件操作相关的系统调用\n系统调用\n调用号\n用途\n主要参数\nsys_open\n5\n打开/创建文件\nEBX=文件名, ECX=标志, EDX=权限\nsys_read\n3\n读取文件\nEBX=fd, ECX=缓冲区, EDX=字节数\nsys_write\n4\n写入文件\nEBX=fd, ECX=缓冲区, EDX=字节数\nsys_close\n6\n关闭文件\nEBX=fd\nsys_creat\n8\n创建文件（旧方式）\nEBX=文件名, ECX=权限\nsys_lseek\n19\n移动文件指针\nEBX=fd, ECX=偏移, EDX=起始位置\nsys_unlink\n10\n删除文件\nEBX=文件名\n文件打开标志\n常量\n值\n说明\nO_RDONLY\n0\n只读\nO_WRONLY\n1\n只写\nO_RDWR\n2\n读写\nO_CREAT\n64（0x40）\n若文件不存在则创建\nO_TRUNC\n512（0x200）\n打开时清空文件内容\nO_APPEND\n1024（0x400）\n追加到文件末尾\n多个标志用 OR 组合，例如 O_WRONLY | O_CREAT | O_TRUNC = 1 | 64 | 512 = 577\n创建并写入文件\n实例",
+    "examples": [
+     "; 文件路径：file_write.asm\n; 创建文件并写入内容\n\nsection .data\n    filename db 'runoob_output.txt', 0    ; 文件名（null 结尾）\n    content db 'Hello, RUNOOB!', 0xA       ; 要写入的内容\n    content_len equ $ - content\n    create_msg db 'File created successfully!', 0xA\n    create_msg_len equ $ - create_msg\n\nsection .bss\n    fd resd 1                               ; 文件描述符\n\nsection .text\n    global _start\n\n_start:\n    ; 1. 创建文件\n    mov eax, 8                  ; sys_creat\n    mov ebx, filename           ; 文件名\n    mov ecx, 0o644              ; 权限：rw-r--r--\n    ; 0o644 = 所有者读写、组只读、其他只读\n    int 0x80\n\n    mov [fd], eax               ; 保存文件描述符\n\n    ; 2. 写入内容到文件\n    mov eax, 4                  ; sys_write\n    mov ebx, [fd]               ; 文件描述符\n    mov ecx, content            ; 数据地址\n    mov edx, content_len        ; 数据长度\n    int 0x80\n\n    ; 3. 关闭文件\n    mov eax, 6                  ; sys_close\n    mov ebx, [fd]               ; 文件描述符\n    int 0x80\n\n    ; 4. 提示成功\n    mov eax, 4\n    mov ebx, 1\n    mov ecx, create_msg\n    mov edx, create_msg_len\n    int 0x80\n\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编语言 - 简介",
+    "url": "https://www.runoob.com/assembly/assembly-intro.html",
+    "body": "汇编语言（Assembly Language）是计算机编程语言家族中最贴近硬件的一层，它是人类可读的机器指令助记符表示。\n理解汇编语言的本质，是深入学习计算机系统的第一步。\n什么是汇编语言\n计算机的 CPU 只能理解和执行由 0 和 1 组成的二进制机器码。\n例如，在 x86 架构中，机器码 B8 2A 00 00 00 表示将数值 42 移动到 EAX 寄存器。\n直接编写二进制机器码对人类来说极其困难且容易出错，于是汇编语言应运而生。\n汇编语言将这些二进制指令用人类可读的 助记符（Mnemonic） 来表示，例如上面的机器码在汇编中写作：\n实例",
+    "examples": [
+     "mov eax, 42    ; 将数值 42 移动到 EAX 寄存器"
+    ]
+   },
+   {
+    "title": "汇编语言 - 逻辑指令",
+    "url": "https://www.runoob.com/assembly/assembly-logic.html",
+    "body": "逻辑指令在汇编编程中用于位级操作，广泛用于掩码运算、位提取、标志位设置和高效乘除运算。\nAND - 按位与\nAND 对两个操作数逐位执行\"与\"运算（都为 1 时才为 1）。\n实例",
+    "examples": [
+     "; 文件路径：and_demo.asm\n; AND 指令示例\n\nsection .text\n    global _start\n\n_start:\n    ; 基本按位与\n    mov eax, 0x0F0F             ; 0000 1111 0000 1111\n    and eax, 0x00FF             ; 0000 0000 1111 1111\n    ; 结果：eax = 0x000F         ; 0000 0000 0000 1111\n\n    ; 常用技巧1：屏蔽低 4 位（保留低 4 位）\n    mov eax, 0xAB               ; 1010 1011\n    and eax, 0x0F               ; 0000 1111\n    ; eax = 0x0B                ; 0000 1011\n\n    ; 常用技巧2：判断奇偶性（和 1 做 AND）\n    mov eax, 42                 ; 偶数\n    and eax, 1                  ; eax = 0（偶数）\n    ; 42 的二进制末尾是 0，42 & 1 = 0\n\n    mov eax, 43                 ; 奇数\n    and eax, 1                  ; eax = 1（奇数）\n    ; 43 的二进制末尾是 1，43 & 1 = 1\n\n    ; 常用技巧3：将寄存器清零\n    xor eax, eax                ; 等同于 mov eax, 0，但更快更短\n\n    ; AND 会设置标志位：CF=0, OF=0, ZF 和 SF 根据结果\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编语言 - 循环结构",
+    "url": "https://www.runoob.com/assembly/assembly-loop.html",
+    "body": "循环是程序中最常见的控制结构之一。在汇编语言中，你可以用 LOOP 指令或条件跳转来实现各种循环逻辑。\nLOOP 指令\nLOOP 是 x86 专门为循环设计的指令，它使用 ECX 作为计数器：\n每次执行 LOOP 时，ECX 自动减 1，如果 ECX 不为 0 就跳转到目标标签。\n实例",
+    "examples": [
+     "; 文件路径：loop_basic.asm\n; LOOP 指令基本用法：重复 5 次输出\n\nsection .data\n    msg db 'runoob', 0xA\n    len equ $ - msg\n\nsection .text\n    global _start\n\n_start:\n    mov ecx, 5                  ; 循环计数器 = 5（循环 5 次）\n\nrepeat:\n    ; 保存 ecx（系统调用可能修改它）\n    push ecx\n\n    ; 输出 msg\n    mov eax, 4\n    mov ebx, 1\n    mov ecx, msg\n    mov edx, len\n    int 0x80\n\n    ; 恢复 ecx\n    pop ecx\n    loop repeat                 ; ecx--; if ecx != 0 跳转到 repeat\n\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编语言 - 宏",
+    "url": "https://www.runoob.com/assembly/assembly-macro.html",
+    "body": "宏（Macro）是 NASM 提供的一种代码复用机制，它允许你在编译时展开代码模板，减少重复编写相似代码的需求。\n什么是宏\n宏（Macro） 是一种编译时文本替换机制，由汇编器的预处理器在编译前展开。\n与过程（Procedure）不同，宏不会有 CALL/RET 开销——每次使用宏时，编译器直接将宏的内容复制到使用位置。\n宏不是函数调用，没有栈帧开销；但可执行文件体积会更大，因为每次展开都会复制一份代码。\n单行宏：%define\n%define 是单行宏，语法简单：\n实例",
+    "examples": [
+     "; 单行宏示例\n\n; 定义常量\n%define MAX_SIZE 256\n%define APP_NAME 'runoob'\n\n; 定义带参数的宏（宏函数）\n%define mul_by_2(x) (x * 2)\n%define sum3(a, b, c) ((a) + (b) + (c))\n\nsection .text\n    global _start\n\n_start:\n    mov eax, MAX_SIZE            ; eax = 256\n    mov eax, mul_by_2(10)        ; eax = (10 * 2) = 20\n    mov eax, sum3(1, 2, 3)       ; eax = ((1)+(2)+(3)) = 6\n\n    ; 重新定义（%define 可以改变）\n    %define MAX_SIZE 512\n    mov eax, MAX_SIZE            ; eax = 512\n\n    ; 取消定义\n    %undef MAX_SIZE\n    ; mov eax, MAX_SIZE          ; 错误：MAX_SIZE 未定义\n\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编语言 - 内存管理",
+    "url": "https://www.runoob.com/assembly/assembly-memory-mgmt.html",
+    "body": "内存管理是系统编程的重要部分。在汇编语言中，你可以通过系统调用动态分配和释放内存，直接操作内存地址，实现高效的内存管理。\n程序的内存布局\n一个运行中的程序在内存中的分布如下：\n一个 Linux 进程在内存中的布局如下：\n高地址 (0xFFFFFFFF)\n+----------------------+\n| 内核空间 | 用户程序不可访问\n+----------------------+ (0xC0000000)\n| 栈 (Stack) | <-- ESP 指向栈顶\n| 向下增长 |\n+----------------------+\n| |\n| 内存映射区域 | mmap 分配的区域\n| |\n+----------------------+\n| 堆 (Heap) | <-- brk/sbrk 管理\n| 向上增长 |\n+----------------------+\n| BSS 段 (.bss) | 未初始化全局变量\n+----------------------+\n| 数据段 (.data) | 已初始化全局变量\n+----------------------+\n| 代码段 (.text) | 程序指令（只读）\n+----------------------+\n低地址 (0x08048000)\n动态内存分配：brk 系统调用\nsys_brk（系统调用号 45）通过调整程序的 数据段边界（program break） 来分配/释放内存。\nprogram break 是数据段（包括 .data、.bss 和堆）的结束位置，在其之上的内存程序不能访问。\n调用方式\n说明\n返回值\nebx = 0\n获取当前 break 地址\nEAX = 当前 break 地址\nebx = 新地址\n设置新的 break 地址\nEAX = 新的 break 地址（失败返回原地址）\n实例",
+    "examples": [
+     "; 文件路径：brk_demo.asm\n; 使用 sys_brk 动态分配内存\n\nsection .data\n    alloc_msg db 'Memory allocated successfully at: 0x'\n    alloc_len equ $ - alloc_msg\n    newline db 0xA\n\nsection .bss\n    orig_break resd 1            ; 保存原始 break 地址\n\nsection .text\n    global _start\n\n_start:\n    ; 1. 获取当前 program break\n    mov eax, 45                  ; sys_brk\n    mov ebx, 0                   ; ebx=0 表示查询当前 break\n    int 0x80\n    mov [orig_break], eax        ; 保存原始 break 地址\n\n    ; 2. 分配 4096 字节（4KB）内存\n    mov ebx, eax                 ; 当前 break 地址\n    add ebx, 4096                ; 增加 4096 字节\n    mov eax, 45                  ; sys_brk\n    int 0x80\n    ; EAX = 新的 break 地址（即分配后的区域末尾）\n\n    ; 3. 新分配的内存在 orig_break 到 eax-1 之间\n    ; 可以安全地读写这片内存\n    mov ebx, [orig_break]        ; 获取分配区域的起始地址\n    mov dword [ebx], 42          ; 在新内存中写入 42\n    mov eax, [ebx]               ; 读取回来\n\n    ; 4. 释放内存：将 break 恢复到原位\n    mov eax, 45                  ; sys_brk\n    mov ebx, [orig_break]        ; 恢复到原始 break\n    int 0x80\n\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编语言 - 内存分段",
+    "url": "https://www.runoob.com/assembly/assembly-memory-segment.html",
+    "body": "内存分段（Memory Segmentation）是 x86 架构中的一个核心概念，它决定了程序在内存中如何组织代码、数据和栈空间。\n为什么需要分段\n在 x86 实模式下，CPU 使用 16 位寄存器，但需要访问 1MB 的内存空间（20 位地址）。\n16 位寄存器只能表示 64KB 范围（2^16 = 65536），远远不够。\nIntel 的解决方案是将内存划分为 段（Segment），每个段有基地址和偏移量，通过 段地址 + 偏移量 的方式组合出完整的物理地址。\n物理地址计算公式：\n物理地址 = 段地址 × 16 + 偏移地址\n虽然在保护模式（32 位）下，分段机制更多地用于内存保护和权限控制，但理解分段对于理解汇编程序结构仍然至关重要。\n三种基本段\n一个典型的汇编程序使用三个主要段：\n段名称\n英文名\n用途\n对应的 Section\n代码段\nCode Segment\n存放可执行的机器指令\nsection .text\n数据段\nData Segment\n存放已初始化的全局变量\nsection .data\n栈段\nStack Segment\n存放函数调用信息、局部变量\n操作系统自动管理\n代码段（.text）\n代码段存放程序的全部机器指令，是 只读、可执行 的内存区域。\n操作系统在加载程序时，将代码段映射到只读内存页，防止程序意外修改指令。\n实例",
+    "examples": [
+     "; 文件路径：code_segment.asm\n; 演示代码段使用\n\nsection .text                   ; 开始代码段\n    global _start\n\n_start:\n    mov eax, 1                  ; 这些指令都存放在代码段中\n    mov ebx, 0\n    int 0x80\n\n; 以下是一个辅助函数，也存放在代码段\nmy_function:\n    mov eax, 42\n    ret"
+    ]
+   },
+   {
+    "title": "汇编语言 - 数字处理",
+    "url": "https://www.runoob.com/assembly/assembly-numbers.html",
+    "body": "在汇编语言中处理数字涉及到进制转换、ASCII 转换和算术运算的结合。本章详细讲解如何在程序中输入和输出各种进制的数字。\n数字的表示方式\n计算机内部所有数字都以二进制存储，但程序中可以用不同进制表示：\n进制\n基数\nNASM 写法\n数字范围（32位）\n二进制\n2\n0b10101010 或 10101010b\n0 和 1\n八进制\n8\n0o52 或 52o\n0-7\n十进制\n10\n42\n0-9\n十六进制\n16\n0x2A 或 2Ah\n0-9, A-F\nASCII 与数字的关系\n在屏幕上输入和输出的都是 ASCII 字符，而非二进制数值。\n理解字符与数值的转换是汇编数字处理的核心：\n字符\nASCII 值\n对应的数值\n'0'\n0x30（48）\n0\n'1'\n0x31（49）\n1\n'9'\n0x39（57）\n9\n'A'\n0x41（65）\n10（十六进制）\n'F'\n0x46（70）\n15（十六进制）\n'a'\n0x61（97）\n10（十六进制）\n字符转数字：数值 = ASCII码 - '0'（即 ASCII码 - 0x30）\n数字转字符：ASCII码 = 数值 + '0'（即 数值 + 0x30）\n输入数字（字符串转数值）\n用户输入的是字符序列，需要转换为二进制数值才能用于计算：\n实例",
+    "examples": [
+     "; 文件路径：string_to_int.asm\n; 将十进制数字字符串转换为整数值\n\nsection .data\n    input_str db '12345', 0      ; 输入字符串 \"12345\"\n    input_len dd 5               ; 字符串长度\n\nsection .bss\n    result_val resd 1            ; 存放转换后的数值\n\nsection .text\n    global _start\n\n_start:\n    ; 转换算法：result = 0\n    ; result = result * 10 + (当前字符 - '0')\n    mov esi, input_str           ; esi 指向输入字符串\n    mov ecx, [input_len]         ; ecx = 循环次数\n    mov eax, 0                   ; eax = 累加结果\n\nconvert_loop:\n    mov ebx, 10\n    mul ebx                      ; eax = eax * 10\n    ; mul ebx: edx:eax = eax * ebx\n\n    mov bl, [esi]                ; 读取当前字符\n    sub bl, '0'                  ; 转为数值：字符 - '0'\n    movzx ebx, bl                ; 零扩展 ebx（bl -> ebx）\n    add eax, ebx                 ; eax = eax + 当前位数值\n\n    inc esi                      ; 移动到下一个字符\n    loop convert_loop\n    ; eax 现在 = 12345\n\n    mov [result_val], eax        ; 保存结果\n\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编语言 - 过程（子程序）",
+    "url": "https://www.runoob.com/assembly/assembly-procedure.html",
+    "body": "过程（Procedure）是汇编语言中实现函数/子程序复用的机制，它能让代码结构化、可重用。理解过程和栈的关系是汇编编程的重要里程碑。\n什么是过程\n过程 是一段可以被多次调用的代码块，类似于高级语言中的函数（Function）或子程序（Subroutine）。\n在汇编中，过程通过 CALL 指令调用，通过 RET 指令返回。CALL 会将返回地址压入栈中，RET 从栈中弹出返回地址并跳转回去。\n实例",
+    "examples": [
+     "; 文件路径：simple_proc.asm\n; 最简单的过程调用示例\n\nsection .data\n    msg db 'Hello, runoob!', 0xA\n    len equ $ - msg\n\nsection .text\n    global _start\n\n_start:\n    call print_message           ; 调用过程（将下条指令地址压栈）\n    call print_message           ; 再次调用\n\n    mov eax, 1\n    mov ebx, 0\n    int 0x80\n\n; 过程：打印消息\nprint_message:\n    push eax                     ; 保存要修改的寄存器\n    push ebx\n    push ecx\n    push edx\n\n    mov eax, 4\n    mov ebx, 1\n    mov ecx, msg\n    mov edx, len\n    int 0x80\n\n    pop edx                      ; 恢复寄存器（按相反顺序）\n    pop ecx\n    pop ebx\n    pop eax\n    ret                          ; 返回调用处（从栈中弹出返回地址）"
+    ]
+   },
+   {
+    "title": "汇编语言 - 递归",
+    "url": "https://www.runoob.com/assembly/assembly-recursion.html",
+    "body": "递归（Recursion）是函数调用自身的技术。在汇编中实现递归需要正确管理栈帧，每次调用都有独立的参数和局部变量副本。\n递归原理与栈帧\n递归的核心在于 每次调用创建新的栈帧，将当前状态保存在栈上。\n每次递归调用都会把参数、返回地址和局部变量压入栈中。当递归终止时，栈帧逐层弹出，每层获得其子调用的结果并完成计算。\n递归要素\n说明\n汇编实现\n终止条件\n防止无限递归\n条件判断 + je/jg 跳转\n递归调用\n函数调用自身\ncall 指令\n状态保存\n每次调用独立状态\n栈帧（push ebp; mov ebp, esp）\n参数传递\n每次不同参数\npush 参数到栈\n递归虽然代码优雅，但在汇编中每次调用都有不小的栈开销。递归深度过大可能导致栈溢出（Stack Overflow）。对性能敏感的场景，考虑将递归改写为循环。\n阶乘递归实现\n实例",
+    "examples": [
+     "; 文件路径：factorial.asm\n; 递归计算阶乘：n! = n * (n-1)!\n\nsection .data\n    n dd 5                       ; 计算 5!\n    result dd 0\n    output_msg db 'Factorial result: '\n    output_len equ $ - output_msg\n    newline db 0xA\n\nsection .bss\n    result_str resb 12\n\nsection .text\n    global _start\n\n_start:\n    ; 调用 factorial(5)\n    push dword [n]               ; 压入参数 n\n    call factorial\n    add esp, 4                   ; 清理参数\n    ; eax = 120 (5!)\n\n    mov [result], eax\n\n    ; 输出结果\n    mov eax, 4\n    mov ebx, 1\n    mov ecx, output_msg\n    mov edx, output_len\n    int 0x80\n\n    ; 简单输出数字（仅用于个位数演示）\n    mov eax, [result]\n    ; 这里简化处理\n    mov ebx, eax\n    mov eax, 1\n    int 0x80\n\n; 过程：factorial(n)\n; 输入：[ebp+8] = n\n; 输出：eax = n!\nfactorial:\n    push ebp                     ; 保存旧栈帧\n    mov ebp, esp                 ; 建立新栈帧\n\n    mov eax, [ebp + 8]           ; 获取参数 n\n    cmp eax, 1                   ; n <= 1 ?\n    jg  recurse                  ; n > 1，继续递归\n\n    ; 终止条件：n <= 1，返回 1\n    mov eax, 1\n    jmp factorial_end\n\nrecurse:\n    ; 保存当前 n 的值（寄存器会被递归调用破坏）\n    push eax                     ; 保存 n\n\n    ; 递归调用 factorial(n-1)\n    dec eax                      ; n - 1\n    push eax                     ; 参数：n-1\n    call factorial               ; 递归调用\n    add esp, 4                   ; 清理参数\n\n    ; 恢复 n\n    pop ebx                      ; ebx = n\n\n    ; eax = n * factorial(n-1)\n    mul ebx                      ; edx:eax = eax * ebx\n    ; 对于较小的 n，edx 为 0，结果全在 eax 中\n\nfactorial_end:\n    pop ebp                      ; 恢复旧栈帧\n    ret"
+    ]
+   },
+   {
+    "title": "汇编语言 - 寄存器",
+    "url": "https://www.runoob.com/assembly/assembly-registers.html",
+    "body": "寄存器（Register）是 CPU 内部的高速存储单元，是汇编编程中最频繁操作的对象。理解寄存器是学好汇编语言的关键第一步。\n什么是寄存器\n寄存器是 CPU 芯片内部集成的 超高速小型存储器，用于暂存指令、数据和地址。\n与内存不同，寄存器就嵌在 CPU 内部，CPU 访问寄存器几乎零延迟，而访问内存则需要几十到几百个时钟周期。\n在汇编语言中，绝大多数运算都是围绕寄存器展开的——数据从内存加载到寄存器，在寄存器中完成运算，再将结果存回内存。\n可以把寄存器理解为 CPU 的\"工作台\"。工作台上的工具随时可用，而内存则像是仓库，需要走过去取放。\nx86 32 位寄存器分类\nx86 32 位架构提供了多种类型的寄存器，各有不同的用途。下图展示了完整的寄存器分类：\n下面分别详细介绍各类寄存器：\n通用寄存器\n通用寄存器（General Purpose Registers） 是最常用的寄存器，用于存放运算数据和临时结果。\nx86 提供了 8 个 32 位通用寄存器：\n32位\n16位\n低8位\n高8位（低16位）\n主要用途\nEAX\nAX\nAL\nAH\n累加器，存放函数返回值、算术运算结果\nEBX\nBX\nBL\nBH\n基址寄存器，常用于存放内存基地址\nECX\nCX\nCL\nCH\n计数器，常用于循环计数和移位\nEDX\nDX\nDL\nDH\n数据寄存器，存放乘除法的高位结果\nESI\nSI\nSIL\n-\n源变址寄存器，字符串操作的源地址\nEDI\nDI\nDIL\n-\n目的变址寄存器，字符串操作的目标地址\nEBP\nBP\nBPL\n-\n基址指针，指向当前栈帧的底部\nESP\nSP\nSPL\n-\n栈指针，始终指向栈顶\n名称规律：E 前缀表示 Extended（扩展到 32 位），X 后缀表示可拆分为高低字节。\n实例",
+    "examples": [
+     "; 文件路径：register_parts.asm\n; 演示寄存器的各部分访问\n\nsection .text\n    global _start\n\n_start:\n    mov eax, 0x12345678     ; 完整的 32 位寄存器\n    ; 此时：EAX = 0x12345678\n    ;       AX  = 0x5678      (低 16 位)\n    ;       AH  = 0x56        (高 8 位，指 AX 的高 8 位)\n    ;       AL  = 0x78        (低 8 位)\n\n    mov ax, 0xAABB          ; 修改 AX（低 16 位）\n    ; 此时：EAX = 0x1234AABB  (高 16 位保持不变！)\n    ;       AX  = 0xAABB\n    ;       AL  = 0xBB\n\n    mov al, 0xCC            ; 修改 AL（最低 8 位）\n    ; 此时：EAX = 0x1234AACC  (只有低 8 位变了)\n    ;       AX  = 0xAACC\n    ;       AL  = 0xCC\n\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编语言 - 字符串处理",
+    "url": "https://www.runoob.com/assembly/assembly-string.html",
+    "body": "字符串处理是编程中常见的需求。\n在汇编中处理字符串意味着直接操作内存中的字节序列，虽然更底层但也更灵活。\n字符串的定义和存储\n在 NASM 中，字符串本质上是字节序列，可以用 DB 伪指令定义：\n实例",
+    "examples": [
+     "; 字符串定义方式\n\nsection .data\n    ; 方式1：标准字符串\n    str1 db 'Hello, runoob!', 0     ; C 风格：以 null 结尾\n\n    ; 方式2：带换行符\n    str2 db 'Line1', 0xA, 'Line2', 0xA\n\n    ; 方式3：反引号支持转义\n    str3 db `hello\\nworld\\n`, 0     ; 自动转换转义序列\n\n    ; 方式4：逐个字符定义\n    str4 db 'A', 'B', 'C', 'D', 0\n\n    ; 方式5：使用 dup 生成重复字符\n    border db 40 dup('-')           ; 40 个减号\n\n    ; 字符串长度计算（编译时）\n    str1_len equ $ - str1           ; 包含结尾 null"
+    ]
+   },
+   {
+    "title": "汇编语言 - 系统调用",
+    "url": "https://www.runoob.com/assembly/assembly-syscall.html",
+    "body": "系统调用（System Call）是用户程序与操作系统内核交互的唯一途径。通过系统调用，汇编程序可以读写文件、分配内存、创建进程等。\n什么是系统调用\n用户程序运行在受限的 用户态（User Mode），无法直接访问硬件或执行特权操作。\n当程序需要执行 IO 操作、内存分配等内核级功能时，必须通过 系统调用 向操作系统内核请求服务。\n系统调用的流程是：用户程序发起系统调用 → CPU 切换到内核态 → 内核执行对应服务 → 返回用户态继续执行。\n可以把系统调用理解为：用户程序给操作系统打个电话，请求帮忙做一件自己没有权限做的事情。\nLinux 系统调用机制\n在 Linux 32 位系统中，系统调用通过以下步骤完成：\n将 系统调用号 放入 EAX 寄存器\n将参数放入 EBX、ECX、EDX、ESI、EDI 等寄存器\n执行 int 0x80 指令触发软件中断\nCPU 切换到内核态，内核根据 EAX 中的调用号执行对应服务\n内核将返回值放入 EAX，切换回用户态继续执行\n常用系统调用一览\n系统调用\n调用号（EAX）\n功能\n参数\nsys_exit\n1\n退出程序\nEBX = 返回值（exit code）\nsys_fork\n2\n创建子进程\n无参数\nsys_read\n3\n读取文件/输入\nEBX=fd, ECX=buf, EDX=count\nsys_write\n4\n写入文件/输出\nEBX=fd, ECX=buf, EDX=count\nsys_open\n5\n打开文件\nEBX=filename, ECX=flags, EDX=mode\nsys_close\n6\n关闭文件\nEBX=fd\nsys_creat\n8\n创建文件\nEBX=filename, ECX=mode\nsys_lseek\n19\n移动文件指针\nEBX=fd, ECX=offset, EDX=whence\nsys_brk\n45\n调整数据段大小（内存分配）\nEBX=新地址\n完整的系统调用列表可在 /usr/include/asm/unistd_32.h 中查看。注意 32 位和 64 位的系统调用号不同。\nsys_write - 输出字符串\n最常用的系统调用，用于向屏幕打印内容：\n实例",
+    "examples": [
+     "; 文件路径：write_syscall.asm\n; 使用 sys_write 输出字符串\n\nsection .data\n    msg db 'Hello, runoob! Welcome to assembly.', 0xA\n    len equ $ - msg\n\nsection .text\n    global _start\n\n_start:\n    ; 调用 sys_write (4)\n    mov eax, 4                  ; 系统调用号 4 = sys_write\n    mov ebx, 1                  ; 文件描述符 1 = stdout（标准输出）\n    mov ecx, msg                ; 要输出的数据地址\n    mov edx, len                ; 数据长度（字节数）\n    int 0x80                    ; 触发系统调用\n\n    ; 成功时 EAX 返回实际写入的字节数\n\n    ; 退出程序\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编语言 - 教程",
+    "url": "https://www.runoob.com/assembly/assembly-tutorial.html",
+    "body": "汇编语言（Assembly Language）是一种面向特定硬件的低级语言。\n汇编语言用于电子计算机、微处理器或微控制器编程。\n汇编语言与机器指令集一一对应，不可跨平台移植。\n与 C、Python 等高级语言不同，汇编语言直接操作 寄存器、内存地址 和 CPU 指令，没有任何抽象层的遮挡。",
+    "examples": []
+   },
+   {
+    "title": "汇编语言 - 变量",
+    "url": "https://www.runoob.com/assembly/assembly-variables.html",
+    "body": "变量是程序中存储数据的基本单元。在汇编语言中定义和使用变量比高级语言更接近底层，你需要直接控制变量的大小、类型和内存布局。\n汇编中的变量概念\n在汇编语言中，变量 本质上是内存中一个有名字的存储位置。\n与高级语言不同，汇编变量没有自动的类型检查——一个标签只是内存地址的别名，你可以用任何大小去读写它。\nNASM 提供了三种段来存放不同类型的变量：.data（已初始化）、.bss（未初始化）和 .rodata（只读）。\n在 .data 段定义已初始化变量\n使用 DB、DW、DD、DQ、DT 伪指令定义不同大小的变量：\n伪指令\n数据大小\n含义\n示例\nDB\n1 字节\nDefine Byte\nflag db 1\nDW\n2 字节\nDefine Word\ncount dw 1000\nDD\n4 字节\nDefine Doubleword\nprice dd 9999\nDQ\n8 字节\nDefine Quadword\nbig_val dq 0x1234567890ABCDEF\nDT\n10 字节\nDefine Ten Bytes\next_val dt 3.14\n实例",
+    "examples": [
+     "; 文件路径：variables_data.asm\n; 演示 .data 段中各种变量的定义\n\nsection .data\n    ; 字节变量\n    status db 1                 ; 1 字节，值为 1\n    grade db 'A'                ; 1 字节，字符 'A' = 0x41\n\n    ; 字变量（2 字节）\n    year dw 2026                ; 2 字节，值为 2026\n\n    ; 双字变量（4 字节）\n    salary dd 50000             ; 4 字节，值为 50000\n\n    ; 多字节序列\n    msg db 'Hello, runoob!', 0  ; 字符串以 0 结尾（C 风格）\n    hex_bytes db 0x55, 0xAA, 0x00, 0xFF   ; 十六进制字节序列\n\n    ; 重复值\n    stars db 10 dup('*')        ; 10 个星号字符\n\n    ; 带名称的多个变量\n    x dd 10\n    y dd 20\n    z dd 30\n\nsection .text\n    global _start\n\n_start:\n    ; 读取变量值到寄存器\n    mov al, [status]            ; al = 1（读取 1 字节）\n    mov ax, [year]              ; ax = 2026（读取 2 字节）\n    mov eax, [salary]           ; eax = 50000（读取 4 字节）\n\n    ; 修改变量值\n    mov byte [status], 0        ; status = 0\n    mov dword [x], 100          ; x = 100\n\n    mov eax, 1\n    mov ebx, 0\n    int 0x80"
+    ]
+   },
+   {
+    "title": "汇编指令速查表",
+    "url": "https://www.runoob.com/assembly/x86-assembly-instructions-html.html",
+    "body": "本文以最常见的 x86 架构汇编语言为对象，将常用指令助记符按功能分类整理，方便学习和快速查阅。\n指令助记符在不同汇编器（MASM、NASM、GAS）中基本一致，仅在操作数书写格式上略有差异。\n九大类指令概览：\n分类\n指令数量\n主要用途\n数据传送指令\n15 条\n在寄存器、内存、I/O 端口之间搬运数据\n算术运算指令\n18 条\n加减乘除、比较及数制调整\n逻辑运算与移位指令\n14 条\n按位与或非异或、移位和循环移位\n串操作指令\n8 条\n处理连续内存区域，配合重复前缀批量操作\n控制转移指令\n30+ 条\n跳转、循环、过程调用与中断\n条件设置指令\n16 条\n根据标志位设置字节值，用于消除分支\n输入输出指令\n4 条\n读写 I/O 端口\n处理器控制指令\n14 条\n控制标志位、同步、系统管理\n浮点指令（x87 FPU）\n14 条\n传统 x87 浮点栈运算\n数据传送指令\n数据传送指令是最基本的指令类型，负责在寄存器、内存和 I/O 端口之间搬运数据。\n大部分传送指令不影响标志位（SAHF、POPF 除外）。\n助记符\n功能简述\nMOV\n把源操作数复制到目的操作数，支持寄存器与寄存器、寄存器与内存、立即数到寄存器或内存\nMOVSX\n带符号扩展的传送，将小尺寸操作数符号扩展为大尺寸（如字节扩展为双字，高位填充符号位）\nMOVZX\n带零扩展的传送，高位补 0（用于无符号数扩展）\nPUSH\n将操作数压入堆栈，栈指针 ESP/RSP 自动减小（先减后存）\nPOP\n从堆栈弹出数据到目的操作数，栈指针自动增加（先取后加）\nPUSHA / PUSHAD\n将所有通用寄存器压栈（16 位用 PUSHA，32 位用 PUSHAD），常用于保存现场\nPOPA / POPAD\n从堆栈恢复所有通用寄存器，与 PUSHA/PUSHAD 对称使用\nXCHG\n交换两个操作数的内容，至少有一个操作数是寄存器\nLEA\n取有效地址（Load Effective Address），将源操作数的地址而非内存内容存入目的寄存器，常用于指针计算\nLDS / LES / LFS / LGS / LSS\n将远指针装入段寄存器与通用寄存器（现代平坦内存模型中较少使用）\nLAHF\n将标志寄存器的低 8 位装入 AH 寄存器\nSAHF\n将 AH 寄存器的内容存回标志寄存器的低 8 位\nPUSHF / PUSHFD\n标志寄存器压栈（16 位用 PUSHF，32 位用 PUSHFD）\nPOPF / POPFD\n从堆栈恢复标志寄存器\nXLAT / XLATB\n查表翻译指令，将 AL 中的索引值对应内存字节送入 AL，BX/EBX 指向表基址\nLEA 与 MOV 的关键区别：LEA REG, [ADDR] 装入的是地址值本身，而 MOV REG, [ADDR] 装入的是该地址处的内存内容。在进行地址计算（如 LEA EAX, [EBX+4*ECX+8]）时 LEA 非常高效。\n算术运算指令\n算术运算指令完成加、减、乘、除以及比较等操作，执行结果会直接影响标志寄存器中的相关标志位。\n程序员通常根据运算后的零标志（ZF）、进位标志（CF）、符号标志（SF）和溢出标志（OF）来判断计算结果。\n助记符\n功能简述\nADD\n加法，目的 = 目的 + 源，影响 OF、SF、ZF、CF 等标志位\nADC\n带进位加法，目的 = 目的 + 源 + CF，用于多精度算术运算\nSUB\n减法，目的 = 目的 - 源\nSBB\n带借位减法，目的 = 目的 - 源 - CF，配合 ADC 用于多精度运算\nINC\n操作数加 1，不影响 CF 标志\nDEC\n操作数减 1，不影响 CF 标志\nMUL\n无符号乘法，被乘数在 AL/AX/EAX，乘积存入 AX/DX:AX/EDX:EAX\nIMUL\n带符号乘法，支持单操作数、双操作数和三操作数三种形式\nDIV\n无符号除法，被除数在 AX/DX:AX/EDX:EAX，商和余数存入指定寄存器\nIDIV\n带符号除法，规则与 DIV 类似但处理符号\nCMP\n比较两个操作数，执行减法但不保存结果，仅影响标志位（通常后跟条件跳转）\nNEG\n求补，对操作数取反再加 1，等价于 0 减去操作数\nDAA\n加法后十进制调整，将 AL 调整为压缩 BCD 码格式\nDAS\n减法后十进制调整\nAAA\n加法后 ASCII 调整，用于非压缩 BCD 码\nAAS\n减法后 ASCII 调整\nAAM\n乘法后 ASCII 调整\nAAD\n除法前 ASCII 调整\nCBW / CWDE\n符号扩展：CBW 将 AL 符号扩展为 AX，CWDE 将 AX 符号扩展为 EAX\nCWD / CDQ\n符号扩展：CWD 将 AX 扩展为 DX:AX，CDQ 将 EAX 扩展为 EDX:EAX（常用于除法前准备被除数）\n有符号运算使用 IMUL / IDIV，无符号运算使用 MUL / DIV。选错指令会导致结果错误——比如同一个二进制值在有符号和无符号解释下代表不同的数值。\n逻辑运算与移位指令\n这类指令按位进行与、或、非、异或等逻辑操作，以及移位和循环移位。\n移位操作常用于快速乘除 2 的幂、位域提取和位掩码操作。\n助记符\n功能简述\nAND\n按位与，常用于掩码操作（将特定位清零）\nOR\n按位或，常用于将特定位置 1\nXOR\n按位异或，相同位为 0、不同为 1。XOR REG, REG 是清零寄存器的经典高效写法\nNOT\n按位取反，所有位翻转\nTEST\n测试位，执行 AND 运算但不保存结果，仅影响标志位（常用于检测某位是否为 0）\nSHL / SAL\n逻辑左移 / 算术左移，两者功能完全相同，低位补 0，高位移入 CF\nSHR\n逻辑右移，高位补 0，低位移入 CF（用于无符号数）\nSAR\n算术右移，高位用原符号位填充，保留数值符号（用于有符号数）\nROL\n循环左移，移出的位补回另一侧\nROR\n循环右移，移出的位补回另一侧\nRCL\n带进位循环左移，CF 参与循环（CF 作为临时存储位）\nRCR\n带进位循环右移，CF 参与循环\nSHLD\n双精度左移，将目的和源操作数联合左移，结果存入目的\nSHRD\n双精度右移，将目的和源操作数联合右移，结果存入目的\nXOR REG, REG 是清零寄存器的最优方式——生成的机器码比 MOV REG, 0 更短，执行速度也更快。\n串操作指令\n串操作指令专门处理连续内存区域，搭配重复前缀使用，常用于数组复制、内存比较和缓冲区搜索等批量操作。\n这些指令的源地址默认由 DS:ESI 指向，目的地址由 ES:EDI 指向。\n助记符\n功能简述\nMOVS\n串传送，将 [DS:ESI] 复制到 [ES:EDI] 并自动更新 ESI、EDI。按操作数大小分为 MOVSB（字节）、MOVSW（字）、MOVSD（双字）\nSTOS\n串存储，将 AL/AX/EAX 存入 [ES:EDI] 并更新 EDI。常用于初始化内存区域为同一值\nLODS\n串加载，从 [DS:ESI] 读入 AL/AX/EAX 并更新 ESI。较少使用，因为一次只加载一个值到累加器\nCMPS\n串比较，比较 [DS:ESI] 与 [ES:EDI] 并影响标志位。通常配合 REPE/REPNE 搜索匹配或不匹配的位置\nSCAS\n串扫描，比较 AL/AX/EAX 与 [ES:EDI] 并更新 EDI。常用于在内存中搜索特定值\nREP\n重复前缀，当 ECX ≠ 0 时重复执行后续串指令，每次执行后 ECX 自动减 1\nREPE / REPZ\n相等/为零时重复，ECX ≠ 0 且 ZF = 1 时继续（通常与 CMPS、SCAS 联用搜索匹配项）\nREPNE / REPNZ\n不等/不为零时重复，ECX ≠ 0 且 ZF = 0 时继续（用于搜索不匹配项）\n方向标志 DF 控制串操作指针的移动方向：执行 CLD 后 DF=0，指针递增（正向处理）；执行 STD 后 DF=1，指针递减（反向处理）。在使用串操作前应显式设置 DF，不要依赖默认值。\n控制转移指令\n控制转移指令改变程序执行流向，包括无条件跳转、条件跳转、循环以及过程调用与返回。\n这是实现程序逻辑分支、循环和函数调用的基础。\n无条件跳转与调用\n无条件跳转不检查任何条件，直接改变 EIP/RIP 的值，让 CPU 从新地址继续执行。\n助记符\n功能简述\nJMP\n无条件跳转，支持短跳转（-128 到 +127 字节）、近跳转（段内）和远跳转（跨段）\nCALL\n调用过程，先将返回地址压入堆栈，然后跳转到目标地址\nRET / RETF\n从过程返回。RET 用于近返回（段内），RETF 用于远返回（跨段）。可带立即数参数同时释放栈上的参数空间\n条件跳转\n条件跳转根据标志寄存器中特定标志位的值决定是否跳转。\n通常紧跟在 CMP 或 TEST 指令之后使用。\n助记符\n跳转条件\n典型用途\nJE / JZ\nZF = 1（相等 / 为零）\nCMP 后相等时跳转\nJNE / JNZ\nZF = 0（不等 / 不为零）\nCMP 后不等时跳转\nJS\nSF = 1（结果为负）\n运算结果为负数时跳转\nJNS\nSF = 0（结果为正）\n运算结果为非负数时跳转\nJC\nCF = 1（有进位/借位）\n无符号比较中小于时跳转，等同于 JB\nJNC\nCF = 0（无进位/借位）\n无符号比较中大于等于时跳转，等同于 JAE\nJO\nOF = 1（有溢出）\n有符号运算溢出时跳转\nJNO\nOF = 0（无溢出）\n有符号运算无溢出时跳转\nJP / JPE\nPF = 1（低 8 位中 1 的个数为偶数）\n奇偶校验为偶时跳转\nJNP / JPO\nPF = 0（1 的个数为奇数）\n奇偶校验为奇时跳转\nJA / JNBE\nCF = 0 且 ZF = 0\n无符号大于（Above）\nJAE / JNB\nCF = 0\n无符号大于等于（Above or Equal）\nJB / JNAE\nCF = 1\n无符号小于（Below）\nJBE / JNA\nCF = 1 或 ZF = 1\n无符号小于等于（Below or Equal）\nJG / JNLE\nZF = 0 且 SF = OF\n有符号大于（Greater）\nJGE / JNL\nSF = OF\n有符号大于等于（Greater or Equal）\nJL / JNGE\nSF ≠ OF\n有符号小于（Less）\nJLE / JNG\nZF = 1 或 SF ≠ OF\n有符号小于等于（Less or Equal）\nJCXZ\nCX = 0 时跳转\n16 位模式下判断 CX 是否为零\nJECXZ\nECX = 0 时跳转\n32 位模式下判断 ECX 是否为零\n无符号比较和有符号比较使用不同的跳转指令，这是初学者最容易出错的地方。例如，比较两个数时 JA 检查无符号大于，JG 检查有符号大于——同一个 CMP 结果在这两种判断下可能不同。\n循环指令\n循环指令使用 ECX 作为计数器，每次迭代自动递减并判断是否继续循环。\n助记符\n功能简述\nLOOP\nECX 减 1，若 ECX ≠ 0 则跳转到目标地址\nLOOPE / LOOPZ\nECX 减 1，若 ECX ≠ 0 且 ZF = 1 则跳转（等于时继续循环）\nLOOPNE / LOOPNZ\nECX 减 1，若 ECX ≠ 0 且 ZF = 0 则跳转（不等时继续循环）\n中断与返回\n助记符\n功能简述\nINT n\n软件中断，调用中断向量号为 n 的中断服务程序（如 DOS 下 INT 21h 为系统功能调用）\nINTO\n溢出中断，当 OF = 1 时调用 INT 4（用于捕获算术溢出异常）\nIRET / IRETD\n从中断服务程序返回，恢复被中断时的 EFLAGS 和返回地址\n条件设置指令\n条件设置指令（386 及以上处理器支持）根据标志位状态将目的字节置为 1 或 0。\n这类指令常用于消除分支跳转，提升代码执行效率——用条件设置替代短分支可以避免分支预测失败带来的性能损失。\n助记符\n设置条件\n等价语义\nSETZ / SETE\nZF = 1\n相等 / 结果为零时设置\nSETNZ / SETNE\nZF = 0\n不等 / 结果不为零时设置\nSETC\nCF = 1\n有进位/借位时设置\nSETNC\nCF = 0\n无进位/借位时设置\nSETO\nOF = 1\n有溢出时设置\nSETNO\nOF = 0\n无溢出时设置\nSETS\nSF = 1\n结果为负时设置\nSETNS\nSF = 0\n结果为正时设置\nSETG / SETNLE\nZF=0 且 SF=OF\n有符号大于时设置\nSETGE / SETNL\nSF = OF\n有符号大于等于时设置\nSETL / SETNGE\nSF ≠ OF\n有符号小于时设置\nSETLE / SETNG\nZF=1 或 SF≠OF\n有符号小于等于时设置\nSETA / SETNBE\nCF=0 且 ZF=0\n无符号大于时设置\nSETAE / SETNB\nCF = 0\n无符号大于等于时设置\nSETB / SETNAE\nCF = 1\n无符号小于时设置\nSETBE / SETNA\nCF=1 或 ZF=1\n无符号小于等于时设置\nCMP EAX, EBX 后跟 SETG AL 的效果是：如果 EAX 有符号大于 EBX，则 AL 被设为 1，否则为 0。这比 JG label; MOV AL, 1; JMP done; label: MOV AL, 0; done: 更简洁高效。\n输入输出指令\nI/O 指令用于 CPU 与外部设备端口之间的数据交换。\n在 x86 架构中，端口地址空间与内存地址空间相互独立，需要通过专门的 I/O 指令来访问。\n助记符\n功能简述\nIN\n从指定端口读入数据到 AL/AX/EAX。端口地址在 0-255 时可直接写立即数，超过 255 时必须通过 DX 寄存器指定\nOUT\n将 AL/AX/EAX 中的数据写入指定端口。端口地址规则与 IN 相同\nINS\n从端口读入字节/字/双字到 ES:EDI 指向的内存，并自动更新 EDI（类似 STOS 但从 I/O 读取）\nOUTS\n将 DS:ESI 指向的内存字节/字/双字输出到端口，并自动更新 ESI\n在现代操作系统中（Windows、Linux），用户态程序通常无法直接执行 I/O 指令——这些指令被操作系统限制为仅内核态可用。在 DOS 环境或裸机编程中则可以自由使用。\n处理器控制与杂项指令\n这类指令用于控制处理器的运行状态，包括标志位操作、同步控制和系统信息获取。\n助记符\n功能简述\nCLC\n清进位标志，CF 置为 0\nSTC\n置进位标志，CF 置为 1\nCMC\n进位标志取反，CF 变为其相反值\nCLD\n清方向标志，DF 置为 0，串操作指针自动递增\nSTD\n置方向标志，DF 置为 1，串操作指针自动递减\nCLI\n清中断标志，IF 置为 0，禁止可屏蔽硬件中断\nSTI\n置中断标志，IF 置为 1，允许可屏蔽硬件中断\nNOP\n空操作，机器码为 0x90，不执行任何有效操作。常用于指令对齐、延时填充或预留补丁空间\nHLT\n停机，处理器暂停执行直到收到外部中断或复位信号\nWAIT / FWAIT\n等待 FPU 完成当前操作，主要用于与 x87 协处理器同步\nLOCK\n总线锁定前缀，使紧随其后的指令以原子方式执行。经典用法：LOCK XCHG 实现自旋锁、LOCK CMPXCHG 实现 CAS 操作\nCPUID\n获取 CPU 特征信息，包括厂商 ID、支持的指令集扩展等。调用前需在 EAX 中设置功能号\nRDTSC\n读取时间戳计数器，将 64 位计数值存入 EDX:EAX，用于高精度性能测量\n浮点指令\n以下为传统 x87 FPU 浮点指令，适用于使用浮点栈进行科学计算的场景。\n在现代编程中，SSE/SSE2 等 SIMD 指令集已逐步取代 x87，但在理解遗留代码或进行简单浮点运算时，x87 仍被广泛使用。\n助记符\n功能简述\nFLD\n将浮点数从内存加载到 FPU 栈顶 ST(0)，栈指针上移\nFST / FSTP\n将栈顶数据存入内存。FST 不弹出栈，FSTP 弹出栈（栈指针下移）\nFADD\n浮点加法，将 ST(0) 与指定操作数相加，结果存入 ST(0)\nFSUB\n浮点减法，ST(0) 减去指定操作数\nFMUL\n浮点乘法\nFDIV\n浮点除法，ST(0) 除以指定操作数\nFCOM / FCOMP\n比较 ST(0) 与指定操作数，设置 FPU 状态字中的条件码。FCOMP 比较后弹出栈\nFCHS\n改变 ST(0) 中数值的符号（正变负、负变正）\nFSQRT\n计算 ST(0) 的平方根，结果存入 ST(0)\nFSIN / FCOS\n计算 ST(0) 的正弦 / 余弦值（参数以弧度为单位），结果存入 ST(0)\nFPTAN\n计算 ST(0) 的正切值\nFLD1\n将常数 1.0 压入 FPU 栈顶\nFLDZ\n将常数 0.0 压入 FPU 栈顶\nFLDPI\n将常数 π（3.14159...）压入 FPU 栈顶\nx87 FPU 使用浮点寄存器栈（ST(0) - ST(7) 共 8 个 80 位寄存器）进行操作。使用前需注意栈的深度限制——压入超过 8 个值会导致栈溢出异常。\n注意事项\n区分有符号和无符号指令。MUL/IMUL、DIV/IDIV、条件跳转中的 JG/JA 系列对应不同的数值解释。汇编器不会帮你检查类型——用错指令会静默产生错误结果。\n串操作前务必设置 DF 标志。使用 CLD（递增）或 STD（递减）显式指定方向，不要假设默认值。不同编译器、不同调用约定的默认 DF 状态可能不同。\n现代操作系统限制特权指令。CLI/STI、HLT、IN/OUT 等指令在 Ring 3（用户态）下执行会导致异常。这些指令通常仅在操作系统内核或裸机环境中使用。\n优先使用现代指令集。在新代码中，条件设置指令（SETcc）优于条件跳转（消除分支预测开销），SSE/AVX 指令优于 x87（性能更好、编程模型更简单）。本表涵盖的 x87 和传统指令主要用于理解遗留代码。",
+    "examples": []
+   }
+  ]
+ }
+}

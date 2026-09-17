@@ -1,0 +1,70 @@
+{
+ "tutorial": {
+  "name": "RSS",
+  "category": "后端开发",
+  "desc": "通过使用 RSS，您可以有选择地浏览您感兴趣的以及与您的工作相关的新闻。",
+  "url": "https://www.runoob.com/rss/",
+  "chapters": [
+   {
+    "title": "RSS <channel> 元素",
+    "url": "https://www.runoob.com/rss/rss-channel.html",
+    "body": "RSS 的 <channel> 元素可描述 RSS feed。\nRSS <channel> 元素\n请看下面这个 RSS 文档：\n<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<rss version=\"2.0\">\n \n<channel>\n <title>菜鸟教程首页</title>\n <link>http://www.runoob.com</link>\n <description>免费编程教程</description>\n <item>\n <title>RSS 教程</title>\n <link>http://www.runoob.com/rss</link>\n <description>菜鸟教程 Rss 教程</description>\n </item>\n</channel>\n \n</rss>\n正如前面提到的，<channel> 元素可描述 RSS feed，而拥有三个必需的子元素：\n<title> - 定义频道的标题。（比如 菜鸟教程首页）\n<link> - 定义到达频道的超链接。（比如 http://www.runoob.com）\n<description> - 描述此频道（比如 免费编程教程）\n<channel> 通常包含一个或多个 <item> 元素。每个 <item> 元素可定义 RSS feed 中的一篇文章或 \"story\"。\n此外，还存在若干个可选的 <channel> 的子元素。我们会在后面讲解最重要的几个。\n<category> 元素\n<category> 子元素用于为 feed 规定种类。\n<category> 子元素使 RSS 聚合器基于类别对网站进行分组成为可能。\n上面的 RSS 文档的类别可能会是：\n<category>Web 开发</category>\n<copyright> 元素\n<copyright> 子元素会告知有关版本资料的信息。\n上面的 RSS 文档的版本可能会是\n<copyright>2006 Refsnes Data as. All rights reserved.</copyright>\n<image> 元素\n<image> 子元素可在聚合器提供某个 feed 时显示一幅图像。\n<image> 有三个必需的子元素：\n<url> - 定义引用图像的 URL\n<title> - 定义图像无法被显示时显示的文本\n<link> - 定义到达提供此频道的网站的超链接\n上面的 RSS 文档的图像可能是这样的：\n<image>\n <url>http://www.runoob.com/images/logo.png</url>\n <title>菜鸟教程</title>\n <link>http://www.runoob.com</link>\n</image>\n<language> 元素\n<language> 子元素用于规定用来编写文档的语言。\n<language> 元素使 RSS 聚合器基于语言来对网站进行分组成为可能。\n上面的 RSS 文档的语言可能是：\n<language>zh-cn</language>\nRSS <channel> 参考手册\n元素\n描述\n<category>\n可选的。为 feed 定义所属的一个或多个种类。\n<cloud>\n可选的。注册进程，以获得 feed 更新的立即通知。\n<copyright>\n可选。告知版权资料。\n<description>\n必需的。描述频道。\n<docs>\n可选的。规定指向当前 RSS 文件所用格式说明的 URL。\n<generator>\n可选的。规定用于生成 feed 的程序。\n<image>\n可选的。在聚合器呈现某个 feed 时，显示一个图像。\n<language>\n可选的。规定编写 feed 所用的语言。\n<lastBuildDate>\n可选的。定义 feed 内容的最后修改日期。\n<link>\n必需的。定义指向频道的超链接。\n<managingEditor>\n可选的。定义 feed 内容编辑的电子邮件地址。\n<pubDate>\n可选的。为 feed 的内容定义最后发布日期。\n<rating>\n可选的。feed 的 PICS 级别。\n<skipDays>\n可选的。规定忽略 feed 更新的天。\n<skipHours>\n可选的。规定忽略 feed 更新的小时。\n<textInput>\n可选的。规定应当与 feed 一同显示的文本输入域。\n<title>\n必需的。定义频道的标题。\n<ttl>\n可选的。指定从 feed 源更新此 feed 之前，feed 可被缓存的分钟数。\n<webMaster>\n可选的。定义此 feed 的 web 管理员的电子邮件地址。",
+    "examples": []
+   },
+   {
+    "title": "RSS 实例",
+    "url": "https://www.runoob.com/rss/rss-examples.html",
+    "body": "这些例子使用我们的RSS阅读器来演示RSS。\nRSS <channel> 元素\n设置 channel 元素的必选项 (<title>, <link>, and <description>)为 RSS 指定 category 指定用于生成RSS的\n程序给RSS指定图像为 RSS 指定语言为 RSS 添加文本输入框为 RSS 指定不需要更新的天\n实例解析\nRSS <item> 元素\n设置必选项 (<title>, <link>, and <description>)给 RSS 项目添加注释链接给 RSS 项目添加媒体文件给项目添加唯一标识符给 RSS 项目添加发布资料给 RSS 项目添加第三方\n实例解析",
+    "examples": []
+   },
+   {
+    "title": "RSS 历史",
+    "url": "https://www.runoob.com/rss/rss-history.html",
+    "body": "RSS 已发布了很多不同的版本。\nRSS 的历史\nRSS 的历史\n1997 年 - Dave Winer 开发出 scriptingNews。RSS 由此诞生。\n1999 年 - Netscape 开发出 RSS 0.90 （由 scriptingNews 支持的）。这是带有一个 RDF header 的简单的 XML。\n1999 年- Dave Winer 在 UserLand 公司开发出 scriptingNews 2.0b1 （包含了 Netscape 的 RSS 0.90 的特定）。\n1999 年 - Netscape 开发出 RSS 0.91。在此版本中，他们删除了那个 RDF header，但是包含了大多数来自 scriptingNews 2.0b1 的特性。\n1999 年 - UserLand 摆脱了 scriptingNews，而仅仅使用 RSS 0.91。\nNetscape 停止了 RSS 的研发\n2000 年 - UserLand 发布了正式的 0.91 规范\n2000 年 - 一个由 Rael Dornfest 领导的团队在 O'Reilly 开发出 RSS 1.0。此格式使用了 RDF 和命名空间。此版本常被混淆为 0.91 的新版本，不过它是完全不依赖 RSS 0.91 的新格式。\n2000 年 - Dave Winer 在 UserLand 公司开发出 RSS 0.92。\n2002 年 - Dave Winer 在离开 Userland 之后开发出 RSS 2.0。\n2003 年 - 正式的 RSS 2.0 规范发布。\n不同之处在哪里？\nRSS 1.0 是唯一使用 W3C 的 RDF（资源描述框架） 标准进行开发的版本。\nRDF 所蕴含的理念是帮助建立一张语义网。在此阅读更多有关 RDF 和语义网的内容。虽然这与普通用户的关系不大，但是通过使用 Web 标准，对于个人和应用程序来说数据交换会更加容易。\n我应该使用哪个 RSS 版本？\nRSS 0.91 和 RSS 2.0 较之 RSS 1.0 更容易理解。我们的教程基于 RSS 2.0。\n存在 RSS 的 Web 标准吗？\n没有正式的标准针对 RSS。\n所有 RSS feeds 中大约 50% 使用 RSS 0.91。\n大约 25% 使用 RSS 1.0。\n最后的 25% 使用 RSS 0.9x 版本或 RSS 2.0。",
+    "examples": []
+   },
+   {
+    "title": "RSS 简介",
+    "url": "https://www.runoob.com/rss/rss-intro.html",
+    "body": "您应当具备的基础知识\n在继续学习之前，您需要对下面的知识有基本的了解：\nHTML / XHTML\nXML / XML 命名空间\n如果您希望首先学习这些项目，请在我们的 首页 访问这些教程。\n什么是 RSS？\nRSS 指 Really Simple Syndication（真正简易联合）\nRSS 使您有能力聚合（syndicate）网站的内容\nRSS 定义了非常简单的方法来共享和查看标题和内容\nRSS 文件可被自动更新\nRSS 允许为不同的网站进行视图的个性化\nRSS 使用 XML 编写\n为什么使用 RSS？\nRSS 被设计用来展示选定的数据。\n如果没有 RSS，用户就不得不每日都来您的网站检查新的内容。对许多用户来说这样太费时了。通过 RSS feed（RSS 通常被称为 News feed 或 RSS feed），用户们可以使用 RSS 聚合器来更快地检查您的网站更新（RSS 聚合器是用来聚集并分类 RSS feed 的网站或软件）。\n由于 RSS 数据很小巧并可快速加载，它可轻易地被类似移动电话或 PDA 的服务使用。\n拥有相似内容的网站环（Web-rings）可以轻易地在它们的网站共享内容，使这些网站更出色更有价值。\n谁应当使用 RSS？\n那些极少更新内容的网管们不需要 RSS！\nRSS 对那些频繁更新内容的网站是很有帮助的，比如：\n新闻站点 - 列出新闻的标题、日期以及描述\n企业 - 列出新闻和新产品\n日程表 - 列出即将来临的安排和重要日期\n站点更新 - 列出更新过的页面或新的页面\nRSS 的未来\nRSS 会无所不在！\n成千上万的网站在使用 RSS，每天都有越来越多的人们认识到它的用处。\n通过 RSS，因特网上的信息会更易查找，而网站开发者也可更容易地把他们的内容传播到特定的受众。\nRSS的优势\n选择您的新闻\n 通过RSS，你可以选择你想要查看新闻，感兴趣的新闻和与你的工作有关的信息。\n删除不需要的信息\n您可以用RSS（终于）单独从无用信息（垃圾邮件）获得想要的信息！\n增加你的网站流量\n通过RSS，你可以创建自己的新闻频道，并发布到互联网！",
+    "examples": []
+   },
+   {
+    "title": "RSS <item> 元素",
+    "url": "https://www.runoob.com/rss/rss-item.html",
+    "body": "每个 <item> 元素可定义 RSS feed 中的一篇文章或 \"story\"。\n<item> 元素\n请看下面的 RSS 文档：\n<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<rss version=\"2.0\">\n \n<channel>\n <title>菜鸟教程首页</title>\n <link>http://www.runoob.com</link>\n <description>免费编程教程</description>\n <item>\n <title>RSS 教程</title>\n <link>http://www.runoob.com/rss</link>\n <description>菜鸟教程 Rss 教程</description>\n </item>\n</channel>\n \n</rss>\n正如前面提到的，每个 <item> 元素可定义 RSS feed 中的一篇文章或 story\"。\n<item> 元素拥有三个必需的子元素：\n<title> - 定义项目的标题。（比如 RSS 教程）\n<link> - 定义到达项目的超链接。（比如 http://www.runoob.com/rss）\n<description> - 描述此项目（比如 菜鸟教程 Rss 教程）\n此外，存在若干个 <item> 的可选的子元素，我们会在下面介绍最重要的几个。\n<author> 元素\n<author> 子元素用于规定一个项目的作者的电子邮件地址。\n注释：为了防止垃圾邮件，一些开发者不会使用这个 <author> 元素。\n上面的 RSS 文档中项目的作者可能是：\n<author>admin@runoob.com</author>\n<comments> 元素\n<comments> 子元素允许把一个项目连接到有关此项目的注释。\n上面的 RSS 文档中项目的注释可能这样的：\n<comments>http://www.runoob.com/comments</comments>\n<enclosure> 元素\n<enclosure> 子元素允许将一个媒体文件导入一个项中。\n<enclosure> 元素有三个必需的属性：\nurl - 定义指向此媒体文件的 URL\nlength - 定义此媒体文件的长度（字节）\ntype - 定义媒体文件的类型\n在上面的 RSS 文档中，被包含在项目中的媒体文件可能是这样的：\n<enclosure url=\"http://www.runoob.com/rss/rss.mp3\"\nlength=\"5000\" type=\"audio/mpeg\" />\nRSS <item> 参考手册\n元素\n描述\n<author>\n可选的。规定项目作者的电子邮件地址。\n<category>\n可选的。定义项目所属的一个或多个类别。\n<comments>\n可选的。允许项目连接到有关此项目的注释（文件）。\n<description>\n必需的。描述此项目。\n<enclosure>\n可选的。允许将一个媒体文件导入一个项中。\n<guid>\n可选的。为项目定义一个唯一的标识符。\n<link>\n必需的。定义指向此项目的超链接。\n<pubDate>\n可选的。定义此项目的最后发布日期。\n<source>\n可选的。为此项目指定一个第三方来源。\n<title>\n必需的。定义此项目的标题。",
+    "examples": []
+   },
+   {
+    "title": "RSS 发布您的 Feed",
+    "url": "https://www.runoob.com/rss/rss-publishing.html",
+    "body": "只能当其他人能够找到您的 RSS 文档时，它才是有用的。\n把您的 RSS 发布到 Web 上\n现在是时候把您的 RSS 文件上传到网上了。下面是具体的步骤：\n1.为您的 RSS 命名。请注意文件必须有 .xml 的后缀。\n2. 验证您的 RSS 文件。（可以在 http://www.feedvalidator.org 找到很好的验证器）。\n3. 把 RSS 文件上传到您的 web 服务器上的 web 目录。\n4. 把这个小的橙色按钮 或 \n 拷贝到您的 web 目录。\n5. 在你希望向外界提供 RSS 的页面上放置这个小按钮。然后向这个按钮添加一个指向 RSS 文件的链接。代码应该类似这样：\n<a href=\"http://www.runoob.com/feed\">\n<img src=\"http://www.runoob.com/images/rss.gif\" width=\"36\" height=\"14\">\n</a>\n6. 把你的 RSS feed 提交到 RSS Feed 目录。要注意！feed 的 URL 不是你的页面，而是您的指向您的 feed 的 URL，比如 \"http://www.runoob.com/feed\"。\n此处提供一些免费的 RSS 聚合服务：\nNewsisfree: \n 点我注册\n7. 在重要的搜索引擎注册您的 feed ：\nWordPress\nBlogger\nRadio\n8. 更新您的 feed - 现在您已获得了来自 Google、Yahoo、以及 MSN 的 RSS feed 按钮。请您务必经常更新您的内容，并保持 RSS feed 的长期可用。\n我可以自己来维护 RSS feed 吗？\n确保 RSS feed 按照您期望的方式工作的最好的办法，就是自己来维护它。\n不过，这么做很费时，特别是对于大量的更新工作来讲。\n替代方案是使用一个第三方的自动 RSS。\n自动的 RSS\n对于那些仅需要一个用于个人网站的 RSS feed 的用户来说，一些流行的 blog (Web Log) 管理器可提供内建的 RSS 服务：\nWordPress\nBlogger\nRadio",
+    "examples": []
+   },
+   {
+    "title": "RSS 阅读器",
+    "url": "https://www.runoob.com/rss/rss-readers.html",
+    "body": "RSS 阅读器用于读取 RSS feed！\nRSS 阅读器可供许多不同的设备和操作系统使用。\nRSS 阅读器\n有很多不同的 RSS 阅读器。某些以 web services 的形式来工作，而某些则运行于 windows （或 Mac、PDA 或 UNIX）。\n这是一些我尝试过并钟爱的阅读器：\n这是一些我尝试过并钟爱的阅读器：\nRSS 阅读器\n有很多不同的 RSS 阅读器。某些以 web services 的形式来工作，而某些则运行于 windows （或 Mac、PDA 或 UNIX）。\n这是一些我尝试过并钟爱的阅读器：\nNewsGator Online\n一个免费的在线 RSS 阅读器。包含 Outlook 同步，通过 Media Center Edition 查看电视内容，以及 blog 和标题的发布。\nRssReader\n基于 Windows 的免费 RSS 阅读器。支持 RSS versions 0.9x、1.0 以及 2.0 和 Atom 0.1, 0.2 以及 0.3。\nFeedDemon\n基于 Windows 的 RSS 阅读器。使用很简便，界面很有条理。可以免费下载！\nblogbot\n一个针对 Outlook 或 Internet Explorer 的 RSS 阅读器插件。针对 Internet Explorer 的简化版是免费的。\n提示：Mozilla Firefox 浏览器拥有内建的 RSS 阅读器。在您访问提供 RSS feed 的网站时，会在地址栏看到 Firefox 的 RSS 图标。点击这个图标可查看一个不同 feed 的列表，在此可选择你需要阅读的 feed。\n我已经有一个 RSS 阅读器了，接下来怎么做呢？\n点击您希望阅读的 RSS feed 旁边的橙色小图标 或 ，把浏览器窗口的 URL 拷贝粘贴到您的 RSS 阅读器即可。",
+    "examples": []
+   },
+   {
+    "title": "RSS 参考手册",
+    "url": "https://www.runoob.com/rss/rss-reference.html",
+    "body": "RSS <channel> 元素\n请点击元素列中的具体元素，获得更详细的信息。\n元素\n描述\n<category>\n可选的。为 feed 定义所属的一个或多个种类。\n<cloud>\n可选的。注册进程，以获得 feed 更新的立即通知。\n<copyright>\n可选。告知版权资料。\n<description>\n必需的。描述频道。\n<docs>\n可选的。规定指向当前 RSS 文件所用格式说明的 URL。\n<generator>\n可选的。规定用于生成 feed 的程序。\n<image>\n可选的。在聚合器呈现某个 feed 时，显示一个图像。\n<language>\n可选的。规定编写 feed 所用的语言。\n<lastBuildDate>\n可选的。定义 feed 内容的最后修改日期。\n<link>\n必需的。定义指向频道的超链接。\n<managingEditor>\n可选的。定义 feed 内容编辑的电子邮件地址。\n<pubDate>\n可选的。为 feed 的内容定义最后发布日期。\n<rating>\n可选的。feed 的 PICS 级别。\n<skipDays>\n可选的。规定忽略 feed 更新的天。\n<skipHours>\n可选的。规定忽略 feed 更新的小时。\n<textInput>\n可选的。规定应当与 feed 一同显示的文本输入域。\n<title>\n必需的。定义频道的标题。\n<ttl>\n可选的。指定从 feed 源更新此 feed 之前，feed 可被缓存的分钟数。\n<webMaster>\n可选的。定义此 feed 的 web 管理员的电子邮件地址。\nRSS <item> 元素\n元素\n描述\n<author>\n可选的。规定项目作者的电子邮件地址。\n<category>\n可选的。定义项目所属的一个或多个类别。\n<comments>\n可选的。允许项目连接到有关此项目的注释（文件）。\n<description>\n必需的。描述此项目。\n<enclosure>\n可选的。允许将一个媒体文件导入一个项中。\n<guid>\n可选的。为项目定义一个唯一的标识符。\n<link>\n必需的。定义指向此项目的超链接。\n<pubDate>\n可选的。定义此项目的最后发布日期。\n<source>\n可选的。为此项目指定一个第三方来源。\n<title>\n必需的。定义此项目的标题。",
+    "examples": []
+   },
+   {
+    "title": "RSS 语法",
+    "url": "https://www.runoob.com/rss/rss-syntax.html",
+    "body": "RSS 2.0 的语法很简单，也很严格。\nRSS 如何工作\nRSS 用于在网站间分享信息。\n使用 RSS，您在名为聚合器的公司注册您的内容。\n步骤之一是，创建一个 RSS 文档，然后使用 .xml 后缀来保存它。然后把此文件上传到您的网站。接下来，通过一个 RSS 聚合器来注册。每天，聚合器都会到被注册的网站搜索 RSS 文档，校验其链接，并显示有关 feed 的信息，这样客户就能够链接到使他们产生兴趣的文档。\n提示：请在 RSS 发布 这一节浏览免费的 RSS 聚合器服务。\nRSS 实例\nRSS 文档使用一种简单的自我描述的语法。\n让我们看一个简单的 RSS 文档：\n<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<rss version=\"2.0\">\n\n<channel>\n <title>菜鸟教程首页</title>\n <link>http://www.runoob.com</link>\n <description>免费编程教程</description>\n <item>\n <title>RSS 教程</title>\n <link>http://www.runoob.com/rss</link>\n <description>菜鸟教程 Rss 教程</description>\n </item>\n <item>\n <title>XML 教程</title>\n <link>http://www.runoob.com/xml</link>\n <description>菜鸟教程 XML 教程</description>\n </item>\n</channel>\n\n</rss>\n文档中的第一行：XML 声明 - 定义了文档中使用的 XML 版本和字符编码。此例子遵守 1.0 规范，并使用 UTF-8 字符集(可支持中文)。\n下一行是标识此文档是一个 RSS 文档的 RSS 声明（此例是 RSS version 2.0）。\n下一行含有 <channel> 元素。此元素用于描述 RSS feed。\n<channel> 元素有三个必需的子元素：\n<title> - 定义频道的标题。（比如 菜鸟教程首页）\n<link> - 定义到达频道的超链接。（比如 www.runoob.com）\n<description> - 描述此频道（比如 免费编程教程）\n每个 <channel> 元素可拥有一个或多个 <item> 元素。\n每个 <item> 元素可定义 RSS feed 中的一篇文章或 \"story\"。\n<item> 元素拥有三个必需的子元素：\n<title> - 定义项目的标题。（比如 RSS 教程）\n<link> - 定义到达项目的超链接。（比如 http://www.runoob.com/rss）\n<description> - 描述此项目（比如 菜鸟教程 Rss 教程）\n最后，后面的两行关闭 <channel> 和 <rss> 元素。\nRSS 中的注释\n在 RSS 中书写注释的语法与 HTML 的语法类似：\n<!-- 这是一个 RSS 注释 -->\nRSS 使用 XML 来编写\n因为 RSS 也是 XML，请记住：\n所有的元素必许拥有关闭标签\n元素对大小写敏感\n元素必需被正确地嵌套\n属性值必须带引号",
+    "examples": []
+   },
+   {
+    "title": "RSS 教程",
+    "url": "https://www.runoob.com/rss/rss-tutorial.html",
+    "body": "通过使用 RSS，您可以有选择地浏览您感兴趣的以及与您的工作相关的新闻。\n通过使用 RSS，您可以把需要的信息从不需要的信息（兜售信息，垃圾邮件等）中分离出来。\n通过使用 RSS，您可以创建自己的新闻频道，并将之发布到因特网。\n现在开始学习 RSS!",
+    "examples": []
+   }
+  ]
+ }
+}

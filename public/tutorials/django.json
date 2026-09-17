@@ -1,0 +1,250 @@
+{
+ "tutorial": {
+  "name": "Django",
+  "category": "后端开发",
+  "desc": "Django 是一个用于构建 Web 应用程序的高级 Python Web 框架",
+  "url": "https://www.runoob.com/django/",
+  "chapters": [
+   {
+    "title": "Django Admin 管理工具",
+    "url": "https://www.runoob.com/django/django-admin-manage-tool.html",
+    "body": "Django 提供了基于 web 的管理工具。\nDjango 自动管理工具是 django.contrib 的一部分。你可以在项目的 settings.py 中的 INSTALLED_APPS 看到它：\n/HelloWorld/HelloWorld/settings.py 文件代码：",
+    "examples": [
+     "INSTALLED_APPS = (\n'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n)"
+    ]
+   },
+   {
+    "title": "Django 用户认证（Auth）组件",
+    "url": "https://www.runoob.com/django/django-auth.html",
+    "body": "Django 用户认证（Auth）组件一般用在用户的登录注册上，用于判断当前的用户是否合法，并跳转到登陆成功或失败页面。\nDjango 用户认证（Auth）组件需要导入 auth 模块:\n# 认证模块\nfrom django.contrib import auth\n\n# 对应数据库\nfrom django.contrib.auth.models import User\n返回值是用户对象。\n创建用户对象的三种方法：\ncreate()：创建一个普通用户，密码是明文的。\ncreate_user()：创建一个普通用户，密码是密文的。\ncreate_superuser()：创建一个超级用户，密码是密文的，要多传一个邮箱 email 参数。\n参数：\nusername: 用户名。\npassword：密码。\nemail：邮箱 (create_superuser 方法要多加一个 email)。\nfrom django.contrib.auth.models import User \nUser.objects.create(username='runboo',password='123')\nfrom django.contrib.auth.models import User \nUser.objects.create_user(username='runbooo',password='123')\nfrom django.contrib.auth.models import User \nUser.objects.create_superuser(username='runboooo',password='123',email='runboo@163.com')\n验证用户的用户名和密码使用 authenticate() 方法，从需要 auth_user 表中过滤出用户对象。\n使用前要导入：\nfrom django.contrib import auth\n参数：\nusername：用户名\npassword：密码\n返回值：如果验证成功，就返回用户对象，反之，返回 None。\n实例",
+    "examples": [
+     "def login(request):\n    if request.method == \"GET\":\n        return render(request, \"login.html\")\n    username = request.POST.get(\"username\")\n    password = request.POST.get(\"pwd\")\n    valid_num = request.POST.get(\"valid_num\")\n    keep_str = request.session.get(\"keep_str\")\n    if keep_str.upper() == valid_num.upper():\n        user_obj = auth.authenticate(username=username, password=password)\n        print(user_obj.username)"
+    ]
+   },
+   {
+    "title": "Django Admin — 后台管理文章",
+    "url": "https://www.runoob.com/django/django-blog-admin.html",
+    "body": "本章你将学会配置 Django Admin，无需写前端代码就能拥有内容管理后台。\nAdmin 是什么？\nDjango Admin 是 Django 最强大的内置功能之一：你只需注册模型，它就自动生成一个完整的后台管理系统。\n后台提供文章的增删改查、搜索、过滤、分页等功能，无需你自己写任何 CRUD 代码。\n创建超级用户\n首先需要创建一个管理员账号来登录后台：\n(venv) $ python manage.py createsuperuser\n用户名：admin\n电子邮件地址：admin@runoob.com\nPassword: # 输入密码（不会回显）\nPassword (again): # 重复密码\nSuperuser created successfully.\n启动服务器后访问 http://127.0.0.1:8000/admin/，用刚才创建的账号登录。\n(venv) $ python manage.py runserver\n注册模型到 Admin\n打开 blog/admin.py，注册 Post 和 Category 模型。\n实例",
+    "examples": [
+     "# 文件路径：blog/admin.py\nfrom django.contrib import admin\nfrom .models import Category, Post\n\n# 注册分类模型：最简单的注册方式\n@admin.register(Category)\nclass CategoryAdmin(admin.ModelAdmin):\n    # 列表页显示的列\n    list_display = ['name', 'slug']\n\n# 注册文章模型：带自定义配置\n@admin.register(Post)\nclass PostAdmin(admin.ModelAdmin):\n    # 列表页显示的列\n    list_display = ['title', 'category', 'created_at', 'updated_at']\n\n    # 右侧过滤栏：按分类和时间过滤\n    list_filter = ['category', 'created_at']\n\n    # 顶部搜索框：按标题和摘要搜索\n    search_fields = ['title', 'summary']\n\n    # 发布时间的层级导航（年 → 月 → 日）\n    date_hierarchy = 'created_at'\n\n    # 每页显示 20 条记录\n    list_per_page = 20"
+    ]
+   },
+   {
+    "title": "用户系统 — 注册、登录、登出",
+    "url": "https://www.runoob.com/django/django-blog-auth.html",
+    "body": "本章你将学会使用 Django 内置的认证系统，实现用户注册、登录和登出功能。\nDjango 内置 auth 系统\nDjango 自带一套完整的用户认证模块：\n内置 User 模型（用户名、密码、邮箱等）\n内置登录/登出视图（无需自己写逻辑）\n内置的权限和组管理\n表单验证和安全防护（CSRF、XSS）\n这个模块是 django.contrib.auth，在创建项目时已经默认注册到了 INSTALLED_APPS。\n注册页面\nDjango 内置了登录/登出视图，但没有内置注册视图，需要我们自己写。\n第一步：创建注册表单\n实例",
+    "examples": [
+     "# 文件路径：blog/forms.py（新建文件）\nfrom django import forms\nfrom django.contrib.auth.forms import UserCreationForm\nfrom django.contrib.auth.models import User\n\nclass RegisterForm(UserCreationForm):\n    \"\"\"自定义注册表单：继承 UserCreationForm，添加邮箱字段\"\"\"\n    email = forms.EmailField(\n        label='邮箱',\n        required=True,\n        help_text='请输入有效的邮箱地址。'\n    )\n\n    class Meta:\n        model = User\n        fields = ['username', 'email', 'password1', 'password2']\n        labels = {\n            'username': '用户名',\n        }"
+    ]
+   },
+   {
+    "title": "类视图（CBV）重构",
+    "url": "https://www.runoob.com/django/django-blog-cbv.html",
+    "body": "本章你将学习 Django 的类视图（CBV），用更简洁的代码重构首页和详情页。\nFBV vs CBV\n到目前为止，我们所有的视图都是用函数写的（Function-Based View，FBV）。\nDjango 还提供了 类视图（Class-Based View，CBV），用类来封装视图逻辑。\n特性\nFBV（函数视图）\nCBV（类视图）\n代码量\n灵活，但常用逻辑需要重复写\n继承通用视图后只需几行代码\n可读性\n线性流程，逻辑清晰\n继承链需要追踪，但熟悉后一目了然\n复用性\n通过函数封装\n通过 Mixin 组合（Django 的特色）\n适用场景\n逻辑简单、流程清晰的页面\n增删改查这类模式化的页面\nHTTP 方法分发\n手动 if request.method == 'POST'\n自动分发到 get() / post() 方法\n两者没有绝对的优劣，Django 项目通常是 FBV 和 CBV 混用：复杂逻辑用 FBV，标准 CRUD 用 CBV。\nListView — 列表页重构\n首页的 index 视图本质是：查询文章列表 → 渲染模板。\n这类模式化的逻辑，Django 的 ListView 已经帮你写好了。\n实例",
+    "examples": [
+     "# 文件路径：blog/views.py\nfrom django.views.generic import ListView\nfrom django.db.models import Q\nfrom .models import Post, Category\n\nclass PostListView(ListView):\n    \"\"\"博客首页：继承 ListView，展现文章列表\"\"\"\n    model = Post                           # 指定模型\n    template_name = 'blog/index.html'       # 指定模板（默认：blog/post_list.html）\n    context_object_name = 'posts'           # 模板中使用的变量名（默认：object_list）\n    paginate_by = 12                        # 每页 12 条（分页）\n    ordering = ['-created_at']             # 排序\n\n    def get_queryset(self):\n        \"\"\"重写查询方法：支持分类筛选 + 关键词搜索\"\"\"\n        queryset = super().get_queryset()\n\n        # 分类筛选\n        self.category_slug = self.request.GET.get('category', '')\n        if self.category_slug:\n            queryset = queryset.filter(category__slug=self.category_slug)\n\n        # 关键词搜索\n        self.keyword = self.request.GET.get('q', '')\n        if self.keyword:\n            queryset = queryset.filter(\n                Q(title__icontains=self.keyword) |\n                Q(summary__icontains=self.keyword)\n            )\n\n        return queryset\n\n    def get_context_data(self, **kwargs):\n        \"\"\"重写上下文方法：往模板中注入额外数据\"\"\"\n        context = super().get_context_data(**kwargs)\n        context['categories'] = Category.objects.all()\n        context['category_slug'] = self.category_slug\n        context['keyword'] = self.keyword\n        context['title'] = 'RUNOOB 博客 - 首页'\n        return context"
+    ]
+   },
+   {
+    "title": "打包上线 — 部署到 Railway",
+    "url": "https://www.runoob.com/django/django-blog-deploy.html",
+    "body": "本章你将学会配置生产环境，将 Django 博客应用部署到 Railway，获得公开访问链接。\n生产环境配置\n开发环境中 DEBUG=True，Django 会显示详细的错误信息和调试页面。\n生产环境中必须关闭 DEBUG，并正确配置安全选项。\nsettings.py 生产配置\n实例",
+    "examples": [
+     "# 文件路径：blog_project/settings.py\nimport os\n\n# 安全密钥从环境变量读取（不要硬编码在代码中）\nSECRET_KEY = os.environ.get('SECRET_KEY', '开发环境默认密钥')\n\n# DEBUG 通过环境变量控制\nDEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'\n\n# 允许访问的主机名\nALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')\n\n# 静态文件收集目录\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')   # 项目根目录下的 staticfiles/\nSTATIC_URL = '/static/'"
+    ]
+   },
+   {
+    "title": "分类筛选与关键词搜索",
+    "url": "https://www.runoob.com/django/django-blog-filter-search.html",
+    "body": "本章你将学会处理 URL 查询参数，实现分类筛选导航和关键词搜索功能。\nURL 查询参数\n查询参数是 URL 中问号后面的部分，如 /?category=django&q=入门。\n在 Django 视图函数中，通过 request.GET 获取这些参数。\n实例",
+    "examples": [
+     "def index(request):\n    # request.GET 是一个类似字典的对象\n    # .get('key', '默认值') 安全获取参数，不存在时返回默认值\n    category_slug = request.GET.get('category', '')   # 分类筛选\n    keyword = request.GET.get('q', '')                 # 搜索关键词\n    print(f'分类：{category_slug}, 搜索：{keyword}')"
+    ]
+   },
+   {
+    "title": "表单与收藏功能",
+    "url": "https://www.runoob.com/django/django-blog-forms-favorites.html",
+    "body": "本章你将学会处理用户 POST 请求，建立多对多关系，并实现「收藏文章」功能。\n收藏功能的数据模型设计\n收藏功能的核心是：一个用户可以收藏多篇文章，一篇文章可以被多个用户收藏。\n这是典型的多对多（ManyToMany）关系。\n我们不需要新建模型——Django 的 User 模型是内置的，只需要在 Post 模型中添加一个 ManyToManyField 指向 User。\n实例",
+    "examples": [
+     "# 文件路径：blog/models.py 的 Post 类中添加\nfrom django.contrib.auth.models import User\n\nclass Post(models.Model):\n    # ... 已有字段 ...\n    # 收藏者：ManyToManyField 自动创建中间表\n    favorites = models.ManyToManyField(\n        User,\n        related_name='favorite_posts',  # 反向查询：user.favorite_posts.all()\n        verbose_name='收藏者',\n        blank=True\n    )"
+    ]
+   },
+   {
+    "title": "模型与数据库",
+    "url": "https://www.runoob.com/django/django-blog-models.html",
+    "body": "本章你将学会用 Django ORM 定义数据模型，创建数据库表，并插入测试数据。\n为什么需要模型？\n上一章我们硬编码了页面文字。真正的博客需要存储多篇文章，且内容随时会变。\n模型（Model） 是 Django 的数据库层：用 Python 类定义数据结构，Django 自动生成对应的数据库表。\n你不需要写一行 SQL——这就是 ORM（对象关系映射） 的核心价值。\n定义 Post 模型\n打开 blog/models.py，定义文章模型。\n实例",
+    "examples": [
+     "# 文件路径：blog/models.py\nfrom django.db import models\nfrom django.utils import timezone\n\nclass Category(models.Model):\n    \"\"\"文章分类\"\"\"\n    name = models.CharField('分类名', max_length=50, unique=True)\n    # slug 用于 URL 中的英文标识（如 /category/django/）\n    slug = models.SlugField('URL 标识', max_length=50, unique=True)\n\n    class Meta:\n        verbose_name = '分类'\n        verbose_name_plural = '分类'\n\n    def __str__(self):\n        return self.name\n\n\nclass Post(models.Model):\n    \"\"\"博客文章\"\"\"\n    # 标题：CharField 用于短文本，max_length 必填\n    title = models.CharField('标题', max_length=200)\n\n    # slug：文章在 URL 中的英文标识\n    slug = models.SlugField('URL 标识', max_length=200, unique=True)\n\n    # 摘要：TextField 用于长文本，blank=True 表示可选\n    summary = models.TextField('摘要', blank=True)\n\n    # 正文：TextField 不限长度\n    content = models.TextField('正文')\n\n    # 分类：ForeignKey 一对多关系，一篇文章属于一个分类\n    # on_delete=models.CASCADE 表示删除分类时，其下所有文章也一并删除\n    category = models.ForeignKey(\n        Category,\n        on_delete=models.CASCADE,\n        verbose_name='分类',\n        related_name='posts'    # 反向查询：category.posts.all()\n    )\n\n    # auto_now_add：创建时自动填入当前时间\n    created_at = models.DateTimeField('创建时间', auto_now_add=True)\n\n    # auto_now：每次保存时自动更新为当前时间\n    updated_at = models.DateTimeField('更新时间', auto_now=True)\n\n    class Meta:\n        verbose_name = '文章'\n        verbose_name_plural = '文章'\n        # 默认按创建时间倒序排列\n        ordering = ['-created_at']\n\n    def __str__(self):\n        # 在 Admin 后台和 Shell 中显示对象时，显示标题\n        return self.title"
+    ]
+   },
+   {
+    "title": "Django 博客项目",
+    "url": "https://www.runoob.com/django/django-blog-project-init.html",
+    "body": "本章带你从零开始，用 Django 创建一个博客项目，理解项目结构和请求生命周期。\n环境准备\nDjango 是 Python Web 框架，需要先确认 Python 环境。\n打开终端，检查 Python 版本（需要 3.8 以上）：\n$ python3 --version\nPython 3.12.0\n创建虚拟环境并安装 Django\n虚拟环境是 Python 项目的标准实践，让每个项目有独立的依赖，互不干扰。\n$ python3 -m venv venv # 创建虚拟环境\n$ source venv/bin/activate # 激活虚拟环境（Windows：venv\\Scripts\\activate）\n(venv) $ pip install django # 在虚拟环境中安装 Django\n验证安装是否成功：\n(venv) $ python -m django --version\n5.0\n每次打开新终端，都需要先执行 source venv/bin/activate 激活虚拟环境。终端提示符前面的 (venv) 表示当前已在虚拟环境中。\n创建 Django 项目\nDjango 提供了 django-admin startproject 命令来初始化项目。\n(venv) $ django-admin startproject blog_project\n(venv) $ cd blog_project\n执行后会生成以下目录结构：\nblog_project/\n├── manage.py # 项目管理入口（启动服务器、执行迁移、创建 admin 等）\n├── blog_project/ # 项目配置包\n│ ├── __init__.py # 标识这是一个 Python 包\n│ ├── settings.py # 全局配置（数据库、中间件、模板、静态文件等）\n│ ├── urls.py # 根 URL 路由表\n│ ├── wsgi.py # WSGI 部署入口（生产环境用）\n│ └── asgi.py # ASGI 部署入口（WebSocket 用）\n启动开发服务器\n(venv) $ python manage.py runserver\nWatching for file changes with StatReloader\nPerforming system checks...\nSystem check identified no issues (0 silenced).\nStarting development server at http://127.0.0.1:8000/\n浏览器访问 http://127.0.0.1:8000/，看到 Django 的欢迎页面，说明启动成功。\n开发服务器自带热重载：修改代码保存后，服务器会自动重启。按 Ctrl+C 停止服务器。\nsettings.py 关键配置说明\nsettings.py 是 Django 项目的中央配置文件，每个配置项都有明确的含义。\n配置项\n默认值\n作用\nDEBUG\nTrue\n开发模式（上线后必须设为 False）\nDATABASES\nSQLite\n数据库配置（默认 SQLite，无需额外安装）\nINSTALLED_APPS\n内置应用列表\n注册到项目的应用\nTEMPLATES\nDjangoTemplates\n模板引擎配置\nLANGUAGE_CODE\n'en-us'\n语言（可改为 'zh-hans'）\nTIME_ZONE\n'UTC'\n时区（可改为 'Asia/Shanghai'）\n把语言和时区改为中文环境：\n实例",
+    "examples": [
+     "# 文件路径：blog_project/settings.py\nLANGUAGE_CODE = 'zh-hans'      # 后台管理界面显示中文\nTIME_ZONE = 'Asia/Shanghai'    # 时区设置为北京时间"
+    ]
+   },
+   {
+    "title": "URL 路由与文章详情页",
+    "url": "https://www.runoob.com/django/django-blog-url-routing.html",
+    "body": "本章你将学会 Django 的动态路由配置，实现文章详情页和页面之间的链接跳转。\n动态路由是什么？\n首页展示的是所有文章，每篇文章需要有自己的独立详情页。\nURL 应该像这样：/post/1/、/post/2/，其中数字部分是文章的主键（pk）。\n动态路由 允许 URL 中包含变量，Django 会自动提取并传入视图函数。\n配置动态路由\n实例",
+    "examples": [
+     "# 文件路径：blog/urls.py\nfrom django.urls import path\nfrom . import views\n\nurlpatterns = [\n    path('', views.index, name='index'),\n    # int:pk — URL 中的整数参数，名为 pk（primary key）\n    # name='post_detail' — 给路由命名，模板中用 {% url %} 引用\n    path('post/<int:pk>/', views.post_detail, name='post_detail'),\n]"
+    ]
+   },
+   {
+    "title": "视图与模板 — 渲染文章列表",
+    "url": "https://www.runoob.com/django/django-blog-views-templates.html",
+    "body": "本章你将学会用 Django 视图从数据库取数据，配合模板渲染出博客首页的文章卡片列表。\n视图（View）的作用\n视图是 Django 的核心逻辑层，负责：\n接收用户请求（request 参数）\n从数据库查询需要的数据\n将数据传给模板渲染 HTML，返回给用户\nDjango 视图有两种写法：函数视图（FBV） 和类视图（CBV）。\n前八章我们优先使用 FBV——它更直观，适合初学者理解请求处理流程。\n函数视图基础\n一个 Django 视图函数接收 request 参数，返回 HttpResponse 对象。\n实例",
+    "examples": [
+     "# 文件路径：blog/views.py\nfrom django.shortcuts import render\nfrom .models import Post\n\ndef index(request):\n    \"\"\"博客首页：展示所有文章\"\"\"\n    # 从数据库查询所有文章（按时间倒序）\n    posts = Post.objects.all().order_by('-created_at')\n\n    # render 的三个参数：\n    # 1. request — 请求对象\n    # 2. 模板路径 — blog/index.html\n    # 3. context 字典 — 传给模板的数据\n    context = {\n        'posts': posts,\n        'title': 'RUNOOB 博客 - 首页'\n    }\n    return render(request, 'blog/index.html', context)"
+    ]
+   },
+   {
+    "title": "Django cookie 与 session",
+    "url": "https://www.runoob.com/django/django-cookie-session.html",
+    "body": "Cookie 是存储在客户端计算机上的文本文件，并保留了各种跟踪信息。\n识别返回用户包括三个步骤：\n服务器脚本向浏览器发送一组 Cookie。例如：姓名、年龄或识别号码等。\n浏览器将这些信息存储在本地计算机上，以备将来使用。\n当下一次浏览器向 Web 服务器发送任何请求时，浏览器会把这些 Cookie 信息发送到服务器，服务器将使用这些信息来识别用户。\nHTTP 是一种\"无状态\"协议，这意味着每次客户端检索网页时，客户端打开一个单独的连接到 Web 服务器，服务器会自动不保留之前客户端请求的任何记录。\n但是仍然有以下三种方式来维持 Web 客户端和 Web 服务器之间的 session 会话：\nCookies\n一个 Web 服务器可以分配一个唯一的 session 会话 ID 作为每个 Web 客户端的 cookie，对于客户端的后续请求可以使用接收到的 cookie 来识别。\n在Web开发中，使用 session 来完成会话跟踪，session 底层依赖 Cookie 技术。\nDjango 中 Cookie 的语法\n设置 cookie:\nrep.set_cookie(key,value,...) \nrep.set_signed_cookie(key,value,salt='加密盐',...)\n获取 cookie:\nrequest.COOKIES.get(key)\n删除 cookie:\nrep =HttpResponse || render || redirect \nrep.delete_cookie(key)\n创建应用和模型\nmodels.py",
+    "examples": [
+     "class UserInfo(models.Model):\n    username = models.CharField(max_length=32)\n    password = models.CharField(max_length=64)"
+    ]
+   },
+   {
+    "title": "Django django-admin 命令详解",
+    "url": "https://www.runoob.com/django/django-django-admin.html",
+    "body": "django-admin 是 Django 框架提供的一个命令行工具，它是管理 Django 项目的核心工具。\n无论是创建新项目、运行开发服务器，还是执行数据库迁移，django-admin 都是不可或缺的工具。\n要查看 django-admin 提供的所有命令，可以运行：\ndjango-admin help\n输出内容类似如下：\nType 'django-admin help <subcommand>' for help on a specific subcommand.\n\nAvailable subcommands:\n\n[django]\n check\n compilemessages\n createcachetable\n dbshell\n diffsettings\n dumpdata\n flush\n inspectdb\n loaddata\n makemessages\n makemigrations\n migrate\n optimizemigration\n runserver\n sendtestemail\n shell\n showmigrations\n sqlflush\n sqlmigrate\n sqlsequencereset\n squashmigrations\n startapp\n startproject\n test\n testserver\n常用 django-admin 命令详解\n1. 创建新项目\ndjango-admin startproject 项目名称\n这个命令会在当前目录下创建一个新的 Django 项目，包含基本的项目结构：\nmanage.py：项目管理脚本\n项目名称/：项目主目录__init__.py\nsettings.py：项目设置文件\nurls.py：URL 路由配置\nwsgi.py：WSGI 应用入口\n2. 创建新应用\n虽然通常使用 manage.py 来创建应用，但也可以通过 django-admin：\ndjango-admin startapp 应用名称\n这会创建一个新的 Django 应用，包含：\nmigrations/：数据库迁移文件目录\n__init__.py\nadmin.py：管理后台配置\napps.py：应用配置\nmodels.py：数据模型定义\ntests.py：测试代码\nviews.py：视图函数\n3. 检查项目配置\ndjango-admin check\n这个命令会检查你的 Django 项目是否有配置错误，包括：\n模型定义是否正确\nURL 配置是否有效\n模板设置是否正确\n静态文件配置等\n4. 数据库迁移\nDjango 使用迁移系统来管理数据库模式变更：\ndjango-admin makemigrations # 创建迁移文件\ndjango-admin migrate # 应用迁移到数据库\n5. 创建超级用户\ndjango-admin createsuperuser\n这个命令会引导你创建一个可以访问 Django 管理后台的超级用户。\ndjango-admin 常用命令\n命令\n作用\n示例\nstartproject\n创建一个新 Django 项目\ndjango-admin startproject myproject\nstartapp\n创建一个新 Django 应用\ndjango-admin startapp myapp\nrunserver\n启动开发服务器\npython manage.py runserver\nmakemigrations\n生成数据库迁移文件\npython manage.py makemigrations\nmigrate\n执行数据库迁移\npython manage.py migrate\ncreatesuperuser\n创建管理员账号\npython manage.py createsuperuser\nshell\n启动 Django 交互式 Shell\npython manage.py shell\ncollectstatic\n收集静态文件（用于生产环境）\npython manage.py collectstatic\ntest\n运行单元测试\npython manage.py test\ndjango-admin startproject（创建项目）\n基本语法:\ndjango-admin startproject <项目名称> [目标目录]\n参数说明:\n参数\n作用\n示例\n<项目名称>\n必填，项目名称（会生成同名目录）\ndjango-admin startproject mysite\n[目标目录]\n可选，指定项目存放目录\ndjango-admin startproject mysite /opt/myproject\n--template\n使用自定义项目模板\ndjango-admin startproject --template=my_template.zip mysite\n--extension\n指定文件扩展名（如 .py, .txt）\ndjango-admin startproject --extension=py,txt mysite\n--name\n指定文件名模式（如 Dockerfile, README.md）\ndjango-admin startproject --name=Dockerfile mysite\n实例",
+    "examples": [
+     "django-admin startproject mysite  # 创建默认项目\ndjango-admin startproject mysite /opt/code  # 指定目录\ndjango-admin startproject --template=https://example.com/my_template.zip mysite  # 使用远程模板"
+    ]
+   },
+   {
+    "title": "Django 创建第一个项目",
+    "url": "https://www.runoob.com/django/django-first-app.html",
+    "body": "本章我们将介绍 Django 管理工具及如何使用 Django 来创建项目，第一个项目我们以 HelloWorld 来命令项目。\n测试版本说明：\nPython 3.9.7\nDjango 4.2.7\n通过以下命令可以查看版本号：\n# python3 -V\nPython 3.9.7\n# python3 -m django --version\n4.2.7\nDjango 管理工具\n安装 Django 之后，您现在应该已经有了可用的管理工具 django-admin，Windows 如果没有配置环境变量可以用 django-admin。\n我们可以来看下django-admin 的命令介绍:\n$ django-admin\n\nType 'django-admin help <subcommand>' for help on a specific subcommand.\n\nAvailable subcommands:\n\n[django]\n check\n compilemessages\n createcachetable\n dbshell\n diffsettings\n dumpdata\n flush\n inspectdb\n loaddata\n makemessages\n makemigrations\n migrate\n runserver\n sendtestemail\n shell\n showmigrations\n sqlflush\n sqlmigrate\n sqlsequencereset\n squashmigrations\n startapp\n startproject\n test\n testserver\n……省略部分……\n创建第一个项目\n使用 django-admin 来创建 HelloWorld 项目：\ndjango-admin startproject HelloWorld\n创建完成后我们可以查看下项目的目录结构：\n$ cd HelloWorld/\n$ tree\nHelloWorld/ # 项目根目录\n├── manage.py # 项目管理脚本\n├── db.sqlite3 # SQLite 数据库文件\n├── __pycache__/ # Python 字节码缓存\n└── HelloWorld/ # 项目配置目录（与项目同名）\n ├── __init__.py # 包标识文件\n ├── settings.py # 项目设置\n ├── urls.py # 主路由配置\n ├── asgi.py # ASGI 配置\n └── wsgi.py # WSGI 配置\n项目根目录 (HelloWorld/)：\n文件/目录\n作用\nmanage.py\nDjango 命令行工具入口，用于运行开发服务器、数据库迁移等操作。\ndb.sqlite3\nSQLite 数据库文件（默认数据库，开发环境使用）。\n__pycache__/\nPython 字节码缓存目录（自动生成，无需手动修改）。\n主项目配置目录 (HelloWorld/HelloWorld/)\n：\n文件/目录\n作用\n__init__.py\n空文件，告诉 Python 该目录是一个包。\nsettings.py\n核心配置文件，包含： - 数据库设置 (DATABASES) - 静态文件路径 (STATIC_URL) - 应用注册 (INSTALLED_APPS) - 调试模式 (DEBUG=True/False)\nurls.py\n主路由配置文件，定义 URL 路径与视图的映射关系。\nasgi.py\nASGI 服务器配置（用于异步 Web 服务器，如 Daphne）。\nwsgi.py\nWSGI 服务器配置（用于传统 Web 服务器，如 Gunicorn、uWSGI）。\n接下来我们进入 HelloWorld 目录输入以下命令，启动服务器：\npython3 manage.py runserver 0.0.0.0:8000\n0.0.0.0 让其它电脑可连接到开发服务器，8000 为端口号。如果不说明，那么端口号默认为 8000。\n在浏览器输入你服务器的 ip（这里我们输入本机 IP 地址： 127.0.0.1:8000） 及端口号，如果正常启动，输出结果如下：\n关键文件详解\n1. settings.py（核心配置）\n实例",
+    "examples": [
+     "# HelloWorld/settings.py 示例片段\n\n# 安全警告：生产环境必须关闭 DEBUG！\nDEBUG = True\n\n# 允许访问的域名（DEBUG=False 时需配置）\nALLOWED_HOSTS = []\n\n# 注册的 Django 应用\nINSTALLED_APPS = [\n    'django.contrib.admin',  # 管理员后台\n    'django.contrib.auth',   # 认证系统\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',  # 静态文件处理\n]\n\n# 数据库配置（默认 SQLite）\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',  # 数据库文件路径\n    }\n}\n\n# 静态文件 URL（CSS/JS/图片）\nSTATIC_URL = 'static/'"
+    ]
+   },
+   {
+    "title": "Django Form 组件",
+    "url": "https://www.runoob.com/django/django-form-component.html",
+    "body": "Django Form 组件用于对页面进行初始化，生成 HTML 标签，此外还可以对用户提交的数据进行校验（显示错误信息）。\n报错信息显示顺序：\n先显示字段属性中的错误信息，然后再显示局部钩子的错误信息。\n若显示了字段属性的错误信息，就不会显示局部钩子的错误信息。\n若有全局钩子，则全局钩子是等所有的数据都校验完，才开始进行校验，并且全局钩子的错误信息一定会显示。\n使用 Form 组件，需要先导入 forms：\nfrom django import forms\n接下来我们在 app01 目录下创建一个 My_forms.py:\napp01/My_forms.py",
+    "examples": [
+     "from django import forms\nfrom django.core.exceptions import ValidationError\nfrom app01 import models\n\nclass EmpForm(forms.Form):\n    name = forms.CharField(min_length=4, label=\"姓名\", error_messages={\"min_length\": \"你太短了\", \"required\": \"该字段不能为空!\"})\n    age = forms.IntegerField(label=\"年龄\")\n    salary = forms.DecimalField(label=\"工资\")"
+    ]
+   },
+   {
+    "title": "Django 表单",
+    "url": "https://www.runoob.com/django/django-form.html",
+    "body": "HTML表单是网站交互性的经典方式。\n本章将介绍如何用Django对用户提交的表单数据进行处理。\nHTTP 请求\nHTTP协议以\"请求－回复\"的方式工作。客户发送请求时，可以在请求中附加数据。服务器通过解析请求，就可以获得客户传来的数据，并根据URL来提供特定的服务。\nGET 方法\n我们在之前的项目中创建一个 search.py 文件，用于接收用户的请求：\n/HelloWorld/HelloWorld/search.py 文件代码：",
+    "examples": [
+     "from django.http import HttpResponse\nfrom django.shortcuts import render\n# 表单\ndef search_form(request):\n    return render(request, 'search_form.html')\n# 接收请求数据\ndef search(request):  \n    request.encoding='utf-8'\nif 'q' in request.GET and request.GET['q']:\n        message = '你搜索的内容为: ' + request.GET['q']\nelse:\n        message = '你提交了空表单'\nreturn HttpResponse(message)"
+    ]
+   },
+   {
+    "title": "Django 安装",
+    "url": "https://www.runoob.com/django/django-install.html",
+    "body": "在安装 Django 前，系统需要已经安装了 Python 的开发环境。\n如果你还没有安装 Python，请先从 Python 官网 https://www.python.org/ 下载并安装最新版本的 Python。\nDjango 安装也很简单使包管理工具 pip 就可以了：\npip install Django\n安装完成后，你可以通过运行以下命令验证 Django 是否成功安装：\npython3 -m django --version\n如果一切顺利，你将看到安装的 Django 版本号，如：4.2.7。\n开发环境推荐：\n1、VS Code 开发工具\n2、PyCharm 开发工具\n3、阿里 Qoder\n4、Trae 开发工具\nWindows 下安装 Django\n接下来我们来具体看下不同系统下 Django 的安装。\n如果你还未安装Python环境需要先下载Python安装包。\n1、Python 下载地址：https://www.python.org/downloads/\n2、Django 下载地址：https://www.djangoproject.com/download/\n注意：目前 Django 1.6.x 以上版本已经完全兼容 Python 3.x。\nPython 安装(已安装的可跳过)\n安装 Python 你只需要下载 python-x.x.x.msi 文件，然后一直点击 \"Next\" 按钮即可。\n安装完成后你需要设置 Python 环境变量。\n右击计算机->属性->高级->环境变量->修改系统变量 path，添加 Python 安装地址，本文实例使用的是 C:\\Python33，你需要根据你实际情况来安装。\nDjango 安装\n下载 Django 压缩包，解压并和 Python安装目录放在同一个根目录，进入 Django 目录，执行 python setup.py install，然后开始安装，Django 将要被安装到 Python 的 Lib下site-packages。\n然后是配置环境变量，将这几个目录添加到系统环境变量中：\nC:\\Python33\\Lib\\site-packages\\django;C:\\Python33\\Scripts。\n添加完成后就可以使用Django的django-admin.py命令新建工程了。\n检查是否安装成功\n输入以下命令进行检查:\n>>> import django\n>>> django.get_version()\n如果输出了Django的版本号说明安装正确。\nLinux 上安装 Django\nyum 安装方法\n以下安装位于 Centos Linux 环境下安装，如果是你的 Linux 系统是 ubuntu 请使用 apt-get 命令。\n默认情况下 Linux 环境已经支持了Python。你可以在终端输入Python命令来查看是否已经安装。\nPython 3.7.4 (default, Aug 1 2012, 05:14:39) \n[GCC 4.6.3] on linux2\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>>\n安装 setuptools\n命令：\n# Python3 安装\nyum install python3-setuptools\n# Python2 安装\nyum install python2-setuptools\n完成之后，就可以使用 easy_install 命令安装 django\neasy_install django\n之后我们在 Python 解释器输入以下代码：\n[root@solar django]# python\nPython 3.7.4 (default, May 15 2014, 14:49:08)\n[GCC 4.8.0] on linux2\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>> import django\n>>> django.VERSION\n(3, 0, 6, 'final', 0)\n我们可以看到输出了Django的版本号，说明安装成功。\npip 命令安装方法\n如果你还未安装 pip 工具，可查看：Python pip 安装与使用。\nsudo pip3 install Django -i https://pypi.tuna.tsinghua.edu.cn/simple\n-i https://pypi.tuna.tsinghua.edu.cn/simple 指定清华镜像源，下载速度更快。\n指定 Django 的下载版本（3.0.6 可以改成你要的版本）：\nsudo pip3 install Django==3.0.6 -i https://pypi.tuna.tsinghua.edu.cn/simple\n如果 pip < 1.4，安装方法如下：\npip install https://www.djangoproject.com/download/1.11a1/tarball/\n源码安装方法\n下载源码包：https://www.djangoproject.com/download/\n输入以下命令并安装：\ntar xzvf Django-X.Y.tar.gz # 解压下载包\ncd Django-X.Y # 进入 Django 目录\npython setup.py install # 执行安装命令\n安装成功后 Django 位于 Python 安装目录的 site-packages 目录下。\nMac 下安装\n下载\n从这里下载最新的稳定版本：DJango-3.x.y.tar.gz，在页面右侧列表下载，如下图：\n记住是最新的官方版本哦。其中 x.y 是版本号。进入你下载该文件的文件夹目录，执行如下命令:（Mac下默认是/Users/xxx/Downloads，xxx是你的用户名）\n$ tar zxvf Django-3.x.y.tar.gz\n你也可以从 Github 上下载最新版，地址：https://github.com/django/django：\ngit clone https://github.com/django/django.git\n安装\n进入解压后的目录：\ncd Django-3.x.y\nsudo python setup.py install\n安装成功后会输出以下信息：\n……\nProcessing dependencies for Django==3.x.y\nFinished processing dependencies for Django==3.x.y\n再进入我们的站点目录，创建 Django 项目：\n$ django-admin.py startproject testdj\n启动服务：\ncd testdj # 切换到我们创建的项目\n$ python manage.py runserver\n……\nStarting development server at http://127.0.0.1:8000/\nQuit the server with CONTROL-C.\n以上信息说明，项目已启动，访问地址为http://127.0.0.1:8000/。",
+    "examples": []
+   },
+   {
+    "title": "Django 简介",
+    "url": "https://www.runoob.com/django/django-intro.html",
+    "body": "Django 是一个由 Python 编写的一个开放源代码的 Web 应用框架。\n使用 Django，只要很少的代码，Python 的程序开发人员就可以轻松地完成一个正式网站所需要的大部分内容，并进一步开发出全功能的 Web 服务。\nDjango 提供了全栈开发所需的工具，包括数据库 ORM、模板引擎、路由系统、用户认证等，大幅减少重复代码。\nDjango 的哲学:\nDRY（Don't Repeat Yourself）: 避免重复代码，提倡复用（如模板继承、模型继承）。\n约定优于配置: 默认提供合理配置（如自动生成 Admin 界面），减少决策成本。\n快速开发: 从原型到生产环境均可高效推进。\nDjango 遵循 MVC（Model-View-Controller）架构，但在 Django 中更常被称为 MTV（Model-Template-View）。\n内置功能\n功能\n说明\nAdmin 后台\n自动生成管理界面，无需手动编写 CRUD 逻辑。\nORM\n用 Python 类操作数据库，无需写 SQL。\n表单处理\n内置表单验证，防止 CSRF 攻击。\n用户认证\n提供登录、注册、权限管理（django.contrib.auth）。\n路由系统\nURL 映射灵活，支持正则表达式。\n缓存机制\n支持 Memcached、Redis 等后端。\n核心特点\n快速开发：Django 提供了大量内置功能，如认证、管理后台、表单处理等，让开发者专注于业务逻辑，而非底层实现。\n自动化管理后台：只需简单的模型定义，即可生成强大的后台管理界面，支持增删改查。\nORM 数据库映射：Django 内置 ORM (Object-Relational Mapping)，可以让开发者使用 Python 类与数据库交互，无需编写 SQL。\n强大的 URL 路由：使用正则表达式灵活定义 URL，轻松实现页面路由。\n模板引擎：内置强大的模板系统，支持逻辑判断、循环处理，方便渲染 HTML 页面。\n国际化支持：Django 支持多语言国际化，非常适合全球化应用。\n高安全性：内置多种安全保护措施，如防止 SQL 注入、XSS 攻击、CSRF 攻击等。\n丰富的社区与扩展：大量开源的第三方库，如 Django REST framework、Django CMS 等，快速扩展功能。\nMVC 与 MTV模型\nMVC (Model-View-Controller)\nModel (模型)：处理与数据库的交互，定义数据的结构和业务逻辑。\nView (视图)：负责数据展示，生成用户看到的 HTML 页面。\nController (控制器)：接收用户请求，调用 Model 处理数据，并将结果传递给 View 渲染页面。\n流程：\n用户发送请求到 Controller。\nController 处理逻辑，调用 Model 获取数据。\nController 将数据传递给 View。\nView 渲染并返回 HTML 页面给用户。\nMVT (Model-Template-View) —— Django 的实现方式\nDjango 中采用了 MVT 设计模式，类似于 MVC，但有一些区别：\nModel (模型)：与数据库交互，处理数据的创建、读取、更新、删除。\nTemplate (模板)：负责页面渲染，生成最终的 HTML 内容。\nView (视图)：Django 的 View 更偏向于控制器的角色，接收请求并决定使用哪个模板和数据。\n流程：\n用户访问 URL，请求被 Django 的 urls.py 映射到相应的 View。\nView 处理业务逻辑，调用 Model 获取数据。\nView 将数据传递给 Template。\nTemplate 渲染 HTML，最终返回给用户。\nDjango 的适用场景\n适合用 Django 的项目:\n✅ 内容管理系统（CMS）（如新闻网站、博客）\n✅ 社交平台（用户系统、动态发布）\n✅ 电子商务网站（订单管理、支付集成）\n✅ API 后端（结合 Django REST framework）\n不适合的场景:\n❌ 超高性能要求的实时系统（如高频交易平台，推荐 Go 或 Rust）\n❌ 极度轻量级的微服务（可以考虑 Flask 或 FastAPI）\nDjango vs 其他框架\n框架\n特点\nFlask\n轻量级，灵活，适合小型项目或微服务。\nFastAPI\n异步支持强，适合高性能 API 开发。\nRuby on Rails\n类似 Django，但使用 Ruby 语言。\nLaravel\nPHP 生态的 MVC 框架，功能与 Django 类似。\nDjango 优势：\n\"开箱即用\"：无需额外安装插件即可实现完整功能。\n安全性：自动防范 SQL 注入、XSS、CSRF 等常见攻击。\n社区活跃：丰富的第三方库（如 Django REST framework、Django CMS）。",
+    "examples": []
+   },
+   {
+    "title": "Django 中间件",
+    "url": "https://www.runoob.com/django/django-middleware.html",
+    "body": "Django 中间件是修改 Django request 或者 response 对象的钩子，可以理解为是介于 HttpRequest 与 HttpResponse 处理之间的一道处理过程。\n浏览器从请求到响应的过程中，Django 需要通过很多中间件来处理，可以看如下图所示：\nDjango 中间件作用：\n修改请求，即传送到 view 中的 HttpRequest 对象。\n修改响应，即 view 返回的 HttpResponse 对象。\n中间件组件配置在 settings.py 文件的 MIDDLEWARE 选项列表中。\n配置中的每个字符串选项都是一个类，也就是一个中间件。\n\nDjango 默认的中间件配置：",
+    "examples": [
+     "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]"
+    ]
+   },
+   {
+    "title": "Django 模型",
+    "url": "https://www.runoob.com/django/django-model.html",
+    "body": "Django 对各种数据库提供了很好的支持，包括：PostgreSQL、MySQL、SQLite、Oracle。\nDjango 为这些数据库提供了统一的调用API。\n我们可以根据自己业务需求选择不同的数据库。\nMySQL 是 Web 应用中最常用的数据库。本章节我们将以 Mysql 作为实例进行介绍。你可以通过本站的 MySQL 教程\n 了解更多 MySQL 的基础知识。\n如果你没安装 mysql 驱动，可以执行以下命令安装：\nsudo pip3 install pymysql\nDjango ORM\nDjango 模型使用自带的 ORM。\n对象关系映射（Object Relational Mapping，简称 ORM ）用于实现面向对象编程语言里不同类型系统的数据之间的转换。\nORM 在业务逻辑层和数据库层之间充当了桥梁的作用。\nORM 是通过使用描述对象和数据库之间的映射的元数据，将程序中的对象自动持久化到数据库中。\n使用 ORM 的好处：\n提高开发效率。\n不同数据库可以平滑切换。\n使用 ORM 的缺点：\nORM 代码转换为 SQL 语句时，需要花费一定的时间，执行效率会有所降低。\n长期写 ORM 代码，会降低编写 SQL 语句的能力。\nORM 解析过程:\n1、ORM 会将 Python 代码转成为 SQL 语句。\n2、SQL 语句通过 pymysql 传送到数据库服务端。\n3、在数据库中执行 SQL 语句并将结果返回。\nORM 对应关系表：\n数据库配置\nDjango 如何使用 mysql 数据库\n创建 MySQL 数据库( ORM 无法操作到数据库级别，只能操作到数据表)语法：\ncreate database 数据库名称 default charset=utf8; # 防止编码问题，指定为 utf8\n例如我们创建一个名为 runoob 数据库，编码指定为 utf8：\ncreate database runoob default charset=utf8;\n我们在项目的 settings.py 文件中找到 DATABASES 配置项，将其信息修改为：\nHelloWorld/HelloWorld/settings.py: 文件代码：",
+    "examples": [
+     "DATABASES = { \n    'default': \n    { \n        'ENGINE': 'django.db.backends.mysql',    # 数据库引擎\n'NAME': 'runoob', # 数据库名称\n'HOST': '127.0.0.1', # 数据库地址，本机 ip 地址 127.0.0.1 \n'PORT': 3306, # 端口 \n'USER': 'root',  # 数据库用户名\n'PASSWORD': '123456', # 数据库密码\n    }  \n}"
+    ]
+   },
+   {
+    "title": "Django Nginx+uwsgi 安装配置",
+    "url": "https://www.runoob.com/django/django-nginx-uwsgi.html",
+    "body": "在前面的章节中我们使用 python manage.py runserver 来运行服务器。这只适用测试环境中使用。\n正式发布的服务，我们需要一个可以稳定而持续的服务器，比如apache, Nginx, lighttpd等，本文将以 Nginx 为例。\n你也可以直接参考：Python uwsgi 安装配置\n安装基础开发包\nCentos 下安装步骤如下：\nyum groupinstall \"Development tools\"\nyum install zlib-devel bzip2-devel pcre-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel\nCentOS 自带 Python 2.4.3，但我们可以再安装Python2.7.5：\ncd ~\nwget http://python.org/ftp/python/2.7.5/Python-2.7.5.tar.bz2\ntar xvf Python-2.7.5.tar.bz2\ncd Python-2.7.5\n./configure --prefix=/usr/local\nmake && make altinstall\n安装Python包管理\neasy_install 包 https://pypi.python.org/pypi/distribute\n安装步骤:\ncd ~\nwget https://pypi.python.org/packages/source/d/distribute/distribute-0.6.49.tar.gz\ntar xf distribute-0.6.49.tar.gz\ncd distribute-0.6.49\npython2.7 setup.py install\neasy_install --version\npip 包: https://pypi.python.org/pypi/pip\n安装 pip 的好处是可以用 pip list、pip uninstall 管理 Python 包， easy_install 没有这个功能，只有 uninstall。\n安装 uwsgi\nuwsgi:https://pypi.python.org/pypi/uWSGI\nuwsgi 参数详解：http://uwsgi-docs.readthedocs.org/en/latest/Options.html\npip install uwsgi\nuwsgi --version # 查看 uwsgi 版本\n测试 uwsgi 是否正常：\n新建 test.py 文件，内容如下：\ndef application(env, start_response):\n    start_response('200 OK', [('Content-Type','text/html')])\n    return \"Hello World\"\n然后在终端运行：\nuwsgi --http :8001 --wsgi-file test.py\n在浏览器内输入：http://127.0.0.1:8001，查看是否有\"Hello World\"输出，若没有输出，请检查你的安装过程。\n安装 Django\npip install django\n测试 django 是否正常，运行：\ndjango-admin.py startproject demosite\ncd demosite\npython2.7 manage.py runserver 0.0.0.0:8002\n在浏览器内输入：http://127.0.0.1:8002，检查django是否运行正常。\n安装 Nginx\n安装命令如下：\ncd ~\nwget http://nginx.org/download/nginx-1.5.6.tar.gz\ntar xf nginx-1.5.6.tar.gz\ncd nginx-1.5.6\n./configure --prefix=/usr/local/nginx-1.5.6 \\\n--with-http_stub_status_module \\\n--with-http_gzip_static_module\nmake && make install\n你可以阅读 Nginx 安装配置 了解更多内容。\nuwsgi 配置\nuwsgi支持ini、xml等多种配置方式，本文以 ini 为例，\n在/etc/目录下新建uwsgi9090.ini，添加如下配置：\n[uwsgi]\nsocket = 127.0.0.1:9090\nmaster = true //主进程\nvhost = true //多站模式\nno-site = true //多站模式时不设置入口模块和文件\nworkers = 2 //子进程数\nreload-mercy = 10 \nvacuum = true //退出、重启时清理文件\nmax-requests = 1000 \nlimit-as = 512\nbuffer-size = 30000\npidfile = /var/run/uwsgi9090.pid //pid文件，用于下面的脚本启动、停止该进程\ndaemonize = /website/uwsgi9090.log\nNginx 配置\n找到nginx的安装目录（如：/usr/local/nginx/），打开conf/nginx.conf文件，修改server配置：\nserver {\n listen 80;\n server_name localhost;\n \n location / { \n include uwsgi_params;\n uwsgi_pass 127.0.0.1:9090; //必须和uwsgi中的设置一致\n uwsgi_param UWSGI_SCRIPT demosite.wsgi; //入口文件，即wsgi.py相对于项目根目录的位置，“.”相当于一层目录\n uwsgi_param UWSGI_CHDIR /demosite; //项目根目录\n index index.html index.htm;\n client_max_body_size 35m;\n }\n }\n你可以阅读 Nginx 安装配置 了解更多内容。\n设置完成后，在终端运行：\nuwsgi --ini /etc/uwsgi9090.ini &\n/usr/local/nginx/sbin/nginx\n在浏览器输入：http://127.0.0.1，你就可以看到 django 的 \"It work\" 了。",
+    "examples": []
+   },
+   {
+    "title": "Django ORM - 单表实例",
+    "url": "https://www.runoob.com/django/django-orm-1.html",
+    "body": "阅读本章节前你需要先阅读了 Django 模型 进行基础配置及了解常见问题的解决方案。\n接下来我们重新创建一个项目 app01（如果之前已创建过，忽略以下操作）:\ndjango-admin.py startproject app01\n接下来在 settings.py 中找到 INSTALLED_APPS 这一项，如下：\nINSTALLED_APPS = (\n 'django.contrib.admin',\n 'django.contrib.auth',\n 'django.contrib.contenttypes',\n 'django.contrib.sessions',\n 'django.contrib.messages',\n 'django.contrib.staticfiles',\n 'app01', # 添加此项\n)\n接下来，告诉 Django 使用 pymysql 模块连接 mysql 数据库：\n实例",
+    "examples": [
+     "# 在与 settings.py 同级目录下的 __init__.py 中引入模块和进行配置 \nimport pymysql\npymysql.install_as_MySQLdb()"
+    ]
+   },
+   {
+    "title": "Django ORM – 多表实例",
+    "url": "https://www.runoob.com/django/django-orm-2.html",
+    "body": "表与表之间的关系可分为以下三种：\n一对一: 一个人对应一个身份证号码，数据字段设置 unique。\n一对多: 一个家庭有多个人，一般通过外键来实现。\n多对多: 一个学生有多门课程，一个课程有很多学生，一般通过第三个表来实现关联。\n创建模型\n接下来我们来看下多表多实例。\n实例",
+    "examples": [
+     "class Book(models.Model):\n    title = models.CharField(max_length=32)\n    price = models.DecimalField(max_digits=5, decimal_places=2)\n    pub_date = models.DateField()\n    publish = models.ForeignKey(\"Publish\", on_delete=models.CASCADE)\n    authors = models.ManyToManyField(\"Author\")\n\n\nclass Publish(models.Model):\n    name = models.CharField(max_length=32)\n    city = models.CharField(max_length=64)\n    email = models.EmailField()\n\n\nclass Author(models.Model):\n    name = models.CharField(max_length=32)\n    age = models.SmallIntegerField()\n    au_detail = models.OneToOneField(\"AuthorDetail\", on_delete=models.CASCADE)\n\n\nclass AuthorDetail(models.Model):\n    gender_choices = (\n        (0, \"女\"),\n        (1, \"男\"),\n        (2, \"保密\"),\n    )\n    gender = models.SmallIntegerField(choices=gender_choices)\n    tel = models.CharField(max_length=32)\n    addr = models.CharField(max_length=64)\n    birthday = models.DateField()"
+    ]
+   },
+   {
+    "title": "Django ORM – 多表实例（聚合与分组查询）",
+    "url": "https://www.runoob.com/django/django-orm-3.html",
+    "body": "聚合查询（aggregate）\n聚合查询函数是对一组值执行计算，并返回单个值。\nDjango 使用聚合查询前要先从 django.db.models 引入 Avg、Max、Min、Count、Sum（首字母大写）。\nfrom django.db.models import Avg,Max,Min,Count,Sum # 引入函数\n聚合查询返回值的数据类型是字典。\n聚合函数 aggregate() 是 QuerySet 的一个终止子句， 生成的一个汇总值，相当于 count()。\n使用 aggregate() 后，数据类型就变为字典，不能再使用 QuerySet 数据类型的一些 API 了。\n日期数据类型(DateField)可以用 Max 和 Min。\n返回的字典中：键的名称默认是（属性名称加上__聚合函数名），值是计算出来的聚合值。\n如果要自定义返回字典的键的名称，可以起别名：\naggregate(别名 = 聚合函数名(\"属性名称\"))\n计算所有图书的平均价格:\n实例",
+    "examples": [
+     "from django.db.models import Avg,Max,Min,Count,Sum  #   引入函数\n...\nres = models.Book.objects.aggregate(Avg(\"price\"))\nprint(res, type(res))\n..."
+    ]
+   },
+   {
+    "title": "Django 项目结构解析",
+    "url": "https://www.runoob.com/django/django-project-intro.html",
+    "body": "通过理解 Django 的项目结构，我们可以更高效地组织代码，遵循 Django 的最佳实践，构建可维护的 Web 应用程序。\n上一章节我们已经学会使用 django-admin startproject 命令创建一个新项目时，Django 会自动生成以下基础结构：\nmyproject/\n│\n├── manage.py\n└── myproject/\n ├── __init__.py\n ├── settings.py\n ├── urls.py\n └── wsgi.py\n使用 django-admin 来创建 HelloWorld 项目：\ndjango-admin startproject HelloWorld\n创建完成后我们可以查看下项目的目录结构：\n文件/目录\n详细说明\nmanage.py\nDjango 项目的命令行管理工具，封装了 django-admin 的功能，并自动设置 DJANGO_SETTINGS_MODULE 环境变量指向当前项目的配置。所有项目管理命令都通过它执行，如：- runserver：启动开发服务器- makemigrations：生成数据库迁移文件- shell：启动带 ORM 的 Python shell\ndb.sqlite3\nDjango 默认使用的 SQLite 数据库文件，在首次执行 migrate 命令后自动生成。开发环境适用，生产环境建议换用 PostgreSQL/MySQL。文件位置由 settings.py 中的 DATABASES['default']['NAME'] 定义。\n__pycache__/\nPython 解释器生成的字节码缓存目录，包含 .pyc 文件，用于加速模块加载。无需提交到版本控制（应在 .gitignore 中忽略）。\n核心文件解析\nmanage.py\nmanage.py 是 Django 项目的命令行工具入口，它提供了许多有用的命令：\n实例",
+    "examples": [
+     "#!/usr/bin/env python\nimport os\nimport sys\n\nif __name__ == \"__main__\":\n    os.environ.setdefault(\"DJANGO_SETTINGS_MODULE\", \"myproject.settings\")\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError:\n        # 处理导入错误\n        pass\n    execute_from_command_line(sys.argv)"
+    ]
+   },
+   {
+    "title": "Django 路由",
+    "url": "https://www.runoob.com/django/django-routers.html",
+    "body": "路由简单的来说就是根据用户请求的 URL 链接来判断对应的处理程序，并返回处理结果，也就是 URL 与 Django 的视图建立映射关系。\nDjango 路由在 urls.py 配置，urls.py 中的每一条配置对应相应的处理方法。\nDjango 不同版本 urls.py 配置有点不一样：\nDjango1.1.x 版本\nurl() 方法：普通路径和正则路径均可使用，需要自己手动添加正则首位限制符号。\n实例",
+    "examples": [
+     "from django.conf.urls import url # 用 url 需要引入 \n\nurlpatterns = [ \n    url(r'^admin/$', admin.site.urls), \n    url(r'^index/$', views.index), # 普通路径 \n    url(r'^articles/([0-9]{4})/$', views.articles), # 正则路径 \n]"
+    ]
+   },
+   {
+    "title": "Django 模板",
+    "url": "https://www.runoob.com/django/django-template.html",
+    "body": "Django 的模板系统（Template System）是用于将业务逻辑（Python）与展示层（HTML）分离的核心组件，它允许开发者通过简单的标签和变量动态生成 HTML 页面。\n在上一章节中我们使用 django.http.HttpResponse() 来输出 \"Hello World！\"，该方式将数据与视图混合在一起，不符合 Django 的 MVT 思想。\n本章节我们将为大家详细介绍 Django 模板的应用，模板是一个文本，用于分离文档的表现形式和内容。\n功能\n语法/示例\n适用场景\n变量渲染\n{{ variable }}\n动态显示数据\n逻辑控制\n{% if %}, {% for %}\n条件/循环渲染\n模板继承\n{% extends %}, {% block %}\n避免重复 HTML 结构\n静态文件\n{% static 'path' %}\n加载 CSS/JS/图片\n自定义过滤器\n@register.filter\n扩展模板功能\n模板应用实例\n我们接着上一章节的项目将在 HelloWorld 目录底下创建 templates 目录并建立 runoob.html文件，整个目录结构如下：\nHelloWorld/\n|-- HelloWorld\n| |-- __init__.py\n| |-- __init__.pyc\n| |-- settings.py\n| |-- settings.pyc\n| |-- urls.py\n| |-- urls.pyc\n| |-- views.py\n| |-- views.pyc\n| |-- wsgi.py\n| `-- wsgi.pyc\n|-- manage.py\n`-- templates\n `-- runoob.html\nrunoob.html 文件代码如下：\nHelloWorld/templates/runoob.html 文件代码：",
+    "examples": [
+     "<h1>{{ hello }}</h1>"
+    ]
+   },
+   {
+    "title": "Django 教程",
+    "url": "https://www.runoob.com/django/django-tutorial.html",
+    "body": "Django 是一个用于构建 Web 应用程序的高级 Python Web 框架。\nDjango 提供了一套强大的工具和约定，使得开发者能够快速构建功能齐全且易于维护的网站。\nDjango 遵守 BSD 版权，初次发布于 2005 年 7 月, 并于 2008 年 9 月发布了第一个正式版本 1.0 。\nDjango 采用了 MVT 的软件设计模式，即模型（Model），视图（View）和模板（Template）。",
+    "examples": []
+   },
+   {
+    "title": "Django 视图 - FBV 与 CBV",
+    "url": "https://www.runoob.com/django/django-views-fbv-cbv.html",
+    "body": "FBV（function base views） 基于函数的视图，就是在视图里使用函数处理请求。\nCBV（class base views） 基于类的视图，就是在视图里使用类处理请求。\nFBV\n基于函数的视图其实我们前面章节一直在使用，就是使用了函数来处理用户的请求，查看以下实例：\n路由配置：\nurls.py 文件",
+    "examples": [
+     "urlpatterns = [\n    path(\"login/\", views.login),\n]"
+    ]
+   },
+   {
+    "title": "Django 视图",
+    "url": "https://www.runoob.com/django/django-views.html",
+    "body": "视图层\n一个视图函数，简称视图，是一个简单的 Python 函数，它接受 Web 请求并且返回 Web 响应。\n响应可以是一个 HTML 页面、一个 404 错误页面、重定向页面、XML 文档、或者一张图片...\n无论视图本身包含什么逻辑，都要返回响应。代码写在哪里都可以，只要在 Python 目录下面，一般放在项目的 views.py 文件中。\n每个视图函数都负责返回一个 HttpResponse 对象，对象中包含生成的响应。\n视图层中有两个重要的对象：请求对象(request)与响应对象(HttpResponse)。\n请求对象: HttpRequest 对象（简称 request 对象）\n以下介绍几个常用的 request 属性。\n1、GET\n数据类型是 QueryDict，一个类似于字典的对象，包含 HTTP GET 的所有参数。\n有相同的键，就把所有的值放到对应的列表里。\n取值格式：对象.方法。\nget()：返回字符串，如果该键对应有多个值，取出该键的最后一个值。\n实例",
+    "examples": [
+     "def runoob(request):\n    name = request.GET.get(\"name\")\n    return HttpResponse('姓名：{}'.format(name))"
+    ]
+   }
+  ]
+ }
+}

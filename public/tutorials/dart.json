@@ -1,0 +1,177 @@
+{
+ "tutorial": {
+  "name": "Dart",
+  "category": "后端开发",
+  "desc": "Dart 是 Google 开发的一门现代化编程语言，主要用于构建高性能、跨平台",
+  "url": "https://www.runoob.com/dart/",
+  "chapters": [
+   {
+    "title": "Dart 异步编程",
+    "url": "https://www.runoob.com/dart/dart-async.html",
+    "body": "异步编程是现代应用开发中最核心的能力之一。\n无论是网络请求、文件读写还是数据库操作，都需要异步处理来避免阻塞主线程。\n本章介绍 Future 的概念、async/await 语法以及如何处理异步错误。\n为什么需要异步编程\n先理解同步和异步的区别。\n同步代码按顺序一行一行执行，上一行完成之前下一行不会开始。\n如果某个操作需要等待（如网络请求），整个程序就会被卡住。\n实例\n对比同步和异步代码的执行效果：",
+    "examples": [
+     "// 模拟一个耗时的操作\nString fetchDataSync() {\n  // 同步代码：假设这里要等待 2 秒\n  // 在这 2 秒内，整个程序什么都做不了\n  sleep(Duration(seconds: 2));  // 阻塞式等待\n  return '数据获取完成';\n}\n\n// 异步版本：不阻塞主线程\nFuture<String> fetchDataAsync() async {\n  // 异步等待：这 2 秒内程序可以继续执行其他任务\n  await Future.delayed(Duration(seconds: 2));\n  return '数据获取完成';\n}\n\nvoid main() async {\n  print('开始同步获取数据...');\n  var syncResult = fetchDataSync();\n  print('同步结果: $syncResult');\n  print('（注意：同步期间程序被卡住了）');\n\n  print('\\n开始异步获取数据...');\n  print('发起请求后，程序继续执行其他任务...');\n  var asyncResult = await fetchDataAsync();\n  print('异步结果: $asyncResult');\n  print('（异步期间程序没有被卡住）');\n}"
+    ]
+   },
+   {
+    "title": "Dart 基础语法",
+    "url": "https://www.runoob.com/dart/dart-basic-syntax.html",
+    "body": "每种编程语言都有自己的一套基本规则，Dart 也不例外。\n本章介绍 Dart 程序的基本结构、注释写法、语句与表达式的区别，以及标识符的命名规范。\n程序结构与 main() 函数\nDart 文件名后缀为 .dart，每个 Dart 程序都必须有一个入口点——main() 函数。\n程序从 main() 函数的第一行开始执行，到最后一行的花括号结束。\n实例\n一个最简 Dart 程序的结构：",
+    "examples": [
+     "// 程序入口：main() 函数是 Dart 程序的起点\nvoid main() {\n  // 在这里编写你的代码\n  print('欢迎来到 RUNOOB Dart 教程！');\n}"
+    ]
+   },
+   {
+    "title": "Dart 类与对象",
+    "url": "https://www.runoob.com/dart/dart-classes-and-objects.html",
+    "body": "类是面向对象编程的核心概念，它是对现实世界中事物的抽象描述。\n对象是类的具体实例。本章介绍 Dart 中类的定义、构造函数、成员变量与方法、getter/setter 和静态成员。\n类的定义与实例化\n类是创建对象的模板，定义了对象有哪些属性（数据）和行为（方法）。\n实例",
+    "examples": [
+     "// 定义一个 User 类\nclass User {\n  // 成员变量（属性）\n  String name = '';\n  int age = 0;\n\n  // 成员方法（行为）\n  void introduce() {\n    print('你好，我是 $name，今年 $age 岁。');\n  }\n\n  bool isAdult() {\n    return age >= 18;\n  }\n}\n\nvoid main() {\n  // 实例化：用 new 关键字（Dart 2.0+ 可省略 new）\n  var user1 = User();\n  user1.name = 'runoob';\n  user1.age = 10;\n\n  // 访问成员变量和方法\n  print('用户名: ${user1.name}');\n  user1.introduce();\n  print('是否成年: ${user1.isAdult()}');\n\n  // 创建另一个对象，彼此独立\n  var user2 = User();\n  user2.name = '小明';\n  user2.age = 20;\n  user2.introduce();\n}"
+    ]
+   },
+   {
+    "title": "Dart 集合类型",
+    "url": "https://www.runoob.com/dart/dart-collections.html",
+    "body": "集合是用来存放多个数据的数据结构。\nDart 内置了三种核心集合类型：List（列表）、Set（集合）和 Map（映射），本章将逐一介绍它们的用法。\nList：有序列表\nList 是最常用的集合类型，用于存放一组有序的元素，允许重复。\n你可以通过索引（从 0 开始）来访问 List 中的任意元素。\n创建 List\n实例",
+    "examples": [
+     "void main() {\n  // 使用字面量创建 List\n  List<String> sites = ['RUNOOB', 'Google', 'GitHub'];\n  print('网站列表: $sites');\n\n  // 类型推断（省略泛型）\n  var numbers = [1, 2, 3, 4, 5];\n  print('数字列表: $numbers');\n\n  // 创建空列表\n  var emptyList = <String>[];\n\n  // 使用 List.filled 创建固定长度的列表\n  var zeros = List.filled(3, 0);  // [0, 0, 0]\n  print('填充列表: $zeros');\n\n  // 使用 List.generate 生成列表\n  var squares = List.generate(5, (i) => i * i);\n  print('平方数列表: $squares');\n}"
+    ]
+   },
+   {
+    "title": "Dart 控制流",
+    "url": "https://www.runoob.com/dart/dart-control-flow.html",
+    "body": "控制流决定了程序中的代码按照什么顺序执行。\n本章介绍 Dart 中的条件判断（if/else、switch）和循环语句（for、while），以及 break 与 continue 的使用。\nif / else / else if 条件判断\nif 语句是最基本的控制流结构，它根据条件决定是否执行某段代码。\n实例\n基本的 if 判断：",
+    "examples": [
+     "void main() {\n  int score = 85;\n\n  // 基本 if：条件为 true 时执行\n  if (score >= 60) {\n    print('RUNOOB 恭喜，你及格了！');\n  }\n\n  // if-else：二选一\n  if (score >= 90) {\n    print('优秀');\n  } else {\n    print('继续加油');\n  }\n\n  // if-else if-else：多分支选择\n  if (score >= 90) {\n    print('等级：A');\n  } else if (score >= 80) {\n    print('等级：B');\n  } else if (score >= 70) {\n    print('等级：C');\n  } else if (score >= 60) {\n    print('等级：D');\n  } else {\n    print('等级：F（不及格）');\n  }\n}"
+    ]
+   },
+   {
+    "title": "Dart 枚举与符号",
+    "url": "https://www.runoob.com/dart/dart-enums-and-symbols.html",
+    "body": "枚举（enum）用于定义一组有名字的常量值，让代码更具可读性。\n本章介绍 Dart 枚举的定义方式、增强枚举（带方法和属性）以及 Symbol 和 Rune 类型。\nenum 枚举定义\n枚举是一种特殊的类，用于表示固定数量的常量值。\n最典型的场景是表示状态、方向、颜色等有限选项。\n实例",
+    "examples": [
+     "// 定义枚举\nenum Status {\n  pending,    // 待处理\n  approved,   // 已批准\n  rejected,   // 已拒绝\n  cancelled,  // 已取消\n}\n\nvoid main() {\n  // 使用枚举值\n  Status currentStatus = Status.pending;\n  print('当前状态: $currentStatus');\n\n  // 通过 .index 获取索引（从 0 开始）\n  print('索引值: ${currentStatus.index}');  // 0\n\n  // 通过 .values 获取所有枚举值\n  print('所有状态: ${Status.values}');\n\n  // 遍历所有枚举值\n  for (var status in Status.values) {\n    print('RUNOOB 状态: $status, 索引: ${status.index}');\n  }\n\n  // 通过字符串获取枚举值\n  Status parsed = Status.values.byName('approved');\n  print('解析出的状态: $parsed');\n\n  // 在 switch 中使用枚举\n  switch (currentStatus) {\n    case Status.pending:\n      print('订单待处理');\n      break;\n    case Status.approved:\n      print('订单已批准');\n      break;\n    case Status.rejected:\n      print('订单被拒绝');\n      break;\n    case Status.cancelled:\n      print('订单已取消');\n      break;\n  }\n}"
+    ]
+   },
+   {
+    "title": "Dart 异常处理",
+    "url": "https://www.runoob.com/dart/dart-exception-handling.html",
+    "body": "异常是程序运行时发生的错误事件。\n良好的异常处理能让程序在遇到错误时优雅地降级，而不是直接崩溃。\n本章介绍 Dart 中的 try/catch/finally、throw 抛出异常、on 捕获指定类型以及 rethrow 重新抛出。\ntry / catch / finally 基础\ntry 块中放置可能抛出异常的代码，catch 块捕获并处理异常，finally 块无论是否异常都会执行。\n实例",
+    "examples": [
+     "void main() {\n  // 基本的 try-catch\n  try {\n    int result = 10 ~/ 0;  // 除零操作会抛出异常\n    print('结果: $result');  // 这行不会执行\n  } catch (e) {\n    // e 是异常对象\n    print('捕获到异常: $e');\n  }\n\n  // 获取异常和堆栈信息\n  try {\n    List<int> numbers = [1, 2, 3];\n    print(numbers[10]);  // 访问越界索引\n  } catch (e, stackTrace) {\n    // e 是异常，stackTrace 是调用堆栈\n    print('RUNOOB 异常: $e');\n    print('堆栈信息:\\n$stackTrace');\n  }\n\n  // finally：无论是否异常都会执行\n  try {\n    print('尝试执行操作...');\n    int result = 5 ~/ 0;\n    print('这行不会执行: $result');\n  } catch (e) {\n    print('出错: $e');\n  } finally {\n    // finally 块中的代码始终执行，常用于清理资源\n    print('清理资源完成（finally 总是执行）');\n  }\n}"
+    ]
+   },
+   {
+    "title": "第一个 Dart 程序",
+    "url": "https://www.runoob.com/dart/dart-first-program.html",
+    "body": "学习一门编程语言，最好的方式不是先背语法规则，而是先跑起来一个程序，再一行一行地问这是什么意思。\n本章我们将从一个最简单的程序出发，逐步扩展到一个稍微完整的小程序，在这个过程中把 Dart 最基础的概念都过一遍。\nDart 语言标准文件后缀 .dart，比如 hello.dart。\n最简单的程序：Hello, Dart!\n打开 DartPad https://dartpad.dev（或本地编辑器创建 hello.dart 文件），输入以下代码：\n实例",
+    "examples": [
+     "void main() {\n  print('Hello, Dart!');\n}"
+    ]
+   },
+   {
+    "title": "Dart 函数",
+    "url": "https://www.runoob.com/dart/dart-functions.html",
+    "body": "函数是组织代码的基本单元，它将一段可复用的逻辑封装起来，需要时调用即可。\nDart 的函数系统非常灵活，支持命名参数、可选参数、箭头函数和高阶函数等特性。\n函数定义与返回值\n函数由返回类型、函数名、参数列表和函数体组成。\n实例",
+    "examples": [
+     "// 定义一个简单的函数\n// String 是返回类型，greet 是函数名，(String name) 是参数列表\nString greet(String name) {\n  return '你好，$name！欢迎来到 RUNOOB。';\n}\n\n// 没有返回值的函数使用 void\nvoid printWelcome() {\n  print('=== RUNOOB Dart 教程 ===');\n}\n\nvoid main() {\n  printWelcome();\n\n  // 调用函数并接收返回值\n  String message = greet('小明');\n  print(message);\n}"
+    ]
+   },
+   {
+    "title": "Dart 泛型",
+    "url": "https://www.runoob.com/dart/dart-generics.html",
+    "body": "泛型（Generics）让你在编写代码时不指定具体类型，而是用类型参数占位，在使用时再确定类型。\n泛型的核心价值是类型安全和代码复用——一份代码适配多种类型，同时编译器帮你检查类型错误。\n为什么需要泛型\n先看一个没有泛型时的痛点。\n实例\n没有泛型的写法：",
+    "examples": [
+     "// 没有泛型：只能存放 Object，取出时需要手动转型\nclass IntBox {\n  int value;\n  IntBox(this.value);\n}\n\nclass StringBox {\n  String value;\n  StringBox(this.value);\n}\n\n// 每新增一种类型就要写一个新的 Box 类，代码大量重复\n\nvoid main() {\n  var intBox = IntBox(42);\n  var stringBox = StringBox('RUNOOB');\n\n  print('整数: ${intBox.value}');\n  print('字符串: ${stringBox.value}');\n}"
+    ]
+   },
+   {
+    "title": "Dart 继承与多态",
+    "url": "https://www.runoob.com/dart/dart-inheritance.html",
+    "body": "继承是面向对象编程的三大特性之一，它允许一个类基于另一个类进行扩展。\n本章介绍 Dart 中的 extends 单继承、方法重写、super 关键字和抽象类。\nextends 单继承\nDart 只支持单继承——每个类只能有一个直接父类。\n但继承链可以很长：子类继承父类，父类再继承祖父类，层层传递。\n实例",
+    "examples": [
+     "// 父类（基类、超类）\nclass Animal {\n  String name;\n\n  Animal(this.name);\n\n  void eat() {\n    print('$name 在吃东西');\n  }\n\n  void sleep() {\n    print('$name 在睡觉');\n  }\n}\n\n// 子类：使用 extends 继承 Animal\nclass Dog extends Animal {\n  String breed;  // 品种\n\n  // 子类构造函数需要调用父类构造函数\n  Dog(String name, this.breed) : super(name);\n\n  // 子类新增的方法\n  void bark() {\n    print('$name（$breed）在汪汪叫！');\n  }\n}\n\nvoid main() {\n  var dog = Dog('旺财', '金毛');\n\n  // 调用从父类继承的方法\n  dog.eat();\n  dog.sleep();\n\n  // 调用子类自己的方法\n  dog.bark();\n\n  // 子类对象也是父类类型\n  Animal animal = dog;  // Dog 是 Animal，可以向上转型\n  animal.eat();\n}"
+    ]
+   },
+   {
+    "title": "Dart 开发环境搭建",
+    "url": "https://www.runoob.com/dart/dart-install.html",
+    "body": "学习任何编程语言的第一步，都是在本地搭建一个可用的开发环境。\n本章将带你安装 Dart SDK、配置编辑器，并运行你的第一个 Dart 程序。\n在线体验\n如果你只是想快速体验 Dart，不想在本地安装任何东西，DartPad 是最省事的选择。\nDartPad 是 Dart 官方提供的在线编辑器，无需注册，打开浏览器即可编写和运行代码。\n访问地址：https://dartpad.dev\nDartPad 的主要功能\n在线编写、运行 Dart 代码，实时查看输出\n内置多个示例程序，适合快速上手\n支持分享代码链接，方便协作与提问\n支持 Flutter 代码预览（可以在浏览器里运行简单的 Flutter 界面）\n安装 Dart SDK\nDart SDK 包含了编译、运行、调试 Dart 程序所需的所有工具。\n根据你的操作系统，选择对应的安装方式。\nmacOS 安装\n如果你使用 macOS，推荐通过 Homebrew 安装：\n$ brew tap dart-lang/dart\n$ brew install dart\n安装完成后，验证版本：\n$ dart --version\nDart SDK version: 3.5.0 (stable)\nWindows 安装\nWindows 用户可以通过 Chocolatey 包管理器安装：\nC:\\> choco install dart-sdk\n或者直接访问 dart.dev/get-dart 下载安装包，双击运行安装向导。\nLinux 安装\nDebian/Ubuntu 系统可以通过 apt 安装：\n$ sudo apt-get update\n$ sudo apt-get install apt-transport-https\n$ wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/dart.gpg\n$ echo 'deb [signed-by=/usr/share/keyrings/dart.gpg arch=amd64] https://storage.googleapis.com/download.dartlang.org/linux/debian stable main' | sudo tee /etc/apt/sources.list.d/dart_stable.list\n$ sudo apt-get update\n$ sudo apt-get install dart\n验证安装\n无论使用哪种系统，安装完成后都可以通过以下命令确认 SDK 正常工作：\n$ dart --version\n$ dart --help\n如果能看到版本号和帮助信息，说明安装成功。\n使用 DartPad 在线编辑器\n如果你暂时不想安装任何软件，DartPad 是最快的上手方式。\nDartPad 是 Google 官方提供的在线 Dart 编辑器，无需注册，打开即用。\n访问地址：https://dartpad.dev\nDartPad 的特点：\n特性\n说明\n零配置\n打开浏览器即可编写和运行 Dart 代码\n支持 Flutter\n可切换到 Flutter 模式，编写带界面的示例\n代码分享\n生成链接分享你的代码片段\n语法高亮\n内置 Dart 语法高亮和代码补全\n版本可选\n支持选择不同 Dart/Flutter 版本\nDartPad 非常适合快速验证语法和分享代码片段。但对于完整的项目开发，还是建议配置本地 IDE 环境。\n配置 VS Code\nVS Code 是目前最流行的 Dart 开发编辑器，配合官方插件可以实现极佳的开发体验。\n安装步骤\n第一步，确保已安装 VS Code（可从 code.visualstudio.com 下载）。\n第二步，打开 VS Code，进入扩展商店（快捷键 Cmd+Shift+X 或 Ctrl+Shift+X）。\n第三步，搜索并安装 Dart 扩展（发布者为 Dart Code）。\n安装 Dart 扩展时会自动安装 Flutter 扩展（如果检测到 Flutter SDK）。如果你后续要学习 Flutter，建议同时安装 Flutter 扩展。\n验证配置\n安装完成后，在 VS Code 中新建一个文件，命名为 hello.dart。\n输入以下代码，如果看到语法高亮和代码提示，说明配置成功。\n实例",
+    "examples": [
+     "void main() {\n  print('Hello, RUNOOB!');\n}"
+    ]
+   },
+   {
+    "title": "Dart 接口与 Mixin",
+    "url": "https://www.runoob.com/dart/dart-interfaces-and-mixins.html",
+    "body": "虽然 Dart 只支持单继承，但通过接口和 Mixin 可以灵活地实现多重代码复用。\n本章介绍如何使用 implements 实现接口、mixin 的代码复用以及 with 关键字。\nimplements 实现接口\n在 Dart 中，每个类都隐式定义了一个接口。\n使用 implements 关键字可以让一个类实现另一个类的接口，且可以实现多个。\n实例",
+    "examples": [
+     "// 定义一个\"可打印\"的接口\nclass Printable {\n  // 接口中的方法没有默认实现\n  // 实现者必须重写所有成员\n  void printContent() {\n    // 这个方法体在 implements 时会被忽略\n  }\n}\n\n// 定义一个\"可保存\"的接口\nclass Savable {\n  void save() {}\n}\n\n// 使用 implements 实现多个接口\nclass Document implements Printable, Savable {\n  String title;\n  String content;\n\n  Document(this.title, this.content);\n\n  // 必须实现 Printable 接口要求的所有方法\n  @override\n  void printContent() {\n    print('--- 文档: $title ---');\n    print(content);\n    print('--- RUNOOB 打印结束 ---');\n  }\n\n  // 必须实现 Savable 接口要求的所有方法\n  @override\n  void save() {\n    print('文档 \"$title\" 已保存到磁盘');\n  }\n}\n\nvoid main() {\n  var doc = Document('Dart 教程', '这是一份 Dart 入门指南');\n\n  // 多态：Document 既是 Printable 也是 Savable\n  Printable printable = doc;\n  printable.printContent();\n\n  Savable savable = doc;\n  savable.save();\n}"
+    ]
+   },
+   {
+    "title": "Dart 简介",
+    "url": "https://www.runoob.com/dart/dart-intro.html",
+    "body": "Dart 是由 Google 开发的一种现代化编程语言，专为构建高性能、跨平台应用而设计。\n本章带你了解 Dart 的起源、设计理念以及它在前端、移动端和服务端的广泛应用场景。\nDart 的历史与设计目标\nDart 诞生于 2011 年，最初的目标是替代 JavaScript 成为浏览器的原生脚本语言。\n虽然这个目标未能实现，但 Dart 在 2017 年迎来了关键转折点——Flutter 框架的发布让 Dart 重新进入开发者视野。\nDart 的设计目标非常明确：\n设计目标\n说明\n高性能\n支持 AOT（提前编译）和 JIT（即时编译），既能快速开发又能生成原生代码\n强类型\n支持类型推断，兼顾类型安全与开发效率\n跨平台\n一套代码可编译为 ARM、x64 机器码或 JavaScript\n易学习\n语法借鉴 Java、JavaScript、C# 等主流语言，降低学习成本\n空安全\n内置 Null Safety 机制，从语言层面避免空指针异常\nDart 2.0 在 2018 年发布，标志着语言走向成熟。Dart 3.0 在 2023 年发布，进一步加强了类型系统和模式匹配等特性。\nDart 的应用场景\nDart 的应用场景非常广泛，覆盖了从移动端到服务端的全栈开发需求。\n移动端开发（Flutter）\n这是 Dart 目前最核心的应用场景。\n通过 Flutter 框架，Dart 可以构建 iOS 和 Android 双平台的原生应用，一套代码同时运行。\nWeb 开发\nDart 可以编译为 JavaScript，用于构建 Web 前端应用。\nAngularDart 是 Google 维护的 Dart 版 Angular 框架，适合大型 Web 项目。\n服务端开发\n通过 dart:io 库和 Shelf 等框架，Dart 也能编写高性能的服务端应用。\nGoogle 内部有多个服务端项目使用 Dart 编写。\n命令行工具\nDart 可以编译为独立的可执行文件，非常适合编写跨平台的 CLI 工具。\n应用场景\n编译目标\n典型框架/工具\n移动端\nARM 机器码\nFlutter\nWeb 前端\nJavaScript\nAngularDart\n服务端\n机器码 / JIT\nShelf、Dart Frog\n命令行\n机器码\ndart compile exe\nDart 与 JavaScript 对比\nDart 和 JavaScript 都是面向对象的语言，但 Dart 在语言设计上更加严谨。\n下面从几个维度对比两者的差异：\n对比维度\nDart\nJavaScript\n类型系统\n强类型，支持类型推断\n弱类型，动态类型\n空安全\n内置 Null Safety\n无（需 TypeScript 或手动检查）\n入口函数\n必须有 main() 函数\n脚本直接执行\n类与继承\n基于类的 OOP，单继承\n基于原型链\n编译方式\nAOT + JIT 双模式\nJIT 为主\n并发模型\nIsolate（消息传递）\nWorker 线程 / 事件循环\n包管理\npub.dev（统一官方仓库）\nnpm（社区仓库）\n如果你有 JavaScript 基础，学习 Dart 会非常轻松——它们的异步语法（async/await）几乎完全相同。\n但 Dart 的类型系统和空安全机制会让你在大型项目中更有安全感。\n实例\n同样的功能在两种语言中的写法对比：",
+    "examples": [
+     "// JavaScript 版本\nfunction greet(name) {\n  if (name === null || name === undefined) {\n    return 'Hello, stranger!';\n  }\n  return `Hello, ${name}!`;\n}\n\nconsole.log(greet('runoob'));\nconsole.log(greet(null));",
+     "// Dart 版本——空安全让类型更明确\nString greet(String? name) {\n  // name 可能为 null，需要显式处理\n  if (name == null) {\n    return 'Hello, stranger!';\n  }\n  return 'Hello, $name!';\n}\n\nvoid main() {\n  print(greet('runoob'));\n  print(greet(null));\n}"
+    ]
+   },
+   {
+    "title": "Dart 并发与 Isolate",
+    "url": "https://www.runoob.com/dart/dart-isolates.html",
+    "body": "并发是指同时处理多个任务的能力。\nDart 的并发模型不同于传统的多线程，它使用 Isolate（隔离区）来实现并行计算。\n本章介绍 Dart 的并发模型、Isolate 的概念与使用以及消息传递机制。\nDart 并发模型\n大多数编程语言使用共享内存的多线程模型，多个线程共享同一个内存空间。\n这种模型的缺点是容易产生竞态条件（race condition）和死锁（deadlock）。\nDart 采用了不同的策略：每个 Isolate 拥有自己独立的内存堆，Isolate 之间不共享内存。\n它们通过消息传递来通信，这从根本上避免了数据竞争问题。\nDart 的并发模型有三个层次：\n层次\n机制\n适用场景\n事件循环\n单线程异步（Event Loop）\nI/O 操作、定时器、用户交互\nIsolate\n独立内存 + 消息传递\nCPU 密集型计算\nFuture/Stream\n异步编程语法\n大多数日常开发场景\n大多数 Dart 程序的并发需求都可以通过 async/await 和 Future/Stream 来满足。Isolate 只在你需要进行大量 CPU 密集型计算时才有必要使用。过早引入 Isolate 会让代码变复杂，收益却不大。\nIsolate 概念与使用\nIsolate 是 Dart 的并发单元，每个 Isolate 有自己独立的内存和事件循环。\n主程序本身就在一个 Isolate（主 Isolate）中运行。\n使用 Isolate.spawn 创建新 Isolate\n实例",
+    "examples": [
+     "import 'dart:isolate';\n\n// 这个函数会在新的 Isolate 中运行\n// SendPort 用于向主 Isolate 发送消息\nvoid heavyComputation(SendPort sendPort) {\n  print('新 Isolate 开始计算...');\n\n  // 模拟 CPU 密集型计算\n  int sum = 0;\n  for (int i = 1; i <= 10000000; i++) {\n    sum += i;\n  }\n\n  // 将计算结果发送回主 Isolate\n  sendPort.send(sum);\n\n  print('新 Isolate 计算完成，结果已发送');\n}\n\nFuture<void> main() async {\n  print('主 Isolate 启动');\n\n  // 创建一个 ReceivePort 用于接收消息\n  var receivePort = ReceivePort();\n\n  // spawn 创建新的 Isolate\n  await Isolate.spawn(heavyComputation, receivePort.sendPort);\n\n  print('主 Isolate 在等待结果的同时可以做其他事情...');\n\n  // 等待新 Isolate 的计算结果\n  var result = await receivePort.first;\n  print('RUNOOB 计算结果: 1 到 10000000 的和 = $result');\n\n  receivePort.close();\n  print('主 Isolate 结束');\n}"
+    ]
+   },
+   {
+    "title": "Dart 包与库管理",
+    "url": "https://www.runoob.com/dart/dart-packages-and-libraries.html",
+    "body": "当项目规模增长时，将代码拆分为多个文件和模块是必不可少的。\n本章介绍 Dart 的包管理系统 pub、依赖配置文件 pubspec.yaml、import/export 语法以及如何创建自定义库。\npubspec.yaml 配置\npubspec.yaml 是每个 Dart 项目的核心配置文件，声明了项目的元数据和依赖。\n一个典型的 pubspec.yaml 文件结构如下：\n实例",
+    "examples": [
+     "# 文件路径：pubspec.yaml\nname: my_dart_app              # 项目名称（必填，小写+下划线）\ndescription: 一个 Dart 示例项目  # 项目描述\nversion: 1.0.0                 # 版本号\n# publish_to: none             # 如果不想发布到 pub.dev，取消这行注释\n\nenvironment:\n  sdk: '>=3.0.0 <4.0.0'      # Dart SDK 版本范围\n\ndependencies:\n  # 项目运行时依赖的第三方包\n  http: ^1.1.0                # HTTP 客户端\n  path: ^1.8.0                # 路径工具\n\ndev_dependencies:\n  # 仅开发时需要的依赖（测试、代码检查等）\n  test: ^1.24.0               # 测试框架\n  lints: ^2.0.0               # 官方 lint 规则\n\n# 可选：可执行文件入口\n# executables:\n#   my_app: main"
+    ]
+   },
+   {
+    "title": "Dart Stream 流",
+    "url": "https://www.runoob.com/dart/dart-streams.html",
+    "body": "Stream（流）是 Dart 中处理连续异步事件序列的机制。\n如果说 Future 是一次性的异步结果，那么 Stream 就是多次的、持续不断的异步数据流。\n本章介绍 Stream 的概念、await for 监听、StreamController 创建以及单订阅与广播流的区别。\nStream 与事件序列\nStream 就像一条传送带，数据会随着时间推移一个个到来。\n你不需要一次性等待所有数据，而是来一个处理一个。\nStream 的典型应用场景：\n场景\n示例\n用户输入事件\n按钮点击、鼠标移动、键盘输入\n文件读取\n逐行读取大文件\n网络数据\nWebSocket 消息、实时 API\n定时器\n每秒触发一次的定时事件\n状态变化\nFlutter 中的状态管理流\n实例\nStream 的基本使用——listen 监听：",
+    "examples": [
+     "void main() {\n  // 创建一个 Stream：每隔 1 秒发射一个数字\n  var stream = Stream<int>.periodic(\n    Duration(seconds: 1),\n    (count) => count + 1,  // count 从 0 开始\n  );\n\n  print('开始监听 Stream...');\n\n  // listen 订阅 Stream\n  var subscription = stream.listen(\n    (data) {\n      // 每当有新数据到达时调用\n      print('RUNOOB 收到数据: $data');\n    },\n    onError: (error) {\n      // Stream 发生错误时调用\n      print('错误: $error');\n    },\n    onDone: () {\n      // Stream 关闭时调用\n      print('Stream 已关闭');\n    },\n  );\n\n  // 5 秒后取消订阅\n  Future.delayed(Duration(seconds: 5), () {\n    subscription.cancel();\n    print('已取消订阅');\n  });\n}"
+    ]
+   },
+   {
+    "title": "Dart 教程",
+    "url": "https://www.runoob.com/dart/dart-tutorial.html",
+    "body": "Dart 是 Google 开发的一门现代化编程语言，主要用于构建高性能、跨平台的应用程序。\nDart 支持面向对象、函数式编程等多种编程范式，可以运行在浏览器、服务器、移动端以及桌面平台。\nDart 是 Flutter 框架的核心语言，通过 Dart 可以快速开发 Android、iOS、Web 和桌面应用。\n本教程基于 Dart 3.x 版本测试，适合零基础开发者学习 Dart 编程。",
+    "examples": []
+   },
+   {
+    "title": "Dart typedef 与函数类型",
+    "url": "https://www.runoob.com/dart/dart-typedef.html",
+    "body": "typedef 是 Dart 中的类型别名机制，它让你为复杂的类型定义简短易读的名称。\n本章介绍 typedef 的两种用法：传统的函数类型别名，以及 Dart 3.0 引入的通用类型别名。\ntypedef 函数类型别名\n当一个函数类型被频繁使用时，typedef 可以给它一个清晰的名字。\n这对于回调函数、事件处理器等场景特别有用。\n实例",
+    "examples": [
+     "// 定义一个函数类型别名\n// 表示：接收两个 int 参数，返回 int 的函数\ntypedef IntOperation = int Function(int a, int b);\n\n// 定义一个回调类型\n// 表示：接收 String 消息，无返回值的函数\ntypedef MessageCallback = void Function(String message);\n\n// 使用 typedef 作为参数类型\nint performOperation(int x, int y, IntOperation operation) {\n  return operation(x, y);\n}\n\nvoid logMessage(String msg, MessageCallback callback) {\n  print('准备输出消息...');\n  callback('[RUNOOB] $msg');\n}\n\nvoid main() {\n  // 传入符合 IntOperation 签名的函数\n  int add(int a, int b) => a + b;\n  int multiply(int a, int b) => a * b;\n\n  print('10 + 5 = ${performOperation(10, 5, add)}');\n  print('10 × 5 = ${performOperation(10, 5, multiply)}');\n\n  // 也可以直接传入匿名函数\n  int result = performOperation(20, 4, (a, b) => a ~/ b);\n  print('20 ÷ 4 = $result');\n\n  // 使用 MessageCallback\n  logMessage('操作完成', (msg) {\n    print('收到消息: $msg');\n  });\n}"
+    ]
+   },
+   {
+    "title": "Dart 单元测试",
+    "url": "https://www.runoob.com/dart/dart-unit-testing.html",
+    "body": "单元测试是保证代码质量的基础手段。\n它验证每个最小功能单元（通常是函数或方法）的行为是否符合预期。\n本章介绍 Dart 的 test 包使用、test() 测试用例编写、expect 断言以及 group() 分组测试。\ntest 包的安装与配置\nDart 官方提供了 test 包来编写和运行测试。\n首先在 pubspec.yaml 中添加依赖：\n# 文件路径：pubspec.yaml\ndev_dependencies:\n test: ^1.24.0\n然后运行以下命令安装：\n$ dart pub get\n测试文件通常放在项目的 test/ 目录下，文件名以 _test.dart 结尾。\n一个典型的项目结构：\nmy_project/\n├── lib/\n│ └── calculator.dart # 被测试的代码\n├── test/\n│ └── calculator_test.dart # 测试文件\n└── pubspec.yaml\n编写 test() 测试用例\ntest() 函数是编写测试用例的基本单元。\n它接收两个参数：测试描述（字符串）和测试函数体。\n实例\n被测试的代码（lib/calculator.dart）：",
+    "examples": [
+     "// 文件路径：lib/calculator.dart\nclass Calculator {\n  int add(int a, int b) => a + b;\n  int subtract(int a, int b) => a - b;\n  int multiply(int a, int b) => a * b;\n\n  double divide(int a, int b) {\n    if (b == 0) {\n      throw ArgumentError('除数不能为 0');\n    }\n    return a / b;\n  }\n\n  bool isEven(int n) => n % 2 == 0;\n\n  List<int> filterPositive(List<int> numbers) {\n    return numbers.where((n) => n > 0).toList();\n  }\n}"
+    ]
+   },
+   {
+    "title": "Dart 变量与数据类型",
+    "url": "https://www.runoob.com/dart/dart-variables-and-types.html",
+    "body": "变量是程序中存储数据的基本单元，数据类型决定了变量能存储什么值。\n本章介绍 Dart 中的变量声明方式、基本数据类型以及重要的空安全机制。\n变量的声明方式：var、final、const\nDart 提供了三种声明变量的关键字，分别适用于不同的场景。\n理解它们的区别是学好 Dart 的第一步。\nvar——类型推断变量\n使用 var 声明的变量，类型由初始值自动推断，且类型一旦确定就不能更改。\n实例",
+    "examples": [
+     "void main() {\n  // 类型推断：name 的类型被推断为 String\n  var name = 'RUNOOB';\n\n  // 类型推断：age 的类型被推断为 int\n  var age = 10;\n\n  print('$name 已经 $age 年了');\n\n  // 以下写法会报错——类型确定后不能再赋其他类型的值\n  // name = 123;  // 错误：不能将 int 赋值给 String\n}"
+    ]
+   }
+  ]
+ }
+}

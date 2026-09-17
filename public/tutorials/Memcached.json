@@ -1,0 +1,28 @@
+{
+ "tutorial": {
+  "name": "Memcached",
+  "category": "其他",
+  "desc": "Memcached是一个自由开源的，高性能，分布式内存对象缓存系统。",
+  "url": "https://www.runoob.com/Memcached/",
+  "chapters": [
+   {
+    "title": "Memcached 教程",
+    "url": "https://www.runoob.com/Memcached/Memcached-tutorial.html",
+    "body": "Memcached是一个自由开源的，高性能，分布式内存对象缓存系统。\nMemcached是以LiveJournal旗下Danga Interactive公司的Brad Fitzpatric为首开发的一款软件。现在已成为mixi、hatena、Facebook、Vox、LiveJournal等众多服务中提高Web应用扩展性的重要因素。\nMemcached是一种基于内存的key-value存储，用来存储小块的任意数据（字符串、对象）。这些数据可以是数据库调用、API调用或者是页面渲染的结果。\nMemcached简洁而强大。它的简洁设计便于快速开发，减轻开发难度，解决了大数据量缓存的很多问题。它的API兼容大部分流行的开发语言。\n本质上，它是一个简洁的key-value存储系统。\n一般的使用目的是，通过缓存数据库查询结果，减少数据库访问次数，以提高动态Web应用的速度、提高可扩展性。\nMemcached 官网：https://memcached.org/。\n特征\nmemcached作为高速运行的分布式缓存服务器，具有以下的特点。\n协议简单\n基于libevent的事件处理\n内置内存存储方式\nmemcached不互相通信的分布式\n支持的语言\n许多语言都实现了连接memcached的客户端，其中以Perl、PHP为主。仅仅memcached网站上列出的有：\nPerl\nPHP\nPython\nRuby\nC#\nC/C++\nLua\n等等\nMemcached 用户\nLiveJournal\nWikipedia\nFlickr\nBebo\nTwitter\nTypepad\nYellowbot\nYoutube\nWordPress.com\nCraigslist\nMixi",
+    "examples": []
+   },
+   {
+    "title": "PHP 连接 Memcached 服务",
+    "url": "https://www.runoob.com/Memcached/php-connect-memcached.html",
+    "body": "在前面章节中我们已经介绍了如何安装 Memcached 服务，接下来我们为大家介绍 PHP 如何使用 Memcached 服务。\nPHP Memcache 扩展安装\nPHP Memcache 扩展包下载地址：http://pecl.php.net/package/memcache，你可以下载最新稳定包(stable)。\nwget http://pecl.php.net/get/memcache-2.2.7.tgz \ntar -zxvf memcache-2.2.7.tgz\ncd memcache-2.2.7\n/usr/local/php/bin/phpize\n./configure --with-php-config=/usr/local/php/bin/php-config\nmake && make install\n注意：/usr/local/php/ 为php的安装路径，需要根据你安装的实际目录调整。\n安装成功后会显示你的memcache.so扩展的位置，比如我的：\nInstalling shared extensions: /usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/\n最后我们需要把这个扩展添加到php中，打开你的php.ini文件在最后添加以下内容：\n[Memcache]\nextension_dir = \"/usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/\"\nextension = memcache.so\n添加完后 重新启动php,我使用的是nginx+php-fpm进程所以命令如下：\nkill -USR2 `cat /usr/local/php/var/run/php-fpm.pid`\n如果是apache的使用以下命令:\n/usr/local/apache2/bin/apachectl restart\n检查安装结果\n/usr/local/php/bin/php -m | grep memcache\n安装成功会输出：memcache。\n或者通过浏览器访问 phpinfo() 函数来查看，如下图：\nPHP 连接 Memcached\n<?php\n$memcache = new Memcache; //创建一个memcache对象\n$memcache->connect('localhost', 11211) or die (\"Could not connect\"); //连接Memcached服务器\n$memcache->set('key', 'test'); //设置一个变量到内存中，名称是key 值是test\n$get_value = $memcache->get('key'); //从内存中取出key的值\necho $get_value;\n?>\n更多 PHP 操作 Memcached 请参阅：\nhttp://php.net/manual/zh/book.memcache.php",
+    "examples": []
+   },
+   {
+    "title": "Windows 下安装 Memcached",
+    "url": "https://www.runoob.com/Memcached/window-install-memcached.html",
+    "body": "官网上并未提供 Memcached 的 Windows 平台安装包，我们可以使用以下链接来下载，你需要根据自己的系统平台及需要的版本号点击对应的链接下载即可：\n32位系统 1.2.5版本：http://static.jyshare.com/download/memcached-1.2.5-win32-bin.zip\n32位系统 1.2.6版本：http://static.jyshare.com/download/memcached-1.2.6-win32-bin.zip\n32位系统 1.4.4版本：http://static.jyshare.com/download/memcached-win32-1.4.4-14.zip\n64位系统 1.4.4版本：http://static.jyshare.com/download/memcached-win64-1.4.4-14.zip\n32位系统 1.4.5版本：http://static.jyshare.com/download/memcached-1.4.5-x86.zip\n64位系统 1.4.5版本：http://static.jyshare.com/download/memcached-1.4.5-amd64.zip\n在 1.4.5 版本以前 memcached 可以作为一个服务安装，而在 1.4.5 及之后的版本删除了该功能。因此我们以下介绍两个不同版本\n1.4.4 及 1.4.5的不同安装方法：\nmemcached <1.4.5 版本安装\n1、解压下载的安装包到指定目录。\n2、在 1.4.5 版本以前 memcached 可以作为一个服务安装，使用管理员权限运行以下命令：\nc:\\memcached\\memcached.exe -d install\n注意：你需要使用真实的路径替代 c:\\memcached\\memcached.exe。\n3、然后我们可以使用以下命令来启动和关闭 memcached 服务：\nc:\\memcached\\memcached.exe -d start\nc:\\memcached\\memcached.exe -d stop\n4、如果要修改 memcached 的配置项, 可以在命令行中执行 regedit.exe 命令打开注册表并找到 \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\memcached\" 来进行修改。\n如果要提供 memcached 使用的缓存配置 可以修改 ImagePath 为:\n\"c:\\memcached\\memcached.exe\" -d runservice -m 512\n-m 512 意思是设置 memcached 最大的缓存配置为512M。\n此外我们还可以通过使用 \"c:\\memcached\\memcached.exe -h\" 命令查看更多的参数配置。\n5、如果我们需要卸载 memcached ，可以使用以下命令：\nc:\\memcached\\memcached.exe -d uninstall\nmemcached >= 1.4.5 版本安装\n1、解压下载的安装包到指定目录。\n2、在 memcached1.4.5 版本之后，memcached 不能作为服务来运行，需要使用任务计划中来开启一个普通的进程，在 window 启动时设置 memcached自动执行。\n我们使用管理员身份执行以下命令将 memcached 添加来任务计划表中：\nschtasks /create /sc onstart /tn memcached /tr \"'c:\\memcached\\memcached.exe' -m 512\"\n注意：你需要使用真实的路径替代 c:\\memcached\\memcached.exe。\n注意：-m 512 意思是设置 memcached 最大的缓存配置为512M。\n注意：我们可以通过使用 \"c:\\memcached\\memcached.exe -h\" 命令查看更多的参数配置。\n3、如果需要删除 memcached 的任务计划可以执行以下命令：\nschtasks /delete /tn memcached",
+    "examples": []
+   }
+  ]
+ }
+}

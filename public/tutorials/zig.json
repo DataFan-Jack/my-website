@@ -1,0 +1,118 @@
+{
+ "tutorial": {
+  "name": "Zig",
+  "category": "后端开发",
+  "desc": "Zig 是一个命令式、通用、静态类型、编译的系统编程语言。",
+  "url": "https://www.runoob.com/zig/",
+  "chapters": [
+   {
+    "title": "Zig 数组和切片",
+    "url": "https://www.runoob.com/zig/zig-array-slice.html",
+    "body": "在 Zig 编程语言中，数组和切片（slice）是用于存储和操作一组相同类型数据的基本结构。\n数组：用于存储固定大小的一组相同类型的数据，定义时指定大小，存储在栈上。\n切片：用于引用数组或其他连续内存区域的一部分，大小可动态调整，更灵活，通常引用堆内存。\n数组（Array）：\n数组是一种固定长度的序列，它在编译时大小就已经确定。\n数组的类型是[T]，其中T是数组中元素的类型。\n数组的内存是连续的，这使得它们在性能上很有优势，尤其是在处理大量数据时。\n切片（Slice）：\n切片是一种动态长度的序列，它允许在运行时改变大小。\n切片的类型是[]T，其中T是切片中元素的类型。\n切片实际上是对数组的引用，它包含指向数组的指针和切片的长度。\n切片可以更灵活地处理数据，因为它们可以轻松地在不同的数组之间共享和传递。\n数组\n数组是固定大小的，存储在栈上，元素类型必须相同。\n可以使用 [] 语法来定义数组，并指定数组的大小。\n数组的类型定义为 [T; N]，其中 T 是数组元素的类型，N 是数组的长度。\n数组的元素可以通过索引访问，索引从 0 开始。\n语法格式\nconst arrayName: [size]ElementType = [size]ElementType{element1, element2, ...};\n参数说明：\narrayName：数组的名称。\nsize：数组的大小（元素数量），是一个编译时常量。\nElementType：数组中元素的类型。\nelement1, element2, ...：数组中的元素。\n数组是一个固定大小的连续内存块，它在编译时大小就已经确定：\nvar myArray: [10]u8 = [10]u8{0} ** 10; // 定义并初始化一个大小为 10 的 u8 类型数组\n实例",
+    "examples": [
+     "const std = @import(\"std\");\n\npub fn main() void {\n    // 定义一个包含 5 个 i32 类型元素的数组\n    const arr: [5]i32 = [5]i32{1, 2, 3, 4, 5};\n\n    // 通过索引访问数组元素\n    std.debug.print(\"First element: {}\\n\", .{arr[0]});\n    std.debug.print(\"Third element: {}\\n\", .{arr[2]});\n\n    // 数组的大小是固定的\n    const size: usize = arr.len;\n    std.debug.print(\"Array size: {}\\n\", .{size});\n}"
+    ]
+   },
+   {
+    "title": "Zig 基本语法",
+    "url": "https://www.runoob.com/zig/zig-basic-syntax.html",
+    "body": "Zig 是一种新的编程语言，设计简单、高效，并且直接与 C 语言兼容。\n下面是一些 Zig 的基本语法介绍，帮助你快速上手。\nZig 代码文件的后缀名为 .zig。\n第一个 Zig 程序\n我们先来看看 Zig 的 \"Hello, World!\" 程序。\n我们先来初始化一个 zig 项目：\nmkdir hello-world\ncd hello-world\nzig init\n然后在该项目下创建 hello.zig 文件，代码如下：\n实例（hello.zig 文件）",
+    "examples": [
+     "const std = @import(\"std\");\n\npub fn main() !void {\n    const stdout = std.io.getStdOut().writer();\n    try stdout.print(\"Hello, World!\\n\", .{});\n}"
+    ]
+   },
+   {
+    "title": "Zig 注释",
+    "url": "https://www.runoob.com/zig/zig-comments.html",
+    "body": "注释不会被编译器处理，只用于在代码中添加说明和解释，帮助开发者理解代码逻辑。\n在 Zig 中，注释有两种形式：单行注释和多行注释。\n1、单行注释\n单行注释以 // 开头，注释内容从 // 开始到行末结束。\n实例",
+    "examples": [
+     "const std = @import(\"std\");\n\n// 这是一个单行注释\npub fn main() void {\n    std.debug.print(\"Hello, World!\\n\", .{});\n}"
+    ]
+   },
+   {
+    "title": "Zig 数据类型",
+    "url": "https://www.runoob.com/zig/zig-datatype.html",
+    "body": "Zig 支持多种数据类型，涵盖了整数、浮点数、布尔值、字符、数组、切片、结构体、枚举、联合体和指针等。\n下表是 Zig 中各种数据类型的说明：\n数据类型类别\n数据类型示例\n描述\n整数类型\ni8, i16, i32, i64, isize\n有符号整数类型，isize是平台相关的大小。\n无符号整数\nu8, u16, u32, u64, usize\n无符号整数类型，usize是平台相关的大小。\n浮点数\nf16, f32, f64, f128\nIEEE 浮点数类型。\n布尔类型\nbool\n布尔类型，值为true或false。\n字符类型\nchar\nUnicode 标量值。\n复合类型\narray, vector\n固定大小数组和可变大小数组。\n指针类型\n*T, *const T, *mut T\n指向T类型值的指针，*const为只读，*mut为可变。\n引用类型\n&T, &const T, &mut T\n对T类型值的引用，&const为只读，&mut为可变。\n元组类型\n(T1, T2, ...)\n包含固定数量和类型的值的有序集合。\n可选类型\n?T\n可以是null或者T类型值。\n错误集合类型\nerror{...}\n包含错误值的枚举类型。\n函数类型\nfn(T1, T2, ...) -> R\n接受参数并返回结果的函数类型。\n结构体类型\nstruct { ... }\n包含多个字段的复合数据类型。\n枚举类型\nenum { ... }\n固定数量的命名值的集合。\n联合体类型\nunion { ... }\n可以存储多种不同类型值的类型，但一次只能存储一个。\n别名类型\nalias T = U\nT是U的别名。\n1、整数类型\nZig 提供了多种整数类型，包括有符号和无符号整数，大小从 8 位到 64 位不等。\n实例",
+    "examples": [
+     "const std = @import(\"std\");\n\npub fn main() void {\n    const a: i8 = -128; // 8-bit signed integer\n    const b: u8 = 255;  // 8-bit unsigned integer\n    const c: i32 = -2147483648; // 32-bit signed integer\n    const d: u64 = 18446744073709551615; // 64-bit unsigned integer\n\n    std.debug.print(\"a: {}, b: {}, c: {}, d: {}\\n\", .{a, b, c, d});\n}"
+    ]
+   },
+   {
+    "title": "zig 错误处理",
+    "url": "https://www.runoob.com/zig/zig-error.html",
+    "body": "在 Zig 中处理错误是一种常见的任务，特别是在进行系统级编程时。\nZig 提供了一种灵活且显式的错误处理机制，使得开发人员能够清晰地管理和处理错误。\nZig 使用显式的错误处理机制，通过 ! 符号和 try 语句来处理错误。\n错误处理在 Zig 中不像异常那样隐式，而是显式地表示在代码中，使得错误的处理更加透明和可控。\n以下是一些基本的错误处理策略和技巧：\n错误类型：Zig 中的错误通常被定义为 error 类型。你可以定义自己的错误类型来处理特定的错误情况。\n返回错误：函数可以返回一个 error 类型的值来表示错误。调用者需要检查返回值并相应地处理错误。\n错误检查：调用者需要检查函数返回的错误，并在发现错误时采取适当的行动。这通常涉及到使用 if 语句或 switch 语句。\n错误传播：如果一个函数接收到一个错误，它可以决定处理这个错误或将错误传播到调用者。这可以通过返回错误或抛出异常来实现。\n错误处理函数：Zig 允许你定义错误处理函数，这些函数可以在程序中被调用来处理错误。\n使用 try 关键字：在 Zig 中，try 关键字用于尝试执行一个可能失败的操作，并捕获任何发生的错误。\n错误代码：Zig 允许你定义错误代码来表示不同的错误情况。这可以通过 enum 或 error 类型来实现。\n错误日志：在处理错误时，记录错误日志是一种常见的做法。这可以帮助开发者了解错误发生的原因和上下文。\n资源清理：在处理错误时，确保释放或清理所有已分配的资源是很重要的。这可以通过 defer 语句来实现。\n错误恢复：在某些情况下，你可能希望在发生错误后恢复程序的执行。这可以通过重新尝试操作或回退到安全状态来实现。\n错误类型\n在 Zig 中，错误类型通常用 ! 符号表示，它是一个泛型类型，表示可能发生错误的值。\n实例",
+    "examples": [
+     "const std = @import(\"std\");\n\npub fn mightFail() !void {\n    return error.SomeError;\n}"
+    ]
+   },
+   {
+    "title": "Zig 函数",
+    "url": "https://www.runoob.com/zig/zig-fn.html",
+    "body": "函数是编程语言中用于组织代码和实现逻辑的重要工具。\n函数是组织代码的重要工具，合理使用函数可以提高代码的可读性和复用性。\n在实际编程中，可以根据需要定义各种函数来实现特定的功能。\nZig 函数通过 fn 关键字定义。\n基本语法\n在 Zig 中，函数定义的基本语法如下：\nfn 函数名(参数列表) 返回类型 {\n // 函数体\n}\n例如，定义一个简单的函数 printHello 打印 \"Hello, World!\"：\n实例",
+    "examples": [
+     "const std = @import(\"std\");\n\npub fn main() void {\n    printHello();\n}\n\nfn printHello() void {\n    std.debug.print(\"Hello, World!\\n\", .{});\n}"
+    ]
+   },
+   {
+    "title": "Zig 流程控制",
+    "url": "https://www.runoob.com/zig/zig-if.html",
+    "body": "Zig 编程语言流程控制语句通过程序设定一个或多个条件语句来设定。\n在条件为 true 时执行指定程序代码，在条件为 false 时执行其他指定代码。\n以下是典型的流程控制流程图：\nZig 提供了以下控制结构语句：\nif 语句\n语法\n基本的 if 语句包含一个条件和一个与之相关联的代码块，如果条件为真（true），则执行代码块。\nif (<condition) {\n // 如果 condition 为 true，执行这里的代码\n}\nif-else 语句在基本 if 语句的基础上增加了一个 else 分支，如果 if 中的条件为假（false），则执行 else 分支中的代码。\nif (<condition>) {\n // 如果 condition 为 true，执行这里的代码\n} else {\n // 如果 condition 为 false，执行这里的代码\n}\ncondition：一个布尔表达式。如果条件为 true，则执行第一个代码块；否则执行 else 代码块。\n实例",
+    "examples": [
+     "const std = @import(\"std\");\n\npub fn main() void {\n    const x: i32 = 10;\n    if (x > 5) {\n        std.debug.print(\"x is greater than 5\\n\", .{});\n    } else {\n        std.debug.print(\"x is not greater than 5\\n\", .{});\n    }\n}"
+    ]
+   },
+   {
+    "title": "Zig 循环",
+    "url": "https://www.runoob.com/zig/zig-loop.html",
+    "body": "在 Zig 中，循环结构包括 while 循环和 for 循环。每种循环都有其特定的语法和用法。下面详细介绍这两种循环结构，包括其语法、说明和实例。\n1、while 循环\n语法\nwhile (condition) : (increment) {\n // code block\n}\ncondition：一个布尔表达式，只要它为 true，循环就会继续执行。\nincrement（可选）：一个在每次循环结束后执行的表达式。\n说明\nwhile 循环在每次迭代前检查条件。如果条件为 true，则执行循环体中的代码。循环体执行完毕后，执行 increment 表达式（如果有）。然后再次检查条件，直到条件为 false。\n实例\n实例",
+    "examples": [
+     "const std = @import(\"std\");\n\npub fn main() void {\n    var i: i32 = 0;\n    while (i < 5) : (i += 1) {\n        std.debug.print(\"i: {}\\n\", .{i});\n    }\n}"
+    ]
+   },
+   {
+    "title": "Zig 内存管理",
+    "url": "https://www.runoob.com/zig/zig-memory-management.html",
+    "body": "Zig 语言是一种系统编程语言，其内存管理方式与 C 语言类似，由程序员显式控制，没有垃圾回收机制。这种设计使得 Zig 能够在多种环境中高效运行，如实时软件、操作系统内核、嵌入式设备和低延迟服务器等。\n在 Zig 中，内存管理是通过以下几个关键概念来实现的：\n手动内存管理：\nZig 强调手动内存管理，允许开发者对内存分配和释放进行完全控制。这与许多自动内存管理（如垃圾回收）的语言不同。\n分配器（Allocator）：\nZig 提供了分配器接口 (Allocator) 用于内存分配。标准库中有几种预定义的分配器，例如 std.heap.page_allocator 和 std.heap.general_purpose_allocator。\n内存安全：\n虽然 Zig 不提供自动垃圾回收，但它通过严格的编译时检查和运行时检查来提高内存安全性。比如，Zig 不允许使用悬挂指针和未初始化的内存。\n内存泄漏：\nZig 没有内置的垃圾回收机制，开发者需要小心处理内存泄漏问题。确保分配的内存最终被释放是开发者的责任。\n手动内存管理\n在 Zig 中，内存分配和释放是通过分配器来完成的。\n以下是分配内存的用法示例：\n实例",
+    "examples": [
+     "const std = @import(\"std\");\n\npub fn main() void {\n    // 获取分配器\n    var allocator = std.heap.page_allocator;\n\n    // 使用分配器分配内存\n    const size: usize = 1024;\n    const ptr = allocator.alloc(u8, size) catch |err| {\n        std.debug.print(\"Memory allocation failed: {}\\n\", .{err});\n        return;\n    };\n\n    // 使用分配的内存\n    ptr[0] = 42;\n    std.debug.print(\"First byte: {}\\n\", .{ptr[0]});\n\n    // 释放内存\n    allocator.free(ptr);\n}"
+    ]
+   },
+   {
+    "title": "Zig 运算符",
+    "url": "https://www.runoob.com/zig/zig-operators.html",
+    "body": "运算符和表达式是编程语言中用于执行各种操作的基本组成部分。\n在 Zig 中，运算符可以分为几类，包括算术运算符、关系运算符、逻辑运算符、位运算符、赋值运算符以及其他运算符。\n以下是每种运算符的详细说明和示例。\n算术运算符\n运算符\n描述\n+\n加法\n-\n减法\n*\n乘法\n/\n除法\n%\n取余（模运算）\n实例",
+    "examples": [
+     "const std = @import(\"std\");\n\npub fn main() void {\n    const a: i32 = 5;\n    const b: i32 = 3;\n    \n    const add: i32 = a + b;\n    const subtract: i32 = a - b;\n    const multiply: i32 = a * b;\n    const divide: i32 = a / b;\n    const remainder: i32 = a % b;\n    \n    std.debug.print(\"a + b = {}\\n\", .{add});\n    std.debug.print(\"a - b = {}\\n\", .{subtract});\n    std.debug.print(\"a * b = {}\\n\", .{multiply});\n    std.debug.print(\"a / b = {}\\n\", .{divide});\n    std.debug.print(\"a % b = {}\\n\", .{remainder});\n}"
+    ]
+   },
+   {
+    "title": "Zig 环境安装",
+    "url": "https://www.runoob.com/zig/zig-setup.html",
+    "body": "在配置 Zig 编程语言的开发环境时，需要安装 Zig 编译器并设置相关的开发工具。\n以下是在不同操作系统上配置 Zig 的步骤：\n使用包管理器来安装\nWindows\nZig 在 Chocolatey 上可用：\nchoco install zig\nWindows (winget)\nwinget install zig.zig\nWindows (scoop)：\nscoop install zig\nMacOS\nHomebrew 安装：\nbrew install zig\nLinux\nUbuntu (snap)\n稳定版本安装：\nsnap install zig --classic --beta\nFedora:\ndnf install zig\nFreeBSD:\npkg install lang/zig\n配置完毕后，你就可以开始使用 Zig 编程语言进行开发了。\n源码安装\n我们也可以下载源码来编译安装。\nZig 源码包下载地址：https://ziglang.org/zh/download/。\n下载后，使用 tar 命令来解压：\ntar -xvf zig-macos-aarch64-0.13.0.tar.xz\n然后进入源码包，进行后续的编译安装：\ncd zig-macos-aarch64-0.13.0\n也可以从 Zig 的 GitHub 仓库克隆源码：\ngit clone https://github.com/ziglang/zig.git\n依赖项\ncmake >= 3.5\ngcc >= 7.0.0 或者 clang >= 6.0.0\nLLVM、Clang、LLD 开发库 == 18.x，使用相同版本的 gcc 或 clang 编译可以使用系统包管理器安装，或者从源代码构建。\n指令\n在 Zig 源码目录下，创建一个 build 目录：\nmkdir build\ncd build\n运行 cmake：\ncmake ..\n构建和安装 Zig：\nmake install\n请注意 CMAKE_PREFIX_PATH 这个方便的 cmake 变量。CMake 会优先在这个位置查找 LLVM 和其他依赖项。\n这些步骤将生成 stage3/bin/zig，这是由 Zig 自身构建的 Zig 编译器。\nmacOS + Homebrew\n对于 macOS 使用 Homebrew：\n在 Zig 源码目录下，创建一个 build 目录：\nmkdir build\ncd build\n运行 cmake，并启用静态 LLVM：\ncmake .. -DZIG_STATIC_LLVM=ON -DCMAKE_PREFIX_PATH=\"$(brew --prefix llvm@18);$(brew --prefix zstd)\"\n构建和安装 Zig：\nmake install\nFreeBSD\n对于 FreeBSD：\n使用 pkg 安装必要的依赖项：\nsudo pkg install -qyr FreeBSD devel/llvm18 devel/cmake archivers/zstd textproc/libxml2 archivers/lzma\n在 Zig 源码目录下，创建一个 build 目录：\nmkdir build\ncd build\n运行 cmake，并启用静态 LLVM：\ncmake .. -DZIG_STATIC_LLVM=ON -DCMAKE_PREFIX_PATH=\"/usr/local/llvm18;/usr/local\"\n构建和安装 Zig：\nmake install\n这些步骤会在你的系统上安装 Zig 编译器。",
+    "examples": []
+   },
+   {
+    "title": "Zig 结构体和枚举",
+    "url": "https://www.runoob.com/zig/zig-struct-enum.html",
+    "body": "在 Zig 编程语言中，结构体（struct）和枚举（enum）是两种基本的数据类型。\n结构体和枚举是定义和使用自定义数据类型的两种主要方式。\n结构体和枚举提供了更高层次的数据组织和类型安全，适用于不同的编程场景。\n结构体（Struct）：用于将相关变量组合成一个复合数据类型。结构体可以包含字段和方法，适用于组织复杂的数据。\n枚举（Enum）：用于定义一组命名的常量，可以是无值或带值的枚举。枚举适用于表示有限的离散值。\n结构体（Struct）\n结构体是一种复合数据类型，它允许将多个不同类型的数据项组合成一个单一的类型。\nZig 中结构体的语法如下：\nconst structName = struct {\n field1: FieldType1,\n field2: FieldType2,\n // 其他字段\n};\n以下代码中，MyStruct 是一个结构体类型，它有三个字段：field1 是一个 32 位整数，field2 是一个双精度浮点数，field3 是一个指向字节数组的指针。\nstruct MyStruct {\n field1: i32,\n field2: f64,\n field3: []const u8,\n}\n实例",
+    "examples": [
+     "const std = @import(\"std\");\n\n// 定义一个结构体\nconst Person = struct {\n    name: []const u8,\n    age: u32,\n};\n\npub fn main() void {\n    // 创建结构体实例\n    const person = Person{\n        .name = \"Alice\",\n        .age = 30,\n    };\n\n    // 访问结构体字段并正确格式化\n    std.debug.print(\"Name: {s}\\n\", .{person.name}); // 使用 {s} 格式化切片\n    std.debug.print(\"Age: {}\\n\", .{person.age});\n}"
+    ]
+   },
+   {
+    "title": "Zig 教程",
+    "url": "https://www.runoob.com/zig/zig-tutorial.html",
+    "body": "Zig 是一个命令式、通用、静态类型、编译的系统编程语言。\nZig 由 Andrew Kelley 于 2015 年创建，并于 2016 年发布。\nZig 的设计目标是提供高性能、安全、简洁和可移植的编程体验。\nZig 官网：https://ziglang.org/。",
+    "examples": []
+   },
+   {
+    "title": "Zig 变量和常量",
+    "url": "https://www.runoob.com/zig/zig-var-const.html",
+    "body": "在 Zig 语言中，变量是存储数据的容器。\n在 Zig 中，变量的定义和使用是非常直观和强大的。\n本文将详细介绍如何在 Zig 中定义和使用变量，包括常量、变量、类型推断、作用域等方面。\n在 Zig 中，常量使用 const 关键字定义，而变量使用 var 关键字定义。\n变量\n在 Zig 中，变量使用 var 关键字定义。\n变量必须在定义时显式指定类型，或者通过初始化值让编译器推断类型。\n变量声明\n在 Zig 中，变量的声明需要指定类型，变量的声明语法如下：\nvar variable_name: type = value;\nvariable_name 为变量名，type 为类型，value 为变量值。\n例如：\nvar x: i32 = 42; // 定义一个 i32 类型的变量 x，初始值为 42\nvar y = 10; // 编译器推断 y 的类型为 comptime_int\n变量的值可以在程序运行期间修改：\n实例",
+    "examples": [
+     "const std = @import(\"std\");\n\npub fn main() void {\n    var b: i32 = 20; // 定义一个整数变量 b，初始值为 20\n    b = 30; // 修改变量 b 的值\n    std.debug.print(\"b: {}\\n\", .{b});\n}"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,88 @@
+{
+ "tutorial": {
+  "name": "XSL-FO",
+  "category": "后端开发",
+  "desc": "XSL-FO 指可扩展样式表语言格式化对象（Extensible Stylesh",
+  "url": "https://www.runoob.com/xslfo/",
+  "chapters": [
+   {
+    "title": "XSL-FO 区域",
+    "url": "https://www.runoob.com/xslfo/xslfo-areas.html",
+    "body": "XSL-FO 使用矩形框（区域）来显示输出。\nXSL-FO 区域\nXSL 格式化模型定义了一系列的矩形区域（框）来显示输出。\n所有的输出（文本、图片，等等）都会被格式化到这些框中，然后会被显示或打印到某个目标媒介。\n让我们研究一下下面这些区域：\nPages（页面）\nRegions（区）\nBlock areas（块区域）\nLine areas（行区域）\nInline areas（行内区域）\nXSL-FO Pages（页面）\nXSL-FO 输出会被格式化到页面中。打印输出通常会分为许多分割的页面。浏览器输出经常会成为一个长的页面。\nXSL-FO Pages（页面）包含区（Region）。\nXSL-FO Regions（区）\n每个 XSL-FO 页面均包含一系列的 Regions（区）：\nregion-body（页面的主体）\nregion-before（页面的页眉）\nregion-after（页面的页脚）\nregion-start（左侧栏）\nregion-end（右侧栏）\nXSL-FO Regions（区）包含块区域（Block Area）。\nXSL-FO Block Areas（块区域）\nXSL-FO Block Areas（块区域）定义了小的块元素（通常由一个新行开始），比如段落、表格以及列表。\nXSL-FO Block Areas（块区域）包含其他的块区域，不过大多数时候它们包含的是行区域（Line Area）。\nXSL-FO Line Areas（行区域）\nXSL-FO Line Areas（行区域）定义了块区域内部的文本行。\nXSL-FO Line Areas（行区域）包含行内区域（Inline Area）。\nXSL-FO Inline Areas（行内区域）\nXSL-FO Inline Areas（行内区域）定义了行内部的文本（着重号、单字符、图像，等等）。",
+    "examples": []
+   },
+   {
+    "title": "XSL-FO 块",
+    "url": "https://www.runoob.com/xslfo/xslfo-blocks.html",
+    "body": "XSL-FO 的输出位于块区域中。\nXSL-FO 页面（Page）、流（Flow）以及块（Block）\n内容\"块\"会\"流\"入\"页面\"中，然后输出到媒介。\nXSL-FO 输出通常被嵌套在 <fo:block> 元素内，<fo:block> 嵌套于 <fo:flow> 元素内，<fo:flow> 嵌套于 <fo:page-sequence> 元素内：\n<fo:page-sequence>\n \n <fo:flow flow-name=\"xsl-region-body\">\n \n <fo:block>\n \n <!-- Output goes here -->\n \n </fo:block>\n \n </fo:flow>\n</fo:page-sequence>",
+    "examples": []
+   },
+   {
+    "title": "XSL-FO 文档",
+    "url": "https://www.runoob.com/xslfo/xslfo-documents.html",
+    "body": "XSL-FO 文档\nXSL-FO 文档是带有输出信息的 XML 文件。\nXSL-FO 文档存储在以 .fo 或 .fob 为文件扩展名的文件中。您也可以把 XSL-FO 文档存储为以 .xml 为扩展名的文件，这样做的话可以使 XSL-FO 文档更易被 XML 编辑器存取。\nXSL-FO 文档结构\nXSL-FO 的文档结构如下所示：\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<fo:root xmlns:fo=\"http://www.w3.org/1999/XSL/Format\">\n<fo:layout-master-set>\n \n <fo:simple-page-master master-name=\"A4\">\n \n <!-- Page template goes here -->\n \n </fo:simple-page-master>\n</fo:layout-master-set>\n<fo:page-sequence master-reference=\"A4\">\n \n <!-- Page content goes here -->\n</fo:page-sequence>\n</fo:root>",
+    "examples": []
+   },
+   {
+    "title": "XSL-FO 流",
+    "url": "https://www.runoob.com/xslfo/xslfo-flow.html",
+    "body": "XSL-FO 页面使用来自 <fo:flow> 元素的数据进行填充。\nXSL-FO 页面序列（Page Sequences）\nXSL-FO 使用 <fo:page-sequence> 元素来定义输出页面。\n每个输出页面都会引用一个定义布局的 page master。\n每个输出页面都有一个定义输出的 <fo:flow> 元素。\n每个输出页面均会按序列（顺序）被打印或显示。\nXSL-FO 流（Flow）\nXSL-FO 页面使用来自 <fo:flow> 元素的内容进行填充。\n<fo:flow> 元素包含所有被打印到页面的元素。\n当页面被印满以后，相同的 page master 会被一遍又一遍地被使用，直到所有文本被打印为止。\n流动到何处？\n<fo:flow> 元素有一个 \"flow-name\" 属性。\nflow-name 属性的值定义 <fo:flow> 元素的内容会去往何处。\n合法的值：\nxsl-region-body（进入 region-body）\nxsl-region-before（进入 region-before）\nxsl-region-after（进入 region-after）\nxsl-region-start（进入 region-start）\nxsl-region-end（进入 region-end）",
+    "examples": []
+   },
+   {
+    "title": "XSL-FO 简介",
+    "url": "https://www.runoob.com/xslfo/xslfo-intro.html",
+    "body": "XSL-FO 用于格式化供输出的 XML 数据。\n学习之前应当具备的基础知识\n在您学习 XSL-FO 之前，应当对 XML 和 XML 命名空间有基本的了解。\n如果您希望首先学习这些项目，请阅读我们的 XML 教程。\n什么是 XSL-FO？\nXSL-FO 是用于格式化 XML 数据的语言\nXSL-FO 指可扩展样式表语言格式化对象（Extensible Stylesheet Language Formatting Objects）\nXSL-FO 是基于 XML\nXSL-FO 是一个 W3C 推荐标准\nXSL-FO 目前通常被称为 XSL\nXSL-FO 与格式化有关\nXSL-FO 是一种基于 XML 的标记语言，用于描述向屏幕、纸或者其他媒介输出 XML 数据的格式化（信息）。\nXSL-FO 通常被称为 XSL\n为什么会存在这样的混淆呢？XSL-FO 和 XSL 是一回事吗？\n可以这么说，不过我们需要向您作一个解释：\n样式化（Styling）是关于转换信息和格式化信息两方面。在万维网联盟（W3C）编写他们的首个 XSL 工作草案的时候，这个草案包括了有关转换和格式化 XML 文档的语言语法。\n后来，W3C 工作组把这个原始的草案分为独立的标准：\nXSLT，用于转换 XML 文档的语言\nXSL 或 XSL-FO，用于格式化 XML 文档的语言\nXPath，是通过元素和属性在 XML 文档中进行导航的语言\n本教程的其余内容均与格式化 XML 文档有关：XSL-FO，也被称为 XSL。\nXSL-FO 是一个 Web 标准\nXSL-FO 在 2001 年 10 月 15 日 被确立为 W3C 推荐标准。通常被称为 XSL。\n如需阅读更多有关 W3C 的 XSL 活动的内容，请阅读我们的\nW3C 教程。",
+    "examples": []
+   },
+   {
+    "title": "XSL-FO 列表",
+    "url": "https://www.runoob.com/xslfo/xslfo-lists.html",
+    "body": "XSL-FO 使用 <fo:list-block> 元素来定义列表。\nXSL-FO 列表块（List Blocks）\n有四种 XSL-FO 对象可用来创建列表：\nfo:list-block（包含整个列表） (contains the whole list)\nfo:list-item（包含列表中的每个项目） (contains each item in the list)\nfo:list-item-label（包含用于 list-item 的标签 - 典型地，包含一个数字或者字符的 <fo:block> ）\nfo:list-item-body（包含 list-item 的内容/主体 - 典型地，一个或多个 <fo:block> 对象）\n一个 XSL-FO 列表实例:\n<fo:list-block>\n<fo:list-item>\n \n <fo:list-item-label>\n \n <fo:block>*</fo:block>\n \n </fo:list-item-label>\n \n <fo:list-item-body>\n \n <fo:block>Volvo</fo:block>\n \n </fo:list-item-body>\n</fo:list-item>\n<fo:list-item>\n \n <fo:list-item-label>\n \n <fo:block>*</fo:block>\n \n </fo:list-item-label>\n \n <fo:list-item-body>\n \n <fo:block>Saab</fo:block>\n \n </fo:list-item-body>\n</fo:list-item>\n</fo:list-block>",
+    "examples": []
+   },
+   {
+    "title": "XSL-FO 输出",
+    "url": "https://www.runoob.com/xslfo/xslfo-output.html",
+    "body": "XSL-FO 在 <fo:flow> 元素内部定义输出。\nXSL-FO 页面（Page）、流（Flow）以及块（Block）\n内容\"块\"会\"流\"入\"页面\"中，然后输出到媒介。\nXSL-FO 输出通常被嵌套在 <fo:block> 元素内，<fo:block> 嵌套于 <fo:flow> 元素内，<fo:flow> 嵌套于 <fo:page-sequence> 元素内：\n<fo:page-sequence>\n \n <fo:flow flow-name=\"xsl-region-body\">\n \n <fo:block>\n \n <!-- Output goes here -->\n \n </fo:block>\n \n </fo:flow>\n</fo:page-sequence>",
+    "examples": []
+   },
+   {
+    "title": "XSL-FO 页面",
+    "url": "https://www.runoob.com/xslfo/xslfo-pages.html",
+    "body": "XSL-FO 使用名为 \"Page Masters\" 的页面模板来定义页面的布局。\nXSL-FO 页面模板（Page Templates）\nXSL-FO 使用名为 \"Page Masters\" 的页面模板来定义页面的布局。每个模板必须拥有一个唯一的名称：\n<fo:simple-page-master master-name=\"intro\">\n \n <fo:region-body margin=\"5in\" />\n</fo:simple-page-master>\n<fo:simple-page-master master-name=\"left\">\n \n <fo:region-body margin-left=\"2in\" margin-right=\"3in\" />\n</fo:simple-page-master>\n<fo:simple-page-master master-name=\"right\">\n \n <fo:region-body margin-left=\"3in\" margin-right=\"2in\" />\n</fo:simple-page-master>",
+    "examples": []
+   },
+   {
+    "title": "XSL-FO 参考手册",
+    "url": "https://www.runoob.com/xslfo/xslfo-reference.html",
+    "body": "XSL 格式化对象参考手册\n将描述转换为呈现的过程被称为格式化（formatting）。\n对象\n描述\nbasic-link\n代表一个链接的起始资源。\nbidi-override\n重写默认 Unicode BIDI 的方向。\nblock\n定义一个输出块（比如段落和标题）。\nblock-container\n定义一个块级的引用区域（reference-area）。\ncharacter\n规定将被映射为供呈现的字形的字符。\ncolor-profile\n定义样式表的一个颜色配置文件。\nconditional-page-master-reference\n规定一个当所定义的条件成立时使用的 page-master。\ndeclarations\n组合一个样式表的全局声明。\nexternal-graphic\n用于图像数据位于 XML 结果树之外的某个图形。\nfloat\n通常用于在页面起始处的一个单独区域里定位图像，或者通过将内容沿图像的一侧流动来定位图像到一侧。\nflow\n包含要打印到页面的所有元素。\nfootnote\n定义在页面的 region-body 内部的一个脚注。\nfootnote-body\n定义脚注的内容。\ninitial-property-set\n格式化 <fo:block> 的第一行。\ninline\n通过背景属性或将其嵌入一个边框来定义文本的一部分格式。\ninline-container\n定义一个内联参考域（reference-area）。\ninstream-foreign-object\n用于内联图形或 \"generic\" 类对象。在其中，对象的数据以 <fo:instream-foreign-object> 的后代形式存在。\nlayout-master-set\n保存所有在文档中使用的宿主（master）。\nleader\n用于生成 \".\" 符号来分隔内容表格中页面数字的标题，或创建表单中的输入字段，或创建水平规则。\nlist-block\n定义列表。\nlist-item\n包含列表中的每个项。\nlist-item-body\n包含了 list-item 的内容/主体。\nlist-item-label\n包含了 list-item 标签（通常是数字、字符等）。\nmarker\n与 <fo:retrieve-marker> 一起使用来创建运行的页眉或页脚。\nmulti-case\n包含 XSL-FO 对象的每个供选择的子树（在 <fo:multi-switch> 内部）。父元素 <fo:multi-switch> 会选择要显示的那个选项并隐藏其余的选项。\nmulti-properties\n用于两个或多个属性集之间切换。\nmulti-property-set\n规定一个根据用户代理状态进行应用的可选的属性集。\nmulti-switch\n保留一个或多个 <fo:multi-case> 对象，控制它们（由 <fo:multi-toggle> 触发）彼此之间的转换。\nmulti-toggle\n用于切换到另一个 <fo:multi-case>。\npage-number\n表示当前页码。\npage-number-citation\n为页面引用页码，此页面包含由被引用对象返回的第一个正常区域。\npage-sequence\n页面输出元素的容器。每个页面布局将有一个 <fo:page-sequence> 对象。\npage-sequence-master\n规定要使用的 simple-page-masters 以及使用顺序。\nregion-after\n定义页脚。\nregion-before\n定义页眉。\nregion-body\n定义页面主题。\nregion-end\n定义页面的右侧栏。\nregion-start\n定义页面的左侧栏。\nrepeatable-page-master-alternatives\n规定一组 simple-page-master 的副本。\nrepeatable-page-master-reference\n规定单个 simple-page-master 的副本。\nretrieve-marker\n与 <fo:marker> 一起使用来创建运行的页眉或页脚。\nroot\nXSL-FO 文档的根（顶级）节点。\nsimple-page-master\n定义一个页面的尺寸和形状。\nsingle-page-master-reference\n规定用在页面序列的给定点中的 page-master。\nstatic-content\n对象包含了静态内容（如：页眉和页脚），该静态内容将在多个页面中重复调用。\ntable\n格式化表格的表格式材料。\ntable-and-caption\n格式化表格及其标题。\ntable-body\n包含表格行和表格单元格的容器。\ntable-caption\n包含表格的标题。\ntable-cell\n定义表格单元格。\ntable-column\n格式化表格的列。\ntable-footer\n定义表格的页脚。\ntable-header\n定义表格的页眉。\ntable-row\n定义表格行。\ntitle\n为一个 page-sequence 定义一个标题。\nwrapper\n为一组 XSL-FO 对象规定 inherited[继承] 属性。",
+    "examples": []
+   },
+   {
+    "title": "XSL-FO 软件",
+    "url": "https://www.runoob.com/xslfo/xslfo-software.html",
+    "body": "XSL-FO 需要格式化软件来产生输出。\nXSL-FO 处理器\n一个 XSL-FO 处理器是一个用于格式化输出 XSL 文档的软件程序。\n大多数的 XSL-FO 处理器可以输出 HTML、PDF 文档和质量打印。\n下面介绍一些知名的 XSL-FO 处理器。\nAntenna House Formatter V5\nAntenna House Formatter V5 是为 PDF 或打印格式化 XML 文档的软件程序。\n访问 Antenna House\nAltova 的 StyleVision\nStyleVision 基于您的设计自动生成一致性标准的 XSLT 和 XSL:FO 样式表，以及相应的 HTML、RTF、PDF、\nWord 2007 输出，等等。\n访问 Altova\nEcrion 的 XF 产品\nXSL-FO 格式化的一些产品！\n访问 Ecrion",
+    "examples": []
+   },
+   {
+    "title": "XSL-FO 表格",
+    "url": "https://www.runoob.com/xslfo/xslfo-tables.html",
+    "body": "XSL-FO 使用 <fo:table-and-caption> 元素来定义表格。\nXSL-FO 表格（Tables）\nXSL-FO 表格模型与 HTML 表格模型不是完全不同的。\n有九种 XSL-FO 对象可用来创建表格：\nfo:table-and-caption\nfo:table\nfo:table-caption\nfo:table-column\nfo:table-header\nfo:table-footer\nfo:table-body\nfo:table-row\nfo:table-cell\nXSL-FO 使用 <fo:table-and-caption> 元素来定义表格。它包含一个 <fo:table> 以及一个可选的 <fo:caption> 元素。\n<fo:table> 元素包含可选的 <fo:table-column> 元素，一个可选的 <fo:table-header> 元素，一个 <fo:table-body> 元素，一个可选的 <fo:table-footer> 元素。这些元素中的每一个都可能拥有一个或多个 <fo:table-row> 元素，而 <fo:table-row> 同时会带有一个或多个 <fo:table-cell> 元素：\n<fo:table-and-caption>\n<fo:table>\n<fo:table-column column-width=\"25mm\"/>\n<fo:table-column column-width=\"25mm\"/>\n<fo:table-header>\n \n <fo:table-row>\n \n <fo:table-cell>\n \n <fo:block font-weight=\"bold\">Car</fo:block>\n \n </fo:table-cell>\n \n <fo:table-cell>\n \n <fo:block font-weight=\"bold\">Price</fo:block>\n \n </fo:table-cell>\n \n </fo:table-row>\n</fo:table-header>\n<fo:table-body>\n \n <fo:table-row>\n \n <fo:table-cell>\n \n <fo:block>Volvo</fo:block>\n \n </fo:table-cell>\n \n <fo:table-cell>\n \n <fo:block>$50000</fo:block>\n \n </fo:table-cell>\n \n </fo:table-row>\n \n <fo:table-row>\n \n <fo:table-cell>\n \n <fo:block>SAAB</fo:block>\n \n </fo:table-cell>\n \n <fo:table-cell>\n \n <fo:block>$48000</fo:block>\n \n </fo:table-cell>\n \n </fo:table-row>\n</fo:table-body>\n</fo:table>\n</fo:table-and-caption>",
+    "examples": []
+   },
+   {
+    "title": "XSL-FO 教程",
+    "url": "https://www.runoob.com/xslfo/xslfo-tutorial.html",
+    "body": "XSL-FO 指可扩展样式表语言格式化对象（Extensible Stylesheet Language Formatting Objects）。\nXSL-FO 是用于格式化 XML 数据的语言\n现在开始学习XSL-FO!",
+    "examples": []
+   },
+   {
+    "title": "XSL-FO 与 XSLT",
+    "url": "https://www.runoob.com/xslfo/xslfo-xslt.html",
+    "body": "XSL-FO 与 XSLT 可彼此互助。\n还记得这个实例吗？\n<fo:block\n font-size=\"14pt\" font-family=\"verdana\" color=\"red\"\n space-before=\"5mm\" space-after=\"5mm\">\n \nRUNOOB\n</fo:block>\n<fo:block\n text-indent=\"5mm\"\n font-family=\"verdana\" font-size=\"12pt\">\n \nAt RUNOOB you will find all the Web-building tutorials you\n \nneed, from basic HTML and XHTML to advanced XML, XSL, Multimedia and WAP.\n</fo:block>",
+    "examples": []
+   }
+  ]
+ }
+}

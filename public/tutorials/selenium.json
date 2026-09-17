@@ -1,0 +1,126 @@
+{
+ "tutorial": {
+  "name": "Selenium",
+  "category": "工具与运维",
+  "desc": "Selenium 是一个用于自动化 Web 浏览器操作的工具集。",
+  "url": "https://www.runoob.com/selenium/",
+  "chapters": [
+   {
+    "title": "Selenium 高级功能",
+    "url": "https://www.runoob.com/selenium/selenium-advanced.html",
+    "body": "Selenium 提供了许多高级功能，可以帮助处理复杂的自动化测试场景。\n以下是几个高级主题的详细说明，包括处理动态内容、验证码、代理、无头浏览器模式以及性能优化技巧。\n1. 处理动态内容\n动态内容是指网页上那些在页面加载后通过 JavaScript 或其他技术动态生成的内容。这些内容可能包括广告、用户评论、实时更新的数据等。处理动态内容是 Selenium 自动化测试中的一个常见挑战。\n1.1 等待机制\nSelenium 提供了多种等待机制来处理动态内容，包括隐式等待（Implicit Wait）和显式等待（Explicit Wait）。\n隐式等待：设置一个全局的等待时间，Selenium 会在查找元素时等待指定的时间。如果在指定时间内找到元素，则继续执行；否则抛出异常。\n实例",
+    "examples": [
+     "driver.implicitly_wait(10)  # 等待10秒"
+    ]
+   },
+   {
+    "title": "Selenium 浏览器操作",
+    "url": "https://www.runoob.com/selenium/selenium-browser-operator.html",
+    "body": "Selenium 不仅可以操作网页元素，还可以控制浏览器本身的行为，例如管理窗口、处理弹窗、操作 Cookies、执行 JavaScript 等。\n以下是 Selenium 中常用的浏览器操作及其说明:\n操作类型\n方法\n说明\n打开新窗口\nexecute_script(\"window.open('URL');\")\n使用 JavaScript 打开新窗口。\n切换窗口\nswitch_to.window(window_handle)\n切换到指定的窗口句柄。\n关闭窗口\nclose()\n关闭当前窗口。\n最大化窗口\nmaximize_window()\n最大化浏览器窗口。\n设置窗口大小\nset_window_size(width, height)\n设置浏览器窗口的大小。\n全屏模式\nfullscreen_window()\n将浏览器窗口设置为全屏模式。\n打开网页\nget(url)\n打开指定的 URL。\n前进和后退\nback() 和 forward()\n返回上一个页面或前进到下一个页面。\n刷新页面\nrefresh()\n刷新当前页面。\n处理 Alert 弹窗\nswitch_to.alert 结合 accept() 或 dismiss()\n处理 Alert 弹窗，点击确认或取消。\n处理 Confirm 弹窗\nswitch_to.alert 结合 accept() 或 dismiss()\n处理 Confirm 弹窗，点击确认或取消。\n处理 Prompt 弹窗\nswitch_to.alert 结合 send_keys() 和 accept() 或 dismiss()\n处理 Prompt 弹窗，输入文本后点击确认或取消。\n添加 Cookie\nadd_cookie(cookie_dict)\n添加指定的 Cookie。\n获取 Cookie\nget_cookie(name) 或 get_cookies()\n获取指定 Cookie 或所有 Cookies。\n删除 Cookie\ndelete_cookie(name) 或 delete_all_cookies()\n删除指定 Cookie 或所有 Cookies。\n执行 JavaScript\nexecute_script(script)\n执行指定的 JavaScript 代码。\n获取 JavaScript 返回值\nexecute_script(\"return ...\")\n执行 JavaScript 并返回结果。\n切换到 iframe\nswitch_to.frame(iframe_element)\n切换到指定的 iframe。\n切换回主页面\nswitch_to.default_content()\n切换回主页面。\n1. 处理浏览器弹窗（alert、confirm、prompt）\n在 Web 应用程序中，弹窗（如 alert、confirm、prompt）是常见的用户交互方式。Selenium 提供了 Alert 类来处理这些弹窗。\n1.1 处理 alert 弹窗\nalert 弹窗通常用于显示一条消息，用户只能点击\"确定\"按钮关闭弹窗。\n实例",
+    "examples": [
+     "from selenium import webdriver\nfrom selenium.webdriver.chrome.service import Service as ChromeService\nfrom selenium.webdriver.common.alert import Alert\n\n# 设置正确的驱动路径\nservice = ChromeService(executable_path=\"./chromedriver-mac-arm64/chromedriver\")\noptions = webdriver.ChromeOptions()\ndriver = webdriver.Chrome(service=service, options=options)\n\n\n# 打开网页\ndriver.get(\"https://example.com\")\n\n# 触发 alert 弹窗\ndriver.execute_script(\"alert('这是一个 alert 弹窗');\")\n\n# 切换到 alert 弹窗\nalert = Alert(driver)\n\n# 获取弹窗文本\nprint(alert.text)\n\n# 点击\"确定\"按钮关闭弹窗\nalert.accept()\n\n# 关闭浏览器\ndriver.quit()"
+    ]
+   },
+   {
+    "title": "Selenium元素操作",
+    "url": "https://www.runoob.com/selenium/selenium-ele-operator.html",
+    "body": "在 Selenium 中，定位到元素后，可以对其进行各种操作，例如点击、输入文本、获取属性等。\n以下是 Selenium 中常用的元素操作及其详细说明。\n操作类型\n方法\n说明\n示例\n输入文本\nsend_keys(\"text\")\n向输入框或文本区域输入指定的文本。\nelement.send_keys(\"testuser\")\n点击元素\nclick()\n点击按钮、链接或其他可点击的元素。\nelement.click()\n清除输入框内容\nclear()\n清除输入框或文本区域中的内容。\nelement.clear()\n获取元素属性\nget_attribute(\"attribute_name\")\n获取元素的指定属性值（如 value、href、class 等）。\nvalue = element.get_attribute(\"value\")\n获取元素文本\ntext\n获取元素的可见文本内容。\nprint(element.text)\n复选框/单选框操作\nis_selected() 和 click()\n检查复选框或单选框是否被选中，并选中或取消选中。\nif not checkbox.is_selected(): checkbox.click()\n下拉列表操作\nSelect 类的 select_by_index、select_by_value、select_by_visible_text\n通过索引、值或可见文本选择下拉列表的选项。\ndropdown.select_by_visible_text(\"China\")\n鼠标操作\nActionChains 类的 click、double_click、context_click、drag_and_drop、move_to_element\n执行复杂的鼠标操作，如点击、双击、拖放、悬停等。\nactions.move_to_element(element).perform()\n键盘操作\nKeys 类的 send_keys(Keys.KEY_NAME)\n模拟键盘操作，如按下回车键、Tab 键、组合键等。\nelement.send_keys(Keys.ENTER)\n文件上传\nsend_keys(\"file_path\")\n通过 <input type=\"file\"> 元素上传文件。\nelement.send_keys(\"/path/to/file.txt\")\n执行 JavaScript\nexecute_script(\"javascript_code\")\n执行 JavaScript 代码，用于复杂的操作或修改页面内容。\ndriver.execute_script(\"window.scrollTo(0, document.body.scrollHeight);\")\n1. 输入文本（send_keys）\n在自动化测试中，经常需要向输入框中输入文本，Selenium 提供了send_keys方法来实现这一功能。\n实例",
+    "examples": [
+     "from selenium import webdriver\nfrom selenium.webdriver.chrome.service import Service as ChromeService\n\n# 设置正确的驱动路径\nservice = ChromeService(executable_path=\"./chromedriver-mac-arm64/chromedriver\")\noptions = webdriver.ChromeOptions()\ndriver = webdriver.Chrome(service=service, options=options)\n# 启动浏览器\ndriver = webdriver.Chrome()\n\n# 打开网页\ndriver.get(\"https://example.com\")\n\n# 定位输入框元素\ninput_element = driver.find_element_by_name(\"username\")\n\n# 输入文本\ninput_element.send_keys(\"your_username\")\n\n# 关闭浏览器\ndriver.quit()"
+    ]
+   },
+   {
+    "title": "Selenium 元素定位",
+    "url": "https://www.runoob.com/selenium/selenium-element-positioning.html",
+    "body": "在 Selenium 中，元素定位是自动化测试和网页操作的核心。\n通过定位元素，可以对其进行点击、输入文本、获取属性等操作。\n元素定位的基本概念\n什么是元素定位？\n元素定位是指通过某种方式找到网页中的特定元素（如按钮、输入框、链接等）。\n为什么需要元素定位？\n自动化操作需要精确找到目标元素，才能执行后续操作（如点击、输入等）。\n定位元素的唯一性。\n确保定位到的元素是唯一的，避免操作错误的元素。\n定位方式\nSelenium 提供了多种元素定位方法，常用的有以下几种：\n1、通过 ID 定位\n方法：find_element(By.ID, \"id_value\")\n说明：通过元素的 id 属性定位。\nfrom selenium.webdriver.common.by import By\n\nelement = driver.find_element(By.ID, \"username\")\n2、通过 Name 定位\n方法：find_element(By.NAME, \"name_value\")\n说明：通过元素的 name 属性定位。\nelement = driver.find_element(By.NAME, \"password\")\n3、通过 Class Name 定位\n方法：find_element(By.CLASS_NAME, \"class_name\")\n说明：通过元素的 class 属性定位。\nelement = driver.find_element(By.CLASS_NAME, \"submit-btn\")\n4、通过 Tag Name 定位\n方法：find_element(By.TAG_NAME, \"tag_name\")\n说明：通过元素的标签名定位（如 <div>、<input> 等）。\nelement = driver.find_element(By.TAG_NAME, \"input\")\n5、通过 CSS 选择器定位\n方法：find_element(By.CSS_SELECTOR, \"css_selector\")\n说明：通过 CSS 选择器定位元素。\nelement = driver.find_element(By.CSS_SELECTOR, \"input#username\")\n6、通过 XPath 定位\n方法：find_element(By.XPATH, \"xpath_expression\")\n说明：通过 XPath 表达式定位元素。\nelement = driver.find_element(By.XPATH, \"//input[@id='username']\")\n7、通过 Link Text 定位\n方法：find_element(By.LINK_TEXT, \"link_text\")\n说明：通过链接的文本内容定位（适用于 <a> 标签）。\nelement = driver.find_element(By.LINK_TEXT, \"Click Here\")\n8、通过 Partial Link Text 定位\n方法：find_element(By.PARTIAL_LINK_TEXT, \"partial_link_text\")\n说明：通过链接的部分文本内容定位。\nelement = driver.find_element(By.PARTIAL_LINK_TEXT, \"Click\")\n元素定位的最佳实践\n优先使用唯一属性：\n尽量使用 id、name 等唯一属性定位元素。\n避免使用动态属性：\n如果元素的属性是动态生成的（如随机 ID），避免直接使用这些属性定位。\n使用相对定位：\n使用 XPath 或 CSS 选择器结合元素的层级关系定位。\n添加等待机制：\n使用隐式等待或显式等待确保元素加载完成后再进行操作。\n常用的元素定位方法\nSelenium 提供了多种元素定位方法，每种方法适用于不同的场景。以下是常用的元素定位方法：\n1、find_element_by_id\nfind_element_by_id 是通过元素的 id 属性来定位元素。id 属性在 HTML 中是唯一的，因此这种方法通常是最直接和高效的。\n实例",
+    "examples": [
+     "element = driver.find_element_by_id(\"element_id\")"
+    ]
+   },
+   {
+    "title": "Selenium4 文件上传和下载",
+    "url": "https://www.runoob.com/selenium/selenium-file-operator.html",
+    "body": "在 Selenium 中，文件上传和下载是常见的自动化操作需求。\n文件上传：通过 send_keys() 方法将文件路径传递给 <input type=\"file\"> 元素。\n文件下载：通过配置浏览器的下载选项，并触发下载操作，等待文件下载完成。\n注意事项：确保文件路径正确，并根据实际需求调整等待时间和浏览器配置。\n以下是文件上传和下载的详细说明：\n文件上传\n方法\n说明\nsend_keys(\"file_path\")\n将文件路径传递给 <input type=\"file\"> 元素，实现文件上传。\nexecute_script()\n如果文件上传元素是隐藏的，可以使用 JavaScript 使其可见。\n第三方工具（如 AutoIT）\n如果文件上传不是通过 <input type=\"file\"> 实现的，可能需要使用第三方工具。\n文件下载\n方法\n说明\n配置浏览器下载选项\n通过 ChromeOptions 或 FirefoxOptions 设置下载路径、禁用提示等。\nclick()\n点击下载按钮，触发文件下载。\n等待文件下载完成\n使用 time.sleep() 或循环检查文件是否下载完成。\n检查下载文件\n使用 os.listdir() 检查下载目录中的文件。\n文件上传和下载的常见问题\n问题\n解决方法\n文件上传元素不可见\n使用 JavaScript 使元素可见：driver.execute_script(\"arguments[0].style.display = 'block';\", element)\n非 <input type=\"file\"> 元素\n使用第三方工具（如 AutoIT 或 PyWin32）模拟文件选择对话框。\n下载路径配置失败\n确保下载路径存在且可写，并正确配置浏览器选项。\n文件未下载完成\n增加等待时间，或使用循环检查文件是否下载完成。\n文件上传操作\n文件上传是 Web 应用程序中常见的功能之一。\n在 Selenium 中，文件上传通常通过<input type=\"file\">元素实现。\n以下是实现文件上传的步骤：\n定位文件上传元素：首先，我们需要定位到文件上传的输入框元素。通常，这个元素是一个<input>标签，类型为file。\n实例",
+    "examples": [
+     "file_input = driver.find_element(By.XPATH, \"//input[@type='file']\")"
+    ]
+   },
+   {
+    "title": "Selenium Grid",
+    "url": "https://www.runoob.com/selenium/selenium-grid.html",
+    "body": "1、Selenium Grid 简介\nSelenium Grid 是 Selenium 套件中的一个重要组件，它允许你在多个不同的机器、浏览器和操作系统上并行执行测试。\n通过 Selenium Grid，你可以实现分布式测试，从而提高测试效率，缩短测试时间。\nSelenium Grid 的核心思想是将测试任务分发到多个节点（Node）上执行，而这些节点由中心节点（Hub）统一管理。\n1.1 Selenium Grid 的主要功能\n并行测试：可以在多个浏览器和操作系统上同时运行测试，显著减少测试时间。\n跨浏览器测试：支持在不同浏览器（如 Chrome、Firefox、Edge 等）上运行测试，确保应用在各种环境下的兼容性。\n跨平台测试：支持在不同操作系统（如 Windows、macOS、Linux 等）上运行测试，验证应用在不同平台上的表现。\n动态扩展：可以根据需要动态添加或移除节点，灵活应对测试需求的变化。\n1.2 Selenium Grid 的架构\nSelenium Grid 采用 Hub-Node 架构：\nHub：中心节点，负责接收测试请求并将任务分发到合适的节点上执行。\nNode：执行节点，负责实际执行测试任务。每个节点可以配置不同的浏览器和操作系统。\n2、配置 Selenium Grid\n在开始使用 Selenium Grid 之前，你需要进行一些基本的配置。以下是基于 Selenium 4 的配置步骤。\n2.1 安装 Java\nSelenium Grid 依赖于 Java 运行环境，因此首先需要安装 Java。你可以通过以下步骤安装 Java：\n访问 Oracle Java 或 OpenJDK 下载适合你操作系统的 Java 版本。\n安装 Java 并配置环境变量。\n2.2 下载 Selenium Server\nSelenium Server 是 Selenium Grid 的核心组件。你可以从 Selenium 官方网站 下载最新版本的 Selenium Server。\n下载 selenium-server-<version>.jar 文件。\n将下载的文件保存到一个合适的目录。\n2.3 启动 Hub\n在配置好 Java 和 Selenium Server 后，你可以启动 Hub。打开命令行工具，导航到保存 selenium-server-<version>.jar 的目录，然后运行以下命令：\n实例",
+    "examples": [
+     "java -jar selenium-server-<version>.jar hub"
+    ]
+   },
+   {
+    "title": "Selenium 无头浏览器模式",
+    "url": "https://www.runoob.com/selenium/selenium-headless.html",
+    "body": "无头浏览器模式（Headless Mode）是指在没有图形用户界面（GUI）的情况下运行浏览器，换句话说，浏览器在后台运行，不会弹出可见的窗口。\n无头浏览器模式通常用于自动化测试、网页抓取、性能测试等场景，因为它可以节省系统资源，并且在没有显示器的服务器上也能正常运行。\n启用无头模式：通过 ChromeOptions 或 FirefoxOptions 添加 --headless 参数。\n优化设置：禁用 GPU 加速、设置窗口大小等。\n验证无头模式：通过打印页面标题或截图验证脚本运行结果。\n为什么使用无头浏览器模式？\n节省资源：无头模式不需要渲染图形界面，因此可以节省 CPU 和内存资源。\n提高速度：由于不需要加载和渲染图形界面，无头模式通常比普通模式更快。\n适合自动化：在自动化测试和网页抓取中，无头模式可以避免干扰，并且可以在没有显示器的服务器上运行。\n便于调试：在某些情况下，无头模式可以帮助开发者更快地调试和定位问题。\nSelenium 中的无头浏览器模式\n设置 Chrome 无头模式\n在 Selenium 中，你可以通过 ChromeOptions 类来设置 Chrome 浏览器的无头模式。以下是一个简单的示例：\n实例",
+    "examples": [
+     "from selenium import webdriver\nfrom selenium.webdriver.chrome.service import Service\nfrom selenium.webdriver.common.by import By\nfrom selenium.webdriver.chrome.options import Options\n\n# 设置 Chrome 无头模式\nchrome_options = Options()\nchrome_options.add_argument(\"--headless\")  # 启用无头模式\nchrome_options.add_argument(\"--disable-gpu\")  # 禁用 GPU 加速\n\n# 创建 WebDriver 实例\ndriver = webdriver.Chrome(service=Service('/path/to/chromedriver'), options=chrome_options)\n\n# 打开网页\ndriver.get(\"https://www.baidu.com\")\n\n# 打印网页标题\nprint(driver.title)\n\n# 关闭浏览器\ndriver.quit()"
+    ]
+   },
+   {
+    "title": "Selenium 安装",
+    "url": "https://www.runoob.com/selenium/selenium-install.html",
+    "body": "在开始使用 Selenium 之前，我们需要先安装它。以下是安装 Selenium 的详细步骤。\nSelenium 支持多种编程语言，但本系列教程将以 Python 为例进行讲解。\n如果你还没有安装 Python，可以按照以下步骤进行安装：\n访问 Python 官方网站。\n下载适合你操作系统的 Python 安装包。\n运行安装包，并确保在安装过程中勾选\"Add Python to PATH\"选项。\n安装完成后，打开命令行（Windows 上是命令提示符或 PowerShell，macOS 和 Linux 上是终端），输入 python --version 或 python3 --version，检查 Python 是否安装成功。\nPython 的内容也可以参考：Python 教程\n安装好 Python 后，我们可以使用 pip 来安装 Selenium。pip 是 Python 的包管理工具，用于安装和管理 Python 库。\n打开命令行，输入以下命令来安装 Selenium：\npip install selenium\n如果你使用的是 Python3，可能需要使用 pip3：\npip3 install selenium\n安装完成后，可以通过以下命令检查 Selenium 是否安装成功：\npip show selenium\n如果显示了 Selenium 的版本信息，说明安装成功。\n下载浏览器驱动\nSelenium 需要通过浏览器驱动来控制浏览器。\n不同的浏览器需要不同的驱动，以下是常见浏览器的驱动下载地址：\nChrome: ChromeDriver，ChromeDriver 的说明参见：ChromeDriver 介绍。\nFirefox: GeckoDriver\nEdge: EdgeDriver\n下载适合你浏览器版本的驱动，并将其路径添加到系统的环境变量中，或者将驱动文件放在 Python 脚本所在的目录下。\n使用 Selenium\n安装好 Selenium 和浏览器驱动后，我们就可以开始编写自动化脚本了。\n以下是一个简单的示例，展示如何使用 Selenium 打开一个网页并获取页面标题。\n1、导入 Selenium\n首先，我们需要在 Python 脚本中导入 Selenium 的 webdriver 模块：\nfrom selenium import webdriver\n2、启动浏览器\n接下来，我们需要启动一个浏览器实例，本系列会以 Chrome 为例。\ndriver = webdriver.Chrome(executable_path='path/to/chromedriver')\n选择浏览器并初始化 WebDriver：\n实例",
+    "examples": [
+     "from selenium import webdriver\n\n# 使用 Chrome 浏览器\ndriver = webdriver.Chrome(executable_path='/path/to/chromedriver')\n\n# 或者使用 Firefox 浏览器\n# driver = webdriver.Firefox(executable_path='/path/to/geckodriver')\n\n# 或者使用 Edge 浏览器\n# driver = webdriver.Edge(executable_path='/path/to/msedgedriver')"
+    ]
+   },
+   {
+    "title": "Selenium 简介",
+    "url": "https://www.runoob.com/selenium/selenium-intro.html",
+    "body": "Selenium 是一个广泛使用的自动化测试工具，主要用于 Web 应用程序的自动化测试。\nSelenium 支持多种编程语言（如 Java、Python、C#、Ruby、JavaScript 等），并允许用户控制浏览器执行自动化任务，例如点击按钮、填写表单、验证页面内容等。\nSelenium 可以在多种浏览器（如 Chrome、Firefox、Edge、Safari 等）和操作系统（如 Windows、macOS、Linux）上运行。\nSelenium 特点\n跨浏览器支持：Selenium 支持多种主流浏览器，如 Chrome、Firefox、Safari、Internet Explorer 等，可以在不同浏览器中执行相同的测试脚本。\n多语言支持：Selenium 支持多种编程语言，开发者可以用自己熟悉的语言来编写测试脚本。\n灵活性：Selenium 可以与各种测试框架结合使用，如 TestNG、JUnit、PyTest 等，提供了丰富的测试功能。\n与 CI/CD 集成：Selenium 可以与 Jenkins 等持续集成工具集成，帮助实现自动化测试和持续交付。\n自动化Web交互：Selenium 可以模拟真实用户的操作，如点击、滚动、键盘输入等。\nSelenium 的组成部分\nSelenium 由多个组件组成，每个组件都有其特定的用途。以下是 Selenium 的主要组件：\nSelenium WebDriver：这是 Selenium 的核心组件，用于直接与浏览器进行交互。WebDriver 提供了丰富的 API，允许开发者通过代码控制浏览器的行为，如打开网页、点击按钮、填写表单等。\nSelenium IDE：这是一个浏览器插件，主要用于录制和回放用户的操作。Selenium IDE 适合初学者快速创建简单的测试脚本，但它不支持复杂的逻辑和条件判断。\nSelenium Grid：这是一个用于并行执行测试的工具。通过 Selenium Grid，你可以在多个浏览器和操作系统上同时运行测试，从而加快测试速度并提高测试覆盖率。\nSelenium 的应用场景\n自动化测试\n用于 Web 应用程序的功能测试、回归测试、兼容性测试等。\n可以模拟用户操作，验证页面功能是否正常。\n网页抓取\n用于从网页中提取数据，例如商品信息、新闻内容等。\n可以处理动态加载的内容（如通过 JavaScript 加载的数据）。\n自动化任务\n用于执行重复性的网页操作，例如自动填写表单、自动登录等。\n跨浏览器测试\n用于验证 Web 应用程序在不同浏览器和操作系统上的兼容性。\nSelenium 的局限性\n无法处理非浏览器操作：Selenium 只能控制浏览器，无法直接操作桌面应用程序或移动应用程序。\n动态内容处理复杂：对于高度动态的网页（如单页应用），可能需要额外的等待机制或 JavaScript 执行。\n性能开销：由于需要启动浏览器实例，Selenium 的执行速度相对较慢。\nSelenium 与其他工具的比较\n工具\n优点\n缺点\nSelenium\n开源、跨平台、支持多种浏览器和编程语言\n需要编写代码，学习曲线较陡\nPuppeteer\n专为 Chrome 设计，性能较好\n仅支持 Chrome/Chromium\nPlaywright\n支持多种浏览器，功能强大\n相对较新，社区资源较少\nCypress\n专为测试设计，易于使用\n仅支持现代浏览器，不支持跨浏览器测试",
+    "examples": []
+   },
+   {
+    "title": "Selenium 鼠标和键盘操作",
+    "url": "https://www.runoob.com/selenium/selenium-mouse-and-keyboard-operation.html",
+    "body": "Selenium 提供了丰富的鼠标和键盘操作功能，可以模拟用户的交互行为，例如点击、双击、拖放、悬停、输入文本、按下组合键等。\n以下是 Selenium 中常用的鼠标和键盘操作及其说明：\n鼠标操作\n操作类型\n方法\n说明\n点击\nclick(element) 或 click()\n点击指定的元素或当前鼠标位置。\n双击\ndouble_click(element) 或 double_click()\n双击指定的元素或当前鼠标位置。\n右键点击\ncontext_click(element) 或 context_click()\n右键点击指定的元素或当前鼠标位置。\n拖放\ndrag_and_drop(source, target)\n将源元素拖放到目标元素。\n悬停\nmove_to_element(element)\n将鼠标移动到指定元素上。\n按住和释放\nclick_and_hold(element) 和 release()\n按住指定元素并释放，用于实现拖拽操作。\n键盘操作\n操作类型\n方法\n说明\n输入文本\nsend_keys(\"text\")\n向输入框或文本区域输入指定的文本。\n按下组合键\nsend_keys(Keys.CONTROL + 'a')\n模拟按下组合键（如 Ctrl + A）。\n按下单个键\nsend_keys(Keys.KEY_NAME)\n模拟按下单个键（如 Enter、Tab、Shift 等）。\n释放按键\nkey_up(key)\n释放按下的键。\n常用键盘键值\n键值\n说明\nKeys.ENTER\n回车键\nKeys.TAB\nTab 键\nKeys.SHIFT\nShift 键\nKeys.CONTROL\nCtrl 键\nKeys.ALT\nAlt 键\nKeys.ESCAPE\nEsc 键\nKeys.BACKSPACE\n退格键\nKeys.SPACE\n空格键\nKeys.ARROW_UP\n上箭头键\nKeys.ARROW_DOWN\n下箭头键\nKeys.ARROW_LEFT\n左箭头键\nKeys.ARROW_RIGHT\n右箭头键\n鼠标操作（ActionChains 类）\n在 Selenium 中，鼠标操作主要通过 ActionChains 类来实现。ActionChains 类允许我们执行复杂的鼠标操作，如点击、双击、右键点击、拖放和悬停等。\n点击、双击、右键点击\n点击（Click）：模拟鼠标左键点击操作。\n双击（Double Click）：模拟鼠标左键双击操作。\n右键点击（Right Click）：模拟鼠标右键点击操作。\n实例",
+    "examples": [
+     "from selenium import webdriver\nfrom selenium.webdriver.chrome.service import Service as ChromeService\nfrom selenium.webdriver.common.action_chains import ActionChains\nfrom selenium.webdriver.common.by import By\n\n# 设置正确的驱动路径\nservice = ChromeService(executable_path=\"./chromedriver-mac-arm64/chromedriver\")\noptions = webdriver.ChromeOptions()\ndriver = webdriver.Chrome(service=service, options=options)\n\n\n# 打开网页\ndriver.get(\"https://example.com\")\n\n# 定位元素\nelement = driver.find_element(By.ID, \"element_id\")\n\n# 创建 ActionChains 对象\nactions = ActionChains(driver)\n\n# 点击操作\nactions.click(element).perform()\n\n# 双击操作\nactions.double_click(element).perform()\n\n# 右键点击操作\nactions.context_click(element).perform()\n\n# 关闭浏览器\ndriver.quit()"
+    ]
+   },
+   {
+    "title": "Selenium 实战项目",
+    "url": "https://www.runoob.com/selenium/selenium-practical.html",
+    "body": "在现代软件开发中，自动化测试已经成为确保软件质量的重要手段之一。\nSelenium 是一个广泛使用的自动化测试工具，它支持多种编程语言和浏览器，能够模拟用户操作，进行功能测试、回归测试等。\n本文将详细介绍如何使用 Selenium 进行自动化测试，并通过实战项目演示如何实现登录、注册和搜索（以百度为例）等常见功能的自动化测试。\n1. 实战项目：自动化测试案例\n1.1 登录功能测试\n假设我们有一个登录页面，包含用户名和密码输入框以及登录按钮，我们将编写一个自动化测试脚本来模拟用户登录操作。\n实例",
+    "examples": [
+     "from selenium import webdriver\nfrom selenium.webdriver.chrome.service import Service as ChromeService\nfrom selenium.webdriver.common.by import By\nfrom selenium.webdriver.common.keys import Keys\n\nchrome_options = Options()\n# 设置正确的驱动路径\nservice = ChromeService(executable_path=\"./chromedriver-mac-arm64/chromedriver\")\ndriver = webdriver.Chrome(service=service, options=chrome_options)\n\n# 打开登录页面\ndriver.get(\"https://example.com/login\")\n\n# 定位用户名输入框并输入用户名\nusername_input = driver.find_element(By.ID, \"username\")\nusername_input.send_keys(\"testuser\")\n\n# 定位密码输入框并输入密码\npassword_input = driver.find_element(By.ID, \"password\")\npassword_input.send_keys(\"password123\")\n\n# 定位登录按钮并点击\nlogin_button = driver.find_element(By.ID, \"login-button\")\nlogin_button.click()\n\n# 验证登录是否成功\nassert \"Welcome\" in driver.page_source\n\n# 关闭浏览器\ndriver.quit()"
+    ]
+   },
+   {
+    "title": "Selenium 教程",
+    "url": "https://www.runoob.com/selenium/selenium-tutorial.html",
+    "body": "Selenium 是一个用于自动化 Web 浏览器操作的工具集。\nSelenium主要用于 Web 应用程序的自动化测试。\nSelenium支持多种编程语言（如 Python、Java、C#、JavaScript 等），并且可以在多种浏览器（如 Chrome、Firefox、Edge、Safari 等）和操作系统（如 Windows、macOS、Linux）上运行。\nSelenium 的核心功能是模拟用户在浏览器中的操作，例如点击按钮、输入文本、导航页面等。",
+    "examples": []
+   },
+   {
+    "title": "Selenium测试框架集成",
+    "url": "https://www.runoob.com/selenium/selenium-unittest.html",
+    "body": "Selenium 可以与多种测试框架集成，例如 unittest 和 pytest，从而实现更结构化的测试代码管理和测试报告生成。\n与 unittest 集成\nunittest 是 Python 标准库中的一个测试框架，它提供了丰富的断言方法和测试组织方式。\n我们可以将 Selenium 与 unittest 集成，以编写结构化的测试用例。\n基本结构\n以下是一个简单的 Selenium 与 unittest 集成的示例：\n实例",
+    "examples": [
+     "import unittest\nfrom selenium import webdriver\nfrom selenium.webdriver.chrome.service import Service as ChromeService\nfrom selenium.webdriver.common.by import By\n\nclass TestGoogleSearch(unittest.TestCase):\n\n    def setUp(self):\n        # 设置正确的驱动路径\n        service = ChromeService(executable_path=\"./chromedriver-mac-arm64/chromedriver\")\n        options = webdriver.ChromeOptions()\n        driver = webdriver.Chrome(service=service, options=options)\n        self.driver.get(\"https://www.baidu.com\")\n\n    def test_search(self):\n        search_box = self.driver.find_element(By.NAME, \"wd\")\n        search_box.send_keys(\"Selenium\")\n        search_box.submit()\n        self.assertIn(\"Selenium\", self.driver.title)\n\n    def tearDown(self):\n        self.driver.quit()\n\nif __name__ == \"__main__\":\n    unittest.main()"
+    ]
+   },
+   {
+    "title": "Selenium 等待机制",
+    "url": "https://www.runoob.com/selenium/selenium-wait.html",
+    "body": "在 Selenium 中，等待机制是确保页面元素加载完成后再进行操作的关键。\n由于网页加载速度受网络、服务器性能等因素影响，直接操作未加载完成的元素会导致脚本失败。\nSelenium 提供了多种等待机制来解决这一问题。\n1. 隐式等待（implicitly_wait）\n1.1 什么是隐式等待？\n隐式等待是一种全局性的等待机制，它会在查找元素时等待一定的时间。如果在指定的时间内找到了元素，Selenium 会立即继续执行后续操作；如果超时仍未找到元素，则会抛出 NoSuchElementException 异常。\n1.2 如何使用隐式等待？\n隐式等待通过 implicitly_wait() 方法来设置。这个方法只需要调用一次，之后的所有元素查找操作都会遵循这个等待时间。\n实例",
+    "examples": [
+     "from selenium import webdriver\nfrom selenium.webdriver.chrome.service import Service as ChromeService\n\n# 设置正确的驱动路径\nservice = ChromeService(executable_path=\"./chromedriver-mac-arm64/chromedriver\")\noptions = webdriver.ChromeOptions()\ndriver = webdriver.Chrome(service=service, options=options)\n\n# 设置隐式等待时间为 10 秒\ndriver.implicitly_wait(10)\n\n# 打开网页\ndriver.get(\"https://example.com\")\n\n# 查找元素\nelement = driver.find_element_by_id(\"element_id\")\n\n# 关闭浏览器\ndriver.quit()"
+    ]
+   },
+   {
+    "title": "Selenium WebDriver",
+    "url": "https://www.runoob.com/selenium/selenium-webdriver.html",
+    "body": "Selenium WebDriver 是 Selenium 的核心组件，它提供了与浏览器交互的 API，允许开发者通过编程语言控制浏览器并执行各种操作。\n启动浏览器\nSelenium WebDriver 支持多种浏览器（如 Chrome、Firefox、Edge 等）。\n启动浏览器前，需要下载并配置对应的浏览器驱动（如 ChromeDriver、GeckoDriver 等），详细可参见 selenium 安装。\n启动浏览器的代码示例（Python）。\n在 Selenium 4 中，引入了 Service 对象来设置驱动程序路径，这种方式更加灵活，且符合 Selenium 4 的设计规范。\nSelenium 4 实例",
+    "examples": [
+     "from selenium import webdriver\nfrom selenium.webdriver.chrome.service import Service as ChromeService\n\nservice = ChromeService(executable_path=\"PATH_TO_DRIVER\")\noptions = webdriver.ChromeOptions()\ndriver = webdriver.Chrome(service=service, options=options)"
+    ]
+   }
+  ]
+ }
+}

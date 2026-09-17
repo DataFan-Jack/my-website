@@ -1,0 +1,238 @@
+{
+ "tutorial": {
+  "name": "Rust",
+  "category": "后端开发",
+  "desc": "Rust 是由 Mozilla 主导开发的高性能编译型编程语言，遵循\"安全、并发",
+  "url": "https://www.runoob.com/rust/",
+  "chapters": [
+   {
+    "title": "Cargo 教程",
+    "url": "https://www.runoob.com/rust/cargo-tutorial.html",
+    "body": "在 Rust 开发中，几乎所有的项目都是使用 Cargo 来进行管理和构建的，因为它提供了便捷的工作流程和强大的功能，使得 Rust 开发变得更加高效和可靠。\nCargo 是什么\nCargo 是 Rust 的官方构建系统和包管理器。它主要有两个作用：\n主要有两个作用：\n项目管理：Cargo 用于创建、构建和管理 Rust 项目。通过 Cargo，你可以轻松地创建新项目，管理项目的依赖关系，并执行项目的构建、运行和测试等操作。\n包管理器：Cargo 还充当了 Rust 的包管理器。它允许开发者在项目中引入和管理依赖项（如第三方库），并确保这些依赖项的版本管理和兼容性。\nCargo 主要特性和功能：\n依赖管理：Cargo 通过 Cargo.toml 文件管理项目的依赖，这个文件列出了项目所需的所有外部库以及它们的版本。\n构建系统：Cargo 使用 Rust 编译器（rustc）来构建项目，它会自动处理依赖的编译和链接。\n包注册表：Cargo 与 crates.io 这个 Rust 社区的包注册表交互，允许开发者搜索、添加和管理第三方库。\n构建配置：通过 Cargo.toml 和 Cargo.lock 文件，Cargo 允许开发者配置构建选项，如编译器选项、特性（features）和目标平台。\n项目模板：Cargo 提供了创建新项目的模板，可以通过 cargo new 命令快速启动新项目。\n测试：Cargo 提供了一个简单的命令 cargo test 来运行项目的单元测试。\n基准测试：Cargo 支持使用 cargo bench 命令进行基准测试。\n发布：通过 cargo publish 命令，开发者可以将他们的库发布到 crates.io 上，供其他开发者使用。\n自定义构建脚本：Cargo 允许使用自定义的构建脚本来处理更复杂的构建需求。\n多目标项目：Cargo 支持在一个项目中定义多个目标，如可执行文件、库、测试和基准测试。\n跨平台构建：Cargo 支持跨多个平台构建 Rust 程序，包括 Windows、macOS、Linux 以及各种嵌入式系统。\n构建缓存：为了加快构建速度，Cargo 使用构建缓存来存储编译后的依赖。\n离线工作：Cargo 支持在没有互联网连接的情况下工作，它会自动使用本地缓存的依赖。\n插件系统：Cargo 允许开发者编写插件来扩展其功能。\n环境变量：Cargo 支持通过环境变量来覆盖默认的构建和运行行为。\nCargo 功能\nCargo 除了创建工程以外还具备构建（build）工程、运行（run）工程等一系列功能，构建和运行分别对应以下命令：\ncargo new <project-name>：创建一个新的 Rust 项目。\ncargo build：编译当前项目。\ncargo run：编译并运行当前项目。\ncargo check：检查当前项目的语法和类型错误。\ncargo test：运行当前项目的单元测试。\ncargo update：更新 Cargo.toml 中指定的依赖项到最新版本。\ncargo --help：查看 Cargo 的帮助信息。\ncargo publish：将 Rust 项目发布到 crates.io。\ncargo clean：清理构建过程中生成的临时文件和目录。\n在 VSCode 中配置 Rust 工程\nCargo 是一个不错的构建工具，如果使 VSCode 与它相配合那么 VSCode 将会是一个十分便捷的开发环境。\n在上一章中我们建立了 greeting 工程，现在我们用 VSCode 打开 greeting 文件夹（注意不是 runoob-greeting）。\n打开 greeting 之后，在里面新建一个新的文件夹 .vscode （注意 vscode 前面的点，如果有这个文件夹就不需要新建了）。在新建的 .vscode 文件夹里新建两个文件 tasks.json 和 launch.json，文件内容如下：\ntasks.json 文件",
+    "examples": [
+     "{ \n    \"version\": \"2.0.0\", \n    \"tasks\": [ \n        { \n            \"label\": \"build\", \n            \"type\": \"shell\", \n            \"command\":\"cargo\", \n            \"args\": [\"build\"] \n        } \n    ]\n}"
+    ]
+   },
+   {
+    "title": "Rust 异步编程 async/await",
+    "url": "https://www.runoob.com/rust/rust-async-await.html",
+    "body": "在现代编程中，异步编程变得越来越重要，因为它允许程序在等待 I/O 操作（如文件读写、网络通信等）时不被阻塞，从而提高性能和响应性。\n异步编程是一种在 Rust 中处理非阻塞操作的方式，允许程序在执行长时间的 I/O 操作时不被阻塞，而是在等待的同时可以执行其他任务。\nRust 提供了多种工具和库来实现异步编程，包括 async 和 await 关键字、futures 和异步运行时（如 tokio、async-std 等），以及其他辅助工具。\nFuture：Future 是 Rust 中表示异步操作的抽象。它是一个可能还没有完成的计算，将来某个时刻会返回一个值或一个错误。\nasync/await：async 关键字用于定义一个异步函数，它返回一个 Future。await 关键字用于暂停当前 Future 的执行，直到它完成。\n实例\n以下实例展示了如何使用 async 和 await 关键字编写一个异步函数，以及如何在异步函数中执行异步任务并等待其完成。\n实例",
+    "examples": [
+     "// 引入所需的依赖库\nuse tokio;\nuse tokio::time::{self, Duration};\n\n// 异步函数，模拟异步任务\nasync fn async_task() -> u32 {\n    // 模拟异步操作，等待 1 秒钟\n    time::sleep(Duration::from_secs(1)).await;\n    // 返回结果\n    42\n}\n\n// 异步任务执行函数\nasync fn execute_async_task() {\n    // 调用异步任务，并等待其完成\n    let result = async_task().await;\n    // 输出结果\n    println!(\"Async task result: {}\", result);\n}\n\n// 主函数\n#[tokio::main]\nasync fn main() {\n    println!(\"Start executing async task...\");\n    // 调用异步任务执行函数，并等待其完成\n    execute_async_task().await;\n    println!(\"Async task completed!\");\n}"
+    ]
+   },
+   {
+    "title": "Rust 基础语法",
+    "url": "https://www.runoob.com/rust/rust-basic-syntax.html",
+    "body": "变量，基本类型，函数，注释和控制流，这些几乎是每种编程语言都具有的编程概念。\n这些基础概念将存在于每个 Rust 程序中，及早学习它们将使你以最快的速度学习 Rust 的使用。\n变量\n首先必须说明，Rust 是强类型语言，但具有自动判断变量类型的能力。这很容易让人与弱类型语言产生混淆。\n默认情况下，Rust 中的变量是不可变的，除非使用 mut 关键字声明为可变变量。\nlet a = 123; // 不可变变量\nlet mut b = 10; // 可变变量\n如果要声明变量，需要使用 let 关键字。例如：\nlet a = 123;\n只学习过 JavaScript 的开发者对这句话很敏感，只学习过 C 语言的开发者对这句话很不理解。\n在这句声明语句之后，以下三行代码都是被禁止的：\na = \"abc\";\na = 4.56; \na = 456;\n第一行的错误在于当声明 a 是 123 以后，a 就被确定为整型数字，不能把字符串类型的值赋给它。\n第二行的错误在于自动转换数字精度有损失，Rust 语言不允许精度有损失的自动数据类型转换。\n第三行的错误在于 a 不是个可变变量。\n前两种错误很容易理解，但第三个是什么意思？难道 a 不是个变量吗？\n这就牵扯到了 Rust 语言为了高并发安全而做的设计：在语言层面尽量少的让变量的值可以改变。所以 a 的值不可变。但这不意味着 a 不是\"变量\"（英文中的 variable），官方文档称 a 这种变量为\"不可变变量\"。\n如果我们编写的程序的一部分在假设值永远不会改变的情况下运行，而我们代码的另一部分在改变该值，那么代码的第一部分可能就不会按照设计的意图去运转。由于这种原因造成的错误很难在事后找到。这是 Rust 语言设计这种机制的原因。\n当然，使变量变得\"可变\"（mutable）只需一个 mut 关键字。\nlet mut a = 123;\na = 456;\n这个程序是正确的。\n常量与不可变变量的区别\n既然不可变变量是不可变的，那不就是常量吗？为什么叫变量？\n变量和常量还是有区别的。在 Rust 中，以下程序是合法的：\nlet a = 123; // 可以编译，但可能有警告，因为该变量没有被使用\nlet a = 456;\n但是如果 a 是常量就不合法：\nconst a: i32 = 123;\nlet a = 456;\n变量的值可以\"重新绑定\"，但在\"重新绑定\"以前不能私自被改变，这样可以确保在每一次\"绑定\"之后的区域里编译器可以充分的推理程序逻辑。\n虽然 Rust 有自动判断类型的功能，但有些情况下声明类型更加方便：\nlet a: u64 = 123;\n这里声明了 a 为无符号 64 位整型变量，如果没有声明类型，a 将自动被判断为有符号 32 位整型变量，这对于 a 的取值范围有很大的影响。\n数据类型\nRust 是静态类型语言，在变量声明时可以显式指定类型，但通常可以依赖类型推断。\n基本类型: i32 (32位有符号整数), u32 (32位无符号整数), f64 (64位浮点数), bool (布尔类型), char (字符)\n实例",
+    "examples": [
+     "let x: i32 = 42;\nlet y: f64 = 3.14;\nlet is_true: bool = true;\nlet letter: char = 'A';"
+    ]
+   },
+   {
+    "title": "Rust 闭包",
+    "url": "https://www.runoob.com/rust/rust-closure.html",
+    "body": "Rust 中的闭包是一种匿名函数，它可以捕获并存储其所在环境中的变量。\n闭包允许在定义作用域之外访问变量，并且可以在需要时将其移动或借用给闭包使用。\n闭包在 Rust 中被广泛应用于函数式编程、并发编程和事件驱动编程等领域。\n闭包与函数的区别\n闭包和普通函数都能封装一段逻辑，但闭包多了一项核心能力——捕获外部环境中的变量。下表列出两者的主要差异：\n特性\n闭包\n函数\n匿名性\n没有名称，通常赋值给变量\n有固定的 fn 名称\n环境捕获\n可以捕获外部变量\n不能捕获外部变量\n定义方式\n|参数| 表达式\nfn 名称(参数)\n类型推导\n参数和返回值类型通常可以省略\n必须显式指定参数和返回值类型\n存储与传递\n可以作为变量、参数、返回值\n同样支持\n闭包的声明与调用\n闭包的基本语法如下：\nlet closure_name = |参数列表| 表达式或语句块;\n参数可以有类型注解，也可以省略——Rust 编译器会根据上下文推断它们。\n实例",
+    "examples": [
+     "fn main() {\n    // 闭包：省略类型注解，编译器自动推断\n    let add_one = |x| x + 1;\n    println!(\"add_one(4) = {}\", add_one(4)); // 输出: 5\n\n    // 闭包：显式标注参数和返回值类型\n    let multiply = |a: i32, b: i32| -> i32 { a * b };\n    println!(\"multiply(3, 7) = {}\", multiply(3, 7)); // 输出: 21\n\n    // 多行闭包需要加大括号\n    let greet = |name: &str| {\n        let greeting = format!(\"Hello, {}!\", name);\n        greeting\n    };\n    println!(\"{}\", greet(\"runoob\")); // 输出: Hello, runoob!\n}"
+    ]
+   },
+   {
+    "title": "Rust 集合与字符串",
+    "url": "https://www.runoob.com/rust/rust-collection-string.html",
+    "body": "集合（Collection）是数据结构中最普遍的数据存放形式，Rust 标准库中提供了丰富的集合类型帮助开发者处理数据结构的操作。\n向量\n向量（Vector）是一个存放多值的单数据结构，该结构将相同类型的值线性的存放在内存中。\n向量是线性表，在 Rust 中的表示是 Vec<T>。\n向量的使用方式类似于列表（List），我们可以通过这种方式创建指定类型的向量：\nlet vector: Vec<i32> = Vec::new(); // 创建类型为 i32 的空向量\nlet vector = vec![1, 2, 4, 8]; // 通过数组创建向量\n我们使用线性表常常会用到追加的操作，但是追加和栈的 push 操作本质是一样的，所以向量只有 push 方法来追加单个元素：\n实例",
+    "examples": [
+     "fn main() {\n    let mut vector = vec![1, 2, 4, 8];\n    vector.push(16);\n    vector.push(32);\n    vector.push(64);\n    println!(\"{:?}\", vector);\n}"
+    ]
+   },
+   {
+    "title": "Rust 注释",
+    "url": "https://www.runoob.com/rust/rust-comments.html",
+    "body": "Rust 中的注释方式与其它语言（C、Java）一样，支持两种注释方式：\n实例",
+    "examples": [
+     "// 这是第一种注释方式\n\n/* 这是第二种注释方式 */ \n\n/* \n * 多行注释\n * 多行注释\n * 多行注释\n */"
+    ]
+   },
+   {
+    "title": "Rust 并发编程",
+    "url": "https://www.runoob.com/rust/rust-concurrency.html",
+    "body": "安全高效的处理并发是 Rust 诞生的目的之一，主要解决的是服务器高负载承受能力。\n并发（concurrent）的概念是指程序不同的部分独立执行，这与并行（parallel）的概念容易混淆，并行强调的是\"同时执行\"。\n并发往往会造成并行。\n本章讲述与并发相关的编程概念和细节。\n线程\n线程（thread）是一个程序中独立运行的一个部分。\n线程不同于进程（process）的地方是线程是程序以内的概念，程序往往是在一个进程中执行的。\n在有操作系统的环境中进程往往被交替地调度得以执行，线程则在进程以内由程序进行调度。\n由于线程并发很有可能出现并行的情况，所以在并行中可能遇到的死锁、延宕错误常出现于含有并发机制的程序。\n为了解决这些问题，很多其它语言（如 Java、C#）采用特殊的运行时（runtime）软件来协调资源，但这样无疑极大地降低了程序的执行效率。\nC/C++ 语言在操作系统的最底层也支持多线程，且语言本身以及其编译器不具备侦察和避免并行错误的能力，这对于开发者来说压力很大，开发者需要花费大量的精力避免发生错误。\nRust 不依靠运行时环境，这一点像 C/C++ 一样。\n但 Rust 在语言本身就设计了包括所有权机制在内的手段来尽可能地把最常见的错误消灭在编译阶段，这一点其他语言不具备。\n但这不意味着我们编程的时候可以不小心，迄今为止由于并发造成的问题还没有在公共范围内得到完全解决，仍有可能出现错误，并发编程时要尽量小心！\nRust 中通过 std::thread::spawn 函数创建新线程：\n实例",
+    "examples": [
+     "use std::thread;\nuse std::time::Duration;\n\nfn spawn_function() {\n    for i in 0..5 {\n        println!(\"spawned thread print {}\", i);\n        thread::sleep(Duration::from_millis(1));\n    }\n}\n\nfn main() {\n    thread::spawn(spawn_function);\n\n    for i in 0..3 {\n        println!(\"main thread print {}\", i);\n        thread::sleep(Duration::from_millis(1));\n    }\n}"
+    ]
+   },
+   {
+    "title": "Rust 条件语句",
+    "url": "https://www.runoob.com/rust/rust-conditions.html",
+    "body": "在 Rust 语言中的条件语句是这种格式的：\n实例",
+    "examples": [
+     "fn main() {\n    let number = 3; \n    if number < 5 { \n        println!(\"条件为 true\"); \n    } else { \n        println!(\"条件为 false\"); \n    } \n}"
+    ]
+   },
+   {
+    "title": "Rust 数据类型",
+    "url": "https://www.runoob.com/rust/rust-data-types.html",
+    "body": "Rust 语言中的基础数据类型有以下几种。\n整数型（Integer）\n整数型简称整型，按照比特位长度和有无符号分为以下种类：\n位长度\n有符号\n无符号\n8-bit\ni8\nu8\n16-bit\ni16\nu16\n32-bit\ni32\nu32\n64-bit\ni64\nu64\n128-bit\ni128\nu128\narch\nisize\nusize\nisize 和 usize 两种整数类型是用来衡量数据大小的，它们的位长度取决于所运行的目标平台，如果是 32 位架构的处理器将使用 32 位位长度整型。\n整数的表述方法有以下几种：\n进制\n例\n十进制\n98_222\n十六进制\n0xff\n八进制\n0o77\n二进制\n0b1111_0000\n字节(只能表示 u8 型)\nb'A'\n很显然，有的整数中间存在一个下划线，这种设计可以让人们在输入一个很大的数字时更容易判断数字的值大概是多少。\n浮点数型（Floating-Point）\nRust 与其它语言一样支持 32 位浮点数（f32）和 64 位浮点数（f64）。默认情况下，64.0 将表示 64 位浮点数，因为现代计算机处理器对两种浮点数计算的速度几乎相同，但 64 位浮点数精度更高。\n实例",
+    "examples": [
+     "fn main() {\n    let x = 2.0; // f64\n    let y: f32 = 3.0; // f32\n}"
+    ]
+   },
+   {
+    "title": "Rust 枚举类",
+    "url": "https://www.runoob.com/rust/rust-enum.html",
+    "body": "枚举类在 Rust 中并不像其他编程语言中的概念那样简单，但依然可以十分简单的使用：\n实例",
+    "examples": [
+     "#[derive(Debug)]\n\nenum Book {\n    Papery, Electronic\n}\n\nfn main() {\n    let book = Book::Papery;\n    println!(\"{:?}\", book);\n}"
+    ]
+   },
+   {
+    "title": "Rust 错误处理",
+    "url": "https://www.runoob.com/rust/rust-error-handle.html",
+    "body": "Rust 采用了一种独特的错误处理机制，没有异常（Exception），没有 try/catch。它将错误分为两类，用不同的方式处理：\n不可恢复错误（Unrecoverable）：程序逻辑出了严重问题，使用 panic! 宏终止程序\n可恢复错误（Recoverable）：操作可能失败但可以处理，使用 Result<T, E> 枚举\n这种设计迫使开发者在编译期就处理可能的错误，而不是在运行时才发现遗漏。\nRust 错误处理机制全景程序中的错误不可恢复错误panic!(\"严重错误\")打印错误信息 → 展开调用栈 → 终止程序例：数组越界、除以零、逻辑 bug→ 类似其他语言的未捕获异常可恢复错误Result<T, E>Ok(T) 表示成功，Err(E) 表示失败例：文件不存在、网络超时、解析失败→ 类似其他语言的 checked exception1. 不可恢复错误：panic!\npanic! 宏用于表示程序遇到了无法继续执行的严重错误。调用时会：\n打印错误信息和发生位置\n展开（unwind）调用栈并清理资源\n终止程序\n实例",
+    "examples": [
+     "fn main() {\n    panic!(\"发生了严重错误\");\n    // 下面的代码永远不会执行\n    println!(\"Hello, Rust\");\n}"
+    ]
+   },
+   {
+    "title": "Rust 文件与 IO",
+    "url": "https://www.runoob.com/rust/rust-file-io.html",
+    "body": "本章介绍 Rust 语言的 I/O 操作。\n接收命令行参数\n命令行程序是计算机程序最基础的存在形式，几乎所有的操作系统都支持命令行程序并将可视化程序的运行基于命令行机制。\n命令行程序必须能够接收来自命令行环境的参数，这些参数往往在一条命令行的命令之后以空格符分隔。\n在很多语言中（如 Java 和 C/C++）环境参数是以主函数的参数（常常是一个字符串数组）传递给程序的，但在 Rust 中主函数是个无参函数，环境参数需要开发者通过 std::env 模块取出，过程十分简单：\n实例",
+    "examples": [
+     "fn main() {\n    let args = std::env::args();\n    println!(\"{:?}\", args);\n}"
+    ]
+   },
+   {
+    "title": "Rust 函数",
+    "url": "https://www.runoob.com/rust/rust-function.html",
+    "body": "函数在 Rust 语言中是普遍存在的。\n通过之前的章节已经可以了解到 Rust 函数的基本形式：\nfn <函数名> ( <参数> ) <函数体>\n其中 Rust 函数名称的命名风格是小写字母以下划线分割：\n实例",
+    "examples": [
+     "fn main() {\n    println!(\"Hello, world!\");\n    another_function();\n}\n\nfn another_function() {\n    println!(\"Hello, runoob!\");\n}"
+    ]
+   },
+   {
+    "title": "Rust 泛型与特性",
+    "url": "https://www.runoob.com/rust/rust-generics.html",
+    "body": "泛型是一个编程语言不可或缺的机制。\nC++ 语言中用\"模板\"来实现泛型，而 C 语言中没有泛型的机制，这也导致 C 语言难以构建类型复杂的工程。\n泛型机制是编程语言用于表达类型抽象的机制，一般用于功能确定、数据类型待定的类，如链表、映射表等。\n在函数中定义泛型\n这是一个对整型数字选择排序的方法：\n实例",
+    "examples": [
+     "fn max(array: &[i32]) -> i32 {\n    let mut max_index = 0;\n    let mut i = 1;\n    while i < array.len() {\n        if array[i] > array[max_index] {\n            max_index = i;\n        }\n        i += 1;\n    }\n    array[max_index]\n}\n\nfn main() {\n    let a = [2, 4, 6, 3, 1];\n    println!(\"max = {}\", max(&a));\n}"
+    ]
+   },
+   {
+    "title": "Rust 简介",
+    "url": "https://www.runoob.com/rust/rust-intro.html",
+    "body": "Rust 是一门由 Mozilla Research 主导开发的系统级编程语言，以内存安全、零成本抽象和无畏并发为核心设计目标。\nRust 诞生于 2006 年，最初是 Mozilla 员工 Graydon Hoare 的个人项目，后于 2009 年由 Mozilla 正式赞助并组建团队开发。\nRust 的设计初衷是解决 C/C++ 在系统编程中长期存在的痛点：内存安全问题（空指针、悬垂指针、缓冲区溢出）和并发编程的复杂性（数据竞争、死锁）。\nRust 的设计哲学是「在编译期消灭 bug」——通过强大的类型系统和所有权机制，让编译器帮你检查出内存错误和数据竞争，而不是等到运行时才发现问题。\nRust 语言吉祥物是一只名叫 Ferris 的螃蟹，亲切可爱，代表 Rust 社区友好、包容的文化。\nRust 的关键设计目标可以归纳为以下几点：\n设计目标\n说明\n内存安全（无 GC）\n通过所有权系统在编译期保证内存安全，无需垃圾回收器\n零成本抽象\n高级语言特性在编译后无运行时开销，与手写底层代码性能一致\n无畏并发\n类型系统和所有权规则在编译期杜绝数据竞争\n实用性\n既能写操作系统内核，也能写 Web 应用，覆盖全栈场景\n强类型推断\n编译器自动推导大部分类型，减少样板代码\n丰富的工具链\nCargo（包管理+构建）、rustfmt（格式化）、clippy（代码检查）开箱即用\nRust 语言的发展历史\nRust 从个人项目到全球广泛采用的系统语言，走过了近二十年的发展历程。\n时间\n版本/事件\n说明\n2006 年\n个人项目\nGraydon Hoare 开始设计 Rust 语言\n2009 年\nMozilla 赞助\nMozilla 正式支持 Rust 开发并组建团队\n2010 年\n首次公开\n在 Mozilla 峰会上首次对外公开 Rust 编译器（OCaml 编写）\n2011 年\n自举完成\nRust 编译器用 Rust 自身重写，摆脱 OCaml 依赖\n2015 年 5 月\nRust 1.0\n首个稳定版本发布，标志着语言正式可用于生产环境\n2018 年 12 月\nRust 2018 Edition\n首个 Edition 发布，优化语法和模块系统（NLL 借用检查器落地）\n2019 年\n异步生态成形\nasync/await 语法稳定，Tokio 等异步运行时成熟\n2021 年\nRust 基金会成立\nAWS、Google、华为、微软、Mozilla 联合成立 Rust 基金会\n2021 年 10 月\nRust 2021 Edition\n引入 disjoint capture、IntoIterator for arrays 等改进\n2022 年\nLinux 内核采用\nLinux 6.1 正式合并 Rust 支持，Rust 成为内核开发第二语言\n2024 年 2 月\nRust 2024 Edition\n进一步优化语言一致性和开发者体验\n2021 年 Rust 基金会的成立是一个里程碑事件。AWS、Google、华为、微软和 Mozilla 五家科技巨头共同承诺保障 Rust 的长期独立发展，消除了社区对「单一公司主导」的担忧。\nRust 采用六周一个稳定版本的发布节奏，同时通过Edition机制（每 3 年左右发布一次）处理不兼容的语言变更。同一个项目可以混合使用不同 Edition 的 crate，编译器保证向后兼容。\nRust 语言的核心特性\nRust 的特性集合围绕「安全、高效、实用」三个维度展开。以下逐一拆解 Rust 最核心的语言特性。\n所有权系统（Ownership）\n所有权是 Rust 最独特、最重要的特性。它在编译期管理内存，无需垃圾回收器，也无需手动 malloc/free。\n所有权有三大规则：\n规则\n说明\n含义\n每个值有且仅有一个所有者\n一个值在同一时刻只能被一个变量拥有\n杜绝 double-free 和悬垂指针\n所有者离开作用域，值被释放\n变量离开其作用域时，Rust 自动调用 drop 释放内存\n无需手动管理内存\n同一时刻：要么一个可变引用，要么多个不可变引用\n读写互斥，读读共存\n编译期杜绝数据竞争\n代码层面的直观感受：当变量被赋值给另一个变量时，所有权发生转移（move），原变量失效。\n实例",
+    "examples": [
+     "fn main() {\n    // s1 获得字符串的所有权（数据存储在堆上）\n    let s1 = String::from(\"Hello, RUNOOB!\");\n\n    // 所有权从 s1 转移到 s2，此后 s1 不再有效\n    let s2 = s1;\n\n    // println!(\"{}\", s1); // 编译错误！s1 已被 moved\n    println!(\"{}\", s2);    // 正确：s2 现在是所有者\n\n    // 基本类型（存储在栈上）实现了 Copy trait，不会发生 move\n    let x = 42;\n    let y = x;  // x 仍然有效，因为 i32 实现了 Copy\n    println!(\"x = {}, y = {}\", x, y); // 都能使用\n\n    // 不可变引用：可以同时存在多个\n    let s3 = &s2; // 不可变借用\n    let s4 = &s2; // 另一个不可变借用，允许\n    println!(\"s3 = {}, s4 = {}\", s3, s4);\n\n    // 可变引用：同一时刻只能有一个\n    let mut data = String::from(\"runoob\");\n    let r = &mut data; // 可变借用\n    r.push_str(\"!\");   // 通过可变引用修改原值\n    println!(\"修改后: {}\", r);\n    // s3 和 s4 的作用域已结束，所以可以创建可变引用\n}"
+    ]
+   },
+   {
+    "title": "Rust 迭代器",
+    "url": "https://www.runoob.com/rust/rust-iter.html",
+    "body": "Rust 中的迭代器（Iterator）是一个强大且灵活的工具，用于对集合（如数组、向量、链表等）进行逐步访问和操作。\nRust 的迭代器是惰性求值的，这意味着迭代器本身不会立即执行操作，而是在你需要时才会产生值。\n迭代器允许你以一种声明式的方式来遍历序列，如数组、切片、链表等集合类型的元素。\n迭代器背后的核心思想是将数据处理过程与数据本身分离，使代码更清晰、更易读、更易维护。\n在 Rust 中，迭代器通过实现 Iterator trait 来定义。\n最基本的 trait 方法是 next，用于逐一返回迭代器中的下一个元素，直到返回 None 表示结束。\n实例",
+    "examples": [
+     "pub trait Iterator {\n    type Item;\n    \n    fn next(&mut self) -> Option<Self::Item>;\n    \n    // 其他默认实现的方法如 map, filter 等。\n}"
+    ]
+   },
+   {
+    "title": "Rust 生命周期",
+    "url": "https://www.runoob.com/rust/rust-lifetime.html",
+    "body": "Rust 生命周期机制是与所有权机制同等重要的资源管理机制。\n之所以引入这个概念主要是应对复杂类型系统中资源管理的问题。\n引用是对待复杂类型时必不可少的机制，毕竟复杂类型的数据不能被处理器轻易地复制和计算。\n但引用往往导致极其复杂的资源管理问题，首先认识一下垂悬引用：\n实例",
+    "examples": [
+     "{\n    let r;\n\n    {\n        let x = 5;\n        r = &x;\n    }\n\n    println!(\"r: {}\", r);\n}"
+    ]
+   },
+   {
+    "title": "Rust 循环",
+    "url": "https://www.runoob.com/rust/rust-loop.html",
+    "body": "Rust 除了灵活的条件语句以外，循环结构的设计也十分成熟。这一点作为身经百战的开发者应该能感觉出来。\nwhile 循环\nwhile 循环是最典型的条件语句循环：\n实例",
+    "examples": [
+     "fn main() {\n    let mut number = 1; \n    while number != 4 { \n        println!(\"{}\", number); \n        number += 1; \n    } \n    println!(\"EXIT\"); \n}"
+    ]
+   },
+   {
+    "title": "Rust 宏",
+    "url": "https://www.runoob.com/rust/rust-macros.html",
+    "body": "Rust 宏（Macros）是一种在编译时生成代码的强大工具，它允许你在编写代码时创建自定义语法扩展。\n宏（Macro）是一种在代码中进行元编程（Metaprogramming）的技术，它允许在编译时生成代码，宏可以帮助简化代码，提高代码的可读性和可维护性，同时允许开发者在编译时执行一些代码生成的操作。\n宏在 Rust 中有两种类型：声明式宏（Declarative Macros）和过程宏（Procedural Macros）。\n本文主要介绍声明式宏。\n宏的定义\n在 Rust 中，使用 macro_rules! 关键字来定义声明式宏。\nmacro_rules! my_macro {\n // 模式匹配和展开\n ($arg:expr) => {\n // 生成的代码\n // 使用 $arg 来代替匹配到的表达式\n };\n}\n声明式宏使用 macro_rules! 关键字进行定义，它们被称为 \"macro_rules\" 宏。这种宏的定义是基于模式匹配的，可以匹配代码的结构并根据匹配的模式生成相应的代码。这样的宏在不引入新的语法结构的情况下，可以用来简化一些通用的代码模式。\n下面是一个简单的宏定义的例子：\n实例",
+    "examples": [
+     "// 宏的定义\nmacro_rules! greet {\n    // 模式匹配\n    ($name:expr) => {\n        // 宏的展开\n        println!(\"Hello, {}!\", $name);\n    };\n}\n\nfn main() {\n    // 调用宏\n    greet!(\"World\");\n}"
+    ]
+   },
+   {
+    "title": "Rust 面向对象",
+    "url": "https://www.runoob.com/rust/rust-object.html",
+    "body": "面向对象的编程语言通常实现了数据的封装与继承并能基于数据调用方法。\nRust 不是面向对象的编程语言，但这些功能都得以实现。\n封装\n封装就是对外显示的策略，在 Rust 中可以通过模块的机制来实现最外层的封装，并且每一个 Rust 文件都可以看作一个模块，模块内的元素可以通过 pub 关键字对外明示。这一点在\"组织管理\"章节详细叙述过。\n\"类\"往往是面向对象的编程语言中常用到的概念。\"类\"封装的是数据，是对同一类数据实体以及其处理方法的抽象。在 Rust 中，我们可以使用结构体或枚举类来实现类的功能：\n实例",
+    "examples": [
+     "pub struct ClassName {\n    pub field: Type,\n}\n\npub impl ClassName {\n    fn some_method(&self) {\n        // 方法函数体\n    }\n}\n\npub enum EnumName {\n    A,\n    B,\n}\n\npub impl EnumName {\n    fn some_method(&self) {\n\n    } \n}"
+    ]
+   },
+   {
+    "title": "Rust 运算符",
+    "url": "https://www.runoob.com/rust/rust-operators.html",
+    "body": "在 Rust 中，无论是简单的数值计算、逻辑判断，还是更复杂的模式匹配和位操作，运算符都承担着核心的角色。\nRust 既支持我们熟悉的 C 系语言常见运算符，也提供了一些独特的操作符号。熟练掌握这些运算符，不仅能让代码更简洁高效，也能帮助你更好地理解 Rust 的语义。\n1、算术运算符\n运算符\n说明\n示例\n结果\n+\n加法\n5 + 2\n7\n-\n减法\n5 - 2\n3\n*\n乘法\n5 * 2\n10\n/\n除法（整除）\n5 / 2\n2 （整数）\n%\n取余\n5 % 2\n1\n实例",
+    "examples": [
+     "fn main() {\n    let a = 10;\n    let b = 3;\n\n    println!(\"a + b = {}\", a + b);\n    println!(\"a - b = {}\", a - b);\n    println!(\"a * b = {}\", a * b);\n    println!(\"a / b = {}\", a / b);\n    println!(\"a % b = {}\", a % b);\n}"
+    ]
+   },
+   {
+    "title": "Rust 所有权",
+    "url": "https://www.runoob.com/rust/rust-ownership.html",
+    "body": "计算机程序必须在运行时管理它们所使用的内存资源。\n大多数的编程语言都有管理内存的功能：\nC/C++ 这样的语言主要通过手动方式管理内存，开发者需要手动的申请和释放内存资源。但为了提高开发效率，只要不影响程序功能的实现，许多开发者没有及时释放内存的习惯。所以手动管理内存的方式常常造成资源浪费。\nJava 语言编写的程序在虚拟机（JVM）中运行，JVM 具备自动回收内存资源的功能。但这种方式常常会降低运行时效率，所以 JVM 会尽可能少的回收资源，这样也会使程序占用较大的内存资源。\n所有权对大多数开发者而言是一个新颖的概念，它是 Rust 语言为高效使用内存而设计的语法机制。所有权概念是为了让 Rust 在编译阶段更有效地分析内存资源的有用性以实现内存管理而诞生的概念。\n所有权规则\n所有权有以下三条规则：\nRust 中的每个值都有一个变量，称为其所有者。\n一次只能有一个所有者。\n当所有者不在程序运行范围时，该值将被删除。\n这三条规则是所有权概念的基础。\n接下来将介绍与所有权概念有关的概念。\n变量范围\n我们用下面这段程序描述变量范围的概念：\n{\n // 在声明以前，变量 s 无效\n let s = \"runoob\";\n // 这里是变量 s 的可用范围\n}\n// 变量范围已经结束，变量 s 无效\n变量范围是变量的一个属性，其代表变量的可行域，默认从声明变量开始有效直到变量所在域结束。\n内存和分配\n如果我们定义了一个变量并给它赋予一个值，这个变量的值存在于内存中。这种情况很普遍。但如果我们需要储存的数据长度不确定（比如用户输入的一串字符串），我们就无法在定义时明确数据长度，也就无法在编译阶段令程序分配固定长度的内存空间供数据储存使用。（有人说分配尽可能大的空间可以解决问题，但这个方法很不文明）。这就需要提供一种在程序运行时程序自己申请使用内存的机制——堆。本章所讲的所有\"内存资源\"都指的是堆所占用的内存空间。\n有分配就有释放，程序不能一直占用某个内存资源。因此决定资源是否浪费的关键因素就是资源有没有及时的释放。\n我们把字符串样例程序用 C 语言等价编写：",
+    "examples": [
+     "{\n    char *s = strdup(\"runoob\");\n    free(s); // 释放 s 资源\n}"
+    ]
+   },
+   {
+    "title": "Rust 输出到命令行",
+    "url": "https://www.runoob.com/rust/rust-println.html",
+    "body": "在正式学习 Rust 语言以前，我们需要先学会怎样输出一段文字到命令行，这几乎是学习每一门语言之前必备的技能，因为输出到命令行几乎是语言学习阶段程序表达结果的唯一方式。\n在之前的 Hello, World 程序中大概已经告诉了大家输出字符串的方式，但并不全面，大家可能很疑惑为什么 println!( \"Hello World\") 中的 println 后面还有一个 ! 符号，难道 Rust 函数之后都要加一个感叹号？显然并不是这样。println 不是一个函数，而是一个宏规则。这里不需要更深刻的挖掘宏规则是什么，后面的章节中会专门介绍，并不影响接下来的一段学习。\nRust 输出文字的方式主要有两种：println!() 和 print!()。这两个\"函数\"都是向命令行输出字符串的方法，区别仅在于前者会在输出的最后附加输出一个换行符。当用这两个\"函数\"输出信息的时候，第一个参数是格式字符串，后面是一串可变参数，对应着格式字符串中的\"占位符\"，这一点与 C 语言中的 printf 函数很相似。但是，Rust 中格式字符串中的占位符不是 \"% + 字母\" 的形式，而是一对 {}。\n实例：runoob.rs 文件",
+    "examples": [
+     "fn main() { \n    let a = 12; \n    println!(\"a is {}\", a); \n}"
+    ]
+   },
+   {
+    "title": "Rust 组织管理",
+    "url": "https://www.runoob.com/rust/rust-project-management.html",
+    "body": "任何一门编程语言如果不能组织代码都是难以深入的，几乎没有一个软件产品是由一个源文件编译而成的。\n本教程到目前为止所有的程序都是在一个文件中编写的，主要是为了方便学习 Rust 语言的语法和概念。\n对于一个工程来讲，组织代码是十分重要的。\nRust 中有三个重要的组织概念：箱、包、模块。\n箱（Crate）\n\"箱\"是二进制程序文件或者库文件，存在于\"包\"中。\n\"箱\"是树状结构的，它的树根是编译器开始运行时编译的源文件所编译的程序。\n注意：\"二进制程序文件\"不一定是\"二进制可执行文件\"，只能确定是是包含目标机器语言的文件，文件格式随编译环境的不同而不同。\n包（Package）\n当我们使用 Cargo 执行 new 命令创建 Rust 工程时，工程目录下会建立一个 Cargo.toml 文件。工程的实质就是一个包，包必须由一个 Cargo.toml 文件来管理，该文件描述了包的基本信息以及依赖项。\n一个包最多包含一个库\"箱\"，可以包含任意数量的二进制\"箱\"，但是至少包含一个\"箱\"（不管是库还是二进制\"箱\"）。\n当使用 cargo new 命令创建完包之后，src 目录下会生成一个 main.rs 源文件，Cargo 默认这个文件为二进制箱的根，编译之后的二进制箱将与包名相同。\n模块（Module）\n对于一个软件工程来说，我们往往按照所使用的编程语言的组织规范来进行组织，组织模块的主要结构往往是树。Java 组织功能模块的主要单位是类，而 JavaScript 组织模块的主要方式是 function。\n这些先进的语言的组织单位可以层层包含，就像文件系统的目录结构一样。Rust 中的组织单位是模块（Module）。\nmod nation {\n mod government {\n fn govern() {}\n }\n mod congress {\n fn legislate() {}\n }\n mod court {\n fn judicial() {}\n }\n}\n这是一段描述法治国家的程序：国家（nation）包括政府（government）、议会（congress）和法院（court），分别有行政、立法和司法的功能。我们可以把它转换成树状结构：\nnation\n ├── government\n │ └── govern\n ├── congress\n │ └── legislate\n └── court\n └── judicial\n在文件系统中，目录结构往往以斜杠在路径字符串中表示对象的位置，Rust 中的路径分隔符是 :: 。\n路径分为绝对路径和相对路径。绝对路径从 crate 关键字开始描述。相对路径从 self 或 super 关键字或一个标识符开始描述。例如：\ncrate::nation::government::govern();\n是描述 govern 函数的绝对路径，相对路径可以表示为：\nnation::government::govern();\n现在你可以尝试在一个源程序里定义类似的模块结构并在主函数中使用路径。\n如果你这样做，你一定会发现它不正确的地方：government 模块和其中的函数都是私有（private）的，你不被允许访问它们。\n访问权限\nRust 中有两种简单的访问权：公共（public）和私有（private）。\n默认情况下，如果不加修饰符，模块中的成员访问权将是私有的。\n如果想使用公共权限，需要使用 pub 关键字。\n对于私有的模块，只有在与其平级的位置或下级的位置才能访问，不能从其外部访问。\n实例",
+    "examples": [
+     "mod nation {\n    pub mod government {\n        pub fn govern() {}\n    }\n\n    mod congress {\n        pub fn legislate() {}\n    }\n    \n    mod court {\n        fn judicial() {\n            super::congress::legislate();\n        }\n    }\n}\n\nfn main() {\n    nation::government::govern();\n}"
+    ]
+   },
+   {
+    "title": "Rust 环境搭建",
+    "url": "https://www.runoob.com/rust/rust-setup.html",
+    "body": "Rust 支持很多的集成开发环境（IDE）或开发专用的文本编辑器。\n官方网站公布支持的工具如下（https://www.rust-lang.org/zh-CN/tools）：\n本教程将使用 Visual Studio Code 作为我们的开发环境（Eclipse 有专用于 Rust 开发的版本，对于初学者也是不错的选择）。\n注意：IntelliJ IDEA 安装插件之后难以调试，所以推荐习惯使用 IDEA 的开发者使用 CLion，但 CLion 不是免费的。\n搭建 Visual Studio Code 开发环境\n首先，需要安装最新版的 Rust 编译工具和 Visual Studio Code。\nRust 编译工具：https://www.rust-lang.org/zh-CN/tools/install\nVisual Studio Code：https://code.visualstudio.com/Download\nRust 的编译工具依赖 C 语言的编译工具，这意味着你的电脑上至少已经存在一个 C 语言的编译环境。如果你使用的是 Linux 系统，往往已经具备了 GCC 或 clang。如果你使用的是 macOS，需要安装 Xcode。如果你是用的是 Windows 操作系统，你需要安装 Visual Studio 2013 或以上的环境（需要 C/C++ 支持）以使用 MSVC 或安装 MinGW + GCC 编译环境（Cygwin 还没有测试）。\n安装 Rust 编译工具\nRust 编译工具可以去官方网站下载： https://www.rust-lang.org/zh-CN/tools/install。\nmacOS、Linux 或其它类 Unix 系统要下载 Rustup 并安装 Rust，请在终端中运行以下命令:\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nWindows 要下载 rustup-init.exe 可执行文件。\n下载好的 Rustup 在 Windows 上是一个可执行程序 rustup-init.exe。\n现在执行 rustup-init 文件：\n上图显示的是一个命令行安装向导。\n如果你已经安装 MSVC （推荐），那么安装过程会非常的简单，输入 1 并回车，直接进入第二步。\n如果你安装的是 MinGW，那么你需要输入 2 （自定义安装），然后系统会询问你 Default host triple? ，请将上图中 default host triple 的 \"msvc\" 改为 \"gnu\" 再输入安装程序：\n其它属性都默认。\n设置完所有选项，会回到安装向导界面（第一张图），这是我们输入 1 并回车即可。\n进行到这一步就完成了 Rust 的安装，可以通过以下命令测试：\nrustc -V # 注意的大写的 V\n如果以上两个命令能够输出你安装的版本号，就是安装成功了。\n更多下载方式可以查阅：https://forge.rust-lang.org/infra/other-installation-methods.html\n搭建 Visual Studio Code 开发环境\n下载完 Visual Studio Code 安装包之后启动安装向导安装（此步骤不在此赘述）。\n安装完 Visual Studio Code （下文简称 VSCode）之后运行 VSCode。\n在左边栏里找到 \"Extensions\"，并查找 \"Chinese\"，安装简体中文扩展，使界面变成中文。（如果你愿意用英文界面或计算机不支持中文字符，此步骤可以跳过）。\n用同样的方法再安装 rust-analyzer 和 Native Debug 两个扩展。\n重新启动 VSCode，Rust 的开发环境就搭建好了。\n现在新建一个文件夹，如 runoob-greeting。\n在 VSCode 中打开新建的文件夹：\n打开文件夹之后选择菜单栏中的\"终端\"-\"新建终端\"，会打开一个新的终端：\n在终端中输入命令：\ncargo new greeting\n当前文件下下会构建一个名叫 greeting 的 Rust 工程目录。\n现在在终端里输入以下三个命令：\ncd ./greeting \ncargo build \ncargo run\n系统在创建工程时会生成一个 Hello, world 源程序 main.rs，这时会被编译并运行：\n至此，你成功的构建了一个 Rust 命令行程序！\n有关在 VSCode 中调试程序的问题，详见 Cargo 教程。",
+    "examples": []
+   },
+   {
+    "title": "Rust Slice（切片）类型",
+    "url": "https://www.runoob.com/rust/rust-slice.html",
+    "body": "切片（Slice）是对数据值的部分引用。\n切片这个名字往往出现在生物课上，我们做样本玻片的时候要从生物体上获取切片，以供在显微镜上观察。在 Rust 中，切片的意思大致也是这样，只不过它从数据取材引用。\n字符串切片\n最简单、最常用的数据切片类型是字符串切片（String Slice）。\n实例",
+    "examples": [
+     "fn main() {\n    let s = String::from(\"broadcast\");\n\n    let part1 = &s[0..5];\n    let part2 = &s[5..9];\n\n    println!(\"{}={}+{}\", s, part1, part2);\n}"
+    ]
+   },
+   {
+    "title": "Rust 智能指针",
+    "url": "https://www.runoob.com/rust/rust-smart-pointers.html",
+    "body": "智能指针（Smart pointers）是一种在 Rust 中常见的数据结构，它们提供了额外的功能和安全性保证，以帮助管理内存和数据。\n在 Rust 中，智能指针是一种封装了对动态分配内存的所有权和生命周期管理的数据类型。\n智能指针通常封装了一个原始指针，并提供了一些额外的功能，比如引用计数、所有权转移、生命周期管理等。\n在 Rust 中，标准库提供了几种常见的智能指针类型，例如 Box、Rc、Arc 和 RefCell。\n智能指针的使用场景:\n当需要在堆上分配内存时，使用 Box<T>。\n当需要多处共享所有权时，使用 Rc<T> 或 Arc<T>。\n当需要内部可变性时，使用 RefCell<T>。\n当需要线程安全的共享所有权时，使用 Arc<T>。\n当需要互斥访问数据时，使用 Mutex<T>。\n当需要读取-写入访问数据时，使用 RwLock<T>。\n当需要解决循环引用问题时，使用 Weak<T>。\nBox<T> 智能指针\nBox<T> 是 Rust 中最简单的智能指针之一，它允许在堆上分配一块内存，并将值存储在这个内存中。\n由于 Rust 的所有权规则，使用 Box 可以在堆上创建具有已知大小的数据。\n实例",
+    "examples": [
+     "let b = Box::new(5);\nprintln!(\"b = {}\", b);"
+    ]
+   },
+   {
+    "title": "Rust 结构体",
+    "url": "https://www.runoob.com/rust/rust-struct.html",
+    "body": "Rust 中的结构体（Struct）与元组（Tuple）都可以将若干个类型不一定相同的数据捆绑在一起形成整体，但结构体的每个成员和其本身都有一个名字，这样访问它成员的时候就不用记住下标了。元组常用于非定义的多值传递，而结构体用于规范常用的数据结构。结构体的每个成员叫做\"字段\"。\n结构体定义\n这是一个结构体定义：\nstruct Site {\n domain: String,\n name: String,\n nation: String,\n found: u32\n}\n注意：如果你常用 C/C++，请记住在 Rust 里 struct 语句仅用来定义，不能声明实例，结尾不需要 ; 符号，而且每个字段定义之后用 , 分隔。\n结构体实例\nRust 很多地方受 JavaScript 影响，在实例化结构体的时候用 JSON 对象的 key: value 语法来实现定义：\n实例",
+    "examples": [
+     "let runoob = Site {\n    domain: String::from(\"www.runoob.com\"),\n    name: String::from(\"RUNOOB\"),\n    nation: String::from(\"China\"),\n    found: 2013\n};"
+    ]
+   },
+   {
+    "title": "Rust 教程",
+    "url": "https://www.runoob.com/rust/rust-tutorial.html",
+    "body": "Rust 是由 Mozilla 主导开发的高性能编译型编程语言，遵循\"安全、并发、实用\"的设计原则。\nRust 语言由 Mozilla 开发，首次发布于 2010 年。\nRust 支持多种编程范式，包括函数式、并发式、过程式和面向对象风格。\nRust 速度惊人且内存利用率极高。由于没有运行时和垃圾回收，它能够胜任对性能要求特别高的服务，可以在嵌入式设备上运行，还能轻松和其他语言集成。\nRust 系列文章内容由 Sobin 收集整理。",
+    "examples": []
+   }
+  ]
+ }
+}

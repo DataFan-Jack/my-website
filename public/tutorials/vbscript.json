@@ -1,0 +1,72 @@
+{
+ "tutorial": {
+  "name": "VBScript",
+  "category": "后端开发",
+  "desc": "VBScript 是微软公司出品的脚本语言。",
+  "url": "https://www.runoob.com/vbscript/",
+  "chapters": [
+   {
+    "title": "VBScript 条件语句",
+    "url": "https://www.runoob.com/vbscript/vbscript-conditionals.html",
+    "body": "条件语句\n条件语句用于根据不同的情况执行不同的操作。\n在 VBScript 中，我们可以使用四种条件语句：\nIf 语句 - 假如您希望在条件为 true 时执行一系列的代码，可以使用这个语句\nIf...Then...Else 语句 - 假如您希望执行两套代码其中之一，可以使用这个语句\nIf...Then...ElseIf 语句 - 假如您希望选择多套代码之一来执行，可以使用这个语句\nSelect Case 语句 - 假如您希望选择多套代码之一来执行，可以使用这个语句\nIf...Then...Else\n在下面的情况中，您可以使用 If...Then...Else 语句：\n在条件为 true 时，执行某段代码\n选择两段代码之一来执行\n如果在条件为 true 时只执行一条语句，可以把代码写为一行：\nIf i=10 Then alert(\"Hello\")",
+    "examples": []
+   },
+   {
+    "title": "VBScript 实例",
+    "url": "https://www.runoob.com/vbscript/vbscript-examples.html",
+    "body": "基础\n使用VBScript写文本\n使用HTML标签格式化文本\nhead部分中的函数\nbody部分中的脚本\n变量\n创建一个变量\n在一段文本中插入变量的值\n创建数组\n程序\n子程序\n函数程序\n条件语句\nIf...then..else 语句\nIf...then..elseif 语句\nSelect case 语句\n随机链接\n循环\nFor..next 循环\n循环输出HTML标题\nFor..each 循环\nDo...While 循环\n日期和时间函数\n显示日期和时间\n显示星期\n显示月份\n显示当前的月份和星期\n倒记秒数到3000年\n向日期增加一个时间间隔\n格式化日期和时间\n这是一个日期吗？\n其他内建函数\n大写或小写字符？\n删除字符串端部的空格\n颠倒字符顺序\n对一个数字进行取整数操作\n返回随机数\n返回0-99之间的随机数\n从一段字符串的左侧或右侧返回指定数目的字符\n替换字符串中的某些字符\n从一段字符串返回指定数目的字符",
+    "examples": []
+   },
+   {
+    "title": "VBScript 用法",
+    "url": "https://www.runoob.com/vbscript/vbscript-howto.html",
+    "body": "HTML <script> 标签被用来向 HTML 中插入 VBScript。\nHTML 中的 VBScript\n如需在 HTML 中插入 VBScript，脚本必须写在标准的 <script> 和 </script> 标签之间。\n在 <script> 标签中，请使用 type 属性来定义脚本语言 \"text/vbscript\"：\n<html>\n<body><script type=\"text/vbscript\">\n...\n</script></body>\n</html>",
+    "examples": []
+   },
+   {
+    "title": "VBScript 循环",
+    "url": "https://www.runoob.com/vbscript/vbscript-looping.html",
+    "body": "循环语句\n循环语句用于运行相同的代码块指定的次数。Looping statements are used to run the same block of code a specified number of times.\n在 VBScript 中，我们可以使用四种循环语句：\nFor...Next 语句 - 运行一段代码指定的次数\nFor Each...Next 语句 - 针对集合中的每个项目或者数组中的每个元素来运行某段代码\nDo...Loop 语句 - 运行循环，当条件为 true 或者直到条件为 true 时\nWhile...Wend 语句 - 不要使用这个语句 - 请使用 Do...Loop 语句代替它\nFor...Next 循环\n请使用 For...Next 语句运行一段代码指定的次数。\nFor 语句规定计数变量（i）以及它的初始值和结束值。Next 语句会以 1 作为步进值来递增变量（i）。\n实例\n尝试一下 »",
+    "examples": [
+     "<html>\n<body>\n<script type=\"text/vbscript\">\nFor i = 0 To 5\n  document.write(\"The number is \" & i & \"<br />\")\nNext\n</script>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "VBScript 程序",
+    "url": "https://www.runoob.com/vbscript/vbscript-procedures.html",
+    "body": "VBScript 可使用两种程序：\n子程序\n函数程序\nVBScript 子程序\n子程序：\n是一系列的语句，被封装在 Sub 和 End Sub 语句内\n可执行某些操作，但不会返回值\n可带有参数\nSub mysub()some statements\nEnd Sub",
+    "examples": []
+   },
+   {
+    "title": "VBScript 函数",
+    "url": "https://www.runoob.com/vbscript/vbscript-ref-functions.html",
+    "body": "本页列出了所有内建的 VBScript 函数，主要分为以下几类：\nDate/Time 函数\nConversion 函数\nFormat 函数\nMath 函数\nArray 函数\nString 函数\n其他函数\nDate/Time 函数\n函数\n描述\nCDate\n把有效的日期和时间表达式转换为日期（Date）类型。\nDate\n返回当前的系统日期。\nDateAdd\n返回已添加指定时间间隔的日期。\nDateDiff\n返回两个日期之间的时间间隔数。\nDatePart\n返回给定日期的指定部分。\nDateSerial\n返回指定年、月、日的日期。\nDateValue\n返回日期。\nDay\n返回代表一月中的一天的数字（介于并包括 1 到 31 之间）。\nFormatDateTime\n返回格式化为日期或时间的表达式。\nHour\n返回代表一天中的小时的数字（介于并包括 0 到 23 之间）。\nIsDate\n返回指示计算表达式能否转换为日期的布尔值。\nMinute\n返回一个数字，代表小时的分钟（介于并包括 0 到 59 之间）。\nMonth\n返回一个数字，代表年的月份（介于并包括 1 到 12 之间）。\nMonthName\n返回指定月份的名称。\nNow\n返回当前的系统日期和时间。\nSecond\n返回一个数字，代表分钟的秒（介于并包括 0 到 59 之间）。\nTime\n返回当前的系统时间。\nTimer\n返回自 12:00 AM 以来的秒数。\nTimeSerial\n返回特定小时、分钟和秒的时间。\nTimeValue\n返回时间。\nWeekday\n返回一个数字，代表一周的天数（介于并包括 1 到 7 之间）。\nWeekdayName\n返回一周中指定的一天的星期名。\nYear\n返回一个数字，代表年份。\nConversion 函数\nTop\n函数\n描述\nAsc\n把字符串中的首字母转换为 ANSI 字符代码。\nCBool\n把表达式转换为布尔（Boolean）类型。\nCByte\n把表达式转换为字节（Byte）类型。\nCCur\n把表达式转换为货币（Currency）类型。\nCDate\n把有效的日期和时间表达式转换为日期（Date）类型。\nCDbl\n把表达式转换为双精度（Double）类型。\nChr\n把指定的 ANSI 字符代码转换为字符。\nCInt\n把表达式转换为整数（Integer）类型。\nCLng\n把表达式转换为长整型（Long）类型。\nCSng\n把表达式转换为单精度（Single）类型。\nCStr\n把表达式转换为字符串（String）类型。\nHex\n返回指定数字的十六进制值。\nOct\n返回指定数字的八进制值。\nFormat 函数\nTop\n函数\n描述\nFormatCurrency\n返回作为货币值进行格式化的表达式。\nFormatDateTime\n返回作为日期或时间进行格式化的表达式。\nFormatNumber\n返回作为数字进行格式化的表达式。\nFormatPercent\n返回作为百分数进行格式化的表达式。\nMath 函数\nTop\n函数\n描述\nAbs\n返回指定数字的绝对值。\nAtn\n返回指定数字的反正切。\nCos\n返回指定数字（角度）的余弦。\nExp\n返回 e（自然对数的底）的幂次方。\nHex\n返回指定数字的十六进制值。\nInt\n返回指定数字的整数部分。\nFix\n返回指定数字的整数部分。\nLog\n返回指定数字的自然对数。\nOct\n返回指定数字的八进制值。\nRnd\n返回小于1但大于或等于0的一个随机数。\nSgn\n返回可指示指定数字的符号的一个整数。\nSin\n返回指定数字（角度）的正弦。\nSqr\n返回指定数字的平方根。\nTan\n返回指定数字（角度）的正切。\nArray 函数\nTop\n函数\n描述\nArray\n返回一个包含数组的变量。\nFilter\n返回下标从零开始的数组，其中包含基于特定过滤条件的字符串数组的子集。\nIsArray\n返回一个指示指定的变量是否为数组的布尔值。\nJoin\n返回一个由数组中若干子字符串组成的字符串。\nLBound\n返回指示数组维数的最小下标。\nSplit\n返回下标从零开始的一维数组，包含指定数量的子字符串。\nUBound\n返回指示数组维数的最大下标。\nString 函数\nTop\n函数\n描述\nInStr\n返回字符串在另一字符串中首次出现的位置。搜索从字符串的第一个字符开始。\nInStrRev\n返回字符串在另一字符串中首次出现的位置。搜索从字符串的最末字符开始。\nLCase\n把指定字符串转换为小写。\nLeft\n从字符串的左侧返回指定数量的字符。\nLen\n返回字符串中的字符数量。\nLTrim\n删除字符串左侧的空格。\nRTrim\n删除字符串右侧的空格。\nTrim\n删除字符串左侧和右侧的空格。\nMid\n从字符串中返回指定数量的字符。\nReplace\n使用另一个字符串替换字符串的指定部分指定的次数。\nRight\n从字符串的右侧返回指定数量的字符。\nSpace\n返回由指定数量的空格组成的字符串。\nStrComp\n比较两个字符串，返回代表比较结果的一个值。\nString\n返回包含指定长度的重复字符的字符串。\nStrReverse\n反转字符串。\nUCase\n把指定的字符串转换为大写。\n其他函数\nTop\n函数\n描述\nCreateObject\n创建指定类型的对象。\nEval\n计算表达式，并返回结果。\nGetLocale\n返回当前的 locale ID。\nGetObject\n返回对文件中 automation 对象的引用。\nGetRef\n允许您把 VBScript 子程序连接到页面上的一个 DHTML 事件。\nInputBox\n显示对话框，用户可在其中输入文本，并/或点击按钮，然后返回内容。\nIsEmpty\n返回一个布尔值，指示指定的变量是否已被初始化。\nIsNull\n返回一个布尔值，指示指定的表达式是否包含无效数据（Null）。\nIsNumeric\n返回一个布尔值，指示指定的表达式是否可作为数字来计算。\nIsObject\n返回一个布尔值，指示指定的表达式是否是一个 automation 对象。\nLoadPicture\n返回一个图片对象。仅用于 32 位平台。\nMsgBox\n显示消息框，等待用户点击按钮，并返回指示用户点击了哪个按钮的值。\nRGB\n返回一个表示 RGB 颜色值的数字。\nRound\n对数字进行四舍五入。\nScriptEngine\n返回使用中的脚本语言。\nScriptEngineBuildVersion\n返回使用中的脚本引擎的内部版本号。\nScriptEngineMajorVersion\n返回使用中的脚本引擎的主版本号。\nScriptEngineMinorVersion\n返回使用中的脚本引擎的次版本号。\nSetLocale\n设置 locale ID，并返回之前的 locale ID。\nTypeName\n返回指定变量的子类型。\nVarType\n返回指示变量子类型的值。",
+    "examples": []
+   },
+   {
+    "title": "VBScript 关键字",
+    "url": "https://www.runoob.com/vbscript/vbscript-ref-keywords.html",
+    "body": "VBScript 关键字\n关键字\n描述\nEmpty\n用于指示一个未初始化的变量值。当第一次创建变量时或变量值显式设置为空时，变量值未初始化且变量未被赋值。\n实例：\n Dim x \n '变量 x 未初始化！\n x=\"ff\" '变量 x 不再是未初始化\n x=Empty '变量 x 未初始化！\n注意：这和 Null 不一样！！\nIsEmpty\n用于测试一个变量是否未初始化。\n实例：If (IsEmpty(x)) '变量 x 未初始化？\nNothing\n用于指示一个未初始化的对象值，或者把对象变量从对象分离用于释放系统资源。实例: \n Set myObject=Nothing\nIs Nothing\n用于测试一个值是否是初始化的对象。\n 实例：If (myObject Is Nothing) '它是否未设置？\n注意：如果您把一个值与 Nothing 作比较，您将不会得到正确的结果！实例: If (myObject = Nothing) '总是错误！\nNull\n用于指示变量不包含有效数据。\n Null 把值设置为\"无效\"，Empty 则表示值\"未设置\"。\n注意：这不同于 Empty 或 Nothing！！\n实例：x=Null 'x 不包含有效数据\nIsNull\n用于测试一个值是否包含无效数据。\n 实例: if (IsNull(x)) 'x 是无效的？\nTrue\n用于指示一个布尔条件是正确的（True 为 -1）\nFalse\n用于指示一个布尔条件是不正确的（False 为 0）",
+    "examples": []
+   },
+   {
+    "title": "您已经学习了 VBScript，下一步呢？",
+    "url": "https://www.runoob.com/vbscript/vbscript-summary.html",
+    "body": "VBScript 总结\n本教程已经向您讲解了 VBScript。\n您已经学习了有关变量和函数，以及如何如何根据不同的情况运行不同的脚本。\n如需了解更多有关 VBScript 的信息，请参阅我们的 VBScript 实例和我们的 VBScript 参考手册。\n现在您已经学习了 VBScript，下一步呢？\n下一步应该是学习 ASP。\nHTML 文件中的脚本是在客户端（在浏览器）执行的，ASP 文件中的脚本是在服务器上执行的。\n通过 ASP，您可以动态地编辑、改变或添加网页的任何内容，响应 HTML 表单提交的数据，访问任何数据或数据库并向浏览器返回结果，为不同的用户定制更有用的页面等等。\n由于 ASP 文件被作为纯粹的 HTML 返回浏览器，，因此我们可以在任何浏览器中查看 ASP。\n如果您想要学习更多有关 ASP 的知识，请访问我们的 ASP 教程。",
+    "examples": []
+   },
+   {
+    "title": "VBScript 教程",
+    "url": "https://www.runoob.com/vbscript/vbscript-tutorial.html",
+    "body": "VBScript 是微软公司出品的脚本语言。\nVBScript 是ASP\n(Active Server Pages)默认使用的脚本语言。\n你可以在 Internet Explorer 尝试使用 VBScript 。",
+    "examples": []
+   },
+   {
+    "title": "VBScript 变量",
+    "url": "https://www.runoob.com/vbscript/vbscript-variables.html",
+    "body": "变量是存储信息的\"容器\"。\n尝试一下 - 实例（只适用于 IE）",
+    "examples": []
+   }
+  ]
+ }
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教程阅读器 - 本地学习 Demo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0a;
+    color: #e6edf3;
+    font-family: system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  /* 左侧目录 */
+  .sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: #111120;
+    border-right: 1px solid rgba(212,168,67,0.15);
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar h1 {
+    padding: 20px 24px;
+    font-size: 17px;
+    color: #d4a843;
+    border-bottom: 1px solid rgba(212,168,67,0.15);
+  }
+  .toc { flex: 1; overflow-y: auto; padding: 10px 0; }
+  .toc button {
+    display: block;
+    width: 100%;
+    padding: 11px 24px;
+    background: none;
+    border: none;
+    border-left: 3px solid transparent;
+    color: #999;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .toc button:hover { color: #d4a843; background: rgba(212,168,67,0.06); }
+  .toc button.active {
+    color: #d4a843;
+    border-left-color: #d4a843;
+    background: rgba(212,168,67,0.1);
+  }
+  /* 右侧正文 */
+  .content { flex: 1; overflow-y: auto; padding: 40px 56px; }
+  .content h2 {
+    color: #d4a843;
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+  .content p {
+    color: #c9d1d9;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 14px;
+  }
+  .example {
+    background: #14142a;
+    border: 1px solid rgba(212,168,67,0.25);
+    border-radius: 10px;
+    margin: 18px 0;
+    overflow: hidden;
+  }
+  .example .example-title {
+    padding: 8px 16px;
+    background: #1c1c34;
+    color: #d4a843;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(212,168,67,0.15);
+  }
+  .example pre {
+    padding: 16px;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #a5d6ff;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .empty {
+    color: #666;
+    font-size: 15px;
+    padding: 40px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <aside class="sidebar">
+    <h1 id="tutorialName">加载中…</h1>
+    <nav class="toc" id="toc"></nav>
+  </aside>
+  <main class="content" id="content"></main>
+
+<script>
+  // 读取抓取结果（同源 fetch public/ 下的数据文件）
+  fetch('/tutorial-data.json')
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById('tutorialName').textContent = data.tutorial;
+      const toc = document.getElementById('toc');
+      data.chapters.forEach((ch, i) => {
+        const btn = document.createElement('button');
+        btn.textContent = ch.title;
+        btn.onclick = () => render(data, i);
+        toc.appendChild(btn);
+      });
+      render(data, 0);
+    })
+    .catch(e => {
+      document.getElementById('content').innerHTML =
+        '<div class="empty">数据加载失败：' + e.message + '<br>请先运行 scraper/scrape.py 生成数据</div>';
+    });
+
+  function render(data, i) {
+    // 高亮当前章节
+    document.querySelectorAll('.toc button').forEach((b, j) => b.classList.toggle('active', j === i));
+    const ch = data.chapters[i];
+    let html = `<h2>${escapeHtml(ch.title)}</h2>`;
+    html += ch.body.split('\n').map(p => `<p>${escapeHtml(p)}</p>`).join('');
+    ch.examples.forEach((code, k) => {
+      html += `<div class="example"><div class="example-title">实例 ${k + 1}</div><pre>${escapeHtml(code)}</pre></div>`;
+    });
+    document.getElementById('content').innerHTML = html || '<div class="empty">本章暂无内容</div>';
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+</script>
+</body>
+</html>

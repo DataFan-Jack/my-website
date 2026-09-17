@@ -1,0 +1,412 @@
+{
+ "tutorial": {
+  "name": "HTML",
+  "category": "前端开发",
+  "desc": "超文本标记语言（英语：HyperText Markup Language，简称：",
+  "url": "https://www.runoob.com/html/",
+  "chapters": [
+   {
+    "title": "HTML 属性",
+    "url": "https://www.runoob.com/html/html-attributes.html",
+    "body": "属性是 HTML 元素提供的附加信息。\n属性通常出现在 HTML 标签的开始标签中，用于定义元素的行为、样式、内容或其他特性。\n属性总是以 name=\"value\" 的形式写在标签内，name 是属性的名称，value 是属性的值。\nHTML 属性\nHTML 元素可以设置属性\n属性可以在元素中添加附加信息\n属性一般描述于开始标签\n属性总是以名称/值对的形式出现，比如：name=\"value\"。\n属性实例\nHTML 链接由 <a> 标签定义。链接的地址在 href 属性中指定：\n实例",
+    "examples": [
+     "<a href=\"http://www.runoob.com\">这是一个链接</a>"
+    ]
+   },
+   {
+    "title": "HTML 基础- 4个实例",
+    "url": "https://www.runoob.com/html/html-basic.html",
+    "body": "不要担心本章中您还没有学过的例子。\n您将在下面的章节中学到它们。\nHTML 标题\nHTML 标题（Heading）是通过<h1> - <h6> 标签来定义的。\n实例",
+    "examples": [
+     "<h1>这是一个标题</h1>\n<h2>这是一个标题</h2>\n<h3>这是一个标题</h3>"
+    ]
+   },
+   {
+    "title": "HTML <div> 和<span>",
+    "url": "https://www.runoob.com/html/html-blocks.html",
+    "body": "HTML 可以通过 <div> 和 <span>将元素组合起来。\nHTML 区块元素\n大多数 HTML 元素被定义为块级元素或内联元素。\n块级元素在浏览器显示时，通常会以新行来开始（和结束）。\n实例: <h1>, <p>, <ul>, <table>\nHTML 内联元素\n内联元素在显示时通常不会以新行开始。\n实例: <b>, <td>, <a>, <img>\nHTML <div> 元素\nHTML <div> 元素是块级元素，它可用于组合其他 HTML 元素的容器。\n<div> 元素没有特定的含义。除此之外，由于它属于块级元素，浏览器会在其前后显示折行。\n如果与 CSS 一同使用，<div> 元素可用于对大的内容块设置样式属性。\n<div> 元素的另一个常见的用途是文档布局。它取代了使用表格定义布局的老式方法。使用 <table> 元素进行文档布局不是表格的正确用法。<table> 元素的作用是显示表格化的数据。\nHTML <span> 元素\nHTML <span> 元素是内联元素，可用作文本的容器\n<span> 元素也没有特定的含义。\n当与 CSS 一同使用时，<span> 元素可用于为部分文本设置样式属性。\nHTML 分组标签\n标签\n描述\n<div>\n定义了文档的区域，块级 (block-level)\n<span>\n用来组合文档中的行内元素， 内联元素(inline)",
+    "examples": []
+   },
+   {
+    "title": "HTML 颜色名",
+    "url": "https://www.runoob.com/html/html-colornames.html",
+    "body": "目前所有浏览器都支持以下颜色名。\n141个颜色名称是在HTML和CSS颜色规范定义的（17标准颜色，再加124）。下表列出了所有颜色的值，包括十六进制值。\n提示: 17标准颜色：黑色，蓝色，水，紫红色，灰色，绿色，石灰，栗色，海军，橄榄，橙，紫，红，白，银，蓝绿色，黄色。点击其中一个颜色名称（或一个十六进制值）就可以查看与不同文字颜色搭配的背景颜色。\n按颜色名排序\n按十六进制的值排序\n单击一个颜色名或者 16 进制值，就可以查看与不同文字颜色搭配的背景颜色。\n颜色名\nHEX\nColor\nAliceBlue\n#F0F8FF\nAntiqueWhite\n#FAEBD7\nAqua\n#00FFFF\nAquamarine\n#7FFFD4\nAzure\n#F0FFFF\nBeige\n#F5F5DC\nBisque\n#FFE4C4\nBlack\n#000000\nBlanchedAlmond\n#FFEBCD\nBlue\n#0000FF\nBlueViolet\n#8A2BE2\nBrown\n#A52A2A\nBurlyWood\n#DEB887\nCadetBlue\n#5F9EA0\nChartreuse\n#7FFF00\nChocolate\n#D2691E\nCoral\n#FF7F50\nCornflowerBlue\n#6495ED\nCornsilk\n#FFF8DC\nCrimson\n#DC143C\nCyan\n#00FFFF\nDarkBlue\n#00008B\nDarkCyan\n#008B8B\nDarkGoldenRod\n#B8860B\nDarkGray\n#A9A9A9\nDarkGreen\n#006400\nDarkKhaki\n#BDB76B\nDarkMagenta\n#8B008B\nDarkOliveGreen\n#556B2F\nDarkOrange\n#FF8C00\nDarkOrchid\n#9932CC\nDarkRed\n#8B0000\nDarkSalmon\n#E9967A\nDarkSeaGreen\n#8FBC8F\nDarkSlateBlue\n#483D8B\nDarkSlateGray\n#2F4F4F\nDarkTurquoise\n#00CED1\nDarkViolet\n#9400D3\nDeepPink\n#FF1493\nDeepSkyBlue\n#00BFFF\nDimGray\n#696969\nDodgerBlue\n#1E90FF\nFireBrick\n#B22222\nFloralWhite\n#FFFAF0\nForestGreen\n#228B22\nFuchsia\n#FF00FF\nGainsboro\n#DCDCDC\nGhostWhite\n#F8F8FF\nGold\n#FFD700\nGoldenRod\n#DAA520\nGray\n#808080\nGreen\n#008000\nGreenYellow\n#ADFF2F\nHoneyDew\n#F0FFF0\nHotPink\n#FF69B4\nIndianRed\n#CD5C5C\nIndigo\n#4B0082\nIvory\n#FFFFF0\nKhaki\n#F0E68C\nLavender\n#E6E6FA\nLavenderBlush\n#FFF0F5\nLawnGreen\n#7CFC00\nLemonChiffon\n#FFFACD\nLightBlue\n#ADD8E6\nLightCoral\n#F08080\nLightCyan\n#E0FFFF\nLightGoldenRodYellow\n#FAFAD2\nLightGray\n#D3D3D3\nLightGreen\n#90EE90\nLightPink\n#FFB6C1\nLightSalmon\n#FFA07A\nLightSeaGreen\n#20B2AA\nLightSkyBlue\n#87CEFA\nLightSlateGray\n#778899\nLightSteelBlue\n#B0C4DE\nLightYellow\n#FFFFE0\nLime\n#00FF00\nLimeGreen\n#32CD32\nLinen\n#FAF0E6\nMagenta\n#FF00FF\nMaroon\n#800000\nMediumAquaMarine\n#66CDAA\nMediumBlue\n#0000CD\nMediumOrchid\n#BA55D3\nMediumPurple\n#9370DB\nMediumSeaGreen\n#3CB371\nMediumSlateBlue\n#7B68EE\nMediumSpringGreen\n#00FA9A\nMediumTurquoise\n#48D1CC\nMediumVioletRed\n#C71585\nMidnightBlue\n#191970\nMintCream\n#F5FFFA\nMistyRose\n#FFE4E1\nMoccasin\n#FFE4B5\nNavajoWhite\n#FFDEAD\nNavy\n#000080\nOldLace\n#FDF5E6\nOlive\n#808000\nOliveDrab\n#6B8E23\nOrange\n#FFA500\nOrangeRed\n#FF4500\nOrchid\n#DA70D6\nPaleGoldenRod\n#EEE8AA\nPaleGreen\n#98FB98\nPaleTurquoise\n#AFEEEE\nPaleVioletRed\n#DB7093\nPapayaWhip\n#FFEFD5\nPeachPuff\n#FFDAB9\nPeru\n#CD853F\nPink\n#FFC0CB\nPlum\n#DDA0DD\nPowderBlue\n#B0E0E6\nPurple\n#800080\nRed\n#FF0000\nRosyBrown\n#BC8F8F\nRoyalBlue\n#4169E1\nSaddleBrown\n#8B4513\nSalmon\n#FA8072\nSandyBrown\n#F4A460\nSeaGreen\n#2E8B57\nSeaShell\n#FFF5EE\nSienna\n#A0522D\nSilver\n#C0C0C0\nSkyBlue\n#87CEEB\nSlateBlue\n#6A5ACD\nSlateGray\n#708090\nSnow\n#FFFAFA\nSpringGreen\n#00FF7F\nSteelBlue\n#4682B4\nTan\n#D2B48C\nTeal\n#008080\nThistle\n#D8BFD8\nTomato\n#FF6347\nTurquoise\n#40E0D0\nViolet\n#EE82EE\nWheat\n#F5DEB3\nWhite\n#FFFFFF\nWhiteSmoke\n#F5F5F5\nYellow\n#FFFF00\nYellowGreen\n#9ACD32",
+    "examples": []
+   },
+   {
+    "title": "HTML 颜色",
+    "url": "https://www.runoob.com/html/html-colors.html",
+    "body": "HTML 颜色由红色、绿色、蓝色混合而成。\n颜色值\nHTML 颜色由一个十六进制符号来定义，这个符号由红色、绿色和蓝色的值组成（RGB）。\n每种颜色的最小值是0（十六进制：#00）。最大值是255（十六进制：#FF）。\n这个表格给出了由三种颜色混合而成的具体效果：\n颜色值\n颜色(Color)\n颜色十六进制(Color HEX)\n颜色RGB(Color RGB)\n#000000\nrgb(0,0,0)\n#FF0000\nrgb(255,0,0)\n#00FF00\nrgb(0,255,0)\n#0000FF\nrgb(0,0,255)\n#FFFF00\nrgb(255,255,0)\n#00FFFF\nrgb(0,255,255)\n#FF00FF\nrgb(255,0,255)\n#C0C0C0\nrgb(192,192,192)\n#FFFFFF\nrgb(255,255,255)\n尝试一下 »",
+    "examples": []
+   },
+   {
+    "title": "HTML 颜色值",
+    "url": "https://www.runoob.com/html/html-colorvalues.html",
+    "body": "颜色由红(R)、绿(G)、蓝(B)组成。\n颜色值\n颜色值由十六进制来表示红、绿、蓝（RGB）。\n每个颜色的最低值为 0(十六进制为 00)，最高值为 255(十六进制为FF)。\n十六进制值的写法为 # 号后跟三个或六个十六进制字符。\n三位数表示法为：#RGB，转换为6位数表示为：#RRGGBB。\n颜色实例\n颜色\n3位十六进制颜色值\n6位十六进制颜色值\nRGB\n#000\n#000000\nrgb(0,0,0)\n#F00\n#FF0000\nrgb(255,0,0)\n#0F0\n#00FF00\nrgb(0,255,0)\n#00F\n#0000FF\nrgb(0,0,255)\n#FF0\n#FFFF00\nrgb(255,255,0)\n#0FF\n#00FFFF\nrgb(0,255,255)\n#F0F\n#FF00FF\nrgb(255,0,255)\n#888\n#888888\nrgb(136,136,136)\n#FFF\n#FFFFFF\nrgb(255,255,255)\n尝试一下 »",
+    "examples": []
+   },
+   {
+    "title": "HTML 样式- CSS",
+    "url": "https://www.runoob.com/html/html-css.html",
+    "body": "CSS (Cascading Style Sheets) 用于渲染HTML元素标签的样式。",
+    "examples": []
+   },
+   {
+    "title": "HTML 编辑器",
+    "url": "https://www.runoob.com/html/html-editors.html",
+    "body": "HTML 编辑器推荐\n可以使用专业的 HTML 编辑器来编辑 HTML，为大家推荐几款常用的编辑器：",
+    "examples": []
+   },
+   {
+    "title": "HTML 元素",
+    "url": "https://www.runoob.com/html/html-elements.html",
+    "body": "HTML 文档由一系列 HTML 元素（Element）构成，是网页结构的基础。\n什么是 HTML 元素？\nHTML 元素是从开始标签（start tag）到结束标签（end tag）之间的完整结构。\n开始标签\n元素内容\n结束标签\n<p>\n这是一个段落\n</p>\n<a href=\"default.htm\">\n这是一个链接\n</a>\n<br>\n换行（空元素）\n无\n说明：\n开始标签也称为 起始标签（opening tag）\n结束标签也称为 闭合标签（closing tag）\nHTML 元素语法规则\n元素以开始标签开始，以结束标签结束\n元素内容位于开始标签与结束标签之间\n部分元素为空元素（empty element），没有内容\n空元素通常在开始标签中自闭合（如 <br />）\n大多数元素可以包含属性（Attributes）\n提示：属性将在后续章节详细介绍。\nHTML 元素的嵌套\nHTML 元素可以相互嵌套，形成树状结构：\n一个元素可以包含其他元素\nHTML 文档本质上是一个嵌套结构（DOM 树）\nHTML 文档示例\n<!DOCTYPE html>\n<html>\n  <body>\n    <p>这是第一个段落。</p>\n  </body>\n</html>",
+    "examples": []
+   },
+   {
+    "title": "HTML 字符实体",
+    "url": "https://www.runoob.com/html/html-entities.html",
+    "body": "HTML 中的预留字符必须被替换为字符实体。\n一些在键盘上找不到的字符也可以使用字符实体来替换。\nHTML 实体\n在 HTML 中，某些字符是预留的。\n在 HTML 中不能使用小于号（<）和大于号（>），这是因为浏览器会误认为它们是标签。\n如果希望正确地显示预留字符，我们必须在 HTML 源代码中使用字符实体（character entities）。\n字符实体类似这样：\n&entity_name;\n或\n&#entity_number;",
+    "examples": []
+   },
+   {
+    "title": "HTML 实例",
+    "url": "https://www.runoob.com/html/html-examples.html",
+    "body": "HTML 基础\n非常简单的HTML文档HTML 标题HTML 段落HTML 链接HTML 图片\n实例解析\nHTML 标题\nHTML 标题在html源码中插入注释插入水平线\n实例解析\nHTML 段落\nHTML 段落更多段落本例演示在 HTML 文档中折行的使用。 HTML 格式化的某些问题。\n实例解析\nHTML 文本格式化\n文本格式化此例演示如何使用 pre 标签对空行和空格进行控制。此例演示不同的\"计算机输出\"标签的显示效果。此例演示如何在 HTML 文件中写地址。此例演示如何实现缩写或首字母缩写。此例演示如何改变文字的方向。此例演示如何实现长短不一的引用语。文本下划线与删除线\n实例解析\nHTML 样式\nHTML Style 元素 背景色样式字体样式，颜色，大小文本对齐样式设置文本字体设置文本字体大小设置文本字体颜色设置文本字体，字体大小，字体颜色HTML使用不同样式没有下划线的链接链接到一个外部样式表\n实例解析\nHTML 链接\n创建超级链接将图像作为链接在新的浏览器窗口打开链接链接到同一个页面的不同位置跳出框架创建电子邮件链接创建电子邮件链接 2\n实例解析\nHTML 图像\n插入图像从不同的位置插入图片排列图片本例演示如何使图片浮动至段落的左边或右边。制作图像链接创建图像映射\n实例解析\nHTML 表格\n简单的表格没有边框的表格表格中的表头带有标题的表格跨行或跨列的表格单元格表格内的标签单元格边距(Cell padding)单元格间距(Cell spacing)\n实例解析\nHTML 列表\n无序列表有序列表不同类型的有序列表不同类型的无序列表嵌套列表嵌套列表 2定义列表\n实例解析\nHTML Forms 和 Input\n创建文本域(Text fields)创建密码域复选框单选按钮简单的下拉列表预选下拉列表本例演示如何创建一个文本域（多行文本输入控件）。创建一个按钮本例演示如何在数据周围绘制一个带标题的框。带有文本域与输入域的表单带有复选框与提交按钮的form表单带有单选框与提交按钮的表单发送邮件表单\n实例解析\nHTML iframe\n内联框架 (HTML页面中插入框架)\n实例解析\nHTML 头部元素\n描述了文档标题HTML页面中默认的URL链接提供文档元数据\n实例解析\nHTML 脚本\n插入一个脚本使用 <noscript> 标签\n实例解析\n更多实例：https://www.jyshare.com/examples/",
+    "examples": []
+   },
+   {
+    "title": "HTML 文本格式化",
+    "url": "https://www.runoob.com/html/html-formatting.html",
+    "body": "HTML 文本格式化\n加粗文本斜体文本电脑自动输出\n这是 下标 和 上标",
+    "examples": []
+   },
+   {
+    "title": "HTML 表单和输入",
+    "url": "https://www.runoob.com/html/html-forms.html",
+    "body": "HTML 表单用于收集用户的输入信息。\nHTML 表单表示文档中的一个区域，此区域包含交互控件，将用户收集到的信息发送到 Web 服务器。\nHTML 表单通常包含各种输入字段、复选框、单选按钮、下拉列表等元素。\n以下是一个简单的HTML表单的例子：\n<form> 元素用于创建表单，action 属性定义了表单数据提交的目标 URL，method 属性定义了提交数据的 HTTP 方法（这里使用的是 \"post\"）。\n<label> 元素用于为表单元素添加标签，提高可访问性。\n<input> 元素是最常用的表单元素之一，它可以创建文本输入框、密码框、单选按钮、复选框等。type 属性定义了输入框的类型，id 属性用于关联 <label> 元素，name 属性用于标识表单字段。\n<select> 元素用于创建下拉列表，而 <option> 元素用于定义下拉列表中的选项。\n实例\n尝试一下 »",
+    "examples": [
+     "<form action=\"/\" method=\"post\">\n    <!-- 文本输入框 -->\n    <label for=\"name\">用户名:</label>\n    <input type=\"text\" id=\"name\" name=\"name\" required>\n\n    <br>\n\n    <!-- 密码输入框 -->\n    <label for=\"password\">密码:</label>\n    <input type=\"password\" id=\"password\" name=\"password\" required>\n\n    <br>\n\n    <!-- 单选按钮 -->\n    <label>性别:</label>\n    <input type=\"radio\" id=\"male\" name=\"gender\" value=\"male\" checked>\n    <label for=\"male\">男</label>\n    <input type=\"radio\" id=\"female\" name=\"gender\" value=\"female\">\n    <label for=\"female\">女</label>\n\n    <br>\n\n    <!-- 复选框 -->\n    <input type=\"checkbox\" id=\"subscribe\" name=\"subscribe\" checked>\n    <label for=\"subscribe\">订阅推送信息</label>\n\n    <br>\n\n    <!-- 下拉列表 -->\n    <label for=\"country\">国家:</label>\n    <select id=\"country\" name=\"country\">\n        <option value=\"cn\">CN</option>\n        <option value=\"usa\">USA</option>\n        <option value=\"uk\">UK</option>\n    </select>\n\n    <br>\n\n    <!-- 提交按钮 -->\n    <input type=\"submit\" value=\"提交\">\n</form>"
+    ]
+   },
+   {
+    "title": "HTML <head>",
+    "url": "https://www.runoob.com/html/html-head.html",
+    "body": "查看在线实例",
+    "examples": []
+   },
+   {
+    "title": "HTML 标题",
+    "url": "https://www.runoob.com/html/html-headings.html",
+    "body": "在 HTML 文档中，标题很重要。\nHTML 标题\n标题（Heading）是通过 <h1> - <h6> 标签进行定义的。\n<h1>\n 定义最大的标题。 <h6> 定义最小的标题。\n实例",
+    "examples": [
+     "<h1>这是一个标题。</h1>\n<h2>这是一个标题。</h2>\n<h3>这是一个标题。</h3>"
+    ]
+   },
+   {
+    "title": "HTML 框架",
+    "url": "https://www.runoob.com/html/html-iframes.html",
+    "body": "通过使用框架，你可以在同一个浏览器窗口中显示不止一个页面。\niframe语法:\n<iframe src=\"URL\"></iframe>\n该URL指向不同的网页。\niframe - 设置高度与宽度\nheight 和 width 属性用来定义iframe标签的高度与宽度。\n属性默认以像素为单位, 但是你可以指定其按比例显示 (如：\"80%\")。\n实例",
+    "examples": [
+     "<iframe src=\"demo_iframe.htm\" width=\"200\" height=\"200\"></iframe>"
+    ]
+   },
+   {
+    "title": "HTML 图像",
+    "url": "https://www.runoob.com/html/html-images.html",
+    "body": "实例\nNorwegian Mountain Trip",
+    "examples": []
+   },
+   {
+    "title": "HTML 简介",
+    "url": "https://www.runoob.com/html/html-intro.html",
+    "body": "HTML 实例",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<title>菜鸟教程(runoob.com)</title>\n</head>\n<body>\n<h1>我的第一个标题</h1>\n<p>我的第一个段落。</p>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "HTML 布局",
+    "url": "https://www.runoob.com/html/html-layouts.html",
+    "body": "网页布局对改善网站的外观非常重要。\n请慎重设计您的网页布局。\n在线实例",
+    "examples": []
+   },
+   {
+    "title": "HTML 链接",
+    "url": "https://www.runoob.com/html/html-links.html",
+    "body": "HTML 链接（Anchor）是网页之间跳转的核心部分。\nHTML 使用链接与网络上的另一个文档相连。\nHTML中的链接是一种用于在不同网页之间导航的元素。\n链接通常用于将一个网页与另一个网页或资源（如文档、图像、音频文件等）相关联。\n链接允许用户在浏览网页时单击文本或图像来跳转到其他位置，从而实现网页之间的互联。\nHTML 链接 通过 <a> 标签创建，通常用于将用户从一个页面导航到另一个页面、从一个部分跳转到页面中的另一个部分、下载文件、打开电子邮件应用程序或执行 JavaScript 函数等。\n基本语法\n<a href=\"URL\">链接文本</a>\n<a> 标签：定义了一个超链接（anchor）。它是 HTML 中用来创建可点击链接的主要标签。\nhref 属性：指定目标 URL，当点击链接时，浏览器将导航到此 URL。\n以下实例演示来如何在 HTML 文档中创建链接：\n实例\n尝试一下 »",
+    "examples": [
+     "<a href=\"/index.html\">本文本</a> 是一个指向本网站中的一个页面的链接。</p>\n\n<p><a href=\"https://www.microsoft.com/\">本文本</a> 是一个指向万维网上的页面的链接。</p>"
+    ]
+   },
+   {
+    "title": "HTML 列表",
+    "url": "https://www.runoob.com/html/html-lists.html",
+    "body": "HTML 支持有序、无序和定义列表:\nHTML 列表\n有序列表\n第一个列表项\n第二个列表项\n第三个列表项\n无序列表\n列表项\n列表项\n列表项",
+    "examples": []
+   },
+   {
+    "title": "HTML 多媒体",
+    "url": "https://www.runoob.com/html/html-media.html",
+    "body": "Web 上的多媒体指的是音效、音乐、视频和动画。\n现代网络浏览器已支持很多多媒体格式。\n什么是多媒体？\n多媒体来自多种不同的格式。它可以是您听到或看到的任何内容，文字、图片、音乐、音效、录音、电影、动画等等。\n在因特网上，您会经常发现嵌入网页中的多媒体元素，现代浏览器已支持多种多媒体格式。\n在本教程中，您将了解到不同的多媒体格式，以及如何在您的网页中使用它们。\n浏览器支持\n第一款因特网浏览器只支持文本，而且即使是对文本的支持也仅限于单一字体和单一颜色。随后诞生了支持颜色、字体和文本样式的浏览器，图片支持也被加入。\n不同的浏览器以不同的方式处理对音效、动画和视频的支持。某些元素能够以内联的方式处理，而某些则需要额外的插件。\n您将在下面的章节学习更多有关插件的知识。\n多媒体格式\n格式 多媒体元素（比如视频和音频）存储于媒体文件中。\n确定媒体类型的最常用的方法是查看文件扩展名。当浏览器得到文件扩展名 .htm 或 .html 时，它会假定该文件是 HTML 页面。.xml 扩展名指示 XML 文件，而 .css 扩展名指示样式表。图片格式则通过 .gif 或 .jpg 来识别。\n多媒体元素也拥有带有不同扩展名的文件格式，比如 .swf、.wmv、.mp3 以及 .mp4。\n视频格式\nMP4是互联网推出新的视频格式。YouTube 推荐使用 MP4 。\n Flash Players 支持 MP4HTML5 支持 MP4。\n格式\n文件\n描述\nAVI\n.avi\nAVI (Audio Video Interleave) 格式是由微软开发的。所有运行 Windows 的计算机都支持 AVI 格式。它是因特网上很常见的格式，但非 Windows 计算机并不总是能够播放。\nWMV\n.wmv\nWindows Media 格式是由微软开发的。Windows Media 在因特网上很常见，但是如果未安装额外的（免费）组件，就无法播放 Windows Media 电影。一些后期的 Windows Media 电影在所有非 Windows 计算机上都无法播放，因为没有合适的播放器。\nMPEG\n.mpg\n.mpeg\nMPEG (Moving Pictures Expert Group) 格式是因特网上最流行的格式。它是跨平台的，得到了所有最流行的浏览器的支持。\nQuickTime\n.mov\nQuickTime 格式是由苹果公司开发的。QuickTime 是因特网上常见的格式，但是 QuickTime 电影不能在没有安装额外的（免费）组件的 Windows 计算机上播放。\nRealVideo\n.rm\n.ram\nRealVideo 格式是由 Real Media 针对因特网开发的。该格式允许低带宽条件下（在线视频、网络电视）的视频流。由于是低带宽优先的，质量常会降低。\nFlash\n.swf\n.flv\nFlash (Shockwave) 格式是由 Macromedia 开发的。Shockwave 格式需要额外的组件来播放。但是该组件会预装到 Firefox 或 IE 之类的浏览器上。\nMpeg-4\n.mp4\nMpeg-4 (with H.264 video compression) 是一种针对因特网的新格式。事实上，YouTube 推荐使用 MP4。YouTube 接收多种格式，然后全部转换为 .flv 或 .mp4 以供分发。越来越多的视频发布者转到 MP4，将其作为 Flash 播放器和 HTML5 的因特网共享格式。\n最新的 HTML5 标准只支持 MP4, WebM, 和 Ogg 视频格式。\n声音格式\nMP3是一种音频压缩技术，其全称是动态影像专家压缩标准音频层面3（Moving Picture Experts Group Audio Layer III），简称为MP3。它被设计用来大幅度地降低音频数据量。如果你的站点是音乐类型的，你可以选择mp3格式。\n格式\n文件\n描述\nMIDI\n.mid\n.midi\nMIDI (Musical Instrument Digital Interface) 是一种针对电子音乐设备（比如合成器和声卡）的格式。MIDI 文件不含有声音，但包含可被电子产品（比如声卡）播放的数字音乐指令。\n点击这里播放 The Beatles。\n因为 MIDI 格式仅包含指令，所以 MIDI 文件极其小巧。上面的例子只有 23k 的大小，但却能播放将近 5 分钟。MIDI 得到了广泛的平台上的大量软件的支持。大多数流行的网络浏览器都支持 MIDI。\nRealAudio\n.rm\n.ram\nRealAudio 格式是由 Real Media 针对因特网开发的。该格式也支持视频。该格式允许低带宽条件下的音频流（在线音乐、网络音乐）。由于是低带宽优先的，质量常会降低。\nWave\n.wav\nWave (waveform) 格式是由 IBM 和微软开发的。所有运行 Windows 的计算机和所有网络浏览器（除了 Google Chrome）都支持它。\nWMA\n.wma\nWMA 格式 (Windows Media Audio)，质量优于 MP3，兼容大多数播放器，除了 iPod。WMA 文件可作为连续的数据流来传输，这使它对于网络电台或在线音乐很实用。\nMP3\n.mp3\n.mpga\nMP3 文件实际上是 MPEG 文件的声音部分。MPEG 格式最初是由运动图像专家组开发的。MP3 是其中最受欢迎的针对音乐的声音格式。期待未来的软件系统都支持它。\nHTML5 的最新标准支持 MP3, WAV, 和 Ogg 音频格式。",
+    "examples": []
+   },
+   {
+    "title": "HTML 插件",
+    "url": "https://www.runoob.com/html/html-object.html",
+    "body": "插件的功能是扩展 HTML 浏览器的功能。\nHTML 助手（插件）\n辅助应用程序（helper application）是可由浏览器启动的程序。辅助应用程序也称为插件。\n辅助程序可用于播放音频和视频（以及其他）。辅助程序是使用 <object> 标签来加载的。\n使用辅助程序播放视频和音频的一个优势是，您能够允许用户来控制部分或全部播放设置。\n插件可以通过 <object> 标签或者 <embed> 标签添加在页面中。\n大多数辅助应用程序允许对音量设置和播放功能（比如后退、暂停、停止和播放）的手工（或程序的）控制。\n注意：\n大多数浏览器不再支持 Java 小程序和插件。\n大多数现代浏览器关闭了对 Flash 的支持。\n以下 swf 文件的实例在现代浏览器中无法正常运行。\n我们可以使用 <video> 和 <audio> 标签来显示视频和音频\n<object> 元素\n所有主流浏览器都支持 <object> 标签。\n<object> 元素定义了在 HTML 文档中嵌入的对象。\n该标签用于插入对象 (例如在网页中嵌入 Java 小程序, PDF 阅读器, \nFlash 播放器) 。\n实例\n尝试一下 »",
+    "examples": [
+     "<object width=\"400\" height=\"50\" data=\"bookmark.swf\"></object>"
+    ]
+   },
+   {
+    "title": "HTML 段落",
+    "url": "https://www.runoob.com/html/html-paragraphs.html",
+    "body": "HTML 可以将文档分割为若干段落。\nHTML 段落\n段落是通过 <p> 标签定义的。\n实例",
+    "examples": [
+     "<p>这是一个段落 </p>\n<p>这是另一个段落</p>"
+    ]
+   },
+   {
+    "title": "HTML 速查列表",
+    "url": "https://www.runoob.com/html/html-quicklist.html",
+    "body": "HTML 速查列表. 你可以打印它，以备日常使用。\nHTML 基本文档",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<title>文档标题</title>\n</head>\n<body>\n可见文本...\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "HTML 测验",
+    "url": "https://www.runoob.com/html/html-quiz.html",
+    "body": "",
+    "examples": []
+   },
+   {
+    "title": "HTML 脚本",
+    "url": "https://www.runoob.com/html/html-scripts.html",
+    "body": "JavaScript 使 HTML 页面具有更强的动态和交互性。\n在线实例",
+    "examples": []
+   },
+   {
+    "title": "HTML 音频(Audio)",
+    "url": "https://www.runoob.com/html/html-sounds.html",
+    "body": "声音在HTML中可以以不同的方式播放.\n问题以及解决方法\n在 HTML 中播放音频并不容易！\n您需要谙熟大量技巧，以确保您的音频文件在所有浏览器中（Internet Explorer, Chrome, Firefox, Safari, Opera）和所有硬件上（PC, Mac , iPad, iPhone）都能够播放。\n在本章，菜鸟教程为您总结了问题和解决方法。\n使用插件\n浏览器插件是一种扩展浏览器标准功能的小型计算机程序。\n插件可以使用 <object> 标签 或者 <embed> 标签添加在页面上.\n这些标签定义资源（通常非 HTML 资源）的容器，根据类型，它们即会由浏览器显示，也会由外部插件显示。\n使用 <embed> 元素\n<embed>标签定义外部（非 HTML）内容的容器。（这是一个 HTML5 标签，在 HTML4 中是非法的，但是所有浏览器中都有效）。\n下面的代码片段能够显示嵌入网页中的 MP3 文件：\n实例\n尝试一下 »",
+    "examples": [
+     "<embed height=\"50\" width=\"100\" src=\"horse.mp3\">"
+    ]
+   },
+   {
+    "title": "你已经完成了 HTML 的学习，下一步该学习什么呢？",
+    "url": "https://www.runoob.com/html/html-summary.html",
+    "body": "HTML 总结\n本教程已教你如何使用 HTML 创建站点。\nHTML 是一种在 Web 上使用的通用标记语言。HTML 允许你格式化文本，添加图片，创建链接、输入表单、框架和表格等等，并可将之存为文本文件，浏览器即可读取和显示。\nHTML 的关键是标签，其作用是指示将出现的内容。\n如需更多关于 HTML 的信息，请查看我们的 HTML 教程 和 HTML 参考手册 。\n现在，你已学完HTML，接下来该学习什么呢？\n学习 CSS\nCSS被用来同时控制多重网页的样式和布局。\n通过使用 CSS，所有的格式化均可从 HTML 中剥离出来，并存储于一个独立的文件中。\n如需学习如何创建样式表，请访问我们的 CSS 教程 。\n学习 JavaScript\nJavaScript 可以让你的网页更加生动。\n如果你只想展示内容，静态网站是很好的展示形象，如果你想与用户进行交换或者让网页更加生动那就需要使用到Javascript。\nJavaScript是互联网上最流行的脚本语言，目前所有主流浏览器都支持Javascript。\n如果你想学习更多关于Javascript的知识，可以访问本站的JavaScript 教程.\n站点服务器\n在自己的服务器上托管网站始终是一个选项。有几点需要考虑：\n硬件支出\n如果要运行\"真正\"的网站，您不得不购买强大的服务器硬件。不要指望低价的 PC 能够应付这些工作。您还需要稳定的（一天 24 小时）高速连接。\n软件支出\n请记住，服务器授权通常比客户端授权更昂贵。同时请注意，服务器授权也许有用户数量限制。\n人工费\n不要指望低廉的人工费用。您必须安装自己的硬件和软件。您同时要处理漏洞和病毒，以确保您的服务器时刻正常地运行于一个\"任何事都可能发生\"的环境中。\n使用因特网服务提供商（ISP）\n从 ISP 租用服务器也很常见。\n大多数小公司会把网站存放到由 ISP 提供的服务器上。其优势有以下几点：\n连接速度\n大多数 ISP 都拥有连接因特网的高速连接。\n强大的硬件\nISP 的 web 服务器通常强大到能够由若干网站分享资源。您还要看一下 ISP 是否提供高效的负载平衡，以及必要的备份服务器。\n安全性和可靠性\nISP 是网站托管方面的专家。他们应该提供 99% 以上的在线时间，最新的软件补丁，以及最好的病毒防护。\n选择 ISP 时的注意事项\n24 小时支持\n确保 ISP 提供 24 小时支持。不要使自己置于无法解决严重问题的尴尬境地，同时还必须等待第二个工作日。如果您不希望支付长途电话费，那么免费电话服务也是必要的。\n每日备份\n确保 ISP 会执行每日备份的例行工作，否则您有可能损失有价值的数据。\n流量\n研究一下 ISP 的流量限制。如果出现由于网站受欢迎而激增的不可预期的访问量，那么您要确保不会因此支付额外费用。\n带宽或内容限制\n研究一下 ISP 的带宽和内容限制。如果您计划发布图片或播出视频或音频，请确保您有此权限。\nE-mail 功能\n请确保 ISP 支持您需要的 e-mail 功能。\n数据库访问\n如果您计划使用网站数据库中的数据，那么请确保您的 ISP 支持您需要的数据库访问。\n在您选取一家 ISP 之前，请务必阅读菜鸟教程的 Web 主机教程。",
+    "examples": []
+   },
+   {
+    "title": "HTML 表格",
+    "url": "https://www.runoob.com/html/html-tables.html",
+    "body": "HTML 表格由 <table> 标签来定义。\nHTML 表格是一种用于展示结构化数据的标记语言元素。\n每个表格均有若干行（由 <tr> 标签定义），每行被分割为若干单元格（由 <td> 标签定义），表格可以包含标题行（<th>）用于定义列的标题。\ntr：tr 是 table row 的缩写，表示表格的一行。\ntd：td 是 table data 的缩写，表示表格的数据单元格。\nth：th 是 table header的缩写，表示表格的表头单元格。\n数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等等。\nHTML 表格生成器：https://www.jyshare.com/front-end/7688/。\n以下是一个简单的 HTML 表格实例:\n实例",
+    "examples": [
+     "<table>\n  <thead>\n    <tr>\n      <th>列标题1</th>\n      <th>列标题2</th>\n      <th>列标题3</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>行1，列1</td>\n      <td>行1，列2</td>\n      <td>行1，列3</td>\n    </tr>\n    <tr>\n      <td>行2，列1</td>\n      <td>行2，列2</td>\n      <td>行2，列3</td>\n    </tr>\n  </tbody>\n</table>"
+    ]
+   },
+   {
+    "title": "HTML 标签简写及全称",
+    "url": "https://www.runoob.com/html/html-tag-name.html",
+    "body": "下表列出了 HTML 标签简写及全称：\n标签\n英文全称\n中文说明\na\nAnchor\n锚\nabbr\nAbbreviation\n缩写词\nacronym\nAcronym\n取首字母的缩写词\naddress\nAddress\n地址\nalt\nalter\n替用(一般是图片显示不出的提示)\nb\nBold\n粗体（文本）\nbdo\nBi-Directional Override\n文本显示方向\nbig\nBig\n变大（文本）\nblockquote\nBlock Quotation\n区块引用语\nbr\nBreak\n换行\ncell\ncell\n巢\ncellpadding\ncellpadding\n巢补白\ncellspacing\ncellspacing\n巢空间\ncenter\nCentered\n居中（文本）\ncite\nCitation\n引用\ncode\nCode\n源代码（文本）\ndd\nDefinition Description\n定义描述\ndel\nDeleted\n删除（的文本）\ndfn\nDefines a Definition Term\n定义定义条目\ndiv\nDivision\n分隔\ndl\nDefinition List\n定义列表\ndt\nDefinition Term\n定义术语\nem\nEmphasized\n加重（文本）\nfont\nFont\n字体\nh1~h6\nHeader 1 to Header 6\n标题1到标题6\nhr\nHorizontal Rule\n水平尺\nhref\nhypertext reference\n超文本引用\ni\nItalic\n斜体（文本）\niframe\nInline frame\n定义内联框架\nins\nInserted\n插入（的文本）\nkbd\nKeyboard\n键盘（文本）\nli\nList Item\n列表项目\nnl\nnavigation lists\n导航列表\nol\nOrdered List\n排序列表\noptgroup\nOption group\n定义选项组\np\nParagraph\n段落\npre\nPreformatted\n预定义格式（文本 ）\nq\nQuotation\n引用语\nrel\nReload\n加载\ns/ strike\nStrikethrough\n删除线\nsamp\nSample\n示例（文本\nsmall\nSmall\n变小（文本）\nspan\nSpan\n范围\nsrc\nSource\n源文件链接\nstrong\nStrong\n加重（文本）\nsub\nSubscripted\n下标（文本）\nsup\nSuperscripted\n上标（文本）\ntd\ntable data cell\n表格中的一个单元格\nth\ntable header cell\n表格中的表头\ntr\ntable row\n表格中的一行\ntt\nTeletype\n打印机（文本）\nu\nUnderlined\n下划线（文本）\nul\nUnordered List\n不排序列表\nvar\nVariable\n变量（文本）",
+    "examples": []
+   },
+   {
+    "title": "HTML 教程- (HTML5 标准)",
+    "url": "https://www.runoob.com/html/html-tutorial.html",
+    "body": "超文本标记语言（英语：HyperText Markup Language，简称：HTML）是一种用于创建网页的标准标记语言。\n您可以使用 HTML 来建立自己的 WEB 站点，HTML 运行在浏览器上，由浏览器来解析。\n在本教程中，您将学习如何使用 HTML 来创建站点。\nHTML 很容易学习！相信您能很快学会它！",
+    "examples": []
+   },
+   {
+    "title": "HTML 统一资源定位器(Uniform Resource Locators)",
+    "url": "https://www.runoob.com/html/html-url.html",
+    "body": "URL 是一个网页地址。\nURL可以由字母组成，如\"runoob.com\"，或互联网协议（IP）地址：\n192.68.20.50。大多数人进入网站使用网站域名来访问，因为\n名字比数字更容易记住。\nURL - 统一资源定位器\nWeb浏览器通过URL从Web服务器请求页面。\n当您点击 HTML 页面中的某个链接时，对应的 <a> 标签指向万维网上的一个地址。\n一个统一资源定位器(URL) 用于定位万维网上的文档。\n一个网页地址实例:\n\nhttp://www.runoob.com/html/html-tutorial.html\n语法规则:\nscheme://host.domain:port/path/filename",
+    "examples": []
+   },
+   {
+    "title": "HTML 视频（Video）",
+    "url": "https://www.runoob.com/html/html-videos.html",
+    "body": "在 HTML 中播放视频的方法有很多种。\nHTML视频（Videos）播放\n实例",
+    "examples": [
+     "<video width=\"320\" height=\"240\" controls>\n<source src=\"movie.mp4\" type=\"video/mp4\">\n<source src=\"movie.ogg\" type=\"video/ogg\">\n<source src=\"movie.webm\" type=\"video/webm\">\n<object data=\"movie.mp4\" width=\"320\" height=\"240\">\n<embed src=\"movie.swf\" width=\"320\" height=\"240\">\n</object>\n</video>"
+    ]
+   },
+   {
+    "title": "HTML - XHTML",
+    "url": "https://www.runoob.com/html/html-xhtml.html",
+    "body": "XHTML 是以 XML 格式编写的 HTML。\n什么是 XHTML?\nXHTML 指的是可扩展超文本标记语言\nXHTML 与 HTML 4.01 几乎是相同的\nXHTML 是更严格更纯净的 HTML 版本\nXHTML 是以 XML 应用的方式定义的 HTML\nXHTML 是 2001 年 1 月发布的 W3C 推荐标准\nXHTML 得到所有主流浏览器的支持\n为什么使用 XHTML?\n因特网上的很多页面包含了\"糟糕\"的 HTML。\n如果在浏览器中查看，下面的 HTML 代码运行起来非常正常（即使它并未遵守 HTML 规则）：",
+    "examples": [
+     "<html>\n<head>\n<meta charset=\"utf-8\">\n<title>这是一个不规范的 HTML</title>\n<body>\n<h1>不规范的 HTML\n<p>这是一个段落\n</body>"
+    ]
+   },
+   {
+    "title": "HTML5 应用程序缓存",
+    "url": "https://www.runoob.com/html/html5-app-cache.html",
+    "body": "使用 HTML5，通过创建 cache manifest 文件，可以轻松地创建 web 应用的离线版本。\n注意：manifest 的技术已被 web 标准废弃，不再推荐使用此功能。\n什么是应用程序缓存（Application Cache）？\nHTML5 引入了应用程序缓存，这意味着 web 应用可进行缓存，并可在没有因特网连接时进行访问。\n应用程序缓存为应用带来三个优势：\n离线浏览 - 用户可在应用离线时使用它们\n速度 - 已缓存资源加载得更快\n减少服务器负载 - 浏览器将只从服务器下载更新过或更改过的资源。\n浏览器支持\nInternet Explorer 10, Firefox, Chrome, Safari 和 Opera 支持应用程序缓存.\nHTML5 Cache Manifest 实例\n下面的例子展示了带有 cache manifest 的 HTML 文档（供离线浏览）：\n实例\n尝试一下 »",
+    "examples": [
+     "<!DOCTYPE HTML>\n    <html manifest=\"demo.appcache\">\n\t<body>\n\t文档内容......\n\t</body>\n\t</html>"
+    ]
+   },
+   {
+    "title": "HTML5 Audio(音频)",
+    "url": "https://www.runoob.com/html/html5-audio.html",
+    "body": "HTML5 提供了播放音频文件的标准。\n互联网上的音频\n直到现在，仍然不存在一项旨在网页上播放音频的标准。\n今天，大多数音频是通过插件（比如 Flash）来播放的。然而，并非所有浏览器都拥有同样的插件。\nHTML5 规定了在网页上嵌入音频元素的标准，即使用 <audio> 元素。\n浏览器支持\nInternet Explorer 9+, Firefox, Opera, Chrome, 和 Safari 都支持 <audio> 元素.\n注意: Internet Explorer 8 及更早IE版本不支持 <audio> 元素.\nHTML5 Audio - 如何工作\n如需在 HTML5 中播放音频，你需要使用以下代码：\n实例",
+    "examples": [
+     "<audio controls>\n<source src=\"horse.ogg\" type=\"audio/ogg\">\n<source src=\"horse.mp3\" type=\"audio/mpeg\">\n您的浏览器不支持 audio 元素。\n</audio>"
+    ]
+   },
+   {
+    "title": "HTML5 浏览器支持",
+    "url": "https://www.runoob.com/html/html5-browsers.html",
+    "body": "你可以让一些较早的浏览器（不支持HTML5）支持 HTML5。\nHTML5 浏览器支持\n现代的浏览器都支持 HTML5。\n此外，所有浏览器，包括旧的和最新的，对无法识别的元素会作为内联元素自动处理。\n正因为如此，你可以 \"教会\" 浏览器处理 \"未知\" 的 HTML 元素。\n甚至你可以教会 IE6 (Windows XP 2001) 浏览器处理未知的 HTML 元素。\n将 HTML5 元素定义为块元素\nHTML5 定了 8 个新的 HTML 语义（semantic） 元素。所有这些元素都是\n块级 元素。\n为了能让旧版本的浏览器正确显示这些元素，你可以设置 CSS 的 display 属性值为 block:\n实例",
+    "examples": [
+     "header, section, footer, aside, nav, main, article, figure {\ndisplay: block; \n}"
+    ]
+   },
+   {
+    "title": "HTML5 Canvas",
+    "url": "https://www.runoob.com/html/html5-canvas.html",
+    "body": "<canvas> 标签定义图形，比如图表和其他图像，您必须使用脚本来绘制图形。\n在画布上（Canvas）画一个红色矩形，渐变矩形，彩色矩形，和一些彩色的文字。\n你的浏览器不支持 HTML5 的 <canvas> 元素.\n什么是 canvas?\nHTML5 <canvas> 元素用于图形的绘制，通过脚本 (通常是JavaScript)来完成.\n<canvas> 标签只是图形容器，您必须使用脚本来绘制图形。\n你可以通过多种方法使用 canvas 绘制路径,盒、圆、字符以及添加图像。\n浏览器支持\n表格中的数字表示支持 <canvas> 元素的第一个浏览器版本号。\n元素\n<canvas>\n4.0\n9.0\n2.0\n3.1\n9.0\n创建一个画布（Canvas）\n一个画布在网页中是一个矩形框，通过 <canvas> 元素来绘制.\n注意: 默认情况下 <canvas> 元素没有边框和内容。\n<canvas>简单实例如下:\n<canvas id=\"myCanvas\" width=\"200\" height=\"100\"></canvas>",
+    "examples": []
+   },
+   {
+    "title": "HTML5 拖放（Drag 和 Drop）",
+    "url": "https://www.runoob.com/html/html5-draganddrop.html",
+    "body": "拖放（Drag 和 drop）是 HTML5 标准的组成部分。",
+    "examples": []
+   },
+   {
+    "title": "HTML5 表单属性",
+    "url": "https://www.runoob.com/html/html5-form-attributes.html",
+    "body": "HTML5 新的表单属性\nHTML5 的 <form> 和 <input>标签添加了几个新属性.\n<form>新属性：\nautocomplete\nnovalidate\n<input>新属性：\nautocomplete\nautofocus\nform\nformaction\nformenctype\nformmethod\nformnovalidate\nformtarget\nheight 与 width\nlist\nmin 与 max\nmultiple\npattern (regexp)\nplaceholder\nrequired\nstep\n<form> / <input> autocomplete 属性\nautocomplete 属性规定 form 或 input 域应该拥有自动完成功能。\n当用户在自动完成域中开始输入时，浏览器应该在该域中显示填写的选项。\n提示: autocomplete 属性有可能在 form元素中是开启的，而在input元素中是关闭的。\n注意: autocomplete 适用于 <form> 标签，以及以下类型的 <input> 标签：text, search, url, telephone, email, password, datepickers, range 以及 color。\n实例\nHTML form 中开启 autocomplete (一个 input 字段关闭 autocomplete ):",
+    "examples": [
+     "<form action=\"demo-form.php\" autocomplete=\"on\">\n  First name:<input type=\"text\" name=\"fname\"><br>\n  Last name: <input type=\"text\" name=\"lname\"><br>\n  E-mail: <input type=\"email\" name=\"email\" autocomplete=\"off\"><br>\n<input type=\"submit\">\n</form>"
+    ]
+   },
+   {
+    "title": "HTML5 表单元素",
+    "url": "https://www.runoob.com/html/html5-form-elements.html",
+    "body": "HTML5 新的表单元素\nHTML5 有以下新的表单元素:\n<datalist>\n<keygen>\n<output>\n注意:不是所有的浏览器都支持HTML5 新的表单元素，但是你可以在使用它们，即使浏览器不支持表单属性，仍然可以显示为常规的表单元素。\nHTML5 <datalist> 元素\n<datalist> 元素规定输入域的选项列表。\n<datalist> 属性规定 form 或 input 域应该拥有自动完成功能。当用户在自动完成域中开始输入时，浏览器应该在该域中显示填写的选项：\n使用 <input> 元素的列表属性与 <datalist> 元素绑定.\n实例\n<input> 元素使用<datalist>预定义值:",
+    "examples": [
+     "<input list=\"browsers\">\n<datalist id=\"browsers\">\n<option value=\"Internet Explorer\">\n<option value=\"Firefox\">\n<option value=\"Chrome\">\n<option value=\"Opera\">\n<option value=\"Safari\">\n</datalist>"
+    ]
+   },
+   {
+    "title": "html5-form-input-types",
+    "url": "https://www.runoob.com/html/html5-form-input-types.html",
+    "body": "HTML5 新的 Input 类型\nHTML5 拥有多个新的表单输入类型。这些新特性提供了更好的输入控制和验证。\n本章全面介绍这些新的输入类型：\ncolor\ndate\ndatetime\ndatetime-local\nemail\nmonth\nnumber\nrange\nsearch\ntel\ntime\nurl\nweek\n注意:并不是所有的主流浏览器都支持新的input类型，不过您已经可以在所有主流的浏览器中使用它们了。即使不被支持，仍然可以显示为常规的文本域。\nInput 类型: color\ncolor 类型用在input字段主要用于选取颜色，如下所示：\n实例\n从拾色器中选择一个颜色:\n尝试一下 »",
+    "examples": [
+     "选择你喜欢的颜色: <input type=\"color\" name=\"favcolor\">"
+    ]
+   },
+   {
+    "title": "HTML5 Geolocation（地理定位）",
+    "url": "https://www.runoob.com/html/html5-geolocation.html",
+    "body": "HTML5 Geolocation（地理定位）用于定位用户的位置。\n定位用户的位置\nHTML5 Geolocation API 用于获得用户的地理位置。\n鉴于该特性可能侵犯用户的隐私，除非用户同意，否则用户位置信息是不可用的。\n浏览器支持\nInternet Explorer 9+, Firefox, Chrome, Safari 和 Opera 支持Geolocation（地理定位）.\n注意: Geolocation（地理定位）对于拥有 GPS 的设备，比如 iPhone，地理定位更加精确。\nHTML5 - 使用地理定位\n请使用 getCurrentPosition() 方法来获得用户的位置。\n下例是一个简单的地理定位实例，可返回用户位置的经度和纬度:\n实例",
+    "examples": [
+     "var x=document.getElementById(\"demo\");\nfunction getLocation()\n{\nif (navigator.geolocation)\n{\nnavigator.geolocation.getCurrentPosition(showPosition);\n    }\nelse\n{\nx.innerHTML=\"该浏览器不支持获取地理位置。\";\n    }\n}\nfunction showPosition(position)\n{\nx.innerHTML=\"纬度: \" + position.coords.latitude + \n    \"<br>经度: \" + position.coords.longitude;    \n}"
+    ]
+   },
+   {
+    "title": "HTML5 简介",
+    "url": "https://www.runoob.com/html/html5-intro.html",
+    "body": "HTML5是HTML最新的修订版本，2014年10月由万维网联盟（W3C）完成标准制定。\nHTML5的设计目的是为了在移动设备上支持多媒体。\nHTML5 简单易学。",
+    "examples": []
+   },
+   {
+    "title": "HTML5 MathML",
+    "url": "https://www.runoob.com/html/html5-mathml.html",
+    "body": "HTML5 可以在文档中使用 MathML 元素，对应的标签是 <math>...</math> 。\nMathML 是数学标记语言，是一种基于XML（标准通用标记语言的子集）的标准，用来在互联网上书写数学符号和公式的置标语言。\n注意：目前只有 Firefox 或 Safari 浏览器支持，大部分浏览器还不支持 MathML 标签，如果你的浏览器不支持该标签，可以使用最新版的 Firefox 或 Safari 浏览器查看。\n另外我们可以使用第三方的样式库来支持数学标记，本章节使用的样式库可以点击下面按钮下载：\n下载 mathml.zip\nMathML 实例\n以下是一个简单的 MathML 实例：\n实例\n尝试一下 »",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n   <head>\n      <meta charset=\"UTF-8\">\n      <title>菜鸟教程(runoob.com)</title>\n   </head>\n        \n   <body>\n        \n      <math xmlns=\"http://www.w3.org/1998/Math/MathML\">\n                \n         <mrow>\n            <msup><mi>a</mi><mn>2</mn></msup>\n            <mo>+</mo>\n                                \n            <msup><mi>b</mi><mn>2</mn></msup>\n            <mo>=</mo>\n                                \n            <msup><mi>c</mi><mn>2</mn></msup>\n         </mrow>\n                        \n      </math>\n                \n   </body>\n</html>"
+    ]
+   },
+   {
+    "title": "HTML5 新元素",
+    "url": "https://www.runoob.com/html/html5-new-element.html",
+    "body": "HTML5 新元素\n自1999年以后HTML 4.01 已经改变了很多,今天，在HTML 4.01中的几个已经被废弃，这些元素在HTML5中已经被删除或重新定义。\n为了更好地处理今天的互联网应用，HTML5添加了很多新元素及功能，比如:\n图形的绘制，多媒体内容，更好的页面结构，更好的形式\n处理，和几个api拖放元素，定位，包括网页\n应用程序缓存，存储，网络工作者，等。\n<canvas> 新元素\n标签\n描述\n<canvas>\n标签定义图形，比如图表和其他图像。该标签基于 JavaScript 的绘图 API\n新多媒体元素\n标签\n描述\n<audio>\n定义音频内容\n<video>\n定义视频（video 或者 movie）\n<source>\n定义多媒体资源 <video> 和 <audio>\n<embed>\n定义嵌入的内容，比如插件。\n<track>\n为诸如 <video> 和 <audio> 元素之类的媒介规定外部文本轨道。\n新表单元素\n标签\n描述\n<datalist>\n定义选项列表。请与 input 元素配合使用该元素，来定义 input 可能的值。\n<keygen>\n规定用于表单的密钥对生成器字段。\n<output>\n定义不同类型的输出，比如脚本的输出。\n新的语义和结构元素\nHTML5提供了新的元素来创建更好的页面结构：\n标签\n描述\n<article>\n定义页面独立的内容区域。\n<aside>\n定义页面的侧边栏内容。\n<bdi>\n允许您设置一段文本，使其脱离其父元素的文本方向设置。\n<command>\n定义命令按钮，比如单选按钮、复选框或按钮\n<details>\n用于描述文档或文档某个部分的细节\n<dialog>\n定义对话框，比如提示框\n<summary>\n标签包含 details 元素的标题\n<figure>\n规定独立的流内容（图像、图表、照片、代码等等）。\n<figcaption>\n定义 <figure> 元素的标题\n<footer>\n定义 section 或 document 的页脚。\n<header>\n定义了文档的头部区域\n<mark>\n定义带有记号的文本。\n<meter>\n定义度量衡。仅用于已知最大和最小值的度量。\n<nav>\n定义导航链接的部分。\n<progress>\n定义任何类型的任务的进度。\n<ruby>\n定义 ruby 注释（中文注音或字符）。\n<rt>\n定义字符（中文注音或字符）的解释或发音。\n<rp>\n在 ruby 注释中使用，定义不支持 ruby 元素的浏览器所显示的内容。\n<section>\n定义文档中的节（section、区段）。\n<time>\n定义日期或时间。\n<wbr>\n规定在文本中的何处适合添加换行符。\n已移除的元素\n以下的 HTML 4.01 元素在HTML5中已经被删除:\n<acronym>\n<applet>\n<basefont>\n<big>\n<center>\n<dir>\n<font>\n<frame>\n<frameset>\n<noframes>\n<strike>\n<tt>",
+    "examples": []
+   },
+   {
+    "title": "HTML5 语义元素",
+    "url": "https://www.runoob.com/html/html5-semantic-elements.html",
+    "body": "语义= 意义\n语义元素 = 有意义的元素\n什么是语义元素?\n一个语义元素能够清楚的描述其意义给浏览器和开发者。\n无语义 元素实例: <div> 和 <span> - 无需考虑内容.\n语义元素实例: <form>, <table>, and <img> - 清楚的定义了它的内容.\n浏览器支持\nInternet Explorer 9+, Firefox, Chrome, Safari 和 Opera 支持语义元素。\n注意: Internet Explorer 8 及更早版本不支持该元素。 但是文章底部提供了兼容的解决方法.\nHTML5中新的语义元素\n许多现有网站都包含以下HTML代码：\n<div id=\"nav\">, <div class=\"header\">, 或者 <div id=\"footer\">, \n来指明导航链接, 头部, 以及尾部.\nHTML5 提供了新的语义元素来明确一个Web页面的不同部分:\n<header>\n<nav>\n<section>\n<article>\n<aside>\n<figcaption>\n<figure>\n<footer>",
+    "examples": []
+   },
+   {
+    "title": "HTML5 服务器发送事件(Server-Sent Events)",
+    "url": "https://www.runoob.com/html/html5-serversentevents.html",
+    "body": "HTML5 服务器发送事件（server-sent event）允许网页获得来自服务器的更新。\nServer-Sent 事件 - 单向消息传递\nServer-Sent 事件指的是网页自动获取来自服务器的更新。\n以前也可能做到这一点，前提是网页不得不询问是否有可用的更新。通过服务器发送事件，更新能够自动到达。\n例子：Facebook/Twitter 更新、股价更新、新的博文、赛事结果等。\n浏览器支持\n所有主流浏览器均支持服务器发送事件，除了 Internet Explorer。\n接收 Server-Sent 事件通知\nEventSource 对象用于接收服务器发送事件通知：\n实例",
+    "examples": [
+     "var source=new EventSource(\"demo_sse.php\");\nsource.onmessage=function(event)\n{\ndocument.getElementById(\"result\").innerHTML+=event.data + \"<br>\";\n};"
+    ]
+   },
+   {
+    "title": "HTML5 SVG",
+    "url": "https://www.runoob.com/html/html5-svg.html",
+    "body": "SVG 定义为可缩放矢量图形。\nHTML5 支持内联 SVG。\nHTML <svg> 元素是 SVG 图形的容器。\nSVG 有多种绘制路径、框、圆、文本和图形图像的方法。\nSVG\n Sorry, your browser does not support inline SVG.\n什么是SVG？\nSVG 指可伸缩矢量图形 (Scalable Vector Graphics)\nSVG 用于定义用于网络的基于矢量的图形\nSVG 使用 XML 格式定义图形\nSVG 图像在放大或改变尺寸的情况下其图形质量不会有损失\nSVG 是万维网联盟的标准\nSVG优势\n与其他图像格式相比（比如 JPEG 和 GIF），使用 SVG 的优势在于：\nSVG 图像可通过文本编辑器来创建和修改\nSVG 图像可被搜索、索引、脚本化或压缩\nSVG 是可伸缩的\nSVG 图像可在任何的分辨率下被高质量地打印\nSVG 可在图像质量不下降的情况下被放大\n浏览器支持\n表格中的数字表示支持该元素的第一个浏览器版本号。\n元素\n<svg>\n4.0\n9.0\n3.0\n3.2\n10.1\n把 SVG 直接嵌入 HTML 页面\n在 HTML5 中，您能够将 SVG 元素直接嵌入 HTML 页面中。\nSVG 圆形\n实例",
+    "examples": [
+     "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n<circle cx=\"100\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"2\" fill=\"red\" />\n</svg>"
+    ]
+   },
+   {
+    "title": "HTML(5) 代码规范",
+    "url": "https://www.runoob.com/html/html5-syntax.html",
+    "body": "HTML 代码约定\n很多 Web 开发人员对 HTML 的代码规范知之甚少。\n在2000年至2010年，许多Web开发人员从 HTML 转换到 XHTML。\n使用 XHTML 开发人员逐渐养成了比较好的 HTML 编写规范。\n而针对于 HTML5 ，我们应该形成比较好的代码规范，以下提供了几种规范的建议。\n使用正确的文档类型\n文档类型声明位于HTML文档的第一行：",
+    "examples": [
+     "<!DOCTYPE html>"
+    ]
+   },
+   {
+    "title": "HTML5 Video(视频)",
+    "url": "https://www.runoob.com/html/html5-video.html",
+    "body": "很多站点都会使用到视频. HTML5 提供了展示视频的标准。\n检测您的浏览器是否支持 HTML5 视频：",
+    "examples": [
+     "检测"
+    ]
+   },
+   {
+    "title": "HTML5 Web IndexedDB 数据库",
+    "url": "https://www.runoob.com/html/html5-web-api-indexeddb.html",
+    "body": "IndexedDB 是一种基于浏览器的 NoSQL 数据库，用于在客户端持久化存储大量结构化数据。\nIndexedDB 允许通过键值对存储复杂的数据对象（如对象、数组、文件等），并支持事务、索引、版本控制和复杂查询操作。\nIndexedDB 是异步的，不会阻塞主线程，适合离线应用程序、缓存等场景。\nIndexedDB 非常适合需要存储大量结构化数据的应用程序，尤其是那些希望支持离线模式或处理复杂查询的 Web 应用。\nIndexedDB 特性\n键值对存储：数据以键值对的形式存储在对象存储（object store）中。\n事务支持：所有数据操作必须在事务内完成，以确保数据一致性和完整性。\n异步 API：所有操作都是异步的，不会阻塞 UI 线程，使用事件回调或 Promises 来处理结果。\n版本控制：数据库使用版本号来管理数据库的架构（如创建或修改对象存储）。\n索引：支持对数据的字段建立索引，以加快查询速度。\n离线支持：数据可以持久化存储并在断网情况下继续访问，非常适合构建离线 Web 应用。\nIndexedDB 语法\nIndexedDB 语法说明如下：",
+    "examples": [
+     "// 打开或创建一个数据库\nvar request = indexedDB.open('databaseName', version);\n\n// 处理数据库升级\nrequest.onupgradeneeded = function(event) {\n  var db = event.target.result;\n\n  // 创建对象存储（表）并设置主键\n  var objectStore = db.createObjectStore('storeName', { keyPath: 'id' });\n\n  // 创建索引\n  objectStore.createIndex('fieldName', 'fieldName', { unique: false });\n};\n\n// 数据库打开成功时的回调\nrequest.onsuccess = function(event) {\n  var db = event.target.result;\n\n  // 进行事务操作\n  var transaction = db.transaction('storeName', 'readwrite');\n  var objectStore = transaction.objectStore('storeName');\n\n  // 插入数据\n  objectStore.add({ id: 1, name: 'John Doe', age: 30 });\n\n  // 查询数据\n  var query = objectStore.get(1);\n  query.onsuccess = function(event) {\n    console.log(event.target.result);\n  };\n};\n\n// 错误处理\nrequest.onerror = function(event) {\n  console.error('Database error:', event.target.error);\n};"
+    ]
+   },
+   {
+    "title": "HTML5 Web SQL 数据库",
+    "url": "https://www.runoob.com/html/html5-web-sql.html",
+    "body": "Web SQL 的状态：Web SQL API 已经被废弃，不再推荐使用。新的浏览器标准更倾向于使用 IndexedDB 来处理客户端存储。Web SQL 只在某些老旧的浏览器中仍有支持。\n替代方案：\n由于 Web SQL 的未来不确定性和不再有广泛支持，建议转向使用 IndexedDB，它是一种支持事务、键值对存储的现代浏览器 API。\n\nWeb SQL 数据库 API 并不是 HTML5 规范的一部分，但是它是一个独立的规范，引入了一组使用 SQL 操作客户端数据库的 APIs。\n如果你是一个 Web 后端程序员，应该很容易理解 SQL 的操作。\n你也可以参考我们的 SQL 教程，了解更多数据库操作知识。\nWeb SQL 数据库可以在最新版的 Safari, Chrome 和 Opera 浏览器中工作。\n核心方法\n以下是规范中定义的三个核心方法：\nopenDatabase：这个方法使用现有的数据库或者新建的数据库创建一个数据库对象。\ntransaction：这个方法让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。\nexecuteSql：这个方法用于执行实际的 SQL 查询。\n打开数据库\n我们可以使用 openDatabase() 方法来打开已存在的数据库，如果数据库不存在，则会创建一个新的数据库，使用代码如下：\nvar db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);\nopenDatabase() 方法对应的五个参数说明：\n数据库名称\n版本号\n描述文本\n数据库大小\n创建回调\n第五个参数，创建回调会在创建数据库后被调用。\n执行查询操作\n执行操作使用 database.transaction() 函数：",
+    "examples": [
+     "var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);\ndb.transaction(function (tx) {\ntx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');\n});"
+    ]
+   },
+   {
+    "title": "HTML5 WebSocket",
+    "url": "https://www.runoob.com/html/html5-websocket.html",
+    "body": "WebSocket 是 HTML5 开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。\nWebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。\n在 WebSocket API 中，浏览器和服务器只需要做一个握手的动作，然后，浏览器和服务器之间就形成了一条快速通道。两者之间就直接可以数据互相传送。\n现在，很多网站为了实现推送技术，所用的技术都是 Ajax 轮询。轮询是在特定的的时间间隔（如每1秒），由浏览器对服务器发出HTTP请求，然后由服务器返回最新的数据给客户端的浏览器。这种传统的模式带来很明显的缺点，即浏览器需要不断的向服务器发出请求，然而HTTP请求可能包含较长的头部，其中真正有效的数据可能只是很小的一部分，显然这样会浪费很多的带宽等资源。\nHTML5 定义的 WebSocket 协议，能更好的节省服务器资源和带宽，并且能够更实时地进行通讯。\n浏览器通过 JavaScript 向服务器发出建立 WebSocket 连接的请求，连接建立以后，客户端和服务器端就可以通过 TCP 连接直接交换数据。\n当你获取 Web Socket 连接后，你可以通过 send() 方法来向服务器发送数据，并通过 onmessage 事件来接收服务器返回的数据。\n以下 API 用于创建 WebSocket 对象。\nvar Socket = new WebSocket(url, [protocol] );\n以上代码中的第一个参数 url, 指定连接的 URL。第二个参数 protocol 是可选的，指定了可接受的子协议。\nWebSocket 属性\n以下是 WebSocket 对象的属性。假定我们使用了以上代码创建了 Socket 对象：\n属性\n描述\nSocket.readyState\n只读属性 readyState 表示连接状态，可以是以下值：\n0 - 表示连接尚未建立。\n1 - 表示连接已建立，可以进行通信。\n2 - 表示连接正在进行关闭。\n3 - 表示连接已经关闭或者连接不能打开。\nSocket.bufferedAmount\n只读属性 bufferedAmount 已被 send() 放入正在队列中等待传输，但是还没有发出的 UTF-8 文本字节数。\nWebSocket 事件\n以下是 WebSocket 对象的相关事件。假定我们使用了以上代码创建了 Socket 对象：\n事件\n事件处理程序\n描述\nopen\nSocket.onopen\n连接建立时触发\nmessage\nSocket.onmessage\n客户端接收服务端数据时触发\nerror\nSocket.onerror\n通信发生错误时触发\nclose\nSocket.onclose\n连接关闭时触发\nWebSocket 方法\n以下是 WebSocket 对象的相关方法。假定我们使用了以上代码创建了 Socket 对象：\n方法\n描述\nSocket.send()\n使用连接发送数据\nSocket.close()\n关闭连接\nWebSocket 实例\nWebSocket 协议本质上是一个基于 TCP 的协议。\n为了建立一个 WebSocket 连接，客户端浏览器首先要向服务器发起一个 HTTP 请求，这个请求和通常的 HTTP 请求不同，包含了一些附加头信息，其中附加头信息\"Upgrade: WebSocket\"表明这是一个申请协议升级的 HTTP 请求，服务器端解析这些附加的头信息然后产生应答信息返回给客户端，客户端和服务器端的 WebSocket 连接就建立起来了，双方就可以通过这个连接通道自由的传递信息，并且这个连接会持续存在直到客户端或者服务器端的某一方主动的关闭连接。\n客户端的 HTML 和 JavaScript\n目前大部分浏览器支持 WebSocket() 接口，你可以在以下浏览器中尝试实例： Chrome, Mozilla, Opera 和 Safari。\nrunoob_websocket.html 文件内容\n<!DOCTYPE HTML>\n<html>\n <head>\n <meta charset=\"utf-8\">\n <title>菜鸟教程(runoob.com)</title>\n    \n <script type=\"text/javascript\">\n function WebSocketTest()\n {\n if (\"WebSocket\" in window)\n {\n alert(\"您的浏览器支持 WebSocket!\");\n \n // 打开一个 web socket\n var ws = new WebSocket(\"ws://localhost:9998/echo\");\n                \n ws.onopen = function()\n {\n // Web Socket 已连接上，使用 send() 方法发送数据\n ws.send(\"发送数据\");\n alert(\"数据发送中...\");\n };\n                \n ws.onmessage = function (evt) \n { \n var received_msg = evt.data;\n alert(\"数据已接收...\");\n };\n                \n ws.onclose = function()\n { \n // 关闭 websocket\n alert(\"连接已关闭...\"); \n };\n }\n \n else\n {\n // 浏览器不支持 WebSocket\n alert(\"您的浏览器不支持 WebSocket!\");\n }\n }\n </script>\n        \n </head>\n <body>\n \n <div id=\"sse\">\n <a href=\"javascript:WebSocketTest()\">运行 WebSocket</a>\n </div>\n \n </body>\n</html>\n安装 pywebsocket\n在执行以上程序前，我们需要创建一个支持 WebSocket 的服务。从 pywebsocket 下载 mod_pywebsocket ,或者使用 git 命令下载：\ngit clone https://github.com/googlearchive/pywebsocket\n<p>\nmod_pywebsocket 需要 python 环境支持</p>\nmod_pywebsocket 是一个 Apache HTTP 的 Web Socket扩展，安装步骤如下：</p>\n\n<ul>\n<li><p>解压下载的文件。</p></li>\n<li><p>进入 <b>pywebsocket</b> 目录。</p></li>\n<li><p>执行命令：</p>\n<pre>$ python setup.py build\n$ sudo python setup.py install\n查看文档说明:\n$ pydoc mod_pywebsocket\n开启服务\n在 pywebsocket/mod_pywebsocket 目录下执行以下命令：\n$ sudo python standalone.py -p 9998 -w ../example/\n以上命令会开启一个端口号为 9998 的服务，使用 -w 来设置处理程序 echo_wsh.py 所在的目录。\n现在我们可以在 Chrome 浏览器打开前面创建的 runoob_websocket.html 文件。如果你的浏览器支持 WebSocket(), 点击\"运行 WebSocket\"，你就可以看到整个流程各个步骤弹出的窗口，流程 Gif 演示：\n在我们停止服务后，会弹出 \"连接已关闭...\"。",
+    "examples": []
+   },
+   {
+    "title": "HTML5 Web 存储",
+    "url": "https://www.runoob.com/html/html5-webstorage.html",
+    "body": "HTML5 web 存储，一个比 cookie 更好的本地存储方式。\n什么是 HTML5 Web 存储?\n使用HTML5可以在本地存储用户的浏览数据。\n早些时候,本地存储使用的是 cookie。但是Web 存储需要更加的安全与快速. 这些数据不会被保存在服务器上，但是这些数据只用于用户请求网站数据上.它也可以存储大量的数据，而不影响网站的性能.\n数据以 键/值 对存在, web网页的数据只允许该网页访问使用。\n浏览器支持\nInternet Explorer 8+, Firefox, Opera, Chrome, 和 Safari支持Web 存储。\n注意: Internet Explorer 7 及更早IE版本不支持web 存储.\nlocalStorage 和 sessionStorage\n客户端存储数据的两个对象为：\nlocalStorage - 用于长久保存整个网站的数据，保存的数据没有过期时间，直到手动去除。\nsessionStorage - 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。\n在使用 web 存储前,应检查浏览器是否支持 localStorage 和 sessionStorage:",
+    "examples": [
+     "if(typeof(Storage)!==\"undefined\")\n{\n// 是的! 支持 localStorage  sessionStorage 对象!\n// 一些代码.....\n} else {\n// 抱歉! 不支持 web 存储。\n}"
+    ]
+   },
+   {
+    "title": "HTML5 Web Workers",
+    "url": "https://www.runoob.com/html/html5-webworkers.html",
+    "body": "web worker 是运行在后台的 JavaScript，不会影响页面的性能。\n什么是 Web Worker？\n当在 HTML 页面中执行脚本时，页面的状态是不可响应的，直到脚本已完成。\nweb worker 是运行在后台的 JavaScript，独立于其他脚本，不会影响页面的性能。您可以继续做任何愿意做的事情：点击、选取内容等等，而此时 web worker 在后台运行。\n浏览器支持\nInternet Explorer 10, Firefox, Chrome, Safari 和 Opera 都支持Web workers.\nHTML5 Web Workers 实例\n下面的例子创建了一个简单的 web worker，在后台计数：\n实例\n尝试一下 »",
+    "examples": [
+     "计数: \n开始 Worker\n停止 Worker"
+    ]
+   }
+  ]
+ }
+}

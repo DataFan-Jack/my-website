@@ -1,0 +1,104 @@
+{
+ "tutorial": {
+  "name": "HTML DOM",
+  "category": "前端开发",
+  "desc": "DOM (Document Object Model) 译为文档对象模型，是 H",
+  "url": "https://www.runoob.com/htmldom/",
+  "chapters": [
+   {
+    "title": "HTML DOM 访问",
+    "url": "https://www.runoob.com/htmldom/htmldom-access.html",
+    "body": "访问 HTML DOM - 查找 HTML 元素。\n访问 HTML 元素（节点）\n访问 HTML 元素等同于访问节点\n您能够以不同的方式来访问 HTML 元素：\n通过使用 getElementById() 方法\n通过使用 getElementsByTagName() 方法\n通过使用 getElementsByClassName() 方法\ngetElementById() 方法\ngetElementById() 方法返回带有指定 ID 的元素引用：\n语法\nnode.getElementById(\"id\");",
+    "examples": []
+   },
+   {
+    "title": "HTML DOM - 修改 HTML 内容",
+    "url": "https://www.runoob.com/htmldom/htmldom-content.html",
+    "body": "通过 HTML DOM，JavaScript 能够访问 HTML 文档中的每个元素。\n改变 HTML 内容\n改变元素内容的最简单的方法是使用 innerHTML 属性。\n下面的例子更改 <p> 元素的 HTML 内容：\n实例",
+    "examples": [
+     "<p id=\"p1\">Hello World!</p>\n<script>\ndocument.getElementById(\"p1\").innerHTML=\"新文本!\";\n</script>\n<p>段落通过脚本来修改内容。</p>"
+    ]
+   },
+   {
+    "title": "HTML DOM - 元素",
+    "url": "https://www.runoob.com/htmldom/htmldom-elements.html",
+    "body": "添加、删除和替换 HTML 元素。\n创建新的 HTML 元素 - createElement()\n如需向 HTML DOM 添加新元素，您首先必须创建该元素，然后把它追加到已有的元素上。\n实例",
+    "examples": [
+     "<div id=\"div1\">\n<p id=\"p1\">这是一个段落。</p>\n<p id=\"p2\">这是另一个段落。</p>\n</div>\n<script>\nvar para=document.createElement(\"p\");\nvar node=document.createTextNode(\"这是一个新段落。\");\npara.appendChild(node);\nvar element=document.getElementById(\"div1\");\nelement.appendChild(para);\n</script>"
+    ]
+   },
+   {
+    "title": "HTML DOM - 事件",
+    "url": "https://www.runoob.com/htmldom/htmldom-events.html",
+    "body": "HTML DOM 允许 JavaScript 对 HTML 事件作出反应。\n实例\nClick Me",
+    "examples": [
+     "Mouse Over Me"
+    ]
+   },
+   {
+    "title": "HTML DOM 实例",
+    "url": "https://www.runoob.com/htmldom/htmldom-examples.html",
+    "body": "使用JavaScript访问和操作的HTML DOM对象的例子。\nDocument 对象\n使用 document.write() 输出文本\n使用 document.write() 输出 HTML\n返回文档中锚的数目\n返回文档中第一个锚的 innerHTML\n返回文档中表单的数目\n返回文档中第一个表单的名字\n返回文档中的图像数\n返回文档中第一个图像的ID\n返回文档中的链接数\n返回文档中的第一个链接的ID\n返回文档中的所有cookies的名称/值对\n返回加载的文档的服务器域名\n返回文档的最后一次修改时间\n返回加载的当前文档的URL\n返回文档的标题\n返回文档的完整的URL\n打开输出流，向流中输入文本\nwrite() 和 writeln()的不同\n用指定的ID弹出一个元素的innerHTML\n用指定的Name弹出元素的数量\n用指定的tagname弹出元素的数量\n更多的Document 对象的例子，在我们的JavaScript  参考手册。\nAnchor 对象\n返回和设置链接的charset属性\n返回和设置链接的href属性\n返回和设置链接的hreflang属性\n返回一个锚的名字\n返回当前的文件和链接的文档之间的关系\n改变链接的target属性\n返回一个链接的type属性的值\n更多的Anchor 对象的例子，在我们的JavaScript  参考手册。\nArea 对象\n返回图像映射某个区域的替代文字\n返回图像映射某个区域的坐标\n返回一个区域的href属性的锚部分\n返回的主机名：图像映射的某个区域的端口\n返回图像映射的某个区域的hostname\n返回图像映射的某个区域的port\n返回图像映射的某个区域的href\n返回图像映射的某个区域的pathname\n返回图像映射的某个区域的protocol\n返回一个区域的href属性的querystring部分\n返回图像映射的某个区域的shape\n返回图像映射的某个区域的target的值\n更多的 Area 对象的例子，在我们的JavaScript 参考手册。\nBase 对象\n返回页面上所有相对 URL 的根 URL，即 base 标签的 href 属性值。\n返回页面上所有相对 URL 的根 URL 对应打开方式，即 base 标签的 target 属性值。\n更多的 Base 对象对象的例子，在我们的JavaScript 参考手册。\nButton 对象\n当点击完button不可用\n返回一个button的name\n返回一个button的type\n返回一个button的value\n返回一个button所属表的ID\n更多 Button 对象实例在我们的JavaScript 参考手册。\nForm 对象\n返回一个表单中所有元素的value\n返回一个表单acceptCharset属性的值\n返回一个表单action属性的值\n返回表单中的enctype属性的值\n返回一个表单中元素的数量\n返回发送表单数据的方法\n返回一个表单的name\n返回一个表单target属性的值\n重置表单\n提交表单\n更多Button 对象实例在我们的JavaScript 参考手册。\nFrame/IFrame 对象\n对iframe排版\n改变一个包含在iframe中的文档的背景颜色\n返回一个iframe中的frameborder属性的值\n删除iframe的frameborder\n改变iframe的高度和宽度\n返回一个iframe中的longdesc属性的值\n返回一个iframe中的marginheight属性的值\n返回一个iframe中的marginwidth属性的值\n返回一个iframe中的name属性的值\n返回和设置一个iframe中的scrolling属性的值\n改变一个iframe的src\n更多Frame/IFrame 对象实例在我们的JavaScript 参考手册。\nImage 对象\n对image排版\n返回image的替代文本\n给image加上border\n改变image的高度和宽度\n设置image的hspace和vspace属性\n返回image的longdesc属性的值\n创建一个链接指向一个低分辨率的image\n返回image的name\n改变image的src\n返回一个客户端图像映射的usemap的值\n更多Image 对象实例在我们的JavaScript 参考手册。\nEvent 对象\n哪个鼠标键被点击了？\n被按下的键盘键的keycode？\n鼠标的坐标？\n鼠标相对于屏幕的坐标？\nshift键被按下了吗？\n哪个元素被按下了？\n哪个事件发生了？\nOption 和 Select 对象\n禁用和启用下拉列表\n获得有下拉列表的表单的ID\n获得下拉列表的选项数量\n将下拉列表变成多行列表\n在下拉列表中选择多个选项\n弹出下拉列表中所有选项\n弹出下拉列表中被选中的选项的索引\n改变下拉列表中被选中的选项的文本\n删除下拉列表中的选项\nTable, TableHeader, TableRow, TableData 对象\n改变表格边框的宽度\n改变表格的cellpadding和cellspacing\n指定表格的frame\n为表格指定规则\n一个行的innerHTML\n一个单元格的innerHTML\n为表格创建一个标题\n删除表格中的行\n添加表格中的行\n添加表格行中的单元格\n单元格内容水平对齐\n单元格内容垂直对齐\n对单个单元格的内容水平对齐\n对单个单元格的内容垂直对齐\n改变单元格的内容\n改变单元格横跨的列数(colspan属性)",
+    "examples": []
+   },
+   {
+    "title": "HTML DOM 简介",
+    "url": "https://www.runoob.com/htmldom/htmldom-intro.html",
+    "body": "HTML DOM 定义了访问和操作 HTML 文档的标准。\n您应该具备的基础知识\n在您继续学习之前，您需要对以下内容拥有基本的了解：\nHTML\nCSS\nJavaScript\n如果您需要首先学习这些项目，请访问我们的首页。\n什么是 DOM？\nDOM 是 W3C（万维网联盟）的标准。\nDOM 定义了访问 HTML 和 XML 文档的标准：\n\"W3C 文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。\"\nW3C DOM 标准被分为 3 个不同的部分：\n核心 DOM - 针对任何结构化文档的标准模型\nXML DOM - 针对 XML 文档的标准模型\nHTML DOM - 针对 HTML 文档的标准模型\n编者注：DOM 是 Document Object Model（文档对象模型）的缩写。\n什么是 XML DOM？\nXML DOM 定义了所有 XML 元素的对象和属性，以及访问它们的方法。\n如果您需要学习 XML DOM，请访问我们的 XML DOM 教程。\n什么是 HTML DOM？\nHTML DOM 是：\nHTML 的标准对象模型\nHTML 的标准编程接口\nW3C 标准\nHTML DOM 定义了所有 HTML 元素的对象和属性，以及访问它们的方法。\n换言之，HTML DOM 是关于如何获取、修改、添加或删除 HTML 元素的标准。",
+    "examples": []
+   },
+   {
+    "title": "HTML DOM 方法",
+    "url": "https://www.runoob.com/htmldom/htmldom-methods.html",
+    "body": "HTML DOM 方法是我们可以在节点（HTML 元素）上执行的动作。\nHTML DOM 属性是我们可以在节点（HTML 元素）设置和修改的值。\n编程接口\n可通过 JavaScript （以及其他编程语言）对 HTML DOM 进行访问。\n所有 HTML 元素被定义为对象，而编程接口则是对象方法和对象属性。\n方法是您能够执行的动作（比如添加或修改元素）。\n属性是您能够获取或设置的值（比如节点的名称或内容）。\ngetElementById() 方法\ngetElementById() 方法返回带有指定 ID 的元素：\n实例",
+    "examples": [
+     "var element=document.getElementById(\"intro\");"
+    ]
+   },
+   {
+    "title": "HTML DOM - 修改",
+    "url": "https://www.runoob.com/htmldom/htmldom-modify.html",
+    "body": "修改 HTML = 改变元素、属性、样式和事件。\n修改 HTML 元素\n修改 HTML DOM 意味着许多不同的方面：\n改变 HTML 内容\n改变 CSS 样式\n改变 HTML 属性\n创建新的 HTML 元素\n删除已有的 HTML 元素\n改变事件（处理程序）\n在接下来的章节，我们会深入学习修改 HTML DOM 的常用方法。\n创建 HTML 内容\n改变元素内容的最简单的方法是使用 innerHTML 属性。\n下面的例子改变一个 <p> 元素的 HTML 内容：\n实例",
+    "examples": [
+     "<p id=\"p1\">Hello World!</p>\n<script>\ndocument.getElementById(\"p1\").innerHTML=\"新文本!\";\n</script>\n<p>段落通过脚本来修改内容。</p>"
+    ]
+   },
+   {
+    "title": "HTML DOM 导航",
+    "url": "https://www.runoob.com/htmldom/htmldom-navigation.html",
+    "body": "通过 HTML DOM，您能够使用节点关系在节点树中导航。\nHTML DOM 节点列表\ngetElementsByTagName() 方法返回节点列表。节点列表是一个节点数组。\n下面的代码选取文档中的所有 <p> 节点：\n实例",
+    "examples": [
+     "var x=document.getElementsByTagName(\"p\");"
+    ]
+   },
+   {
+    "title": "HTML DOM 节点",
+    "url": "https://www.runoob.com/htmldom/htmldom-nodes.html",
+    "body": "在 HTML DOM 中，所有事物都是节点。DOM 是被视为节点树的 HTML。\nDOM Nodes\nDOM 节点\n根据 W3C 的 HTML DOM 标准，HTML 文档中的所有内容都是节点：\n整个文档是一个文档节点\n每个 HTML 元素是元素节点\nHTML 元素内的文本是文本节点\n每个 HTML 属性是属性节点\n注释是注释节点\nHTML DOM 节点树\nHTML DOM 将 HTML 文档视作树结构。这种结构被称为节点树：\nHTML DOM 树实例",
+    "examples": [
+     ""
+    ]
+   },
+   {
+    "title": "HTML DOM 属性",
+    "url": "https://www.runoob.com/htmldom/htmldom-properties.html",
+    "body": "属性是节点（HTML 元素）的值，您能够获取或设置。\n编程接口\n可通过 JavaScript （以及其他编程语言）对 HTML DOM 进行访问。\n所有 HTML 元素被定义为对象，而编程接口则是对象方法和对象属性。\n方法是您能够执行的动作（比如添加或修改元素）。\n属性是您能够获取或设置的值（比如节点的名称或内容）。\ninnerHTML 属性\n获取元素内容的最简单方法是使用 innerHTML 属性。\ninnerHTML 属性对于获取或替换 HTML 元素的内容很有用。\n实例\n下面的代码获取 id=\"intro\" 的 <p> 元素的 innerHTML：\n实例",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n</head>\n<body>\n<p id=\"intro\">Hello World!</p>\n<script>\nvar txt=document.getElementById(\"intro\").innerHTML;\ndocument.write(txt);\n</script>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "你已经学习了 HTML DOM， 下一步呢？",
+    "url": "https://www.runoob.com/htmldom/htmldom-summary.html",
+    "body": "HTML DOM 总结\n本教程已经向您讲解了如何使用 HTML DOM 来增强网站的动态交互性。\n您已经学会了如何操作 HTML 元素以响应不同的场景。\n如需更多有关 HTML DOM 的信息，请访问我们的 HTML DOM 实例和 HTML DOM 参考手册。\n现在您已经学习了 HTML DOM，下一步呢？\n在本教程中，我们已通过在客户端（在浏览器中）使用脚本来创建动态网页。\n也可以通过在服务器上使用脚本来增加网页的动态性。\n通过服务器端脚本，您能够编辑、添加或更改网页内容。您能够对提交自 HTML 表单的数据做出响应，访问数据或数据库，并向浏览器返回结果，为不同的用户定制页面。\n在菜鸟教程，您可以学习以下服务器端脚本教程：\nPHP 教程\nASP 教程\n.NET 教程\n您也可以通过我们的服务器端脚本系列教程页面，快速了解各种不同的服务器端脚本技术。",
+    "examples": []
+   },
+   {
+    "title": "HTML DOM 教程",
+    "url": "https://www.runoob.com/htmldom/htmldom-tutorial.html",
+    "body": "DOM (Document Object Model) 译为文档对象模型，是 HTML 和 XML 文档的编程接口。\nHTML DOM 定义了访问和操作 HTML 文档的标准方法。\nDOM 以树结构表达 HTML 文档。",
+    "examples": []
+   }
+  ]
+ }
+}

@@ -1,0 +1,578 @@
+{
+ "tutorial": {
+  "name": "TypeScript 抽象类",
+  "category": "前端开发",
+  "desc": "抽象类（Abstract Class）是 TypeScript 面向对象编程中的",
+  "url": "https://www.runoob.com/typescript/",
+  "chapters": [
+   {
+    "title": "TypeScript 抽象类",
+    "url": "https://www.runoob.com/typescript/ts-abstract-class.html",
+    "body": "抽象类（Abstract Class）是 TypeScript 面向对象编程中的重要概念。\n它是一种不能被直接实例化的类，只能作为基类供其他类继承。\n抽象类主要用于定义子类的公共属性和方法，为子类提供一个统一的结构和行为模板。\n抽象类继承层次结构abstract class Animal不能直接实例化class Dogextends Animalclass Catextends Animal抽象类特性abstract 方法：子类必须实现具象方法：子类可以直接使用可作为类型：接收子类实例为什么需要抽象类\n在面向对象编程中，我们经常需要定义一些基类。\n这些基类描述了子类共同的属性和方法，但有些方法的实现细节需要由子类自己决定。\n抽象类就是用来解决这个问题的：它允许我们定义方法的签名（声明），而把具体实现交给子类。\n概念说明：抽象类是一种介于普通类和接口之间的类型。它既有接口的特征（定义方法签名），又有类的特征（可以有具体的方法实现和构造函数）。\n抽象类基础\n使用 abstract 关键字声明抽象类和抽象方法。\n抽象类可以包含抽象方法和具象方法（已有实现的方法）。\n实例",
+    "examples": [
+     "// 使用 abstract 关键字声明抽象类\n// 抽象类不能直接实例化，只能作为基类\nabstract class Animal {\n    // 动物的名字属性\n    name: string;\n\n    // 构造函数\n    constructor(name: string) {\n        this.name = name;\n    }\n\n    // 抽象方法：使用 abstract 修饰，没有方法体\n    // 子类必须实现这个方法\n    abstract speak(): void;\n\n    // 具象方法：有具体实现的方法\n    // 子类可以直接继承使用，不需要重写\n    move(): void {\n        console.log(this.name + \" 在移动\");\n    }\n}\n\n// 尝试实例化抽象类会报错\n// var animal = new Animal(\"动物\"); // 错误：不能实例化抽象类\n\n// 定义 Dog 类继承 Animal\nclass Dog extends Animal {\n    // 子类必须实现父类的抽象方法 speak()\n    speak(): void {\n        console.log(this.name + \" 汪汪汪!\");\n    }\n}\n\n// 创建 Dog 实例\nvar dog = new Dog(\"旺财\");\ndog.speak();  // 调用子类实现的方法\ndog.move();   // 继承父类的具象方法"
+    ]
+   },
+   {
+    "title": "TypeScript 访问修饰符",
+    "url": "https://www.runoob.com/typescript/ts-access-modifiers.html",
+    "body": "访问修饰符（Access Modifiers）是 TypeScript 面向对象编程的核心特性之一。\n它们用于控制类成员（属性、方法、构造函数）的可见性。\n通过访问修饰符，可以实现封装，保护类的内部实现细节。\n访问修饰符作用域public类内部 ✓子类 ✓外部 ✓protected类内部 ✓子类 ✓外部 ✗private类内部 ✓子类 ✗外部 ✗使用场景public公开方法/属性如：用户姓名、登录方法protected子类可见方法如：计算公式、模板方法private内部实现细节如：数据库连接、内部计算为什么需要访问修饰符\n面向对象编程的三大原则之一是封装。\n封装意味着将数据和操作数据的方法隐藏起来，对外只暴露必要的接口。\n访问修饰符就是实现封装的手段，它控制类成员的可见范围。\n概念说明：访问修饰符决定了类成员可以在哪里被访问。TypeScript 提供三种访问修饰符：public、protected、private。\npublic 修饰符\npublic 是默认的访问修饰符，表示成员可以在任何地方被访问。\n无论是类内部、子类还是类的外部，都可以访问 public 成员。\n实例",
+    "examples": [
+     "// 定义动物类\nclass Animal {\n    // 使用 public 修饰 name 属性（可以省略，默认就是 public）\n    public name: string;\n\n    // 构造函数\n    public constructor(name: string) {\n        this.name = name;\n    }\n\n    // 公开的说话方法\n    public speak(): void {\n        console.log(this.name + \" 发出声音\");\n    }\n}\n\n// 创建实例\nvar animal = new Animal(\"动物\");\n\n// 在类外部访问 public 属性\nconsole.log(animal.name);\n\n// 在类外部调用 public 方法\nanimal.speak();"
+    ]
+   },
+   {
+    "title": "TypeScript 声明文件",
+    "url": "https://www.runoob.com/typescript/ts-ambient.html",
+    "body": "声明文件是 TypeScript 与 JavaScript 库之间的翻译官，它告诉 TypeScript 一个 JavaScript 库暴露了哪些功能、参数是什么类型、返回值是什么类型。\n先从一个问题说起\n假设你正在用 TypeScript 写项目，需要引入一个第三方的 JavaScript 库（比如 jQuery），你可能会写出这样的代码：\n$('#foo');\n// 或\njQuery('#foo');\n这段代码在纯 JavaScript 项目中完全没问题，但在 TypeScript 文件中会直接报错：\njQuery('#foo');\n\n// index.ts(1,1): error TS2304: Cannot find name 'jQuery'.\n为什么会报错？因为 TypeScript 不认识 $ 和 jQuery 是什么。\nTypeScript 的核心功能就是类型检查——它在编译阶段就要知道每个变量、每个函数的类型。但 jQuery 是一个纯 JavaScript 库，没有任何类型信息，TypeScript 自然看不懂它。\n快速修复：declare 关键字\n最简单的方式是用 declare 关键字手动告诉 TypeScript：「这个变量存在，它的类型是这样的」：\ndeclare var jQuery: (selector: string) => any;\n\njQuery('#foo');\n这行代码的含义是：声明一个变量 jQuery，它是一个函数，接收一个 string 类型的参数，返回值可以是任意类型（any）。\n现在 TypeScript 就不会报错了，因为编译器已经知道 jQuery 是什么类型。\ndeclare 关键字声明的类型只在编译阶段起作用，编译后的 JavaScript 代码中会被完全删除，不会影响运行时的行为。\n上例编译后的 JavaScript 代码为：\njQuery('#foo');\n可以看到，declare 语句消失了，只剩下了实际的调用代码。\n但 declare 只能解决单个文件的临时问题。如果一个库有很多方法、很多类，在每个文件里都手写 declare 显然不现实。这就是声明文件的用武之地。\n声明文件：一劳永逸的方案\n声明文件就是把所有 declare 声明集中放到一个单独的文件里，项目中的任何 TypeScript 文件都可以引用它。\n文件命名规范\n声明文件统一以 .d.ts 为后缀，d 代表 declaration（声明）。例如：\nrunoob.d.ts\n基本语法\n声明一个模块的语法如下：\ndeclare module Module_Name {\n}\n在 TypeScript 文件中通过三斜线指令引入声明文件：\n/// <reference path = \"runoob.d.ts\" />\n三斜线指令是 TypeScript 特有的语法，用于告诉编译器在编译时需要包含指定的声明文件。\n很多流行第三方库（如 jQuery、Lodash）的声明文件已经由社区维护好了，存放在 DefinitelyTyped 项目中。你只需要通过 npm 安装对应的 @types/xxx 包即可使用，无需手动编写。\n完整实例：从零创建声明文件\n下面通过一个完整的例子，演示声明文件的创建和使用全流程。\n整个流程涉及以下文件：\n文件\n作用\nCalcThirdPartyJsLib.js\n第三方 JavaScript 库（纯 JS，无类型信息）\nCalc.d.ts\n声明文件（手动编写，描述库的类型）\nCalcTest.ts\nTypeScript 业务代码（引用声明文件，调用库）\nCalcTest.js\n编译产物（tsc 编译后的 JS 文件）\nrunoob.html\n浏览器中运行的最终页面\n第一步：创建第三方 JavaScript 库\n假设我们有一个第三方库，提供了累加求和的功能。它使用命名空间 Runoob 来组织代码，避免变量名冲突：\nCalcThirdPartyJsLib.js 文件代码：",
+    "examples": [
+     "// 文件路径：CalcThirdPartyJsLib.js\n// 这是一个模拟的第三方 JavaScript 库\n\n// 声明 Runoob 命名空间变量（如果不存在则创建空对象）\nvar Runoob;\n\n// 使用立即执行函数（IIFE）封装代码，避免内部变量泄漏到全局作用域\n(function(Runoob) {\n    // Calc 构造函数，用于创建计算器对象\n    var Calc = (function () {\n        function Calc() {\n            // 当前无需初始化参数，保留构造函数以便后续扩展\n        }\n    })\n\n    // doSum 方法：计算从 0 到 limit 的所有整数之和\n    // limit（必填）：累加的上限值，包含该值本身\n    // 示例：limit=10 时，计算 0+1+2+...+10 = 55\n    Calc.prototype.doSum = function (limit) {\n        var sum = 0;\n\n        for (var i = 0; i <= limit; i++) {\n            sum = sum + i;\n        }\n        return sum;\n    }\n\n    // 将 Calc 构造函数挂载到 Runoob 命名空间下\n    // 这样外部就可以通过 new Runoob.Calc() 来创建实例\n    Runoob.Calc = Calc;\n    return Calc;\n})(Runoob || (Runoob = {}));\n\n// 库内部自测代码\nvar test = new Runoob.Calc();"
+    ]
+   },
+   {
+    "title": "TypeScript Array(数组)",
+    "url": "https://www.runoob.com/typescript/ts-array.html",
+    "body": "数组对象是使用单独的变量名来存储一系列的值。\n数组非常常用。\n假如你有一组数据（例如：网站名字），存在单独变量如下所示：",
+    "examples": [
+     "var site1=\"Google\";\nvar site2=\"Runoob\";\nvar site3=\"Taobao\";"
+    ]
+   },
+   {
+    "title": "TypeScript 箭头函数与 this",
+    "url": "https://www.runoob.com/typescript/ts-arrow-function.html",
+    "body": "箭头函数（Arrow Functions）是 ES6 引入的重要特性，也是 TypeScript 中的常用语法。\n与普通函数最大的区别是，箭头函数不绑定自己的 this，而是捕获定义时所在上下文的 this。\n这解决了 JavaScript 中常见的 this 指向问题。\n箭头函数 this 绑定机制普通函数setTimeout(function() {console.log(this.name);}, 100);this 指向 window/undefinedvs箭头函数setTimeout(() => {console.log(this.name);}, 100);this 指向定义时的上下文箭头函数语法多参数: (a, b) => a + b单参数: n => n * 2无参数: () => 42为什么需要箭头函数\n在 JavaScript 中，this 的指向常常令人困惑。\n普通函数中的 this 取决于函数如何调用，而不是如何定义。\n这导致在回调函数、事件处理等场景下，this 的指向常常出错。\n箭头函数的出现解决了这个问题，它让 this 的行为更加可预测。\n概念说明：箭头函数使用 => 语法定义，它不绑定自己的 this，而是继承外层作用域的 this。\n箭头函数基础\n箭头函数提供更简洁的函数定义语法。\n它可以省略大括号和 return 关键字（当函数体是单个表达式时）。\n实例",
+    "examples": [
+     "// 传统函数定义\nvar add1 = function(a: number, b: number): number {\n    return a + b;\n};\n\n// 箭头函数：单行函数可以省略大括号和 return\nvar add2 = (a: number, b: number): number => a + b;\n\n// 单参数可以省略括号\nvar double = (n: number): number => n * 2;\n\n// 无参数函数\nvar getRandom = (): number => Math.random();\n\nconsole.log(\"add1: \" + add1(1, 2));\nconsole.log(\"add2: \" + add2(3, 4));\nconsole.log(\"double: \" + double(5));\nconsole.log(\"random: \" + getRandom().toFixed(2));"
+    ]
+   },
+   {
+    "title": "TypeScript 类型断言",
+    "url": "https://www.runoob.com/typescript/ts-assertion.html",
+    "body": "类型断言（Type Assertion）是一种告诉编译器\"我比你更清楚这个值的类型\"的机制。它允许开发者手动覆盖 TypeScript 的类型推断结果，类似于其他语言的类型转换，但仅在编译阶段生效，不产生任何运行时代码。\n两种语法形式\n类型断言有两种写法，推荐统一使用 as 语法，尖括号语法在 JSX 文件中会与标签语法冲突。\n实例",
+    "examples": [
+     "// ① 尖括号语法（不推荐，在 .tsx 文件中无法使用）\nconst str1: any = \"hello\";\nconst len1: number = (<string>str1).length;\n\n// ② as 语法（推荐）\nconst str2: any = \"world\";\nconst len2: number = (str2 as string).length;\n\nconsole.log(len1);  // 5\nconsole.log(len2);  // 5"
+    ]
+   },
+   {
+    "title": "TypeScript async/await 异步编程",
+    "url": "https://www.runoob.com/typescript/ts-async-await.html",
+    "body": "async/await 是 ES2017 引入的异步编程语法糖，让异步代码看起来像同步代码。\nasync/await 执行流程\n \n Promise 方式\n fetchData().then(result => {console.log(result);})\n async/await 方式\n async function main() {const result = await fetchData();console.log(result);}\n await 执行顺序\n 主线程await暂停Promise后台执行恢复完成优势对比✓ 代码更简洁✓ 同步风格✓ 更好的错误堆栈✓ 易于调试✓ try/catch 处理上图展示了 async/await 相比传统 Promise 的优势：代码更简洁，执行流程更清晰。\nPromise 基础\nPromise 代表一个异步操作的最终结果。\n实例",
+    "examples": [
+     "// 创建 Promise\nvar promise = new Promise(function(resolve, reject) {\n    var success = true;\n    if (success) {\n        resolve(\"操作成功\");\n    } else {\n        reject(\"操作失败\");\n    }\n});\n\npromise.then(function(result) {\n    console.log(\"成功: \" + result);\n})[\"catch\"](function(error) {\n    console.log(\"失败: \" + error);\n});"
+    ]
+   },
+   {
+    "title": "TypeScript 基础语法",
+    "url": "https://www.runoob.com/typescript/ts-basic-syntax.html",
+    "body": "TypeScript 程序由以下几个部分组成：\n模块\n函数\n变量\n语句和表达式\n注释\n第一个 TypeScript 程序\n我们可以使用以下 TypeScript 程序来输出 \"Hello World\" ：\nRunoob.ts 文件代码：",
+    "examples": [
+     "const hello : string = \"Hello World!\"\nconsole.log(hello)"
+    ]
+   },
+   {
+    "title": "TypeScript 类继承与多态",
+    "url": "https://www.runoob.com/typescript/ts-class-inheritance.html",
+    "body": "TypeScript 支持面向对象编程的继承和多态特性。\n类继承层次结构Animal（父类）Dog（子类）extends AnimalCat（子类）extends AnimalDog实例Cat实例继承特性• extends 继承• super() 调用• 方法重写• 多态• instanceof类的继承\n使用 extends 关键字实现继承。\n实例",
+    "examples": [
+     "class Animal {\n    name: string;\n\n    constructor(name: string) {\n        this.name = name;\n    }\n\n    speak(): void {\n        console.log(this.name + \" 发出声音\");\n    }\n}\n\nclass Dog extends Animal {\n    breed: string;\n\n    constructor(name: string, breed: string) {\n        super(name);  // 调用父类构造函数\n        this.breed = breed;\n    }\n\n    speak(): void {\n        console.log(this.name + \" 汪汪汪!\");\n    }\n}\n\nvar dog = new Dog(\"旺财\", \"金毛\");\ndog.speak();"
+    ]
+   },
+   {
+    "title": "TypeScript 类",
+    "url": "https://www.runoob.com/typescript/ts-class.html",
+    "body": "类是面向对象编程（OOP）的核心概念，它是一种模板或蓝图，用于创建具有相同属性和方法的对象。TypeScript 完全支持面向对象编程，提供了类、继承、访问修饰符等特性。\n类封装了数据（属性）和行为（方法），使得代码更加模块化、可复用和易维护。通过类，我们可以创建多个具有相同结构的对象，这些对象称为类的实例。\n类的定义\nTypeScript 使用 class 关键字定义类。一个类可以包含以下成员：\n字段（Field）：类中声明的变量，表示对象的属性\n构造函数（Constructor）：类实例化时调用的特殊方法，用于初始化对象\n方法（Method）：类中定义的函数，表示对象的行为\n语法格式\nclass class_name {\n // 字段声明\n field1: type;\n field2: type;\n\n // 构造函数\n constructor(parameters) {\n // 初始化代码\n }\n\n // 方法\n methodName(): return_type {\n // 方法实现\n }\n}\n实例：创建简单的类\n实例",
+    "examples": [
+     "// 定义一个空的 Person 类\nclass Person {\n}"
+    ]
+   },
+   {
+    "title": "TypeScript 编译选项",
+    "url": "https://www.runoob.com/typescript/ts-compiler-options.html",
+    "body": "TypeScript 编译器（tsc）有众多编译选项，本教程详细介绍常用的编译选项及其作用。\nTypeScript 编译过程与编译选项TypeScript 源码.ts / .tsx包含类型注解TypeScript 编译器 (tsc)编译选项作用：• 类型检查 (strict)• 输出格式 (module)• 目标版本 (target)• 声明文件 (declaration)...更多选项编译输出.js - JavaScript.d.ts - 类型声明.map - Source Map编译选项分类类型检查strictnoImplicitAnystrictNullChecks输出控制outDirdeclarationsourceMap模块系统modulemoduleResolutionesModuleInterop语言特性targetlibjsx输出控制选项\n实例",
+    "examples": [
+     "{\n    \"compilerOptions\": {\n        // 输出目录\n        \"outDir\": \"./dist\",\n\n        // 源码根目录\n        \"rootDir\": \"./src\",\n\n        // 生成 .d.ts 声明文件\n        \"declaration\": true,\n\n        // 声明文件输出目录\n        \"declarationDir\": \"./types\",\n\n        // 生成 source map\n        \"sourceMap\": true,\n\n        // 生成 .js.map 文件\n        \"mapRoot\": \"./map\"\n    }\n}"
+    ]
+   },
+   {
+    "title": "TypeScript 综合项目实战",
+    "url": "https://www.runoob.com/typescript/ts-comprehensive-project.html",
+    "body": "本教程通过一个完整的项目案例，综合运用 TypeScript 的各种特性。\n从项目搭建到实际开发，完整展示 TypeScript 在实际项目中的应用。\n项目实战：任务管理系统前端 (React + TS)Vite + React 18组件 + Hooks类型安全的 UI后端 (Node.js)Express + TSRESTful API类型定义数据存储In-Memory(演示)项目功能特性任务 CRUD 操作类型安全的 API状态管理为什么需要综合项目实战\n学习 TypeScript 语法后，需要通过实际项目来巩固知识。\n本教程展示一个完整的任务管理系统，涵盖前端、后端和类型定义。\n通过这个项目，可以掌握 TypeScript 在实际开发中的最佳实践。\n项目目标：创建任务管理系统，包含任务创建、查询、更新、删除功能。\n项目结构\n使用 Monorepo 风格组织项目结构。\n目录结构",
+    "examples": [
+     "task-manager/\n├── src/\n│   ├── types/                 # 类型定义\n│   │   ├── task.ts           # 任务类型\n│   │   ├── api.ts            # API 类型\n│   │   └── index.ts          # 类型导出\n│   │\n│   ├── services/             # 服务层\n│   │   ├── taskService.ts   # 任务服务\n│   │   └── index.ts\n│   │\n│   ├── components/           # React 组件\n│   │   ├── TaskList.tsx     # 任务列表\n│   │   ├── TaskItem.tsx     # 任务项\n│   │   ├── TaskForm.tsx     # 任务表单\n│   │   └── index.ts\n│   │\n│   ├── hooks/                # 自定义 Hooks\n│   │   ├── useTasks.ts      # 任务状态管理\n│   │   └── index.ts\n│   │\n│   ├── App.tsx               # 主应用\n│   ├── App.css               # 样式\n│   └── main.tsx              # 入口文件\n│\n├── index.html\n├── package.json\n├── tsconfig.json\n└── vite.config.ts"
+    ]
+   },
+   {
+    "title": "TypeScript 条件类型",
+    "url": "https://www.runoob.com/typescript/ts-conditional-types.html",
+    "body": "条件类型（Conditional Types）是 TypeScript 类型系统中最强大的特性之一。\n它允许根据条件动态地选择类型，类似于编程语言中的三元表达式。\n条件类型使得类型定义更加灵活，是实现高级工具类型的基础。\n条件类型工作原理条件类型语法T extends U ? X : Y执行流程检查 T 能否赋值给 U→ 是 → X | 否 → Y示例解析示例 1IsString<string>string extends string? ✓→ true示例 2IsString<number>number extends string? ✗→ false示例 3ReturnType<fn>fn extends (...args)→ R (推导返回类型)为什么需要条件类型\n在实际的 TypeScript 开发中，我们经常需要根据不同的输入类型返回不同的类型。\n例如，一个函数可能接受字符串或数字参数，我们需要根据参数类型返回不同的结果类型。\n条件类型提供了一种在类型级别进行逻辑判断的能力，使得类型定义更加灵活和强大。\n概念说明：条件类型的语法是 T extends U ? X : Y。如果类型 T 可以赋值给类型 U，则返回类型 X，否则返回类型 Y。\n基本语法\n条件类型使用三元表达式的语法，在类型层面进行条件判断。\n这使得我们可以根据输入类型动态地计算返回类型。\n实例",
+    "examples": [
+     "// 条件类型语法：T extends U ? X : Y\n// 如果 T 是字符串类型，返回 true，否则返回 false\ntype IsString<T> = T extends string ? true : false;\n\n// 使用条件类型\n// string extends string 为 true，所以 A 类型是 true\ntype A = IsString<string>;\n// number extends string 为 false，所以 B 类型是 false\ntype B = IsString<number>;\n\n// 使用这些类型\nvar a: A = true;\nvar b: B = false;\n\nconsole.log(\"string 是字符串?: \" + a);\nconsole.log(\"number 是字符串?: \" + b);"
+    ]
+   },
+   {
+    "title": "TypeScript 协变与逆变",
+    "url": "https://www.runoob.com/typescript/ts-covariance.html",
+    "body": "协变与逆变是 TypeScript 类型系统中的重要概念，理解它们有助于编写类型安全的代码。\n它们描述了泛型类型在父子类型关系中的行为。\n协变与逆变概念协变 (Covariant)输出类型：安全Dog → AnimalProvider<Dog> → Provider<Animal>不变 (Invariant)输入/输出类型：严格不能相互赋值Consumer<Dog> ≠ Consumer<Animal>逆变 (Contravariant)输入类型：反转Animal → DogConsumer<Animal> → Consumer<Dog>TypeScript 默认行为返回值：协变参数：逆变 (strictFunctionTypes)属性：协变为什么需要协变与逆变\n当我们使用泛型类或函数时，类型参数的行为并不像你想象的那么简单。\n将 Dog 赋值给 Animal 是安全的，但将处理 Animal 的函数赋值给处理 Dog 的函数可能不安全。\n协变与逆变规则帮助 TypeScript 捕获这些潜在的类型错误。\n概念：协变允许子类型向父类型转换，逆变允许父类型向子类型转换，不变则不允许任何方向转换。\n协变 (Covariant)\n协变是指子类型可以赋值给父类型。对于输出类型（如函数返回值），这是安全的。\n实例",
+    "examples": [
+     "// 定义动物和狗的类型\nclass Animal {\n    name: string = \"动物\";\n}\n\nclass Dog extends Animal {\n    breed: string = \"田园犬\";\n}\n\n// 协变：输出类型可以向更宽泛的类型转换\n// 返回 Dog 的函数可以赋值给返回 Animal 的函数\ntype AnimalGetter = () => Animal;\ntype DogGetter = () => Dog;\n\n// Dog 是 Animal 的子类，所以 DogGetter 可以赋值给 AnimalGetter\nconst getDog: DogGetter = () => new Dog();\nconst getAnimal: AnimalGetter = getDog;  // 协变：安全\n\n// 运行\nconst animal: Animal = getAnimal();\nconsole.log(\"动物名称: \" + animal.name);"
+    ]
+   },
+   {
+    "title": "TypeScript 装饰器",
+    "url": "https://www.runoob.com/typescript/ts-decorators.html",
+    "body": "装饰器（Decorators）是 TypeScript 的一项实验性功能。\n它允许开发者在不修改原类的情况下，为类、方法、属性或参数添加额外的功能。\n装饰器本质上是一个函数，它可以在运行时被调用，以修改目标对象的行为。\n装饰器类型与应用位置@ClassDecorator类装饰器属性装饰器@propertyDecorator方法装饰器@methodDecorator参数装饰器@paramDecorator访问器装饰器@getterDecorator装饰器工厂（Decorator Factory）装饰器工厂是返回装饰器函数的函数，通过参数实现配置化例如：function color(code: string) { return function(target) { ... }; } → @color(\"34\")装饰器简介\n装饰器采用 `@` 符号作为语法糖，可以附加在类、方法、访问器、属性或参数上。\n这种模式常用于框架开发，如 Angular、TypeORM 等都大量使用装饰器来实现依赖注入、数据验证等功能。\n注意：装饰器目前是实验性功能，需要在 tsconfig.json 中显式启用。在生产环境中使用时请确认项目对实验性特性的支持程度。\n配置启用装饰器\n在使用装饰器之前，需要在 TypeScript 配置文件 tsconfig.json 中启用相关编译选项。\ntsconfig.json 配置",
+    "examples": [
+     "{\n    \"compilerOptions\": {\n        // 启用装饰器语法\n        \"experimentalDecorators\": true,\n\n        // 启用装饰器元数据（用于依赖注入框架）\n        \"emitDecoratorMetadata\": true\n    }\n}"
+    ]
+   },
+   {
+    "title": "TypeScript 设计模式",
+    "url": "https://www.runoob.com/typescript/ts-design-patterns.html",
+    "body": "设计模式是软件开发中经过验证的解决方案，可以帮助我们编写可维护、可扩展的代码。\nTypeScript 的类型系统让许多经典设计模式得以用类型安全的方式实现。\n设计模式分类创建型模式Factory | Singleton | Builder结构型模式Decorator | Adapter | Proxy行为型模式Observer | Strategy | CommandTypeScript 特有模式类型安全的依赖注入 | 泛型工厂 | 条件类型选择TypeScript 优势：编译期类型检查 + IDE 智能提示 + 运行时性能为什么需要设计模式\n设计模式是前人总结的代码组织经验，可以解决常见的软件设计问题。\n使用设计模式让代码更易理解、更易维护，同时也便于团队协作。\nTypeScript 的类型系统让这些模式更加健壮，错误可以在编译期被发现。\n概念：设计模式是软件设计中常见问题的可重用解决方案，是代码设计经验的总结。\n单例模式 (Singleton)\n确保一个类只有一个实例，并提供全局访问点。\n实例",
+    "examples": [
+     "// 单例模式：确保只有一个实例\nclass Singleton {\n    // 存储单例实例\n    private static instance: Singleton;\n    private static _data: string = \"\";\n\n    // 私有构造函数，防止外部实例化\n    private constructor() {}\n\n    // 获取单例实例的静态方法\n    public static getInstance(): Singleton {\n        if (!Singleton.instance) {\n            Singleton.instance = new Singleton();\n        }\n        return Singleton.instance;\n    }\n\n    // 设置数据\n    public setData(data: string): void {\n        Singleton._data = data;\n    }\n\n    // 获取数据\n    public getData(): string {\n        return Singleton._data;\n    }\n}\n\n// 测试单例模式\nconst instance1 = Singleton.getInstance();\nconst instance2 = Singleton.getInstance();\n\n// 验证是同一个实例\nconsole.log(\"是同一实例: \" + (instance1 === instance2));\n\ninstance1.setData(\"Hello Singleton\");\nconsole.log(\"数据: \" + instance2.getData());"
+    ]
+   },
+   {
+    "title": "TypeScript 枚举（Enum）",
+    "url": "https://www.runoob.com/typescript/ts-enum.html",
+    "body": "枚举（Enum）是 TypeScript 中非常有用的特性，它允许我们定义一组命名常量。枚举可以使得代码更易读、更易维护，可以用有意义的名称替代\"魔术数字\"。\n数字枚举\n默认情况下，枚举从 0 开始编号。\n实例",
+    "examples": [
+     "enum Direction {\n    Up,    // 0\n    Down,  // 1\n    Left,  // 2\n    Right  // 3\n}\n\nvar dir: Direction = Direction.Up;\nconsole.log(\"方向: \" + dir);\nconsole.log(\"方向名称: \" + Direction[0]);"
+    ]
+   },
+   {
+    "title": "TypeScript 错误处理",
+    "url": "https://www.runoob.com/typescript/ts-error-handling.html",
+    "body": "错误处理是保证程序健壮性的重要环节。\nTypeScript 提供了强大的类型系统，可以帮助开发者更好地处理和预防错误。\n本文介绍 TypeScript 中常见的错误处理模式和最佳实践。\n错误处理方式try-catchtry {// 可能出错的代码} catch (e) {// 处理错误}捕获并处理异常Result 类型type Result = | { ok: true; value: T } | { ok: false; error: E }返回结果而非抛异常自定义错误class AppError extends Error {code: string;}结构化错误信息最佳实践明确错误类型集中错误处理避免异常泄漏为什么需要良好的错误处理\n任何程序都可能遇到错误情况，如网络请求失败、文件不存在、用户输入错误等。\n良好的错误处理可以防止程序崩溃，提供友好的错误提示，并帮助开发者定位问题。\nTypeScript 的类型系统可以在编译阶段发现潜在问题，减少运行时错误。\n概念说明：错误处理有两种主要方式：异常处理（try-catch）和返回值处理（Result 类型）。前者使用抛出异常表示错误，后者使用返回值携带错误信息。\n自定义错误类型\n通过扩展 Error 类创建自定义错误类型，可以携带更多错误信息。\n这使得错误处理更加精确和结构化。\n实例",
+    "examples": [
+     "// 定义应用程序错误类\n// 扩展内置 Error 类，添加错误码\nclass AppError extends Error {\n    // 错误码，用于程序化处理错误\n    code: string;\n\n    // 构造函数\n    constructor(message: string, code: string) {\n        super(message);  // 调用父类构造函数\n        this.name = \"AppError\";  // 设置错误名称\n        this.code = code;  // 保存错误码\n    }\n}\n\n// 安全的除法函数\nfunction divide(a: number, b: number): number {\n    // 检查除数是否为零\n    if (b === 0) {\n        // 抛出自定义错误\n        throw new AppError(\"Cannot divide by zero\", \"DIVIDE_BY_ZERO\");\n    }\n    return a / b;\n}\n\n// 使用 try-catch 捕获错误\ntry {\n    var result = divide(10, 0);\n} catch (error) {\n    // 检查错误类型\n    if (error instanceof AppError) {\n        console.log(\"应用错误: \" + error.message + \", 代码: \" + error.code);\n    } else {\n        console.log(\"未知错误: \" + error);\n    }\n}"
+    ]
+   },
+   {
+    "title": "TypeScript 特性",
+    "url": "https://www.runoob.com/typescript/ts-features.html",
+    "body": "相对 JavaScript，TypeScript 增加了许多关键功能，特别是围绕类型系统和代码结构的增强功能。\nTypeScript 的一些关键特性：\n静态类型检查：TypeScript 在编译时就会检查代码的类型是否匹配，能够发现很多潜在的错误。即使是简单的错误（例如拼写错误或类型不一致），也可以在编写代码时被捕获到。\n类型推断：TypeScript 能够自动推断变量的类型。比如当你声明一个变量并赋值时，TypeScript 会根据赋值来推断这个变量的类型，不需要每次都显式声明类型。\n接口和类型定义：TypeScript 提供了 interface 和 type 关键字，允许你定义复杂的数据结构。这对于项目中不同部分的代码协作和数据交互来说非常重要。\n类和模块支持：TypeScript 支持面向对象编程中的类（class）概念，增加了构造函数、继承、访问控制修饰符（如 public、private、protected），并且支持 ES 模块化规范。\n工具和编辑器支持：TypeScript 拥有良好的编辑器支持，特别是与 Visual Studio Code 集成时，能提供智能提示、自动补全、重构等工具，使开发过程更高效。\n兼容 JavaScript：TypeScript 是 JavaScript 的超集，这意味着所有合法的 JavaScript 代码都是合法的 TypeScript 代码。这使得 JavaScript 项目可以逐步迁移到 TypeScript，而无需完全重写。\n以下是 TypeScript 增加的主要功能：\n1. 静态类型\nTypeScript 的最大特性就是增加了静态类型系统。在 TypeScript 中，开发者可以显式地声明变量、参数、返回值的类型，这样可以在编译时捕获很多潜在的类型错误。常见类型包括 number、string、boolean、array、tuple、enum 等，此外也支持自定义类型。\nlet name: string = \"Alice\";\nlet age: number = 25;\n2. 类型推断\nTypeScript 可以自动推断变量类型，即使不显式声明类型，TypeScript 也会根据变量的赋值内容来推断类型，从而在大多数情况下减少类型注解的书写量。\nlet name = \"Alice\"; // 推断为 string\n3. 接口 (Interfaces)\nTypeScript 提供了接口，允许定义复杂的对象结构。接口可以定义属性和方法，还可以通过 implements 关键字实现接口，或者通过 extends 进行扩展，便于定义复杂的数据类型。\ninterface Person {\n name: string;\n age: number;\n greet(): void;\n}\n\nclass Student implements Person {\n constructor(public name: string, public age: number) {}\n\n greet() {\n console.log(`Hello, my name is ${this.name}`);\n }\n}\n4. 类型别名 (Type Aliases)\n类型别名 (type) 可以为复杂的类型定义简短的别名，便于代码复用。\ntype StringOrNumber = string | number;\nlet value: StringOrNumber = 42;\n5. 枚举 (Enums)\nTypeScript 引入了 enum 类型，用于定义一组命名的常量，提高代码的可读性。枚举在 JavaScript 中没有直接的对应。\nenum Direction {\n Up,\n Down,\n Left,\n Right,\n}\nlet dir: Direction = Direction.Up;\n6. 元组 (Tuples)\n元组允许定义具有固定数量和类型的数组。它适用于需要固定数据结构的场景，比如坐标或 RGB 颜色值。\nlet point: [number, number] = [10, 20];\n7. 访问控制修饰符 (Access Modifiers)\nTypeScript 在类中提供了 public、private 和 protected 修饰符，允许控制属性或方法的可见性，支持更好的封装。\nclass Person {\n private name: string;\n protected age: number;\n public constructor(name: string, age: number) {\n this.name = name;\n this.age = age;\n }\n}\n8. 抽象类 (Abstract Classes)\nTypeScript 支持抽象类，抽象类不能直接实例化，需要由子类实现。抽象类适用于定义通用行为和抽象方法的类层次结构。\nabstract class Animal {\n abstract makeSound(): void;\n}\n\nclass Dog extends Animal {\n makeSound() {\n console.log(\"Woof!\");\n }\n}\n9. 泛型 (Generics)\nTypeScript 支持泛型，允许在类、接口和函数中使用参数化类型，使得代码可以适应不同的类型需求，同时保持类型安全。\nfunction identity<T>(value: T): T {\n return value;\n}\n\nlet num = identity<number>(42);\n10. 模块和命名空间\nTypeScript 提供了基于 ES6 的模块系统，使用 import 和 export 导入和导出模块。此外，TypeScript 还支持命名空间（Namespace），用于组织代码和避免命名冲突。\n// math.ts\nexport function add(a: number, b: number): number {\n return a + b;\n}\n\n// main.ts\nimport { add } from \"./math\";\nconsole.log(add(2, 3));\n11. 类型守卫 (Type Guards)\nTypeScript 提供了类型守卫，可以在代码中检查变量类型，帮助编译器推断更加具体的类型。这对于联合类型尤为重要。\nfunction printId(id: string | number) {\n if (typeof id === \"string\") {\n console.log(id.toUpperCase());\n } else {\n console.log(id.toFixed(2));\n }\n}\n12. 可选链和空值合并运算符\nTypeScript 增加了 JavaScript 的可选链 (?.) 和空值合并运算符 (??)，简化了代码中对可能为 null 或 undefined 值的处理。\nlet user = { name: \"Alice\", address: { city: \"Wonderland\" } };\nconsole.log(user?.address?.city); // 如果 address 存在则输出 city，否则返回 undefined\n\nlet value = null;\nconsole.log(value ?? \"default\"); // 如果 value 为 null 或 undefined，则返回 \"default\"\n13. 类型兼容性和工具类型\nTypeScript 提供了一些工具类型，如 Partial、Pick、Readonly、Record 等，这些类型可以帮助生成新的类型，简化类型定义。\ninterface Todo {\n title: string;\n description: string;\n}\n\nlet partialTodo: Partial<Todo> = { title: \"Learn TypeScript\" }; // 可选属性\n14. 编译期错误检查\nTypeScript 提供的编译期错误检查可以捕获 JavaScript 中不易发现的错误，如拼写错误、类型不匹配等，帮助提升代码质量。\n15. ES 新特性支持\nTypeScript 提前支持了一些还未在所有环境中普及的 ES 特性，如装饰器（Decorators）、异步迭代器等，且能够将其编译成兼容 JavaScript 版本。\n通过这些特性，TypeScript 提供了更安全、更结构化的代码能力，在大型项目和多人协作中尤其具有优势。",
+    "examples": []
+   },
+   {
+    "title": "TypeScript 函数重载",
+    "url": "https://www.runoob.com/typescript/ts-function-overload.html",
+    "body": "函数重载（Function Overloading）允许为一个函数定义多个签名，编译器会根据传入的参数类型选择正确的实现。\n函数重载工作原理\n \n 函数重载签名（声明）\n // 签名 1function add(a: number, b: number): number;// 签名 2function add(a: string, b: string): string;\n 编译器\n \n 匹配\n \n 函数实现（实际代码）\n function add(a: any, b: any): any {return a + b;}\n 必须兼容所有签名\n \n 调用时类型推断\n add(1, 2) → numberadd(\"a\", \"b\") → stringadd(true, false) → any基本语法\n先声明多个函数签名，然后实现一个统一函数。\n实例",
+    "examples": [
+     "// 函数重载签名\nfunction add(a: number, b: number): number;\nfunction add(a: string, b: string): string;\nfunction add(a: any, b: any): any {\n    return a + b;\n}\n\nconsole.log(\"数字相加: \" + add(1, 2));\nconsole.log(\"字符串相加: \" + add(\"Hello, \", \"World\"));"
+    ]
+   },
+   {
+    "title": "TypeScript 函数",
+    "url": "https://www.runoob.com/typescript/ts-function.html",
+    "body": "函数是一组一起执行一个任务的语句。\n您可以把代码划分到不同的函数中。如何划分代码到不同的函数中是由您来决定的，但在逻辑上，划分通常是根据每个函数执行一个特定的任务来进行的。\n函数声明告诉编译器函数的名称、返回类型和参数。函数定义提供了函数的实际主体。\n函数定义\n函数就是包裹在花括号中的代码块，前面使用了关键词 function：\n语法格式如下所示：\nfunction function_name()\n{\n // 执行代码\n}\n实例\nTypeScript",
+    "examples": [
+     "function () {\n// 函数定义\nconsole.log(\"调用函数\")\n}"
+    ]
+   },
+   {
+    "title": "TypeScript 泛型",
+    "url": "https://www.runoob.com/typescript/ts-generics.html",
+    "body": "泛型（Generics）是一种编程语言特性，允许在定义函数、类、接口等时使用占位符来表示类型，而不是具体的类型。\n泛型是一种在编写可重用、灵活且类型安全的代码时非常有用的功能。\n使用泛型的主要目的是为了处理不特定类型的数据，使得代码可以适用于多种数据类型而不失去类型检查。\n泛型的优势包括：\n代码重用： 可以编写与特定类型无关的通用代码，提高代码的复用性。\n类型安全： 在编译时进行类型检查，避免在运行时出现类型错误。\n抽象性： 允许编写更抽象和通用的代码，适应不同的数据类型和数据结构。\n泛型标识符\n在泛型中，通常使用一些约定俗成的标识符，比如常见的 T（表示 Type）、U、V 等，但实际上你可以使用任何标识符。\nT: 代表 \"Type\"，是最常见的泛型类型参数名。\nfunction identity<T>(arg: T): T {\n return arg;\n}\nK, V: 用于表示键（Key）和值（Value）的泛型类型参数。\ninterface KeyValuePair<K, V> {\n key: K;\n value: V;\n}\nE: 用于表示数组元素的泛型类型参数。\nfunction printArray<E>(arr: E[]): void {\n arr.forEach(item => console.log(item));\n}\nR: 用于表示函数返回值的泛型类型参数。\nfunction getResult<R>(value: R): R {\n return value;\n}\nU, V: 通常用于表示第二、第三个泛型类型参数。\nfunction combine<U, V>(first: U, second: V): string {\n return `${first} ${second}`;\n}\n这些标识符是约定俗成的，实际上你可以选择任何符合标识符规范的名称。关键是使得代码易读和易于理解，所以建议在泛型类型参数上使用描述性的名称，以便于理解其用途。\n泛型函数（Generic Functions）\n使用泛型来创建一个可以处理不同类型的函数：\n实例",
+    "examples": [
+     "function identity<T>(arg: T): T {\n    return arg;\n}\n\n// 使用泛型函数\nlet result = identity<string>(\"Hello\");\nconsole.log(result); // 输出: Hello\n\nlet numberResult = identity<number>(42);\nconsole.log(numberResult); // 输出: 42"
+    ]
+   },
+   {
+    "title": "TypeScript 条件语句",
+    "url": "https://www.runoob.com/typescript/ts-if-statement.html",
+    "body": "条件语句用于基于不同的条件来执行不同的动作。\nTypeScript 条件语句是通过一条或多条语句的执行结果（True 或 False）来决定执行的代码块。\n可以通过下图来简单了解条件语句的执行过程:\n条件语句\n通常在写代码时，您总是需要为不同的决定来执行不同的动作。您可以在代码中使用条件语句来完成该任务。\n在 TypeScript 中，我们可使用以下条件语句：\nif 语句 - 只有当指定条件为 true 时，使用该语句来执行代码\nif...else 语句 - 当条件为 true 时执行代码，当条件为 false 时执行其他代码\nif...else if....else 语句- 使用该语句来选择多个代码块之一来执行\nswitch 语句 - 使用该语句来选择多个代码块之一来执行\nif 语句\nTypeScript if 语句由一个布尔表达式后跟一个或多个语句组成。\n语法\n语法格式如下所示：\nif(boolean_expression){\n # 在布尔表达式 boolean_expression 为 true 执行\n}\n如果布尔表达式 boolean_expression为 true，则 if 语句内的代码块将被执行。如果布尔表达式为 false，则 if 语句结束后的第一组代码（闭括号后）将被执行。\n流程图\n实例",
+    "examples": [
+     "var num:number = 5\nif (num > 0) {\nconsole.log(\"数字是正数\")\n}"
+    ]
+   },
+   {
+    "title": "TypeScript 索引类型与 keyof 关键字",
+    "url": "https://www.runoob.com/typescript/ts-indexed-types.html",
+    "body": "索引类型和 keyof 是 TypeScript 中操作对象类型的强大工具。\n它们允许我们动态地访问对象的属性，并创建灵活的类型映射。\n索引类型与 keyof 工作原理keyof 操作符type Keys = keyof User// \"id\" | \"name\" | \"email\"索引访问类型type Value = User[\"name\"]// string映射类型type Partial<T>{[P in keyof T]?: T[P]}索引类型应用场景动态属性访问类型安全的对象操作创建通用工具类型为什么需要索引类型\n在 JavaScript 中，我们经常需要动态访问对象的属性。\n例如，一个函数可能需要获取对象的所有键，或者根据键访问对应的值类型。\n索引类型和 keyof 让我们能够在类型系统中表达这种动态性，同时保持类型安全。\n概念：索引类型是一类允许动态访问对象属性的类型，keyof 用于获取对象类型的所有键组成的联合类型。\nkeyof 操作符\nkeyof 操作符用于获取对象类型的所有键组成的联合类型。\n实例",
+    "examples": [
+     "// 定义用户类型\ninterface User {\n    id: number;       // 用户ID\n    name: string;     // 用户名\n    email: string;    // 邮箱\n    age?: number;     // 年龄（可选）\n}\n\n// 使用 keyof 获取所有键的联合类型\n// 结果: \"id\" | \"name\" | \"email\" | \"age\"\ntype UserKeys = keyof User;\n\n// 测试 keyof\nfunction getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {\n    return obj[key];\n}\n\nconst user: User = {\n    id: 1,\n    name: \"Alice\",\n    email: \"alice@example.com\"\n};\n\n// 获取 name 属性\nconst userName: string = getProperty(user, \"name\");\nconsole.log(\"用户名: \" + userName);"
+    ]
+   },
+   {
+    "title": "TypeScript infer 关键字",
+    "url": "https://www.runoob.com/typescript/ts-infer.html",
+    "body": "infer 是 TypeScript 条件类型中的关键字，用于从类型中推断出新的类型。\n它允许在泛型条件类型中提取和推导类型，实现强大的类型操作。\ninfer 关键字工作原理原始类型type Promise<T> = {value: T}infer 推导提取出的类型type ValueOf<T> = T extends Promise<infer V> ? V : never示例ValueOf<Promise<string>>→ stringinfer 常见应用场景提取 Promise 值类型提取数组元素类型提取函数返回类型为什么需要 infer 关键字\n在泛型编程中，我们经常需要从复杂的类型中提取出部分类型。\n例如，从 Promise<string> 中提取 string，从 Array<User> 中提取 User。\ninfer 关键字让这种类型提取变得优雅和类型安全，它可以在条件类型中声明一个类型变量，然后在 true 分支中使用。\n概念说明：infer 是 \"infer\" 的缩写，意为\"推断\"。它只能在条件类型的 extends 子句中使用，用于声明一个待推断的类型变量。\n基本用法\n在条件类型中使用 infer 推断类型。\n实例",
+    "examples": [
+     "// 从 Promise 中提取值类型\n// 如果 T 是 Promise<V>，则返回 V；否则返回 never\ntype ValueOf<T> = T extends Promise<infer V> ? V : never;\n\n// 测试\ntype Str = ValueOf<Promise<string>>;  // string\ntype Num = ValueOf<Promise<number>>; // number\ntype NotPrm = ValueOf<string>;        // never\n\n// 使用示例\nvar promise: Promise<string> = Promise.resolve(\"hello\");\nvar value: ValueOf<typeof promise> = \"world\";\n\nconsole.log(\"字符串提取: \" + (typeof value === \"string\" ? \"成功\" : \"失败\"));"
+    ]
+   },
+   {
+    "title": "TypeScript 类型推断",
+    "url": "https://www.runoob.com/typescript/ts-inference.html",
+    "body": "类型推断（Type Inference）是 TypeScript 最强大和便捷的特性之一。\n它允许编译器自动分析代码的上下文，并根据变量的值、函数的返回值等自动推断出变量的类型。\n这意味着开发者无需为每个变量显式声明类型，可以编写更简洁、更易于维护的代码。\nTypeScript 类型推断过程源代码// 变量声明var num = 10;var str = \"hello\";function add(a, b) {return a + b;}推断推断结果var num: number = 10;var str: string = \"hello\";function add(a: number, b: number): number {return a + b;}类型推断场景基础类型推断根据初始值推断类型返回类型推断根据 return 语句推断上下文推断根据使用位置推断为什么需要类型推断\n在 JavaScript 开发中，我们需要手动为每个变量声明类型。\n这不仅增加了代码的冗余度，也降低了开发效率。\nTypeScript 的类型推断功能可以在大多数情况下自动推断出变量的类型。\n开发者只需要在类型复杂或不明确的情况下显式声明类型。\n概念说明：类型推断是 TypeScript 编译器分析代码上下文，自动确定变量类型的过程。它基于初始值、函数返回值、参数类型等多个维度进行推断。\n基础类型推断\n当声明变量并初始化时，TypeScript 会根据初始值自动推断变量的类型。\n这是最常见的类型推断场景。\n实例",
+    "examples": [
+     "// 声明变量并初始化时，TypeScript 自动推断类型\n// 初始值为数字 10，类型推断为 number\nvar num = 10;\n\n// 初始值为字符串，类型推断为 string\nvar str = \"hello\";\n\n// 初始值为布尔值，类型推断为 boolean\nvar isActive = true;\n\n// 使用 typeof 验证推断结果\nconsole.log(\"num 类型: \" + typeof num);\nconsole.log(\"str 类型: \" + typeof str);\nconsole.log(\"isActive 类型: \" + typeof isActive);"
+    ]
+   },
+   {
+    "title": "TypeScript 安装",
+    "url": "https://www.runoob.com/typescript/ts-install.html",
+    "body": "本文介绍 TypeScript 环境的安装。\n我们需要使用到 npm 工具安装，如果你还不了解 npm，可以参考我们的NPM 使用介绍。\nNPM 安装 TypeScript\n如果你的本地环境已经安装了 npm 工具，可以使用以下命令来安装。\n使用国内镜像：\nnpm config set registry https://registry.npmmirror.com\n安装 typescript：\nnpm install -g typescript\n安装完成后我们可以使用 tsc 命令来执行 TypeScript 的相关代码，以下是查看版本号：\n$ tsc -v\nVersion 3.2.2\n然后我们新建一个 app.ts 的文件，代码如下：",
+    "examples": [
+     "var message:string = \"Hello World\"\nconsole.log(message)"
+    ]
+   },
+   {
+    "title": "TypeScript 接口",
+    "url": "https://www.runoob.com/typescript/ts-interface.html",
+    "body": "接口是一系列抽象方法的声明，是一些方法特征的集合，这些方法都应该是抽象的，需要由具体的类去实现，然后第三方就可以通过这组抽象方法调用，让具体的类执行具体的方法。\nTypeScript 接口定义如下：\ninterface interface_name { \n}\n实例\n以下实例中，我们定义了一个接口 IPerson，接着定义了一个变量 customer，它的类型是 IPerson。\ncustomer 实现了接口 IPerson 的属性和方法。\nTypeScript",
+    "examples": [
+     "interface IPerson {\nfirstName:string, \n    lastName:string, \n    sayHi: ()=>string\n}\nvar customer:IPerson = {\nfirstName:\"Tom\",\n    lastName:\"Hanks\", \n    sayHi: ():string =>{return \"Hi there\"}\n}\nconsole.log(\"Customer 对象 \")\nconsole.log(customer.firstName)\nconsole.log(customer.lastName)\nconsole.log(customer.sayHi())\nvar employee:IPerson = {\nfirstName:\"Jim\",\n    lastName:\"Blakes\", \n    sayHi: ():string =>{return \"Hello!!!\"}\n}\nconsole.log(\"Employee  对象 \")\nconsole.log(employee.firstName)\nconsole.log(employee.lastName)"
+    ]
+   },
+   {
+    "title": "TypeScript 交叉类型",
+    "url": "https://www.runoob.com/typescript/ts-intersection-types.html",
+    "body": "交叉类型（Intersection Types）将多个类型合并成一个新类型，新类型包含所有成员的类型。\n这类似于面向对象中的多重继承，让一个类型可以拥有多个类型的特性。\n交叉类型工作原理类型 A (Person)name: stringage: number&类型 B (Worker)company: stringsalary: number合并A & B (Employee)name: stringage: numbercompany: stringsalary: number交叉类型使用场景类型组合合并多个类型特性Mixin 模式组合多个类的功能替代接口继承更简洁的类型组合为什么需要交叉类型\n在开发中，一个类型往往需要拥有多个类型的特性。\n例如，一个员工既是一个人（Person），也是一个工作者（Worker），需要同时具有两者的属性。\n交叉类型让我们可以将多个类型合并成一个，满足这种需求。\n概念说明：交叉类型使用 & 符号连接多个类型，表示新类型包含所有类型的成员。这类似于多重继承的概念。\n基本语法\n使用 & 符号组合多个类型。\n实例",
+    "examples": [
+     "// 定义人员类型\n// 包含姓名和年龄\ninterface Person {\n    name: string;\n    age: number;\n}\n\n// 定义工作者类型\n// 包含公司名称和薪资\ninterface Worker {\n    company: string;\n    salary: number;\n}\n\n// 使用交叉类型合并两个接口\n// Employee 类型同时具有 Person 和 Worker 的所有属性\ntype Employee = Person & Worker;\n\n// 创建同时具有两个类型特性的对象\nvar employee: Employee = {\n    name: \"Alice\",\n    age: 25,\n    company: \"Google\",\n    salary: 100000\n};\n\nconsole.log(\"员工: \" + JSON.stringify(employee));"
+    ]
+   },
+   {
+    "title": "TypeScript 简介",
+    "url": "https://www.runoob.com/typescript/ts-intro.html",
+    "body": "TypeScript 是由微软开发并开源的编程语言，它是 JavaScript 的超集，在完全兼容 JavaScript 语法的基础上，增加了可选的静态类型系统和基于类的面向对象编程能力。\nTypeScript 代码最终会被编译为纯 JavaScript，可以运行在任何支持 JavaScript 的环境中，包括浏览器、Node.js 和移动端。\n为什么需要 TypeScript\nJavaScript 是一门动态类型语言，变量的类型在运行时才能确定。\n这种灵活性在小型项目中表现出色，但随着项目规模扩大，问题逐渐暴露：\n问题场景\nJavaScript 的困境\nTypeScript 的解决方式\n函数参数传错类型\n运行时才报错，难以提前发现\n编译阶段即报错，IDE 实时提示\n访问不存在的属性\n返回 undefined，行为难以预测\n编译器直接报错，拒绝通过\n大型项目重构\n改一处，不知道哪里会崩\n类型系统自动追踪所有引用\n团队协作\n函数接受什么参数、返回什么全靠注释或文档\n类型签名即文档，IDE 自动补全\n代码可读性\n看函数定义无法直接知道数据结构\n接口和类型别名让数据结构一目了然\nTypeScript 的本质目标不是取代 JavaScript，而是让大规模 JavaScript 工程变得可管理、可维护。它是 JavaScript 的\"安全网\"，而不是竞争对手。\n看一个最直观的例子：\n实例",
+    "examples": [
+     "// JavaScript：运行时才会报错\nfunction greet(name) {\n    return \"Hello, \" + name.toUpperCase();\n}\n\ngreet(123); // 运行时报错：name.toUpperCase is not a function"
+    ]
+   },
+   {
+    "title": "TypeScript 迭代器与生成器",
+    "url": "https://www.runoob.com/typescript/ts-iterator-generator.html",
+    "body": "迭代器和生成器是 JavaScript/TypeScript 中处理集合的重要模式。\n它们提供了一种统一的遍历数据的方式，让处理大数据流、无限序列等变得更加简单。\n迭代器与生成器工作流程迭代器协议实现 Symbol.iterator返回 next() 方法{ done, value }for...of 循环自动调用 next()遍历所有元素done=true 时停止生成器function*yield 暂停惰性计算生成器特性惰性求值 - 按需生成状态保持 - 暂停位置可组合 - yield* 委托为什么需要迭代器和生成器\n在处理集合数据时，我们经常需要遍历数组、对象等数据结构。\n迭代器提供了一种统一的、可自定义的遍历接口，让任何对象都可以被遍历。\n生成器是创建迭代器的简洁方式，它允许你使用函数来暂停和恢复执行，非常适合处理大数据流或无限序列。\n概念说明：迭代器是一个对象，它提供 next() 方法用于遍历数据。生成器是一种特殊的函数，可以在执行过程中暂停并返回一个值。\n可迭代协议\n实现 Symbol.iterator 方法的对象可以被 for...of 循环遍历。\n实例",
+    "examples": [
+     "// 数组默认可迭代\nvar arr = [1, 2, 3];\nfor (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {\n    var item = arr_1[_i];\n    console.log(\"数组元素: \" + item);\n}\n\n// 字符串默认可迭代\nvar str = \"hello\";\nfor (var _i = 0, str_1 = str; _i < str_1.length; _i++) {\n    var char = str_1[_i];\n    console.log(\"字符: \" + char);\n}"
+    ]
+   },
+   {
+    "title": "TypeScript 字面量类型",
+    "url": "https://www.runoob.com/typescript/ts-literal-types.html",
+    "body": "字面量类型（Literal Types）是 TypeScript 中一种表示特定值而不是通用类型的特性。\n它允许我们将变量类型限制为具体的值，而不是宽泛的 string、number 等类型。\n这提供了更精确的类型控制，使代码更加类型安全。\n字面量类型示例通用类型var direction: string;可以赋任何字符串\"up\", \"down\", \"abc\"...字面量类型var direction:\"up\" | \"down\" |\"left\" | \"right\"只能赋这四个值之一类型安全赋值错误值时编译错误！direction = \"upup\"字面量类型种类字符串字面量\"up\" | \"down\" | \"left\"限制特定字符串数字字面量1 | 2 | 3 | 100 | 200限制特定数字布尔字面量true | falsetrue 或 false模板字面量`on${string}`动态生成为什么需要字面量类型\n在 TypeScript 中，默认的类型如 string 和 number 过于宽泛。\n有时我们需要更精确的类型控制。例如，一个变量只能取特定的几个值。\n字面量类型正是为了解决这类问题而生的。\n概念说明：字面量类型是泛型类型（string、number）的具体值。例如 \"up\" 是 string 的子类型，只能赋值给它的值是特定的字符串。\n字符串字面量类型\n字符串字面量类型将变量的取值限制为特定的字符串。\n这在需要限制变量只能取某些固定值时非常有用。\n实例",
+    "examples": [
+     "// 定义字符串字面量类型\n// direction 只能是四个特定值之一\nvar direction: \"up\" | \"down\" | \"left\" | \"right\";\n\n// 正确：赋值为字面量类型中的值\ndirection = \"up\";\n\n// 错误：赋值不在列表中的值\n// direction = \"upup\"; // 编译错误！\n\nconsole.log(\"方向: \" + direction);\n\n// 使用类型别名创建可复用的字面量类型\n// 定义状态类型：只能是三个固定值之一\ntype Status = \"pending\" | \"active\" | \"completed\";\n\n// 使用类型别名\nvar currentStatus: Status = \"active\";\nconsole.log(\"状态: \" + currentStatus);"
+    ]
+   },
+   {
+    "title": "TypeScript 循环",
+    "url": "https://www.runoob.com/typescript/ts-loop.html",
+    "body": "有的时候，我们可能需要多次执行同一块代码。一般情况下，语句是按顺序执行的：函数中的第一个语句先执行，接着是第二个语句，依此类推。\n编程语言提供了更为复杂执行路径的多种控制结构。\n循环语句允许我们多次执行一个语句或语句组，下面是大多数编程语言中循环语句的流程图：\nfor 循环\nTypeScript for 循环用于多次执行一个语句序列，简化管理循环变量的代码。\n语法\n语法格式如下所示：\nfor ( init; condition; increment ){\n statement(s);\n}\n下面是 for 循环的控制流程解析：\ninit 会首先被执行，且只会执行一次。这一步允许您声明并初始化任何循环控制变量。您也可以不在这里写任何语句，只要有一个分号出现即可。\n接下来，会判断 condition。如果为 true，则执行循环主体。如果为 false，则不执行循环主体，且控制流会跳转到紧接着 for 循环的下一条语句。\n在执行完 for 循环主体后，控制流会跳回上面的 increment 语句。该语句允许您更新循环控制变量。该语句可以留空，只要在条件后有一个分号出现即可。\n条件再次被判断。如果为 true，则执行循环，这个过程会不断重复（循环主体，然后增加步值，再然后重新判断条件）。在条件变为 false 时，for 循环终止。\n在这里，statement(s) 可以是一个单独的语句，也可以是几个语句组成的代码块。\ncondition 可以是任意的表达式，当条件为 true 时执行循环，当条件为 false 时，退出循环。\n流程图\n实例\n以下实例计算 5 的阶乘， for 循环生成从 5 到 1 的数字，并计算每次循环数字的乘积。\nTypeScript",
+    "examples": [
+     "var num:number = 5; \nvar i:number; \nvar factorial = 1; \n \nfor(i = num;i>=1;i--) {\nfactorial *= i;\n}\nconsole.log(factorial)"
+    ]
+   },
+   {
+    "title": "TypeScript Map 对象",
+    "url": "https://www.runoob.com/typescript/ts-map.html",
+    "body": "Map 对象保存键值对，并且能够记住键的原始插入顺序。\n任何值(对象或者原始值) 都可以作为一个键或一个值。\nMap 是 ES6 中引入的一种新的数据结构，可以参考 ES6 Map 与 Set。\n创建 Map\nTypeScript 使用 Map 类型和 new 关键字来创建 Map：\nlet myMap = new Map();\n初始化 Map，可以以数组的格式来传入键值对：\nlet myMap = new Map([\n [\"key1\", \"value1\"],\n [\"key2\", \"value2\"]\n ]);\nMap 相关的函数与属性：\nmap.clear() – 移除 Map 对象的所有键/值对 。\nmap.set() – 设置键值对，返回该 Map 对象。\nmap.get() – 返回键对应的值，如果不存在，则返回 undefined。\nmap.has() – 返回一个布尔值，用于判断 Map 中是否包含键对应的值。\nmap.delete() – 删除 Map 中的元素，删除成功返回 true，失败返回 false。\nmap.size – 返回 Map 对象键/值对的数量。\nmap.keys() - 返回一个 Iterator 对象， 包含了 Map 对象中每个元素的键 。\nmap.values() – 返回一个新的Iterator对象，包含了Map对象中每个元素的值 。\nmap.entries() – 返回一个包含 Map 中所有键值对的迭代器 。\n常用函数\nset(key: K, value: V): this - 向 Map 中添加或更新键值对。\nmap.set('key1', 'value1');\nget(key: K): V | undefined - 根据键获取值，如果键不存在则返回 undefined。\nconst value = map.get('key1');\nhas(key: K): boolean - 检查 Map 中是否存在指定的键。\nconst exists = map.has('key1');\ndelete(key: K): boolean - 删除指定键的键值对，成功删除返回 true，否则返回 false。\nconst removed = map.delete('key1');\nclear(): void - 清空 Map 中的所有键值对。\nmap.clear();\nsize: number - 返回 Map 中键值对的数量。\nconst size = map.size;\n迭代方法\nkeys(): IterableIterator<K> - 返回一个包含 Map 中所有键的迭代器。\n\nfor (const key of map.keys()) {\n console.log(key);\n}\nvalues(): IterableIterator<V> - 返回一个包含 Map 中所有值的迭代器。\nfor (const value of map.values()) {\n console.log(value);\n}\nentries(): IterableIterator<[K, V]> - 返回一个包含 Map 中所有键值对的迭代器，每个元素是一个 [key, value] 数组。\nfor (const [key, value] of map.entries()) {\n console.log(key, value);\n}\nforEach(callbackfn: (value: V, key: K, map: Map<K, V>) => void, thisArg?: any): void - 对 Map 中的每个键值对执行一次提供的回调函数。\nmap.forEach((value, key) => {\n console.log(key, value);\n});\n实例\n实例",
+    "examples": [
+     "const map = new Map<string, number>();\n\nmap.set('one', 1);\nmap.set('two', 2);\n\nconsole.log(map.get('one')); // 输出: 1\n\nconsole.log(map.has('two')); // 输出: true\n\nmap.delete('one');\n\nconsole.log(map.size); // 输出: 1\n\nmap.forEach((value, key) => {\n  console.log(key, value); // 输出: two 2\n});\n\nmap.clear();\n\nconsole.log(map.size); // 输出: 0"
+    ]
+   },
+   {
+    "title": "TypeScript 映射类型",
+    "url": "https://www.runoob.com/typescript/ts-mapped-types.html",
+    "body": "映射类型（Mapped Types）是 TypeScript 中一种基于已有类型创建新类型的强大特性。\n它允许开发者批量修改属性的特性，如将所有属性变为可选、将所有属性变为只读等。\n映射类型是实现 TypeScript 内置工具类型的核心技术。\n映射类型工作原理原始类型interface User { id: number; name: string;}映射语法{ [P in keyof T]?: T[P] // 添加可选修饰符}结果类型type PartialUser = { id?: number; name?: string;}映射类型修饰符? 前缀添加可选修饰符type Partial<T>readonly 前缀添加只读修饰符type Readonly<T>-? 前缀移除可选修饰符type Required<T>as 关键字重映射键名as `${P}`为什么需要映射类型\n在实际的 TypeScript 开发中，我们经常需要基于现有类型创建变体。\n例如，需要一个所有属性都是可选的版本，或者所有属性都是只读的版本。\n传统的方式是手动定义这些类型，既繁琐又容易出错。\n映射类型提供了一种声明式的方式来自动生成这些类型变体。\n概念说明：映射类型使用 keyof 和 in 关键字遍历已有类型的所有键，然后对每个键应用相同的类型转换。\n基础映射类型\n基础映射类型通过遍历原始类型的所有键来创建新类型。\n这是实现 Partial、Readonly 等工具类型的基础。\n实例",
+    "examples": [
+     "// 定义用户接口\ninterface User {\n    // 用户 ID\n    id: number;\n    // 用户名\n    name: string;\n    // 用户邮箱\n    email: string;\n}\n\n// 实现 Partial 工具类型\n// 遍历 T 的所有键，添加可选修饰符 ?\ntype Partial<T> = {\n    // P 遍历 keyof T 返回的所有键\n    // T[P] 获取原类型中对应键的值类型\n    [P in keyof T]?: T[P];\n};\n\n// 使用 Partial 类型\ntype PartialUser = Partial<User>;\n\n// PartialUser 类型等同于：\n// { id?: number; name?: string; email?: string }\n\n// 可以只提供部分属性\nvar user: PartialUser = { name: \"Alice\" };\n\nconsole.log(\"部分用户: \" + JSON.stringify(user));"
+    ]
+   },
+   {
+    "title": "TypeScript 从 JavaScript 迁移",
+    "url": "https://www.runoob.com/typescript/ts-migration.html",
+    "body": "将现有 JavaScript 项目逐步迁移到 TypeScript。\n迁移策略\n添加 tsconfig.json\n重命名 .js 为 .ts\n逐步添加类型注解\n启用严格模式\n配置 tsconfig.json\ntsconfig.json",
+    "examples": [
+     "{\n    \"compilerOptions\": {\n        // 初始阶段：宽松配置\n        \"target\": \"ES2020\",\n        \"module\": \"commonjs\",\n        \"strict\": false,\n        \"noImplicitAny\": false,\n        \"strictNullChecks\": false,\n        \"skipLibCheck\": true,\n\n        // 允许 JS 文件\n        \"allowJs\": true,\n        \"checkJs\": false,\n\n        // 输出目录\n        \"outDir\": \"./dist\",\n        \"rootDir\": \"./src\"\n    },\n    \"include\": [\"src/**/*\"],\n    \"exclude\": [\"node_modules\", \"dist\"]\n}"
+    ]
+   },
+   {
+    "title": "TypeScript 混入（Mixin）",
+    "url": "https://www.runoob.com/typescript/ts-mixin.html",
+    "body": "混入（Mixin）是一种代码复用模式，用于将多个独立的功能模块混入到一个类中。\nTypeScript 通过泛型函数返回扩展类的方式实现 Mixin，弥补了单继承无法复用多个来源行为的不足。\nMixin 组合过程User 类SerializableMixin+ serialize()TimestampedMixin+ timestamp扩展后的类Mixin 工作原理1. Mixin 是函数接收一个类，返回扩展后的新类2. 继承而非修改通过 extends 继承，不修改原类3. 可叠加组合多个 Mixin 可以嵌套组合使用基本概念\nMixin 的核心是一个接收基类、返回扩展类的泛型函数。Constructor 类型约束用于描述\"任意可被继承的类\"。\n实例",
+    "examples": [
+     "// Constructor 类型：描述任意可实例化的类\ntype Constructor<T = {}> = new (...args: any[]) => T;\n\n// Mixin 函数：接收基类，返回扩展后的新类\nfunction Timestamped<TBase extends Constructor>(Base: TBase) {\n    return class extends Base {\n        createdAt = new Date();\n    };\n}\n\n// 基类\nclass User {\n    constructor(public name: string) {}\n}\n\n// 混入后得到新类\nconst TimestampedUser = Timestamped(User);\nconst user = new TimestampedUser(\"Alice\");\n\nconsole.log(user.name);                        // Alice\nconsole.log(user.createdAt instanceof Date);   // true"
+    ]
+   },
+   {
+    "title": "TypeScript 模块系统",
+    "url": "https://www.runoob.com/typescript/ts-module.html",
+    "body": "模块系统是现代 TypeScript 开发的基础。\nTypeScript 完全支持 ES Module 语法，并提供了丰富的模块解析策略。\n通过模块系统，可以将代码分割成可重用的单元，实现代码组织和复用。\n模块导出导入流程user.tsexport const name = \"Alice\"export class User {...}export interface Config {...importmain.tsimport { name, User } from \"./user\";import User from \"./user\"use运行结果JavaScript执行代码导出导入方式命名导出/导入默认导出/导入重新导出动态导入为什么需要模块系统\n随着项目规模增长，代码量会越来越大。\n将代码分散到多个文件中，通过模块组织，可以提高代码的可维护性和可复用性。\n模块系统让每个文件都有自己的作用域，避免全局变量污染。\n概念说明：模块是包含导出和导入语句的 TypeScript 文件。通过 export 导出内容，通过 import 导入内容。\n模块导出\n使用 export 关键字可以将变量、函数、类、接口等导出供其他模块使用。\nuser.ts 模块",
+    "examples": [
+     "// 导出变量\nexport var name = \"Alice\";\nexport const age = 25;\n\n// 导出函数\nexport function greet(message: string): string {\n    return \"Hello, \" + message;\n}\n\n// 导出类\nexport class User {\n    // 构造函数参数属性\n    constructor(public name: string) {}\n\n    // 自我介绍方法\n    introduce(): string {\n        return \"I am \" + this.name;\n    }\n}\n\n// 导出接口（接口在编译后会消失，仅用于类型检查）\nexport interface Config {\n    // 配置主机\n    host: string;\n    // 配置端口\n    port: number;\n}\n\n// 批量导出：重命名导出\nexport { name as userName, age as userAge };"
+    ]
+   },
+   {
+    "title": "TypeScript Monorepo 配置",
+    "url": "https://www.runoob.com/typescript/ts-monorepo.html",
+    "body": "Monorepo 是一种将多个项目放在同一个代码仓库中的开发模式。\nTypeScript 通过项目引用和工具链支持 Monorepo，可以高效管理多个包。\nMonorepo 项目结构根目录 (root)package.json | tsconfig.json | lerna.json | turbo.jsonpackages/ 目录utilsui-componentshooksapp管理工具：npm workspaces | yarn workspaces | pnpm | lerna | turbo为什么需要 Monorepo\n当项目包含多个包（如工具库、组件库、应用程序）时，传统方式需要维护多个代码仓库。\nMonorepo 将所有包放在同一个仓库中，共享代码更方便，版本管理更统一。\nTypeScript 的项目引用功能让 Monorepo 项目的类型检查和构建更高效。\n概念：Monorepo（单一仓库）将多个相关项目放在同一个代码仓库中，便于代码共享和协调开发。\npnpm Workspace\npnpm 是现代的包管理器，原生支持 Workspace 功能。\n根目录 package.json",
+    "examples": [
+     "{\n    \"name\": \"my-monorepo\",\n    \"version\": \"1.0.0\",\n    \"private\": true,\n\n    // 启用 pnpm workspace\n    \"packages\": [\n        \"packages/*\"\n    ],\n\n    // 开发依赖\n    \"devDependencies\": {\n        \"typescript\": \"^5.0.0\"\n    },\n\n    // 脚本\n    \"scripts\": {\n        \"build\": \"pnpm -r run build\",\n        \"clean\": \"pnpm -r run clean\",\n        \"type-check\": \"pnpm -r run type-check\"\n    }\n}"
+    ]
+   },
+   {
+    "title": "TypeScript 命名空间",
+    "url": "https://www.runoob.com/typescript/ts-namespace.html",
+    "body": "命名空间一个最明确的目的就是解决重名问题。\n假设这样一种情况，当一个班上有两个名叫小明的学生时，为了明确区分它们，我们在使用名字之外，不得不使用一些额外的信息，比如他们的姓（王小明，李小明），或者他们父母的名字等等。\n命名空间定义了标识符的可见范围，一个标识符可在多个命名空间中定义，它在不同命名空间中的含义是互不相干的。这样，在一个新的命名空间中可定义任何标识符，它们不会与任何已有的标识符发生冲突，因为已有的定义都处于其他命名空间中。\nTypeScript 中命名空间使用 namespace 来定义，语法格式如下：",
+    "examples": [
+     "namespace SomeNameSpaceName {\nexport interface ISomeInterfaceName { }\nexport class SomeClassName { }\n}"
+    ]
+   },
+   {
+    "title": "TypeScript + Node.js 实战",
+    "url": "https://www.runoob.com/typescript/ts-nodejs.html",
+    "body": "TypeScript 在 Node.js 后端开发中广泛应用，本教程介绍 Node.js 项目的 TypeScript 配置和使用。\n使用 TypeScript 可以让 Node.js 代码更安全、更易维护，特别适合中大型后端项目。\nNode.js 教程查看：https://www.runoob.com/nodejs/nodejs-tutorial.html\nNode.js + TypeScript 项目结构项目配置package.jsontsconfig.jsonts-node源代码 (src/)types/ - 类型定义services/ - 业务逻辑routes/ - 路由处理编译输出 (dist/).js - JavaScript.d.ts - 类型声明.map - 源码映射Node.js运行时执行 JS开发流程npm install 安装依赖tsc 编译 TypeScriptnode 运行 JavaScriptAPI 请求测试为什么需要在 Node.js 中使用 TypeScript\nNode.js 项目通常涉及复杂的业务逻辑和数据处理，代码行数会快速增长。\n使用 TypeScript 可以：提供编译期类型检查，减少运行时错误；利用 IDE 智能提示，提高开发效率；代码更易读和维护。\n许多大型 Node.js 项目（如NestJS）都推荐或默认使用 TypeScript。\n优势：TypeScript 的静态类型检查可以在开发时发现潜在问题，比运行时调试更高效。\n项目初始化\n首先初始化 Node.js 项目并安装 TypeScript 相关依赖。\n初始化项目",
+    "examples": [
+     "# 初始化 npm\nnpm init -y\n\n# 安装 TypeScript 和 Node.js 类型定义\n# -D 表示安装为开发依赖\nnpm install -D typescript @types/node ts-node nodemon\n\n# 初始化 tsconfig.json\nnpx tsc --init"
+    ]
+   },
+   {
+    "title": "TypeScript null 和 undefined",
+    "url": "https://www.runoob.com/typescript/ts-null-undefined.html",
+    "body": "在 TypeScript 中，null 和 undefined 有特殊的处理方式。\n启用 strictNullChecks 后，需要显式处理这些值，这有助于编写更安全的代码。\nnull 和 undefined 处理方式null表示\"空值\"需要显式声明string | nullvsundefined表示\"未定义\"可选属性自动包含name?: string安全安全处理方式可选链: obj?.prop空值合并: value ?? default类型守卫: if (val !== null)处理场景联合类型声明可选参数和属性空值合并运算符为什么需要处理 null 和 undefined\nJavaScript 中 null 和 undefined 是常见的错误来源，很多运行时错误都与之相关。\nTypeScript 的 strictNullChecks 选项要求开发者显式处理可能为空的值。\n这虽然增加了编码工作量，但能大幅减少空值导致的运行时错误，提高代码可靠性。\n概念说明：null 表示\"空值\"，即这里没有值；undefined 表示\"未定义\"，即这里还没有被赋值。\nnull 和 undefined 基础\nnull 表示\"空值\"，undefined 表示\"未定义\"。两者在 TypeScript 中是独立的类型。\n实例",
+    "examples": [
+     "// 声明 null 类型的变量\n// 只能赋值为 null\nvar empty: null = null;\n\n// 声明 undefined 类型的变量\n// 只能赋值为 undefined\nvar notDefined: undefined = undefined;\n\nconsole.log(\"null: \" + empty);\nconsole.log(\"undefined: \" + notDefined);"
+    ]
+   },
+   {
+    "title": "TypeScript Number",
+    "url": "https://www.runoob.com/typescript/ts-number.html",
+    "body": "TypeScript 与 JavaScript 类似，支持 Number 对象。\n在 TypeScript 中，Number 对象用于包装数值类型。\nNumber 对象是原始数值的包装对象。\n类似于 String 对象，Number 对象是引用类型，与基本的 number 类型有所不同。\n尽管 Number 对象提供了一些额外的属性和方法，但在 TypeScript 中更推荐直接使用基本的 number 类型，因为 Number 对象会带来性能开销和类型混淆。\n语法\nvar num = new Number(value);\n需要注意的是，这会创建一个引用类型的对象，而非基本的 number 类型。\n注意： 如果一个参数值不能转换为一个数字将返回 NaN (非数字值)。\nNumber 对象与基本 number 类型的区别\n基本类型 number：原始数据类型，用于存储数值。\nNumber 对象：引用类型，是一个包装对象，用于包装基本数值。\n实例",
+    "examples": [
+     "let numLiteral: number = 42;\nlet numObject: Number = new Number(42);\n\nconsole.log(typeof numLiteral); // 输出：\"number\"\nconsole.log(typeof numObject);  // 输出：\"object\""
+    ]
+   },
+   {
+    "title": "TypeScript 对象",
+    "url": "https://www.runoob.com/typescript/ts-object.html",
+    "body": "对象是包含一组键值对的实例。 值可以是标量、函数、数组、对象等，如下实例：",
+    "examples": [
+     "var object_name = {\nkey1: \"value1\", // 标量\nkey2: \"value\",  \n    key3: function() {\n// 函数\n}, \n    key4:[\"content1\", \"content2\"] //集合\n}"
+    ]
+   },
+   {
+    "title": "TypeScript 运算符",
+    "url": "https://www.runoob.com/typescript/ts-operators.html",
+    "body": "运算符用于执行程序代码运算，会针对一个以上操作数项目来进行运算。\n考虑以下计算：\n7 + 5 = 12\n以上实例中 7、5 和 12 是操作数。\n运算符 + 用于加值。\n运算符 = 用于赋值。\nTypeScript 主要包含以下几种运算：\n算术运算符\n逻辑运算符\n关系运算符\n按位运算符\n赋值运算符\n三元/条件运算符\n字符串运算符\n类型运算符\n算术运算符\n假定 y=5，下面的表格解释了这些算术运算符的操作：\n运算符\n描述\n例子\nx 运算结果\ny 运算结果\n+\n加法\nx=y+2\n7\n5\n-\n减法\nx=y-2\n3\n5\n*\n乘法\nx=y*2\n10\n5\n/\n除法\nx=y/2\n2.5\n5\n%\n取模（余数）\nx=y%2\n1\n5\n++\n自增\nx=++y\n6\n6\nx=y++\n5\n6\n--\n自减\nx=--y\n4\n4\nx=y--\n5\n4\n实例",
+    "examples": [
+     "var num1:number = 10 \nvar num2:number = 2\nvar res:number = 0\n    \nres = num1 + num2 \nconsole.log(\"加:        \"+res); \n\nres = num1 - num2; \nconsole.log(\"减: \"+res) \n\nres = num1*num2 \nconsole.log(\"乘:    \"+res) \n\nres = num1/num2 \nconsole.log(\"除:   \"+res)\n    \nres = num1%num2 \nconsole.log(\"余数:   \"+res) \n\nnum1++ \nconsole.log(\"num1 自增运算: \"+num1) \n\nnum2-- \nconsole.log(\"num2 自减运算: \"+num2)"
+    ]
+   },
+   {
+    "title": "TypeScript 可选链",
+    "url": "https://www.runoob.com/typescript/ts-optional-chaining.html",
+    "body": "可选链（Optional Chaining）是 TypeScript 和 JavaScript 中一种安全的属性访问方式。\n它允许开发者以链式调用的方式安全地访问嵌套对象属性。当访问路径中的任意一个属性为 null 或 undefined 时，整个表达式会短路返回 undefined，而不会抛出错误。\n这极大地简化了深层嵌套对象的属性访问代码。\n可选链工作原理传统方式（冗长）// 需要多层检查var city = user&& user.address&& user.address.city;容易出错，代码冗余简化可选链方式（简洁）// 一行搞定var city = user?.address?.city;安全简洁，自动短路可选链的三种形式obj?.prop —— 属性访问arr?.[0] —— 数组访问obj?.method() —— 方法调用为什么需要可选链\n在 JavaScript/TypeScript 开发中，经常需要访问深层嵌套的对象属性。\n传统的写法需要逐层检查属性是否存在。这种方式不仅代码冗长，而且容易遗漏检查导致运行时错误。\n概念说明：可选链的核心是\"短路求值\"。当链中某个属性的值为 null 或 undefined 时，整个表达式的结果立即返回 undefined，而不会继续访问后续属性。\n基本语法\n使用 ?. 运算符安全访问可能不存在的属性。\n与传统的 && 链式检查相比，可选链语法更加简洁直观。\n实例",
+    "examples": [
+     "// 定义一个嵌套的用户对象\n// 包含姓名和地址信息，地址中有城市\nvar user = {\n    name: \"RUNOOB\",\n    address: {\n        city: \"Beijing\"\n    }\n};\n\n// 传统方式：使用 && 逐层检查\n// 这种方式代码冗长，容易遗漏\nvar city1 = user && user.address && user.address.city;\n\n// 可选链方式：使用 ?. 运算符\n// 如果任意一层为 null 或 undefined，直接返回 undefined\nvar city2 = user?.address?.city;\n\nconsole.log(\"传统方式: \" + city1);\nconsole.log(\"可选链: \" + city2);"
+    ]
+   },
+   {
+    "title": "TypeScript 路径映射 paths",
+    "url": "https://www.runoob.com/typescript/ts-paths.html",
+    "body": "paths 是 tsconfig.json 中的配置选项，用于配置模块路径别名。\n它可以让导入路径更简洁，同时保持代码的组织结构清晰。\n路径映射 paths 工作原理原始导入路径import Button from \"../../components/Button\"使用别名导入import Button from \"@/components/Button\"tsconfigpaths配置paths 配置项baseUrl 基准路径paths 路径别名rootDirs 根目录为什么需要路径映射\n随着项目规模增长，文件目录会越来越深。\n使用相对路径导入文件（如 ../../../components/Button）会让代码难以阅读和维护。\n路径映射允许我们使用别名（如 @/components/Button）来替代冗长的相对路径。\n别名：路径别名让导入路径更简洁，同时便于调整项目结构。\n基本配置\n在 tsconfig.json 中配置 paths 和 baseUrl。\ntsconfig.json",
+    "examples": [
+     "{\n    \"compilerOptions\": {\n        // 基准路径：所有路径别名的根目录\n        \"baseUrl\": \".\",\n\n        // 路径映射配置\n        \"paths\": {\n            // @/ 开头的别名，指向 src 目录\n            \"@/*\": [\"src/*\"],\n\n            // @components 开头的别名\n            \"@components/*\": [\"src/components/*\"],\n\n            // @utils 开头的别名\n            \"@utils/*\": [\"src/utils/*\"],\n\n            // @services 开头的别名\n            \"@services/*\": [\"src/services/*\"],\n\n            // @assets 开头的别名\n            \"@assets/*\": [\"src/assets/*\"],\n\n            // @types 开头的别名\n            \"@types/*\": [\"src/types/*\"]\n        }\n    }\n}"
+    ]
+   },
+   {
+    "title": "TypeScript 性能优化",
+    "url": "https://www.runoob.com/typescript/ts-performance.html",
+    "body": "TypeScript 项目的性能优化涉及编译速度、运行时性能和代码体积等多个方面。\n本教程介绍常见的性能优化技巧，帮助构建更高效的 TypeScript 应用。\nTypeScript 性能优化维度编译速度增量构建 | skipLibCheck运行时性能类型推断 | 避免 any包体积Tree Shaking | 懒加载关键优化策略skipLibCheck跳过库类型检查incremental增量编译Project References项目引用为什么需要性能优化\nTypeScript 虽然提供了强大的类型系统，但使用不当会影响编译速度和运行性能。\n大型项目的编译可能需要数分钟，严重影响开发体验。\n本教程介绍的配置和技巧可以显著提升 TypeScript 项目的性能。\n优化目标：更快的编译速度、更小的打包体积、更高的运行时性能。\n编译配置优化\n通过优化 tsconfig.json 配置来提升编译速度。\ntsconfig.json 优化配置",
+    "examples": [
+     "{\n    \"compilerOptions\": {\n        // 启用增量编译，保存上次编译信息\n        \"incremental\": true,\n\n        // 跳过 node_modules 的类型检查\n        // 大幅提升编译速度\n        \"skipLibCheck\": true,\n\n        // 跳过声明文件的生成（仅在最终构建时生成）\n        \"noEmit\": true,\n\n        // 启用快速增量构建\n        \"assumeChangesOnlyAffectDirectDependencies\": true,\n\n        // 并行执行\n        \"parallel\": true,\n\n        // 启用缓存\n        \"tsBuildInfoFile\": \".tsbuildinfo\",\n\n        // 不需要解析的文件\n        \"exclude\": [\n            \"node_modules\",\n            \"dist\",\n            \"build\",\n            \"**/*.test.ts\"\n        ]\n    }\n}"
+    ]
+   },
+   {
+    "title": "TypeScript Promise 详解",
+    "url": "https://www.runoob.com/typescript/ts-promise.html",
+    "body": "Promise 是 JavaScript 异步编程的基础，TypeScript 对 Promise 有完整的类型支持。\n通过泛型参数，可以精确地指定 Promise 解决值和拒绝值的类型。\nPromise 工作流程创建 Promisenew Promise((resolve, reject) => {...})pending等待中fulfilled ✓rejected ✗then() · catch() · finally()为什么需要 Promise\n在 JavaScript 中，很多操作是异步的，如网络请求、文件读取、定时器等。\nPromise 提供了统一的异步编程接口，让异步代码更容易编写和管理。\nTypeScript 通过泛型支持，让 Promise 的类型安全得到了保障。\n概念说明：Promise 是一个对象，表示一个异步操作的最终结果。它有三种状态：pending（进行中）、fulfilled（已成功）、rejected（已失败）。\n创建 Promise\n使用 Promise 构造函数创建 Promise，传入执行器函数。\n实例",
+    "examples": [
+     "// 创建 Promise，使用泛型指定解决值的类型\n// Promise<string> 表示成功时返回字符串\nvar promise = new Promise<string>(function(resolve, reject) {\n    var success = true;\n    if (success) {\n        // 调用 resolve 表示操作成功，传入结果值\n        resolve(\"成功!\");\n    } else {\n        // 调用 reject 表示操作失败，传入错误\n        reject(new Error(\"失败\"));\n    }\n});\n\n// 使用 then 处理成功情况\npromise.then(function(value) {\n    console.log(\"完成: \" + value);\n})[\"catch\"](function(error) {\n    // 使用 catch 处理失败情况\n    console.log(\"错误: \" + error.message);\n});"
+    ]
+   },
+   {
+    "title": "TypeScript 测验",
+    "url": "https://www.runoob.com/typescript/ts-quiz.html",
+    "body": "",
+    "examples": []
+   },
+   {
+    "title": "TypeScript + React 实战",
+    "url": "https://www.runoob.com/typescript/ts-react.html",
+    "body": "TypeScript 为 React 开发提供完整的类型支持，提高代码可靠性。\n使用 TypeScript 可以让 React 组件、Props、State 等都有完整的类型检查，减少运行时错误。\nReact 教程查看：https://www.runoob.com/vue3/react-tutorial.html\nReact + TypeScript 类型支持React 组件React.FC<Props>interface ButtonProps {text: stringReact HooksuseState<T>(initial)useEffect(() => {}, [])useCallback<T>(fn)事件处理React.FormEventReact.ChangeEventReact.MouseEventTypeScript 带来的优势编译期类型检查智能代码补全重构更安全为什么需要在 React 中使用 TypeScript\nReact 组件化开发会产生大量的 Props、State、Context 等数据流。\n没有类型定义时，很难追踪数据的来源和结构，容易出现运行时错误。\nTypeScript 为 React 提供了完整的类型系统：组件 Props 有类型检查、useState 有类型推断、事件处理有类型提示。\n数据流：React 中的数据流（Props、State、Context）都需要类型定义，TypeScript 可以确保数据流的类型安全。\n创建项目\n使用现代脚手架创建支持 TypeScript 的 React 项目。\n初始化",
+    "examples": [
+     "# 使用 Create React App（较慢但完整）\nnpx create-react-app my-app --template typescript\n\n# 或使用 Vite（推荐，更快）\nnpm create vite@latest my-app -- --template react-ts"
+    ]
+   },
+   {
+    "title": "TypeScript 递归类型",
+    "url": "https://www.runoob.com/typescript/ts-recursive-types.html",
+    "body": "递归类型是一种引用自身的类型，在处理树结构、嵌套数据时非常有用。\nTypeScript 支持递归类型定义，可以表达无限深度的数据结构。\n递归类型工作原理基础节点interface TreeNode {value: string}递归引用递归类型interface TreeNode {value: stringchildren?: TreeNode[]}实际结构root├── child1└── child2递归类型应用场景树形结构嵌套对象深度类型转换为什么需要递归类型\n在现实世界中，数据结构往往是嵌套的。\n例如，文件系统有文件夹和子文件夹，组织架构有部门和子部门，JSON 数据可以无限嵌套。\n递归类型允许我们表达这种无限嵌套的结构，是处理树形数据的基石。\n概念：递归类型是指在类型定义中引用自身的类型，可以表达任意深度的嵌套结构。\n树形结构\n递归类型最常见的应用是表示树形结构。\n实例",
+    "examples": [
+     "// 定义树节点类型，children 引用自身\ninterface TreeNode {\n    id: number;                    // 节点ID\n    name: string;                  // 节点名称\n    children?: TreeNode[];         // 子节点数组，递归引用\n}\n\n// 创建树形结构\nconst fileSystem: TreeNode = {\n    id: 1,\n    name: \"根目录\",\n    children: [\n        {\n            id: 2,\n            name: \"文件夹1\",\n            children: [\n                { id: 5, name: \"文件A.txt\" },\n                { id: 6, name: \"文件B.txt\" }\n            ]\n        },\n        {\n            id: 3,\n            name: \"文件夹2\",\n            children: [\n                { id: 7, name: \"文件C.txt\" }\n            ]\n        },\n        {\n            id: 4,\n            name: \"文件.txt\"\n        }\n    ]\n};\n\n// 遍历树的函数\nfunction traverse(node: TreeNode, depth: number = 0): void {\n    const indent = \"  \".repeat(depth);\n    console.log(indent + \"&#x1f4c1; \" + node.name);\n\n    if (node.children) {\n        for (const child of node.children) {\n            traverse(child, depth + 1);\n        }\n    }\n}\n\ntraverse(fileSystem);"
+    ]
+   },
+   {
+    "title": "TypeScript 项目引用 References",
+    "url": "https://www.runoob.com/typescript/ts-references.html",
+    "body": "项目引用是 TypeScript 提供的组织大型项目的功能，允许将 TypeScript 项目拆分为更小的部分。\n它可以实现增量构建、更好的代码组织和更快的编译速度。\n项目引用 References 原理主项目 (app)package.jsontsconfig.jsonreferences: [...]组件库 (ui)Button, Modal, Input工具库 (utils)formatDate, request类型定义 (types)User, API Response为什么需要项目引用\n随着项目增长，单一的 tsconfig.json 会导致编译速度变慢。\n项目引用允许将项目拆分为独立的子项目，每个子项目可以独立编译。\n这不仅提高了编译速度，还提供了更好的代码组织方式。\n概念：项目引用允许一个 TypeScript 项目引用其他项目，实现增量编译和更好的代码组织。\n创建引用项目\n首先创建被引用的子项目。\npackages/utils/tsconfig.json",
+    "examples": [
+     "{\n    // 继承基础配置\n    \"extends\": \"../../tsconfig.base.json\",\n\n    // 编译器选项\n    \"compilerOptions\": {\n        // 输出目录\n        \"outDir\": \"./dist\",\n\n        // 声明文件目录\n        \"declarationDir\": \"./dist/types\",\n\n        // 生成声明文件\n        \"declaration\": true,\n\n        // 生成 sourcemap\n        \"sourceMap\": true,\n\n        // 是否为库\n        \"composite\": true\n    },\n\n    // 包含的文件\n    \"include\": [\"src/**/*\"],\n\n    // 排除的文件\n    \"exclude\": [\"node_modules\", \"dist\", \"**/*.test.ts\"]\n}"
+    ]
+   },
+   {
+    "title": "TypeScript Set 和 WeakMap",
+    "url": "https://www.runoob.com/typescript/ts-set-weakmap.html",
+    "body": "TypeScript 继承自 JavaScript 的 Set 和 WeakMap 数据结构，提供了更强大的类型支持。\n这些数据结构在处理唯一值集合、键值对映射、缓存等场景非常有用。\nSet 和 Map 数据结构Set值的集合值唯一，不重复可遍历add/has/deleteWeakSet对象弱引用不影响 GC不可遍历add/has/deleteMap键值对集合键可以是任意类型可遍历set/get/hasWeakMap键弱引用键必须是对象不影响 GC不可遍历应用场景Set: 去重、唯一值集合Map: 键值映射、缓存WeakMap/WeakSet: 内存优化为什么需要 Set 和 WeakMap\n在开发中，我们经常需要处理唯一值集合和键值对映射。\nSet 提供了自动去重的集合功能，比数组更方便处理唯一值。\nWeakSet 和 WeakMap 使用弱引用，不会阻止垃圾回收，适用于需要避免内存泄漏的场景，如缓存 DOM 节点。\n概念说明：Set 是值的集合，值唯一；Map 是键值对集合，键可以是任意类型。WeakSet 和 WeakMap 使用弱引用，不影响垃圾回收。\nSet\nSet 是值的集合，值唯一，不允许重复。\n实例",
+    "examples": [
+     "// 创建 Set，指定元素类型为 number\nvar numbers = new Set<number>();\n\n// 添加元素\nnumbers.add(1);\nnumbers.add(2);\nnumbers.add(3);\nnumbers.add(1); // 重复值会被忽略，不会添加\n\n// 检查大小和包含\nconsole.log(\"Set 大小: \" + numbers.size);\nconsole.log(\"是否包含 2: \" + numbers.has(2));\n\n// 遍历 Set\nnumbers.forEach(function(value) {\n    console.log(\"值: \" + value);\n});\n\n// 转换为数组\nvar arr = Array.from(numbers);\nconsole.log(\"转换为数组: \" + arr);"
+    ]
+   },
+   {
+    "title": "TypeScript 特殊类型：never、void、unknown、any",
+    "url": "https://www.runoob.com/typescript/ts-special-types.html",
+    "body": "TypeScript 有四个特殊的类型：never、void、unknown 和 any。\n它们在类型系统中扮演重要角色，理解它们的区别对于编写类型安全的代码至关重要。\n四种特殊类型对比any任意类型绕过类型检查无安全性unknown安全任意类型使用需检查有安全性void无返回值用于函数可返回 undefinednever永不返回抛出异常/循环所有类型的子类型类型安全等级any（最低）完全绕过类型检查unknown需类型检查后使用void函数无返回值never（最高）最严格，最安全为什么需要特殊类型\nTypeScript 的类型系统非常强大，除了常规的类型外，还提供了四个特殊类型来处理特定的场景。\n理解这四种特殊类型的区别，能够帮助我们编写更安全、更准确的类型代码。\n概念说明：never、void、unknown、any 是 TypeScript 的特殊类型，它们各自有不同的含义和使用场景。\nnever 类型\nnever 表示永不返回的类型。通常用于抛出异常或无限循环的函数。\n实例",
+    "examples": [
+     "// 抛出异常的函数\n// 函数永远不会正常返回，总会抛出错误\nfunction throwError(message: string): never {\n    throw new Error(message);\n}\n\n// 无限循环的函数\n// 函数永远不会返回，程序会一直运行\nfunction infiniteLoop(): never {\n    while (true) {\n        console.log(\"运行中...\");\n    }\n}\n\n// never 是所有类型的子类型\n// 这意味着 never 可以赋值给任何类型\nvar neverValue: never;\nvar num: number = neverValue;  // 正确：never 是 number 的子类型\nconsole.log(\"never 赋值给 number: \" + num);"
+    ]
+   },
+   {
+    "title": "TypeScript String（字符串）",
+    "url": "https://www.runoob.com/typescript/ts-string.html",
+    "body": "在 TypeScript 中，字符串（String）是用于表示文本数据的基本数据类型，它继承并扩展了 JavaScript 的字符串特性，同时增加了静态类型校验。\n语法\nvar txt = new String(\"string\");\n或者更简单方式：\nvar txt = \"string\";\n两种创建方式及核心区别\nTypeScript 中创建字符串有两种方式，但二者在类型、性能和使用场景上有本质区别：\n方式 1：字符串字面量（推荐）\n这是 TypeScript/JavaScript 中最常用、性能最优的方式，创建的是原始字符串类型（string），也是 TypeScript 类型系统中默认的字符串类型。\n// 原始字符串（推荐使用）\nconst txt1: string = \"Hello TypeScript\"; // 显式指定类型\nconst txt2 = \"Hello JavaScript\"; // 类型推导为 string\n方式 2：String 对象（不推荐）\n通过 new String() 创建的是包装对象类型（String），本质是一个对象，而非原始值，会带来类型混淆和性能损耗。\n// String 对象（不推荐）\nconst txtObj: String = new String(\"Hello Object\"); // 类型为 String（对象）\nString 对象和字符串字面量在类型上是不同的：\n字符串字面量是基本数据类型 string，用于直接存储字符串值。\nString 对象是 String 类型，实际上是一个对象，而非原始的字符串值。\n实例",
+    "examples": [
+     "let strLiteral: string = \"Hello\";\nlet strObject: String = new String(\"Hello\");\n\nconsole.log(typeof strLiteral); // 输出：\"string\"\nconsole.log(typeof strObject);  // 输出：\"object\""
+    ]
+   },
+   {
+    "title": "TypeScript Symbol",
+    "url": "https://www.runoob.com/typescript/ts-symbol.html",
+    "body": "Symbol 是 ES6 引入的原始数据类型，表示唯一的标识符。\n在 TypeScript 中，Symbol 可以用作对象的属性键，确保属性的唯一性。\n这在需要创建私有属性、避免属性名冲突等场景非常有用。\nSymbol 特性Symbol() 创建var sym1 = Symbol(\"key\")var sym2 = Symbol(\"key\")// sym1 !== sym2每次创建都唯一用作对象属性键var obj = {[sym]: \"value\"}// 唯一属性名Symbol.for()全局注册表相同 key相等常见内置 SymbolSymbol.iterator - 迭代器Symbol.toStringTag - 对象描述Symbol.hasInstance - instanceof为什么需要 Symbol\n在 JavaScript 中，对象的属性名都是字符串，有时可能会发生冲突。\nSymbol 提供了创建唯一标识符的方式，每次调用 Symbol() 都会创建一个新的、唯一的值。\n这在需要创建私有属性、定义唯一常量、实现迭代器等场景非常有用。\n概念说明：Symbol 是 JavaScript 的原始数据类型之一，通过 Symbol() 函数创建。每个 Symbol 值都是唯一的，即使描述相同也不相等。\n创建 Symbol\n使用 Symbol() 函数创建唯一的 Symbol 值。\n实例",
+    "examples": [
+     "// 创建 Symbol，传入描述字符串（可选）\nvar sym1 = Symbol(\"description\");\nvar sym2 = Symbol(\"description\");\n\n// 每次创建的 Symbol 都是唯一的，即使描述相同\nconsole.log(\"sym1 === sym2: \" + (sym1 === sym2));\nconsole.log(\"sym1: \" + sym1.toString());"
+    ]
+   },
+   {
+    "title": "TypeScript 模板字面量类型",
+    "url": "https://www.runoob.com/typescript/ts-template-literal.html",
+    "body": "模板字面量类型基于字符串字面量类型构建，支持通过插值生成新的字符串类型。\n这让 TypeScript 能够对字符串进行更精确的类型检查，适用于事件名、路径、类名等场景。\n模板字面量类型工作原理输入类型type Event = \"click\" | \"focus\"type Method = \"get\" | \"post\"模板模板字面量类型type Name = `on${Capitalize}`type Path = `${Method}:/${string}`输出类型\"onClick\"\"onFocus\"\"get:/...\"内置工具类型Uppercase\"hello\" → \"HELLO\"Lowercase\"HELLO\" → \"hello\"Capitalize\"hello\" → \"Hello\"Uncapitalize\"Hello\" → \"hello\"为什么需要模板字面量类型\n在开发中，我们经常需要处理格式化的字符串，如事件名（onClick）、API 路径（get:/users）、CSS 类名（btn-primary-md）等。\n使用普通的 string 类型无法精确描述这些格式，而模板字面量类型让我们可以精确地定义这些字符串的类型。\n这大大增强了 TypeScript 的类型安全性，减少了运行时错误。\n概念说明：模板字面量类型使用反引号（`` ` ``）和 ${} 插值语法来定义字符串类型，类似于 JavaScript 的模板字符串，但用在类型层面。\n基本语法\n模板字面量类型使用反引号和插值来定义类型。\n实例",
+    "examples": [
+     "// 定义基础字符串字面量类型\ntype World = \"world\";\n\n// 使用模板字面量类型\n// `Hello ${World}` 相当于 \"Hello world\"\ntype Greeting = `Hello ${World}`;\n\n// 只能赋值符合类型定义的字符串\nvar greeting: Greeting = \"Hello world\";\nconsole.log(\"问候: \" + greeting);"
+    ]
+   },
+   {
+    "title": "TypeScript tsconfig.json 配置",
+    "url": "https://www.runoob.com/typescript/ts-tsconfig.html",
+    "body": "tsconfig.json 是 TypeScript 项目的配置文件，用于指定编译选项和项目设置。\n基本配置\n最基础的 tsconfig.json 文件。\n实例",
+    "examples": [
+     "{\n    \"compilerOptions\": {\n        \"target\": \"ES2020\",\n        \"module\": \"commonjs\",\n        \"strict\": true,\n        \"outDir\": \"./dist\"\n    },\n    \"include\": [\"src/**/*\"],\n    \"exclude\": [\"node_modules\", \"dist\"]\n}"
+    ]
+   },
+   {
+    "title": "TypeScript 元组",
+    "url": "https://www.runoob.com/typescript/ts-tuple.html",
+    "body": "我们知道数组中元素的数据类型都一般是相同的（any[] 类型的数组可以不同），如果存储的元素数据类型不同，则需要使用元组。\nTypeScript 中的元组（Tuple）是一种特殊类型的数组，它允许在数组中存储不同类型的元素，与普通数组不同，元组中的每个元素都有明确的类型和位置。元组可以在很多场景下用于表示固定长度、且各元素类型已知的数据结构。\n创建元组的语法格式如下：\nlet tuple: [类型1, 类型2, 类型3, ...];\n实例\n声明一个元组并初始化：\nlet mytuple: [number, string];\nmytuple = [42,\"Runoob\"];\n在上面的例子中，mytuple 是一个元组，它包含一个 number 类型和一个 string 类型的元素。\n访问元组\n元组中元素使用索引来访问，第一个元素的索引值为 0，第二个为 1，以此类推第 n 个为 n-1，语法格式如下:\ntuple_name[index]\n实例\n以下实例定义了元组，包含了数字和字符串两种类型的元素：\nTypeScript",
+    "examples": [
+     "let mytuple: [number, string, boolean] = [42, \"Runoob\", true];\n \n// 访问元组中的元素\nlet num = mytuple[0]; // 访问第一个元素，值为 42，类型为 number\nlet str = mytuple[1]; // 访问第二个元素，值为 \"Runoob\"，类型为 string\nlet bool = mytuple[2]; // 访问第三个元素，值为 true，类型为 boolean\nconsole.log(num);  // 输出: 42\nconsole.log(str);  // 输出: Runoob\nconsole.log(bool); // 输出: true"
+    ]
+   },
+   {
+    "title": "TypeScript 教程",
+    "url": "https://www.runoob.com/typescript/ts-tutorial.html",
+    "body": "TypeScript 是 JavaScript 的一个超集，支持 ECMAScript 6 标准（ES6 教程）。\nTypeScript 由微软开发的自由和开源的编程语言，在 JavaScript 的基础上增加了静态类型检查的超集。\nTypeScript 设计目标是开发大型应用，它可以编译成纯 JavaScript，编译出来的 JavaScript 可以运行在任何浏览器上。",
+    "examples": []
+   },
+   {
+    "title": "TypeScript type 别名",
+    "url": "https://www.runoob.com/typescript/ts-type-alias.html",
+    "body": "type 别名（Type Alias）用于为现有类型创建别名，让代码更简洁、更易读。\n通过类型别名，可以为复杂类型定义一个简短的名字，提高代码的可维护性。\ntype 别名工作原理原始复杂类型type User = {name: string;age: number;email: string;}定义type 别名type UserID = User;// 或type ID = string | number;使用代码中使用var id: UserID;var uid: ID;type 别名应用场景基础类型别名联合类型别名函数类型别名泛型类型别名为什么需要 type 别名\n当代码中多次使用同一个复杂类型时，每次都写完整类型会很冗长。\ntype 别名可以为复杂类型定义一个简洁的名字，让代码更易读、更易维护。\n特别是在使用联合类型、函数类型、元组等复杂类型时，type 别名非常有用。\n概念说明：type 别名使用 type 关键字定义，它只是为现有类型起了一个新名字，不会创建新的类型。\n基本用法\n使用 type 关键字为类型定义别名。\n实例",
+    "examples": [
+     "// 类型别名：为联合类型定义别名\n// ID 可以是字符串或数字\ntype ID = string | number;\n\n// 类型别名：为对象类型定义别名\n// Point 表示一个坐标点\ntype Point = { x: number; y: number };\n\n// 使用类型别名\nvar userId: ID = \"123\";\nvar productId: ID = 456;\n\n// 使用 Point 类型别名\nvar point: Point = { x: 10, y: 20 };\n\nconsole.log(\"用户ID: \" + userId);\nconsole.log(\"产品ID: \" + productId);\nconsole.log(\"坐标: \" + JSON.stringify(point));"
+    ]
+   },
+   {
+    "title": "TypeScript 类型守卫",
+    "url": "https://www.runoob.com/typescript/ts-type-guards.html",
+    "body": "类型守卫（Type Guards）是 TypeScript 中非常重要的一种类型缩小机制。\n它允许开发者在运行时通过特定的条件检查，让 TypeScript 编译器能够准确推断出变量的具体类型。\n通过类型守卫，我们可以安全地访问联合类型变量中特定类型的属性和方法。\n为什么需要类型守卫\n在 TypeScript 中，一个变量可能被声明为多种类型的联合。\n当我们需要根据不同类型执行不同操作时，编译器无法自动判断当前的具体类型。\n类型守卫就是解决这个问题的关键机制。\n概念说明：类型守卫的核心原理是\"类型缩窄\"（Type Narrowing）。通过条件判断，TypeScript 会自动将联合类型缩小为具体的类型。\n类型守卫 - 类型缩窄流程原始联合类型string | number | booleantypeoftypeof === \"string\"缩窄为 string分支类型已确定可访问 .length类型守卫方式typeoftypeof x === \"string\"原始类型instanceofx instanceof Array类实例自定义守卫x is Stringvalue is Typein\"prop\" in x属性检查typeof 类型守卫\ntypeof 是最常用的类型守卫，用于检查原始类型（string、number、boolean 等）。\n它返回一个字符串，表示值的类型。\ntypeof 基本用法",
+    "examples": [
+     "// 定义一个接收联合类型的函数\n// 参数 value 可能是字符串或数字\nfunction printValue(value: string | number): void {\n    // 使用 typeof 检查类型\n    // 在 if 条件为 true 时，TypeScript 会自动将 value 缩小为 string 类型\n    if (typeof value === \"string\") {\n        // 此时 TypeScript 知道 value 是 string\n        // 可以安全地访问字符串的 length 属性\n        console.log(\"字符串长度: \" + value.length);\n    } else {\n        // 进入 else 分支时，TypeScript 知道 value 不是 string\n        // 只能是 number 类型\n        // 可以安全地进行数学运算\n        console.log(\"数字翻倍: \" + (value * 2));\n    }\n}\n\n// 测试调用\nprintValue(\"hello\");  // 传入字符串\nprintValue(42);       // 传入数字"
+    ]
+   },
+   {
+    "title": "TypeScript 基础类型",
+    "url": "https://www.runoob.com/typescript/ts-type.html",
+    "body": "基础类型可以开发者更准确地描述数据的结构和意图。\nTypeScript 包含的数据类型如下表:\n类型\n描述\n示例\nstring\n表示文本数据\nlet name: string = \"Alice\";\nnumber\n表示数字，包括整数和浮点数\nlet age: number = 30;\nboolean\n表示布尔值 true 或 false\nlet isDone: boolean = true;\narray\n表示相同类型的元素数组\nlet list: number[] = [1, 2, 3];\ntuple\n表示已知类型和长度的数组\nlet person: [string, number] = [\"Alice\", 30];\nenum\n定义一组命名常量\nenum Color { Red, Green, Blue };\nany\n任意类型，不进行类型检查\nlet value: any = 42;\nvoid\n无返回值（常用于函数）\nfunction log(): void {}\nnull\n表示空值\nlet empty: null = null;\nundefined\n表示未定义\nlet undef: undefined = undefined;\nnever\n表示不会有返回值\nfunction error(): never { throw new Error(\"error\"); }\nobject\n表示非原始类型\nlet obj: object = { name: \"Alice\" };\nunion\n联合类型，表示可以是多种类型之一\n`let id: string\nunknown\n不确定类型，需类型检查后再使用\nlet value: unknown = \"Hello\";\n注意：TypeScript 和 JavaScript 没有整数类型。\n1、string 字符串\n表示文本数据，只能存储字符串，通常用于描述文字信息。\nlet message: string = \"Hello, TypeScript!\";\n模板字符串：TypeScript 支持 模板字符串，用反引号 `（记住不是单引号 '）来定义，允许在字符串中插入变量或表达式，非常适合多行文本和拼接变量。\nlet name: string = \"Alice\";\nlet greeting: string = `Hello, ${name}! Welcome to TypeScript.`;\nconsole.log(greeting); // 输出：Hello, Alice! Welcome to TypeScript.\n2、number 数字\nTypeScript 使用 number 表示所有数字，包括整数和浮点数。\nlet age: number = 25;\nlet temperature: number = 36.5;\n3、boolean 布尔值\n表示逻辑值 true 或 false，用于条件判断。\nlet isCompleted: boolean = false;\n4、array 数组\n可以表示一组相同类型的元素。可以使用 type[] 或 Array<type> 两种方式表示。\nlet numbers: number[] = [1, 2, 3];\nlet names: Array<string> = [\"Alice\", \"Bob\"];\n5、tuple 元组\n表示已知数量和类型的数组。每个元素可以是不同的类型，适合表示固定结构的数据。\nlet person: [string, number] = [\"Alice\", 25];\n6、enum 枚举\n用来定义一组命名常量。默认情况下枚举的值从 0 开始递增。\nenum Color {\n Red,\n Green,\n Blue,\n}\nlet favoriteColor: Color = Color.Green;\n7、any 类型\n以表示任何类型。适合不确定数据类型的情况，但使用时需谨慎，因为 any 会绕过类型检查。\nlet randomValue: any = 42;\nrandomValue = \"hello\";\n任意值是 TypeScript 针对编程时类型不明确的变量使用的一种数据类型，它常用于以下三种情况。\n1、变量的值会动态改变时，比如来自用户的输入，任意值类型可以让这些变量跳过编译阶段的类型检查，示例代码如下：\nlet x: any = 1; // 数字类型\nx = 'I am who I am'; // 字符串类型\nx = false; // 布尔类型\n改写现有代码时，任意值允许在编译时可选择地包含或移除类型检查，示例代码如下：\nlet x: any = 4;\nx.ifItExists(); // 正确，ifItExists方法在运行时可能存在，但这里并不会检查\nx.toFixed(); // 正确\n定义存储各种类型数据的数组时，示例代码如下：\nlet arrayList: any[] = [1, false, 'fine'];\narrayList[1] = 100;\n8、void 空类型\n用于没有返回值的函数。声明变量时，类型 void 意味着只能赋值 null 或 undefined。\nfunction logMessage(message: string): void {\n console.log(message);\n}\n9、null 和 undefined\nnull 和 undefined分别表示\"空值\"和\"未定义\"。在默认情况下，它们是所有类型的子类型，但可以通过设置 strictNullChecks 严格检查。\nlet empty: null = null;\nlet notAssigned: undefined = undefined;\nnull\n在 JavaScript 中 null 表示 \"什么都没有\"。\nnull是一个只有一个值的特殊类型。表示一个空对象引用。\n用 typeof 检测 null 返回是 object。\nundefined\n在 JavaScript 中, undefined 是一个没有设置值的变量。\ntypeof 一个没有值的变量会返回 undefined。\nNull 和 Undefined 是其他任何类型（包括 void）的子类型，可以赋值给其它类型，如数字类型，此时，赋值后的类型会变成 null 或 undefined。而在TypeScript中启用严格的空校验（--strictNullChecks）特性，就可以使得null 和 undefined 只能被赋值给 void 或本身对应的类型，示例代码如下：\n// 启用 --strictNullChecks\nlet x: number;\nx = 1; // 编译正确\nx = undefined; // 编译错误\nx = null; // 编译错误\n上面的例子中变量 x 只能是数字类型。如果一个类型可能出现 null 或 undefined， 可以用 | 来支持多种类型，示例代码如下：\n// 启用 --strictNullChecks\nlet x: number | null | undefined;\nx = 1; // 编译正确\nx = undefined; // 编译正确\nx = null; // 编译正确\n更多内容可以查看：JavaScript typeof, null, 和 undefined\n10、never 类型\n表示不会有返回值，通常用于抛出错误或进入无限循环的函数，表示该函数永远不会正常结束。\nfunction throwError(message: string): never {\n throw new Error(message);\n}\nnever 是其它类型（包括 null 和 undefined）的子类型，代表从不会出现的值。这意味着声明为 never 类型的变量只能被 never 类型所赋值，在函数中它通常表现为抛出异常或无法执行到终止点（例如无限循环），示例代码如下：\nlet x: never;\nlet y: number;\n\n// 编译错误，数字类型不能转为 never 类型\nx = 123;\n\n// 运行正确，never 类型可以赋值给 never类型\nx = (()=>{ throw new Error('exception')})();\n\n// 运行正确，never 类型可以赋值给 数字类型\ny = (()=>{ throw new Error('exception')})();\n\n// 返回值为 never 的函数可以是抛出异常的情况\nfunction error(message: string): never {\n throw new Error(message);\n}\n\n// 返回值为 never 的函数可以是无法被执行到的终止点的情况\nfunction loop(): never {\n while (true) {}\n}\n11、object 对象类型\n表示非原始类型的值，适用于复杂的对象结构。\nlet person: object = { name: \"Alice\", age: 30 };\n12、联合类型 (Union)\n表示一个变量可以是多种类型之一。通过 | 符号实现。\nlet id: string | number;\nid = \"123\";\nid = 456;\n13、unknown 不确定的类型\n与 any 类似，但更严格。必须经过类型检查后才能赋值给其他类型变量。\nlet value: unknown = \"Hello\";\nif (typeof value === \"string\") {\n let message: string = value;\n}\n14、类型断言 (Type Assertions)\n类型断言可以让开发者明确告诉编译器变量的类型，常用于无法推断的情况。可以使用 as 或尖括号语法。\nlet someValue: any = \"this is a string\";\nlet strLength: number = (someValue as string).length;\n15、字面量类型\n字面量类型可以让变量只能拥有特定的值，用于结合联合类型定义变量的特定状态。\nlet direction: \"up\" | \"down\" | \"left\" | \"right\";\ndirection = \"up\";\n通过这些类型，TypeScript 提供了更强的类型安全性和代码检查能力，使开发者能够更清晰、准确地表达数据和意图，减少运行时错误。\n实例\n以下实例展示了 TypeScript 中主要基础类型的定义和使用，模拟一个用户对象和相关的操作函数：\n实例",
+    "examples": [
+     "// 定义枚举类型，用于表示用户的角色\nenum Role {\n  Admin,\n  User,\n  Guest,\n}\n\n// 使用 interface 定义用户的结构\ninterface User {\n  id: number;               // number 类型，用于唯一标识用户\n  username: string;         // string 类型，表示用户名\n  isActive: boolean;        // boolean 类型，表示用户是否激活\n  role: Role;               // enum 类型，用于表示用户角色\n  hobbies: string[];        // array 类型，存储用户的兴趣爱好\n  contactInfo: [string, number]; // tuple 类型，包含电话号码的元组，格式为：[区域码, 电话号码]\n}\n\n// 创建用户对象，符合 User 接口的结构\nconst user: User = {\n  id: 1,\n  username: \"Alice\",\n  isActive: true,\n  role: Role.User,\n  hobbies: [\"Reading\", \"Gaming\"],\n  contactInfo: [\"+1\", 123456789],\n};\n\n// 定义一个返回字符串的函数来获取用户信息\nfunction getUserInfo(user: User): string {\n  return `User ${user.username} is ${user.isActive ? \"active\" : \"inactive\"} with role ${Role[user.role]}`;\n}\n\n// 使用 void 类型定义一个函数，专门打印用户信息\nfunction printUserInfo(user: User): void {\n  console.log(getUserInfo(user));\n}\n\n// 定义一个 union 类型的函数参数，接受用户 ID（number）或用户名（string）\nfunction findUser(query: number | string): User | undefined {\n  // 使用 typeof 来判断 query 的类型\n  if (typeof query === \"number\") {\n    // 如果是数字，则根据 ID 查找用户\n    return query === user.id ? user : undefined;\n  } else if (typeof query === \"string\") {\n    // 如果是字符串，则根据用户名查找用户\n    return query === user.username ? user : undefined;\n  }\n  return undefined;\n}\n\n// 定义一个 never 类型的函数，用于处理程序的异常情况\nfunction throwError(message: string): never {\n  throw new Error(message);\n}\n\n// 使用 any 类型处理未知类型的数据\nlet unknownData: any = \"This is a string\";\nunknownData = 42; // 重新赋值为数字，类型为 any\n\n// 使用 unknown 类型处理不确定的数据，更加安全\nlet someData: unknown = \"Possible data\";\nif (typeof someData === \"string\") {\n  console.log(`Length of data: ${(someData as string).length}`);\n}\n\n// 调用各个函数并测试\nprintUserInfo(user);                    // 打印用户信息\nconsole.log(findUser(1));               // 根据 ID 查找用户\nconsole.log(findUser(\"Alice\"));         // 根据用户名查找用户\n\n// 使用 null 和 undefined 类型的变量\nlet emptyValue: null = null;\nlet uninitializedValue: undefined = undefined;"
+    ]
+   },
+   {
+    "title": "TypeScript 联合类型",
+    "url": "https://www.runoob.com/typescript/ts-union.html",
+    "body": "联合类型（Union Types）可以通过管道(|)将变量设置多种类型，赋值时可以根据设置的类型来赋值。\n注意：只能赋值指定的类型，如果赋值其它类型就会报错。\n创建联合类型的语法格式如下：\nType1|Type2|Type3\n实例\n声明一个联合类型：\nTypeScript",
+    "examples": [
+     "var val:string|number\nval = 12\nconsole.log(\"数字为 \"+ val)\nval = \"Runoob\"\nconsole.log(\"字符串为 \" + val)"
+    ]
+   },
+   {
+    "title": "TypeScript 单元测试",
+    "url": "https://www.runoob.com/typescript/ts-unit-testing.html",
+    "body": "TypeScript 项目中的单元测试实践，确保代码质量。\n单元测试可以验证代码的正确性，TypeScript 的类型系统与测试框架完美结合，可以编写类型安全的测试代码。\nTypeScript 单元测试流程源代码src/utils/calculator.tssrc/services/userService.ts完整类型注解测试代码*.test.tsdescribe() / it()expect() 断言测试结果✓ 通过 / ✗ 失败覆盖率报告错误堆栈跟踪单元测试原则每个测试只验证一件事Arrange-Act-Assert 结构测试应该相互独立为什么需要单元测试\n单元测试是保证代码质量的重要手段，它可以验证代码的正确性，防止 bug 出现。\nTypeScript 项目中，测试代码同样受益于类型系统：类型错误会在编译时被发现，IDE 提供智能提示，测试代码更可靠。\n此外，测试代码也是最好的文档，可以通过测试了解函数/类的预期行为。\n质量保障：单元测试可以快速发现回归问题，确保代码改动不会破坏现有功能。\n测试框架配置\nJest 是 TypeScript 项目最流行的测试框架。\n安装 Jest",
+    "examples": [
+     "# 安装 Jest 和相关依赖\n# - ts-jest: 让 Jest 能够运行 TypeScript\n# - @types/jest: Jest 的类型定义\nnpm install --save-dev jest ts-jest @types/jest\n\n# 初始化 Jest 配置\nnpx ts-jest config:init"
+    ]
+   },
+   {
+    "title": "TypeScript 工具类型",
+    "url": "https://www.runoob.com/typescript/ts-utility-types.html",
+    "body": "工具类型（Utility Types）是 TypeScript 内置的一系列高级类型。\n它们可以帮助开发者快速创建和转换类型，提高代码的可复用性和类型安全性。\n工具类型本质上是泛型类型，通过映射类型和条件类型实现。\nTypeScript 工具类型\n 原始类型interface User {id: number;name: string;email: string;}工具类型Partial<T> - 所有可选Required<T> - 所有必填Readonly<T> - 所有只读Pick<T,K> - 选择属性Omit<T,K> - 排除属性结果类型type Result = {id?: number;name?: string;email?: string;}常用工具类型Partial<T>属性全部可选{ a?: T }Required<T>属性全部必填{ -? }Readonly<T>属性全部只读{ readonly }Pick<T,K>选择指定属性{ pick }Record<K,T>构造对象类型Omit<T,K>排除指定属性为什么需要工具类型\n在实际的 TypeScript 开发中，我们经常需要基于现有类型创建新的类型。\n手动创建这些类型不仅繁琐，而且容易出错。\n工具类型提供了一种声明式的方式来转换和创建类型，大大提高了开发效率。\n概念说明：工具类型是 TypeScript 预定义的一系列泛型类型。它们使用映射类型和条件类型来实现类型的转换和生成。\nPartial<T> - 可选属性\nPartial 将类型 T 的所有属性设置为可选。\n这在创建部分更新对象或处理表单数据时非常有用。\n实例",
+    "examples": [
+     "// 定义用户接口，包含必填属性\ninterface User {\n    // 用户 ID\n    id: number;\n    // 用户名\n    name: string;\n    // 用户邮箱\n    email: string;\n}\n\n// Partial：将所有属性变为可选\n// 转换后的类型所有属性都是可选的\ntype PartialUser = Partial<User>;\n\n// 使用 PartialUser 类型\n// 可以只提供部分属性，不需要全部提供\nvar user: PartialUser = { name: \"Alice\" };\n\nconsole.log(\"部分用户: \" + JSON.stringify(user));"
+    ]
+   },
+   {
+    "title": "TypeScript 变量声明",
+    "url": "https://www.runoob.com/typescript/ts-variables.html",
+    "body": "变量是一种使用方便的占位符，用于引用计算机内存地址。\n我们可以把变量看做存储数据的容器。\nTypeScript 变量的命名规则：\n变量名称可以包含数字和字母。\n除了下划线 _ 和美元 $ 符号外，不能包含其他特殊字符，包括空格。\n变量名不能以数字开头。\n变量使用前必须先声明，我们可以使用 var 来声明变量。\n我们可以使用以下四种方式来声明变量：\n声明变量的类型及初始值：\nvar [变量名] : [类型] = 值;\n例如：\nvar uname:string = \"Runoob\";\n声明变量的类型，但没有初始值，变量值会设置为 undefined：\nvar [变量名] : [类型];\n例如：\nvar uname:string;\n声明变量并初始值，但不设置类型，该变量可以是任意类型：\nvar [变量名] = 值;\n例如：\nvar uname = \"Runoob\";\n声明变量没有设置类型和初始值，类型可以是任意类型，默认初始值为 undefined：\nvar [变量名];\n例如：\nvar uname;\n实例",
+    "examples": [
+     "var uname:string = \"Runoob\"; \nvar score1:number = 50;\nvar score2:number = 42.50\nvar sum = score1 + score2 \nconsole.log(\"名字: \"+uname) \nconsole.log(\"第一个科目成绩: \"+score1) \nconsole.log(\"第二个科目成绩: \"+score2) \nconsole.log(\"总成绩: \"+sum)"
+    ]
+   },
+   {
+    "title": "使用 VS Code 开发 TypeScript",
+    "url": "https://www.runoob.com/typescript/ts-vscode.html",
+    "body": "很多 IDE 都有支持 TypeScript 插件，如：VS Code，Sublime Text 2，WebStorm / PHPStorm，Eclipse 等。\n本章节主要介绍 VS Code，VS Code 是一个可以运行于 Mac OS X、Windows 和 Linux 之上的，针对于编写现代 Web 和云应用的跨平台源代码编辑器，由 Microsoft 公司开发。\nVS Code 原生内置 TypeScript 语言语法支持，但不含 TypeScript 编译工具 tsc，如需将 TS 源码转译为 JS（执行命令 tsc HelloWorld.ts），需要在全局或项目工作区单独安装 TypeScript 编译器。\nVS Code 教程：https://www.runoob.com/vscode/vscode-tutorial.html另外国内阿里与字节也有基于 VS Code 开发的 AI IDE：",
+    "examples": []
+   },
+   {
+    "title": "TypeScript + Vue3 实战",
+    "url": "https://www.runoob.com/typescript/ts-vue3.html",
+    "body": "Vue 3 对 TypeScript 有很好的支持，本教程介绍 Vue 3 + TypeScript 的开发实践。\nVue 3 的 Composition API 和 TypeScript 的类型系统完美结合，可以让代码更安全、更易维护。\nVue3 教程查看：https://www.runoob.com/vue3/vue3-tutorial.html\nVue 3 + TypeScript 类型支持Vue 3 组件defineComponent()PropType<User>emits: ['edit', 'delete']组合式 APIref<T>(initial)computed<T>(() => {})reactive<T>(obj)类型定义interface User {id: numbername: string}Vue 3 + TypeScript 优势完整的类型推断Props 类型检查Emits 事件类型为什么需要在 Vue 3 中使用 TypeScript\nVue 3 从设计之初就全面拥抱 TypeScript，提供了极好的类型支持。\nComposition API 的函数式写法与 TypeScript 类型系统完美配合：ref 有泛型支持、computed 有类型推断、props 有完整的类型检查。\n使用 TypeScript 可以让 Vue 组件的属性、事件、响应式数据都有类型保护。\nVue 3 原生支持：Vue 3 的源码使用 TypeScript 编写，与 TypeScript 无缝集成。\n创建项目\n使用 Vite 创建支持 TypeScript 的 Vue 3 项目。\n初始化",
+    "examples": [
+     "# 使用 Vite 创建 Vue 3 + TypeScript 项目（推荐）\nnpm create vite@latest my-vue-app -- --template vue-ts\n\n# 进入项目目录\ncd my-vue-app\n\n# 安装依赖\nnpm install"
+    ]
+   },
+   {
+    "title": "TypeScript 基本结构",
+    "url": "https://www.runoob.com/typescript/typescript-basic-structure.html",
+    "body": "TypeScript 程序的基本结构可以分为几个部分，每个部分都有特定的作用。\n以下是 TypeScript 程序的常见组成部分：\n声明部分：包括类型声明、接口声明等。\n变量声明：包括 let, const 和 var 的使用。\n函数声明：包括普通函数和箭头函数。\n类声明：用于定义类及其成员。\n接口与类型别名：描述类型的结构。\n模块化：通过 import 和 export 组织代码。\n类型断言：强制类型转换。\n泛型：使代码具备更多的复用性。\n注释：增加代码的可读性。\n类型推断：自动推断类型。\n类型守卫：缩小类型范围。\n异步编程：支持 async/await。\n错误处理：通过 try/catch 进行错误捕捉。\n以上几个部分共同构成了 TypeScript 程序的基本结构，并为开发者提供了强大的类型检查、代码结构和可维护性。\n1. 声明部分（Declarations）\n类型声明：TypeScript 是一种静态类型的语言，可以通过类型声明来定义变量、函数、类等的类型。类型声明可以帮助代码更具可维护性和可读性。\n实例",
+    "examples": [
+     "let name: string = \"Alice\";\nlet age: number = 30;"
+    ]
+   },
+   {
+    "title": "TypeScript vs JavaScript 对比",
+    "url": "https://www.runoob.com/typescript/typescript-vs-javascript.html",
+    "body": "TypeScript 和 JavaScript 是前端开发中两个最重要的语言，理解它们之间的区别对于现代 Web 开发至关重要。\nJavaScript 是 Web 的原生脚本语言，而 TypeScript 是 JavaScript 的超集，添加了类型系统和其他高级特性。\n核心区别\n特性\nJavaScript\nTypeScript\n类型系统\n动态类型\n静态类型（可选）\n编译\n解释执行\n编译为 JavaScript\n开发时类型检查\n无\n有\nIDE 支持\n基础\n强大的智能提示\n代码重构\n困难\n安全简单\nTypeScript 是 JavaScript 的超集JavaScript动态类型解释执行无需编译TypeScript静态类型（可选）编译为 JS类型检查智能提示包含关系所有 JS 代码都是有效 TS类型系统对比\nJavaScript 是动态类型语言，变量类型在运行时确定：\nJavaScript 动态类型",
+    "examples": [
+     "// JavaScript - 变量类型可以随时改变\nvar message = \"Hello\";\nmessage = 123;           // 合法，不会报错\nmessage = true;          // 仍然合法\n\n// 运行前不知道变量类型\nfunction greet(name) {\n    return \"Hello, \" + name;\n}"
+    ]
+   }
+  ]
+ }
+}

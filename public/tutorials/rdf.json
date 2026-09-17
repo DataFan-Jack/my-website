@@ -1,0 +1,76 @@
+{
+ "tutorial": {
+  "name": "RDF",
+  "category": "后端开发",
+  "desc": "RDF(资源描述框架)是描述网络资源的 W3C 标准, ，比如网页的标题、作者、",
+  "url": "https://www.runoob.com/rdf/",
+  "chapters": [
+   {
+    "title": "RDF 集合",
+    "url": "https://www.runoob.com/rdf/rdf-%e9%9b%86%e5%90%88.html",
+    "body": "RDF 集合用于描述仅包含指定成员的组。\nrdf:parseType=\"Collection\" 属性\n正如在前面的章节所看到的，我们无法关闭一个容器。容器规定了所包含的资源为成员 - 它没有规定其他的成员是不被允许的。\nRDF 集合用于描述仅包含指定成员的组。\n集合是通过属性 rdf:parseType=\"Collection\" 来描述的。\n实例\n<?xml version=\"1.0\"?>\n<rdf:RDF\nxmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\nxmlns:cd=\"http://recshop.fake/cd#\">\n<rdf:Description\nrdf:about=\"http://recshop.fake/cd/Beatles\">\n \n<cd:artist rdf:parseType=\"Collection\">\n   \n<rdf:Description rdf:about=\"http://recshop.fake/cd/Beatles/George\"/>\n   \n<rdf:Description rdf:about=\"http://recshop.fake/cd/Beatles/John\"/>\n   \n<rdf:Description rdf:about=\"http://recshop.fake/cd/Beatles/Paul\"/>\n   \n<rdf:Description rdf:about=\"http://recshop.fake/cd/Beatles/Ringo\"/>\n \n</cd:artist>\n</rdf:Description>\n</rdf:RDF>",
+    "examples": []
+   },
+   {
+    "title": "RDF 容器元素",
+    "url": "https://www.runoob.com/rdf/rdf-containers.html",
+    "body": "RDF 容器用于描述一组事物。举个例子，把某本书的作者列在一起。\n下面的 RDF 元素用于描述这些的组：<Bag>、<Seq> 以及 <Alt>。\n<rdf:Bag> 元素\n<rdf:Bag> 元素用于描述一个规定为无序的值的列表。\n<rdf:Bag> 元素可包含重复的值。\n实例\n<?xml version=\"1.0\"?>\n<rdf:RDF\nxmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\nxmlns:cd=\"http://www.recshop.fake/cd#\">\n<rdf:Description\n rdf:about=\"http://www.recshop.fake/cd/Beatles\">\n  \n <cd:artist>\n    \n <rdf:Bag>\n      \n <rdf:li>John</rdf:li>\n      \n <rdf:li>Paul</rdf:li>\n      \n <rdf:li>George</rdf:li>\n      \n <rdf:li>Ringo</rdf:li>\n    \n </rdf:Bag>\n  \n </cd:artist>\n</rdf:Description>\n</rdf:RDF>",
+    "examples": []
+   },
+   {
+    "title": "RDF 都柏林核心元数据倡议",
+    "url": "https://www.runoob.com/rdf/rdf-dublin.html",
+    "body": "都柏林核心元数据倡议 (DCMI) 已创建了一些供描述文档的预定义属性。\nDublin 核心\nRDF 是元数据（关于数据的数据）。RDF 被用于描述信息资源。\n都柏林核心是一套供描述文档的预定义属性。\n第一份都柏林核心属性是于1995年 在俄亥俄州的都柏林的元数据工作组被定义的，目前由都柏林元数据倡议来维护。\n属性\n定义\nContributor\n一个负责为资源内容作出贡献的实体(如作者)。\nCoverage\n资源内容的氛围或作用域\nCreator\n一个主要负责创建资源内容的实体。\nFormat\n物理或数字的资源表现形式。\nDate\n在资源生命周期中某事件的日期。\nDescription\n对资源内容的说明。\nIdentifier\n一个对在给定上下文中的资源的明确引用\nLanguage\n资源智力内容所用的语言。\nPublisher\n一个负责使得资源内容可用的实体\nRelation\n一个对某个相关资源的引用\nRights\n有关保留在资源之内和之上的权利的信息\nSource\n一个对作为目前资源的来源的资源引用。\nSubject\n一个资源内容的主题\nTitle\n一个给资源起的名称\nType\n资源内容的种类或类型。\n通过浏览上面这个表格，我们可以发现 RDF 是非常适合表示都柏林核心信息的。\nRDF 实例\n下面的例子演示了都柏林核心属性在一个 RDF 文档中的使用：\n<?xml version=\"1.0\"?>\n<rdf:RDF\nxmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\nxmlns:dc= \"http://purl.org/dc/elements/1.1/\">\n<rdf:Description rdf:about=\"http://www.runoob.com\">\n  \n <dc:description>Run Noob - 奔跑吧！菜鸟</dc:description>\n  \n <dc:publisher>Refsnes Data as</dc:publisher>\n  \n <dc:date>2008-09-01</dc:date>\n  \n <dc:type>Web Development</dc:type>\n  \n <dc:format>text/html</dc:format>\n  \n <dc:language>en</dc:language>\n</rdf:Description>\n</rdf:RDF>",
+    "examples": []
+   },
+   {
+    "title": "RDF 实例",
+    "url": "https://www.runoob.com/rdf/rdf-example.html",
+    "body": "RDF 实例\n这是一个 CD 列表的其中几行:\n标题\n艺术家\n国家\n公司\n价格\n年份\nEmpire Burlesque\nBob Dylan\nUSA\nColumbia\n10.90\n1985\nHide your heart\nBonnie Tyler\nUK\nCBS Records\n9.90\n1988\n这是一个 RDF 文档的其中几行：\n<?xml version=\"1.0\"?>\n<rdf:RDF\nxmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\nxmlns:cd=\"http://www.recshop.fake/cd#\">\n<rdf:Description\n rdf:about=\"http://www.recshop.fake/cd/Empire Burlesque\">\n  \n <cd:artist>Bob Dylan</cd:artist>\n  \n <cd:country>USA</cd:country>\n  \n <cd:company>Columbia</cd:company>\n  \n <cd:price>10.90</cd:price>\n  \n <cd:year>1985</cd:year>\n</rdf:Description>\n<rdf:Description\n rdf:about=\"http://www.recshop.fake/cd/Hide your heart\">\n  \n <cd:artist>Bonnie Tyler</cd:artist>\n  \n <cd:country>UK</cd:country>\n  \n <cd:company>CBS Records</cd:company>\n  \n <cd:price>9.90</cd:price>\n  \n <cd:year>1988</cd:year>\n</rdf:Description>\n.\n.\n.\n</rdf:RDF>",
+    "examples": []
+   },
+   {
+    "title": "RDF 简介",
+    "url": "https://www.runoob.com/rdf/rdf-intro.html",
+    "body": "资源描述框架（RDF）是用于描述网络资源的 W3C 标准，比如网页的标题、作者、修改日期、内容以及版权信息。\n您应当具备的基础知识\n在继续学习之前，您需要对下面的知识有基本的了解：\nHTML\nXHTML\nXML\nXML 命名空间\n如果您希望首先学习这些项目，请访问我们的 首页。\n什么是 RDF？\nRDF 指资源描述框架（Resource Description Framework）\nRDF 是一个用于描述 Web 上的资源的框架\nRDF 提供了针对数据的模型以及语法，这样独立的团体们就可以交换和使用它\nRDF 被设计为可被计算机阅读和理解\nRDF 被设计的目的不是为了向人们显示出来\nRDF 使用 XML 编写\nRDF 是 W3C 语义网络活动的组成部分\nRDF 是一个 W3C 推荐标准\nRDF - 应用举例\n描述购物项目的属性，比如价格以及可用性\n描述 Web 事件的时间表\n描述有关网页的信息，比如内容、作者以及被创建和修改的日期\n描述网络图片的内容和等级\n描述针对搜索引擎的内容\n描述电子图书馆\nRDF 被设计为可被计算机读取\nRDF 被设计为提供一种描述信息的通用方法，这样就可以被计算机应用程序读取并理解。\nRDF 描述不是被设计用来在网络上显示的。\nRDF 使用 XML 编写\nRDF 文档使用 XML 编写。被 RDF 使用的 XML 语言被称为 RDF/XML。\n通过使用 XML，RDF 信息可以轻易地在使用不同类型的操作系统和应用语言的计算机之间进行交换。\nRDF 和语义网\nRDF 语言是 W3C 的语义网活动的组成部分。W3C 的\"语义网远景 (Semantic Web Vision)\"的目标是：\nWeb 信息拥有确切的含义\nWeb 信息可被计算机理解并处理\n计算机可从 Web 上整合信息\nRDF 是 W3C 标准\nRDF 在 2004 年 2 月成为 W3C 标准。\nW3C 推荐（标准）被业界以及 web 团体奉为 web 标准。W3C推荐标准 是由 W3C 工作组开发并经 W3C 成员评审的稳定规范。\n可以通过此链接找到官方的 W3C 推荐标准。\nhttp://www.w3.org/RDF/",
+    "examples": []
+   },
+   {
+    "title": "RDF 主要 元素",
+    "url": "https://www.runoob.com/rdf/rdf-main.html",
+    "body": "RDF 的主要元素是 <RDF> 以及可表示某个资源的 <Description> 元素。\n<rdf:RDF> 元素\n<rdf:RDF> 是 RDF 文档的根元素。它把 XML 文档定义为一个 RDF 文档。它也包含了对 RDF 命名空间的引用：\n<?xml version=\"1.0\"?>\n<rdf:RDF\nxmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n \n...Description goes here...\n</rdf:RDF>",
+    "examples": []
+   },
+   {
+    "title": "OWL 简介",
+    "url": "https://www.runoob.com/rdf/rdf-owl.html",
+    "body": "OWL 是一门供处理 web 信息的语言。\n在学习之前应具备的基础知识\n在您学习 OWL 之前，应当对 XML、XML 命名空间以及 RDF 有基本的了解。\n如果首先学习这些项目，请访问：\n菜鸟教程的 XML 教程 和 RDF 教程。\n什么是 OWL？\nOWL 指的是 web 本体语言\nOWL 构建在 RDF 的顶端之上\nOWL 用于处理 web 上的信息\nOWL 被设计为供计算机进行解释\nOWL 不是被设计为供人类进行阅读的\nOWL 由 XML 来编写\nOWL 拥有三种子语言\nOWL 是一项 web 标准\n什么是本体？\n本体\"这个术语来自于哲学，它是研究世界上的各种实体以及他们是怎么关联的科学。\n对于 web，本体则关于对 web 信息及 web 信息之间的关系的精确描述。\n为什么使用 OWL?\nOWL 是\"语义网远景\"的组成部分 - 目标是：\nWeb 信息拥有确切的含义\nWeb 信息可被计算机理解并处理\n计算机可从 Web 上整合信息\nOWL 被设计为供计算机来处理信息\nOWL 被设计为提供一种通用的处理 Web 信息的内容的方法（而不是把它显示出来）。\nOWL 被设计为由计算机应用程序来读取（而不是被人类）。\nOWL 与 RDF 不同\nOWL 与 RDF 有很多相似之处，但是较之 RDF， OWL 是一门具有更强机器解释能力的更强大的语言。\n与 RDF 相比，OWL 拥有更大的词汇表以及更强大的语言。\nOWL 子语言\nOWL 有三门子语言：\nOWL Lite\nOWL DL (包含 OWL Lite)\nOWL Full (包含 OWL DL)\nOWL 使用 XML 编写\n通过使用 XML，OWL 信息可在使用不同类型的操作系统和应用语言的不同类型的计算机之间进行交换。\nOWL 是一个 Web 标准\nOWL 于 2004 年 2 月成为一项 W3C 的推荐标准。\nW3C 推荐（标准）被业界以及 web 团体奉为 web 标准。W3C推荐标准 是由 W3C 工作组开发并经 W3C 成员评审的稳定规范。\n在 w3c 有关 OWL 的文档：http://www.w3.org/2004/OWL/",
+    "examples": []
+   },
+   {
+    "title": "RDF 参考手册",
+    "url": "https://www.runoob.com/rdf/rdf-reference.html",
+    "body": "RDF 命名空间\nRDF 命名空间(xmlns:rdf)::\nhttp://www.w3.org/1999/02/22-rdf-syntax-ns#\nRDF 命名空间(xmlns:rdfs )::\nhttp://www.w3.org/2000/01/rdf-schema#\nRDF 扩展名和MIME 类型\nRDF 文件的推荐扩展名为.rdf,然而，扩展名.XML是经常被用来兼容旧的XML解析器。\nMIME 类型：\"application/rdf+xml\"。\nRDFS / RDF 类\n元素\n类\n子类\nrdfs:Class\nAll classes\nrdfs:Datatype\nData types\nClass\nrdfs:Resource\nAll resources\nClass\nrdfs:Container\nContainers\nResource\nrdfs:Literal\nLiteral values (text and numbers)\nResource\nrdf:List\nLists\nResource\nrdf:Property\nProperties\nResource\nrdf:Statement\nStatements\nResource\nrdf:Alt\nContainers of alternatives\nContainer\nrdf:Bag\nUnordered containers\nContainer\nrdf:Seq\nOrdered containers\nContainer\nrdfs:ContainerMembershipProperty\nContainer membership properties\nProperty\nrdf:XMLLiteral\nXML literal values\nLiteral\nRDFS / RDF 属性\n元素\n领域\n范围\n描述\nrdfs:domain\nProperty\nClass\n资源域\nrdfs:range\nProperty\nClass\n资源的范围\nrdfs:subPropertyOf\nProperty\nProperty\n该属性是一个属性的子属性\nrdfs:subClassOf\nClass\nClass\n资源是一个类的子类\nrdfs:comment\nResource\nLiteral\n人类可读的资源描述\nrdfs:label\nResource\nLiteral\n人类可读的资源标签（名称）\nrdfs:isDefinedBy\nResource\nResource\n资源的定义\nrdfs:seeAlso\nResource\nResource\n关于资源的其他信息\nrdfs:member\nResource\nResource\n资源的成员\nrdf:first\nList\nResource\nrdf:rest\nList\nList\nrdf:subject\nStatement\nResource\n一个RDF陈述的资源主体\nrdf:predicate\nStatement\nResource\n在一个RDF陈述的资源的谓词\nrdf:object\nStatement\nResource\n一个RDF陈述的资源客体\nrdf:value\nResource\nResource\nvalue属性\nrdf:type\nResource\nClass\n资源是一个类的实例\nRDF 属性\n元素\n领域\n范围\n描述\nrdf:about\n定义所描述的资源\nrdf:Description\n资源描述的容器\nrdf:resource\n定义资源，以确定一个属性\nrdf:datatype\n定义一个元素的数据类型\nrdf:ID\n定义元素的ID\nrdf:li\n定义列表\nrdf:_n\n定义一个节点\nrdf:nodeID\n定义元素节点的ID\nrdf:parseType\n定义元素应如何解析\nrdf:RDF\n一个RDF文档的根\nxml:base\n定义了XML基础\nxml:lang\n定义元素内容的语言\nrdf:aboutEach\n（删除）\nrdf:aboutEachPrefix\n（删除）\nrdf:bagID\n（删除）\n描述为\"删除\" 的为最近从RDF标准删除元素。",
+    "examples": []
+   },
+   {
+    "title": "RDF 规则",
+    "url": "https://www.runoob.com/rdf/rdf-rules.html",
+    "body": "RDF 使用 Web 标识符 (URIs) 来标识资源。\nRDF 使用属性和属性值来描述资源。\nRDF 资源、属性和属性值\nRDF 使用 Web 标识符来标识事物，并通过属性和属性值来描述资源。\n对资源、属性和属性值的解释：\n资源是可拥有 URI 的任何事物，比如 \"https://www.runoob.com//rdf\"\n属性是拥有名称的资源，比如 \"author\" 或 \"homepage\"\n属性值是某个属性的值，比如 \"David\" 或 \"https://www.runoob.com/\" （请注意一个属性值可以是另外一个资源）\n下面的 RDF 文档可描述资源 \"https://www.runoob.com//rdf\"：\n<?xml version=\"1.0\"?>\n<RDF>\n  \n <Description about=\"https://www.runoob.com//rdf\">\n    \n <author>Jan Egil Refsnes</author>\n    \n <homepage>https://www.runoob.com/</homepage>\n  \n </Description>\n</RDF>",
+    "examples": []
+   },
+   {
+    "title": "RDF Schema (RDFS)",
+    "url": "https://www.runoob.com/rdf/rdf-schema.html",
+    "body": "RDF Schema (RDFS) 是对 RDF 的一种扩展。\nRDF Schema 和 应用程序的类\nRDF 通过类、属性和值来描述资源。\n此外，RDF 还需要一种定义应用程序专业的类和属性的方法。应用程序专用的类和属性必须使用对 RDF 的扩展来定义。\nRDF Schema 就是这样一种扩展。\nRDF Schema (RDFS)\nRDF Schema 不提供实际的应用程序专用的类和属性，而是提供了描述应用程序专用的类和属性的框架。\nRDF Schema 中的类与面向对象编程语言中的类非常相似。这就使得资源能够作为类的实例和类的子类来被定义。\nRDFS 实例\n下面的实例演示了 RDFS 的能力的某些方面：\n<?xml version=\"1.0\"?>\n<rdf:RDF\nxmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\nxmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"\nxml:base=\"http://www.animals.fake/animals#\">\n<rdf:Description rdf:ID=\"animal\">\n  \n <rdf:type\n rdf:resource=\"http://www.w3.org/2000/01/rdf-schema#Class\"/>\n</rdf:Description>\n<rdf:Description rdf:ID=\"horse\">\n  \n <rdf:type\n rdf:resource=\"http://www.w3.org/2000/01/rdf-schema#Class\"/>\n  \n <rdfs:subClassOf rdf:resource=\"#animal\"/>\n</rdf:Description>\n</rdf:RDF>",
+    "examples": []
+   },
+   {
+    "title": "RDF 教程",
+    "url": "https://www.runoob.com/rdf/rdf-tutorial.html",
+    "body": "RDF(资源描述框架)是描述网络资源的 W3C 标准, ，比如网页的标题、作者、修改日期、内容以及版权信息等。\n现在开始学习 RDF(资源描述框架) !",
+    "examples": []
+   }
+  ]
+ }
+}

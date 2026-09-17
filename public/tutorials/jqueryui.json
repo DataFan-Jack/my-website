@@ -1,0 +1,334 @@
+{
+ "tutorial": {
+  "name": "jQuery UI",
+  "category": "前端开发",
+  "desc": "jQuery UI 是建立在 jQuery JavaScript 库上的一组用户",
+  "url": "https://www.runoob.com/jqueryui/",
+  "chapters": [
+   {
+    "title": "jQuery UI 实例 - 折叠面板（Accordion）",
+    "url": "https://www.runoob.com/jqueryui/example-accordion.html",
+    "body": "在一个有限的空间内显示用于呈现信息的可折叠的内容面板。\n如需了解更多有关 accordion 部件的细节，请查看 API 文档 折叠面板部件（Accordion Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 添加 Class（Add Class）",
+    "url": "https://www.runoob.com/jqueryui/example-addclass.html",
+    "body": "当动画样式改变时，为匹配的元素集合内的每个元素添加指定的 Class。\n如需了解更多有关 .addClass() 方法的细节，请查看 API 文档 .addClass()。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 颜色动画（Color Animation）",
+    "url": "https://www.runoob.com/jqueryui/example-animate.html",
+    "body": "使用 .animate() 实现颜色动画效果。\n如需了解更多有关颜色动画（Color Animation）的细节，请查看 API 文档 颜色动画（Color Animation）。\njQuery UI 捆绑了 jQuery Color 插件，jQuery Color 插件提供了颜色动画及其他许多与颜色相关的实用功能。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 自动完成（Autocomplete）",
+    "url": "https://www.runoob.com/jqueryui/example-autocomplete.html",
+    "body": "根据用户输入值进行搜索和过滤，让用户快速找到并从预设值列表中选择。\n如需了解更多有关 autocomplete 部件的细节，请查看 API 文档 自动完成部件（Autocomplete Widget）。\n本章节使用到 search.php 下载。\n默认功能\n当您在输入域中输入时，自动完成（Autocomplete）部件提供相应的建议。在本实例中，提供了编程语言的建议选项，您可以输入 \"ja\" 尝试一下，可以得到 Java 或 JavaScript。\n数据源是一个简单的 JavaScript 数组，使用 source 选项提供给部件。\n<!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"utf-8\">\n <title>jQuery UI 自动完成（Autocomplete） - 默认功能</title>\n <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css\">\n <script src=\"//code.jquery.com/jquery-1.9.1.js\"></script>\n <script src=\"//code.jquery.com/ui/1.10.4/jquery-ui.js\"></script>\n <link rel=\"stylesheet\" href=\"http://jqueryui.com/resources/demos/style.css\">\n <script>\n $(function() {\n var availableTags = [\n \"ActionScript\",\n \"AppleScript\",\n \"Asp\",\n \"BASIC\",\n \"C\",\n \"C++\",\n \"Clojure\",\n \"COBOL\",\n \"ColdFusion\",\n \"Erlang\",\n \"Fortran\",\n \"Groovy\",\n \"Haskell\",\n \"Java\",\n \"JavaScript\",\n \"Lisp\",\n \"Perl\",\n \"PHP\",\n \"Python\",\n \"Ruby\",\n \"Scala\",\n \"Scheme\"\n ];\n $( \"#tags\" ).autocomplete({\n source: availableTags\n });\n });\n </script>\n</head>\n<body>\n \n<div class=\"ui-widget\">\n <label for=\"tags\">标签：</label>\n <input id=\"tags\">\n</div>\n \n \n</body>\n</html>\n查看演示\n包含重音\nautocomplete 域使用自定义的 source 选项来匹配带有重音字符的结果项，即使文本域不包含重音字符也会匹配。但是如果您在文本域中键入了重音字符，则不会显示非重音的结果项。\n尝试键入 \"Jo\"，会看到 \"John\" 和 \"Jörn\"，然后 键入 \"Jö\"，只会看到 \"Jörn\"。\n<!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"utf-8\">\n <title>jQuery UI 自动完成（Autocomplete） - 包含重音</title>\n <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css\">\n <script src=\"//code.jquery.com/jquery-1.9.1.js\"></script>\n <script src=\"//code.jquery.com/ui/1.10.4/jquery-ui.js\"></script>\n <link rel=\"stylesheet\" href=\"http://jqueryui.com/resources/demos/style.css\">\n <script>\n $(function() {\n var names = [ \"Jörn Zaefferer\", \"Scott González\", \"John Resig\" ];\n \n var accentMap = {\n \"á\": \"a\",\n \"ö\": \"o\"\n };\n var normalize = function( term ) {\n var ret = \"\";\n for ( var i = 0; i < term.length; i++ ) {\n ret += accentMap[ term.charAt(i) ] || term.charAt(i);\n }\n return ret;\n };\n \n $( \"#developer\" ).autocomplete({\n source: function( request, response ) {\n var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), \"i\" );\n response( $.grep( names, function( value ) {\n value = value.label || value.value || value;\n return matcher.test( value ) || matcher.test( normalize( value ) );\n }) );\n }\n });\n });\n </script>\n</head>\n<body>\n \n<div class=\"ui-widget\">\n <form>\n <label for=\"developer\">开发人员：</label>\n <input id=\"developer\">\n </form>\n</div>\n \n \n</body>\n</html>\n查看演示\n分类\n分类的搜索结果。尝试键入 \"a\" 或 \"n\"。\n<!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"utf-8\">\n <title>jQuery UI 自动完成（Autocomplete） - 分类</title>\n <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css\">\n <script src=\"//code.jquery.com/jquery-1.9.1.js\"></script>\n <script src=\"//code.jquery.com/ui/1.10.4/jquery-ui.js\"></script>\n <link rel=\"stylesheet\" href=\"http://jqueryui.com/resources/demos/style.css\">\n <style>\n .ui-autocomplete-category {\n font-weight: bold;\n padding: .2em .4em;\n margin: .8em 0 .2em;\n line-height: 1.5;\n }\n </style>\n <script>\n $.widget( \"custom.catcomplete\", $.ui.autocomplete, {\n _renderMenu: function( ul, items ) {\n var that = this,\n currentCategory = \"\";\n $.each( items, function( index, item ) {\n if ( item.category != currentCategory ) {\n ul.append( \"<li class='ui-autocomplete-category'>\" + item.category + \"</li>\" );\n currentCategory = item.category;\n }\n that._renderItemData( ul, item );\n });\n }\n });\n </script>\n <script>\n $(function() {\n var data = [\n { label: \"anders\", category: \"\" },\n { label: \"andreas\", category: \"\" },\n { label: \"antal\", category: \"\" },\n { label: \"annhhx10\", category: \"Products\" },\n { label: \"annk K12\", category: \"Products\" },\n { label: \"annttop C13\", category: \"Products\" },\n { label: \"anders andersson\", category: \"People\" },\n { label: \"andreas andersson\", category: \"People\" },\n { label: \"andreas johnson\", category: \"People\" }\n ];\n \n $( \"#search\" ).catcomplete({\n delay: 0,\n source: data\n });\n });\n </script>\n</head>\n<body>\n \n<label for=\"search\">搜索：</label>\n<input id=\"search\">\n \n \n</body>\n</html>\n查看演示\n组合框（Combobox）\n一个由 Autocomplete 和 Button 创建的自定义部件。您可以键入一些字符，来获得基于您的输入过滤的结果，或者使用按钮从完整列表中选择。\n该输入是从一个已有的 select 元素中读取，传递给带有自定义的 source 选项的 Autocomplete。\n这是一个不被支持的不完美的部件。这里纯粹是为了演示 autocomplete 定制功能。如需了解更多有关该部件工作原理的细节，请点击这里查看相关的 jQuery 文章。\n<!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"utf-8\">\n <title>jQuery UI 自动完成（Autocomplete） - 组合框（Combobox）</title>\n <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css\">\n <script src=\"//code.jquery.com/jquery-1.9.1.js\"></script>\n <script src=\"//code.jquery.com/ui/1.10.4/jquery-ui.js\"></script>\n <link rel=\"stylesheet\" href=\"http://jqueryui.com/resources/demos/style.css\">\n <style>\n .custom-combobox {\n position: relative;\n display: inline-block;\n }\n .custom-combobox-toggle {\n position: absolute;\n top: 0;\n bottom: 0;\n margin-left: -1px;\n padding: 0;\n /* 支持： IE7 */\n *height: 1.7em;\n *top: 0.1em;\n }\n .custom-combobox-input {\n margin: 0;\n padding: 0.3em;\n }\n </style>\n <script>\n (function( $ ) {\n $.widget( \"custom.combobox\", {\n _create: function() {\n this.wrapper = $( \"<span>\" )\n .addClass( \"custom-combobox\" )\n .insertAfter( this.element );\n \n this.element.hide();\n this._createAutocomplete();\n this._createShowAllButton();\n },\n \n _createAutocomplete: function() {\n var selected = this.element.children( \":selected\" ),\n value = selected.val() ? selected.text() : \"\";\n \n this.input = $( \"<input>\" )\n .appendTo( this.wrapper )\n .val( value )\n .attr( \"title\", \"\" )\n .addClass( \"custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left\" )\n .autocomplete({\n delay: 0,\n minLength: 0,\n source: $.proxy( this, \"_source\" )\n })\n .tooltip({\n tooltipClass: \"ui-state-highlight\"\n });\n \n this._on( this.input, {\n autocompleteselect: function( event, ui ) {\n ui.item.option.selected = true;\n this._trigger( \"select\", event, {\n item: ui.item.option\n });\n },\n \n autocompletechange: \"_removeIfInvalid\"\n });\n },\n \n _createShowAllButton: function() {\n var input = this.input,\n wasOpen = false;\n \n $( \"<a>\" )\n .attr( \"tabIndex\", -1 )\n .attr( \"title\", \"Show All Items\" )\n .tooltip()\n .appendTo( this.wrapper )\n .button({\n icons: {\n primary: \"ui-icon-triangle-1-s\"\n },\n text: false\n })\n .removeClass( \"ui-corner-all\" )\n .addClass( \"custom-combobox-toggle ui-corner-right\" )\n .mousedown(function() {\n wasOpen = input.autocomplete( \"widget\" ).is( \":visible\" );\n })\n .click(function() {\n input.focus();\n \n // 如果已经可见则关闭\n if ( wasOpen ) {\n return;\n }\n \n // 传递空字符串作为搜索的值，显示所有的结果\n input.autocomplete( \"search\", \"\" );\n });\n },\n \n _source: function( request, response ) {\n var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), \"i\" );\n response( this.element.children( \"option\" ).map(function() {\n var text = $( this ).text();\n if ( this.value && ( !request.term || matcher.test(text) ) )\n return {\n label: text,\n value: text,\n option: this\n };\n }) );\n },\n \n _removeIfInvalid: function( event, ui ) {\n \n // 选择一项，不执行其他动作\n if ( ui.item ) {\n return;\n }\n \n // 搜索一个匹配（不区分大小写）\n var value = this.input.val(),\n valueLowerCase = value.toLowerCase(),\n valid = false;\n this.element.children( \"option\" ).each(function() {\n if ( $( this ).text().toLowerCase() === valueLowerCase ) {\n this.selected = valid = true;\n return false;\n }\n });\n \n // 找到一个匹配，不执行其他动作\n if ( valid ) {\n return;\n }\n \n // 移除无效的值\n this.input\n .val( \"\" )\n .attr( \"title\", value + \" didn't match any item\" )\n .tooltip( \"open\" );\n this.element.val( \"\" );\n this._delay(function() {\n this.input.tooltip( \"close\" ).attr( \"title\", \"\" );\n }, 2500 );\n this.input.data( \"ui-autocomplete\" ).term = \"\";\n },\n \n _destroy: function() {\n this.wrapper.remove();\n this.element.show();\n }\n });\n })( jQuery );\n \n $(function() {\n $( \"#combobox\" ).combobox();\n $( \"#toggle\" ).click(function() {\n $( \"#combobox\" ).toggle();\n });\n });\n </script>\n</head>\n<body>\n \n<div class=\"ui-widget\">\n <label>您喜欢的编程语言：</label>\n <select id=\"combobox\">\n <option value=\"\">请选择...</option>\n <option value=\"ActionScript\">ActionScript</option>\n <option value=\"AppleScript\">AppleScript</option>\n <option value=\"Asp\">Asp</option>\n <option value=\"BASIC\">BASIC</option>\n <option value=\"C\">C</option>\n <option value=\"C++\">C++</option>\n <option value=\"Clojure\">Clojure</option>\n <option value=\"COBOL\">COBOL</option>\n <option value=\"ColdFusion\">ColdFusion</option>\n <option value=\"Erlang\">Erlang</option>\n <option value=\"Fortran\">Fortran</option>\n <option value=\"Groovy\">Groovy</option>\n <option value=\"Haskell\">Haskell</option>\n <option value=\"Java\">Java</option>\n <option value=\"JavaScript\">JavaScript</option>\n <option value=\"Lisp\">Lisp</option>\n <option value=\"Perl\">Perl</option>\n <option value=\"PHP\">PHP</option>\n <option value=\"Python\">Python</option>\n <option value=\"Ruby\">Ruby</option>\n <option value=\"Scala\">Scala</option>\n <option value=\"Scheme\">Scheme</option>\n </select>\n</div>\n<button id=\"toggle\">显示基础的选择框</button>\n \n \n</body>\n</html>\n查看演示\n自定义数据并显示\n您可以使用自定义数据格式，并通过简单地重载默认的聚焦和选择行为来显示数据。\n尝试键入 \"j\"，或者按向下箭头按键，即可得到一个项目列表。\n<!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"utf-8\">\n <title>jQuery UI 自动完成（Autocomplete） - 自定义数据并显示</title>\n <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css\">\n <script src=\"//code.jquery.com/jquery-1.9.1.js\"></script>\n <script src=\"//code.jquery.com/ui/1.10.4/jquery-ui.js\"></script>\n <link rel=\"stylesheet\" href=\"http://jqueryui.com/resources/demos/style.css\">\n <style>\n #project-label {\n display: block;\n font-weight: bold;\n margin-bottom: 1em;\n }\n #project-icon {\n float: left;\n height: 32px;\n width: 32px;\n }\n #project-description {\n margin: 0;\n padding: 0;\n }\n </style>\n <script>\n $(function() {\n var projects = [\n {\n value: \"jquery\",\n label: \"jQuery\",\n desc: \"the write less, do more, JavaScript library\",\n icon: \"jquery_32x32.png\"\n },\n {\n value: \"jquery-ui\",\n label: \"jQuery UI\",\n desc: \"the official user interface library for jQuery\",\n icon: \"jqueryui_32x32.png\"\n },\n {\n value: \"sizzlejs\",\n label: \"Sizzle JS\",\n desc: \"a pure-JavaScript CSS selector engine\",\n icon: \"sizzlejs_32x32.png\"\n }\n ];\n \n $( \"#project\" ).autocomplete({\n minLength: 0,\n source: projects,\n focus: function( event, ui ) {\n $( \"#project\" ).val( ui.item.label );\n return false;\n },\n select: function( event, ui ) {\n $( \"#project\" ).val( ui.item.label );\n $( \"#project-id\" ).val( ui.item.value );\n $( \"#project-description\" ).html( ui.item.desc );\n $( \"#project-icon\" ).attr( \"src\", \"images/\" + ui.item.icon );\n \n return false;\n }\n })\n .data( \"ui-autocomplete\" )._renderItem = function( ul, item ) {\n return $( \"<li>\" )\n .append( \"<a>\" + item.label + \"<br>\" + item.desc + \"</a>\" )\n .appendTo( ul );\n };\n });\n </script>\n</head>\n<body>\n \n<div id=\"project-label\">选择一个项目（请键入 \"j\"）：</div>\n<img id=\"project-icon\" src=\"images/transparent_1x1.png\" class=\"ui-state-default\" alt=\"\">\n<input id=\"project\">\n<input type=\"hidden\" id=\"project-id\">\n<p id=\"project-description\"></p>\n \n \n</body>\n</html>\n查看演示\n多个值\n用法：键入一些字符，比如 \"j\"，可以看到相关的编程语言结果。选择一个值，然后继续键入字符来添加其他的值。\n本实例演示如何使用 source 选项和一些事件来实现在一个单一的文本域输入多个自动完成的值。\n<!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"utf-8\">\n <title>jQuery UI 自动完成（Autocomplete） - 多个值</title>\n <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css\">\n <script src=\"//code.jquery.com/jquery-1.9.1.js\"></script>\n <script src=\"//code.jquery.com/ui/1.10.4/jquery-ui.js\"></script>\n <link rel=\"stylesheet\" href=\"http://jqueryui.com/resources/demos/style.css\">\n <script>\n $(function() {\n var availableTags = [\n \"ActionScript\",\n \"AppleScript\",\n \"Asp\",\n \"BASIC\",\n \"C\",\n \"C++\",\n \"Clojure\",\n \"COBOL\",\n \"ColdFusion\",\n \"Erlang\",\n \"Fortran\",\n \"Groovy\",\n \"Haskell\",\n \"Java\",\n \"JavaScript\",\n \"Lisp\",\n \"Perl\",\n \"PHP\",\n \"Python\",\n \"Ruby\",\n \"Scala\",\n \"Scheme\"\n ];\n function split( val ) {\n return val.split( /,\\s*/ );\n }\n function extractLast( term ) {\n return split( term ).pop();\n }\n \n $( \"#tags\" )\n // 当选择一个条目时不离开文本域\n .bind( \"keydown\", function( event ) {\n if ( event.keyCode === $.ui.keyCode.TAB &&\n $( this ).data( \"ui-autocomplete\" ).menu.active ) {\n event.preventDefault();\n }\n })\n .autocomplete({\n minLength: 0,\n source: function( request, response ) {\n // 回到 autocomplete，但是提取最后的条目\n response( $.ui.autocomplete.filter(\n availableTags, extractLast( request.term ) ) );\n },\n focus: function() {\n // 防止在获得焦点时插入值\n return false;\n },\n select: function( event, ui ) {\n var terms = split( this.value );\n // 移除当前输入\n terms.pop();\n // 添加被选项\n terms.push( ui.item.value );\n // 添加占位符，在结尾添加逗号+空格\n terms.push( \"\" );\n this.value = terms.join( \", \" );\n return false;\n }\n });\n });\n </script>\n</head>\n<body>\n \n<div class=\"ui-widget\">\n <label for=\"tags\">编程语言：</label>\n <input id=\"tags\" size=\"50\">\n</div>\n \n \n</body>\n</html>\n查看演示\n多个值，远程\n用法：键入至少两个字符来获取鸟的名称。选择一个值，然后继续键入字符来添加其他的值。\n本实例演示如何使用 source 选项和一些事件来实现在一个单一的文本域输入多个自动完成的值。\n<!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"utf-8\">\n <title>jQuery UI 自动完成（Autocomplete） - 多个值，远程</title>\n <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css\">\n <script src=\"//code.jquery.com/jquery-1.9.1.js\"></script>\n <script src=\"//code.jquery.com/ui/1.10.4/jquery-ui.js\"></script>\n <link rel=\"stylesheet\" href=\"http://jqueryui.com/resources/demos/style.css\">\n <style>\n .ui-autocomplete-loading {\n background: white url('/try/jqueryui/ui-anim_basic_16x16.gif') right center no-repeat;\n }\n </style>\n <script>\n $(function() {\n function split( val ) {\n return val.split( /,\\s*/ );\n }\n function extractLast( term ) {\n return split( term ).pop();\n }\n \n $( \"#birds\" )\n // 当选择一个条目时不离开文本域\n .bind( \"keydown\", function( event ) {\n if ( event.keyCode === $.ui.keyCode.TAB &&\n $( this ).data( \"ui-autocomplete\" ).menu.active ) {\n event.preventDefault();\n }\n })\n .autocomplete({\n source: function( request, response ) {\n $.getJSON( \"search.php\", {\n term: extractLast( request.term )\n }, response );\n },\n search: function() {\n // 自定义最小长度\n var term = extractLast( this.value );\n if ( term.length < 2 ) {\n return false;\n }\n },\n focus: function() {\n // 防止在获得焦点时插入值\n return false;\n },\n select: function( event, ui ) {\n var terms = split( this.value );\n // 移除当前输入\n terms.pop();\n // 添加被选项\n terms.push( ui.item.value );\n // 添加占位符，在结尾添加逗号+空格\n terms.push( \"\" );\n this.value = terms.join( \", \" );\n return false;\n }\n });\n });\n </script>\n</head>\n<body>\n \n<div class=\"ui-widget\">\n <label for=\"birds\">鸟：</label>\n <input id=\"birds\" size=\"50\">\n</div>\n \n \n</body>\n</html>\n查看演示\n远程 JSONP 数据源\n用法：键入至少两个字符来获取鸟的名称。选择一个值，然后继续键入字符来添加其他的值。\n本实例演示如何使用 jsonp 来获取数据。\n<!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"utf-8\">\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n <title>jQuery UI Autocomplete - Remote JSONP datasource</title>\n <link rel=\"stylesheet\" href=\"https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">\n \n <style>\n .ui-autocomplete-loading {\n background: white url('/try/jqueryui/ui-anim_basic_16x16.gif') right center no-repeat;\n }\n </style>\n <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>\n <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>\n <script>\n $( function() {\n function log( message ) {\n $( \"<div>\" ).text( message ).prependTo( \"#log\" );\n $( \"#log\" ).scrollTop( 0 );\n }\n \n $( \"#birds\" ).autocomplete({\n source: function( request, response ) {\n $.ajax( {\n url: \"/try/jqueryui/search.php\",\n dataType: \"jsonp\",\n data: {\n term: request.term\n },\n success: function( data ) {\n response( data );\n }\n } );\n },\n minLength: 2,\n select: function( event, ui ) {\n log( \"Selected: \" + ui.item.value + \" aka \" + ui.item.id );\n }\n } );\n } );\n </script>\n</head>\n<body>\n \n<div class=\"ui-widget\">\n <label for=\"birds\">Birds: </label>\n <input id=\"birds\">\n</div>\n \n<div class=\"ui-widget\" style=\"margin-top:2em; font-family:Arial\">\n Result:\n <div id=\"log\" style=\"height: 200px; width: 300px; overflow: auto;\" class=\"ui-widget-content\"></div>\n</div>\n \n \n</body>\n</html>\n查看演示\n远程数据源\n当您在文本域中键入字符时，Autocomplete 部件给出建议结果。在本实例中，当您在文本域中至少键入两个字符时，将显示相关鸟的名称。\n在本实例中，数据源是可返回 JSON 数据的服务器端脚本，通过一个简单的 source 选项来指定。另外，minLength 选项设置为 2，避免查询返回太多的结果，select 事件用于显示一些反馈。\n<!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"utf-8\">\n <title>jQuery UI 自动完成（Autocomplete） - 远程数据源</title>\n <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css\">\n <script src=\"//code.jquery.com/jquery-1.9.1.js\"></script>\n <script src=\"//code.jquery.com/ui/1.10.4/jquery-ui.js\"></script>\n <link rel=\"stylesheet\" href=\"http://jqueryui.com/resources/demos/style.css\">\n <style>\n .ui-autocomplete-loading {\n background: white url('/try/jqueryui/ui-anim_basic_16x16.gif') right center no-repeat;\n }\n </style>\n <script>\n $(function() {\n function log( message ) {\n $( \"<div>\" ).text( message ).prependTo( \"#log\" );\n $( \"#log\" ).scrollTop( 0 );\n }\n \n $( \"#birds\" ).autocomplete({\n source: \"search.php\",\n minLength: 2,\n select: function( event, ui ) {\n log( ui.item ?\n \"Selected: \" + ui.item.value + \" aka \" + ui.item.id :\n \"Nothing selected, input was \" + this.value );\n }\n });\n });\n </script>\n</head>\n<body>\n \n<div class=\"ui-widget\">\n <label for=\"birds\">鸟：</label>\n <input id=\"birds\">\n</div>\n \n<div class=\"ui-widget\" style=\"margin-top:2em; font-family:Arial\">\n 结果：\n <div id=\"log\" style=\"height: 200px; width: 300px; overflow: auto;\" class=\"ui-widget-content\"></div>\n</div>\n \n \n</body>\n</html>\n查看演示\n远程缓存\n当您在文本域中键入字符时，Autocomplete 部件给出建议结果。在本实例中，当您在文本域中至少键入两个字符时，将显示相关鸟的名称。\n为了提高性能，这里添加了一些本地缓存，其他与远程数据源实例相似。在这里，缓存只保存了一个查询，并可以扩展到缓存多个值，每个条目一个值。\n<!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"utf-8\">\n <title>jQuery UI 自动完成（Autocomplete） - 远程缓存</title>\n <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css\">\n <script src=\"//code.jquery.com/jquery-1.9.1.js\"></script>\n <script src=\"//code.jquery.com/ui/1.10.4/jquery-ui.js\"></script>\n <link rel=\"stylesheet\" href=\"http://jqueryui.com/resources/demos/style.css\">\n <style>\n .ui-autocomplete-loading {\n background: white url('/try/jqueryui/ui-anim_basic_16x16.gif') right center no-repeat;\n }\n </style>\n <script>\n $(function() {\n var cache = {};\n $( \"#birds\" ).autocomplete({\n minLength: 2,\n source: function( request, response ) {\n var term = request.term;\n if ( term in cache ) {\n response( cache[ term ] );\n return;\n }\n \n $.getJSON( \"search.php\", request, function( data, status, xhr ) {\n cache[ term ] = data;\n response( data );\n });\n }\n });\n });\n </script>\n</head>\n<body>\n \n<div class=\"ui-widget\">\n <label for=\"birds\">鸟：</label>\n <input id=\"birds\">\n</div>\n \n \n</body>\n</html>\n查看演示\n可滚动的结果\n当显示一个长列表的选项时，您可以简单地为 autocomplete 菜单设置 max-height 来防止菜单显示太长。尝试键入 \"a\" 或 \"s\" 来获得一个可滚动的长列表的结果。\n<!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"utf-8\">\n <title>jQuery UI 自动完成（Autocomplete） - 可滚动的结果</title>\n <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css\">\n <script src=\"//code.jquery.com/jquery-1.9.1.js\"></script>\n <script src=\"//code.jquery.com/ui/1.10.4/jquery-ui.js\"></script>\n <link rel=\"stylesheet\" href=\"http://jqueryui.com/resources/demos/style.css\">\n <style>\n .ui-autocomplete {\n max-height: 100px;\n overflow-y: auto;\n /* 防止水平滚动条 */\n overflow-x: hidden;\n }\n /* IE 6 不支持 max-height\n * 我们使用 height 代替，但是这会强制菜单总是显示为那个高度\n */\n * html .ui-autocomplete {\n height: 100px;\n }\n </style>\n <script>\n $(function() {\n var availableTags = [\n \"ActionScript\",\n \"AppleScript\",\n \"Asp\",\n \"BASIC\",\n \"C\",\n \"C++\",\n \"Clojure\",\n \"COBOL\",\n \"ColdFusion\",\n \"Erlang\",\n \"Fortran\",\n \"Groovy\",\n \"Haskell\",\n \"Java\",\n \"JavaScript\",\n \"Lisp\",\n \"Perl\",\n \"PHP\",\n \"Python\",\n \"Ruby\",\n \"Scala\",\n \"Scheme\"\n ];\n $( \"#tags\" ).autocomplete({\n source: availableTags\n });\n });\n </script>\n</head>\n<body>\n \n<div class=\"ui-widget\">\n <label for=\"tags\">标签：</label>\n <input id=\"tags\">\n</div>\n \n \n</body>\n</html>\n查看演示\nXML 数据\n本实例演示如何获取一些 XML 数据，并使用 jQuery 的方法解析它，然后把它提供给 autocomplete 作为数据源。\n本实例也可作为解析远程 XML 数据源的参考 - 解析在每次 source 回调请求时发生。\n<!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"utf-8\">\n <title>jQuery UI 自动完成（Autocomplete） - XML 数据</title>\n <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css\">\n <script src=\"//code.jquery.com/jquery-1.9.1.js\"></script>\n <script src=\"//code.jquery.com/ui/1.10.4/jquery-ui.js\"></script>\n <link rel=\"stylesheet\" href=\"http://jqueryui.com/resources/demos/style.css\">\n <style>\n .ui-autocomplete-loading { background: white url('/try/jqueryui/ui-anim_basic_16x16.gif') right center no-repeat; }\n </style>\n <script>\n $(function() {\n function log( message ) {\n $( \"<div/>\" ).text( message ).prependTo( \"#log\" );\n $( \"#log\" ).attr( \"scrollTop\", 0 );\n }\n \n $.ajax({\n url: \"/try/jqueryui/london.xmllondon.xml\",\n dataType: \"xml\",\n success: function( xmlResponse ) {\n var data = $( \"geoname\", xmlResponse ).map(function() {\n return {\n value: $( \"name\", this ).text() + \", \" +\n ( $.trim( $( \"countryName\", this ).text() ) || \"(unknown country)\" ),\n id: $( \"geonameId\", this ).text()\n };\n }).get();\n $( \"#birds\" ).autocomplete({\n source: data,\n minLength: 0,\n select: function( event, ui ) {\n log( ui.item ?\n \"Selected: \" + ui.item.value + \", geonameId: \" + ui.item.id :\n \"Nothing selected, input was \" + this.value );\n }\n });\n }\n });\n });\n </script>\n</head>\n<body>\n \n<div class=\"ui-widget\">\n <label for=\"birds\">London 匹配：</label>\n <input id=\"birds\">\n</div>\n \n<div class=\"ui-widget\" style=\"margin-top:2em; font-family:Arial\">\n 结果：\n <div id=\"log\" style=\"height: 200px; width: 300px; overflow: auto;\" class=\"ui-widget-content\"></div>\n</div>\n \n \n</body>\n</html>\n查看演示",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 按钮（Button）",
+    "url": "https://www.runoob.com/jqueryui/example-button.html",
+    "body": "用带有适当的悬停（hover）和激活（active）的样式的可主题化按钮来加强标准表单元素（比如按钮、输入框、锚）的功能。\n如需了解更多有关 button 部件的细节，请查看 API 文档 按钮部件（Button Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 日期选择器（Datepicker）",
+    "url": "https://www.runoob.com/jqueryui/example-datepicker.html",
+    "body": "从弹出框或内联日历选择一个日期。\n如需了解更多有关 datepicker 部件的细节，请查看 API 文档 日期选择器部件（Datepicker Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 对话框（Dialog）",
+    "url": "https://www.runoob.com/jqueryui/example-dialog.html",
+    "body": "在一个交互覆盖层中打开内容。\n如需了解更多有关 dialog 部件的细节，请查看 API 文档 对话框部件（Dialog Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 拖动（Draggable）",
+    "url": "https://www.runoob.com/jqueryui/example-draggable.html",
+    "body": "允许使用鼠标移动元素。\n如需了解更多有关 draggable 交互的细节，请查看 API 文档 可拖拽小部件（Draggable Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 放置（Droppable）",
+    "url": "https://www.runoob.com/jqueryui/example-droppable.html",
+    "body": "为可拖拽小部件创建目标。\n如需了解更多有关 droppable 交互的细节，请查看 API 文档 可放置小部件（Droppable Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 特效（Effect）",
+    "url": "https://www.runoob.com/jqueryui/example-effect.html",
+    "body": "对一个元素应用动画特效。\n如需了解更多有关 .effect() 方法的细节，请查看 API 文档 .effect()。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 隐藏（Hide）",
+    "url": "https://www.runoob.com/jqueryui/example-hide.html",
+    "body": "使用自定义效果来隐藏匹配的元素。\n如需了解更多有关 .hide() 方法的细节，请查看 API 文档 .hide()。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 菜单（Menu）",
+    "url": "https://www.runoob.com/jqueryui/example-menu.html",
+    "body": "带有鼠标和键盘交互的用于导航的可主题化菜单。\n如需了解更多有关 menu 部件的细节，请查看 API 文档 菜单部件（Menu Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 定位（Position）",
+    "url": "https://www.runoob.com/jqueryui/example-position.html",
+    "body": "相对窗口、文档、锚、光标/鼠标等元素定位一个元素。\n如需了解更多有关 .position() 方法的细节，请查看 API 文档 .position()。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 进度条（Progressbar）",
+    "url": "https://www.runoob.com/jqueryui/example-progressbar.html",
+    "body": "显示一个确定的或不确定的进程状态。\n如需了解更多有关 progressbar 部件的细节，请查看 API 文档 进度条部件（Progressbar Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 移除 Class（Remove Class）",
+    "url": "https://www.runoob.com/jqueryui/example-removeclass.html",
+    "body": "当动画样式改变时，为匹配的元素集合内的每个元素移除指定的 Class。\n如需了解更多有关 .removeClass() 方法的细节，请查看 API 文档 .removeClass()。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 缩放（Resizable）",
+    "url": "https://www.runoob.com/jqueryui/example-resizable.html",
+    "body": "使用鼠标改变元素的尺寸。\n如需了解更多有关 resizable 交互的细节，请查看 API 文档 可调整尺寸小部件（Resizable Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 选择（Selectable）",
+    "url": "https://www.runoob.com/jqueryui/example-selectable.html",
+    "body": "使用鼠标选择单个元素或一组元素。\n如需了解更多有关 selectable 交互的细节，请查看 API 文档 可选择小部件（Selectable Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 显示（Show）",
+    "url": "https://www.runoob.com/jqueryui/example-show.html",
+    "body": "使用自定义效果来显示匹配的元素。\n如需了解更多有关 .show() 方法的细节，请查看 API 文档 .show()。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 滑块（Slider）",
+    "url": "https://www.runoob.com/jqueryui/example-slider.html",
+    "body": "拖动手柄来选择一个数值。\n如需了解更多有关 slider 部件的细节，请查看 API 文档 滑块部件（Slider Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 排序（Sortable）",
+    "url": "https://www.runoob.com/jqueryui/example-sortable.html",
+    "body": "使用鼠标调整列表中或者网格中元素的排序。\n如需了解更多有关 sortable 交互的细节，请查看 API 文档 可排序小部件（Sortable Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 旋转器（Spinner）",
+    "url": "https://www.runoob.com/jqueryui/example-spinner.html",
+    "body": "通过向上/向下按钮和箭头键处理，为输入数值增强文本输入功能。\n如需了解更多有关 spinner 部件的细节，请查看 API 文档 旋转器部件（Spinner Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 转换 Class（Switch Class）",
+    "url": "https://www.runoob.com/jqueryui/example-switchclass.html",
+    "body": "当动画样式改变时，为匹配的元素集合内的每个元素添加和移除指定的 Class。\n如需了解更多有关 .switchClass() 方法的细节，请查看 API 文档 .switchClass()。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 标签页（Tabs）",
+    "url": "https://www.runoob.com/jqueryui/example-tabs.html",
+    "body": "一种多面板的单内容区，每个面板与列表中的标题相关。\n如需了解更多有关 tabs 部件的细节，请查看 API 文档 标签页部件（Tabs Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 切换（Toggle）",
+    "url": "https://www.runoob.com/jqueryui/example-toggle.html",
+    "body": "使用自定义效果来显示或隐藏匹配的元素。\n如需了解更多有关 .toggle() 方法的细节，请查看 API 文档 .toggle()。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 切换 Class（Toggle Class）",
+    "url": "https://www.runoob.com/jqueryui/example-toggleclass.html",
+    "body": "当动画样式改变时，根据 Class 是否存在以及 switch 参数的值，为匹配的元素集合内的每个元素添加或移除一个或多个 Class。\n如需了解更多有关 .toggleClass() 方法的细节，请查看 API 文档 .toggleClass()。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 工具提示框（Tooltip）",
+    "url": "https://www.runoob.com/jqueryui/example-tooltip.html",
+    "body": "可自定义的、可主题化的工具提示框，替代原生的工具提示框。\n如需了解更多有关 tooltip 部件的细节，请查看 API 文档 工具提示框部件（Tooltip Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例 - 部件库（Widget Factory）",
+    "url": "https://www.runoob.com/jqueryui/example-widget.html",
+    "body": "使用与所有 jQuery UI 小部件相同的抽象化来创建有状态的 jQuery 插件。\n如需了解更多有关部件库（Widget Factory）的细节，请查看 API 文档 部件库（Widget Factory）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 1.10 API 文档",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-api.html",
+    "body": "jQuery UI 是建立在 jQuery JavaScript 库上的一组用户界面交互、特效、小部件及主题。\n如果您是 jQuery 新手，您可以先查看 jQuery 教程。\n本教程提供了 jQuery UI 1.10 API 文档。如果您使用的是旧版本，我们建议您更新到 jQuery UI 1.10，以便获取最好的支持，充分利用最新的 bug 修复和增强功能。如需了解更多有关 jQuery UI 1.10 的信息，请访问 发布公告 和 升级指南。\njQuery UI 1.10 支持 jQuery 1.6 及以上的版本。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 定制",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-custom.html",
+    "body": "jQuery UI 提供了多种定制方式。您已经看到下载生成器（Download Builder）如何定制一个值包含您所需选项的自定义版本，这里还提供了其他定制方式。\njQuery UI 基础：使用选项\njQuery UI 中的每个插件都有一个默认配置，默认配置值一般是根据最基本最常见的使用情况设置的。如果您想要让某个插件设置成非默认值，您可以使用 \"options\" 重写它的默认设置。选项是一组属性，作为参数传递给 jQuery UI 小部件。例如，滑块（slider）小部件具有 orientation 选项，该选项允许您指定滑块是水平的还是垂直的。为了设置滑块的该选项，您只需将它作为一个参数传递，如下所示：\n$( \"#mySliderDiv\" ).slider({\n orientation: \"vertical\"\n});\n您可以传递更多不同的选项，每个选项之间用逗号分隔：\n$( \"#mySliderDiv\" ).slider({\n orientation: \"vertical\",\n min: 0,\n max: 150,\n value: 50\n});\n请记得选项需放在大括号 { } 内。上面的实例只是一个简单的讲解，如需获取整套 jQuery UI 小部件的详细信息，请查看 jQuery UI 实例。\n视觉定制：设计一个 jQuery UI 主题\n如果您想要设计自己的主题，jQuery UI 提供了一个非常完美的用于主题定制的应用程序，这就是 ThemeRoller。具体定制请访问 jQuery UI ThemeRoller。\nThemeRoller 为所有使用 jQuery UI 小部件设计的元素提供了一个自定义接口。当您调整左栏中的\"levers\"，右栏中的小部件将根据您的设计进行显示。ThemeRoller 的 Gallery 选项卡提供了一些与设计主题，与下载生成器（Download Builder）页面提供的一样。您可以基于这些主题做调整，或者直接下载。\n下载主题\n当您点击 ThemeRoller 页面中的 \"Download theme\" 按钮，将跳转到下载生成器（Download Builder）页面，您的自定义主题会在主体下拉菜单中自动选中。您可以进一步配置下载包。一旦下载完成，您将看到 example.html 页面使用了您自定义的主题。\n提示：如果您需要编辑您的主题，只需打开 CSS 文件，找到第 43 行，\"To view and modify this theme, visit ...\"，该 url 即为在 ThemeRoller 中打开主题进行编辑的链接。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 下载",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-download.html",
+    "body": "一旦您对 jQuery UI 有了基本了解，您就可以亲自尝试一下。请从 jQuery UI 网站上的 Download Builder（下载生成器） 页面下载 jQuery UI 的副本。\n创建自定义 jQuery UI 下载\njQuery UI 的下载生成器（Download Builder）允许您选择您需要下载的组件，为项目获取一个自定义的库版本。创建自定义 jQuery UI 下载需要以下三个步骤：\n步骤 1：选择您需要的组件\n下载生成器（Download Builder）页面的第一栏列出了 jQuery UI 所有的 JavaScript 组件分类：核心（UI Core）、交互部件（Interactions）、小部件（Widgets）和效果库（Effects）。jQuery UI 中的一些组件依赖于其他组件，当选中这些组件时，它所依赖的其他组件也都会自动被选中。您所选的组件将会合并到一个 jQuery UI JavaScript 文件。\n步骤 2：选择一个主题或者自定义一个主题\n在下载生成器（Download Builder）页面，您将看到一个文本框，列出了一系列为 jQuery UI 小部件预先设计的主题。您可以从这些提供的主题中选择一个，也可以使用 ThemeRoller 自定义一个主题（详见后面章节的讲解）。\n高级主题设置：下载生成器（Download Builder）的主题部分也为主题提供了一些高级配置设置。如果您打算在一个页面上使用多个主题，这些字段会派上用场。如果您打算在一个页面上只使用一个主题，那么您完全可以跳过这些设置。\n步骤 3：选择 jQuery UI 的版本\n在下载生成器（Download Builder）中，最后一步是选择一个版本号。这个步骤很重要，因为 jQuery UI 的版本是配合特定的 jQuery 版本设计的。目前的版本有：\njQuery UI 1.10.2 – 要求 jQuery 1.6 及以上版本。\njQuery UI 1.9.2 – 要求 jQuery 1.6 及以上版本。\n点击 Download 按钮进行下载！\n点击 Download 按钮，完成下载。您将得到一个包含您所选组件的自定义 zip 文件。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 实例",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-examples.html",
+    "body": "jQuery UI 提供了一组用户界面交互、特效、小部件、实用工具及主题。通过实例演示、查看源代码、创建主题、阅读API 文档，开始学习使用 jQuery\nUI。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 简介",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-intro.html",
+    "body": "jQuery UI 是一个建立在 jQuery JavaScript 库上的小部件和交互库，您可以使用它创建高度交互的 Web 应用程序。本教程将向您讲解 jQuery UI 是如何工作的。\njQuery UI 特性\n简单易用\n继承 jQuery 简易使用特性，提供高度抽象接口，短期改善网站易用性。\n开源免费\n采用 MIT & GPL 双协议授权，轻松满足自由产品至企业产品各种授权需求。\n广泛兼容\n兼容各主流桌面浏览器。包括IE 6+、Firefox 2+、Safari 3+、Opera 9+、Chrome 1+。\n轻便快捷\n组件间相对独立，可按需加载，避免浪费带宽拖慢网页打开速度。\n标准先进\n支持 WAI-ARIA，通过标准 XHTML 代码提供渐进增强，保证低端环境可访问性。\n美观多变\n提供近 20 种预设主题，并可自定义多达 60 项可配置样式规则，提供 24 种背景纹理选择。\n开放公开\n从结构规划到代码编写，全程开放，文档、代码、讨论，人人均可参与。\n强力支持\nGoogle 为发布代码提供 CDN 内容分发网络支持。\n完整汉化\n开发包内置包含中文在内的 40 多种语言包。\n缺点、不足\n1.代码不够健壮：缺乏全面的测试用例，部分组件 Bugs 较多，不能达到企业级产品开发要求。\n2.构架规划不足：组件间 API 缺乏协调，缺乏配合使用帮助。\n3.控件较少：相对于 Dojo、YUI、Ext JS 等成熟产品，可用控件较少，无法满足复杂界面功能要求。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI CSS 框架 API",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-theme-api.html",
+    "body": "jQuery UI CSS 框架\njQuery UI 包含了一个强大的 CSS 框架，为了创建自定义 jQuery 小部件而设计的。框架包含了通用的用户界面所需的类，且可使用 jQuery UI ThemeRoller 进行维护。通过使用 jQuery UI CSS 框架创建您自己的 UI 组件。您需采用共享标记公约，以便在插件社区的代码集成。\n框架类\n下面的 CSS 类根据样式是否是固定的结构化的，或者是否是可主题化的（颜色、字体、背景等），分别定义在 ui.core.css 和 ui.theme.css 两个文件中。这些类被设计来用于用户界面元素，以便获得整个应用程序的视觉一致性，可通过 jQuery UI ThemeRoller 对组件进行主题化。\n布局助手\n.ui-helper-hidden：对元素应用 display: none。\n.ui-helper-hidden-accessible：对元素应用访问隐藏（通过页面绝对定位）。\n.ui-helper-reset：UI 元素的基本样式重置。重置的元素比如：padding、margin、text-decoration、list-style，等等。\n.ui-helper-clearfix：对父元素应用浮动包装属性。\n.ui-helper-zfix：对 <iframe> 元素应用 iframe \"fix\" CSS。\n小部件容器\n.ui-widget：对所有小部件的外部容器应用的 Class。对小部件应用字体和字体尺寸，同时也对自表单元素应用相同的字体和 1em 的字体尺寸，以应对 Windows 浏览器中的继承问题。\n.ui-widget-header：对标题容器应用的 Class。对元素及其子元素的文本、链接、图标应用标题容器样式。\n.ui-widget-content：对内容容器应用的 Class。对元素及其子元素的文本、链接、图标应用内容容器样式。（可应用到标题的父元素或者同级元素）\n交互状态\n.ui-state-default：对可点击按钮元素应用的 Class。对元素及其子元素的文本、链接、图标应用 \"clickable default\" 容器样式。\n.ui-state-hover：当鼠标悬浮在可点击按钮元素上时应用的 Class。对元素及其子元素的文本、链接、图标应用 \"clickable hover\" 容器样式。\n.ui-state-focus：当键盘聚焦在可点击按钮元素上时应用的 Class。对元素及其子元素的文本、链接、图标应用 \"clickable hover\" 容器样式。\n.ui-state-active：当鼠标点击可点击按钮元素上时应用的 Class。对元素及其子元素的文本、链接、图标应用 \"clickable active\" 容器样式。\n交互提示 Cues\n.ui-state-highlight：对高亮或者选中元素应用的 Class。对元素及其子元素的文本、链接、图标应用 \"highlight\" 容器样式。\n.ui-state-error：对错误消息容器元素应用的 Class。对元素及其子元素的文本、链接、图标应用 \"error\" 容器样式。\n.ui-state-error-text：对只有无背景的错误文本颜色应用的 Class。可用于表单标签，也可以对子图标应用错误图标颜色。\n.ui-state-disabled：对禁用的 UI 元素应用一个暗淡的不透明度。意味着对一个已经定义样式的元素添加额外的样式。\n.ui-priority-primary：对第一优先权的按钮应用的 Class。应用粗体文本。\n.ui-priority-secondary：对第二优先权的按钮应用的 Class。应用正常粗细的文本，对元素应用轻微的透明度。\n图标\n状态和图像\n.ui-icon：对图标元素应用的基本 Class。设置尺寸为 16px 方块，隐藏内部文本，对 \"content\" 状态的精灵图像设置背景图像。注意：.ui-icon class 将根据它的父容器得到一个不同的精灵背景图像。例如，ui-state-default 容器内的 ui-icon 元素将根据 ui-state-default 的图标颜色进行着色。\n图标类型\n在声明 .ui-icon class 之后，接着您可以声明一个秒速图标类型的 class。通常情况下，图标 class 遵循语法 .ui-icon-{icon type}-{icon sub description}-{direction}。\n例如，一个指向右侧的三角形图标，如下所示：\n.ui-icon-triangle-1-e\njQuery UI 的 ThemeRoller 在它的预览一栏中提供了全套的 CSS 框架图标。将鼠标悬浮在图标上可查看 class 名称。\n其他视觉效果\n圆角半径助手\n.ui-corner-tl：对元素的左上角应用圆角半径。\n.ui-corner-tr：对元素的右上角应用圆角半径。\n.ui-corner-bl：对元素的左下角应用圆角半径。\n.ui-corner-br：对元素的右下角应用圆角半径。\n.ui-corner-top：对元素上边的左右角应用圆角半径。\n.ui-corner-bottom：对元素下边的左右角应用圆角半径。\n.ui-corner-right：对元素右边的上下角应用圆角半径。\n.ui-corner-left：对元素左边的上下角应用圆角半径。\n.ui-corner-all：对元素的所有四个角应用圆角半径。\n覆盖 & 阴影\n.ui-widget-overlay：对覆盖屏幕应用 100% 宽度和高度，同时设置背景颜色/纹理和屏幕不透明度。\n.ui-widget-shadow：对覆盖应用的 Class，设置了不透明度、上偏移/左偏移，以及阴影的 \"厚度\"。厚度是通过对阴影所有边设置内边距（padding）进行应用的。偏移是通过设置上外边距（margin）和左外边距（margin）进行应用的（可以是正数，也可以是负数）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 设计主题",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-theme-design.html",
+    "body": "文件结构\n主题是以特定的方式来增加他们的易用性。通常，文件目录结构如下所示：\nthemename/ – 您的主题必须完全包含在一个单独的以主题名称命名的文件夹内。\nthemename/themename.css – 这是基本的 CSS 文件。无论使用了哪个插件，该文件都必须在每个使用主题的页面中引用。该文件应该是轻量级的，只包括要点。\nthemename/themename.pluginname.css – 您支持的每个插件都需要一个 CSS 文件。插件的名称应直接包含在文件名中。例如，如果您为 tabs（标签页）插件进行主题化，则有：themename.tabs.js。\nthemename/img.png – 您的主题可以包含图像。它们可以根据您的喜好进行命名，这里没有特定的命名惯例。\n如需了解主题文件结构是如何完成的实例，请访问 jQuery UI 基本主题。\n定义样式\n为主题编写样式是非常简单的，这是因为主题的灵活性。\n所有的主题都应该有一个基本的 CSS class。这个主要的 class 允许用户启用禁用主题。您的根 class 的格式应该是 .ui-themename。且它在 HTML 文件中的用法如下所示：\n<html>\n<head>\n <title>My Site</title>\n <link rel=\"stylesheet\" href=\"themename/themename.css\" />\n <link rel=\"stylesheet\" href=\"othertheme/othertheme.css\" />\n <link rel=\"stylesheet\" href=\"othertheme/othertheme.dialog.css\" />\n</head>\n<body class=\"ui-themename\">\n <div class=\"ui-othertheme\">\n <div class=\"ui-dialog\">This is a modal dialog.</div>\n </div>\n</body>\n</html>\n在上面的实例中，发生了一些重要的事情：\n我们同时向文档中加载两个主题。\n整个页面机器所有内容，是根据 themename 的样式进行主题化的。\n然而，带有 ui-othertheme class 的 <div>及其中的每个元素（包括模态对话框）都是根据 othertheme 的样式进行主题化的。\n如果我们打开 themename.css 文件进行查看，我们可以看到如下代码：\nbody.ui-themename { background:#111; color:snow; }\n.ui-themename a, a.ui-themename { color:#68D; outline:none; }\n.ui-themename a:visited, a.ui-themename:visited { color:#D66; }\n.ui-themename a:hover, a.ui-themename:hover { color:#FFF; }\n请注意，themename.css 文件只包括全局通用的样式信息，特定插件的样式信息不在这里进行定义。这里的样式对所有主题都是适用的。不用担心一个主题会占据多个文件 - 这些会在创建和下载的过程被简化。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI ThemeRoller",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-theme-themeroller.html",
+    "body": "ThemeRoller 简介\nThemeRoller 是一个 Web 应用程序，为 jQuery UI 设计和下载自定义主题提供了直观的界面。您可以访问 jQuery UI ThemeRoller 进行主题定制。\njQuery UI ThemeRoller 是由波士顿的 Filament Group, Inc 设计和开发的。\nThemeRoller 界面\nThemeRoller 的界面分为不同面板，各面板分别是全局字体和圆角半径设置、小部件容器样式、可点击元素的互动状态，及覆盖和阴影的各种样式。这些面板允许配置各种 CSS 属性，比如字体尺寸、颜色、粗细、背景颜色和纹理、边框颜色、文本颜色、图标颜色、圆角半径，等等。\n主题馆（Gallery）：预先设计主题\nThemeRoller 主题可以通过永久链接 URL 进行查看，它包含一些预先设计的主题可供选择。主题馆（Gallery）可以通过位于应用程序界面顶端的标签栏进行访问。从主题馆（Gallery）中，您可以预览和下载主题，甚至可以选择一个主题，然后切换到 \"Roll Your Own\" 标签页进行调整。\n下载主题\n当您设计完主题后，您可以下载主题以便在项目中进行使用。ThemeRoller 在顶部有一个 \"Download theme（下载主题）\" 按钮，可以生成一个 zip 压缩包，包含了所有的主题相关文件。下载文件中的图像是按照您的规格进行生成的，并保存为高质量的 PNG 文件。\n您的主题将包含图像和 CSS，组成了 jQuery UI CSS 框架的自定义版本，包含了所有插件的图像和 CSS。\n在项目中按照下载的主题\n一旦下载了主题，解压缩后，您将看到一个名为 themes 的文件夹。该文件夹包括了主题所需的 CSS 和图像。复制主题文件夹到您的项目中，并在页面中链接 themes/all.css 文件。\n创建自定义的 \"ThemeRoller-Ready\" 组件\nThemeRoller 生成了一个 jQuery UI CSS 框架的自定义版本，用于开发您自己的 ThemeRoller-ready jQuery 组件。通过这个框架生成的类被设计来提供通用的用户界面的设计情况，包括状态、图标以及各种辅助类。\n如需了解更多 jQuery UI CSS 框架的开发信息，请查看 主题化 API 文档。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 主题",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-theme.html",
+    "body": "所有的 jQuery UI 插件都允许开发人员无缝集成 UI 小部件到他们网站或应用程序的外观和感观。每个插件通过 CSS 定义样式，且包含了两层样式信息：标准的 jQuery UI CSS 框架 样式和具体的插件样式。\njQuery UI CSS 框架提供了语义表示的类，用来表明小部件内元素的角色，比如标题、内容或可点击区域。这些在所有的小部件中都是一致的，一个可点击的 tab（标签页）、accordion（折叠面板）或 button（按钮）都有相同的 ui-state-default class，用来表明它们是可点击的。当用户鼠标悬浮在这些元素上面时，这个 class 就变成 ui-state-hover，当选中这些元素时则变成 ui-state-active。这些 class 的一致性使得所有部件中具有相似角色或交互状态的元素在外观表现上一致。\nCSS 框架样式封装在一个单独的文件中，名为 ui.theme.css。这个文件时通过 ThemeRoller 应用程序来修改的。框架样式只包含影响外观和感观的属性，只要是颜色、背景图像、图标等。所以这些是 \"安全的\" 样式，不会影响到插件的功能。这种分隔意味着开发人员可以通过在 theme.css 文件中修改颜色和图像来创建一个自定义的外观和感观。由于未来的插件或者 bug 修复将是可用的，这些不通过修改即可与主题一起使用。\n由于框架样式只覆盖了外观和感观，所以还需要包含具体的插件样式表，这些样式表包括了所有额外的让小部件具有功能性的结构样式规则，比如尺寸、内边距、外边距、定位、浮动。每个插件的样式表位于 themes/base 文件夹内，且配合插件进行命名，比如 \"jquery.ui.accordion.css\"。这些样式必须认真编辑，因为它们与脚本一起提供了框架样式的覆盖。\n我们鼓励所有的开发人员创建 jQuery 插件，jQuery UI CSS 框架使得最终用户更容易定制主题和使用插件。\n主题化\n下面列出了三种主题化 jQuery UI 插件的一般方法：\n下载 ThemeRoller 主题：最早的创建主题的方式是使用 ThemeRoller 来生成和下载一个主题。这个应用程序将创建一个新的 ui.theme.css 文件和一个包含了所有必需的背景图像及图标精灵的 images 文件夹。这个方法是最早的创建和维护主题的方式，但是它对 ThemeRoller 中提供的选项限制了自定义。\n修改 CSS 文件：为了对外观和感观做进一步的控制，您可以选择从默认主题（Smoothness）开始，或者从一个由 ThemeRoller 生成的主题开始，然后调整 ui.theme.css 文件，或者任意一个独立插件的样式表。例如，您可以很容易地调整所有按钮的角半径为不同于其他 UI 组件的值，或者使用自定义设置为图标精灵改变路径。通过一点点的样式范围，您甚至可以在一个 UI 中同时使用多个主题。为了易于维护，建议只更改 ui.theme.css 文件和图像。\n重新编写自定义的 CSS：为了最大程度地控制外观和感观，可以重新开始编写每个插件的 CSS，而不使用框架类或者特定的插件样式表。如果想要的外观和感观不能通过修改 CSS 来实现或者使用高度自定义的标记，那么就可以采用这个方法。这个方法要求在 CSS 方面有深厚的专业知识，且要求手动更新未来的插件。\n使用 ThemeRoller、jQuery UI CSS 框架，以及设计自定义主题\njQuery UI ThemeRoller\njQuery UI CSS 框架 API\n设计主题",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 教程",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-tutorial.html",
+    "body": "jQuery UI 是建立在 jQuery JavaScript 库上的一组用户界面交互、特效、小部件及主题。无论您是创建高度交互的 Web 应用程序还是仅仅向窗体控件添加一个日期选择器，jQuery UI 都是一个完美的选择。\njQuery UI 包含了许多维持状态的小部件（Widget），因此，它与典型的 jQuery 插件使用模式略有不同。所有的 jQuery UI 小部件（Widget）使用相同的模式，所以，只要您学会使用其中一个，您就知道如何使用其他的小部件（Widget）。\n现在开始学习 jQuery UI！",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 使用",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-use.html",
+    "body": "一旦您下载了 jQuery UI，您将得到一个 zip 压缩包，包含下列文件：\n/css/\n/development-bundle/\n/js/\nindex.html\n在网页上使用 jQuery UI\n在文本编辑器中打开 index.html，您将看到引用了一些外部文件：主题、jQuery 和 jQuery UI。通常情况下，您需要在页面中引用这三个文件，以便使用 jQuery UI 的窗体小部件和交互部件：\n<link rel=\"stylesheet\" href=\"css/themename/jquery-ui.custom.css\" />\n<script src=\"js/jquery.min.js\"></script>\n<script src=\"js/jquery-ui.custom.min.js\"></script>\n一旦您引用了这些必要的文件，您就能向您的页面添加一些 jQuery 小部件。比如，要制作一个日期选择器（datepicker）小部件，您需要向页面添加一个文本输入框，然后再调用 .datepicker()，如下所示：\nHTML:\n<input type=\"text\" name=\"date\" id=\"date\" />\nJavaScript:\n$( \"#date\" ).datepicker();\n如需查看 jQuery UI 小部件和交互部件的实例演示，请访问 jQuery UI 实例。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 通过部件库（Widget Factory）扩展小部件",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-widget-extend.html",
+    "body": "jQuery UI 的部件库（Widget Factory）使得创建小部件变得更加容易，这些小部件扩展了已有小部件的功能。这样子您就能在已有的基础上创建出功能强大的小部件，也可以在已有的小部件功能上做细微的调整。\n注意：在学习本章节之前，需要明白什么是部件库（Widget Factory），及它是怎么工作的。如果您对这些知识还不熟悉，那么请先查看如何使用部件库（Widget Factory）章节。\n创建小部件扩展\n通过部件库（Widget Factory）创建小部件是通过向 $.widget() 传递小部件名称和一个原型对象来完成的。下面的实例是在 \"custom\" 命名空间中创建一个 \"superDialog\" 小部件。\n$.widget( \"custom.superDialog\", {} );\n为了支持扩展，$.widget() 可选性地接受作为父部件使用的小部件的构造函数。当指定一个父部件时，把它作为第二个参数进行传递，放在小部件名称后面，在小部件原型对象前面。\n就像上面的实例，下面也要在 \"custom&quot 命名空间中创建一个 \"superDialog\" 小部件。但是这次传递的是 jQuery UI 的 dialog（对话框）小部件 的构造函数（$.ui.dialog），表示 superDialog 小部件应该使用 jQuery UI 的 dialog（对话框）小部件作为父部件。\n$.widget( \"custom.superDialog\", $.ui.dialog, {} );\n在这里，superDialog 和 dialog 两个小部件实质上是等价的，只是名称和命名空间不同而已。为了让我们新的小部件更具特点，我们可以添加一些方法到它的原型对象上。\n小部件的原型对象是传递给 $.widget() 的最后一个参数。到目前为止，我们的实例使用的是一个空的对象。现在让我们给这个对象添加一个方法：\n$.widget( \"custom.superDialog\", $.ui.dialog, {\n red: function() {\n this.element.css( \"color\", \"red\" );\n }\n});\n \n// Create a new <div>, convert it into a superDialog, and call the red() method.\n$( \"<div>I am red</div>\" )\n .superDialog()\n .superDialog( \"red\" );\n现在 superDialog 有一个 red() 方法，这会把它的文本颜色改为红色。请注意，部件库（Widget Factory）是如何自动设置 this 为小部件的实例对象。如需了解实例上所有可用的方法和属性列表，请访问 部件库（Widget Factory） API 文档。\n扩展已有的方法\n有时候，您需要调整或添加已有部件方法的行为。您可以把方法名称指定为原型对象上需要重载的方法名称。下面的实例重载了 dialog（对话框）的 open() 方法。由于对话框默认是打开的，当运行这段代码时，\"open\" 将会被记录。\n$.widget( \"custom.superDialog\", $.ui.dialog, {\n open: function() {\n console.log( \"open\" );\n }\n});\n \n// Create a new <div>, and convert it into a superDialog.\n$( \"<div>\" ).superDialog();\n当运行这段代码时，有一个问题。由于我们重载了 open() 的默认行为，所以 dialog（对话框）不再显示在屏幕上。\n当我们在原型对象上使用方法，我们实际上是重载了原始的方法，在原型链中使用了一个新的方法。\n为了让父部件方法可用，部件库（Widget Factory）提供了两个方法 - _super() 和 _superApply()。\n使用 _super() 和 _superApply() 来访问父部件\n_super() 和 _superApply() 在父部件中调用了同样的方法。请看下面的实例。就像上一个实例，这个实例也重载了 open() 方法来记录 \"open\"。然而，这次运行 _super() 是调用了 dialog（对话框）的 open()，并打开对话框。\n$.widget( \"custom.superDialog\", $.ui.dialog, {\n open: function() {\n console.log( \"open\" );\n \n // Invoke the parent widget's open().\n return this._super();\n }\n});\n \n$( \"<div>\" ).superDialog();\n_super() 和 _superApply() 实际上等同于最初的 Function.prototype.call() 和 Function.prototype.apply() 方法。因此，_super() 接受一个参数列表，_superApply() 接受一个数组作为参数。下面的实例演示了这二者之间的不同。\n$.widget( \"custom.superDialog\", $.ui.dialog, {\n _setOption: function( key, value ) {\n \n // Both invoke dialog's setOption() method. _super() requires the arguments\n // be passed as an argument list, _superApply() as a single array.\n this._super( key, value );\n this._superApply( arguments );\n }\n});\n重定义小部件\njQuery UI 1.9 添加了重定义小部件的功能。因此，可以不用创建一个新的小部件，我们只需要传递 $.widget() 这样一个已有的小部件名称和构造函数即可。下面的实例在 open() 中添加了相同的记录，但不是通过创建一个新的小部件来完成的。\n$.widget( \"ui.dialog\", $.ui.dialog, {\n open: function() {\n console.log( \"open\" );\n return this._super();\n }\n});\n \n$( \"<div>\" ).dialog();\n通过这个方法，我们可以扩展一个已有的小部件方法，但是仍然可以使用 _super() 来访问原始的方法 - 这些都不是通过创建一个新的小部件来完成的，而是直接重定义小部件即可。\n小部件（Widgets）和多态性（Polymorphism）\n当在小部件扩展及它们的插件之间进行交互时候，有一点值得注意，父部件的插件不能用来调用子部件元素上的方法。下面的实例演示了这一点。\n$.widget( \"custom.superDialog\", $.ui.dialog, {} );\n \nvar dialog = $( \"<div>\" ).superDialog();\n \n// This works.\ndialog.superDialog( \"close\" );\n \n// This doesn't.\ndialog.dialog( \"close\" );\n上面的实例中，父部件的插件，dialog()，不能调用 superDialog 元素上的 close() 方法。如需了解更多调用小部件方法的知识，请查看 小部件（Widget）方法调用。\n定制个性化实例\n目前为止，我们看到的实例都有在小部件原型上扩展的方法。在原型上重载的方法影响了小部件的所有实例。\n为了演示这一点，请看下面的实例。dialog（对话框）的两个实例都使用了相同的 open() 方法。\n$.widget( \"ui.dialog\", $.ui.dialog, {\n open: function() {\n console.log( \"open\" );\n return this._super();\n }\n});\n \n// Create two dialogs, both use the same open(), therefore \"open\" is logged twice.\n$( \"<div>\" ).dialog();\n$( \"<div>\" ).dialog();\n有时候，您只需要改变小部件的某个实例的行为。为了做到这点，您需要使用正常的 JavaScript 属性分配，获得对实例的引用，并重载该方法。具体如下面实例所示。\nvar dialogInstance = $( \"<div>\" )\n .dialog()\n // Retrieve the dialog's instance and store it.\n .data( \"ui-dialog\" );\n \n// Override the close() method for this dialog\ndialogInstance.close = function() {\n console.log( \"close\" );\n};\n \n// Create a second dialog\n$( \"<div>\" ).dialog();\n \n// Select both dialogs and call close() on each of them.\n// \"close\" will only be logged once.\n$( \":data(ui-dialog)\" ).dialog( \"close\" );\n个性化实例的重载方法技术是完美的一次性定制。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 如何使用部件库（Widget Factory）",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-widget-factory-how.html",
+    "body": "我们将创建一个进度条。正如下面实例所示，这可以通过调用 jQuery.widget() 来完成，它带有两个参数：一个是要创建的插件名称，一个是包含支持插件的函数的对象文字。当插件被调用时，它将创建一个新的插件实例，所有的函数都将在该实例的语境中被执行。这与两种重要方式的标准 jQuery 插件不同。首先，语境是一个对象，不是 DOM 元素。其次，语境总是一个单一的对象，不是一个集合。\n$.widget( \"custom.progressbar\", {\n _create: function() {\n var progress = this.options.value + \"%\";\n this.element\n .addClass( \"progressbar\" )\n .text( progress );\n }\n});\n插件的名称必须包含命名空间，在这个实例中，我们使用了 custom 命名空间。您只能创建一层深的命名空间，因此，custom.progressbar 是一个有效的插件名称，而 very.custom.progressbar 不是一个有效的插件名称。\n我们看到部件库（Widget Factory）为我们提供了两个属性。this.element 是一个包含一个元素的 jQuery 对象。如果我们的插件在包含多个元素的 jQuery 对象上调用，则会为每个元素创建一个单独的插件实例，且每个实例都会有自己的 this.element。第二个属性，this.options，是一个包含所有插件选项的键名/键值对的哈希（hash）。这些选项可以被传给插件，如下所示：\n$( \"<div></div>\" )\n .appendTo( \"body\" )\n .progressbar({ value: 20 });\n当我们调用 jQuery.widget()，它通过给 jQuery.fn（用于创建标准插件的系统） 添加函数来扩展 jQuery。所添加的函数名称是基于您传给 jQuery.widget() 的名称，不带命名空间 - \"progressbar\"。传给插件的选项是在插件实例中获取设置的值。如下面的实例所示，我们可以为任意一个选项指定默认值。当设计您的 API 时，您应该清楚你的插件的最常见的使用情况，以便您可以设置适当的默认值，且确保使所有的选项真正可选。\n$.widget( \"custom.progressbar\", {\n \n // Default options.\n options: {\n value: 0\n },\n _create: function() {\n var progress = this.options.value + \"%\";\n this.element\n .addClass( \"progressbar\" )\n .text( progress );\n }\n});\n调用插件方法\n现在我们可以初始化我们的进度条，我们将通过在插件实例上调用方法来执行动作。为了定义一个插件方法，我们只在我们传给 jQuery.widget() 的对象中引用函数。我们也可以通过给函数名加下划线前缀来定义 \"private\" 方法。\n$.widget( \"custom.progressbar\", {\n \n options: {\n value: 0\n },\n \n _create: function() {\n var progress = this.options.value + \"%\";\n this.element\n .addClass( \"progressbar\" )\n .text( progress );\n },\n \n // Create a public method.\n value: function( value ) {\n \n // No value passed, act as a getter.\n if ( value === undefined ) {\n return this.options.value;\n }\n \n // Value passed, act as a setter.\n this.options.value = this._constrain( value );\n var progress = this.options.value + \"%\";\n this.element.text( progress );\n },\n \n // Create a private method.\n _constrain: function( value ) {\n if ( value > 100 ) {\n value = 100;\n }\n if ( value < 0 ) {\n value = 0;\n }\n return value;\n }\n});\n为了在插件实例上调用方法，您可以向 jQuery 插件传递方法的名称。如果您调用的方法接受参数，您只需简单地在方法名后面传递这些参数即可。\n注意：通过向同一个用于初始化插件的 jQuery 函数传递方法名来执行方法。这样做是为了在保持链方法调用时防止 jQuery 命名空间污染。在本章节的后续，我们将看到看起来更自然的其他用法。\nvar bar = $( \"<div></div>\" )\n .appendTo( \"body\" )\n .progressbar({ value: 20 });\n \n// Get the current value.\nalert( bar.progressbar( \"value\" ) );\n \n// Update the value.\nbar.progressbar( \"value\", 50 );\n \n// Get the current value again.\nalert( bar.progressbar( \"value\" ) );\n使用选项\noption() 方法是自动提供给插件的。option() 方法允许您在初始化后获取并设置选项。该方法像 jQuery 的 .css() 和 .attr() 方法：您可以只传递一个名称作为取值器来使用，也可以传递一个名称和值作为设置器使用，或者传递一个键名/键值对的哈希来设置多个值。当作为取值器使用时，插件将返回与传入名称相对应的选项的当前值。当作为设置器使用时，插件的 _setOption 方法将被每个被设置的选项调用。我们可以在我们的插件中指定一个 _setOption 方法来反应选项更改。对于更改选项要独立执行的动作，我们可以重载 _setOptions。\n$.widget( \"custom.progressbar\", {\n options: {\n value: 0\n },\n _create: function() {\n this.options.value = this._constrain(this.options.value);\n this.element.addClass( \"progressbar\" );\n this.refresh();\n },\n _setOption: function( key, value ) {\n if ( key === \"value\" ) {\n value = this._constrain( value );\n }\n this._super( key, value );\n },\n _setOptions: function( options ) {\n this._super( options );\n this.refresh();\n },\n refresh: function() {\n var progress = this.options.value + \"%\";\n this.element.text( progress );\n },\n _constrain: function( value ) {\n if ( value > 100 ) {\n value = 100;\n }\n if ( value < 0 ) {\n value = 0;\n }\n return value;\n }\n});\n添加回调\n最简单的扩展插件的方法是添加回调，这样用户就可以在插件状态发生变化时做出反应。我们可以看下面的实例如何在进度达到 100% 时添加回调到进度条。_trigger() 方法有三个参数：回调名称，一个启动回调的 jQuery 事件对象，以及一个与事件相关的数据哈希。回调名称是唯一一个必需的参数，但是对于想要在插件上实现自定义功能的用户，其他的参数是非常有用的。例如，如果我们创建一个可拖拽插件，我们可以在触发拖拽回调时传递 mousemove 事件，这将允许用户对基于由事件对象提供的 x/y 坐标上的拖拽做出反应。请注意，传递到 _trigger() 的原始的事件必须是一个 jQuery 事件，而不是一个原生的浏览器事件。\n$.widget( \"custom.progressbar\", {\n options: {\n value: 0\n },\n _create: function() {\n this.options.value = this._constrain(this.options.value);\n this.element.addClass( \"progressbar\" );\n this.refresh();\n },\n _setOption: function( key, value ) {\n if ( key === \"value\" ) {\n value = this._constrain( value );\n }\n this._super( key, value );\n },\n _setOptions: function( options ) {\n this._super( options );\n this.refresh();\n },\n refresh: function() {\n var progress = this.options.value + \"%\";\n this.element.text( progress );\n if ( this.options.value == 100 ) {\n this._trigger( \"complete\", null, { value: 100 } );\n }\n },\n _constrain: function( value ) {\n if ( value > 100 ) {\n value = 100;\n }\n if ( value < 0 ) {\n value = 0;\n }\n return value;\n }\n});\n回调函数本质上只是附加选项，所以您可以像其他选项一样获取并设置它们。无论何时执行回调，都会有一个相对应的事件被触发。事件类型是通过连接插件的名称和回调函数名称确定的。回调和事件都接受两个相同的参数：一个事件对象和一个与事件相关的数据哈希，具体如下面实例所示。\n您的插件可能需要包含防止用户使用的功能，为了做到这点，最好的方法就是创建一个可撤销的回调。用户可以撤销回调或者相关的事件，与他们撤销任何一个原生事件一样，都是通过调用 event.preventDefault() 或返回 false 来实现的。如果用户撤销回调，_trigger() 方法将返回 false，这样您就能在插件内实现合适的功能。\nvar bar = $( \"<div></div>\" )\n .appendTo( \"body\" )\n .progressbar({\n complete: function( event, data ) {\n alert( \"Callbacks are great!\" );\n }\n })\n .bind( \"progressbarcomplete\", function( event, data ) {\n alert( \"Events bubble and support many handlers for extreme flexibility.\" );\n alert( \"The progress bar value is \" + data.value );\n });\n \nbar.progressbar( \"option\", \"value\", 100 );\n本质\n现在我们已经看到如何使用部件库（Widget Factory）创建一个插件，接下来让我们看看它实际上是如何工作的。当您调用 jQuery.widget() 时，它将为插件创建一个构造函数，并设置您为插件实例传入的作为原型的对象。所有自动添加到插件的功能都来自一个基本的小部件原型，该原型定义为 jQuery.Widget.prototype。当创建插件实例时，会使用 jQuery.data 把它存储在原始的 DOM 元素上，插件名作为键名。\n由于插件实例直接链接到 DOM 元素上，您可以直接访问插件实例，而不需要遍历插件方法。这将允许您直接在插件实例上调用方法，而不需要传递字符串形式的方法名，同时您也可以直接访问插件的属性。\nvar bar = $( \"<div></div>\" )\n .appendTo( \"body\" )\n .progressbar()\n .data( \"progressbar\" );\n \n// Call a method directly on the plugin instance.\nbar.option( \"value\", 50 );\n \n// Access properties on the plugin instance.\nalert( bar.options.value );\n您也可以在不遍历插件方法的情况下创建一个实例，通过选项和元素直接调用构造函数即可：\nvar bar = $.custom.progressbar( {}, $( \"<div></div>\" ).appendTo( \"body\") );\n \n// Same result as before.\nalert( bar.options.value );\n扩展插件的原型\n插件有构造函数和原型的最大好处是易于扩展插件。通过添加或修改插件原型上的方法，我们可以修改插件所有实例的行为。例如，如果我们想要向进度条添加一个方法来重置进度为 0%，我们可以向原型添加这个方法，它将在所有插件实例上可调用。\n$.custom.progressbar.prototype.reset = function() {\n this._setOption( \"value\", 0 );\n};\n如需了解扩展小部件的更多细节，以及如何在一个已有的小部件上创建一个全新的小部件的更多细节，请查看 通过部件库（Widget Factory）扩展小部件（Widget）。\n清理\n在某些情况下，允许用户应用插件，然后再取消应用。您可以通过 _destroy() 方法做到这一点。在 _destroy() 方法内，您应该撤销在初始化和后期使用期间插件所做的一切动作。_destroy() 是通过 .destroy() 方法被调用的，.destroy() 方法是在插件实例绑定的元素从 DOM 上移除时被自动调用的，所以这可被用于垃圾回收。基本的 .destroy() 方法也处理一些常用的清理操作，比如从小部件的 DOM 元素上移除实例引用，从元素上解除绑定小部件命名空间中的所有事件，解除绑定所有使用 _bind() 添加的事件。\n$.widget( \"custom.progressbar\", {\n options: {\n value: 0\n },\n _create: function() {\n this.options.value = this._constrain(this.options.value);\n this.element.addClass( \"progressbar\" );\n this.refresh();\n },\n _setOption: function( key, value ) {\n if ( key === \"value\" ) {\n value = this._constrain( value );\n }\n this._super( key, value );\n },\n _setOptions: function( options ) {\n this._super( options );\n this.refresh();\n },\n refresh: function() {\n var progress = this.options.value + \"%\";\n this.element.text( progress );\n if ( this.options.value == 100 ) {\n this._trigger( \"complete\", null, { value: 100 } );\n }\n },\n _constrain: function( value ) {\n if ( value > 100 ) {\n value = 100;\n }\n if ( value < 0 ) {\n value = 0;\n }\n return value;\n },\n _destroy: function() {\n this.element\n .removeClass( \"progressbar\" )\n .text( \"\" );\n }\n});\n关闭注释\n部件库（Widget Factory）只是创建有状态插件的一种方式。这里还有一些其他不同的模型可以使用，且每个都有各自的优势和劣势。部件库（Widget Factory）解决了很多常见的问题，且大大提高了效率，同时也大大提高了代码的重用性，使它适合于 jQuery UI 及其他有状态的插件。\n请注意，在本章节中我们使用了 custom 命名空间。ui 命名空间被官方的 jQuery UI 插件保留。当创建您自己的插件时，您应该创建自己的命名空间。这样才能更清楚插件来自哪里，属于哪个范围。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 为什么使用部件库（Widget Factory）",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-widget-factory-why.html",
+    "body": "编写 jQuery 插件与向 jQuery.prototype（通常显示为 $.fn）添加方法一样简单，且需要遵循一些简单的规则，比如返回 this。所以为什么会存在部件库（Widget Factory）？\n在本章节中，我们将讲解部件库（Widget Factory）的好处，并了解何时使用它，以及为什么要使用它。\n无状态 vs. 有状态插件\n大多数 jQuery 插件是无状态的，它们执行一些动作即完成了它们的任务。例如，如果您使用 .text( \"hello\" ) 设置元素的文本，没有安装阶段，结果都是一样的。对于这种类型的插件，它只是扩展了 jQuery 的原型。\n然而，一些插件是有状态的，它们有全生命周期、维持状态以及对变化的反应。这些插件需要大量专门的代码来初始化和状态管理（有时是销毁）。这就导致出现了用于创建有状态插件的模板。更糟糕的是，每个插件的作者按照不同的方式进行管理插件的生命周期和状态，这就导致了不同的插件有不同的 API 样式。部件库（Widget Factory）旨在解决这些问题，它移除了模板，并为插件创建了一个一致的 API。\n一致的 API\n部件库（Widget Factory）定义了如何创建和销毁小部件，获取和设置选项，调用方法，以及监听小部件触发的事件。通过使用部件库（Widget Factory）来创建有状态的插件，会自动符合定义的标准，让新用户更容易使用您的插件。另外，部件库（Widget Factory）还能实现定义接口的功能。如果您对部件库（Widget Factory）提供的 API 还不熟悉，请查看 如何使用部件库（Widget Factory）。\n在初始化时设置选项\n当您创建一个接受选项的插件时，您应该为尽可能多的选项定义 defaults。然后在初始化时，把用户提供的选项与 defaults 进行合并。您也可以暴露 defaults，这样用户就可以更改默认值。在 jQuery 插件中，一个常用的模式如下所示：\n$.fn.plugin = function( options ) {\n options = $.extend( {}, $.fn.plugin.defaults, options );\n // Plugin logic goes here.\n};\n \n$.fn.plugin.defaults = {\n param1: \"foo\",\n param2: \"bar\",\n param3: \"baz\"\n};\n部件库（Widget Factory）也提供了这个功能，并在这上面做了改进。使用部件库（Widget Factory）之后，它将如下所示。\n$.widget( \"ns.plugin\", {\n \n // Default options.\n options: {\n param1: \"foo\",\n param2: \"bar\",\n param3: \"baz\"\n },\n \n _create: function() {\n // Options are already merged and stored in this.options\n // Plugin logic goes here.\n }\n \n});",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 部件库（Widget Factory）",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-widget-factory.html",
+    "body": "jQuery UI 部件库（Widget Factory）是一个可扩展的基础，所有的 jQuery UI 小部件都是在上面进行创建的。使用部件库（Widget Factory）来创建插件，提供了方便的状态管理，同时也为一些常见的任务提供了便捷，比如暴露插件方法，实例化后改变选项等。\n通过部件库（Widget Factory）扩展小部件（Widget）\n小部件（Widget）方法调用\n为什么使用部件库（Widget Factory）\n如何使用部件库（Widget Factory）",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 小部件（Widget）方法调用",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-widget-method.html",
+    "body": "小部件（Widget）是通过 部件库（Widget Factory） 使用方法来改变他们初始化后的状态和执行动作而被创建的。有两种调用小部件方法的方式 - 通过部件库（Widget Factory）创建的插件，或者通过调用元素实例对象上的方法。\n插件调用\n使用小部件的插件调用方法，把方法名称以字符串形式进行传递。例如，点击这里查看，如何调用 dialog（对话框）小部件的 close() 方法。\n$( \".selector\" ).dialog( \"close\" );\n如果方法要求参数 ，请作为额外的参数传递给插件。点击这里查看，如何调用 dialog（对话框）的 option() 方法。\n$( \".selector\" ).dialog( \"option\", \"height\" );\n这会返回 dialog（对话框）的 height 选项 的值。\n实例调用\n每个小部件的每个实例都是使用 jQuery.data() 存储在元素上。为了检索实例对象，请使用小部件的全称作为键名调用 jQuery.data()。具体如下面实例所示。\nvar dialog = $( \".selector\" ).data( \"ui-dialog\" );\n在您引用实例对象之后，可以直接在上面调用方法。\nvar dialog = $( \".selector\" ).data( \"ui-dialog\" );\ndialog.close();\n在 jQuery UI 1.11 中，新的 instance() 方法会使得这个过程变得更简单。\n$( \".selector\" ).dialog( \"instance\" ).close();\n返回类型\n大多数通过小部件的插件调用的方法将返回一个 jQuery 对象，所以方法调用可以通过额外的 jQuery 方法链接。当在实例上进行调用时，则会返回 undefined。具体如下面实例所示。\nvar dialog = $( \".selector\" ).dialog();\n \n// Instance invocation - returns undefined\ndialog.data( \"ui-dialog\" ).close();\n \n// Plugin invocation - returns a jQuery object\ndialog.dialog( \"close\" );\n \n// Therefore, plugin method invocation makes it possible to\n// chain method calls with other jQuery functions\ndialog.dialog( \"close\" )\n .css( \"color\", \"red\" );\n例外的是，返回小部件相关信息的那些方法。例如 dialog（对话框）的 isOpen() 方法。\n$( \".selector\" )\n .dialog( \"isOpen\" )\n // This will throw a TypeError\n .css( \"color\", \"red\" );\n这会产生一个 TypeError 错误，因为 isOpen() 返回的是一个布尔值，而不是一个 jQuery 对象。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI 工作原理",
+    "url": "https://www.runoob.com/jqueryui/jqueryui-work.html",
+    "body": "jQuery UI 包含了许多维持状态的小部件（Widget），因此，它与典型的 jQuery 插件使用模式略有不同。其安装方式与大部分 jQuery 插件的安装方式类似，jQuery UI 的小部件是基于 部件库（Widget Factory） 创建的，小部件库提供了通用的 API。所以，只要您学会使用其中一个，您就知道如何使用其他的小部件（Widget）。本教程将通过 进度条（progressbar） 小部件代码实例介绍常见的功能。\n安装\n为了跟踪部件的状态，我们首先介绍一下小部件的全生命周期。当小部件安装时，生命周期开始。我们只需要在一个或多个元素上调用插件，即安装了小部件。\n$( \"#elem\" ).progressbar();\n这将会初始化 jQuery 对象中的每个元素，在本例中，元素 id 为 \"elem\"。因为我们调用无参数的 .progressbar() 方法，小部件则会按照它的默认选项进行初始化。我们可以在安装时传递一组选项，这样即可重写默认选项。\n$( \"#elem\" ).progressbar({ value: 20 });\n安装时传递的选项数目多少可根据我们的需要而定。任何我们未传递的选项则都使用它们的默认值。\n选项是小部件状态的组成部分，所以我们也可以在安装后再进行设置选项。我们将在后续的 option 方法中介绍这部分内容。\n方法\n既然小部件已经初始化，我们就可以查询它的状态，或者在小部件上执行动作。所有初始化后的动作都以方法调用的形式进行。为了在小部件上调用一个方法，我们可以向 jQuery 插件传递方法的名称。例如，为了在进度条（progressbar）小部件上调用 value 方法，我们应该使用：\n$( \"#elem\" ).progressbar( \"value\" );\n如果方法接受参数，我们可以在方法名后传递参数。例如，为了传递参数 40 给 value 方法，我们可以使用：\n$( \"#elem\" ).progressbar( \"value\", 40 );\n就像 jQuery 中的其他方法一样，大部分的小部件方法为链接返回 jQuery 对象。\n$( \"#elem\" )\n .progressbar( \"value\", 90 )\n .addClass( \"almost-done\" );\n公共的方法\n每个小部件都有它自己的一套基于小部件所提供功能的方法。然而，有一些方法是所有小部件都共同具有的。\noption\n正如我们前面所提到的，我们可以在初始化之后通过 option 方法改变选项。例如，我们可以通过调用 option 方法改变 progressbar（进度条）的 value 为 30。\n$( \"#elem\" ).progressbar( \"option\", \"value\", 30 );\n请注意，这与之前我们调用 value 方法的实例有所不同。在本实例中，我们调用 option 方法，改变 value 选项为 30。\n我们也可以为某个选项获取当前的值。\n$( \"#elem\" ).progressbar( \"option\", \"value\" );\n另外，我们可以通过给 option 方法传递一个对象，一次更新多个选项。\n$( \"#elem\" ).progressbar( \"option\", {\n value: 100,\n disabled: true\n});\n您也许注意到 option 方法有着与 jQuery 代码中取值器和设置器相同的标志，就像 .css() 和 .attr()。唯一的不同就是您必须传递字符串 \"option\" 作为第一个参数。\ndisable\ndisable 方法禁用小部件。在进度条（progressbar）实例中，这会改变样式让进度条显示为禁用状态。\n$( \"#elem\" ).progressbar( \"disable\" );\n调用 disable 方法等同于设置 disabled 选项为 true。\nenable\nenable 方法是 disable 方法的对立面。\n$( \"#elem\" ).progressbar( \"enable\" );\n调用 enable 方法等同于设置 disabled 选项为 false。\ndestroy\n如果您不再需要小部件，那么可以销毁它，返回到最初的标记。这意味着小部件生命周期的终止。\n$( \"#elem\" ).progressbar( \"destroy\" );\n一旦您销毁了一个小部件，您就不能在该部件上调用任何方法，除非您再次初始化这个小部件。如果您要移除元素，可以直接通过 .remove()，也可以通过 .html() 或 .empty() 来实现，小部件会自动销毁。\nwidget\n一些小部件生成包装器元素，或与原始元素断开连接的元素。在下面的实例中，widget 将返回生成的元素。在进度条（progressbar）实例中，没有生成的包装器，widget 方法返回原始的元素。\n$( \"#elem\" ).progressbar( \"widget\" );\n事件\n所有的小部件都有跟他们各种行为相关的事件，用于在状态改变时通知您。对于大多数的小部件，当事件被触发时，名称以小部件名称为前缀。例如，我们可以绑定进度条（）的 change 事件，一旦值发生变化时就触发。\n$( \"#elem\" ).bind( \"progressbarchange\", function() {\n alert( \"The value has changed!\" );\n});\n每个事件都有一个相对应的回调，作为选项进行呈现。我们可以使用进度条（progressbar）的 change 回调，这等同于绑定 progressbarchange 事件。\n$( \"#elem\" ).progressbar({\n change: function() {\n alert( \"The value has changed!\" );\n }\n});\n公共的事件\n大多数事件是针对特定的小部件，所有的小部件都有一个公共的 create 事件。该事件在小部件被创建时即被触发。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI API 类别 - 特效核心（Effects Core）",
+    "url": "https://www.runoob.com/jqueryui/ref-effects-core.html",
+    "body": "由 jquery.ui.effect.js 提供的功能。除了下面列出的方法，jquery.ui.effect.js 还包括一些 Easings。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI API 类别 - 特效（Effects）",
+    "url": "https://www.runoob.com/jqueryui/ref-effects.html",
+    "body": "jQuery UI 在jQuery 内置的特效上添加了一些功能。jQuery UI 支持颜色动画和 Class 转换，同时也提供了一些额外的 Easings。另外，提供了一套完整的定制特效，供显示和隐藏元素时或者只是添加一些视觉显示时使用。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI API 类别 - 交互（Interactions）",
+    "url": "https://www.runoob.com/jqueryui/ref-interactions.html",
+    "body": "jQuery UI 提供了一套基于鼠标的交互。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI API 类别 - 方法（Methods）",
+    "url": "https://www.runoob.com/jqueryui/ref-methods.html",
+    "body": "尽管 jQuery UI 主要由 小部件（Widgets）、交互（Interactions） 和 特效（Effects） 组成，但是还有一些简单的方法，增加了便利性。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI API 类别 - 方法重载（Method Overrides）",
+    "url": "https://www.runoob.com/jqueryui/ref-overrides.html",
+    "body": "jQuery UI 重载了几个内置的 jQuery 方法，以提供额外的功能。当使用这些重载时，确保加载 jQuery UI 是很重要的。如果 jQuery UI 未加载，方法依然存在，但预期的功能将不可用，这会导致难以追踪的错误。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI API 类别 - 选择器（Selectors）",
+    "url": "https://www.runoob.com/jqueryui/ref-selectors.html",
+    "body": "API\n描述\n也属于类别\n:data() Selector\n选择数据已存储在指定的键下的元素。\nUI 核心（UI Core）\n:focusable Selector\n选择可被聚焦的元素。\nUI 核心（UI Core）\n:tabbable Selector\n选择用户可通过 tab 键聚焦的元素。\nUI 核心（UI Core）",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI API 类别 - 主题（Theming）",
+    "url": "https://www.runoob.com/jqueryui/ref-theming.html",
+    "body": "jQuery UI 包括一个强大的 CSS 框架，用于创建自定义的 jQuery 小部件。该框架包括涵盖广泛的公共用户界面需求的 Class，并且可以使用 jQuery UI ThemeRoller 进行操纵。通过使用 jQuery UI CSS 框架创建您自己的 UI 组件，您应采用共享标记公约，便于插件社区的代码集成。您可以查看 jQuery UI 主题 了解更多详情。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI API 类别 - UI 核心（UI Core）",
+    "url": "https://www.runoob.com/jqueryui/ref-ui-core.html",
+    "body": "由 jquery.ui.core.js 提供的功能。",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI API 类别 - 实用工具（Utilities）",
+    "url": "https://www.runoob.com/jqueryui/ref-utilities.html",
+    "body": "API\n描述\n也属于类别\nEasings\nEasing 函数指定动画在不同点上的行进速度。\n部件库（Widget Factory）\n使用与所有 jQuery UI 小部件相同的抽象化来创建有状态的 jQuery 插件。\n小部件（Widgets）\n插件桥（Widget Plugin Bridge）\njQuery.widget.bridge() 方法是 jQuery 部件库（Widget Factory）的一部分。它扮演着由 $.widget() 创建的对象和 jQuery API 之间的中介。\n小部件（Widgets）\n鼠标交互（Mouse Interaction）\n基本交互层。\n交互（Interactions）\n.position()\n相对另一个元素定位一个元素。\n方法重载（Method Overrides） | 方法（Method）",
+    "examples": []
+   },
+   {
+    "title": "jQuery UI API 类别 - 小部件（Widgets）",
+    "url": "https://www.runoob.com/jqueryui/ref-widgets.html",
+    "body": "小部件（Widgets）是功能丰富、有状态的插件，它有一个完整的生命周期，带有方法和事件。您可以查看 部件库（Widget Factory）文档 了解更多详情。",
+    "examples": []
+   }
+  ]
+ }
+}

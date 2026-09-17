@@ -1,0 +1,200 @@
+{
+ "tutorial": {
+  "name": "设计模式",
+  "category": "编程语言",
+  "desc": "设计模式（Design Pattern）是一套被反复验证的可复用解决方案，用于解",
+  "url": "https://www.runoob.com/python-design-pattern/",
+  "chapters": [
+   {
+    "title": "Python 适配器模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-adapter.html",
+    "body": "适配器模式是一种结构型设计模式，它允许不兼容的接口之间进行协作。就像现实生活中的电源适配器可以让不同国家的电器插头连接到本地插座一样，在编程中，适配器模式充当两个不兼容接口之间的桥梁。\n核心概念\n适配器模式主要解决接口不匹配的问题。当我们需要使用一个现有的类，但其接口不符合我们的需求时，适配器模式就能派上用场。它通过创建一个中间层（适配器）来转换接口，使得原本不兼容的类能够协同工作。\n模式结构\n适配器模式包含三个主要角色：\n目标接口(Target)：客户端期望的接口\n适配器(Adapter)：实现目标接口，并包装适配者\n适配者(Adaptee)：需要被适配的现有类\n为什么需要适配器模式\n实际问题场景\n想象一下，你有一个现有的日志系统，它使用特定的方法记录日志：\n实例",
+    "examples": [
+     "class LegacyLogger:\n    def write_log(self, message):\n        print(f\"[LEGACY] {message}\")"
+    ]
+   },
+   {
+    "title": "Python 桥接模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-bridge.html",
+    "body": "桥接模式是一种结构型设计模式，它将抽象部分与实现部分分离，使它们可以独立变化。简单来说，就是把事物的多种变化维度拆分开，让每个维度都能独立扩展。\n生活中的桥接模式比喻\n想象一下遥控器和电视的关系：\n遥控器（抽象部分）：提供控制接口（开关、音量、频道）\n电视（实现部分）：具体执行操作（索尼电视、三星电视、小米电视）\n遥控器不需要知道具体是哪种电视，电视也不需要知道是哪种遥控器，它们通过一个\"桥梁\"连接，各自可以独立升级换代。\n为什么需要桥接模式？\n传统方式的局限性\n假设我们要设计一个图形绘制系统，支持不同形状和颜色：\n实例",
+    "examples": [
+     "# 传统实现 - 类爆炸问题\nclass RedCircle:\n    def draw(self):\n        print(\"绘制红色圆形\")\n\nclass BlueCircle:\n    def draw(self):\n        print(\"绘制蓝色圆形\")\n\nclass RedRectangle:\n    def draw(self):\n        print(\"绘制红色矩形\")\n\nclass BlueRectangle:\n    def draw(self):\n        print(\"绘制蓝色矩形\")\n\n# 每增加一种颜色或形状，都需要创建新的类\n# 3种颜色 × 3种形状 = 9个类！"
+    ]
+   },
+   {
+    "title": "Python 建造者模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-builder.html",
+    "body": "建造者模式允许我们使用相同的构建过程创建不同的对象表示。想象一下建造房屋的过程：无论是建造别墅还是公寓，都需要经过打地基、建墙体、安装水电等步骤，但最终的结果却完全不同。\n核心思想\n建造者模式将复杂对象的构建过程与其表示分离，使得同样的构建过程可以创建不同的表示。这种模式特别适用于创建包含多个组成部分的复杂对象。\n为什么需要建造者模式？\n传统构造方法的问题\n让我们先看一个不使用建造者模式的例子：\n实例",
+    "examples": [
+     "class Computer:\n    def __init__(self, cpu, memory, storage, graphics_card, monitor):\n        self.cpu = cpu\n        self.memory = memory\n        self.storage = storage\n        self.graphics_card = graphics_card\n        self.monitor = monitor\n    \n    def __str__(self):\n        return f\"Computer: CPU={self.cpu}, Memory={self.memory}GB, Storage={self.storage}GB, Graphics={self.graphics_card}, Monitor={self.monitor}\"\n\n# 创建电脑对象\ncomputer = Computer(\"Intel i7\", 16, 512, \"NVIDIA RTX 3060\", \"27寸 4K\")\nprint(computer)"
+    ]
+   },
+   {
+    "title": "Python 责任链模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-chain-of-responsibility.html",
+    "body": "责任链模式是一种行为设计模式，它允许你将请求沿着处理链进行传递。收到请求后，每个处理者都可以对请求进行处理，或者将其传递给链上的下一个处理者。\n生活中的类比\n想象一下公司里的请假审批流程：\n1-3 天 → 组长审批\n4-7 天 → 部门经理审批\n8 天以上 → 总经理审批\n当你提交请假申请时，申请会按照这个链条依次传递，直到找到有权限处理的人。这就是责任链模式的现实体现。\n模式的核心思想\n责任链模式的核心在于解耦请求的发送者和接收者，让多个对象都有机会处理请求，从而避免请求发送者与接收者之间的紧密耦合。\n责任链模式的结构\n让我们通过 UML 类图来理解责任链模式的组成结构：\n核心组件说明\nHandler（抽象处理者）\n定义处理请求的接口\n包含设置后继者的方法\n可以实现后继链的默认行为\nConcreteHandler（具体处理者）\n实现具体的处理逻辑\n如果可以处理请求，就进行处理\n否则将请求转发给后继者\n基础实现：请假审批系统\n让我们用 Python 实现一个简单的请假审批系统来理解责任链模式。\n步骤 1：定义抽象处理者\n实例",
+    "examples": [
+     "from abc import ABC, abstractmethod\nfrom typing import Optional\n\nclass Approver(ABC):\n    \"\"\"审批者抽象类\"\"\"\n    \n    def __init__(self, name: str):\n        self.name = name\n        self.successor: Optional['Approver'] = None\n    \n    def set_successor(self, successor: 'Approver'):\n        \"\"\"设置后继审批者\"\"\"\n        self.successor = successor\n    \n    @abstractmethod\n    def process_request(self, leave_request: 'LeaveRequest'):\n        \"\"\"处理请假请求的抽象方法\"\"\"\n        pass"
+    ]
+   },
+   {
+    "title": "Python 命令模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-command.html",
+    "body": "命令模式是一种行为设计模式，它将一个请求封装成一个对象，从而使你可以用不同的请求对客户进行参数化。简单来说，命令模式把操作（比如打开文件、保存数据）包装成独立的对象，让你能够像处理数据一样处理操作。\n生活中的类比\n想象一下餐厅的点餐流程：\n顾客（客户端）不需要知道厨师如何做菜\n服务员（调用者）接收订单但不亲自烹饪\n订单（命令对象）包含了具体的菜品信息\n厨师（接收者）根据订单执行具体的烹饪操作\n这种分工明确的模式就是命令模式在现实生活中的体现。\n为什么需要命令模式\n传统方式的局限性\n在传统编程中，我们通常直接调用对象的方法：\n实例",
+    "examples": [
+     "class Light:\n    def turn_on(self):\n        print(\"灯亮了\")\n    \n    def turn_off(self):\n        print(\"灯灭了\")\n\n# 直接调用\nlight = Light()\nlight.turn_on()\nlight.turn_off()"
+    ]
+   },
+   {
+    "title": "Python 组合模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-composite.html",
+    "body": "组合模式是一种结构型设计模式，它允许你将对象组合成树形结构来表示\"部分-整体\"的层次结构。组合模式让客户端可以统一地处理单个对象和对象组合，无需关心处理的是单个对象还是整个组合结构。\n生活中的类比\n想象一下文件系统的组织结构：\n单个文件：是最基本的单位\n文件夹：可以包含多个文件或其他文件夹\n无论你操作的是文件还是文件夹，都可以进行\"打开\"、\"删除\"、\"重命名\"等操作\n这种\"部分-整体\"的层次关系就是组合模式的典型应用场景。\n组合模式的核心组件\n1. 组件接口(Component)\n这是组合模式的核心，定义了所有对象（包括叶子节点和组合节点）的通用接口。\n实例",
+    "examples": [
+     "from abc import ABC, abstractmethod\nfrom typing import List\n\nclass FileSystemComponent(ABC):\n    \"\"\"文件系统组件抽象基类\"\"\"\n    \n    def __init__(self, name: str):\n        self.name = name\n        self.parent = None\n    \n    @abstractmethod\n    def display(self, indent: int = 0) -> None:\n        \"\"\"显示组件信息\"\"\"\n        pass\n    \n    @abstractmethod\n    def get_size(self) -> int:\n        \"\"\"获取组件大小\"\"\"\n        pass\n    \n    def get_path(self) -> str:\n        \"\"\"获取完整路径\"\"\"\n        if self.parent:\n            return f\"{self.parent.get_path()}/{self.name}\"\n        return self.name"
+    ]
+   },
+   {
+    "title": "Python 装饰器模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-decorator.html",
+    "body": "装饰器模式的核心思想是包装——通过创建一个包装对象（装饰器）来包裹原始对象，从而在不修改原始对象的前提下扩展其功能。\n基本概念\n装饰器模式包含四个主要角色：\n组件接口(Component)：定义了被装饰对象和装饰器的共同接口\n具体组件(Concrete Component)：需要被装饰的原始对象\n装饰器基类(Decorator)：持有一个组件对象的引用，并实现组件接口\n具体装饰器(Concrete Decorator)：实现具体的装饰功能\n装饰器的基本语法\n函数装饰器\n函数装饰器是最常见的装饰器形式，它接收一个函数作为参数，并返回一个新的函数。\n实例",
+    "examples": [
+     "def my_decorator(func):\n    def wrapper(*args, **kwargs):\n        print(\"函数执行前的一些操作\")\n        result = func(*args, **kwargs)\n        print(\"函数执行后的一些操作\")\n        return result\n    return wrapper\n\n@my_decorator\ndef say_hello(name):\n    print(f\"Hello, {name}!\")\n\n# 使用装饰器\nsay_hello(\"Alice\")"
+    ]
+   },
+   {
+    "title": "Python 设计模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-design-pattern-intro.html",
+    "body": "设计模式是软件开发中针对常见问题的可重用解决方案。它们不是可以直接转换为代码的完整设计，而是解决特定问题的模板或蓝图。\n设计模式的核心价值\n设计模式就像建筑领域的标准图纸，为软件开发提供了以下好处：\n提高代码复用性：避免重复造轮子\n增强代码可维护性：使代码结构更清晰\n促进团队协作：提供统一的编程语言和思维方式\n提升代码质量：经过实践检验的解决方案更可靠\n生活中的设计模式类比\n想象你要建造一栋房子：\n原始方式：每次从零开始设计，容易出错且效率低下\n使用设计模式：使用标准的建筑图纸，知道客厅、厨房、卧室的标准布局方式\n设计模式就是软件开发的\"标准建筑图纸\"。\n设计模式的类型\n根据经典著作 《Design Patterns - Elements of Reusable Object-Oriented Software》（中文译名：《设计模式：可复用的面向对象软件元素》） 的定义，\n共有 23 种经典设计模式。这些模式按其关注点可分为三大类：\n创建型模式（Creational Patterns）、结构型模式（Structural Patterns）和行为型模式（Behavioral Patterns）。\n此外，在企业级开发中，还有一类常用的架构级设计模式。\n序号\n模式 & 描述\n包括\n1\n创建型模式用于解决对象的创建问题，通过封装实例化逻辑，隐藏具体实现细节，让系统在创建对象时更灵活、更可扩展。\n工厂模式（Factory Pattern）\n抽象工厂模式（Abstract Factory Pattern）\n单例模式（Singleton Pattern）\n建造者模式（Builder Pattern）\n原型模式（Prototype Pattern）\n2\n结构型模式关注类与对象的组合与协作，帮助我们构建灵活、可复用、可扩展的系统结构。\n适配器模式（Adapter Pattern）\n桥接模式（Bridge Pattern）\n过滤器模式（Filter / Criteria Pattern）\n组合模式（Composite Pattern）\n装饰器模式（Decorator Pattern）\n外观模式（Facade Pattern）\n享元模式（Flyweight Pattern）\n代理模式（Proxy Pattern）\n3\n行为型模式关注对象间的通信与职责分配，通过封装算法、状态或请求逻辑，提升系统的灵活性与可维护性。\n责任链模式（Chain of Responsibility Pattern）\n命令模式（Command Pattern）\n解释器模式（Interpreter Pattern）\n迭代器模式（Iterator Pattern）\n中介者模式（Mediator Pattern）\n备忘录模式（Memento Pattern）\n观察者模式（Observer Pattern）\n状态模式（State Pattern）\n空对象模式（Null Object Pattern）\n策略模式（Strategy Pattern）\n模板方法模式（Template Method Pattern）\n访问者模式（Visitor Pattern）\n4\n企业级架构模式这些模式常用于大型系统的分层架构中，关注表现层与业务逻辑层的协作。\nMVC 模式（Model-View-Controller Pattern）\n业务代表模式（Business Delegate Pattern）\n组合实体模式（Composite Entity Pattern）\n数据访问对象模式（Data Access Object Pattern）\n前端控制器模式（Front Controller Pattern）\n拦截过滤器模式（Intercepting Filter Pattern）\n服务定位器模式（Service Locator Pattern）\n传输对象模式（Transfer Object Pattern）\n下面的图片展示了各类设计模式之间的关系与层次结构：\n设计模式的优点\n提供统一的设计语言，使开发者能快速沟通设计意图。\n为常见问题提供成熟、可复用的解决方案。\n降低系统耦合度，提高代码的可维护性与可扩展性。\n减少重复设计，提升开发效率与代码质量。\n帮助新成员快速理解系统架构与设计思想。\n设计模式的六大原则\n1、开闭原则（Open-Closed Principle）\n对扩展开放，对修改关闭。软件应能通过扩展新功能，而非修改已有代码来适应变化。实现这一原则的核心在于使用抽象（接口或基类）定义稳定的行为。\n2、里氏替换原则（Liskov Substitution Principle）\n任何基类出现的地方，子类都应该可以替代。只有当派生类能完全替代基类时，继承才有意义。这一原则保证了多态的正确性，是开闭原则的重要补充。\n3、依赖倒置原则（Dependency Inversion Principle）\n高层模块不应依赖低层模块，两者都应依赖抽象。具体实现应依赖接口或抽象类，而不是直接依赖具体类。该原则使系统更易于扩展与测试。\n4、接口隔离原则（Interface Segregation Principle）\n一个类不应该依赖它不需要的接口。应将大接口拆分为多个更小、更专用的接口，以降低耦合、提高灵活性。\n5、迪米特法则（Law of Demeter）\n又称\"最少知道原则\"：一个对象应尽量减少与其他对象的交互。换言之，一个类应只了解与自己直接相关的对象，从而降低系统复杂度。\n6、合成复用原则（Composite Reuse Principle）\n优先使用组合或聚合关系来实现复用，而非继承。继承会造成强耦合，而组合能在运行时灵活替换依赖，实现更优雅的结构设计。\nPython 中常用的设计模式示例\n让我们通过几个具体的例子来理解设计模式在 Python 中的应用。\n单例模式（Singleton）\n单例模式确保一个类只有一个实例，并提供一个全局访问点。\n实例",
+    "examples": [
+     "class DatabaseConnection:\n    _instance = None\n    \n    def __new__(cls):\n        if cls._instance is None:\n            cls._instance = super().__new__(cls)\n            print(\"创建新的数据库连接\")\n        return cls._instance\n    \n    def connect(self):\n        print(\"连接到数据库\")\n\n# 使用示例\ndb1 = DatabaseConnection()\ndb2 = DatabaseConnection()\n\nprint(f\"db1 和 db2 是同一个实例吗？{db1 is db2}\")  # 输出：True"
+    ]
+   },
+   {
+    "title": "设计模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-design-pattern-tutorial.html",
+    "body": "设计模式（Design Pattern）是一套被反复验证的可复用解决方案，用于解决在软件设计中常见的问题。\n简单来说，设计模式是一种写代码的套路。\n设计模式不是具体的代码，而是告诉你在某种情况下该用什么结构来组织代码，使系统更灵活、更易维护。\n设计模式的本质\n想象一下建筑行业中的蓝图：建筑师不会每次都从零开始设计房屋，而是会参考经过验证的建筑模式。同样，在软件开发中，设计模式为我们提供了经过验证的\"软件蓝图\"，帮助我们避免重复发明轮子。\n为什么需要设计模式\n1. 可维护性更高\n设计模式能让代码更易修改。\n当需求变化时，只需改动特定模块，而不是全局大改。\n2. 可复用性强\n抽象化设计让你能在多个项目中复用同样的结构。\n3. 团队协作语言\n\"用装饰器模式实现这个功能\"——团队成员一听就懂意图，节省沟通成本。\n4. 提升架构思维\n学习设计模式不是背代码，而是学会如何抽象问题、如何设计扩展点。\n设计模式的分类\n设计模式通常分为三大类，每类解决不同层面的设计问题：\n创建型模式\n这类模式关注对象的创建机制，让对象创建更加灵活和符合需求。\n主要模式包括：\n单例模式：确保一个类只有一个实例\n工厂模式：提供创建对象的接口，让子类决定实例化哪个类\n建造者模式：将复杂对象的构建与其表示分离\n结构型模式\n这类模式关注类和对象的组合方式，形成更大的结构。\n主要模式包括：\n适配器模式：使不兼容的接口能够协同工作\n装饰器模式：动态地为对象添加新功能\n代理模式：为其他对象提供一种代理以控制对这个对象的访问\n行为型模式\n这类模式关注对象之间的职责分配和通信方式。\n主要模式包括：\n观察者模式：定义对象间的一对多依赖关系\n策略模式：定义一系列算法，使它们可以相互替换\n命令模式：将请求封装为对象\n常用设计模式应用场景\n让我们通过一个表格来快速了解几个常用设计模式的应用场景：\n设计模式\n解决的问题\n典型应用场景\n单例模式\n确保全局唯一实例\n数据库连接、配置管理、日志系统\n工厂模式\n对象创建逻辑复杂\n根据不同条件创建不同类型对象\n观察者模式\n对象间动态通知\n事件处理系统、消息订阅\n装饰器模式\n动态扩展功能\nIO流处理、中间件链",
+    "examples": []
+   },
+   {
+    "title": "Python 外观模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-facade.html",
+    "body": "外观模式（Facade Pattern）是一种结构型设计模式，它为复杂的子系统提供一个简化的接口。想象一下你去餐厅吃饭：你不需要了解厨房里厨师如何切菜、炒菜、摆盘的所有细节，只需要告诉服务员你想吃什么，服务员就会协调后厨完成所有工作。这个服务员就扮演了\"外观\"的角色。\n在软件开发中，外观模式通过创建一个统一的接口，来隐藏子系统的复杂性，让客户端代码更容易使用。\n外观模式的核心思想\n简化复杂系统\n当系统变得越来越复杂时，类之间的依赖关系也会变得错综复杂。外观模式通过提供一个高层接口，降低了系统与客户端之间的耦合度。\n提供统一入口\n外观类作为子系统的唯一入口，客户端只需要与外观类交互，而不需要了解子系统内部的复杂结构。\n降低使用门槛\n对于不熟悉系统内部结构的开发者来说，外观模式让他们能够快速上手使用系统功能。\n外观模式的结构\n从图中可以看到：\nClient（客户端）：使用外观类的代码\nFacade（外观类）：提供简化的接口，协调各个子系统\nSubsystem（子系统类）：实现具体功能的类\n实际应用示例：家庭影院系统\n让我们通过一个家庭影院的例子来理解外观模式的实际应用。\n子系统类\n首先，我们创建家庭影院中的各个设备类：\n实例",
+    "examples": [
+     "class Amplifier:\n    \"\"\"功放类\"\"\"\n    def on(self):\n        print(\"功放已开启\")\n    \n    def set_volume(self, level):\n        print(f\"音量设置为 {level}\")\n    \n    def off(self):\n        print(\"功放已关闭\")\n\nclass DVDPlayer:\n    \"\"\"DVD播放器类\"\"\"\n    def on(self):\n        print(\"DVD播放器已开启\")\n    \n    def play(self, movie):\n        print(f\"开始播放电影: {movie}\")\n    \n    def stop(self):\n        print(\"DVD播放器已停止\")\n    \n    def off(self):\n        print(\"DVD播放器已关闭\")\n\nclass Projector:\n    \"\"\"投影仪类\"\"\"\n    def on(self):\n        print(\"投影仪已开启\")\n    \n    def set_input(self, source):\n        print(f\"投影仪输入源设置为: {source}\")\n    \n    def off(self):\n        print(\"投影仪已关闭\")\n\nclass Lights:\n    \"\"\"灯光类\"\"\"\n    def dim(self, level):\n        print(f\"灯光调暗到 {level}%\")\n    \n    def on(self):\n        print(\"灯光全开\")\n\nclass Screen:\n    \"\"\"屏幕类\"\"\"\n    def down(self):\n        print(\"屏幕已降下\")\n    \n    def up(self):\n        print(\"屏幕已升起\")"
+    ]
+   },
+   {
+    "title": "Python 工厂模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-factory-pattern.html",
+    "body": "工厂模式是一种创建型设计模式，它提供了一种创建对象的最佳方式。\n想象一下你去餐厅点餐：你不需要知道厨房如何制作食物，只需要告诉服务员你想要什么，厨房就会为你制作出来。\n工厂模式就是这样一个\"厨房\"，它负责创建对象，而你只需要告诉它你想要什么类型的对象。\n为什么需要工厂模式？\n在编程中，我们经常需要创建对象。如果直接在代码中使用 new 关键字或类的构造函数，会导致：\n代码耦合度高：创建对象的代码与具体类紧密绑定\n维护困难：当需要修改或添加新的对象类型时，需要修改多处代码\n违反开闭原则：对扩展开放，对修改关闭的原则被破坏\n工厂模式通过将对象的创建过程封装起来，解决了这些问题。\n工厂模式的三种类型\n工厂模式主要分为三种类型，让我们通过具体的例子来理解它们。\n1. 简单工厂模式\n简单工厂模式是最基础的工厂模式，它通过一个工厂类来创建不同类型的对象。\n基本结构\n实例",
+    "examples": [
+     "from abc import ABC, abstractmethod\n\n# 产品接口\nclass Animal(ABC):\n    @abstractmethod\n    def speak(self):\n        pass\n\n# 具体产品\nclass Dog(Animal):\n    def speak(self):\n        return \"汪汪！\"\n\nclass Cat(Animal):\n    def speak(self):\n        return \"喵喵！\"\n\nclass Duck(Animal):\n    def speak(self):\n        return \"嘎嘎！\"\n\n# 简单工厂\nclass AnimalFactory:\n    @staticmethod\n    def create_animal(animal_type):\n        if animal_type == \"dog\":\n            return Dog()\n        elif animal_type == \"cat\":\n            return Cat()\n        elif animal_type == \"duck\":\n            return Duck()\n        else:\n            raise ValueError(f\"未知的动物类型: {animal_type}\")\n\n# 使用示例\ndef test_simple_factory():\n    factory = AnimalFactory()\n    \n    dog = factory.create_animal(\"dog\")\n    cat = factory.create_animal(\"cat\")\n    duck = factory.create_animal(\"duck\")\n    \n    print(dog.speak())  # 输出: 汪汪！\n    print(cat.speak())  # 输出: 喵喵！\n    print(duck.speak()) # 输出: 嘎嘎！\n\nif __name__ == \"__main__\":\n    test_simple_factory()"
+    ]
+   },
+   {
+    "title": "Python 享元模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-flyweight.html",
+    "body": "享元模式是一种结构型设计模式，它通过共享对象来最大限度地减少内存使用和提高性能。简单来说，就是\"共享元数据\"的思想。\n想象一下你去图书馆借书：如果每本书都被不同的人单独购买，图书馆就需要存储成千上万本相同的书。但实际上，图书馆只需要存储一本《Python 入门》，所有想读这本书的人都可以借阅同一本。享元模式就是这样的\"图书馆\"，它管理着可共享的对象。\n核心思想\n享元模式将对象的状态分为两种：\n内部状态(Intrinsic State)：不变的、可共享的部分\n外部状态(Extrinsic State)：变化的、不可共享的部分\n通过共享内部状态，避免创建大量相似对象，从而节省系统资源。\n为什么需要享元模式\n问题场景\n假设我们正在开发一个文字处理器，需要渲染文档中的字符。如果每个字符都创建一个独立的对象：\n实例",
+    "examples": [
+     "# 不好的实现：每个字符都是独立对象\nclass Character:\n    def __init__(self, char, font, size, color):\n        self.char = char      # 字符\n        self.font = font      # 字体\n        self.size = size      # 字号\n        self.color = color    # 颜色\n    \n    def render(self, position):\n        print(f\"在位置 {position} 渲染字符 '{self.char}'\")\n\n# 使用示例\nchar_a = Character('A', '宋体', 12, '黑色')\nchar_b = Character('B', '宋体', 12, '黑色')\nchar_a_another = Character('A', '宋体', 12, '黑色')  # 重复创建相同的'A'"
+    ]
+   },
+   {
+    "title": "Python 解释器模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-interpreter.html",
+    "body": "解释器模式（Interpreter Pattern）是一种行为型设计模式，它定义了一个语言的文法，并建立一个解释器来解释该语言中的句子。简单来说，它就像是一个小型编译器，能够解析和执行特定语法规则的表达式。\n核心思想\n想象一下计算器的场景：当你输入 \"2 + 3 * 4\" 这样的表达式时，计算器需要理解这个字符串的含义，按照数学运算规则进行计算。解释器模式就是实现这种\"理解\"和\"执行\"过程的设计方案。\n适用场景\n解释器模式特别适用于以下情况：\n当需要解释执行一种语言或表达式时\n语法比较简单，不会过于复杂\n执行效率不是关键考虑因素\n需要频繁扩展语言的语法规则\n模式结构\n让我们通过一个类图来理解解释器模式的核心组件：\n组件说明\nAbstractExpression（抽象表达式）\n定义解释操作的接口\n通常包含 interpret() 方法\nTerminalExpression（终结符表达式）\n实现与文法中的终结符相关的解释操作\n不能再分解为更小的表达式\nNonterminalExpression（非终结符表达式）\n实现与文法中的非终结符相关的解释操作\n通常包含其他表达式的引用\nContext（上下文）\n包含解释器需要的一些全局信息\n存储输入和输出结果\n基础语法和实现\n抽象表达式类\n实例",
+    "examples": [
+     "from abc import ABC, abstractmethod\n\nclass Expression(ABC):\n    \"\"\"抽象表达式类，定义解释接口\"\"\"\n    \n    @abstractmethod\n    def interpret(self, context):\n        \"\"\"解释方法，由具体子类实现\"\"\"\n        pass"
+    ]
+   },
+   {
+    "title": "Python 迭代器模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-iterator.html",
+    "body": "想象一下，你有一个装满各种颜色糖果的罐子。你想要一颗一颗地品尝这些糖果，但又不想一次性把所有糖果都倒出来。这时候，你会伸手到罐子里，一次取出一颗糖果——这个过程就是迭代。\n在编程中，迭代器模式 是一种设计模式，它提供了一种方法，让我们能够顺序访问一个集合对象中的各个元素，而又不需要暴露该对象的内部表示。\n核心概念\n迭代器模式包含两个主要组成部分：\n迭代器 (Iterator)：负责定义访问和遍历元素的接口\n可迭代对象 (Iterable)：提供创建迭代器的方法\n在 Python 中，迭代器模式已经被深度集成到语言的核心特性中，让我们的编程变得更加优雅和直观。\n为什么需要迭代器？\n传统方式的局限性\n让我们先看一个没有使用迭代器的例子：\n实例",
+    "examples": [
+     "# 一个简单的书籍集合类\nclass BookCollection:\n    def __init__(self):\n        self.books = [\"Python入门\", \"算法导论\", \"设计模式\", \"数据结构\"]\n    \n    def get_books(self):\n        return self.books\n\n# 使用这个集合\ncollection = BookCollection()\nbooks = collection.get_books()\n\n# 遍历书籍 - 暴露了内部实现细节\nfor i in range(len(books)):\n    print(books[i])"
+    ]
+   },
+   {
+    "title": "Python 中介者模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-mediator.html",
+    "body": "中介者模式是一种行为设计模式，它通过引入一个中介者对象来减少对象之间的直接通信依赖。想象一下现实生活中的机场控制塔 - 所有飞机不直接相互通信，而是通过控制塔来协调起降和航线，这样就避免了混乱和冲突。\n在软件开发中，当多个对象之间存在复杂的交互关系时，中介者模式能够将这些交互封装在中介者中，从而降低对象之间的耦合度。\n核心思想\n中介者模式的核心思想是 \"不要直接对话，通过中介来协调\"。它解决了对象间多对多交互的复杂性，让系统更易于维护和扩展。\n为什么需要中介者模式\n问题场景\n假设我们正在开发一个聊天室系统，有多个用户需要相互发送消息。如果没有中介者，代码可能会是这样：\n实例",
+    "examples": [
+     "class User:\n    def __init__(self, name):\n        self.name = name\n        self.other_users = []  # 需要知道所有其他用户\n    \n    def send_message(self, message, to_user):\n        print(f\"{self.name} 发送给 {to_user.name}: {message}\")\n        to_user.receive_message(message, self)\n    \n    def receive_message(self, message, from_user):\n        print(f\"{self.name} 收到来自 {from_user.name} 的消息: {message}\")\n\n# 使用示例\nuser1 = User(\"小明\")\nuser2 = User(\"小红\")\nuser3 = User(\"小刚\")\n\n# 每个用户都需要知道其他所有用户\nuser1.other_users = [user2, user3]\nuser2.other_users = [user1, user3]\nuser3.other_users = [user1, user2]\n\nuser1.send_message(\"你好！\", user2)"
+    ]
+   },
+   {
+    "title": "Python 备忘录模式(Memento)",
+    "url": "https://www.runoob.com/python-design-pattern/python-memento.html",
+    "body": "备忘录模式是一种行为设计模式，它允许在不破坏封装性的前提下，捕获并保存一个对象的内部状态，以便在需要时能够恢复到之前的状态。\n想象一下你在玩一个游戏，游戏提供了\"存档\"功能。你可以随时保存当前游戏进度，如果后续游戏失败或者想重新尝试某个关卡，就可以读取之前的存档。备忘录模式就是实现这种\"存档-读档\"功能的编程解决方案。\n为什么需要备忘录模式？\n应用场景\n文本编辑器：实现撤销(Undo)和重做(Redo)功能\n游戏开发：保存游戏进度和状态\n图形软件：支持操作历史记录\n事务处理：在操作失败时回滚到之前的状态\n解决的问题\n需要保存对象状态，但又不想暴露对象内部细节\n提供状态恢复机制，支持\"后悔药\"功能\n保持对象的封装性，避免状态保存逻辑与业务逻辑混杂\n备忘录模式的核心组件\n备忘录模式包含三个主要角色：\n1. 发起人(Originator)\n需要保存状态的对象\n创建备忘录来记录当前状态\n使用备忘录恢复之前的状态\n2. 备忘录(Memento)\n存储发起人对象的内部状态\n防止发起人之外的对象访问备忘录内容\n3. 管理者(Caretaker)\n负责保存备忘录\n不能对备忘录的内容进行操作或检查\nPython 实现备忘录模式\n让我们通过一个文本编辑器的例子来具体实现备忘录模式。\n基础实现\n实例",
+    "examples": [
+     "class TextEditorMemento:\n    \"\"\"备忘录类 - 保存文本编辑器的状态\"\"\"\n    \n    def __init__(self, content):\n        self._content = content\n    \n    def get_content(self):\n        \"\"\"获取保存的内容\"\"\"\n        return self._content\n\n\nclass TextEditor:\n    \"\"\"发起人类 - 文本编辑器\"\"\"\n    \n    def __init__(self):\n        self._content = \"\"\n    \n    def write(self, text):\n        \"\"\"写入文本\"\"\"\n        self._content += text\n    \n    def get_content(self):\n        \"\"\"获取当前内容\"\"\"\n        return self._content\n    \n    def save(self):\n        \"\"\"创建备忘录 - 保存当前状态\"\"\"\n        return TextEditorMemento(self._content)\n    \n    def restore(self, memento):\n        \"\"\"恢复状态 - 从备忘录读取\"\"\"\n        self._content = memento.get_content()\n\n\nclass HistoryManager:\n    \"\"\"管理者类 - 历史记录管理器\"\"\"\n    \n    def __init__(self):\n        self._mementos = []\n    \n    def push(self, memento):\n        \"\"\"保存备忘录\"\"\"\n        self._mementos.append(memento)\n    \n    def pop(self):\n        \"\"\"获取最新的备忘录\"\"\"\n        if self._mementos:\n            return self._mementos.pop()\n        return None"
+    ]
+   },
+   {
+    "title": "Python 观察者模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-observer.html",
+    "body": "观察者模式是一种行为设计模式，它定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。当主题对象状态发生变化时，它的所有观察者都会收到通知并自动更新。\n生活中的观察者模式\n想象一下报纸订阅的场景：\n报社（主题）发布新闻\n订阅者（观察者）订阅报纸\n当有新报纸出版时，所有订阅者都会自动收到报纸\n订阅者可以随时取消订阅\n这种\"发布-订阅\"的机制就是观察者模式的典型应用。\n观察者模式的核心组件\n观察者模式包含四个关键角色：\n1. 主题 (Subject)\n维护观察者列表\n提供注册和注销观察者的方法\n通知所有观察者状态变化\n2. 具体主题 (Concrete Subject)\n存储具体状态信息\n状态改变时通知观察者\n3. 观察者 (Observer)\n定义更新接口，用于接收主题通知\n4. 具体观察者 (Concrete Observer)\n实现更新接口，保持与主题状态一致\n观察者模式的实现\n让我们通过一个完整的示例来理解观察者模式的实现。\n基础实现\n实例",
+    "examples": [
+     "from abc import ABC, abstractmethod\nfrom typing import List\n\n# 观察者接口\nclass Observer(ABC):\n    @abstractmethod\n    def update(self, message: str):\n        \"\"\"观察者更新方法\"\"\"\n        pass\n\n# 主题接口\nclass Subject(ABC):\n    @abstractmethod\n    def register_observer(self, observer: Observer):\n        \"\"\"注册观察者\"\"\"\n        pass\n    \n    @abstractmethod\n    def remove_observer(self, observer: Observer):\n        \"\"\"移除观察者\"\"\"\n        pass\n    \n    @abstractmethod\n    def notify_observers(self):\n        \"\"\"通知所有观察者\"\"\"\n        pass\n\n# 具体主题 - 新闻发布器\nclass NewsPublisher(Subject):\n    def __init__(self):\n        self._observers: List[Observer] = []\n        self._latest_news = \"\"\n    \n    def register_observer(self, observer: Observer):\n        \"\"\"注册观察者\"\"\"\n        if observer not in self._observers:\n            self._observers.append(observer)\n            print(f\"观察者 {observer.__class__.__name__} 注册成功\")\n    \n    def remove_observer(self, observer: Observer):\n        \"\"\"移除观察者\"\"\"\n        if observer in self._observers:\n            self._observers.remove(observer)\n            print(f\"观察者 {observer.__class__.__name__} 移除成功\")\n    \n    def notify_observers(self):\n        \"\"\"通知所有观察者\"\"\"\n        print(f\"\\n发布新消息: {self._latest_news}\")\n        for observer in self._observers:\n            observer.update(self._latest_news)\n    \n    def publish_news(self, news: str):\n        \"\"\"发布新闻\"\"\"\n        self._latest_news = news\n        self.notify_observers()\n    \n    def get_observer_count(self) -> int:\n        \"\"\"获取观察者数量\"\"\"\n        return len(self._observers)\n\n# 具体观察者 - 邮件订阅者\nclass EmailSubscriber(Observer):\n    def __init__(self, name: str):\n        self.name = name\n    \n    def update(self, message: str):\n        \"\"\"接收更新并发送邮件\"\"\"\n        print(f\"[邮件] {self.name} 收到消息: {message}\")\n\n# 具体观察者 - 短信订阅者\nclass SMSSubscriber(Observer):\n    def __init__(self, name: str, phone: str):\n        self.name = name\n        self.phone = phone\n    \n    def update(self, message: str):\n        \"\"\"接收更新并发送短信\"\"\"\n        print(f\"[短信] {self.phone} - {self.name} 收到消息: {message}\")\n\n# 具体观察者 - 应用推送订阅者\nclass AppPushSubscriber(Observer):\n    def __init__(self, username: str):\n        self.username = username\n    \n    def update(self, message: str):\n        \"\"\"接收更新并发送应用推送\"\"\"\n        print(f\"[应用推送] 用户 {self.username} 收到推送: {message}\")"
+    ]
+   },
+   {
+    "title": "Python 原型模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-prototype.html",
+    "body": "想象一下你要制作一批相同的玩具汽车。你不会每次都从头开始设计制造，而是先制作一个完美的原型，然后基于这个原型进行复制。这就是原型模式的核心思想！\n原型模式是一种创建型设计模式，它通过复制现有对象（原型）来创建新对象，而不是通过类来实例化。这种方式特别适合当创建对象的成本较高，或者需要创建多个相似对象时使用。\n为什么需要原型模式？\n让我们先看看传统创建对象的方式有什么问题：\n实例",
+    "examples": [
+     "# 传统方式 - 每次都要重新创建\nclass Car:\n    def __init__(self, brand, model, color, engine_type):\n        self.brand = brand\n        self.model = model \n        self.color = color\n        self.engine_type = engine_type\n        # 假设这里有一些复杂的初始化逻辑\n        self.initialize_complex_components()\n    \n    def initialize_complex_components(self):\n        # 模拟复杂的初始化过程\n        import time\n        time.sleep(1)  # 假设初始化需要1秒钟\n        print(f\"正在初始化 {self.brand} {self.model} 的复杂组件...\")\n\n# 创建多个相似对象\ncar1 = Car(\"Toyota\", \"Camry\", \"红色\", \"2.5L\")\ncar2 = Car(\"Toyota\", \"Camry\", \"蓝色\", \"2.5L\")  # 需要重新执行复杂初始化"
+    ]
+   },
+   {
+    "title": "Python 代理模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-proxy.html",
+    "body": "代理模式是一种结构型设计模式，它为另一个对象提供一个替身或占位符，以控制对这个对象的访问。简单来说，代理就是一个中间人，它在客户端和目标对象之间起到中介作用。\n生活中的代理比喻\n想象一下现实生活中的场景：\n房产中介：你不需要直接与房主沟通，通过中介就能了解房源信息、安排看房\n明星经纪人：厂商想要邀请明星代言，需要通过经纪人来洽谈合作细节\n网络代理服务器：你的网络请求先经过代理服务器，再由代理服务器转发到目标网站\n在这些例子中，中介/经纪人就是代理，它们控制着对真实对象的访问。\n代理模式的核心组成\n代理模式通常包含三个关键角色：\n1. 抽象主题(Subject)\n定义真实主题和代理主题的共同接口，这样在任何使用真实主题的地方都可以使用代理主题。\n2. 真实主题(Real Subject)\n定义代理所代表的真实对象，是最终要引用的对象。\n3. 代理(Proxy)\n保存一个引用使得代理可以访问实体，提供一个与真实主题相同的接口，控制对真实主题的访问。\n代理模式的类型\n代理模式有多种变体，每种都有不同的应用场景：\n1. 虚拟代理(Virtual Proxy)\n延迟创建开销很大的对象，直到真正需要时才创建。\n2. 保护代理(Protection Proxy)\n控制对原始对象的访问，用于对象应该有不同的访问权限时。\n3. 远程代理(Remote Proxy)\n为一个位于不同地址空间的对象提供本地代表。\n4. 智能引用代理(Smart Reference Proxy)\n在访问对象时执行额外的操作，如引用计数、懒加载等。\nPython 实现代理模式\n让我们通过具体的代码示例来理解代理模式的实现。\n基础接口定义\n首先，我们定义抽象主题接口：\n实例",
+    "examples": [
+     "from abc import ABC, abstractmethod\nfrom typing import Any\n\nclass Subject(ABC):\n    \"\"\"\n    抽象主题接口，定义真实主题和代理的共同操作\n    \"\"\"\n    \n    @abstractmethod\n    def request(self) -> Any:\n        \"\"\"执行请求的主要方法\"\"\"\n        pass"
+    ]
+   },
+   {
+    "title": "Python 单例模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-singleton.html",
+    "body": "单例模式是一种常用的软件设计模式，它确保一个类只有一个实例，并提供一个全局访问点来获取这个实例。\n核心概念\n想象一下公司的 CEO 职位 - 整个公司只能有一个 CEO，无论哪个部门需要向 CEO 汇报，他们访问的都是同一个 CEO 对象。单例模式就是编程世界中的\"CEO 职位管理机制\"。\n为什么需要单例模式\n在实际开发中，有些对象我们只需要一个实例就足够了，比如：\n配置管理器：整个应用程序共享同一套配置\n数据库连接池：避免重复创建连接，节省资源\n日志记录器：确保所有日志都写入同一个文件\n缓存系统：统一管理缓存数据\n单例模式的实现方法\nPython 提供了多种实现单例模式的方式，让我们从简单到复杂逐一了解。\n方法一：使用模块（最简单的方式）\nPython 的模块本身就是天然的单例模式。当模块被导入时，它会被初始化一次，后续的导入都会使用同一个实例。\n实例",
+    "examples": [
+     "# singleton_module.py\nclass DatabaseConnection:\n    def __init__(self):\n        self.connection_string = \"database://localhost:5432/mydb\"\n        print(\"数据库连接已创建\")\n    \n    def query(self, sql):\n        return f\"执行查询: {sql}\"\n\n# 创建单例实例\ndb_instance = DatabaseConnection()\n\n# 在其他文件中使用：\n# from singleton_module import db_instance\n# result = db_instance.query(\"SELECT * FROM users\")"
+    ]
+   },
+   {
+    "title": "Python 状态模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-state.html",
+    "body": "状态模式的核心思想是将一个对象的状态封装成独立的类，并将对象的行为委托给当前状态对象。当对象的状态发生变化时，它会切换到不同的状态对象，从而改变其行为。\n为什么需要状态模式？\n在没有使用状态模式的情况下，我们通常会在一个类中使用大量的 if-else 或 switch-case 语句来处理不同状态下的行为。这种方式存在几个问题：\n代码臃肿：随着状态数量的增加，条件判断语句会变得越来越复杂\n难以维护：修改某个状态的行为可能会影响其他状态\n违反开闭原则：添加新状态需要修改现有代码\n状态模式通过将每个状态封装成独立的类来解决这些问题。\n状态模式的结构\n主要角色\n状态模式包含三个核心角色：\nContext（上下文）：维护一个具体状态对象的实例，这个实例定义当前状态\nState（状态接口）：定义一个接口，用于封装与 Context 的特定状态相关的行为\nConcreteState（具体状态）：实现 State 接口，每一个具体状态类实现一个与 Context 的状态相关的行为\nUML 类图\n状态模式的实现\n基本实现步骤\n让我们通过一个简单的例子来理解状态模式的实现。假设我们有一个电梯系统，电梯有不同的状态：开门、关门、运行、停止。\n步骤 1：定义状态接口\n实例",
+    "examples": [
+     "from abc import ABC, abstractmethod\n\nclass ElevatorState(ABC):\n    \"\"\"电梯状态接口\"\"\"\n    \n    @abstractmethod\n    def open_doors(self):\n        \"\"\"开门操作\"\"\"\n        pass\n    \n    @abstractmethod\n    def close_doors(self):\n        \"\"\"关门操作\"\"\"\n        pass\n    \n    @abstractmethod\n    def move(self):\n        \"\"\"移动操作\"\"\"\n        pass\n    \n    @abstractmethod\n    def stop(self):\n        \"\"\"停止操作\"\"\"\n        pass"
+    ]
+   },
+   {
+    "title": "Python 策略模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-strategy.html",
+    "body": "策略模式是一种行为设计模式，它允许你在运行时选择算法或行为。简单来说，策略模式就是将不同的算法封装成独立的类，让它们可以相互替换。\n核心思想\n想象一下你去餐厅点餐：你可以选择不同的支付方式 - 现金、信用卡、移动支付等。无论你选择哪种支付方式，最终都能完成支付，只是具体的支付流程不同。这就是策略模式的现实例子。\n设计原则\n策略模式遵循以下重要原则：\n开闭原则：对扩展开放，对修改关闭\n单一职责原则：每个策略类只负责一种算法\n依赖倒置原则：依赖于抽象，而不是具体实现\n策略模式的结构\n让我们通过 UML 类图来理解策略模式的组成结构：\n组件说明\nContext（上下文）\n维护一个策略对象的引用\n可以动态切换策略\n将工作委托给策略对象\nStrategy（策略接口）\n定义所有支持的算法的公共接口\n声明算法执行的方法\nConcreteStrategy（具体策略）\n实现策略接口\n提供具体的算法实现\n基础语法和实现\n策略接口定义\n在 Python 中，我们可以使用抽象基类（ABC）来定义策略接口：\n实例",
+    "examples": [
+     "from abc import ABC, abstractmethod\n\nclass PaymentStrategy(ABC):\n    \"\"\"支付策略抽象基类\"\"\"\n    \n    @abstractmethod\n    def pay(self, amount: float) -> bool:\n        \"\"\"支付方法\"\"\"\n        pass"
+    ]
+   },
+   {
+    "title": "Python 模板方法模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-template-method.html",
+    "body": "模板方法模式是一种行为设计模式，它定义了一个操作中的算法骨架，而将一些步骤延迟到子类中实现。模板方法使得子类可以不改变算法结构的情况下，重新定义算法中的某些特定步骤。\n简单来说，就像做菜的食谱一样：食谱规定了做菜的步骤顺序（洗菜、切菜、炒菜、装盘），但具体怎么洗、怎么切、怎么炒，可以由不同的厨师根据自己的风格来实现。\n为什么需要模板方法模式？\n代码复用\n模板方法模式将不变的行为移到超类中，避免了子类中的代码重复。多个子类可以共享同一个模板方法定义的算法结构。\n扩展性\n子类可以通过重写钩子方法或具体步骤方法，来扩展或修改算法的部分行为，而不需要改变算法的整体结构。\n控制反转\n父类控制着算法的执行流程，子类只需要关注自己需要实现的特定步骤，实现了\"好莱坞原则\"——\"不要打电话给我们，我们会打电话给你\"。\n模板方法模式的结构\n让我们通过一个类图来理解模板方法模式的结构：\n核心组件说明\n组件\n职责\n说明\nAbstractClass\n定义算法骨架\n包含模板方法和抽象步骤方法\nConcreteClass\n实现具体步骤\n实现父类定义的抽象方法\ntemplate_method\n模板方法\n定义算法的不变部分\nstep1, step2\n抽象方法\n需要子类实现的具体步骤\nhook\n钩子方法\n可选步骤，子类可选择是否重写\n基本语法和实现\n抽象基类的定义\n实例",
+    "examples": [
+     "from abc import ABC, abstractmethod\n\nclass AbstractClass(ABC):\n    \"\"\"模板方法模式的抽象基类\"\"\"\n    \n    def template_method(self):\n        \"\"\"模板方法 - 定义算法骨架\"\"\"\n        self.step1()\n        self.step2()\n        self.hook()\n        self.step3()\n    \n    @abstractmethod\n    def step1(self):\n        \"\"\"抽象方法1 - 必须由子类实现\"\"\"\n        pass\n    \n    @abstractmethod\n    def step2(self):\n        \"\"\"抽象方法2 - 必须由子类实现\"\"\"\n        pass\n    \n    def step3(self):\n        \"\"\"具体方法 - 已有默认实现\"\"\"\n        print(\"执行步骤3 - 默认实现\")\n    \n    def hook(self):\n        \"\"\"钩子方法 - 可选步骤，子类可选择重写\"\"\"\n        print(\"执行钩子方法 - 默认什么都不做\")"
+    ]
+   },
+   {
+    "title": "Python 访问者模式",
+    "url": "https://www.runoob.com/python-design-pattern/python-visitor.html",
+    "body": "访问者模式是一种行为设计模式，它允许你在不修改已有类结构的情况下，为这些类添加新的操作。简单来说，访问者模式将算法与其所操作的对象结构分离。\n核心思想\n想象一下你去医院体检的场景：你（被访问者）保持不动，而不同的医生（访问者）会来到你面前进行检查。每个医生都专注于自己的专业领域，但检查的都是同一个你。\n在编程中，访问者模式的工作方式类似：\n被访问的元素保持稳定不变\n访问者可以灵活地添加新的操作\n元素接受访问者的访问，让访问者对自己执行操作\n为什么需要访问者模式\n传统方式的局限性\n假设我们有一个图形系统，包含多种形状：\n实例",
+    "examples": [
+     "class Circle:\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius * self.radius\n    \n    def perimeter(self):\n        return 2 * 3.14 * self.radius\n\nclass Rectangle:\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n    \n    def perimeter(self):\n        return 2 * (self.width + self.height)"
+    ]
+   }
+  ]
+ }
+}

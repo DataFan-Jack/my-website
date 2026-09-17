@@ -1,0 +1,82 @@
+{
+ "tutorial": {
+  "name": "XQuery",
+  "category": "后端开发",
+  "desc": "XQuery 之于 XML 作用就类似于 SQL 之于数据库的作用。",
+  "url": "https://www.runoob.com/xquery/",
+  "chapters": [
+   {
+    "title": "XQuery 添加元素 和属性",
+    "url": "https://www.runoob.com/xquery/xquery-add.html",
+    "body": "XML 实例文档\n我们将在下面的例子中继续使用这个 \"books.xml\" 文档（和上面的章节所使用的 XML 文件相同）。\n在您的浏览器中查看 \"books.xml\" 文件。\n向结果添加元素和属性\n正如在前面一节看到的，我们可以在结果中引用输入文件中的元素和属性：\nfor $x in doc(\"books.xml\")/bookstore/book/title\norder by $x\nreturn $x",
+    "examples": []
+   },
+   {
+    "title": "XQuery 实例",
+    "url": "https://www.runoob.com/xquery/xquery-example.html",
+    "body": "在本节，让我们通过研究一个例子来学习一些基础的 XQuery 语法。\nXML 实例文档\n我们将在下面的例子中使用这个 XML 文档。\n\"books.xml\":\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<bookstore>\n<book category=\"COOKING\">\n  \n <title lang=\"en\">Everyday Italian</title>\n  \n <author>Giada De Laurentiis</author>\n  \n <year>2005</year>\n  \n <price>30.00</price>\n</book>\n<book category=\"CHILDREN\">\n  \n <title lang=\"en\">Harry Potter</title>\n  \n <author>J K. Rowling</author>\n  \n <year>2005</year>\n  \n <price>29.99</price>\n</book>\n<book category=\"WEB\">\n  \n <title lang=\"en\">XQuery Kick Start</title>\n  \n <author>James McGovern</author>\n  \n <author>Per Bothner</author>\n  \n <author>Kurt Cagle</author>\n  \n <author>James Linn</author>\n  \n <author>Vaidyanathan Nagarajan</author>\n  \n <year>2003</year>\n  \n <price>49.99</price>\n</book>\n<book category=\"WEB\">\n  \n <title lang=\"en\">Learning XML</title>\n  \n <author>Erik T. Ray</author>\n  \n <year>2003</year>\n  \n <price>39.95</price>\n</book>\n</bookstore>",
+    "examples": []
+   },
+   {
+    "title": "XQuery FLWOR + HTML",
+    "url": "https://www.runoob.com/xquery/xquery-flwor-html.html",
+    "body": "XML 实例文档\n我们将在下面的例子中继续使用这个 \"books.xml\" 文档（与上一节中的文件相同）。\n在您的浏览器中查看 \"books.xml\" 文件。\n在一个 HTML 列表中提交结果\n请看下面的 XQuery FLWOR 表达式：\nfor $x in doc(\"books.xml\")/bookstore/book/title\norder by $x\nreturn $x",
+    "examples": []
+   },
+   {
+    "title": "XQuery FLWOR 表达式",
+    "url": "https://www.runoob.com/xquery/xquery-flwor.html",
+    "body": "XML 实例文档\n我们将在下面的例子中继续使用这个 \"books.xml\" 文档（与上一节中的 XML 文件相同）。\n在您的浏览器中查看 \"books.xml\" 文件。\n如果使用 FLWOR 从 \"books.xml\" 选取节点\n请看下面这个路径表达式：\ndoc(\"books.xml\")/bookstore/book[price>30]/title",
+    "examples": []
+   },
+   {
+    "title": "XQuery 函数",
+    "url": "https://www.runoob.com/xquery/xquery-functions.html",
+    "body": "XQuery 1.0、XPath 2.0 以及 XSLT 2.0 共享相同的函数库。\nXQuery 函数\nXQuery 含有超过 100 个内建的函数。这些函数可用于字符串值、数值、日期以及时间比较、节点和 QName 操作、序列操作、逻辑值等等。您也可在 XQuery 中定义自己的函数。\nXQuery 内建函数\nXQuery 函数命名空间的 URI：\nhttp://www.w3.org/2005/02/xpath-functions\n函数命名空间的默认前缀是 fn:。\n提示：函数经常被通过 fn: 前缀进行调用，例如 fn:string()。不过，由于 fn: 是命名空间的默认前缀，所以函数名称不必在被调用时使用前缀。\n您可以在我们的 XPath 教程中找到完整的《内建 XQuery 函数参考手册》。\n函数调用实例\n函数调用可与表达式一同使用。请看下面的例子：\n例1：在元素中\n<name>{upper-case($booktitle)}</name>",
+    "examples": []
+   },
+   {
+    "title": "XQuery 简介",
+    "url": "https://www.runoob.com/xquery/xquery-intro.html",
+    "body": "解释 XQuery 最佳方式是这样讲：XQuery 相对于 XML 的关系，等同于 SQL 相对于数据库表的关系。\nXQuery 被设计用来查询 XML 数据 - 不仅仅限于 XML 文件，还包括任何可以 XML 形态呈现的数据，包括数据库。\n您应该具备的基础知识：\n在您继续学习之前，需要对下面的知识有基本的了解：\nHTML / XHTML\nXML / XML 命名空间\nXPath\n如果您希望首先学习这些项目，请在我们的 首页 访问这些教程。\n什么是 XQuery?\nXQuery 是用于 XML 数据查询的语言\nXQuery 对 XML 的作用类似 SQL 对数据库的作用\nXQuery 建立在 XPath 表达式之上\nXQuery 被所有主要的数据库引擎支持（IBM、Oracle、Microsoft等等）\nXQuery 是 W3C 标准\nXQuery 和 XML 查询有关\nXQuery 是用来从 XML 文档查找和提取元素及属性的语言。\n这是一个 XQuery 解决实际问题的例子：\n\"从存储在名为 cd_catalog.xml 的 XML 文档中的 CD 集那里选取所有价格低于 10 美元的 CD 记录。\"\nXQuery 与 XPath\nXQuery 1.0 和 XPath 2.0 共享相同的数据模型，并支持相同的函数和运算符。假如您已经学习了 XPath，那么学习 XQuery 也不会有问题。\n您可以在我们的《XPath 教程》中阅读更多有关 XPath 的知识。\nXQuery - 应用举例\nXQuery 可用于：\n提取信息以便在网络服务中使用\n生成摘要报告\n把 XML 数据转换为 XHTML\n为获得相关信息而搜索网络文档\nXQuery 是一个 W3C 推荐标准\nXQuery 与多种 W3C 标准相兼容，比如 XML、Namespaces、XSLT、XPath 以及 XML Schema。\nXQuery 1.0 在 2007年1月23日 被确立为 W3C 推荐标准。\n如需获得更多有关 W3C 的 XQuery 活动的信息，请阅读我们的《W3C 教程》。",
+    "examples": []
+   },
+   {
+    "title": "XQuery 参考手册",
+    "url": "https://www.runoob.com/xquery/xquery-reference.html",
+    "body": "XQuery 1.0 和 XPath 2.0 分享相同的数据模型，并支持相同的函数和运算符。\nXQuery 函数\nXQuery 构建在 XPath 表达式之上。XQuery 1.0 和 XPath 2.0 分享相同的数据模型，并支持相同的函数和运算符。\nXPath Operators\nXPath Functions\nXQuery 数据类型\nXQuery 分享与 XML Schema 1.0 (XSD) 相同的数据类型。\nXSD String\nXSD Date\nXSD Numeric\nXSD Misc",
+    "examples": []
+   },
+   {
+    "title": "XQuery 选择 和 过滤",
+    "url": "https://www.runoob.com/xquery/xquery-select.html",
+    "body": "XML实例文档\n我们将在下面的例子中继续使用这个 \"books.xml\" 文档（和上面的章节所使用的 XML 文件相同）。\n在您的浏览器中查看 \"books.xml\" 文件。\n选择和过滤元素\n正如在前面的章节所看到的，我们使用路径表达式或 FLWOR 表达式来选取和过滤元素。\n请看下面的 FLWOR 表达式：\nfor $x in doc(\"books.xml\")/bookstore/book\nwhere $x/price>30\norder by $x/title\nreturn $x/title",
+    "examples": []
+   },
+   {
+    "title": "您已经学习了 XQuery，接下来该学习什么内容呢？",
+    "url": "https://www.runoob.com/xquery/xquery-summary.html",
+    "body": "XQuery 概要\n本教程已经向您讲解了如何查询 XML 数据。\n您已经明白，XQuery 被设计来查询以 XML 形态存在的任何数据，包括数据库。\n您也学习了如何使用 FLWOR 表达式来查询 XML 数据，以及如何由选定的数据构造 XHTML 输出。\n如需更多有关 XQuery 的信息，请阅读我们的《XQuery 参考手册》。\n您已经学习了 XQuery，接下来该学习什么内容呢？\n下一步该学习 XLink 和 XPointer。\nXLink 和 XPointer\nXML 中的链接被分为两部分：XLink 和 XPointer。\nXLink 和 XPointer 定义了一套标准的在XML文档中创建超级链接的方法。\n如果您希望学习更多有关 XLink 和 XPointer 的知识，请访问我们的《XLink 和 XPointer 教程》。",
+    "examples": []
+   },
+   {
+    "title": "XQuery 语法",
+    "url": "https://www.runoob.com/xquery/xquery-syntax.html",
+    "body": "XQuery 对大小写敏感，XQuery 的元素、属性以及变量必须是合法的 XML 名称。\nXQuery 的基础语法规则：\n一些基本的语法规则：\nXQuery 对大小写敏感\nXQuery 的元素、属性以及变量必须是合法的 XML 名称。\nXQuery 字符串值可使用单引号或双引号。\nXQuery 变量由 \"$\" 并跟随一个名称来进行定义，举例，$bookstore\nXQuery 注释被 (: 和 :) 分割，例如，(: XQuery 注释 :)\nXQuery 条件表达式\n\"If-Then-Else\" 可以在 XQuery 中使用。\n请看下面的例子：\nfor $x in doc(\"books.xml\")/bookstore/book\nreturn if ($x/@category=\"CHILDREN\")then <child>{data($x/title)}</child>else <adult>{data($x/title)}</adult>",
+    "examples": []
+   },
+   {
+    "title": "XQuery 术语",
+    "url": "https://www.runoob.com/xquery/xquery-terms.html",
+    "body": "在 XQuery 中，有七种节点：元素、属性、文本、命名空间、处理指令、注释、以及文档节点（或称为根节点）。\nXQuery 术语\n节点\n在 XQuery 中，有七种节点：元素、属性、文本、命名空间、处理指令、注释、以及文档（根）节点。XML 文档是被作为节点树来对待的。树的根被称为文档节点或者根节点。\n请看下面的 XML 文档：\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<bookstore>\n<book>\n  \n <title lang=\"en\">Harry Potter</title>\n  \n <author>J K. Rowling</author>\n  \n <year>2005</year>\n  \n <price>29.99</price>\n</book>\n</bookstore>",
+    "examples": []
+   },
+   {
+    "title": "XQuery 教程",
+    "url": "https://www.runoob.com/xquery/xquery-tutorial.html",
+    "body": "XQuery 之于 XML 作用就类似于 SQL 之于数据库的作用。\nXQuery 被设计用来查询 XML 数据。\n现在开始学习 XQuery !",
+    "examples": []
+   }
+  ]
+ }
+}

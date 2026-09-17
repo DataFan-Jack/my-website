@@ -1,0 +1,104 @@
+{
+ "tutorial": {
+  "name": "Chart.js",
+  "category": "前端开发",
+  "desc": "Chart.js 是一个简单、灵活的 JavaScript 图表工具。",
+  "url": "https://www.runoob.com/chartjs/",
+  "chapters": [
+   {
+    "title": "Chart.js 气泡图",
+    "url": "https://www.runoob.com/chartjs/chartjs-bubble.html",
+    "body": "气泡图用于展示三个变量之间的关系。\n气泡的位置由前两个变量决定，对应的是 X 轴和 Y 轴，第三个参数为气泡的大小。\n{\n // X 轴对应值\n x: number,\n\n // Y 轴对应值\n y: number,\n\n // 气泡半径，单位为像素\n r: number\n}\n泡图的 type 属性为 bubble ，type 描述了图表类型。\nconst config = {\n type: 'bubble',\n data: data,\n options: {}\n};\n接下来我们创建一个简单的气泡图：\n实例\n尝试一下 »",
+    "examples": [
+     "const ctx = document.getElementById('myChart');\nconst data = {\n  datasets: [{\n    label: '气泡图实例',\n    data: [{\n      x: 20, // X 轴\n      y: 30, // Y 轴\n      r: 15   // 气泡半径\n    }, {\n      x: 30,\n      y: 20,\n      r: 20\n    }, {\n      x: 40,\n      y: 10,\n      r: 10\n    }],\n    backgroundColor: 'rgb(255, 99, 132)'\n  }]\n};\nconst config = {\n  type: 'bubble', // 设置图表类型\n  data: data,  // 设置数据集\n  options: {\n    \n  },\n};\nconst myChart = new Chart(ctx, config);"
+    ]
+   },
+   {
+    "title": "Chart.js 环形图",
+    "url": "https://www.runoob.com/chartjs/chartjs-doughnut.html",
+    "body": "环形图又叫做甜甜圈图，其本质是饼图将中间区域挖空。\n环形图是由两个及两个以上大小不一的饼图叠在一起，挖去中间的部分所构成的图形。\n饼图是用圆形及圆内扇形的角度来表示数值大小的图形，它主要用于表示一个样本（或总体）中各组成部分的数据占全部数据的比例，对于研究结构性问题十分有用。\n环形图与饼图类似，但又有区别。环形图中间有一个\"空洞\"，每个样本用一个环来表示，样本中的每一部分数据用环中的一段表示。因此环形图可显示多个样本各部分所占的相应比例，从而有利于构成的比较研究。\n环形图 type 属性为 doughnut ，type 描述了图表类型。\nconst config = {\n type: 'doughnut',\n data: data,\n};\n接下来我们创建一个简单的环形图：\n实例\n尝试一下 »",
+    "examples": [
+     "const ctx = document.getElementById('myChart');\nconst data = {\n  labels: [\n    'Red',\n    'Blue',\n    'Yellow'\n  ],\n  datasets: [{\n    label: '环形图实例',\n    data: [300, 50, 100],\n    backgroundColor: [\n      'rgb(255, 99, 132)',\n      'rgb(54, 162, 235)',\n      'rgb(255, 205, 86)'\n    ],\n    hoverOffset: 4\n  }]\n};\nconst config = {\n  type: 'doughnut',\n  data: data,\n  options: {\n    responsive: true, // 设置图表为响应式，根据屏幕窗口变化而变化\n    maintainAspectRatio: false,// 保持图表原有比例\n    scales: {\n      yAxes: [{\n        ticks: {\n          beginAtZero:true\n                }\n          }]\n    }\n  }\n};\nconst myChart = new Chart(ctx, config);"
+    ]
+   },
+   {
+    "title": "Chart.js 安装",
+    "url": "https://www.runoob.com/chartjs/chartjs-install.html",
+    "body": "Chart.js 提供了多种安装方式，适合不同的开发场景：\nNPM/Yarn - 适合使用构建工具的项目开发\nCDN - 适合快速原型开发和学习\nGitHub - 适合需要最新特性或参与贡献的开发\n1. 通过 NPM/Yarn 安装\nNPM (Node Package Manager) 是 JavaScript 的包管理工具，适合现代前端项目开发。\n安装步骤\n# 使用 npm 安装\nnpm install chart.js\n\n# 或者使用 yarn 安装\nyarn add chart.js\n在项目中引入\n安装完成后，你可以在 JavaScript 文件中这样引入 Chart.js：\n实例",
+    "examples": [
+     "// 引入整个 Chart.js 库\nimport Chart from 'chart.js/auto';\n\n// 或者按需引入特定图表类型（减小打包体积）\nimport { Line } from 'chart.js';"
+    ]
+   },
+   {
+    "title": "Chart.js 折线图",
+    "url": "https://www.runoob.com/chartjs/chartjs-line.html",
+    "body": "折线图是排列在工作表的列或行中的数据可以绘制到折线图中。\n折线图可以显示随时间（根据常用比例设置）而变化的连续数据，因此非常适用于显示在相等时间间隔下数据的趋势。\n折线图 type 属性为 line ，type 描述了图表类型。\nconst config = {\n type: 'line',\n data: data,\n};\n接下来我们创建一个简单的折线图：\n实例\n尝试一下 »",
+    "examples": [
+     "const ctx = document.getElementById('myChart');\nconst labels = ['一月份', '二月份', '三月份','四月份', '五月份', '六月份', '七月份'];  // 设置 X 轴上对应的标签\nconst data = {\n  labels: labels,\n  datasets: [{\n    label: '我的第一个折线图',\n    data: [65, 59, 80, 81, 56, 55, 40],\n    fill: false,\n    borderColor: 'rgb(75, 192, 192)', // 设置线的颜色\n    tension: 0.1\n  }]\n};\nconst config = {\n  type: 'line', // 设置图表类型\n  data: data,\n};\nconst myChart = new Chart(ctx, config);"
+    ]
+   },
+   {
+    "title": "Chart.js 饼图",
+    "url": "https://www.runoob.com/chartjs/chartjs-pie.html",
+    "body": "饼图，或称饼状图，是一个划分为几个扇形的圆形统计图表，用于描述量、频率或百分比之间的相对关系。在饼图中，每个扇区的弧长（以及圆心角和面积）大小为其所表示的数量的比例。这些扇区合在一起刚好是一个完全的圆形。顾名思义，这些扇区拼成了一个切开的饼形图案。\n饼图 type 属性为 pie ，type 描述了图表类型。\nconst config = {\n type: 'pie',\n data: data,\n};\n接下来我们创建一个简单的饼图：\n实例\n尝试一下 »",
+    "examples": [
+     "const ctx = document.getElementById('myChart');\nconst data = {\n  labels: [\n    'Red',\n    'Blue',\n    'Yellow'\n  ],\n  datasets: [{\n    label: '饼图实例',\n    data: [300, 50, 100],\n    backgroundColor: [\n      'rgb(255, 99, 132)',\n      'rgb(54, 162, 235)',\n      'rgb(255, 205, 86)'\n    ],\n    hoverOffset: 4\n  }]\n};\nconst config = {\n  type: 'pie',\n  data: data,\n  options: {\n    responsive: true, // 设置图表为响应式，根据屏幕窗口变化而变化\n    maintainAspectRatio: false,// 保持图表原有比例\n    scales: {\n      yAxes: [{\n        ticks: {\n          beginAtZero:true\n                }\n          }]\n    }\n  }\n};\nconst myChart = new Chart(ctx, config);"
+    ]
+   },
+   {
+    "title": "Chart.js 极地图",
+    "url": "https://www.runoob.com/chartjs/chartjs-polararea.html",
+    "body": "极区图类似于饼图，但每个数据集具有相同的角度，线段的半径根据提供的值有所不同。\n混合图 type 属性为 polarArea。\nconst config = {\n type: 'polarArea',\n data: data,\n options: {}\n};\n接下来我们创建一个简单的极地图：\n实例\n尝试一下 »",
+    "examples": [
+     "const ctx = document.getElementById('myChart');\nconst data = {\n  labels: [\n    'Red',\n    'Green',\n    'Yellow',\n    'Grey',\n    'Blue'\n  ],\n  datasets: [{\n    label: '极地图实例',\n    data: [11, 16, 7, 3, 14],\n    backgroundColor: [\n      'rgb(255, 99, 132)',\n      'rgb(75, 192, 192)',\n      'rgb(255, 205, 86)',\n      'rgb(201, 203, 207)',\n      'rgb(54, 162, 235)'\n    ]\n  }]\n};\nconst config = {\n  type: 'polarArea',\n  data: data,\n  options: {\n    responsive: true, // 设置图表为响应式，根据屏幕窗口变化而变化\n    maintainAspectRatio: false,// 保持图表原有比例\n  }\n};\nconst myChart = new Chart(ctx, config);"
+    ]
+   },
+   {
+    "title": "Chart.js 雷达图",
+    "url": "https://www.runoob.com/chartjs/chartjs-radar.html",
+    "body": "雷达图是一种显示多个数据点及其之间变化的方式。\n雷达图是以从同一点开始的轴上表示的三个或更多个定量变量的二维图表的形式显示多变量数据的图形方法。\n轴的相对位置和角度通常是无信息的。\n混合图 type 属性为 radar。\nconst config = {\n type: 'radar',\n data: data,\n options: {\n elements: {\n line: {\n borderWidth: 3 // 设置线条宽度\n }\n }\n },\n};\n接下来我们创建一个简单的雷达图：\n实例\n尝试一下 »",
+    "examples": [
+     "const ctx = document.getElementById('myChart');\nconst data = {\n  labels: [\n    'Eating',\n    'Drinking',\n    'Sleeping',\n    'Designing',\n    'Coding',\n    'Cycling',\n    'Running'\n  ],\n  datasets: [{\n    label: '第一个数据集',\n    data: [65, 59, 90, 81, 56, 55, 40],\n    fill: true,\n    backgroundColor: 'rgba(255, 99, 132, 0.2)',\n    borderColor: 'rgb(255, 99, 132)',\n    pointBackgroundColor: 'rgb(255, 99, 132)',\n    pointBorderColor: '#fff',\n    pointHoverBackgroundColor: '#fff',\n    pointHoverBorderColor: 'rgb(255, 99, 132)'\n  }, {\n    label: '第二个数据集',\n    data: [28, 48, 40, 19, 96, 27, 100],\n    fill: true,\n    backgroundColor: 'rgba(54, 162, 235, 0.2)',\n    borderColor: 'rgb(54, 162, 235)',\n    pointBackgroundColor: 'rgb(54, 162, 235)',\n    pointBorderColor: '#fff',\n    pointHoverBackgroundColor: '#fff',\n    pointHoverBorderColor: 'rgb(54, 162, 235)'\n  }]\n};\nconst config = {\n  type: 'radar',\n  data: data,\n  options: {\n    responsive: true, // 设置图表为响应式，根据屏幕窗口变化而变化\n    maintainAspectRatio: false,// 保持图表原有比例\n    elements: {\n      line: {\n        borderWidth: 3 // 设置线条宽度\n      }\n    }\n  }\n};\nconst myChart = new Chart(ctx, config);"
+    ]
+   },
+   {
+    "title": "Chart.js 混合图",
+    "url": "https://www.runoob.com/chartjs/chartjs-scatter.html",
+    "body": "Chart.js 可以创建由两种或多种不同图表类型组合而成的混合图表，比如条形图与折线图的混合。\n创建混合图表时，我们在每个数据集上指定图表类型。\n混合图 type 属性为 scatter。\n柱形图 type 属性为 bar ，折线图 type 属性为 line ，\ntype 描述了图表类型。\nconst mixedChart = new Chart(ctx, {\n data: {\n datasets: [{\n type: 'bar',\n label: '柱形图数据集',\n data: [45, 49,52, 48]\n }, {\n type: 'line',\n label: '折线图数据集',\n data: [50, 40, 45, 49],\n }],\n labels: ['一月份', '二月份', '三月份', '四月份']\n },\n options: options\n});\n接下来我们创建一个简单的混合图：\n实例\n尝试一下 »",
+    "examples": [
+     "const ctx = document.getElementById('myChart');\nconst data = {\n  labels: [\n    '一月份',\n    '二月份',\n    '三月份',\n    '四月份'\n  ],\n  datasets: [{\n    type: 'bar',\n    label: '柱形图数据集',\n    data: [45, 49,52, 48],\n    borderColor: 'rgb(255, 99, 132)',\n    backgroundColor: 'rgba(255, 99, 132, 0.2)'\n  }, {\n    type: 'line',\n    label: '折线图数据集',\n    data: [50, 40, 45, 49],\n    fill: false,\n    borderColor: 'rgb(54, 162, 235)'\n  }]\n};\nconst config = {\n  type: 'scatter',\n  data: data,\n  options: {\n    responsive: true, // 设置图表为响应式，根据屏幕窗口变化而变化\n    maintainAspectRatio: false,// 保持图表原有比例\n    scales: {\n      y: {\n        beginAtZero: true\n      }\n    }\n  }\n};\nconst myChart = new Chart(ctx, config);"
+    ]
+   },
+   {
+    "title": "Chart.js 散点图",
+    "url": "https://www.runoob.com/chartjs/chartjs-scatter2.html",
+    "body": "散点图是由两组数据构成多个坐标点，考察坐标点的分布，判断两变量之间是否存在某种关联或总结坐标点的分布模式。\n数据结构：\ndata: [{\n x: 10,\n y: 20\n }, {\n x: 15,\n y: 10\n }]\n散点图 type 属性为 scatter。\nconst config = {\n type: 'scatter',\n data: data,\n options: {\n scales: {\n x: {\n type: 'linear',\n position: 'bottom'\n }\n }\n }\n};\n接下来我们创建一个简单的散点图：\n实例\n尝试一下 »",
+    "examples": [
+     "const ctx = document.getElementById('myChart');\nconst data = {\n  datasets: [{\n    label: '散点图实例',\n    data: [{\n      x: -10,\n      y: 0\n    }, {\n      x: 0,\n      y: 10\n    }, {\n      x: 10,\n      y: 5\n    }, {\n      x: 0.5,\n      y: 5.5\n    }],\n    backgroundColor: 'rgb(255, 99, 132)'\n  }],\n};\nconst config = {\n  type: 'scatter',\n  data: data,\n  options: {\n    responsive: true, // 设置图表为响应式，根据屏幕窗口变化而变化\n    maintainAspectRatio: false,// 保持图表原有比例\n    scales: {\n      x: {\n        type: 'linear',\n        position: 'bottom'\n      }\n    }\n  }\n};\nconst myChart = new Chart(ctx, config);"
+    ]
+   },
+   {
+    "title": "Chart.js 教程",
+    "url": "https://www.runoob.com/chartjs/chartjs-tutorial.html",
+    "body": "Chart.js 是一个简单、灵活的 JavaScript 图表工具。\nChart.js 是一个基于 HTML5 技术的 JavaScript 图表工具。\nChart.js:使用 <canvas> 标签的实现简洁HTML5图表\nChart.js 能够很简单便捷的在 Web 网站或是 Web 应用程序添加有交互性的图表\nChart.js 免费提供给个人学习、个人网站和非商业用途使用。",
+    "examples": []
+   },
+   {
+    "title": "Chart.js 柱形图",
+    "url": "https://www.runoob.com/chartjs/chartjs-type-bar.html",
+    "body": "柱形图是一种以长方形的长度为变量的统计图表。\n柱形图用来比较两个或以上的价值（不同时间或者不同条件），只有一个变量，通常利用于较小的数据集分析。\n柱形图的 type 属性为 bar ，type 描述了图表类型。\nconst config = {\n type: 'bar',\n data: data,\n options: {\n scales: {\n y: {\n beginAtZero: true\n }\n }\n },\n};\n接下来我们创建一个简单的柱形图：\n实例\n尝试一下 »",
+    "examples": [
+     "const ctx = document.getElementById('myChart');\nconst labels = ['一月份', '二月份', '三月份','四月份', '五月份', '六月份', '七月份'];  // 设置 X 轴上对应的标签\nconst data = {\n  labels: labels,\n  datasets: [{\n    label: '我的第一个柱形图',\n    data: [65, 59, 80, 81, 56, 55, 40],\n    backgroundColor: [      // 设置每个柱形图的背景颜色\n      'rgba(255, 99, 132, 0.2)',\n      'rgba(255, 159, 64, 0.2)',\n      'rgba(255, 205, 86, 0.2)',\n      'rgba(75, 192, 192, 0.2)',\n      'rgba(54, 162, 235, 0.2)',\n      'rgba(153, 102, 255, 0.2)',\n      'rgba(201, 203, 207, 0.2)'\n    ],\n    borderColor: [     //设置每个柱形图边框线条颜色\n      'rgb(255, 99, 132)',\n      'rgb(255, 159, 64)',\n      'rgb(255, 205, 86)',\n      'rgb(75, 192, 192)',\n      'rgb(54, 162, 235)',\n      'rgb(153, 102, 255)',\n      'rgb(201, 203, 207)'\n    ],\n    borderWidth: 1     // 设置线条宽度\n  }]\n};\nconst config = {\n  type: 'bar', // 设置图表类型\n  data: data,  // 设置数据集\n  options: {\n    scales: {\n      y: {\n        beginAtZero: true // 设置 y 轴从 0 开始\n      }\n    }\n  },\n};\nconst myChart = new Chart(ctx, config);"
+    ]
+   },
+   {
+    "title": "Chart.js 使用",
+    "url": "https://www.runoob.com/chartjs/chartjs-usage.html",
+    "body": "使用 Chart.js 创建图表，需要初始化 Chart 类，并传入图表节点：\nHTML Canvas 代码，图表显示位置：",
+    "examples": [
+     "<canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,260 @@
+{
+ "tutorial": {
+  "name": "XML DOM",
+  "category": "前端开发",
+  "desc": "XML DOM 定义访问和操作XML文档的标准方法。",
+  "url": "https://www.runoob.com/dom/",
+  "chapters": [
+   {
+    "title": "XML DOM - Attr 对象",
+    "url": "https://www.runoob.com/dom/dom-attribute.html",
+    "body": "Attr 对象\nAttr 对象表示 Element 对象的属性。属性的容许值通常定义在 DTD 中。\n由于 Attr 对象也是一种节点，因此它继承 Node 对象的属性和方法。不过属性无法拥有父节点，同时属性也不被认为是元素的子节点，对于许多 Node 属性来说都将返回 null。\nAttr 对象属性\n属性\n描述\nbaseURI\n返回属性的绝对基准 URI。\nisId\n如果属性是 ID 类型，则返回 true，否则返回 false。\nlocalName\n返回属性名称的本地部分。\nname\n返回属性的名称。\nnamespaceURI\n返回属性的命名空间 URI。\nnodeName\n返回节点的名称，根据其类型。\nnodeType\n返回节点的类型。\nnodeValue\n设置或返回节点的值，根据其类型。\nownerDocument\n返回属性所属的根元素（document 对象）。\nownerElement\n返回属性所附属的元素节点。\nprefix\n设置或返回属性的命名空间前缀。\nschemaTypeInfo\n返回与属性相关联的类型信息。\nspecified\n如果属性值被设置在文档中，则返回 true，如果其默认值被设置在 DTD/Schema 中，则返回 false。\ntextContent\n设置或返回属性的文本内容。\nvalue\n设置或返回属性的值。",
+    "examples": []
+   },
+   {
+    "title": "XML DOM - CDATASection 对象",
+    "url": "https://www.runoob.com/dom/dom-cdatasection.html",
+    "body": "尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM - Comment 对象",
+    "url": "https://www.runoob.com/dom/dom-comment.html",
+    "body": "尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM - Document 对象",
+    "url": "https://www.runoob.com/dom/dom-document.html",
+    "body": "Document 对象代表整个 XML 文档。\nDocument 对象\nDocument 对象是文档树的根，并为我们提供对文档数据的最初（或最顶层）的访问入口。\n由于元素节点、文本节点、注释、处理指令等均无法存在于文档之外，Document 对象也提供了创建这些对象的方法。Node 对象提供了一个 ownerDocument 属性，此属性可把它们与在其中创建它们的 Document 关联起来。\nDocument 对象属性\n属性\n描述\nasync\n规定 XML 文件的下载是否应当被异步处理。\nchildNodes\n返回文档的子节点的节点列表。\ndoctype\n返回与文档相关的文档类型声明（DTD，全称 Document Type Declaration）。\ndocumentElement\n返回文档的根节点。\ndocumentURI\n设置或返回文档的位置。\ndomConfig\n返回 normalizeDocument() 被调用时所使用的配置。\nfirstChild\n返回文档的第一个子节点。\nimplementation\n返回处理该文档的 DOMImplementation 对象。\ninputEncoding\n返回用于文档的编码方式（在解析时）。\nlastChild\n返回文档的最后一个子节点。\nnodeName\n返回节点的名称（根据节点的类型）。\nnodeType\n返回节点的节点类型。\nnodeValue\n设置或返回节点的值（根据节点的类型）。\nstrictErrorChecking\n设置或返回是否强制进行错误检查。\nxmlEncoding\n返回文档的 XML 编码。\nxmlStandalone\n设置或返回文档是否为 standalone。\nxmlVersion\n设置或返回文档的 XML 版本。\nDocument 对象方法\n方法\n描述\nadoptNode(sourcenode)\n从另一个文档向本文档选定一个节点，然后返回被选节点。\ncreateAttribute(name)\n创建带有指定名称的属性节点，并返回新的 Attr 对象。\ncreateAttributeNS(uri,name)\n创建带有指定名称和命名空间的属性节点，并返回新的 Attr 对象。\ncreateCDATASection()\n创建 CDATA 区段节点。\ncreateComment()\n创建注释节点。\ncreateDocumentFragment()\n创建空的 DocumentFragment 对象，并返回此对象。\ncreateElement()\n创建元素节点。\ncreateElementNS()\n创建带有指定命名空间的元素节点。\ncreateEntityReference(name)\n创建 EntityReference 对象，并返回此对象。\ncreateProcessingInstruction(target,data)\n创建一个 ProcessingInstruction 对象，并返回此对象。\ncreateTextNode()\n创建文本节点。\ngetElementById(id)\n返回带有指定值的 ID 属性的元素。如果不存在这样的元素，则返回 null。\ngetElementsByTagName()\n返回带有指定名称的所有元素的 NodeList。\ngetElementsByTagNameNS()\n返回带有指定名称和命名空间的所有元素的 NodeList。\nimportNode(nodetoimport,deep)\n从另一个文档向本文档选定一个节点。该方法创建源节点的一个新的副本。如果 deep 参数设置为 true，它将导入指定节点的所有子节点。 如果设置为 false，它将只导入节点本身。该方法返回被导入的节点。\nnormalizeDocument()\nrenameNode()\n重命名元素或属性节点。",
+    "examples": []
+   },
+   {
+    "title": "XML DOM - DocumentImplementation 对象",
+    "url": "https://www.runoob.com/dom/dom-documentimplementation.html",
+    "body": "DocumentImplementation 对象\nDOMImplementation 对象执行的操作是独立于文档对象模型的任何特定实例。\nDocumentImplementation 对象方法\n方法\n描述\ncreateDocument(nsURI, name, doctype)\n创建一个新的指定文档类型的 DOM Document 对象。\ncreateDocumentType(name, pubId, systemId)\n创建一个空的 DocumentType 节点。\ngetFeature(feature, version)\n返回一个对象，此对象可执行带有指定特性和版本的 API。\nhasFeature(feature, version)\n检查 DOM implementation 是否实现指定的特性和版本。",
+    "examples": []
+   },
+   {
+    "title": "XML DOM - DocumentType 对象",
+    "url": "https://www.runoob.com/dom/dom-documenttype.html",
+    "body": "DocumentType 对象\n每个文档都包含一个 DOCTYPE 属性，该属性值可以是一个空值或是一个 DocumentType 对象。\nDocumentType 对象提供了一个接口，用于定义 XML 文档的实体。\nDocumentType 对象属性\n属性\n描述\nentities\n返回包含有在 DTD 中所声明的实体的 NamedNodeMap。\ninternalSubset\n以字符串形式返回内部 DTD。\nname\n返回 DTD 的名称。\nnotations\n返回包含 DTD 声明的符号的 NamedNodeMap。\nsystemId\n返回外部 DTD 的系统标识符。",
+    "examples": []
+   },
+   {
+    "title": "XML DOM - Element 对象",
+    "url": "https://www.runoob.com/dom/dom-element.html",
+    "body": "Element 对象\nElement 对象代表 XML 文档中的一个元素。元素可以包含属性、其他元素或文本。如果一个元素包含文本，则在文本节点中表示该文本。\n重要事项：文本永远存储在文本节点中。在 DOM 处理过程中的一个常见的错误是，导航到元素节点，并认为此节点含有文本。不过，即使最简单的元素节点之下也拥有文本节点。举例，在 <year>2005</year> 中，有一个元素节点（year），同时此节点之下存在一个文本节点，其中含有文本（2005）。\n由于 Element 对象也是一种节点，因此它可继承 Node 对象的属性和方法。\nElement 对象属性\n属性\n描述\nattributes\n返回元素的属性的 NamedNodeMap。\nbaseURI\n返回元素的绝对基准 URI。\nchildNodes\n返回元素的子节点的 NodeList。\nfirstChild\n返回元素的第一个子节点。\nlastChild\n返回元素的最后一个子节点。\nlocalName\n返回元素名称的本地部分。\nnamespaceURI\n返回元素的命名空间 URI。\nnextSibling\n返回元素之后紧接的节点。\nnodeName\n返回节点的名称，根据其类型。\nnodeType\n返回节点的类型。\nownerDocument\n返回元素所属的根元素 (document 对象)。\nparentNode\n返回元素的父节点。\nprefix\n设置或返回元素的命名空间前缀。\npreviousSibling\n返回元素之前紧接的节点。\nschemaTypeInfo\n返回与元素相关联的类型信息。\ntagName\n返回元素的名称。\ntextContent\n设置或返回元素及其后代的文本内容。\nElement 对象方法\n方法\n描述\nappendChild()\n把新的子节点添加到节点的子节点列表末尾。\ncloneNode()\n克隆节点。\ncompareDocumentPosition()\n比较两个节点的文档位置。\ngetAttribute()\n返回属性的值。\ngetAttributeNS()\n返回属性的值（带有命名空间）。\ngetAttributeNode()\n以 Attribute 对象返回属性节点。\ngetAttributeNodeNS()\n以 Attribute 对象返回属性节点（带有命名空间）。\ngetElementsByTagName()\n返回匹配的元素节点及它们的子节点的 NodeList。\ngetElementsByTagNameNS()\n返回匹配的元素节点（带有命名空间）及它们的子节点的 NodeList。\ngetFeature(feature,version)\n返回 DOM 对象，此对象可执行带有指定特性和版本的专门的 API。\ngetUserData(key)\n返回与节点上键关联的对象。此对象必须首先通过使用相同的键调用 setUserData 来设置到此节点。\nhasAttribute()\n返回元素是否拥有匹配指定名称的属性。\nhasAttributeNS()\n返回元素是否拥有匹配指定名称和命名空间的属性。\nhasAttributes()\n返回元素是否拥有属性。\nhasChildNodes()\n返回元素是否拥有子节点。\ninsertBefore()\n在已有的子节点之前插入一个新的子节点。\nisDefaultNamespace(URI)\n返回指定的 namespaceURI 是否为默认。\nisEqualNode()\n检查两个节点是否相等。\nisSameNode()\n检查两个节点是否为同一节点。\nisSupported(feature,version)\n返回指定的特性是否在此元素上得到支持。\nlookupNamespaceURI()\n返回匹配指定前缀的命名空间 URI。\nlookupPrefix()\n返回匹配指定命名空间 URI 的前缀。\nnormalize()\n把节点（包括属性）下的所有文本节点放置到一个\"标准\"的格式中，其中只有结构（比如元素、注释、处理指令、CDATA 区段以及实体引用）来分隔 Text 节点，例如，既没有相邻的 Text 节点，也没有空的 Text 节点。\nremoveAttribute()\n删除指定的属性。\nremoveAttributeNS()\n删除指定的属性（带有命名空间）。\nremoveAttributeNode()\n删除指定的属性节点。\nremoveChild()\n删除子节点。\nreplaceChild()\n替换子节点。\nsetUserData(key,data,handler)\n把对象关联到元素上的键。\nsetAttribute()\n添加新属性。\nsetAttributeNS()\n添加新属性（带有命名空间）。\nsetAttributeNode()\n添加新的属性节点。\nsetAttributeNodeNS(attrnode)\n添加新的属性节点（带有命名空间）。\nsetIdAttribute(name,isId)\n如果 Attribute 对象的 isId 属性为 true，那么此方法会把指定的属性声明为一个用户确定 ID 的属性（user-determined ID attribute）。\nsetIdAttributeNS(uri,name,isId)\n如果 Attribute 对象的 isId 属性为 true，那么此方法会把指定的属性声明为一个用户确定 ID 的属性（user-determined ID attribute）（带有命名空间）。\nsetIdAttributeNode(idAttr,isId)\n如果 Attribute 对象的 isId 属性为 true，那么此方法会把指定的属性声明为一个用户确定 ID 的属性（user-determined ID attribute）。",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 解析器错误",
+    "url": "https://www.runoob.com/dom/dom-errors-crossbrowser.html",
+    "body": "当 Firefox 遇到解析器错误，它会载入一个包含错误的 XML 文档。\n在 Firefox 中的解析器错误\n在您试图打开一个 XML 文档时，就可能发生一个解析器错误（parser-error）。\n与 Internet Explorer 浏览器不同，如果 Firefox 遇到错误，它会载入包含错误描述的 XML 文档中。\nXML 错误文档的根节点的名称是 \"parsererror\"。这是用来检查是否有错误。\nXML 错误（XML Error）\n在下面的代码中，我们会让解析器加载一个形式不良的 XML 文档。\n（您可以在我们的 XML 教程中阅读更多有关形式良好且有效的 XML。）\n实例\n尝试一下 »",
+    "examples": [
+     "xmlDoc=document.implementation.createDocument(\"\",\"\",null);\nxmlDoc.async=false;\nxmlDoc.load(\"note_error.xml\");\nif (xmlDoc.documentElement.nodeName==\"parsererror\")\n{\nerrStr=xmlDoc.documentElement.childNodes[0].nodeValue;\nerrStr=errStr.replace(/</g, \"&lt;\");\ndocument.write(errStr);\n}\nelse\n{\ndocument.write(\"XML is valid\");\n}"
+    ]
+   },
+   {
+    "title": "XML DOM Parse Error 对象",
+    "url": "https://www.runoob.com/dom/dom-errors.html",
+    "body": "微软的 parseError 对象可用于从微软的 XML 分析器取回错误信息。\n要查看 Firefox 如何处理解析器错误，请看本教程的下一个页面。\nparseError 对象\n在您试图打开一个 XML 文档时，就可能发生一个解析器错误（parser-error）。\n通过这个 parseError 对象，您可取回错误代码、错误文本、引起错误的行等等。\n注意：parseError 对象不属于 W3C DOM 标准！\n文件错误（File Error）\n在下面的代码中，我们会试图加载一个不存在的文件，并显示某些错误属性：\n实例\n尝试一下 »",
+    "examples": [
+     "xmlDoc=new ActiveXObject(\"Microsoft.XMLDOM\");\nxmlDoc.async=false;\nxmlDoc.load(\"ksdjf.xml\");\ndocument.write(\"Error code: \" + xmlDoc.parseError.errorCode);\ndocument.write(\"Error reason: \" + xmlDoc.parseError.reason);\ndocument.write(\"Error line: \" + xmlDoc.parseError.line);"
+    ]
+   },
+   {
+    "title": "XMLHttpRequest 对象",
+    "url": "https://www.runoob.com/dom/dom-http.html",
+    "body": "通过 XMLHttpRequest 对象，您可以在不重新加载整个页面的情况下更新网页中的某个部分。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 简介",
+    "url": "https://www.runoob.com/dom/dom-intro.html",
+    "body": "XML DOM 定义了访问和处理 XML 文档的标准。\n您应当具备的基础知识\n在继续学习之前，您应当对下列知识有基本的了解：\nHTML\nXML\nJavaScript\n如果您想要首先学习这些项目，请在我们的首页访问这些教程。\n什么是 DOM？\nDOM 是 W3C（World Wide Web Consortium）标准。\nDOM 定义了访问诸如 XML 和 HTML 文档的标准：\n\"W3C 文档对象模型（DOM，全称 Document Object Model）是一个使程序和脚本有能力动态地访问和更新文档的内容、结构以及样式的平台和语言中立的接口。\"\nDOM 被分为 3 个不同的部分/级别：\n核心 DOM - 用于任何结构化文档的标准模型\nXML DOM - 用于 XML 文档的标准模型\nHTML DOM - 用于 HTML 文档的标准模型\nDOM 定义了所有文档元素的对象和属性，以及访问它们的方法（接口）。\n什么是 HTML DOM？\nHTML DOM 定义了所有 HTML 元素的对象和属性，以及访问它们的方法（接口）。\n如果您想要学习 HTML DOM，请在我们的首页访问 HTML DOM 教程。\n什么是 XML DOM？\nXML DOM 是：\n用于 XML 的标准对象模型\n用于 XML 的标准编程接口\n中立于平台和语言\nW3C 标准\nXML DOM 定义了所有 XML 元素的对象和属性，以及访问它们的方法（接口）。\n换句话说：XML DOM 是用于获取、更改、添加或删除 XML 元素的标准。",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 加载函数",
+    "url": "https://www.runoob.com/dom/dom-loadxmldoc.html",
+    "body": "加载 XML 文档中的代码可以存储在一个函数中。\nloadXMLDoc() 函数\n为了使前一页中的代码易于维护（检查旧的浏览器），它应该写成一个函数：\nloadxmldoc.js 文件代码：",
+    "examples": [
+     "function loadXMLDoc(dname)\n{\nif (window.XMLHttpRequest)\n{\nxhttp=new XMLHttpRequest();\n    }\nelse\n{\nxhttp=new ActiveXObject(\"Microsoft.XMLHTTP\");\n    }\nxhttp.open(\"GET\",dname,false);\n    xhttp.send();\n    return xhttp.responseXML;\n}"
+    ]
+   },
+   {
+    "title": "XML DOM - 属性和方法",
+    "url": "https://www.runoob.com/dom/dom-methods.html",
+    "body": "属性和方法向 XML DOM 定义了编程接口。\n编程接口\nDOM 把 XML 模拟为一系列节点对象。可通过 JavaScript 或其他编程语言来访问节点。在本教程中，我们使用 JavaScript。\n对 DOM 的编程接口是通过一套标准的属性和方法来定义的。\n属性经常按照\"某事物是什么\"的方式来使用（例如节点名是 \"book\"）。\n方法经常按照\"对某事物做什么\"的方式来使用（例如删除 \"book\" 节点）。\nXML DOM 属性\n一些典型的 DOM 属性：\nx.nodeName - x 的名称\nx.nodeValue - x 的值\nx.parentNode - x 的父节点\nx.childNodes - x 的子节点\nx.attributes - x 的属性节点\n注释：在上面的列表中，x 是一个节点对象。\nXML DOM 方法\nx.getElementsByTagName(name) - 获取带有指定标签名称的所有元素\nx.appendChild(node) - 向 x 插入子节点\nx.removeChild(node) - 从 x 删除子节点\n注释：在上面的列表中，x 是一个节点对象。\n实例\n从 books.xml 中的 <title> 元素获取文本的 JavaScript 代码：\ntxt=xmlDoc.getElementsByTagName(\"title\")[0].childNodes[0].nodeValue\n在该语句执行后，txt 保存的值是 \"Everyday Italian\"。\n解释：\nxmlDoc - 由解析器创建的 XML DOM 对象\ngetElementsByTagName(\"title\")[0] - 第一个 <title> 元素\nchildNodes[0] - <title> 元素的第一个子节点（文本节点）\nnodeValue - 节点的值（文本本身）",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 浏览器差异",
+    "url": "https://www.runoob.com/dom/dom-mozilla-vs-ie.html",
+    "body": "DOM 解析中的浏览器差异\n所有现代的浏览器都支持 W3C DOM 规范。\n然而，浏览器之间是有差异的。一个重要的差异是：\n处理空白和换行的方式\nDOM - 空白和换行\nXML 经常在节点之间包含换行或空白字符。这是在使用简单的编辑器（比如记事本）编辑文档时经常出现的情况。\n下面的例子（由记事本编辑）在每行之间包含 CR/LF（换行），在每个子节点之前包含两个空格：\n<book>\n \n <title>Everyday Italian</title>\n \n <author>Giada De Laurentiis</author>\n \n <year>2005</year>\n \n <price>30.00</price>\n</book>",
+    "examples": []
+   },
+   {
+    "title": "XML DOM - NamedNodeMap 对象",
+    "url": "https://www.runoob.com/dom/dom-namednodemap.html",
+    "body": "NamedNodeMap 对象代表一个节点的无序列表。\nNamedNodeMap 对象\nNamedNodeMap 中的节点可以通过它们的名称进行访问。\nNamedNodeMap 将会自我更新。如果在节点列表或 XML 文档中删除或添加一个元素，那么该列表将会自动更新。\n注意：在命名节点图中，节点不会以任何特定的顺序返回。\nNamedNodeMap 对象属性\n属性\n描述\nlength\n返回列表中节点的数量。\nNamedNodeMap 对象方法\n方法\n描述\ngetNamedItem()\n返回指定的节点（通过名称）。\ngetNamedItemNS()\n返回指定的节点（通过名称和命名空间）。\nitem()\n返回指定索引号的节点。\nremoveNamedItem()\n删除指定的节点（通过名称）。\nremoveNamedItemNS()\n删除指定的节点（通过名称和命名空间）。\nsetNamedItem()\n设置指定的节点（通过名称）。\nsetNamedItemNS()\n设置指定的节点（通过名称和命名空间）。",
+    "examples": []
+   },
+   {
+    "title": "XML DOM - Node 对象",
+    "url": "https://www.runoob.com/dom/dom-node.html",
+    "body": "Node 对象\nNode 对象代表文档树中的一个单独的节点。\n这里的节点可以是：元素节点、属性节点、文本节点以及所有在 节点类型这章中所提到的所有其他的节点类型。\n请注意，尽管所有的对象都继承了用以处理父节点和子节点的 Node 属性 / 方法，但是并不是所有的对象都可以包含父节点或子节点。举个例子来说，Text 节点中可能不包含子节点，所以把子节点添加到文本节点中可能会导致一个 DOM 错误。\nNode 对象属性\n属性\n描述\nbaseURI\n返回节点的绝对基准 URI。\nchildNodes\n返回节点的子节点的节点列表。\nfirstChild\n返回节点的第一个子节点。\nlastChild\n返回节点的最后一个子节点。\nlocalName\n返回节点名称的本地部分。\nnamespaceURI\n返回节点的命名空间 URI。\nnextSibling\n返回元素之后紧接的节点。\nnodeName\n返回节点的名称，根据其类型。\nnodeType\n返回节点的类型。\nnodeValue\n设置或返回节点的值，根据其类型。\nownerDocument\n返回节点的根元素（document 对象）。\nparentNode\n返回节点的父节点。\nprefix\n设置或返回节点的命名空间前缀。\npreviousSibling\n返回元素之前紧接的节点。\ntextContent\n设置或返回节点及其后代的文本内容。\nNode 对象方法\n方法\n描述\nappendChild()\n把新的子节点添加到节点的子节点列表末尾。\ncloneNode()\n克隆节点。\ncompareDocumentPosition()\n比较两个节点的文档位置。\ngetFeature(feature,version)\n返回 DOM 对象，此对象可执行带有指定特性和版本的专门的 API。\ngetUserData(key)\n返回与节点上键关联的对象。此对象必须首先通过使用相同的键调用 setUserData 来设置到此节点。\nhasAttributes()\n如果节点拥有属性，则返回 ture，否则返回 false。\nhasChildNodes()\n如果节点拥有子节点，则返回 true，否则返回 false。\ninsertBefore()\n在已有的子节点之前插入一个新的子节点。\nisDefaultNamespace(URI)\n返回指定的 namespaceURI 是否默认。\nisEqualNode()\n检查两个节点是否相等。\nisSameNode()\n检查两个节点是否为同一节点。\nisSupported(feature,version)\n返回指定的特性是否在此节点上得到支持。\nlookupNamespaceURI()\n返回匹配指定前缀的命名空间 URI。\nlookupPrefix()\n返回匹配指定命名空间 URI 的前缀。\nnormalize()\n把节点（包括属性）下的所有文本节点放置到一个\"标准\"的格式中，其中只有结构（比如元素、注释、处理指令、CDATA 区段以及实体引用）来分隔 Text 节点，例如，既没有相邻的 Text 节点，也没有空的 Text 节点。\nremoveChild()\n删除子节点。\nreplaceChild()\n替换子节点。\nsetUserData(key,data,handler)\n把对象关联到节点上的键。",
+    "examples": []
+   },
+   {
+    "title": "XML DOM - NodeList 对象",
+    "url": "https://www.runoob.com/dom/dom-nodelist.html",
+    "body": "NodeList 对象代表一个有序的节点列表。\nNodeList 对象\n节点列表中的节点可以通过其对应的索引数字（从 0 开始计数）进行访问。\n节点列表可保持其自身的更新。如果节点列表或 XML 文档中的某个元素被删除或添加，列表也会被自动更新。\n注意：在一个节点列表中，节点被返回的顺序与它们在 XML 文档中被规定的顺序相同。\nNodeList 对象属性\n属性\n描述\nlength\n返回节点列表中的节点数量。\nNodeList 对象方法\n方法\n描述\nitem()\n返回节点列表中指定索引号的节点。",
+    "examples": []
+   },
+   {
+    "title": "XML DOM - 访问节点",
+    "url": "https://www.runoob.com/dom/dom-nodes-access.html",
+    "body": "通过 DOM，您能够访问 XML 文档中的每个节点。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 添加节点",
+    "url": "https://www.runoob.com/dom/dom-nodes-add.html",
+    "body": "尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 克隆节点",
+    "url": "https://www.runoob.com/dom/dom-nodes-clone.html",
+    "body": "尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 创建节点",
+    "url": "https://www.runoob.com/dom/dom-nodes-create.html",
+    "body": "尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 获取节点值",
+    "url": "https://www.runoob.com/dom/dom-nodes-get.html",
+    "body": "nodeValue 属性用于获取节点的文本值。\ngetAttribute() 方法返回属性的值。\n获取元素的值\n在 DOM 中，每种成分都是节点。元素节点没有文本值。\n元素节点的文本存储在子节点中。该节点称为文本节点。\n获取元素文本的方法，就是获取这个子节点（文本节点）的值。\n获取元素值\ngetElementsByTagName() 方法返回包含拥有指定标签名的所有元素的节点列表，其中的元素的顺序是它们在源文档中出现的顺序。\n下面的代码通过使用 loadXMLDoc() 把 books.xml 载入 xmlDoc 中并检索第一个 <title> 元素：\nxmlDoc=loadXMLDoc(\"books.xml\");\nx=xmlDoc.getElementsByTagName(\"title\")[0];",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 节点信息",
+    "url": "https://www.runoob.com/dom/dom-nodes-info.html",
+    "body": "nodeName、nodeValue 和 nodeType 属性包含有关节点的信息。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM - 导航节点",
+    "url": "https://www.runoob.com/dom/dom-nodes-navigate.html",
+    "body": "可通过使用节点间的关系对节点进行导航。\n导航 DOM 节点\n通过节点间的关系访问节点树中的节点，通常称为导航节点（\"navigating nodes\"）。\n在 XML DOM 中，节点的关系被定义为节点的属性：\nparentNode\nchildNodes\nfirstChild\nlastChild\nnextSibling\npreviousSibling\n下面的图像展示了 books.xml 中节点树的一个部分，并说明了节点之间的关系：\nDOM - 父节点\n所有的节点都仅有一个父节点。下面的代码导航到 <book> 的父节点：\n实例",
+    "examples": [
+     "xmlDoc=loadXMLDoc(\"books.xml\");\n \nx=xmlDoc.getElementsByTagName(\"book\")[0];\ndocument.write(x.parentNode.nodeName);"
+    ]
+   },
+   {
+    "title": "XML DOM 节点列表",
+    "url": "https://www.runoob.com/dom/dom-nodes-nodelist.html",
+    "body": "节点列表由 getElementsByTagName() 方法和 childNodes 属性返回。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 删除节点",
+    "url": "https://www.runoob.com/dom/dom-nodes-remove.html",
+    "body": "removeChild() 方法删除指定节点。\nremoveAttribute() 方法删除指定属性。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 替换节点",
+    "url": "https://www.runoob.com/dom/dom-nodes-replace.html",
+    "body": "replaceChild() 方法替换指定节点。\nnodeValue 属性替换文本节点中的文本。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 改变节点值",
+    "url": "https://www.runoob.com/dom/dom-nodes-set.html",
+    "body": "nodeValue 属性用于改变节点值。\nsetAttribute() 方法用于改变属性值。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 遍历节点树",
+    "url": "https://www.runoob.com/dom/dom-nodes-traverse.html",
+    "body": "遍历（Traverse）意味着在节点树中进行循环或移动。\n遍历节点树\n通常您想要循环 XML 文档，比如：当您需要提取每个元素的值时。\n这叫做\"遍历节点树\"。\n下面的实例遍历 <book> 的所有子节点，并显示他们的名称和值：\n实例\nvarx, i ,xmlDoc;\nvartxt = \"\";\nvartext = \"<book>\" + \n\"<title>Everyday Italian</title>\" +\n\"<author>Giada De Laurentiis</author>\" +\n\"<year>2005</year>\" +\n\"</book>\";\n \nparser = newDOMParser();\nxmlDoc = parser.parseFromString(text,\"text/xml\");\n \n// documentElement 表示根节点x = xmlDoc.documentElement.childNodes;\nfor(i = 0; i < x.length ;i++){txt += x[i].nodeName + \": \" + x[i].childNodes[0].nodeValue + \"<br>\";\n}document.getElementById(\"demo\").innerHTML = txt;",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<body>\n<p id=\"demo\"></p>\n<script>"
+    ]
+   },
+   {
+    "title": "XML DOM 节点",
+    "url": "https://www.runoob.com/dom/dom-nodes.html",
+    "body": "在 DOM 中，XML 文档中的每个成分都是一个节点。\nDOM 节点\n根据 DOM，XML 文档中的每个成分都是一个节点。\nDOM 是这样规定的：\n整个文档是一个文档节点\n每个 XML 元素是一个元素节点\n包含在 XML 元素中的文本是文本节点\n每一个 XML 属性是一个属性节点\n注释是注释节点\nDOM 实例\n请看下面的 XML 文件（books.xml）：\nbooks.xml 文件代码：",
+    "examples": [
+     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<bookstore>\n<book category=\"cooking\">\n<title lang=\"en\">Everyday Italian</title>\n<author>Giada De Laurentiis</author>\n<year>2005</year>\n<price>30.00</price>\n</book>\n<book category=\"children\">\n<title lang=\"en\">Harry Potter</title>\n<author>J K. Rowling</author>\n<year>2005</year>\n<price>29.99</price>\n</book>\n<book category=\"web\">\n<title lang=\"en\">XQuery Kick Start</title>\n<author>James McGovern</author>\n<author>Per Bothner</author>\n<author>Kurt Cagle</author>\n<author>James Linn</author>\n<author>Vaidyanathan Nagarajan</author>\n<year>2003</year>\n<price>49.99</price>\n</book>\n<book category=\"web\" cover=\"paperback\">\n<title lang=\"en\">Learning XML</title>\n<author>Erik T. Ray</author>\n<year>2003</year>\n<price>39.95</price>\n</book>\n</bookstore>"
+    ]
+   },
+   {
+    "title": "XML DOM 节点树",
+    "url": "https://www.runoob.com/dom/dom-nodetree.html",
+    "body": "XML DOM 把 XML 文档视为一棵节点树。\n树中的所有节点彼此之间都有关系。\nXML DOM 节点树\nXML DOM 把 XML 文档视为一种树结构。这种树结构被称为节点树。\n可通过这棵树访问所有节点。可以修改或删除它们的内容，也可以创建新的元素。\n这颗节点树展示了节点的集合，以及它们之间的联系。这棵树从根节点开始，然后在树的最低层级向文本节点长出枝条：\n上面的图片表示 XML 文件 books.xml。\n父节点、子节点和同级节点\n节点树中的节点彼此之间都有层级关系。\n父节点、子节点和同级节点用于描述这种关系。父节点拥有子节点，位于相同层级上的子节点称为同级节点（兄弟或姐妹）。\n在节点树中，顶端的节点称为根节点\n根节点之外的每个节点都有一个父节点\n节点可以有任何数量的子节点\n叶子是没有子节点的节点\n同级节点是拥有相同父节点的节点\n下面的图片展示出节点树的一个部分，以及节点间的关系：\n因为 XML 数据是按照树的形式进行构造的，所以可以在不了解树的确切结构且不了解其中包含的数据类型的情况下，对其进行遍历。\n您将在本教程稍后的章节学习更多有关遍历节点树的知识。\n第一个子节点 - 最后一个子节点\n请看下面的 XML 片段：",
+    "examples": [
+     "<bookstore>\n<book category=\"cooking\">\n<title lang=\"en\">Everyday Italian</title>\n<author>Giada De Laurentiis</author>\n<year>2005</year>\n<price>30.00</price>\n</book>\n</bookstore>"
+    ]
+   },
+   {
+    "title": "XML DOM 节点类型",
+    "url": "https://www.runoob.com/dom/dom-nodetype.html",
+    "body": "DOM 是一个代表节点对象层次的文档。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 解析器",
+    "url": "https://www.runoob.com/dom/dom-parser.html",
+    "body": "大多数浏览器都内建了供读取和操作 XML 的 XML 解析器。\n解析器把 XML 转换为 JavaScript 可存取的对象（XML DOM）。\nXML 解析器\nXML DOM 包含了遍历 XML 树，访问、插入及删除节点的方法（函数）。\n然而，在访问和操作 XML 文档之前，它必须加载到 XML DOM 对象。\nXML 解析器读取 XML，并把它转换为 XML DOM 对象，这样才可以使用 JavaScript 访问它。\n大多数浏览器有一个内建的 XML 解析器。\n加载 XML 文档\n下面的 JavaScript 片段加载一个 XML 文档（\"books.xml\"）：\n实例",
+    "examples": [
+     "if (window.XMLHttpRequest)\n{\n// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码\nxhttp=new XMLHttpRequest();\n}\nelse\n{\n// IE6, IE5 浏览器执行代码\nxhttp=new ActiveXObject(\"Microsoft.XMLHTTP\");\n}\nxhttp.open(\"GET\",\"books.xml\",false);\nxhttp.send();\nxmlDoc=xhttp.responseXML;"
+    ]
+   },
+   {
+    "title": "XML DOM - ProcessingInstruction 对象",
+    "url": "https://www.runoob.com/dom/dom-processinginstruction.html",
+    "body": "ProcessingInstruction 对象\nProcessingInstruction 对象代表一个处理指令。\n处理指令用于维护 XML 文档的文本中特定处理器的信息。\nProcessingInstruction 对象属性\n属性\n描述\ndata\n设置或返回处理指令的内容。\ntarget\n返回处理指令的目标。",
+    "examples": []
+   },
+   {
+    "title": "您已经学习了 XML DOM，现在该怎么办呢？",
+    "url": "https://www.runoob.com/dom/dom-summary.html",
+    "body": "XML DOM 总结\nXML DOM 定义了访问和操作 XML 的标准。\n根据 DOM，XML 文档中的一切是一个节点。\n元素节点中的文本存储在一个文本节点中。\nXML DOM 把 XML 文档视为树结构。树结构被称为节点树。\n在节点树中，父级、子级和同级是用来描述关系。\n所有现代的浏览器都有内建的 XML 解析器，可用于读取和操作 XML。\n通过 XML DOM 属性和方法，您可以访问 XML 文档中的每个节点。\n重要节点属性：nodeName、nodeValue 和 nodeType。\n当使用像 childNodes 或 getElementsByTagName() 的属性或方法时，返回节点列表对象。\n不同的浏览器处理节点之间的换行或空格字符时是不同的。\n如需忽略元素节点间的空文本字节，您可以检查节点类型。\n节点可以使用节点的关系进行导航。\n我们的 XML DOM 实例也表示了 XML DOM 教程的一个总结。\n下一步该学习什么呢？\n我们的建议是学习 XSLT。\n如果您想要学习更多有关验证 XML 的知识，我们建议学习 DTD 和 XML Schema。\n下面是每个主题的一个简短描述。\nXSLT（XML 样式表语言转换）\nXSLT 是 XML 文件的样式表语言。\n通过使用 XSLT，可以把 XML 文档转换为其他格式，比如 XHTML。\n如果您想要学习更多有关 XSLT 的知识，请访问我们的 XSLT 教程。\nXML DTD（文档类型定义）\nDTD 的目的是定义 XML 文档中合法的元素、属性和实体。\n通过使用 DTD，每个 XML 文件可以随身携带它自己的格式的描述。\nDTD 可以被用来确认您收到的数据和您自己的数据是否有效。\n如果您想要学习更多有关 DTD 的知识，请访问我们的 DTD 教程。",
+    "examples": []
+   },
+   {
+    "title": "XML DOM - Text 对象",
+    "url": "https://www.runoob.com/dom/dom-text.html",
+    "body": "Text 对象\nText 对象表示元素或属性的文本内容。\nText 对象属性\n属性\n描述\ndata\n设置或返回元素或属性的文本。\nisElementContentWhitespace\n判断文本节点是否包含空白字符内容。如果文本节点包含空白字符内容，则返回 true，否则返回 false。\nlength\n返回元素或属性的文本长度。\nwholeText\n以文档中的顺序向此节点返回相邻文本节点的所有文本。\nText 对象方法\n方法\n描述\nappendData()\n向节点追加数据。\ndeleteData()\n从节点删除数据。\ninsertData()\n向节点中插入数据。\nreplaceData()\n替换节点中的数据。\nreplaceWholeText(text)\n使用指定文本来替换此节点以及所有相邻的文本节点。\nsplitText()\n在指定的偏移处将此节点拆分为两个节点，同时返回包含偏移处之后的文本的新节点。\nsubstringData()\n从节点提取数据。",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 教程",
+    "url": "https://www.runoob.com/dom/dom-tutorial.html",
+    "body": "XML DOM 定义访问和操作XML文档的标准方法。\nDOM 将 XML 文档作为一个树形结构，而树叶被定义为节点。\n如果你想使用XML，你就需要了解XML DOM。\n现在开始学习XML DOM !",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 验证 XML 语法",
+    "url": "https://www.runoob.com/dom/dom-validate.html",
+    "body": "XML 错误将会停止您的 XML 程序\nXML 文档中的错误将停止您的 XML 程序。\nW3C XML 规范规定如果发现错误，程序不应该继续处理 XML 文档。究其原因是 XML 软件应该是易于编写的，所有的 XML 文档应该是兼容的。\n通过 HTML 就有可能创建带有\"错误\"（如缺少结束标签）的文档。HTML 浏览器如此巨大且不相容的主要原因之一是在遇到 HTML 错误时它们都有自己的方法弄明白文档本应该是什么样的。\n通过 XML，这应该是不可能的。\n验证您的 XML 语法\n为协助检查您的 XML 语法，请粘贴下面文本区中的 XML 代码，并按\"验证 XML\"按钮。\n验证您的 XML 文件\n如需检查 XML 文件的语法，请在下面输入字段中键入文件的 URL，并按\"验证 XML\"按钮。\n为了验证一个错误的XML文件，请把下面的 URL 粘贴到上面的输入字段中：http://www.w3cschool.cc/dom/cd_catalog.xml\n注意：当您访问这个文件时，如果显示 \"Access denied\" 的错误，这是因为您的浏览器安全设置不允许跨域访问。",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 实例",
+    "url": "https://www.runoob.com/dom/xml-dom-examples.html",
+    "body": "XML DOM 解析\n下面的实例使用 XML 文件 \nbooks.xml。\n加载一个 \nXML 文件加载一个 \nXML 字符串\n实例解释\nXML DOM 属性和方法\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n函数 loadXMLString()，在外部 JavaScript 中，用于加载 XML 字符串。\n加载并解析 XML 文件 - 外部解析脚本加载并解析 XML 字符串 - 外部解析脚本\n实例解释\nXML DOM 访问节点\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n使用节点列表中的索引号访问节点使用 length 属性循环遍历节点查看元素的节点类型循环遍历元素节点使用节点关系循环遍历元素节点\n实例解释\nXML DOM 节点信息\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n获取元素节点的节点名称从文本节点获取文本更改文本节点的文本获取元素节点的节点名称和类型\n实例解释\nXML DOM 节点列表和属性列表\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n从第一个 <title> 元素获取文本使用 length 属性循环遍历节点获取元素的属性\n实例解释\nXML DOM 遍历节点树\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLString()，在外部 JavaScript 中，用于加载 XML 字符串。\n遍历节点树\n实例解释\nXML DOM 浏览器差异\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n显示节点列表的长度 - IE 和其他浏览器的不同结果\n忽略节点之间的空文本\n实例解释\nXML DOM 导航节点\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n获取节点的父节点获取节点的第一个子元素获取节点的最后一个子元素获取节点的下一个同级元素获取节点的上一个同级元素\n实例解释\nXML DOM 获取节点值\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n获取元素的文本值获取属性的文本值\n实例解释\nXML DOM 更改节点值\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n更改元素文本节点使用 setAttribute 更改属性值使用 nodeValue 更改属性值\n实例解释\nXML DOM 删除节点\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n删除元素节点删除当前的元素节点删除文本节点清空文本节点的文本按名称删除属性按对象删除属性\n实例解释\nXML DOM 替换节点\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n替换元素节点替换文本节点中的数据\n实例解释\nXML DOM 创建节点\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n创建元素节点使用 createAttribute 创建属性节点使用 setAttribute 创建属性节点创建文本节点创建 CDATA 区段节点创建注释节点\n实例解释\nXML DOM 添加节点\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n在最后一个子节点后添加一个节点在指定子节点前添加一个节点添加一个新的属性向文本节点添加数据\n实例解释\nXML DOM 克隆节点\n下面的实例使用 XML 文件 \nbooks.xml。\n函数 loadXMLDoc()，在外部 JavaScript 中，用于加载 XML 文件。\n复制一个节点，并把它追加到已有的节点\n实例解释\nXML DOM XMLHttpRequest 对象\n一个简单的 XMLHttpRequest 实例\n创建一个简单的 XMLHttpRequest，并从一个 TXT 文件中检索数据。\n通过 getAllResponseHeaders() 检索头信息\n检索资源（文件）的头信息。\n通过 getResponseHeader() 检索指定的头信息\n检索资源（文件）的指定头信息。\n检索 ASP 文件的内容\n用户在输入字段中键入字符时，网页如何与 Web 服务器进行通信。\n从数据库检索内容\n网页如何通过 XMLHttpRequest 对象从数据库中提取信息。\n检索 XML 文件的内容\n创建一个 XMLHttpRequest 从 XML 文件中检索数据并把数据显示在一个 HTML 表格中。\n实例解释",
+    "examples": []
+   }
+  ]
+ }
+}

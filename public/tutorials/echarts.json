@@ -1,0 +1,104 @@
+{
+ "tutorial": {
+  "name": "ECharts",
+  "category": "前端开发",
+  "desc": "ECharts 是一个使用 JavaScript 实现的开源可视化库，涵盖各行业",
+  "url": "https://www.runoob.com/echarts/",
+  "chapters": [
+   {
+    "title": "ECharts 异步加载数据",
+    "url": "https://www.runoob.com/echarts/echarts-ajax-data.html",
+    "body": "ECharts 通常数据设置在 setOption 中，如果我们需要异步加载数据，可以配合 jQuery等工具，在异步获取数据后通过 setOption 填入数据和配置项就行。\nECharts 通常数据设置在 setOption 中，如果我们需要异步加载数据，可以配合 jQuery等工具，在异步获取数据后通过 setOption 填入数据和配置项就行。\njson 数据：\n\necharts_test_data.json 数据：",
+    "examples": [
+     "{\n    \"data_pie\" : [\n    {\"value\":235, \"name\":\"视频广告\"},\n    {\"value\":274, \"name\":\"联盟广告\"},\n    {\"value\":310, \"name\":\"邮件营销\"},\n    {\"value\":335, \"name\":\"直接访问\"},\n    {\"value\":400, \"name\":\"搜索引擎\"}\n    ]\n}"
+    ]
+   },
+   {
+    "title": "ECharts 数据集（dataset）",
+    "url": "https://www.runoob.com/echarts/echarts-dataset.html",
+    "body": "ECharts 使用 dataset 管理数据。\ndataset 组件用于单独的数据集声明，从而数据可以单独管理，被多个组件复用，并且可以基于数据指定数据到视觉的映射。\n下面是一个最简单的 dataset 的例子：\n实例\n尝试一下 »",
+    "examples": [
+     "option = {\n    legend: {},\n    tooltip: {},\n    dataset: {\n        // 提供一份数据。\n        source: [\n            ['product', '2015', '2016', '2017'],\n            ['Matcha Latte', 43.3, 85.8, 93.7],\n            ['Milk Tea', 83.1, 73.4, 55.1],\n            ['Cheese Cocoa', 86.4, 65.2, 82.5],\n            ['Walnut Brownie', 72.4, 53.9, 39.1]\n        ]\n    },\n    // 声明一个 X 轴，类目轴（category）。默认情况下，类目轴对应到 dataset 第一列。\n    xAxis: {type: 'category'},\n    // 声明一个 Y 轴，数值轴。\n    yAxis: {},\n    // 声明多个 bar 系列，默认情况下，每个系列会自动对应到 dataset 的每一列。\n    series: [\n        {type: 'bar'},\n        {type: 'bar'},\n        {type: 'bar'}\n    ]\n}"
+    ]
+   },
+   {
+    "title": "ECharts 事件处理",
+    "url": "https://www.runoob.com/echarts/echarts-events.html",
+    "body": "ECharts 中我们可以通过监听用户的操作行为来回调对应的函数。\nECharts 通过 on 方法来监听用户的行为，例如监控用户的点击行为。\nECharts 中事件分为两种类型:\n用户鼠标操作点击，如 'click'、'dblclick'、'mousedown'、'mousemove'、'mouseup'、'mouseover'、'mouseout'、'globalout'、'contextmenu' 事件。\n还有一种是用户在使用可以交互的组件后触发的行为事件，例如在切换图例开关时触发的 'legendselectchanged' 事件），数据区域缩放时触发的 'datazoom' 事件等等。\nmyChart.on('click', function (params) {\n // 在用户点击后控制台打印数据的名称\n console.log(params);\n});\n\nmyChart.on('legendselectchanged', function (params) {\n console.log(params);\n});\n\nchart.on('click', 'series.line', function (params) {\n console.log(params);\n});\n\nchart.on('mouseover', {seriesIndex: 1, name: 'xx'}, function (params) {\n console.log(params);\n});\n鼠标事件\nECharts 支持的鼠标事件类型，包括 'click'、'dblclick'、'mousedown'、'mousemove'、'mouseup'、'mouseover'、'mouseout'、'globalout'、'contextmenu' 事件。\n以下实例在点击柱形图时会弹出对话框：\n实例\n尝试一下 »",
+    "examples": [
+     "// 基于准备好的dom，初始化ECharts实例\nvar myChart = echarts.init(document.getElementById('main'));\n\n// 指定图表的配置项和数据\nvar option = {\n    xAxis: {\n        data: [\"衬衫\",\"羊毛衫\",\"雪纺衫\",\"裤子\",\"高跟鞋\",\"袜子\"]\n    },\n    yAxis: {},\n    series: [{\n        name: '销量',\n        type: 'bar',\n        data: [5, 20, 36, 10, 10, 20]\n    }]\n};\n\n// 使用刚指定的配置项和数据显示图表。\nmyChart.setOption(option);\n// 处理点击事件并且弹出数据名称\nmyChart.on('click', function (params) {\n    alert(params.name);\n});"
+    ]
+   },
+   {
+    "title": "ECharts 安装",
+    "url": "https://www.runoob.com/echarts/echarts-install.html",
+    "body": "1、独立版本\n我们可以在直接下载 echarts.min.js 并用 <script> 标签引入。\necharts.min.js(4.7.0)\n另外，开发环境下可以使用源代码版本 echarts.js 并用 <script> 标签引入，源码版本包含了常见的错误提示和警告。\necharts.js(4.7.0)\n我们也可以在 ECharts 的官网上直接下载更多丰富的版本，包含了不同主题跟语言，下载地址：https://echarts.apache.org/zh/download.html。\n这些构建好的 echarts 提供了下面这几种定制：\n完全版：echarts/dist/echarts.js，体积最大，包含所有的图表和组件，所包含内容参见：echarts/echarts.all.js。\n常用版：echarts/dist/echarts.common.js，体积适中，包含常见的图表和组件，所包含内容参见：echarts/echarts.common.js。\n精简版：echarts/dist/echarts.simple.js，体积较小，仅包含最常用的图表和组件，所包含内容参见：echarts/echarts.simple.js。\n2、使用 CDN 方法\n以下推荐国外比较稳定的两个 CDN，国内还没发现哪一家比较好，目前还是建议下载到本地。\nStaticfile CDN（国内） : https://cdn.staticfile.net/echarts/4.3.0/echarts.min.js\njsDelivr：https://cdn.jsdelivr.net/npm/echarts@4.3.0/dist/echarts.min.js。\ncdnjs : https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts.min.js\nStaticfile CDN（国内）",
+    "examples": [
+     "<!-- 为ECharts准备一个具备大小（宽高）的Dom -->\n<div id=\"main\" style=\"width: 600px;height:400px;\"></div>"
+    ]
+   },
+   {
+    "title": "ECharts 交互组件",
+    "url": "https://www.runoob.com/echarts/echarts-interaction.html",
+    "body": "ECharts 提供了很多交互组件：例组件 legend、标题组件 title、视觉映射组件 visualMap、数据区域缩放组件 dataZoom、时间线组件 timeline。\n接下来的内容我们将介绍如何使用数据区域缩放组件 dataZoom。\ndataZoom\ndataZoom 组件可以实现通过鼠标滚轮滚动，放大缩小图表的功能。\n默认情况下 dataZoom 控制 x 轴，即对 x 轴进行数据窗口缩放和数据窗口平移操作。\n实例\n尝试一下 »",
+    "examples": [
+     "option = {\n    xAxis: {\n        type: 'value'\n    },\n    yAxis: {\n        type: 'value'\n    },\n    dataZoom: [\n        {   // 这个dataZoom组件，默认控制x轴。\n            type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件\n            start: 10,      // 左边在 10% 的位置。\n            end: 60         // 右边在 60% 的位置。\n        }\n    ],\n    series: [\n        {\n            type: 'scatter', // 这是个『散点图』\n            itemStyle: {\n                opacity: 0.8\n            },\n            symbolSize: function (val) {\n                return val[2] * 40;\n            },\n            data: [[\"14.616\",\"7.241\",\"0.896\"],[\"3.958\",\"5.701\",\"0.955\"],[\"2.768\",\"8.971\",\"0.669\"],[\"9.051\",\"9.710\",\"0.171\"],[\"14.046\",\"4.182\",\"0.536\"],[\"12.295\",\"1.429\",\"0.962\"],[\"4.417\",\"8.167\",\"0.113\"],[\"0.492\",\"4.771\",\"0.785\"],[\"7.632\",\"2.605\",\"0.645\"],[\"14.242\",\"5.042\",\"0.368\"]]\n        }\n    ]\n}"
+    ]
+   },
+   {
+    "title": "ECharts 响应式",
+    "url": "https://www.runoob.com/echarts/echarts-mediaqueries.html",
+    "body": "ECharts 图表显示在用户指定高宽的 DOM 节点（容器）中。\n有时候我们希望在 PC 和 移动设备上都能够很好的展示图表的内容，实现响应式的设计，为了解决这个问题，ECharts 完善了组件的定位设置，并且实现了类似 CSS Media Query 的自适应能力。\nECharts 组件的定位和布局\n大部分『组件』和『系列』会遵循两种定位方式。\nleft/right/top/bottom/width/height 定位方式\n这六个量中，每个量都可以是『绝对值』或者『百分比』或者『位置描述』。\n绝对值\n单位是浏览器像素（px），用 number 形式书写（不写单位）。例如 {left: 23, height: 400}。\n百分比\n表示占 DOM 容器高宽的百分之多少，用 string 形式书写。例如 {right: '30%', bottom: '40%'}。\n位置描述\n可以设置 left: 'center'，表示水平居中。\n可以设置 top: 'middle'，表示垂直居中。\n这六个量的概念，和 CSS 中六个量的概念类似：\nleft：距离 DOM 容器左边界的距离。\nright：距离 DOM 容器右边界的距离。\ntop：距离 DOM 容器上边界的距离。\nbottom：距离 DOM 容器下边界的距离。\nwidth：宽度。\nheight：高度。\n在横向，left、right、width 三个量中，只需两个量有值即可，因为任两个量可以决定组件的位置和大小，例如 left 和 right 或者 right 和 width 都可以决定组件的位置和大小。 纵向，top、bottom、height 三个量，和横向类同不赘述。\ncenter / radius 定位方式\ncenter\n是一个数组，表示 [x, y]，其中，x、y可以是『绝对值』或者『百分比』，含义和前述相同。\nradius\n是一个数组，表示 [内半径, 外半径]，其中，内外半径可以是『绝对值』或者『百分比』，含义和前述相同。\n在自适应容器大小时，百分比设置是很有用的。\n横向（horizontal）和纵向（vertical）\nECharts的『外观狭长』型的组件（如 legend、visualMap、dataZoom、timeline等），大多提供了『横向布局』『纵向布局』的选择。例如，在细长的移动端屏幕上，可能适合使用『纵向布局』；在PC宽屏上，可能适合使用『横向布局』。\n横纵向布局的设置，一般在『组件』或者『系列』的 orient 或者 layout 配置项上，设置为 'horizontal' 或者 'vertical'。\n实例\n以下实例中我们可以可尝试拖动右下角的圆点，图表会随着屏幕尺寸变化，legend 和 系列会自动改变布局位置和方式。\n实例中我们使用了 jQuery 来加载外部数据，使用时我们需要引入 jQuery 库。\n实例\n尝试一下 »",
+    "examples": [
+     "$.when(\n    $.getScript('https://www.runoob.com/static/js/timelineGDP.js'),\n    $.getScript('https://www.runoob.com/static/js/draggable.js')\n).done(function () {\n\n    draggable.init(\n        $('div[_echarts_instance_]')[0],\n        myChart,\n        {\n            width: 700,\n            height: 400,\n            throttle: 70\n        }\n    );\n\n    myChart.hideLoading();\n\n\n\n    option = {\n        baseOption: {\n            title : {\n                text: '南丁格尔玫瑰图',\n                subtext: '纯属虚构',\n                x:'center'\n            },\n            tooltip : {\n                trigger: 'item',\n                formatter: \"{a} <br/>{b} : {c} ({d}%)\"\n            },\n            legend: {\n                data:['rose1','rose2','rose3','rose4','rose5','rose6','rose7','rose8']\n            },\n            toolbox: {\n                show : true,\n                feature : {\n                    mark : {show: true},\n                    dataView : {show: true, readOnly: false},\n                    magicType : {\n                        show: true,\n                        type: ['pie', 'funnel']\n                    },\n                    restore : {show: true},\n                    saveAsImage : {show: true}\n                }\n            },\n            calculable : true,\n            series : [\n                {\n                    name:'半径模式',\n                    type:'pie',\n                    roseType : 'radius',\n                    label: {\n                        normal: {\n                            show: false\n                        },\n                        emphasis: {\n                            show: true\n                        }\n                    },\n                    lableLine: {\n                        normal: {\n                            show: false\n                        },\n                        emphasis: {\n                            show: true\n                        }\n                    },\n                    data:[\n                        {value:10, name:'rose1'},\n                        {value:5, name:'rose2'},\n                        {value:15, name:'rose3'},\n                        {value:25, name:'rose4'},\n                        {value:20, name:'rose5'},\n                        {value:35, name:'rose6'},\n                        {value:30, name:'rose7'},\n                        {value:40, name:'rose8'}\n                    ]\n                },\n                {\n                    name:'面积模式',\n                    type:'pie',\n                    roseType : 'area',\n                    data:[\n                        {value:10, name:'rose1'},\n                        {value:5, name:'rose2'},\n                        {value:15, name:'rose3'},\n                        {value:25, name:'rose4'},\n                        {value:20, name:'rose5'},\n                        {value:35, name:'rose6'},\n                        {value:30, name:'rose7'},\n                        {value:40, name:'rose8'}\n                    ]\n                }\n            ]\n        },\n        media: [\n            {\n                option: {\n                    legend: {\n                        right: 'center',\n                        bottom: 0,\n                        orient: 'horizontal'\n                    },\n                    series: [\n                        {\n                            radius: [20, '50%'],\n                            center: ['25%', '50%']\n                        },\n                        {\n                            radius: [30, '50%'],\n                            center: ['75%', '50%']\n                        }\n                    ]\n                }\n            },\n            {\n                query: {\n                    minAspectRatio: 1\n                },\n                option: {\n                    legend: {\n                        right: 'center',\n                        bottom: 0,\n                        orient: 'horizontal'\n                    },\n                    series: [\n                        {\n                            radius: [20, '50%'],\n                            center: ['25%', '50%']\n                        },\n                        {\n                            radius: [30, '50%'],\n                            center: ['75%', '50%']\n                        }\n                    ]\n                }\n            },\n            {\n                query: {\n                    maxAspectRatio: 1\n                },\n                option: {\n                    legend: {\n                        right: 'center',\n                        bottom: 0,\n                        orient: 'horizontal'\n                    },\n                    series: [\n                        {\n                            radius: [20, '50%'],\n                            center: ['50%', '30%']\n                        },\n                        {\n                            radius: [30, '50%'],\n                            center: ['50%', '70%']\n                        }\n                    ]\n                }\n            },\n            {\n                query: {\n                    maxWidth: 500\n                },\n                option: {\n                    legend: {\n                        right: 10,\n                        top: '15%',\n                        orient: 'vertical'\n                    },\n                    series: [\n                        {\n                            radius: [20, '50%'],\n                            center: ['50%', '30%']\n                        },\n                        {\n                            radius: [30, '50%'],\n                            center: ['50%', '75%']\n                        }\n                    ]\n                }\n            }\n        ]\n    };\n\n\n\n    myChart.setOption(option);\n\n});"
+    ]
+   },
+   {
+    "title": "ECharts 饼图",
+    "url": "https://www.runoob.com/echarts/echarts-pie.html",
+    "body": "前面的章节我们已经学会了使用 ECharts 绘制一个简单的柱状图，本章节我们将绘制饼图。\n饼图主要是通过扇形的弧度表现不同类目的数据在总和中的占比，它的数据格式比柱状图更简单，只有一维的数值，不需要给类目。因为不在直角坐标系上，所以也不需要 xAxis，yAxis。\n实例",
+    "examples": [
+     "myChart.setOption({\nseries : [\n{\nname: '访问来源',\n            type: 'pie',    // 设置图表类型为饼图\nradius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。\ndata:[ // 数据数组，name 为数据项名称，value 为数据项值\n{value:235, name:'视频广告'},\n                {value:274, name:'联盟广告'},\n                {value:310, name:'邮件营销'},\n                {value:335, name:'直接访问'},\n                {value:400, name:'搜索引擎'}\n]\n}\n]\n})"
+    ]
+   },
+   {
+    "title": "ECharts 配置语法",
+    "url": "https://www.runoob.com/echarts/echarts-setup.html",
+    "body": "本章节我们将为大家介绍使用 ECharts 生成图表的一些配置。\n第一步：创建 HTML 页面\n创建一个 HTML 页面，引入 echarts.min.js：\n<!DOCTYPE html>\n<html>\n<head>\n <meta charset=\"utf-8\">\n <!-- 引入 ECharts 文件 -->\n <script src=\"echarts.min.js\"></script>\n</head>\n</html>\n第二步: 为 ECharts 准备一个具备高宽的 DOM 容器\n实例中 id 为 main 的 div 用于包含 ECharts 绘制的图表:\n<body>\n <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->\n <div id=\"main\" style=\"width: 600px;height:400px;\"></div>\n</body>\n第三步: 设置配置信息\nECharts 库使用 json 格式来配置。\necharts.init(document.getElementById('main')).setOption(option);\n这里 option 表示使用 json 数据格式的配置来绘制图表。步骤如下：\n标题\n为图表配置标题：\ntitle: {\n text: '第一个 ECharts 实例'\n}\n提示信息\n配置提示信息：\ntooltip: {},\n图例组件\n图例组件展现了不同系列的标记(symbol)，颜色和名字。可以通过点击图例控制哪些系列不显示。\nlegend: {\n data: [{\n name: '系列1',\n // 强制设置图形为圆。\n icon: 'circle',\n // 设置文本为红色\n textStyle: {\n color: 'red'\n }\n }]\n}\nX 轴\n配置要在 X 轴显示的项:\nxAxis: {\n data: [\"衬衫\",\"羊毛衫\",\"雪纺衫\",\"裤子\",\"高跟鞋\",\"袜子\"]\n}\nY 轴\n配置要在 Y 轴显示的项。\nyAxis: {}\n系列列表\n每个系列通过 type 决定自己的图表类型:\nseries: [{\n name: '销量', // 系列名称\n type: 'bar', // 系列图表类型\n data: [5, 20, 36, 10, 10, 20] // 系列中的数据内容\n}]\n每个系列通过 type 决定自己的图表类型：\ntype: 'bar'：柱状/条形图\ntype: 'line'：折线/面积图\ntype: 'pie'：饼图\ntype: 'scatter'：散点（气泡）图\ntype: 'effectScatter'：带有涟漪特效动画的散点（气泡）\ntype: 'radar'：雷达图\ntype: 'tree'：树型图\ntype: 'treemap'：树型图\ntype: 'sunburst'：旭日图\ntype: 'boxplot'：箱形图\ntype: 'candlestick'：K线图\ntype: 'heatmap'：热力图\ntype: 'map'：地图\ntype: 'parallel'：平行坐标系的系列\ntype: 'lines'：线图\ntype: 'graph'：关系图\ntype: 'sankey'：桑基图\ntype: 'funnel'：漏斗图\ntype: 'gauge'：仪表盘\ntype: 'pictorialBar'：象形柱图\ntype: 'themeRiver'：主题河流\ntype: 'custom'：自定义系列\n实例\n以下为完整的实例：\n实例",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<title>第一个 ECharts 实例</title>\n<!-- 引入 echarts.js -->\n<script src=\"https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js\"></script>\n</head>\n<body>\n<!-- 为ECharts准备一个具备大小（宽高）的Dom -->\n<div id=\"main\" style=\"width: 600px;height:400px;\"></div>\n<script type=\"text/javascript\">\n        // 基于准备好的dom，初始化echarts实例\n        var myChart = echarts.init(document.getElementById('main'));\n \n        // 指定图表的配置项和数据\n        var option = {\n            title: {\n                text: '第一个 ECharts 实例'\n            },\n            tooltip: {},\n            legend: {\n                data:['销量']\n            },\n            xAxis: {\n                data: [\"衬衫\",\"羊毛衫\",\"雪纺衫\",\"裤子\",\"高跟鞋\",\"袜子\"]\n            },\n            yAxis: {},\n            series: [{\n                name: '销量',\n                type: 'bar',\n                data: [5, 20, 36, 10, 10, 20]\n            }]\n        };\n \n        // 使用刚指定的配置项和数据显示图表。\n        myChart.setOption(option);\n    </script>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "ECharts 样式设置",
+    "url": "https://www.runoob.com/echarts/echarts-style.html",
+    "body": "ECharts 可以通过样式设置来改变图形元素或者文字的颜色、明暗、大小等。\n颜色主题\nECharts4 开始，除了默认主题外，内置了两套主题，分别为 light 和 dark。\n使用方式如下：\n实例",
+    "examples": [
+     "var chart = echarts.init(dom, 'light');\n \n或者\n \nvar chart = echarts.init(dom, 'dark');"
+    ]
+   },
+   {
+    "title": "ECharts 旭日图",
+    "url": "https://www.runoob.com/echarts/echarts-sunburst.html",
+    "body": "旭日图（Sunburst）由多层的环形图组成，在数据结构上，内圈是外圈的父节点。因此，它既能像饼图一样表现局部和整体的占比，又能像矩形树图一样表现层级关系。\nECharts 创建旭日图很简单，只需要在 series 配置项中声明类型为 sunburst 即可，data 数据结构以树形结构声明，看下一个简单的实例：\n实例\n尝试一下 »",
+    "examples": [
+     "var option = {\n    series: {\n        type: 'sunburst',\n        data: [{\n            name: 'A',\n            value: 10,\n            children: [{\n                value: 3,\n                name: 'Aa'\n            }, {\n                value: 5,\n                name: 'Ab'\n            }]\n        }, {\n            name: 'B',\n            children: [{\n                name: 'Ba',\n                value: 4\n            }, {\n                name: 'Bb',\n                value: 2\n            }]\n        }, {\n            name: 'C',\n            value: 3\n        }]\n    }\n};"
+    ]
+   },
+   {
+    "title": "ECharts 教程",
+    "url": "https://www.runoob.com/echarts/echarts-tutorial.html",
+    "body": "ECharts 是一个使用 JavaScript 实现的开源可视化库，涵盖各行业图表，满足各种需求。\nECharts 提供了丰富的图表类型和交互能力，使用户能够通过简单的配置生成各种各样的图表，包括但不限于折线图、柱状图、散点图、饼图、雷达图、地图等。\nECharts 遵循 Apache-2.0 开源协议，免费商用。\nECharts 兼容当前绝大部分浏览器（IE8/9/10/11，Chrome，Firefox，Safari等）及兼容多种设备，可随时随地任性展示。",
+    "examples": []
+   },
+   {
+    "title": "ECharts 数据的视觉映射",
+    "url": "https://www.runoob.com/echarts/echarts-visualmap.html",
+    "body": "数据可视化简单来讲就是将数据用图表的形式来展示，专业的表达方式就是数据到视觉元素的映射过程。\nECharts 的每种图表本身就内置了这种映射过程，我们之前学习到的柱形图就是将数据映射到长度。\n此外，ECharts 还提供了 visualMap 组件 来提供通用的视觉映射。visualMap 组件中可以使用的视觉元素有：\n图形类别（symbol）\n图形大小（symbolSize）\n颜色（color）\n透明度（opacity）\n颜色透明度（colorAlpha）\n颜色明暗度（colorLightness）\n颜色饱和度（colorSaturation）\n色调（colorHue）\n数据和维度\nECharts 中的数据，一般存放于 series.data 中。\n不同的图表类型，数据格式有所不一样，但是他们的共同特点就都是数据项（dataItem） 的集合。每个数据项含有 数据值（value） 和其他信息（可选）。每个数据值，可以是单一的数值（一维）或者一个数组（多维）。\nseries.data 最常见的形式 是线性表，即一个普通数组：",
+    "examples": [
+     "series: {\n    data: [\n        {       // 这里每一个项就是数据项（dataItem）\n            value: 2323, // 这是数据项的数据值（value）\n            itemStyle: {...}\n        },\n        1212,   // 也可以直接是 dataItem 的 value，这更常见。\n        2323,   // 每个 value 都是『一维』的。\n        4343,\n        3434\n    ]\n}\nseries: {\n    data: [\n        {                        // 这里每一个项就是数据项（dataItem）\n            value: [3434, 129,  '圣马力诺'], // 这是数据项的数据值（value）\n            itemStyle: {...}\n        },\n        [1212, 5454, '梵蒂冈'],   // 也可以直接是 dataItem 的 value，这更常见。\n        [2323, 3223, '瑙鲁'],     // 每个 value 都是『三维』的，每列是一个维度。\n        [4343, 23,   '图瓦卢']    // 假如是『气泡图』，常见第一维度映射到x轴，\n                                 // 第二维度映射到y轴，\n                                 // 第三维度映射到气泡半径（symbolSize）\n    ]\n}"
+    ]
+   }
+  ]
+ }
+}

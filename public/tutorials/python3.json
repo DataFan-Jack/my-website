@@ -1,0 +1,652 @@
+{
+ "tutorial": {
+  "name": "Python 3",
+  "category": "后端开发",
+  "desc": "Python 的 3.0 版本，常被称为 Python 3000，或简称 Py3",
+  "url": "https://www.runoob.com/python3/",
+  "chapters": [
+   {
+    "title": "Python2.x 与 3​​.x 版本区别",
+    "url": "https://www.runoob.com/python3/python-2x-3x.html",
+    "body": "Python 的 3​​.0 版本，常被称为 Python 3000，或简称 Py3k。相对于 Python 的早期版本，这是一个较大的升级。\n为了不带入过多的累赘，Python 3.0 在设计的时候没有考虑向下相容。\n许多针对早期 Python 版本设计的程式都无法在 Python 3.0 上正常执行。\n为了照顾现有程式，Python 2.6 作为一个过渡版本，基本使用了 Python 2.x 的语法和库，同时考虑了向 Python 3.0 的迁移，允许使用部分 Python 3.0 的语法与函数。\n新的 Python 程式建议使用 Python 3.0 版本的语法。\n除非执行环境无法安装 Python 3.0 或者程式本身使用了不支援 Python 3.0 的第三方库。目前不支持 Python 3.0 的第三方库有 Twisted, py2exe, PIL等。\n大多数第三方库都正在努力地相容 Python 3.0 版本。即使无法立即使用 Python 3.0，也建议编写相容 Python 3.0 版本的程式，然后使用 Python 2.6, Python 2.7 来执行。\nPython 3.0 的变化主要在以下几个方面:\nprint 函数\nprint 语句没有了，取而代之的是 print() 函数。 Python 2.6 与 Python 2.7 部分地支持这种形式的 print 语法。在 Python 2.6 与Python 2.7 里面，以下三种形式是等价的：\nprint \"fish\"\nprint (\"fish\") # 注意print后面有个空格\nprint(\"fish\") # print()不能带有任何其它参数\n然而，Python 2.6 实际已经支持新的 print() 语法，实例如下：\nfrom __future__ import print_function\nprint(\"fish\", \"panda\", sep=', ')\n如果 Python2.x 版本想使用使用 Python3.x 的 print 函数，可以导入 __future__ 包，该包禁用 Python2.x 的 print 语句，采用 Python3.x 的 print 函数：\n实例",
+    "examples": [
+     ">>> list =[\"a\", \"b\", \"c\"]\n>>> print list    # python2.x 的 print 语句\n['a', 'b', 'c']\n>>> from __future__ import print_function  # 导入 __future__ 包\n>>> print list     # Python2.x 的 print 语句被禁用，使用报错\n  File \"<stdin>\", line 1\n    print list\n             ^\nSyntaxError: invalid syntax\n>>> print (list)   # 使用 Python3.x 的 print 函数\n['a', 'b', 'c']\n>>>"
+    ]
+   },
+   {
+    "title": "Python AI 绘画",
+    "url": "https://www.runoob.com/python3/python-ai-draw.html",
+    "body": "本文我们将为大家介绍如何基于一些开发 API 或开源的库来搭建一套自己的 AI 作图工具。\n通过文生图 API\n通过文生图 API，您可以基于文本描述创造出全新的原创图像。\n阿里云百炼提供两大系列模型：\n通义千问（Qwen-Image）: 擅长渲染复杂的中英文文本，本章节以这个为例。\n通义万相（Wan系列）: 用于生成写实图像和摄影级视觉效果。\n通过运行以下命令安装 DashScope Python SDK：\n# 如果运行失败，您可以将pip替换成pip3再运行\npip install -U requests dashscope\n我们需要开通阿里云百炼模型服务并获得 API-KEY。\n我们可以先使用阿里云主账号访问百炼模型服务平台：https://bailian.console.aliyun.com/，然后点击右上角登录，登录成功后点击右上角的齿轮⚙️图标，选择 API key，然后复制 API key，如果没有也可以创建 API key：\n开通阿里云百炼不会产生费用，仅模型调用（超出免费额度后）、模型部署、模型调优会产生相应计费。\n现在要使用 API，都需要按 token 来计费，还好都不贵，我们可以先购买个最便宜的包：阿里云百炼大模型服务平台。\n接下来我们通过设置提示词来生成图片：\n实例",
+    "examples": [
+     "from http import HTTPStatus\nfrom urllib.parse import urlparse, unquote\nfrom pathlib import PurePosixPath\nimport requests\nfrom dashscope import ImageSynthesis\nimport os\n\nprompt = \"一副典雅庄重的对联悬挂于厅堂之中，房间是个安静古典的中式布置，桌子上放着一些青花瓷，对联上左书\"义本生知人机同道善思新\"，右书\"通云赋智乾坤启数高志远\"， 横批\"智启通义\"，字体飘逸，中间挂在一着一副中国风的画作，内容是岳阳楼。\"\n\n# 请用百炼API Key\napi_key = \"sk-xxx\"\n\nprint('----同步调用，请等待任务执行----')\nrsp = ImageSynthesis.call(api_key=api_key,\n                          model=\"qwen-image\",\n                          prompt=prompt,\n                          n=1,\n                          size='1328*1328',\n                          prompt_extend=True,\n                          watermark=True)\nprint('response: %s' % rsp)\nif rsp.status_code == HTTPStatus.OK:\n    # 在当前目录下保存图片\n    for result in rsp.output.results:\n        file_name = PurePosixPath(unquote(urlparse(result.url).path)).parts[-1]\n        with open('./%s' % file_name, 'wb+') as f:\n            f.write(requests.get(result.url).content)\nelse:\n    print('同步调用失败, status_code: %s, code: %s, message: %s' %\n          (rsp.status_code, rsp.code, rsp.message))"
+    ]
+   },
+   {
+    "title": "Python asyncio 模块",
+    "url": "https://www.runoob.com/python3/python-asyncio.html",
+    "body": "asyncio 是 Python 标准库中的一个模块，用于编写异步 I/O 操作的代码。\nasyncio 提供了一种高效的方式来处理并发任务，特别适用于 I/O 密集型操作，如网络请求、文件读写等。\n通过使用 asyncio，你可以在单线程中同时处理多个任务，而无需使用多线程或多进程。\n为什么需要 asyncio？\n在传统的同步编程中，当一个任务需要等待 I/O 操作（如网络请求）完成时，程序会阻塞，直到操作完成。这会导致程序的效率低下，尤其是在需要处理大量 I/O 操作时。\nasyncio 通过引入异步编程模型，允许程序在等待 I/O 操作时继续执行其他任务，从而提高了程序的并发性和效率。\n想象一下你正在经营一家餐厅：\n同步模式（普通函数）： 你只有一个厨师。客人 A 点了一份牛排，厨师开始煎牛排（这需要等待 5 分钟）。在煎牛排的这 5 分钟里，厨师完全被占用，不能做任何其他事，即使客人 B 只想点一杯水，也必须干等着。\n异步模式（asyncio）： 你有多个厨师（实际上还是一个，但非常聪明）。厨师开始煎客人 A 的牛排后，发现需要等待，他立刻把这份牛排标记为等待中，然后转头去给客人 B 倒水。倒完水回来，看看牛排是不是快好了，如果还没好，又可以去处理客人 C 的订单。这样，在等待 I/O（如煎牛排、网络请求、读写文件）的时间里，厨师（CPU）一直在高效地工作。\nasyncio 就是 Python 用来实现这种聪明工作模式的标准库，它允许你编写 单线程并发 的代码，特别适用于网络爬虫、Web 服务器、微服务等 I/O 密集型场景。\n它的核心是 事件循环、协程 和 任务。\nasyncio 的核心概念\n1. 协程（Coroutine）\n协程是 asyncio 的核心概念之一。它是一个特殊的函数，可以在执行过程中暂停，并在稍后恢复执行。协程通过 async def 关键字定义，并通过 await 关键字暂停执行，等待异步操作完成。\n实例",
+    "examples": [
+     "import asyncio\n\nasync def say_hello():\n    print(\"Hello\")\n    await asyncio.sleep(1)\n    print(\"World\")"
+    ]
+   },
+   {
+    "title": "Python 推导式",
+    "url": "https://www.runoob.com/python3/python-comprehensions.html",
+    "body": "Python 推导式是一种独特的数据处理方式，可以从一个数据序列构建另一个新的数据序列的结构体。\nPython 推导式是一种强大且简洁的语法，适用于生成列表、字典、集合和生成器。\n在使用推导式时，需要注意可读性，尽量保持表达式简洁，以免影响代码的可读性和可维护性。\nPython 支持各种数据结构的推导式：\n列表(list)推导式\n字典(dict)推导式\n集合(set)推导式\n元组(tuple)推导式\n列表推导式\n列表推导式格式为：\n[表达式 for 变量 in 列表] \n[out_exp_res for out_exp in input_list]\n\n或者 \n\n[表达式 for 变量 in 列表 if 条件]\n[out_exp_res for out_exp in input_list if condition]\nout_exp_res：列表生成元素表达式，可以是有返回值的函数。\nfor out_exp in input_list：迭代 input_list 将 out_exp 传入到 out_exp_res 表达式中。\nif condition：条件语句，可以过滤列表中不符合条件的值。\n过滤掉长度小于或等于3的字符串列表，并将剩下的转换成大写字母：\n实例",
+    "examples": [
+     ">>> names = ['Bob','Tom','alice','Jerry','Wendy','Smith']\n>>> new_names = [name.upper()for name in names if len(name)>3]\n>>> print(new_names)\n['ALICE', 'JERRY', 'WENDY', 'SMITH']"
+    ]
+   },
+   {
+    "title": "Python csv 模块",
+    "url": "https://www.runoob.com/python3/python-csv.html",
+    "body": "CSV（Comma-Separated Values）文件是一种常见的文件格式，用于存储表格数据。\nCSV 文件由纯文本组成，每一行代表表格中的一行数据，而每一列则通过逗号（或其他分隔符）分隔。\nCSV 文件通常用于数据交换，因为它简单且易于处理。\nPython 提供了一个内置的 csv 模块，用于读取和写入 CSV 文件。这个模块简化了处理 CSV 文件的过程，使得开发者可以轻松地操作表格数据。\n1. 读取 CSV 文件\n要读取 CSV 文件，可以使用 csv.reader 对象。以下是一个简单的示例：\n实例",
+    "examples": [
+     "import csv\n\n# 打开 CSV 文件\nwith open('data.csv', mode='r', encoding='utf-8') as file:\n    # 创建 csv.reader 对象\n    csv_reader = csv.reader(file)\n    \n    # 逐行读取数据\n    for row in csv_reader:\n        print(row)"
+    ]
+   },
+   {
+    "title": "Python datetime 模块",
+    "url": "https://www.runoob.com/python3/python-datetime.html",
+    "body": "Python 的 datetime 模块是用于处理日期和时间的标准库模块。它提供了多种类和函数，可以帮助我们轻松地处理日期、时间、时间差等操作。无论是获取当前时间、格式化日期，还是计算时间差，datetime 模块都能胜任。\ndatetime 模块的核心类\ndatetime 模块中包含了以下几个核心类：\ndate 类 - date 类用于表示日期，包含年、月、日三个属性。\ntime 类 - time 类用于表示时间，包含时、分、秒、微秒等属性。\ndatetime 类 -datetime 类是 date 和 time 的结合体，可以同时表示日期和时间。\ntimedelta 类 - timedelta 类用于表示时间差，可以用于日期和时间的加减操作。\n使用 datetime 模块\n获取当前日期和时间\n我们可以使用 datetime 类的 now() 方法来获取当前的日期和时间。\n实例",
+    "examples": [
+     "from datetime import datetime\n\n# 获取当前日期和时间\nnow = datetime.now()\nprint(\"当前时间:\", now)"
+    ]
+   },
+   {
+    "title": "Python 装饰器",
+    "url": "https://www.runoob.com/python3/python-decorators.html",
+    "body": "装饰器（decorator）是 Python 中的一种高级功能，用于在不修改原函数代码的前提下，动态扩展函数或类的功能。\n本质上，装饰器是一个函数：它接收一个函数作为参数，并返回一个新的函数（通常是对原函数的增强版本）。\n装饰器通过 @decorator_name 语法应用在函数或方法定义之前。\nPython 还提供了一些内置装饰器，例如 @staticmethod 和 @classmethod。\n常见应用场景：\n日志记录：记录函数调用信息、参数和返回值\n性能统计：统计函数执行时间\n权限控制：限制函数访问权限\n缓存：缓存函数结果，提高性能\n基本语法\n装饰器的核心思想是：用一个函数\"包装\"另一个函数。\n语法",
+    "examples": [
+     "def decorator_function(original_function):\n    def wrapper(*args, **kwargs):\n        # 调用前\n        print(\"执行前\")\n\n        result = original_function(*args, **kwargs)\n\n        # 调用后\n        print(\"执行后\")\n\n        return result\n    return wrapper\n\n@decorator_function\ndef target_function():\n    print(\"原函数执行\")"
+    ]
+   },
+   {
+    "title": "Python hashlib 模块",
+    "url": "https://www.runoob.com/python3/python-hashlib.html",
+    "body": "Python hashlib 模块主要用于进行哈希（hash）操作。\n哈希（Hash）是一种将任意长度的输入数据映射为固定长度输出数据的算法。\n哈希通常用于验证数据的完整性、安全存储密码等场景。\n哈希函数的输出通常是一串看似随机的字母和数字。\nhashlib 模块提供了常见的哈希算法的实现，如 MD5、SHA-1、SHA-256 等。\n要使用 hashlib 函数必须先导入：\nimport hashlib\n查看 hashlib 模块中的内容:\n实例",
+    "examples": [
+     ">>> import hashlib\n>>> dir(hashlib)\n['__all__', '__block_openssl_constructor', '__builtin_constructor_cache', '__builtins__', '__cached__', '__doc__', '__file__', '__get_builtin_constructor', '__loader__', '__name__', '__package__', '__spec__', '_hashlib', 'algorithms_available', 'algorithms_guaranteed', 'blake2b', 'blake2s', 'md5', 'new', 'pbkdf2_hmac', 'scrypt', 'sha1', 'sha224', 'sha256', 'sha384', 'sha3_224', 'sha3_256', 'sha3_384', 'sha3_512', 'sha512', 'shake_128', 'shake_256']"
+    ]
+   },
+   {
+    "title": "Python lambda（匿名函数）",
+    "url": "https://www.runoob.com/python3/python-lambda.html",
+    "body": "Python 使用 lambda 来创建匿名函数。\nlambda 函数是一种小型、匿名的、内联函数，它可以具有任意数量的参数，但只能有一个表达式。\n匿名函数不需要使用 def 关键字定义完整函数。\nlambda 函数通常用于编写简单的、单行的函数，通常在需要函数作为参数传递的情况下使用，例如在 map()、filter()、reduce() 等函数中。\nlambda 函数特点：\nlambda 函数是匿名的，它们没有函数名称，只能通过赋值给变量或作为参数传递给其他函数来使用。\nlambda 函数通常只包含一行代码，这使得它们适用于编写简单的函数。\nlambda 语法格式：\nlambda arguments: expression\nlambda是 Python 的关键字，用于定义 lambda 函数。\narguments 是参数列表，可以包含零个或多个参数，但必须在冒号(:)前指定。\nexpression 是一个表达式，用于计算并返回函数的结果。\n以下的 lambda 函数没有参数：\n实例",
+    "examples": [
+     "f = lambda: \"Hello, world!\"\nprint(f()) # 输出: Hello, world!"
+    ]
+   },
+   {
+    "title": "Python logging 模块",
+    "url": "https://www.runoob.com/python3/python-logging.html",
+    "body": "在编程中，日志记录（logging）是一种非常重要的工具，它可以帮助我们跟踪程序的运行状态、调试错误以及记录重要信息。\nPython 提供了一个内置的 logging 模块，专门用于处理日志记录任务。与简单的 print 语句相比，logging 模块更加灵活和强大，能够满足不同场景下的日志需求。\n为什么使用 logging 模块？\n灵活性：logging 模块允许你根据需要设置日志的级别、格式和输出位置。\n可扩展性：你可以轻松地将日志输出到文件、控制台、网络等不同的目标。\n结构化日志：logging 模块支持结构化日志记录，便于后续的分析和处理。\n性能优化：与 print 相比，logging 模块在性能上进行了优化，适合在生产环境中使用。\nlogging 模块的基本用法\n1. 导入 logging 模块\n首先，我们需要导入 logging 模块：\n实例",
+    "examples": [
+     "import logging"
+    ]
+   },
+   {
+    "title": "Python Markdown 生成 HTML",
+    "url": "https://www.runoob.com/python3/python-markdown2html.html",
+    "body": "Markdown 是一种轻量级的标记语言，它允许你使用易读易写的纯文本格式来编写文档，然后将其转换为结构化的 HTML 文档。\nMarkdown 的语法简单直观，常用于编写博客、文档、README 文件等。\n更多 Markdown 内容参考：Markdown 教程Python 可以使用 markdown 模块将 Markdown 文本转换为 HTML。\n将 Markdown 转换为 HTML 的步骤\n1. 安装 markdown 库\n首先，我们需要安装 Python 的 markdown 库，可以使用 pip 来安装它：\npip install markdown\n2. 编写 Python 脚本\n以下是一个简单的实例，将 Markdown 文本转换为 HTML：\n实例",
+    "examples": [
+     "import markdown\n\n# 定义 Markdown 文本\nmd_text = \"\"\"\n# 这是标题\n这是 **加粗** 的文本。\n这是 *斜体* 的文本。\n\n- 列表项 1\n- 列表项 2\n\n[点击这里](https://www.runoob.com) 访问网站。\n\"\"\"\n\n# 转换为 HTML\nhtml_output = markdown.markdown(md_text)\n\n# 输出 HTML\nprint(html_output)"
+    ]
+   },
+   {
+    "title": "Python math 模块",
+    "url": "https://www.runoob.com/python3/python-math.html",
+    "body": "Python math 模块提供了大量常用数学函数，可用于完成：\n三角函数计算（sin / cos / tan）\n对数与指数运算（log / exp / pow）\n取整与舍入（ceil / floor / trunc）\n组合排列与阶乘（comb / perm / factorial）\n距离与几何计算（dist / hypot / sqrt）\n它是 Python 进行数学运算最常用的标准库之一。\n就需要借助 math 模块完成。\nmath 模块下的函数，返回值均为浮点数，除非另有明确说明。\n如果你需要计算复数，请使用 cmath 模块中的同名函数。\n要使用 math 函数必须先导入：\nimport math\n查看 math 模块中的内容:",
+    "examples": [
+     ">>> import math\n>>> dir(math)\n['__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'comb', 'copysign', 'cos', 'cosh', 'degrees', 'dist', 'e', 'erf', 'erfc', 'exp', 'expm1', 'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma', 'gcd', 'hypot', 'inf', 'isclose', 'isfinite', 'isinf', 'isnan', 'isqrt', 'lcm', 'ldexp', 'lgamma', 'log', 'log10', 'log1p', 'log2', 'modf', 'nan', 'nextafter', 'perm', 'pi', 'pow', 'prod', 'radians', 'remainder', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'tau', 'trunc', 'ulp']"
+    ]
+   },
+   {
+    "title": "Python MongoDB",
+    "url": "https://www.runoob.com/python3/python-mongodb.html",
+    "body": "MongoDB 是目前最流行的 NoSQL 数据库之一，使用的数据类型 BSON（类似 JSON）。\nMongoDB 数据库安装与介绍可以查看我们的 MongoDB 教程。\nPyMongo\nPython 要连接 MongoDB 需要 MongoDB 驱动，这里我们使用 PyMongo 驱动来连接。\npip 安装\npip 是一个通用的 Python 包管理工具，提供了对 Python 包的查找、下载、安装、卸载的功能。\n安装 pymongo:\n$ python3 -m pip3 install pymongo\n也可以指定安装的版本:\n$ python3 -m pip3 install pymongo==3.5.1\n更新 pymongo 命令：\n$ python3 -m pip3 install --upgrade pymongo\neasy_install 安装\n旧版的 Python 可以使用 easy_install 来安装，easy_install 也是 Python 包管理工具。\n$ python -m easy_install pymongo\n更新 pymongo 命令：\n$ python -m easy_install -U pymongo\n测试 PyMongo\n接下来我们可以创建一个测试文件 demo_test_mongodb.py，代码如下：\ndemo_test_mongodb.py 文件代码：",
+    "examples": [
+     "#!/usr/bin/python3\nimport pymongo"
+    ]
+   },
+   {
+    "title": "Python MySQL - mysql-connector 驱动",
+    "url": "https://www.runoob.com/python3/python-mysql-connector.html",
+    "body": "MySQL 是最流行的关系型数据库管理系统，如果你不熟悉 MySQL，可以阅读我们的 MySQL 教程。\n本章节我们为大家介绍使用 mysql-connector 来连接使用 MySQL， mysql-connector 是 MySQL 官方提供的驱动器。\n我们可以使用 pip 命令来安装 mysql-connector：\npython -m pip install mysql-connector\n使用以下代码测试 mysql-connector 是否安装成功：\ndemo_mysql_test.py:",
+    "examples": [
+     "import mysql.connector"
+    ]
+   },
+   {
+    "title": "Python OpenAI",
+    "url": "https://www.runoob.com/python3/python-openai.html",
+    "body": "openai 是一个强大的 Python 库，用于与 OpenAI 的一系列模型和服务进行交互。\nopenai 封装了所有 RESTful API 调用，让开发者能轻松地在自己的 Python 应用中集成强大的 AI 能力，例如自然语言处理、图像生成和语音识别等。\n主要功能：\n文本生成：使用 GPT-4 或 GPT-5 等模型生成文章、代码、摘要、对话等。\n图像生成：通过 DALL-E 模型根据文本描述创建图像。\n嵌入（Embeddings）：将文本转换成向量表示，常用于语义搜索、文本分类和聚类等任务。\n语音转文本：使用 Whisper 模型将音频文件转录成文本。\n微调（Fine-tuning）：通过提供自己的数据集来训练一个更具针对性的模型。\n助手（Assistants）API：构建能够理解上下文、调用工具并进行长期交互的复杂应用。\nopenai 开源地址：https://github.com/openai/openai-python\n如何使用？\n环境要求：\nPython 版本：3.9 及以上。\n依赖库：httpx（默认）、aiohttp（可选）、websockets（Realtime API 需）。\n首先，你需要用 pip 安装 openai 库：\npip install openai\n\n或\n\npip3 install openai\n然后需要去 OpenAI 官网 https://platform.openai.com/ 注册账号，并在 API 密钥页面生成一个 API Key。\n查看安装版本:\nimport openai\nprint(openai.__version__) # 输出当前 SDK 版本\n实例",
+    "examples": [
+     "import os\nfrom openai import OpenAI\n\nclient = OpenAI(\n    # This is the default and can be omitted\n    api_key=\"你申请的 API key\",\n)\n\nresponse = client.responses.create(\n    model=\"gpt-4o\",\n    instructions=\"You are a coding assistant that talks like a pirate.\",\n    input=\"How do I check if a Python object is an instance of a class?\",\n)\n\nprint(response.output_text)"
+    ]
+   },
+   {
+    "title": "Python3 operator 模块",
+    "url": "https://www.runoob.com/python3/python-operator.html",
+    "body": "Python2.x 版本中，使用 cmp() 函数来比较两个列表、数字或字符串等的大小关系。\nPython 3.X 的版本中已经没有 cmp() 函数，如果你需要实现比较功能，需要引入 operator 模块，适合任何对象，包含的方法有：\noperator 模块包含的方法",
+    "examples": [
+     "operator.lt(a, b)\noperator.le(a, b)\noperator.eq(a, b)\noperator.ne(a, b)\noperator.ge(a, b)\noperator.gt(a, b)\noperator.__lt__(a, b)\noperator.__le__(a, b)\noperator.__eq__(a, b)\noperator.__ne__(a, b)\noperator.__ge__(a, b)\noperator.__gt__(a, b)"
+    ]
+   },
+   {
+    "title": "Python Pickle 模块",
+    "url": "https://www.runoob.com/python3/python-pickle.html",
+    "body": "在 Python 开发中，我们经常需要把运行时的对象保存下来，或者在程序重启后恢复之前的状态，例如：\n将计算结果缓存到磁盘，避免重复计算\n保存用户配置、程序中间状态\n在不同 Python 进程之间传递复杂对象\npickle 模块正是 Python 为解决这类问题提供的官方内置方案。\nPython 的 pickle 模块是一个用于序列化和反序列化 Python 对象的标准库模块。\n在开始使用 Pickle 之前，需要理解两个核心概念：\n序列化（Pickling）：将 Python 对象转换为字节序列\n反序列化（Unpickling）：将字节序列转换回 Python 对象\npickle 模块可以将几乎所有的 Python 对象（如列表、字典、类实例等）保存到文件中，或者通过网络传输，然后在需要时重新加载。\n为什么使用 Pickle 模块？\n数据持久化：将 Python 对象保存到文件中，以便在程序关闭后仍然可以访问这些数据。\n数据传输：通过网络传输 Python 对象，例如在分布式系统中传递数据。\n快速存储和加载：pickle 模块可以高效地处理复杂的数据结构，适合需要快速存储和加载的场景。\nPickle 的典型使用场景\npickle 非常适合以下场景：\n本地数据持久化\n程序运行状态保存与恢复\n中间计算结果缓存\nPython 进程间通信（IPC）\n机器学习模型、特征数据的保存\n不适合的场景：\n跨语言数据交换\n前后端接口数据传输\n不可信数据源的反序列化\nPickle 支持哪些对象？\n1. 支持的对象类型\n类型\n是否支持\nint / float / bool / str\n支持\nlist / tuple / dict / set\n支持\nNone\n支持\n自定义类实例\n支持\n嵌套结构\n支持\n不支持或不推荐的对象\n打开的文件对象\nsocket、数据库连接\n操作系统资源\n依赖运行环境状态的对象\n导入模块\n使用 Pickle 模块非常简单，只需要导入即可：\nimport pickle\nPickle 模块的基本用法\n1. 序列化对象\n使用 pickle.dump() 方法可以将 Python 对象序列化并保存到文件中。\n实例",
+    "examples": [
+     "import pickle\n\n# 创建一个 Python 对象\ndata = {\n    'name': 'Alice',\n    'age': 25,\n    'hobbies': ['reading', 'traveling']\n}\n\n# 将对象序列化并保存到文件\nwith open('data.pkl', 'wb') as file:\n    pickle.dump(data, file)"
+    ]
+   },
+   {
+    "title": "Python PyCharm 安装使用",
+    "url": "https://www.runoob.com/python3/python-pycharm-usage.html",
+    "body": "PyCharm 是 JetBrains 出品的 Python 集成开发环境（IDE），拥有智能代码补全和图形化调试功能，支持 Windows /macOS/ Linux 全平台。。\nPyCharm 是一套写代码、跑程序、排错、管理项目、协作一体化工具，是目前行业最主流的 Python 开发工具。\n本章节我们将介绍 Python 和 PyCharm 的安装，并创建运行你的第一个 Python 程序。\n阶段\n内容\n1、安装 Python\n下载、安装、验证 Python 解释器\n2、安装 PyCharm\n下载并安装 PyCharm Community 版\n3、创建项目\n新建项目并创建 Python 文件\n4、编写运行代码\n编写 hello.py 并运行\n安装 Python\nPython 是运行 Python 程序所必需的解释器，PyCharm 依赖它来执行代码。\n安装 Python 分为三步：下载安装包、执行安装、验证安装结果。\n下载 Python\n打开浏览器，访问 Python 官方网站的下载页面：https://www.python.org/downloads/。\n网站通常会自动检测你的操作系统（Windows / macOS / Linux），点击页面上的黄色按钮即可下载最新版本。\n建议选择 Python 3.10 及以上版本，目前主流教程和第三方库对新版本支持较好，Python 2.x 已于 2020 年停止维护，不要再使用。\n安装 Python\n以下以 Windows 系统为例，macOS 和 Linux 用户参见对应说明。\nWindows 安装步骤：\n步骤\n操作\n说明\n1\n双击安装包\n运行下载好的 .exe 文件，例如 python-3.12.x-amd64.exe\n2\n勾选 PATH 选项\n关键一步：在安装界面底部勾选 Add python.exe to PATH，否则命令行可能找不到 Python\n3\n点击 Install Now\n等待安装进度条完成即可\nmacOS 用户：\n可以直接双击 .pkg 安装包按提示完成安装，也可以通过 Homebrew 包管理器安装：\nbrew install python3\n验证安装\n打开命令行工具（Windows 下使用命令提示符或 PowerShell，macOS 下使用终端），输入以下命令：\npython --version\n如果显示类似 Python 3.12.0 的版本号，说明安装成功。\n部分系统（尤其是 macOS/Linux）中系统自带的 python 命令指向 Python 2，此时需要输入 python3 --version 来检查新安装的 Python 3。\n安装 PyCharm\nPyCharm 由 JetBrains 公司开发，是目前最流行的 Python IDE 之一。\n它分为两个版本，初学者选择免费的社区版即可：\n版本\n费用\n适用人群\n主要功能\nProfessional（专业版）\n付费\n专业开发者\n支持 Web 开发、数据库工具、科学计算等全套功能\nCommunity（社区版）\n免费\n初学者 / 学生\n纯 Python 开发的核心功能，对初学者完全够用\n下载 PyCharm\n访问 JetBrains 官网的 PyCharm 下载页面：https://www.jetbrains.com/pycharm/download/。\n在页面中找到 Download 按钮，点击对应操作系统的下载按钮。\n安装 PyCharm\n不同操作系统的安装方式如下：\n操作系统\n安装方式\nWindows\n双击 .exe 安装包，一路点击「下一步」即可。建议勾选「创建桌面快捷方式」\nmacOS\n双击 .dmg 文件，将 PyCharm 图标拖入 Applications 文件夹\nLinux\n可解压 .tar.gz 后运行 bin/pycharm.sh，或通过 Snap 安装\nLinux Snap 安装命令：\nsudo snap install pycharm-community --classic\n安装完成后打开 PyCharm，首次启动会引导你选择 UI 主题和快捷键方案，保持默认设置或按个人喜好选择即可。\n安装 PyCharm\nWindows 系统\n双击下载的安装文件（.exe）。\n在安装向导中，选择安装路径，建议使用默认路径。\n勾选 创建桌面快捷方式（Creat Desktop Shortcut）以便快速启动 PyCharm。\n点击 安装（Install） 开始安装。\n安装完成后，点击 完成（Finish） 退出安装向导。\nmacOS 系统\n打开下载的 .dmg 文件。\n将 PyCharm 图标拖拽到 \"Applications\" 文件夹中。\n在 \"Applications\" 文件夹中找到 PyCharm，双击启动。\nLinux 系统\n解压下载的 .tar.gz 文件。\n\ntar -xzf pycharm-*.tar.gz\n进入解压后的目录，找到 bin 文件夹。\n\ncd pycharm-*/bin\n运行 pycharm.sh 启动 PyCharm。\n\n./pycharm.sh\n配置 PyCharm\n首次启动 PyCharm 时，会提示你进行一些初始配置，我们可以设置语言并同意协议：\n启动后，可以进行个人喜好的配置：\n选择主题：你可以选择 \"Darcula\"（深色）或 \"Light\"（浅色）主题。\n配置 Python 解释器：如果你已经安装了 Python，PyCharm 会自动检测并配置解释器。如果没有安装，你可以手动添加。\n安装插件：PyCharm 会推荐一些常用插件，你可以根据需要选择安装。\n创建第一个项目\nPyCharm 以项目（Project）为单位管理代码，一个项目对应一个文件夹，其中可以包含多个 Python 文件。\n新建项目\n打开 PyCharm 后，点击欢迎界面的 New Project（新建项目）按钮。\n在弹出的创建窗口中需要确认两项设置：\n设置项\n说明\n示例\nLocation（项目位置）\n项目文件夹的保存路径\nD:\\PythonProjects\\HelloWorld\nPython Interpreter（解释器）\nPython 解释器的路径，PyCharm 通常会自动检测\n如未自动识别，手动选择 python.exe 或 python3\n确认无误后，点击右下角的 Create（创建）按钮。\n项目路径中不要包含中文或空格，否则可能导致一些第三方工具运行异常。推荐使用全英文路径。\n新建 Python 文件\n项目创建完成后，在 PyCharm 主界面中按以下步骤创建 Python 文件：\n步骤\n操作\n1\n在左侧 Project（项目）面板中，右键点击项目根目录\n2\n选择 New → Python File\n3\n输入文件名（如 hello_runoob），回车确认\nPyCharm 会自动生成 hello_runoob.py 文件，并在右侧编辑区打开供你编写代码。\n编写并运行第一个程序\n文件创建好后，编写代码并运行它，看看 Python 程序的执行效果。\n编写代码\n在 hello_runoob.py 文件中输入以下代码：\n实例",
+    "examples": [
+     "# 文件：hello_runoob.py\n# 第一个 Python 程序：问候用户并与其互动\n\n# print() 函数用于在屏幕上输出文字\nprint(\"Hello, World!\")\n\n# input() 函数等待用户从键盘输入内容，返回值为字符串\n# 括号中的文字是显示给用户的提示信息\nname = input(\"请输入你的名字：\")\n\n# f-string（格式化字符串）可以在字符串中直接嵌入变量\n# 花括号 {} 中的变量会被替换为变量的值\nprint(f\"你好，{name}！欢迎学习 Python。\")"
+    ]
+   },
+   {
+    "title": "Python pyecharts 模块",
+    "url": "https://www.runoob.com/python3/python-pyecharts.html",
+    "body": "pyecharts 是一个基于 ECharts 的 Python 数据可视化库，它允许用户使用 Python 语言生成各种类型的交互式图表和数据可视化。\nECharts 是一个使用 JavaScript 实现的开源可视化库，而 Pyecharts 则是 ECharts 的 Python 封装，使得在 Python 中使用 ECharts 变得更加方便。\npyecharts 提供了一组简单而灵活的 API，使用户能够轻松地创建各种图表，包括但不限于折线图、柱状图、散点图、饼图、地图等。\n通过 pyecharts，用户可以使用 Python 语言处理和准备数据，然后使用简洁的代码生成交互式的图表，这些图表可以嵌入到 Web 应用程序中或保存为静态文件。\npyecharts 特点与功能：\n简单易用： Pyecharts 提供了直观而友好的 API，使得用户能够快速上手，轻松生成各种图表。\n丰富的图表类型： 支持多种常见的图表类型，包括线图、柱状图、散点图、饼图、地图等，满足不同场景的需求。\n支持主流数据格式： 能够处理常见的数据格式，如列表、字典、Pandas DataFrame 等。\n交互性： 生成的图表可以具有交互性，用户可以通过鼠标悬停、缩放等方式与图表进行互动。\n丰富的配置选项： 提供了丰富的配置选项，允许用户自定义图表的样式、布局等属性。\n支持主题： 提供多种主题，用户可以根据需要选择合适的主题，使图表更符合应用的整体风格。\npyecharts 安装\npip 安装：\npip install pyecharts\n源码安装：\n$ git clone https://github.com/pyecharts/pyecharts.git\n$ cd pyecharts\n$ pip install -r requirements.txt\n$ python setup.py install\n# 或者执行 python install.py\n安装成功后可以查看 pyecharts 版本：\nimport pyecharts\n\nprint(pyecharts.__version__)\n输出如下所示：\n2.0.4\npyecharts 图表类型\npyecharts 支持以下图表类型图表：\n图表类型\npyecharts 类\n包引入\n折线图\nLine\nfrom pyecharts.charts import Line\n柱状图\nBar\nfrom pyecharts.charts import Bar\n散点图\nScatter\nfrom pyecharts.charts import Scatter\n饼图\nPie\nfrom pyecharts.charts import Pie\n雷达图\nRadar\nfrom pyecharts.charts import Radar\n热力图\nHeatMap\nfrom pyecharts.charts import HeatMap\nK 线图\nKline\nfrom pyecharts.charts import Kline\n箱线图\nBoxplot\nfrom pyecharts.charts import Boxplot\n地图\nMap\nfrom pyecharts.charts import Map\n词云图\nWordCloud\nfrom pyecharts.charts import WordCloud\n仪表盘\nGauge\nfrom pyecharts.charts import Gauge\n漏斗图\nFunnel\nfrom pyecharts.charts import Funnel\n树图\nTree\nfrom pyecharts.charts import Tree\n平行坐标系图\nParallel\nfrom pyecharts.charts import Parallel\n桑基图\nSankey\nfrom pyecharts.charts import Sankey\n地理坐标系图\nGeo\nfrom pyecharts.charts import Geo\n时间线图\nTimeline\nfrom pyecharts.charts import Timeline\n3D 散点图\nScatter3D\nfrom pyecharts.charts import Scatter3D\n3D 柱状图\nBar3D\nfrom pyecharts.charts import Bar3D\n3D 曲面图\nSurface3D\nfrom pyecharts.charts import Surface3D\n创建第一个图表\n接下来我们使用 Pyecharts 创建了一个简单的柱状图，展示了五个月份的销售额:\n实例",
+    "examples": [
+     "from pyecharts.charts import Bar\n\n# 准备数据\nx_data = ['一月', '二月', '三月', '四月', '五月']\ny_data = [10, 20, 15, 25, 30]\n\n# 创建柱状图\nbar_chart = Bar()\nbar_chart.add_xaxis(x_data)\nbar_chart.add_yaxis(\"销售额\", y_data)\n\n# 也可以传入路径参数，如 bar_chart.render(\"bar_chart.html\")\nbar_chart.render()"
+    ]
+   },
+   {
+    "title": "Python PyQt",
+    "url": "https://www.runoob.com/python3/python-pyqt.html",
+    "body": "PyQt 是一个强大的 Python 库，用于创建图形用户界面（GUI），可以用来代替 Python 内置的 Tkinter。\nPyQt 是 Qt 框架的 Python 绑定，广泛应用于桌面应用程序开发。\nQt 是一个跨平台的 C++ 应用程序开发框架。\nPyQt 允许 Python 开发者利用 Qt 库创建功能强大的 GUI 应用程序。\nPyQt 有以下几个主要版本：\nPyQt4：基于 Qt4 的绑定\nPyQt5：基 于Qt5 的绑定\nPyQt6：基于 Qt6 的绑定（最新版本）\n安装 PyQt\n使用 pip 安装 PyQt5：\n# 安装PyQt5\npip install PyQt5\n\n# 安装Qt设计师和其他工具（可选）\npip install PyQt5-tools\n第一个 PyQt 程序\n创建简单窗口\n以下是一个最基本的 PyQt 程序，创建一个空白窗口：\n实例",
+    "examples": [
+     "from PyQt5.QtWidgets import QApplication, QWidget\n\n# 创建应用实例\napp = QApplication([])\n\n# 创建主窗口\nwindow = QWidget()\nwindow.setWindowTitle(\"我的第一个 PyQt 程序\")\nwindow.setGeometry(100, 100, 400, 300)  # (x, y, width, height)\n\n# 显示窗口\nwindow.show()\n\n# 运行应用\napp.exec_()"
+    ]
+   },
+   {
+    "title": "Python 量化",
+    "url": "https://www.runoob.com/python3/python-qt.html",
+    "body": "Python 量化是指利用 Python 编程语言以及相关的库和工具来进行金融市场数据分析、策略开发和交易执行的过程。\nPython 由于其简洁、易学、强大的生态系统和丰富的金融库而成为量化交易的首选编程语言之一。\n量化交易在金融领域得到广泛应用，它允许交易者通过系统性的方法来制定和执行交易策略，提高交易效率和决策的科学性。\n量化主要是通过数学和统计学的方法，利用计算机技术对金融市场进行量化分析，从而制定和执行交易策略。\n更多 Python 量化内容可以查看：Python 量化交易。\n实例应用\n接下来我们先看一个 Python 量化简单的应用实例，可以使用移动平均策略，使用雅虎金融数据来实现。\n该策略的基本思想是通过比较短期和长期移动平均线来生成买入和卖出信号。\n在进行这个简单实例前，需要先安装三个包：\npip install pandas yfinance matplotlib\n包说明：\nPandas 是一个功能强大的开源数据处理和分析库，专门设计用于高效地进行数据分析和操作。\nyfinance 是一个用于获取金融数据的库，支持从 Yahoo Finance 获取股票、指数和其他金融市场数据。\nMatplotlib 是一个二维绘图库，用于创建静态、动态和交互式的数据可视化图表。\n获取历史股票数据\n使用 yfinance 获取历史股票数据，以下是一个简单的实例：\n实例",
+    "examples": [
+     "import yfinance as yf\n\n# 获取股票数据\nsymbol = \"600519.SS\"\nstart_date = \"2022-01-01\"\nend_date = \"2023-01-01\"\n\ndata = yf.download(symbol, start=start_date, end=end_date)\nprint(data.head())"
+    ]
+   },
+   {
+    "title": "Python queue 模块",
+    "url": "https://www.runoob.com/python3/python-queue.html",
+    "body": "在 Python 中，queue 模块提供了一个线程安全的队列实现，用于在多线程编程中安全地传递数据。\n队列是一种先进先出（FIFO）的数据结构，queue 模块提供了多种队列类型，包括 Queue、LifoQueue 和 PriorityQueue，以满足不同的需求。\n队列类型\n1. Queue\nQueue 是 queue 模块中最常用的队列类型，它实现了标准的先进先出（FIFO）队列。以下是 Queue 的基本用法：\n实例",
+    "examples": [
+     "import queue\n\n# 创建一个队列\nq = queue.Queue()\n\n# 向队列中添加元素\nq.put(1)\nq.put(2)\nq.put(3)\n\n# 从队列中获取元素\nprint(q.get())  # 输出: 1\nprint(q.get())  # 输出: 2\nprint(q.get())  # 输出: 3"
+    ]
+   },
+   {
+    "title": "Python random 模块",
+    "url": "https://www.runoob.com/python3/python-random.html",
+    "body": "Python random 模块主要用于生成随机数。\nrandom 模块实现了各种分布的伪随机数生成器。\n要使用 random 函数必须先导入：\nimport random\n查看 random 模块中的内容:\n实例",
+    "examples": [
+     ">>> import random\n>>> dir(random)\n['BPF', 'LOG4', 'NV_MAGICCONST', 'RECIP_BPF', 'Random', 'SG_MAGICCONST', 'SystemRandom', 'TWOPI', '_Sequence', '_Set', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '_accumulate', '_acos', '_bisect', '_ceil', '_cos', '_e', '_exp', '_floor', '_inst', '_log', '_os', '_pi', '_random', '_repeat', '_sha512', '_sin', '_sqrt', '_test', '_test_generator', '_urandom', '_warn', 'betavariate', 'choice', 'choices', 'expovariate', 'gammavariate', 'gauss', 'getrandbits', 'getstate', 'lognormvariate', 'normalvariate', 'paretovariate', 'randbytes', 'randint', 'random', 'randrange', 'sample', 'seed', 'setstate', 'shuffle', 'triangular', 'uniform', 'vonmisesvariate', 'weibullvariate']"
+    ]
+   },
+   {
+    "title": "Python re 模块",
+    "url": "https://www.runoob.com/python3/python-re.html",
+    "body": "Python 的 re 模块是用于处理正则表达式的标准库模块。\n正则表达式（Regular Expression，简称 regex 或 regexp）是一种强大的工具，用于匹配、搜索和操作文本。\n通过 re 模块，你可以在 Python 中使用正则表达式来处理字符串。\n为什么使用 re 模块？\n在处理文本时，我们经常需要查找特定的模式或替换某些字符。例如，验证电子邮件地址、提取网页中的链接、或者格式化文本。手动编写代码来完成这些任务可能会非常繁琐，而正则表达式提供了一种简洁且高效的方式来解决这些问题。\nre 模块的基本用法\n1. 导入 re 模块\n在使用 re 模块之前，首先需要导入它：\nimport re\n2. 常用的 re 模块函数\n2.1 re.match()\nre.match() 函数用于从字符串的起始位置匹配正则表达式。如果匹配成功，返回一个匹配对象；否则返回 None。\n实例",
+    "examples": [
+     "import re\n\npattern = r\"hello\"\ntext = \"hello world\"\n\nmatch = re.match(pattern, text)\nif match:\n    print(\"匹配成功:\", match.group())\nelse:\n    print(\"匹配失败\")"
+    ]
+   },
+   {
+    "title": "Python requests 模块",
+    "url": "https://www.runoob.com/python3/python-requests.html",
+    "body": "Python requests 是一个常用的 HTTP 请求库，可以方便地向网站发送 HTTP 请求，并获取响应结果。\nrequests 模块比 urllib 模块更简洁。\n使用 requests 发送 HTTP 请求需要先导入 requests 模块：\nimport requests\n导入后就可以发送 HTTP 请求，使用 requests 提供的方法向指定 URL 发送 HTTP 请求，例如：\n实例",
+    "examples": [
+     "# 导入 requests 包\nimport requests\n\n# 发送请求\nx = requests.get('https://www.runoob.com/')\n\n# 返回网页内容\nprint(x.text)"
+    ]
+   },
+   {
+    "title": "Python Scrapy 库",
+    "url": "https://www.runoob.com/python3/python-scrapy.html",
+    "body": "Scrapy 是一个功能强大的 Python 爬虫框架，专门用于抓取网页数据并提取信息。\nScrapy常被用于数据挖掘、信息处理或存储历史数据等应用。\nScrapy 内置了许多有用的功能，如处理请求、跟踪状态、处理错误、处理请求频率限制等，非常适合进行高效、分布式的网页爬取。\n与简单的爬虫库（如 requests 和 BeautifulSoup）不同，Scrapy 是一个全功能的爬虫框架，具有高度的可扩展性和灵活性，适用于复杂和大规模的网页抓取任务。\nScrapy 官网：https://scrapy.org/。\nScrapy 特点与介绍：https://www.runoob.com/w3cnote/scrapy-detail.html。\nScrapy 架构图(绿线是数据流向):\nScrapy 的工作基于以下几个核心组件：\nSpider：爬虫类，用于定义如何从网页中提取数据以及如何跟踪网页的链接。\nItem：用来定义和存储抓取的数据。相当于数据模型。\nPipeline：用于处理抓取到的数据，常用于清洗、存储数据等操作。\nMiddleware：用来处理请求和响应，可以用于设置代理、处理 cookies、用户代理等。\nSettings：用来配置 Scrapy 项目的各项设置，如请求延迟、并发请求数等。\n安装 Scrapy\n在使用 Scrapy 之前，你需要先安装它，我们使用 pip 安装：\npip install scrapy\nScrapy 项目结构\nScrapy 项目是一个结构化的目录，其中包含多个文件夹和模块，旨在帮助你组织爬虫的代码。\nScrapy 使用命令行工具来创建和管理爬虫项目。你可以使用以下命令创建一个新的 Scrapy 项目：\nscrapy startproject myproject\n这将创建一个名为 myproject 的项目，项目结构大致如下：\nmyproject/\n scrapy.cfg # 项目的配置文件\n myproject/ # 项目源代码文件夹\n __init__.py\n items.py # 定义抓取的数据结构\n middlewares.py # 定义中间件\n pipelines.py # 定义数据处理管道\n settings.py # 项目的设置文件\n spiders/ # 存放爬虫代码的文件夹\n __init__.py\n myspider.py # 自定义的爬虫代码\n编写一个简单的 Scrapy 爬虫\n以下是一个基本的 Scrapy 爬虫示例，展示了如何从网页中抓取数据。\n我们创建一个爬虫项目：\nscrapy startproject runoob_test_spiders\n执行以上命令，如果成功会输出：\ntemplates/project', created in:/Users/Runoob/runoob-test/runoob_test_spiders\n\nYou can start your first spider with:\n cd runoob_test_spiders\n scrapy genspider example example.com\n生成的项目结构如下：\n然后进入该目录：\ncd runoob_test_spiders\n接下来通过 scrapy genspider 命令来创建一个爬虫：\nscrapy genspider douban_spider movie.douban.com\n目录结构如下：\nrunoob_test_spiders 目录下生成一个名为 douban_spider.py 的文件，代码如下：\n实例",
+    "examples": [
+     "import scrapy\n\n\nclass DoubanSpiderSpider(scrapy.Spider):\n    name = \"douban_spider\"\n    allowed_domains = [\"movie.douban.com\"]\n    start_urls = [\"https://movie.douban.com\"]\n\n    def parse(self, response):\n        pass"
+    ]
+   },
+   {
+    "title": "Python selenium 库",
+    "url": "https://www.runoob.com/python3/python-selenium.html",
+    "body": "Selenium 是一个用于自动化 Web 浏览器操作的强大工具，广泛应用于 Web 应用程序测试、网页数据抓取和任务自动化等场景。\nSelenium 为各种编程语言提供了 API，用作测试。 目前的官方 API 文档有 C#、JavaScript、Java、Python、Ruby。\nSelenium 教程：https://www.runoob.com/selenium/",
+    "examples": []
+   },
+   {
+    "title": "Python 爬虫 - BeautifulSoup",
+    "url": "https://www.runoob.com/python3/python-spider-beautifulsoup.html",
+    "body": "Python 爬虫（Web Scraping）是指通过编写 Python 程序从互联网上自动提取信息的过程。\n爬虫的基本流程通常包括发送 HTTP 请求获取网页内容、解析网页并提取数据，然后存储数据。\nPython 的丰富生态使其成为开发爬虫的热门语言，特别是由于其强大的库支持。\n一般来说，爬虫的流程可以分为以下几个步骤：\n发送 HTTP 请求：爬虫通过 HTTP 请求从目标网站获取 HTML 页面，常用的库包括 requests。\n解析 HTML 内容：获取 HTML 页面后，爬虫需要解析内容并提取数据，常用的库有 BeautifulSoup、lxml、Scrapy 等。\n提取数据：通过定位 HTML 元素（如标签、属性、类名等）来提取所需的数据。\n存储数据：将提取的数据存储到数据库、CSV 文件、JSON 文件等格式中，以便后续使用或分析。\n本章节主要介绍 BeautifulSoup，它是一个用于解析 HTML 和 XML 文档的 Python 库，能够从网页中提取数据，常用于网页抓取和数据挖掘。\nBeautifulSoup\nBeautifulSoup 是一个用于从网页中提取数据的 Python 库，特别适用于解析 HTML 和 XML 文件。\nBeautifulSoup 能够通过提供简单的 API 来提取和操作网页中的内容，非常适合用于网页抓取和数据提取的任务。\n安装 BeautifulSoup\n要使用 BeautifulSoup，需要安装 beautifulsoup4 和 lxml 或 html.parser（一个 HTML 解析器）。\n我们可以使用 pip 来安装这些依赖：\npip install beautifulsoup4\npip install lxml # 推荐使用 lxml 作为解析器（速度更快）\n如果你没有 lxml，可以使用 Python 内置的 html.parser 作为解析器。\n基本用法\nBeautifulSoup 用于解析 HTML 或 XML 数据，并提供了一些方法来导航、搜索和修改解析树。\nBeautifulSoup 常见的操作包括查找标签、获取标签属性、提取文本等。\n要使用 BeautifulSoup，需要先导入 BeautifulSoup，并将 HTML 页面加载到 BeautifulSoup 对象中。\n通常，你会先用爬虫库（如 requests）获取网页内容:\n实例",
+    "examples": [
+     "from bs4 import BeautifulSoup\nimport requests\n\n# 使用 requests 获取网页内容\nurl = 'https://cn.bing.com/' # 抓取bing搜索引擎的网页内容\nresponse = requests.get(url)\n\n# 使用 BeautifulSoup 解析网页\nsoup = BeautifulSoup(response.text, 'lxml')  # 使用 lxml 解析器\n# 解析网页内容 html.parser 解析器\n# soup = BeautifulSoup(response.text, 'html.parser')"
+    ]
+   },
+   {
+    "title": "Python statistics 模块",
+    "url": "https://www.runoob.com/python3/python-statistics.html",
+    "body": "在数据分析和科学计算中，统计学是一个非常重要的工具。\nPython 提供了一个内置的 statistics 模块，专门用于处理基本的统计计算。本文将详细介绍 statistics 模块的功能和使用方法，帮助初学者快速掌握如何使用这个模块进行基本的统计分析。\nstatistics 模块提供了许多常用的统计函数，如均值、中位数、方差、标准差等。\n要使用 statistics 函数必须先导入：\nimport statistics\n查看 statistics 模块中的内容:",
+    "examples": [
+     ">>> import statistics\n>>> dir(statistics)\n['Counter', 'Decimal', 'Fraction', 'NormalDist', 'StatisticsError', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '_coerce', '_convert', '_exact_ratio', '_fail_neg', '_find_lteq', '_find_rteq', '_isfinite', '_normal_dist_inv_cdf', '_ss', '_sum', 'bisect_left', 'bisect_right', 'erf', 'exp', 'fabs', 'fmean', 'fsum', 'geometric_mean', 'groupby', 'harmonic_mean', 'hypot', 'itemgetter', 'log', 'math', 'mean', 'median', 'median_grouped', 'median_high', 'median_low', 'mode', 'multimode', 'numbers', 'pstdev', 'pvariance', 'quantiles', 'random', 'sqrt', 'stdev', 'tau', 'variance']"
+    ]
+   },
+   {
+    "title": "Python StringIO 模块",
+    "url": "https://www.runoob.com/python3/python-stringio.html",
+    "body": "在 Python 中，StringIO 模块是一个非常有用的工具，它允许我们在内存中处理字符串，就像处理文件一样。通常情况下，我们处理文件时需要打开、读取、写入和关闭文件，而 StringIO 模块则提供了一种更灵活的方式，让我们可以在内存中完成这些操作，而不需要实际创建文件。\n为什么使用 StringIO 模块？\n内存效率：StringIO 模块在内存中操作字符串，避免了频繁的磁盘 I/O 操作，提高了程序的运行效率。\n灵活性：它允许我们像操作文件一样操作字符串，非常适合需要临时存储和处理字符串的场景。\n测试和调试：在编写测试代码时，StringIO 可以模拟文件对象，方便我们进行单元测试和调试。\n如何使用 StringIO 模块？\n导入 StringIO 模块\n在 Python 3 中，StringIO 模块位于 io 模块中，因此我们需要从 io 模块中导入它：\n实例",
+    "examples": [
+     "from io import StringIO"
+    ]
+   },
+   {
+    "title": "Python subprocess 模块",
+    "url": "https://www.runoob.com/python3/python-subprocess.html",
+    "body": "subprocess 是 Python 标准库中的一个模块，用于创建和管理子进程。\nsubprocess 允许你在 Python 程序中执行外部命令，并与这些命令进行交互。\n通过 subprocess 模块，你可以执行系统命令、调用其他程序，并获取它们的输出或错误信息。\n为什么使用 subprocess 模块？\n在 Python 中，有时我们需要执行一些系统命令或调用其他程序来完成特定的任务。例如，你可能需要运行一个 shell 命令、启动一个外部应用程序，或者与一个命令行工具进行交互。subprocess 模块提供了一种安全且灵活的方式来处理这些需求。\n与早期的 os.system() 或 os.popen() 相比，subprocess 模块提供了更强大的功能和更好的控制能力。它允许你更精细地管理子进程的输入、输出和错误流，并且可以处理更复杂的场景。\nsubprocess 模块的核心功能\n1. 执行外部命令\nsubprocess.run() 是 subprocess 模块中最常用的函数之一。它可以执行一个外部命令，并等待命令完成。以下是一个简单的示例：\n实例",
+    "examples": [
+     "import subprocess\n\n# 执行一个简单的 shell 命令\nresult = subprocess.run(['ls', '-l'], capture_output=True, text=True)\n\n# 打印命令的输出\nprint(result.stdout)"
+    ]
+   },
+   {
+    "title": "Python sys 模块",
+    "url": "https://www.runoob.com/python3/python-sys.html",
+    "body": "sys 是 Python 标准库中的一个模块，提供了与 Python 解释器及其环境交互的功能。\n通过 sys 库，你可以访问与 Python 解释器相关的变量和函数，例如命令行参数、标准输入输出、程序退出等。\n导入 sys 库\n在使用 sys 库之前，你需要先导入它。导入方式如下：\nimport sys\n实例",
+    "examples": [
+     "import sys\n\n# 列出 os 模块的所有属性和方法\nprint(dir(os))"
+    ]
+   },
+   {
+    "title": "Python threading 模块",
+    "url": "https://www.runoob.com/python3/python-treading.html",
+    "body": "Python 的 threading 模块是用于实现多线程编程的标准库之一。多线程允许程序在同一时间内执行多个任务，从而提高程序的效率和响应速度。\nthreading 模块提供了创建和管理线程的工具，使得开发者可以轻松地编写并发程序。\n什么是线程？\n你可以把线程想象成办公室里的员工：\n一个单线程程序就像只有一个员工，他必须顺序完成打印文档、回复邮件、泡咖啡等所有工作。\n多线程程序则像拥有多个员工，他们可以同时进行不同的任务，大大提高了工作效率。\n在计算机科学中：\n进程：一个运行中的程序，拥有独立的内存空间（例如，你同时打开的浏览器和音乐播放器就是两个进程）。\n线程：进程内的一个独立执行流，是 CPU 调度的基本单位。同一个进程内的所有线程共享该进程的内存空间（如全局变量）。\n为什么使用多线程？\n在单线程程序中，任务是一个接一个地顺序执行的。如果某个任务需要等待（例如等待网络响应或文件读取），整个程序会被阻塞，直到该任务完成。而多线程可以让程序在等待某个任务的同时，继续执行其他任务，从而提高程序的整体性能。\nPython 的线程与全局解释器锁 (GIL)\nPython 有一个叫做 全局解释器锁 (Global Interpreter Lock， GIL) 的机制，GIL 确保了在任意时刻，只有一个线程可以执行 Python 字节码。\n这意味着什么？ 对于 CPU 密集型任务（如科学计算、图像处理），由于 GIL 的存在，多线程通常无法利用多核优势来提升计算速度，甚至可能因为线程切换的开销而变慢。\n那么，Python 多线程的用武之地在哪里？ 对于 I/O 密集型任务（如网络请求、读写文件、等待用户输入），线程在等待 I/O 操作完成时会释放 GIL，从而让其他线程运行。这可以显著提升程序的整体响应速度和效率，因为你在等待一个网页响应时，程序可以去处理另一个任务。\n如何使用 threading 模块？\n使用 threading 模块的第一步就是导入它：\nimport threading\nimport time # 用于模拟耗时操作\n创建线程最基本的方式是使用 threading.Thread 类。\n语法说明：\nthread_obj = threading.Thread(target=函数名, args=(参数元组,))\ntarget: 指定线程启动后要执行的函数。\nargs: 传递给 target 函数的参数，必须是元组类型。如果只有一个参数，需要写成 (参数,) 的形式。\n1. 创建线程\n在 Python 中，可以通过继承 threading.Thread 类或直接使用 threading.Thread 构造函数来创建线程。\n方法 1：继承 threading.Thread 类\n实例",
+    "examples": [
+     "import threading\n\nclass MyThread(threading.Thread):\n    def run(self):\n        print(\"线程开始执行\")\n        # 在这里编写线程要执行的代码\n        print(\"线程执行结束\")\n\n# 创建线程实例\nthread = MyThread()\n# 启动线程\nthread.start()\n# 等待线程执行完毕\nthread.join()\nprint(\"主线程结束\")"
+    ]
+   },
+   {
+    "title": "Python 类型注解（Type Hints）",
+    "url": "https://www.runoob.com/python3/python-type-hints.html",
+    "body": "想象一下，你给朋友寄一个包裹。如果你在包裹上写明\"易碎品\"和\"向上箭头\"，快递员就会知道要小心轻放、正确朝向。类型注解（Type Hints） 在编程中就扮演着类似的角色——它是一种为代码添加\"说明标签\"的技术，明确地指出变量、函数参数和返回值应该是什么数据类型。\n简单来说，类型注解就是在代码中注明数据类型的语法，它的核心目的是：\n提高代码可读性：让他人（以及未来的你）一眼就能看懂代码的意图\n便于静态检查：在运行代码前，通过工具发现潜在的类型错误\n增强IDE支持：让代码编辑器提供更准确的自动补全和提示\n一个简单的例子：\n实例",
+    "examples": [
+     "# 没有类型注解\ndef greet(name):\n    return f\"Hello, {name}\"\n\n# 有类型注解\ndef greet(name: str) -> str:\n    return f\"Hello, {name}\""
+    ]
+   },
+   {
+    "title": "Python urllib",
+    "url": "https://www.runoob.com/python3/python-urllib.html",
+    "body": "Python urllib 库用于操作网页 URL，并对网页的内容进行抓取处理。\n本文主要介绍 Python3 的 urllib。\nurllib 包 包含以下几个模块：\nurllib.request - 打开和读取 URL。\nurllib.error - 包含 urllib.request 抛出的异常。\nurllib.parse - 解析 URL。\nurllib.robotparser - 解析 robots.txt 文件。\nurllib.request\nurllib.request 定义了一些打开 URL 的函数和类，包含授权验证、重定向、浏览器 cookies等。\nurllib.request 可以模拟浏览器的一个请求发起过程。\n我们可以使用 urllib.request 的 urlopen 方法来打开一个 URL，语法格式如下：\nurllib.request.urlopen(url, data=None, [timeout, ]*, cafile=None, capath=None, cadefault=False, context=None)\nurl：url 地址。\ndata：发送到服务器的其他数据对象，默认为 None。\ntimeout：设置访问超时时间。\ncafile 和 capath：cafile 为 CA 证书， capath 为 CA 证书的路径，使用 HTTPS 需要用到。\ncadefault：已经被弃用。\ncontext：ssl.SSLContext类型，用来指定 SSL 设置。\n实例如下：\n实例",
+    "examples": [
+     "from urllib.request import urlopen\n\nmyURL = urlopen(\"https://www.runoob.com/\")\nprint(myURL.read())"
+    ]
+   },
+   {
+    "title": "Python uWSGI 安装配置",
+    "url": "https://www.runoob.com/python3/python-uwsgi.html",
+    "body": "本文主要介绍如何部署简单的 WSGI 应用和常见的 Web 框架。\n以 Ubuntu/Debian 为例，先安装依赖包：\napt-get install build-essential python-dev\nPython 安装 uWSGI\n1、通过 pip 命令：\npip install uwsgi\n2、下载安装脚本：\ncurl http://uwsgi.it/install | bash -s default /tmp/uwsgi\n将 uWSGI 二进制安装到 /tmp/uwsgi ，你可以修改它。\n3、源代码安装：\nwget http://projects.unbit.it/downloads/uwsgi-latest.tar.gz\ntar zxvf uwsgi-latest.tar.gz\ncd uwsgi-latest\nmake\n安装完成后，在当前目录下，你会获得一个 uwsgi 二进制文件。\n第一个 WSGI 应用\n让我们从一个简单的 \"Hello World\" 开始，创建文件 foobar.py，代码如下：\ndef application(env, start_response):\n start_response('200 OK', [('Content-Type','text/html')])\n return [b\"Hello World\"]\nuWSGI Python 加载器将会搜索的默认函数 application 。\n接下来我们启动 uWSGI 来运行一个 HTTP 服务器，将程序部署在HTTP端口 9090 上：\nuwsgi --http :9090 --wsgi-file foobar.py\n添加并发和监控\n默认情况下，uWSGI 启动一个单一的进程和一个单一的线程。\n你可以用 --processes 选项添加更多的进程，或者使用 --threads 选项添加更多的线程 ，也可以两者同时使用。\nuwsgi --http :9090 --wsgi-file foobar.py --master --processes 4 --threads 2\n以上命令将会生成 4 个进程, 每个进程有 2 个线程。\n如果你要执行监控任务，可以使用 stats 子系统，监控的数据格式是 JSON：\nuwsgi --http :9090 --wsgi-file foobar.py --master --processes 4 --threads 2 --stats 127.0.0.1:9191\n我们可以安装 uwsgitop（类似 Linux top 命令） 来查看监控数据：\npip install uwsgitop\n结合 Web 服务器使用\n我们可以将 uWSGI 和 Nginx Web 服务器结合使用，实现更高的并发性能。\n一个常用的nginx配置如下：\nlocation / {\n include uwsgi_params;\n uwsgi_pass 127.0.0.1:3031;\n}\n以上代码表示使用 nginx 接收的 Web 请求传递给端口为 3031 的 uWSGI 服务来处理。\n现在，我们可以生成 uWSGI 来本地使用 uwsgi 协议：\nuwsgi --socket 127.0.0.1:3031 --wsgi-file foobar.py --master --processes 4 --threads 2 --stats 127.0.0.1:9191\n如果你的 Web 服务器使用 HTTP，那么你必须告诉 uWSGI 本地使用 http 协议 (这与会自己生成一个代理的–http不同):\nuwsgi --http-socket 127.0.0.1:3031 --wsgi-file foobar.py --master --processes 4 --threads 2 --stats 127.0.0.1:9191\n部署 Django\nDjango 是最常使用的 Python web 框架，假设 Django 项目位于 /home/foobar/myproject:\nuwsgi --socket 127.0.0.1:3031 --chdir /home/foobar/myproject/ --wsgi-file myproject/wsgi.py --master --processes 4 --threads 2 --stats 127.0.0.1:9191\n--chdir 用于指定项目路径。\n我们可以把以上的命令弄成一个 yourfile.ini 配置文件:\n[uwsgi]\nsocket = 127.0.0.1:3031\nchdir = /home/foobar/myproject/\nwsgi-file = myproject/wsgi.py\nprocesses = 4\nthreads = 2\nstats = 127.0.0.1:9191\n接下来你只需要执行以下命令即可：\nuwsgi yourfile.ini\n部署 Flask\nFlask 是一个流行的 Python web 框架。\n创建文件 myflaskapp.py ，代码如下：\nfrom flask import Flask\n\napp = Flask(__name__)\n\n@app.route('/')\ndef index():\n return \"<span style='color:red'>I am app 1</span>\"\n执行以下命令：\nuwsgi --socket 127.0.0.1:3031 --wsgi-file myflaskapp.py --callable app --processes 4 --threads 2 --stats 127.0.0.1:9191",
+    "examples": []
+   },
+   {
+    "title": "Python 虚拟环境的创建（venv）",
+    "url": "https://www.runoob.com/python3/python-venv.html",
+    "body": "虚拟环境是一个独立的 Python 运行空间，拥有自己的解释器、安装包和配置，与系统全局环境完全隔离。\nPython 虚拟环境（Virtual Environment）是一个独立的 Python 运行环境，它允许你在同一台机器上为不同的项目创建隔离的 Python 环境。\n不同项目可以在各自的虚拟环境中并行运行，互不干扰。\n每个虚拟环境都有自己的：\nPython 解释器\n安装的包/库\n环境变量\n全局安装（版本冲突）✓ 虚拟环境（完全隔离）全局 Python 环境site-packages（所有项目共享）项目 A需要 Django 3.2项目 B需要 Django 4.0版本冲突，无法共存项目 A.venv独立安装 Django 3.2项目 B.venv独立安装 Django 4.0",
+    "examples": []
+   },
+   {
+    "title": "Python VScode 配置",
+    "url": "https://www.runoob.com/python3/python-vscode-setup.html",
+    "body": "在上一章节中我们已经安装了 Python 的环境，本章节我们将介绍 Python VScode 的配置。\n准备工作：\n安装 VS Code\n安装 VS Code Python 扩展\n安装 Python 3\n安装 VS Code\nVSCode（全称：Visual Studio Code）是一款由微软开发且跨平台的免费源代码编辑器，VSCode 开发环境非常简单易用。\nVSCode 安装也很简单，打开官网 https://code.visualstudio.com/，下载软件包，一步步安装即可，安装过程注意安装路径设置、环境变量默认自动添加到系统中，勾选以下所有选项：\nVSCode 完整安装教程参考：https://www.runoob.com/vscode/vscode-tutorial.html\n接着我们安装 Python 扩展：\n创建一个 Python 代码文件\n打开 VScode，然后点击新建文件：\n点击选择语言：\n在搜索框输入 Python，选中 Python 选项：\n输入代码：\nprint(\"Runoob\")\n右击鼠标，选择在交互式窗口运行文件，如果有提示需要安装扩展，直接点安装即可(没有安装会一直显示在连接 Python 内核)：\n另外，我们也可以打开一个已存在的文件或目录（文件夹），比如我们打开一个 runoob-test，你也可以自己创建一个：\n然后我们创建一个 test.py 文件，点击下面新建文件图标，输入文件名 test.py：\n注：runoob-test 里面包含了一个 .vscode 文件夹，是一些配置信息，可以先不用管。\n在 test.py 输入以下代码：\nprint(\"Runoob\")\n点击右上角绿色图标，即可运行：\n可以右击文件，选择\"在终端中运行 Python 文件\"：\n当然也可以在代码窗口上右击鼠标，选择\"在终端中运行 Python 文件\"。\n更多相关工具",
+    "examples": []
+   },
+   {
+    "title": "Python3 运算符",
+    "url": "https://www.runoob.com/python3/python3-basic-operators.html",
+    "body": "什么是运算符？\n本章节主要说明 Python 的运算符。\n举个简单的例子:\n4 + 5 = 9\n例子中，4 和 5 被称为操作数，+ 称为运算符。\nPython 语言支持以下类型的运算符:\n算术运算符\n比较（关系）运算符\n赋值运算符\n逻辑运算符\n位运算符\n成员运算符\n身份运算符\n运算符优先级\n接下来让我们一个个来学习Python的运算符。\nPython算术运算符\n以下假设变量 a=10，变量 b=21：\n运算符\n描述\n实例\n+\n加 - 两个对象相加\na + b 输出结果 31\n-\n减 - 得到负数或是一个数减去另一个数\na - b 输出结果 -11\n*\n乘 - 两个数相乘或是返回一个被重复若干次的字符串\na * b 输出结果 210\n/\n除 - x 除以 y\nb / a 输出结果 2.1\n%\n取模 - 返回除法的余数\nb % a 输出结果 1\n**\n幂 - 返回x的y次幂\na**b 为10的21次方\n//\n取整除 - 往小的方向取整数\n>>> 9//2\n4\n>>> -9//2\n-5\n以下实例演示了Python所有算术运算符的操作：\n实例(Python 3.0+)",
+    "examples": [
+     "#!/usr/bin/python3\na = 21\nb = 10\nc = 0\nc = a + b\nprint (\"1 - c 的值为：\", c)\nc = a - b\nprint (\"2 - c 的值为：\", c)\nc = a * b\nprint (\"3 - c 的值为：\", c)\nc = a / b\nprint (\"4 - c 的值为：\", c)\nc = a % b\nprint (\"5 - c 的值为：\", c)\n# 修改变量 a 、b 、c\na = 2\nb = 3\nc = a**b\nprint (\"6 - c 的值为：\", c)\na = 10\nb = 5\nc = a//b\nprint (\"7 - c 的值为：\", c)"
+    ]
+   },
+   {
+    "title": "Python3 基础语法 编码",
+    "url": "https://www.runoob.com/python3/python3-basic-syntax.html",
+    "body": "默认情况下，Python3 源码文件以 UTF-8 编码，所有字符串都是 unicode 字符串。\n当然你也可以为源码文件指定不同的编码：\n# -*- coding: cp-1252 -*-\n上述定义允许在源文件中使用 Windows-1252 字符集中的字符编码，对应适合语言为保加利亚语、白俄罗斯语、马其顿语、俄语、塞尔维亚语。\n标识符\n第一个字符必须以字母（a-z, A-Z）或下划线 _ 。\n标识符的其他的部分由字母、数字和下划线组成。\n标识符对大小写敏感，count 和 Count 是不同的标识符。\n标识符对长度无硬性限制，但建议保持简洁（一般不超过 20 个字符）。\n禁止使用保留关键字，如 if、for、class 等不能作为标识符。\n合法标识符：\nage = 25 # 普通变量名，最常见\nuser_name = \"Alice\" # 用下划线连接单词，清晰易读\n_total = 100 # 下划线开头通常表示“内部使用”或“私有”\nMAX_SIZE = 1024 # 全大写通常表示“常量”（固定不变的值）\ncalculate_area() # 函数名，动词+名词\nStudentInfo # 类名，首字母大写（驼峰命名法）\n__private_var # 双下划线开头，有特殊含义\n非法标识符：\n2nd_place = \"silver\" # 错误：以数字开头\nuser-name = \"Bob\" # 错误：包含连字符\nclass = \"Math\" # 错误：使用关键字\n$price = 9.99 # 错误：包含特殊字符\nfor = \"loop\" # 错误：使用关键字\nPython 3 允许使用 Unicode 字符作为标识符，可以用中文作为变量名，非 ASCII 标识符也是允许的了。\n姓名 = \"张三\" # 合法\nπ = 3.14159 # 合法\n测试标识符是否合法：\n实例",
+    "examples": [
+     "def is_valid_identifier(name):\n    try:\n        exec(f\"{name} = None\")\n        return True\n    except:\n        return False\n\nprint(is_valid_identifier(\"2var\"))  # False\nprint(is_valid_identifier(\"var2\"))  # True"
+    ]
+   },
+   {
+    "title": "Python3 内置函数",
+    "url": "https://www.runoob.com/python3/python3-built-in-functions.html",
+    "body": "Python 提供了大量内置函数（Built-in Functions），无需导入任何库即可直接使用。\n这些函数覆盖了数据类型转换、数学计算、迭代操作、反射机制等常见场景，是每个 Python 初学者必须掌握的基础工具。\n为什么要掌握内置函数？\n减少代码量：一行顶多行（例如 sum()、max()）\n提升可读性：语义明确，比手写逻辑更清晰\n性能更优：底层 C 实现，通常比 Python 循环更快\n常见分类\n数值计算：abs()、round()、min()、max()、sum()\n类型转换：int()、float()、str()、list()、tuple()\n迭代与函数式：code>map()、filter()、zip()、enumerate()\n反射与对象：type()、isinstance()、getattr()、setattr()\n输入输出：print()、input()、open()\n常用函数示例\n# 求和\nsum([1, 2, 3]) # 6\n\n# 最大值\nmax([3, 6, 2]) # 6\n\n# 类型转换\nint(\"123\") # 123\n\n# 枚举\nfor i, v in enumerate(['a', 'b']):\n print(i, v)\n\n# map\nlist(map(lambda x: x * 2, [1,2,3])) # [2,4,6]\n函数速查表",
+    "examples": []
+   },
+   {
+    "title": "Python CGI编程",
+    "url": "https://www.runoob.com/python3/python3-cgi-programming.html",
+    "body": "什么是CGI\nCGI 目前由NCSA维护，NCSA定义CGI如下：\nCGI(Common Gateway Interface),通用网关接口,它是一段程序,运行在服务器上如：HTTP服务器，提供同客户端HTML页面的接口。\n网页浏览\n为了更好的了解CGI是如何工作的，我们可以从在网页上点击一个链接或URL的流程：\n1、使用你的浏览器访问URL并连接到HTTP web 服务器。\n2、Web服务器接收到请求信息后会解析URL，并查找访问的文件在服务器上是否存在。若存在，返回文件内容；若不存在，返回对应的错误提示。\n3、浏览器从服务器上接收信息，并显示接收的文件或者错误信息。\nCGI程序可以是Python脚本，PERL脚本，SHELL脚本，C或者C++程序等。\nCGI架构图\nWeb服务器支持及配置\n在你进行CGI编程前，确保您的Web服务器支持CGI及已经配置了CGI的处理程序。\nApache 支持CGI 配置：\n设置好CGI目录：\nScriptAlias /cgi-bin/ /var/www/cgi-bin/\n所有的HTTP服务器执行CGI程序都保存在一个预先配置的目录。这个目录被称为CGI目录，并按照惯例，它被命名为/var/www/cgi-bin目录。\nCGI文件的扩展名为.cgi，python也可以使用.py扩展名。\n默认情况下，Linux服务器配置运行的cgi-bin目录中为/var/www。\n如果你想指定其他运行CGI脚本的目录，可以修改httpd.conf配置文件，如下所示：\n<Directory \"/var/www/cgi-bin\">\n AllowOverride None\n Options +ExecCGI\n Order allow,deny\n Allow from all\n</Directory>\n在 AddHandler 中添加 .py 后缀，这样我们就可以访问 .py 结尾的 python 脚本文件：\nAddHandler cgi-script .cgi .pl .py\n第一个CGI程序\n我们使用Python创建第一个CGI程序，文件名为hello.py，文件位于/var/www/cgi-bin目录中，内容如下：\n实例",
+    "examples": [
+     "#!/usr/bin/python3\n\nprint (\"Content-type:text/html\")\nprint ()                             # 空行，告诉服务器结束头部\nprint ('<html>')\nprint ('<head>')\nprint ('<meta charset=\"utf-8\">')\nprint ('<title>Hello Word - 我的第一个 CGI 程序！</title>')\nprint ('</head>')\nprint ('<body>')\nprint ('<h2>Hello Word! 我是来自菜鸟教程的第一CGI程序</h2>')\nprint ('</body>')\nprint ('</html>')"
+    ]
+   },
+   {
+    "title": "Python3 面向对象",
+    "url": "https://www.runoob.com/python3/python3-class.html",
+    "body": "Python从设计之初就已经是一门面向对象的语言，正因为如此，在Python中创建一个类和对象是很容易的。本章节我们将详细介绍Python的面向对象编程。\n如果你以前没有接触过面向对象的编程语言，那你可能需要先了解一些面向对象语言的一些基本特征，在头脑里头形成一个基本的面向对象的概念，这样有助于你更容易的学习Python的面向对象编程。\n接下来我们先来简单的了解下面向对象的一些基本特征。",
+    "examples": []
+   },
+   {
+    "title": "Python3 注释",
+    "url": "https://www.runoob.com/python3/python3-comment.html",
+    "body": "在 Python 中，注释不会影响程序的执行，但是会使代码更易于阅读和理解。\nPython 中的注释有单行注释和多行注释。\n单行注释\nPython 中单行注释以 # 开头，# 符号后面的所有文本都被视为注释，不会被解释器执行。\n实例",
+    "examples": [
+     "# 这是一个注释\nprint(\"Hello, World!\")\n# 这也是注释"
+    ]
+   },
+   {
+    "title": "Python3 条件控制",
+    "url": "https://www.runoob.com/python3/python3-conditional-statements.html",
+    "body": "Python 条件语句是通过一条或多条语句的执行结果（True 或者 False）来决定执行的代码块。\n可以通过下图来简单了解条件语句的执行过程:\n代码执行过程：\n条件判断关键字\n关键字 / 函数\n说明\n示例\nif\n条件判断语句，当条件为 True 时执行代码块\nif x > 0:\nelif\n多条件判断分支（else if）\nelif x == 0:\nelse\n所有条件不满足时执行\nelse:\npass\n空语句，占位用，保证语法完整\nif x > 0: pass\nmatch\n结构化模式匹配（Python 3.10+，类似 switch）\nmatch x: case 1: ...\nif 语句\nPython中if语句的一般形式如下所示：",
+    "examples": [
+     "if condition_1:\n    statement_block_1\nelif condition_2:\n    statement_block_2\nelse:\n    statement_block_3"
+    ]
+   },
+   {
+    "title": "Python3 数据结构",
+    "url": "https://www.runoob.com/python3/python3-data-structure.html",
+    "body": "本章节我们主要结合前面所学的知识点来介绍Python数据结构。\n列表\nPython中列表是可变的，这是它区别于字符串和元组的最重要的特点，一句话概括即：列表可以修改，而字符串和元组不能。\n以下是 Python 中列表的方法：\n方法\n描述\nlist.append(x)\n把一个元素添加到列表的结尾，相当于 a[len(a):] = [x]。\nlist.extend(L)\n通过添加指定列表的所有元素来扩充列表，相当于 a[len(a):] = L。\nlist.insert(i, x)\n在指定位置插入一个元素。第一个参数是准备插入到其前面的那个元素的索引，例如 a.insert(0, x) 会插入到整个列表之前，而 a.insert(len(a), x) 相当于 a.append(x) 。\nlist.remove(x)\n删除列表中值为 x 的第一个元素。如果没有这样的元素，就会返回一个错误。\nlist.pop([i])\n从列表的指定位置移除元素，并将其返回。如果没有指定索引，a.pop()返回最后一个元素。元素随即从列表中被移除。（方法中 i 两边的方括号表示这个参数是可选的，而不是要求你输入一对方括号，你会经常在 Python 库参考手册中遇到这样的标记。）\nlist.clear()\n移除列表中的所有项，等于del a[:]。\nlist.index(x)\n返回列表中第一个值为 x 的元素的索引。如果没有匹配的元素就会返回一个错误。\nlist.count(x)\n返回 x 在列表中出现的次数。\nlist.sort()\n对列表中的元素进行排序。\nlist.reverse()\n倒排列表中的元素。\nlist.copy()\n返回列表的浅复制，等于a[:]。\n下面示例演示了列表的大部分方法：\n实例",
+    "examples": [
+     ">>> a = [66.25, 333, 333, 1, 1234.5]\n>>> print(a.count(333), a.count(66.25), a.count('x'))\n2 1 0\n>>> a.insert(2, -1)\n>>> a.append(333)\n>>> a\n[66.25, 333, -1, 333, 1, 1234.5, 333]\n>>> a.index(333)\n1\n>>> a.remove(333)\n>>> a\n[66.25, -1, 333, 1, 1234.5, 333]\n>>> a.reverse()\n>>> a\n[333, 1234.5, 1, 333, -1, 66.25]\n>>> a.sort()\n>>> a\n[-1, 1, 66.25, 333, 333, 1234.5]"
+    ]
+   },
+   {
+    "title": "Python3 基本数据类型",
+    "url": "https://www.runoob.com/python3/python3-data-type.html",
+    "body": "Python 中的变量不需要声明。每个变量在使用前都必须赋值，变量赋值以后该变量才会被创建。\n在 Python 中，变量就是变量，它没有类型，我们所说的类型是变量所指的内存中对象的类型。\n等号 = 用来给变量赋值。等号左边是变量名，右边是存储在变量中的值。例如：\n实例(Python 3.0+)\n运行实例 »",
+    "examples": [
+     "#!/usr/bin/python3\n\ncounter = 100          # 整型变量\nmiles   = 1000.0       # 浮点型变量\nname    = \"runoob\"     # 字符串\n\nprint(counter)\nprint(miles)\nprint(name)"
+    ]
+   },
+   {
+    "title": "Python3 日期和时间",
+    "url": "https://www.runoob.com/python3/python3-date-time.html",
+    "body": "Python 程序能用很多方式处理日期和时间，转换日期格式是一个常见的功能。\nPython 提供了一个 time 和 calendar 模块可以用于格式化日期和时间。\n时间间隔是以秒为单位的浮点小数。\n每个时间戳都以自从 1970 年 1 月 1 日午夜（历元）经过了多长时间来表示。\nPython 的 time 模块下有很多函数可以转换常见日期格式。如函数 time.time() 用于获取当前时间戳, 如下实例:\n实例",
+    "examples": [
+     "#!/usr/bin/python3\n\nimport time  # 引入time模块\n\nticks = time.time()\nprint (\"当前时间戳为:\", ticks)"
+    ]
+   },
+   {
+    "title": "Python3 字典",
+    "url": "https://www.runoob.com/python3/python3-dictionary.html",
+    "body": "字典是另一种可变容器模型，且可存储任意类型对象。\n字典的每个键值 key=>value 对用冒号 : 分割，每个对之间用逗号(,)分割，整个字典包括在花括号 {} 中 ,格式如下所示：\nd = {key1 : value1, key2 : value2, key3 : value3 }\n注意：dict 作为 Python 的关键字和内置函数，变量名不建议命名为 dict。\n键必须是唯一的，但值则不必。\n值可以取任何数据类型，但键必须是不可变的，如字符串，数字。\n一个简单的字典实例：\ntinydict = {'name': 'runoob', 'likes': 123, 'url': 'www.runoob.com'}\n也可如此创建字典：\ntinydict1 = { 'abc': 456 }\ntinydict2 = { 'abc': 123, 98.6: 37 }\n创建空字典\n使用大括号 { } 创建空字典：\n实例",
+    "examples": [
+     "# 使用大括号 {} 来创建空字典\nemptyDict = {}\n \n# 打印字典\nprint(emptyDict)\n \n# 查看字典的数量\nprint(\"Length:\", len(emptyDict))\n \n# 查看类型\nprint(type(emptyDict))"
+    ]
+   },
+   {
+    "title": "Python3 错误和异常",
+    "url": "https://www.runoob.com/python3/python3-errors-execptions.html",
+    "body": "作为 Python 初学者，在刚学习 Python 编程时，经常会看到一些报错信息，在前面我们没有提及，这章节我们会专门介绍。\nPython 有两种错误很容易辨认：语法错误和异常。\nPython assert（断言）用于判断一个表达式，在表达式条件为 false 的时候触发异常。\n语法错误\nPython 的语法错误或者称之为解析错，是初学者经常碰到的，如下实例",
+    "examples": [
+     ">>> while True print('Hello world')\n  File \"<stdin>\", line 1, in ?\n    while True print('Hello world')\n                   ^\nSyntaxError: invalid syntax"
+    ]
+   },
+   {
+    "title": "Python3 实例",
+    "url": "https://www.runoob.com/python3/python3-examples.html",
+    "body": "以下实例在 Python3.4.3 版本下测试通过：\nPython Hello World 实例\nPython 数字求和\nPython 平方根\nPython 二次方程\nPython 计算三角形的面积\nPython 计算圆的面积\nPython 随机数生成\nPython 摄氏温度转华氏温度\nPython 交换变量\nPython if 语句\nPython 判断字符串是否为数字\nPython 判断奇数偶数\nPython 判断闰年\nPython 获取最大值函数\nPython 质数判断\nPython 输出指定范围内的素数\nPython 阶乘实例\nPython 九九乘法表\nPython 斐波那契数列\nPython 阿姆斯特朗数\nPython 十进制转二进制、八进制、十六进制\nPython ASCII码与字符相互转换\nPython 最大公约数算法\nPython 最小公倍数算法\nPython 简单计算器实现\nPython 生成日历\nPython 使用递归斐波那契数列\nPython 文件 IO\nPython 字符串判断\nPython 字符串大小写转换\nPython 计算每个月天数\nPython 获取昨天日期\nPython list 常用操作\nPython 约瑟夫生者死者小游戏\nPython 五人分鱼\nPython 实现秒表功能\nPython 计算 n 个自然数的立方和\nPython 计算数组元素之和\nPython 数组翻转指定个数的元素\nPython 将列表中的头尾两个元素对调\nPython 将列表中的指定位置的两个元素对调\nPython 翻转列表\nPython 判断元素是否在列表中存在\nPython 清空列表\nPython 移除列表中重复的元素\nPython 复制列表\nPython 计算元素在列表中出现的次数\nPython 计算列表元素之和\nPython 计算列表元素之积\nPython 查找列表中最小元素\nPython 查找列表中最大元素\nPython 移除字符串中的指定位置字符\nPython 判断字符串是否存在子字符串\nPython 判断字符串长度\nPython 使用正则表达式提取字符串中的 URL\nPython 将字符串作为代码执行\nPython 字符串翻转\nPython 对字符串切片及翻转\nPython 按键(key)或值(value)对字典进行排序\nPython 计算字典值之和\nPython 移除字典点键值(key/value)对\nPython 合并字典\nPython 将字符串的时间转换为时间戳\nPython 获取几天前的时间\nPython 将时间戳转换为指定格式日期\nPython 打印自己设计的字体\nPython 二分查找\nPython 线性查找\nPython 插入排序\nPython 快速排序\nPython 选择排序\nPython 冒泡排序\nPython 归并排序\nPython 堆排序\nPython 计数排序\nPython 希尔排序\nPython 拓扑排序\nPython 简单的银行系统\nPython 删除字符串首尾的空格\nPython 按字母顺序对列表排序\nPython 简单的任务清单（to-do list）\n更多实例\n序号\n练习题",
+    "examples": []
+   },
+   {
+    "title": "Python3 File(文件) 方法",
+    "url": "https://www.runoob.com/python3/python3-file-methods.html",
+    "body": "open() 方法\nPython open() 方法用于打开一个文件，并返回文件对象。\n在对文件进行处理过程都需要使用到这个函数，如果该文件无法被打开，会抛出 OSError。\n注意：使用 open() 方法一定要保证关闭文件对象，即调用 close() 方法。\nopen() 函数常用形式是接收两个参数：文件名(file)和模式(mode)。\nopen(file, mode='r')\n完整的语法格式为：\nopen(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)\n参数说明:\nfile: 必需，文件路径（相对或者绝对路径）。\nmode: 可选，文件打开模式\nbuffering: 设置缓冲\nencoding: 一般使用utf8\nerrors: 报错级别\nnewline: 区分换行符\nclosefd: 传入的file参数类型\nopener: 设置自定义开启器，开启器的返回值必须是一个打开的文件描述符。\nmode 参数有：\n模式\n描述\nt\n文本模式 (默认)。\nx\n写模式，新建一个文件，如果该文件已存在则会报错。\nb\n二进制模式。\n+\n打开一个文件进行更新(可读可写)。\nU\n通用换行模式（Python 3 不支持）。\nr\n以只读方式打开文件。文件的指针将会放在文件的开头。这是默认模式。\nrb\n以二进制格式打开一个文件用于只读。文件指针将会放在文件的开头。这是默认模式。一般用于非文本文件如图片等。\nr+\n打开一个文件用于读写。文件指针将会放在文件的开头。\nrb+\n以二进制格式打开一个文件用于读写。文件指针将会放在文件的开头。一般用于非文本文件如图片等。\nw\n打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。\nwb\n以二进制格式打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等。\nw+\n打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。\nwb+\n以二进制格式打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等。\na\n打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。\nab\n以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。\na+\n打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。\nab+\n以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。如果该文件不存在，创建新文件用于读写。\n默认为文本模式，如果要以二进制模式打开，加上 b 。\nfile 对象\nfile 对象使用 open 函数来创建，下表列出了 file 对象常用的函数：\n序号\n方法及描述\n1\nfile.close()\n关闭文件。关闭后文件不能再进行读写操作。\n2\nfile.flush()\n刷新文件内部缓冲，直接把内部缓冲区的数据立刻写入文件, 而不是被动的等待输出缓冲区写入。\n3\nfile.fileno()\n返回一个整型的文件描述符(file descriptor FD 整型), 可以用在如os模块的read方法等一些底层操作上。\n4\nfile.isatty()\n如果文件连接到一个终端设备返回 True，否则返回 False。\n5\nfile.next()\nPython 3 中的 File 对象不支持 next() 方法。\n返回文件下一行。\n6\nfile.read([size])\n从文件读取指定的字节数，如果未给定或为负则读取所有。\n7\nfile.readline([size])\n读取整行，包括 \"\\n\" 字符。\n8\nfile.readlines([sizeint])\n读取所有行并返回列表，若给定sizeint>0，返回总和大约为sizeint字节的行, 实际读取值可能比 sizeint 较大, 因为需要填充缓冲区。\n9\nfile.seek(offset[, whence])\n移动文件读取指针到指定位置\n10\nfile.tell()\n返回文件当前位置。\n11\nfile.truncate([size])\n从文件的首行首字符开始截断，截断文件为 size\n 个字符，无 size 表示从当前位置截断；截断之后后面的所有字符被删除，其中 windows 系统下的换行代表2个字符大小。\n12\nfile.write(str)\n将字符串写入文件，返回的是写入的字符长度。\n13\nfile.writelines(sequence)\n向文件写入一个序列字符串列表，如果需要换行则要自己加入每行的换行符。",
+    "examples": []
+   },
+   {
+    "title": "Python for 循环",
+    "url": "https://www.runoob.com/python3/python3-for.html",
+    "body": "Python3 循环语句\nfor 是 Python 中最常用的循环语句，用于遍历可迭代对象（序列、字典、集合等）。\nPython 的 for 循环比 C/C++ 等语言更加简洁和强大，不需要手动管理循环变量，直接遍历元素。\n单词释义： for 意为\"为、对于\"，用于迭代遍历。\n基本语法与参数\n语法格式\nfor 变量 in 可迭代对象:\n 代码块\n语法说明\n变量： 每次循环从可迭代对象中取出的元素。\n可迭代对象： 列表、元组、字符串、字典、集合、range 等。\n缩进： 循环体必须缩进。\nelse 子句\n可选： for 循环可以有 else 子句。\n执行时机： 循环正常结束（未通过 break 退出）时执行。\n实例\n示例 1：遍历列表\n实例",
+    "examples": [
+     "# 遍历列表\nfruits = [\"苹果\", \"香蕉\", \"橙子\"]\n\nfor fruit in fruits:\n    print(fruit)\n\n# 带索引的遍历\nfor i, fruit in enumerate(fruits):\n    print(f\"{i}: {fruit}\")"
+    ]
+   },
+   {
+    "title": "Python3 函数",
+    "url": "https://www.runoob.com/python3/python3-function.html",
+    "body": "函数是组织好的，可重复使用的，用来实现单一，或相关联功能的代码段。\n函数能提高应用的模块性，和代码的重复利用率。你已经知道Python提供了许多内建函数，比如print()。但你也可以自己创建函数，这被叫做用户自定义函数。\n定义一个函数\n你可以定义一个由自己想要功能的函数，以下是简单的规则：\n函数代码块以 def 关键词开头，后接函数标识符名称和圆括号 ()。\n任何传入参数和自变量必须放在圆括号中间，圆括号之间可以用于定义参数。\n函数的第一行语句可以选择性地使用文档字符串—用于存放函数说明。\n函数内容以冒号 : 起始，并且缩进。\nreturn [表达式] 结束函数，选择性地返回一个值给调用方，不带表达式的 return 相当于返回 None。\n语法\nPython 定义函数使用 def 关键字，一般格式如下：\ndef 函数名（参数列表）:\n 函数体\n默认情况下，参数值和参数名称是按函数声明中定义的顺序匹配起来的。\n实例\n让我们使用函数来输出\"Hello World！\"：",
+    "examples": [
+     "#!/usr/bin/python3\n\ndef hello() :\n    print(\"Hello World!\")\n\nhello()"
+    ]
+   },
+   {
+    "title": "Python3 输入和输出",
+    "url": "https://www.runoob.com/python3/python3-inputoutput.html",
+    "body": "在前面几个章节中，我们其实已经接触了 Python 的输入输出的功能。本章节我们将具体介绍 Python 的输入输出。\n输出格式美化\nPython两种输出值的方式: 表达式语句和 print() 函数。\n第三种方式是使用文件对象的 write() 方法，标准输出文件可以用 sys.stdout 引用。\n如果你希望输出的形式更加多样，可以使用 str.format() 函数来格式化输出值。\n如果你希望将输出的值转成字符串，可以使用 repr() 或 str() 函数来实现。\nstr()： 函数返回一个用户易读的表达形式。\nrepr()： 产生一个解释器易读的表达形式。\n例如",
+    "examples": [
+     ">>> s = 'Hello, Runoob'\n>>> str(s)\n'Hello, Runoob'\n>>> repr(s)\n\"'Hello, Runoob'\"\n>>> str(1/7)\n'0.14285714285714285'\n>>> x = 10 * 3.25\n>>> y = 200 * 200\n>>> s = 'x 的值为： ' + repr(x) + ',  y 的值为：' + repr(y) + '...'\n>>> print(s)\nx 的值为： 32.5,  y 的值为：40000...\n>>> #  repr() 函数可以转义字符串中的特殊字符\n... hello = 'hello, runoob\\n'\n>>> hellos = repr(hello)\n>>> print(hellos)\n'hello, runoob\\n'\n>>> # repr() 的参数可以是 Python 的任何对象\n... repr((x, y, ('Google', 'Runoob')))\n\"(32.5, 40000, ('Google', 'Runoob'))\""
+    ]
+   },
+   {
+    "title": "Python3 环境搭建",
+    "url": "https://www.runoob.com/python3/python3-install.html",
+    "body": "Python3 具备出色的跨平台兼容性，可稳定运行在 Windows、Linux、Mac OS X 三大主流操作系统中，同时也支持众多其他平台与环境，包括：\nUnix 系列（Solaris、Linux、FreeBSD、AIX、HP/UX、SunOS、IRIX 等）\n传统Windows系统（9x/NT/2000）\n经典Macintosh系统（Intel、PPC、68K架构）\n其他专用/小众平台（OS/2、多版本DOS、PalmOS、Nokia移动手机、Windows CE、Acorn/RISC OS、BeOS、Amiga、VMS/OpenVMS、QNX、VxWorks、Psion）\n此外，Python 还可移植到 Java 及 .NET 虚拟机环境中运行。\nPython3 下载\nPython3 最新源码，二进制文档，新闻资讯等可以在 Python 的官网查看到。\nPython 官网：https://www.python.org/\nPython3 提供了完整的中文文档：https://docs.python.org/zh-cn/3/\nPython 安装\nPython 具备优秀的跨平台兼容性，已完成多操作系统的移植适配，可稳定运行在 Windows、macOS、Linux 等主流平台。\n我们可优先下载对应平台的二进制安装包，通过可视化向导或命令行快速完成安装，这是最便捷高效的安装方式。\n如果操作系统暂无对应的二进制安装包，可获取 Python 源代码，通过 C 编译器手动编译安装。\n相较于二进制包安装，源代码编译能提供更丰富的功能自定义选项，让 Python 环境配置更具灵活性。\n以下为各平台对应的 Python 安装包下载地址：\nSource Code 可用于 Linux 上的安装。\n以下为不同平台上安装 Python3 的方法。\nWindow 平台安装 Python:\n以下为在 Window 平台上安装 Python 的简单步骤。\n打开 WEB 浏览器访问 https://www.python.org/downloads/windows/ ：\n这些链接提供了不同类型的 Python 安装文件，适用于不同类型的 Windows 系统和使用情景：\nDownload Windows installer (64-bit)：64 位 Windows 系统的安装程序。\nDownload Windows installer (ARM64)：适用于 ARM64 架构的 Windows 设备的安装程序。\nDownload Windows embeddable package (64-bit)：64 位 Windows 系统的嵌入式包，可用于嵌入到应用程序中。\nDownload Windows embeddable package (32-bit)：32 位 Windows 系统的嵌入式包，同样可用于嵌入到应用程序中。\nDownload Windows embeddable package (ARM64)：适用于 ARM64 架构的 Windows 设备的嵌入式包。\nDownload Windows installer (32-bit)：32 位 Windows 系统的安装程序。\n记得勾选 Add Python 3.6 to PATH。\n注意：如果没有勾选 Add Python3.6 to PATH」，会导致命令行无法识别 python/python3 命令，需手动配置环境变量。\n按 Win+R 键，输入 cmd 调出命令提示符，输入 python:\n也可以在开始菜单中搜索 IDLE：\nUnix & Linux 平台安装 Python3\nLinux 多数发行版自带 Python3，若未安装或需要升级，可通过包管理器安装。\n源码安装\n以下为在 Unix & Linux 平台上安装 Python 的简单步骤：\n打开 WEB 浏览器访问 https://www.python.org/downloads/source/\n选择适用于 Unix/Linux 的源码压缩包。\n下载及解压压缩包 Python-3.x.x.tgz，3.x.x 为你下载的对应版本号。\n如果你需要自定义一些选项修改 Modules/Setup\n以 Python3.6.1 版本为例：\n# tar -zxvf Python-3.6.1.tgz\n# cd Python-3.6.1\n# ./configure\n# make && make install\nUbuntu/Debian\n打开终端，执行以下命令：\n# 更新软件源\nsudo apt update\n# 安装Python3及pip3（Python包管理工具）\nsudo apt install python3 python3-pip -y\nCentOS/RHEL\n打开终端，执行以下命令：\n# CentOS 7\nsudo yum install epel-release -y\nsudo yum install python3 python3-pip -y\n\n# CentOS 8/RHEL 8\nsudo dnf install python3 python3-pip -y\n检查 Python3 是否正常可用：\n# python3 -V\nPython 3.6.1\nMAC 平台安装 Python:\nMAC 系统都自带有 Python 环境，你可以在链接 https://www.python.org/downloads/mac-osx/ 上下载最新版安装。\n你也可以参考源码安装的方式来安装。\n验证 Python3 环境是否安装成功\n验证 Python3 版本打开命令提示符（Windows）或终端（macOS/Linux），执行以下命令：\n# 通用命令（推荐，所有系统兼容）\npython3 --version\n# 补充：Windows系统若已配置PATH，也可执行\npython --version\n若输出类似 Python 3.11.4 的信息，说明 Python3 安装成功。\n验证 pip3（Python 包管理工具）pip3 是 Python3 默认的包管理工具，用于安装第三方库，验证命令：\n# 通用命令\npip3 --version\n# Windows补充命令\npip --version\n若输出类似 pip 23.1.2 from xxx (python 3.11) 的信息，说明 pip3 可用。\n环境变量配置\n如果以上执行 python 命令执行成功，说明环境配置好了，不需要额外配置，这部分内容可以忽略。\n程序可执行文件的存放目录常不在系统默认搜索路径中，而系统的 PATH 环境变量（Unix 区分大小写，Windows 不区分）正是用于存储可执行文件的搜索路径。\nMac OS 中若需在非默认目录引用 Python，需手动将 Python 安装目录添加到 PATH 中。\n在 Unix/Linux 设置环境变量\n注：/usr/local/bin/python 为 Python 安装目录，需替换为你的实际路径。\nbash shell（Linux）：\nexport PATH=\"$PATH:/usr/local/bin/python\"\ncsh shell：\nsetenv PATH \"$PATH:/usr/local/bin/python\"\nsh/ksh shell：\nPATH=\"$PATH:/usr/local/bin/python\"\n在 Windows 设置环境变量\n若安装 Python3 时未勾选 Add Python.exe to PATH ，会导致命令行无法识别 python/python3 命令，需手动配置环境变量：\n找到 Python3 的安装路径（如D:\\Python311、C:\\Program Files\\Python311），同时找到其下的Scripts文件夹（路径如D:\\Python311\\Scripts，pip3 所在目录）。\n右键「此电脑」→「属性」→「高级系统设置」→「环境变量」。\n在「用户变量」或「系统变量」中找到 Path 变量，双击编辑。\n点击「新建」，分别添加 Python3 的安装根路径和Scripts文件夹路径，点击「确定」保存所有配置。\n更多详细配置内容参考：https://www.runoob.com/w3cnote/add-python-to-path-on-windows-11.html\n关闭原有命令提示符，重新打开后执行验证命令即可生效。\n下面几个应用于 Python 的环境变量说明：\n环境变量名称\n核心作用\nPATH\n系统查找 Python 解释器及可执行文件的搜索路径\nPYTHONPATH\nPython 查找第三方库和自定义模块的搜索路径\nPYTHONHOME\n指定 Python 的安装根目录，告知解释器核心库/标准库存放位置\nPYTHONSTARTUP\n指定 Python 交互式解释器启动时自动执行的脚本文件路径\nPYTHONCASEOK\nWindows 专属，让 Python 导入模块时忽略大小写\nPYTHONDONTWRITEBYTECODE\n禁止 Python 运行时生成 .pyc / .pyo 字节码缓存文件\n运行 Python\n有三种方式可以运行 Python：\n1、交互式解释器：\n你可以通过命令行窗口进入 Python 并开始在交互式解释器中开始编写 Python 代码。\n你可以在 Unix、DOS 或任何其他提供了命令行或者 shell 的系统进行 Python 编码工作。\npython\n以下为 Python 命令行参数：\n选项\n描述\n-d\n启用调试模式，在代码解析和解释器运行时显示详细调试信息\n-O\n生成优化代码，编译脚本时生成 .pyo 优化字节码文件（忽略断言语句等调试相关代码）\n-OO\n深度优化代码，生成 .pyo 文件并移除代码中的所有文档字符串，进一步减小文件体积\n-S\nPython 启动时不自动引入 site 模块，即不加载查找 Python 模块路径的相关配置（如 site-packages 目录）\n-V / --version\n输出当前安装的 Python 版本号，直接退出解释器\n-vv\n输出详细的版本信息（包括编译环境、依赖库等额外信息）\n-X\n从 Python 1.6 版本之后，基于内建的异常（仅用于字符串类型）的用法已过时，该参数用于兼容旧版相关特性\n-h / --help\n查看所有 Python 命令行参数的完整帮助说明，直接退出解释器\n-c cmd\n直接在命令行中执行指定的 Python 代码片段（cmd 为字符串格式的代码），无需编写 .py 脚本文件\n-m module\n以模块的形式运行指定的 Python 模块（如 pip、http.server 等），自动查找模块路径并执行\n-i\n执行完指定的 Python 脚本后，自动进入交互式解释器环境，便于后续调试和代码补充执行\n-b\n当遇到字节串（bytes）与字符串（str）不兼容的比较操作时，发出警告信息\n-bb\n当遇到字节串（bytes）与字符串（str）不兼容的比较操作时，直接抛出错误，终止程序运行\n-u\n禁用标准输出（stdout）和标准错误（stderr）的缓冲机制，实现日志或输出内容的实时打印\nfile\n指定要执行的 Python 脚本文件路径（绝对路径或相对路径），解释器将加载并运行该文件中的代码\n-q\n进入交互式解释器时，隐藏欢迎信息，直接显示命令提示符\n2、命令行脚本\n在你的应用程序中通过引入解释器可以在命令行中执行Python脚本，如下所示：\npython script.py\n注意：在执行脚本时，请检查脚本是否有可执行权限。\n3、集成开发环境（IDE：Integrated Development Environment）: PyCharm\nPyCharm 是由 JetBrains 打造的一款 Python IDE，支持 macOS、 Windows、 Linux 系统。\nPyCharm 功能 : 调试、语法高亮、Project管理、代码跳转、智能提示、自动完成、单元测试、版本控制……\nPyCharm 下载地址 : https://www.jetbrains.com/pycharm/download/\nPyCharm 安装地址：https://www.runoob.com/pycharm/pycharm-install.html\nPyCharm 界面：\n更多必备工具\nAnaconda 集成环境\n一个面向数据科学与机器学习的 Python 集成发行版，内置：\nPython 解释器\n常用数据科学库（NumPy / Pandas / Matplotlib 等）\n环境与包管理工具 conda\n相比 pip，conda 更适合多环境切换，在数据科学场景中更稳定。",
+    "examples": []
+   },
+   {
+    "title": "Python3 解释器",
+    "url": "https://www.runoob.com/python3/python3-interpreter.html",
+    "body": "Linux/Unix的系统上，一般默认的 python 版本为 2.x，我们可以将 python3.x 安装在 /usr/local/python3 目录中。\n安装完成后，我们可以将路径 /usr/local/python3/bin 添加到您的 Linux/Unix 操作系统的环境变量中，这样您就可以通过 shell 终端输入下面的命令来启动 Python3 。\n$ PATH=$PATH:/usr/local/python3/bin/python3 # 设置环境变量\n$ python3 --version\nPython 3.4.0\n在Window系统下你可以通过以下命令来设置Python的环境变量，假设你的Python安装在 C:\\Python34 下:\nset path=%path%;C:\\python34\n交互式编程\n我们可以在命令提示符中输入\"Python\"命令来启动Python解释器：\n$ python3\n执行以上命令后，出现如下窗口信息：\n$ python3\nPython 3.4.0 (default, Apr 11 2014, 13:05:11) \n[GCC 4.8.2] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>>\n在 python 提示符中输入以下语句，然后按回车键查看运行效果：\nprint (\"Hello, Python!\");\n以上命令执行结果如下：\nHello, Python!\n当键入一个多行结构时，续行是必须的。我们可以看下如下 if 语句：\n>>> flag = True\n>>> if flag :\n... print(\"flag 条件为 True!\")\n... \nflag 条件为 True!\n脚本式编程\n将如下代码拷贝至 hello.py文件中：\nprint (\"Hello, Python!\");\n通过以下命令执行该脚本：\npython3 hello.py\n输出结果为：\nHello, Python!\n在Linux/Unix系统中，你可以在脚本顶部添加以下命令让Python脚本可以像SHELL脚本一样可直接执行：\n#! /usr/bin/env python3\n然后修改脚本权限，使其有执行权限，命令如下：\n$ chmod +x hello.py\n执行以下命令：\n./hello.py\n输出结果为：\nHello, Python!",
+    "examples": []
+   },
+   {
+    "title": "Python3 简介",
+    "url": "https://www.runoob.com/python3/python3-intro.html",
+    "body": "Python 是一个高层次的结合了解释性、编译性、互动性和面向对象的脚本语言。\nPython 的设计具有很强的可读性，相比其他语言经常使用英文关键字，其他语言的一些标点符号，它具有比其他语言更有特色语法结构。",
+    "examples": []
+   },
+   {
+    "title": "Python3 迭代器与生成器",
+    "url": "https://www.runoob.com/python3/python3-iterator-generator.html",
+    "body": "迭代器\n迭代是 Python 最强大的功能之一，是访问集合元素的一种方式。\n迭代器是一个可以记住遍历的位置的对象。\n迭代器对象从集合的第一个元素开始访问，直到所有的元素被访问完结束。迭代器只能往前不会后退。\n迭代器有两个基本的方法：iter() 和 next()。\n字符串，列表或元组对象都可用于创建迭代器：\n实例(Python 3.0+)",
+    "examples": [
+     ">>> list=[1,2,3,4]\n>>> it = iter(list)    # 创建迭代器对象\n>>> print (next(it))   # 输出迭代器的下一个元素\n1\n>>> print (next(it))\n2\n>>>"
+    ]
+   },
+   {
+    "title": "Python3 JSON 数据解析",
+    "url": "https://www.runoob.com/python3/python3-json.html",
+    "body": "JSON (JavaScript Object Notation) 是一种轻量级的数据交换格式。\n如果你还不了解 JSON，可以先阅读我们的 JSON 教程。\nPython3 中可以使用 json 模块来对 JSON 数据进行编解码，它包含了两个函数：\njson.dumps(): 对数据进行编码。\njson.loads(): 对数据进行解码。\n在 json 的编解码过程中，Python 的原始类型与 json 类型会相互转换，具体的转化对照如下：\nPython 编码为 JSON 类型转换对应表：\nPython\nJSON\ndict\nobject\nlist, tuple\narray\nstr\nstring\nint, float, int- & float-derived Enums\nnumber\nTrue\ntrue\nFalse\nfalse\nNone\nnull\nJSON 解码为 Python 类型转换对应表：\nJSON\nPython\nobject\ndict\narray\nlist\nstring\nstr\nnumber (int)\nint\nnumber (real)\nfloat\ntrue\nTrue\nfalse\nFalse\nnull\nNone\njson.dumps 与 json.loads 实例\n以下实例演示了 Python 数据结构转换为JSON：\n实例(Python 3.0+)",
+    "examples": [
+     "#!/usr/bin/python3\nimport json\n# Python 字典类型转换为 JSON 对象\ndata = {\n    'no' : 1,\n    'name' : 'Runoob',\n    'url' : 'https://www.runoob.com'\n}\n \njson_str = json.dumps(data)\nprint (\"Python 原始数据：\", repr(data))\nprint (\"JSON 对象：\", json_str)"
+    ]
+   },
+   {
+    "title": "Python3 列表",
+    "url": "https://www.runoob.com/python3/python3-list.html",
+    "body": "序列是 Python 中最基本的数据结构。\n序列中的每个值都有对应的位置值，称之为索引，第一个索引是 0，第二个索引是 1，依此类推。\nPython 有 6 个序列的内置类型，但最常见的是列表和元组。\n列表都可以进行的操作包括索引，切片，加，乘，检查成员。\n此外，Python 已经内置确定序列的长度以及确定最大和最小的元素的方法。\n列表是最常用的 Python 数据类型，它可以作为一个方括号内的逗号分隔值出现。\n列表的数据项不需要具有相同的类型\n创建一个列表，只要把逗号分隔的不同的数据项使用方括号括起来即可。如下所示：",
+    "examples": [
+     "list1 = ['Google', 'Runoob', 1997, 2000]\nlist2 = [1, 2, 3, 4, 5 ]\nlist3 = [\"a\", \"b\", \"c\", \"d\"]\nlist4 = ['red', 'green', 'blue', 'yellow', 'white', 'black']"
+    ]
+   },
+   {
+    "title": "Python3 循环语句",
+    "url": "https://www.runoob.com/python3/python3-loop.html",
+    "body": "本章节将为大家介绍 Python \n循环语句的使用。\nPython 中的循环语句有 for 和 while。\nPython 循环语句的控制结构图如下所示：\n循环控制关键字与方法\n关键字 / 函数\n说明\n示例\nfor\n迭代循环，用于遍历序列或可迭代对象\nfor i in list:\nwhile\n条件循环，条件为 True 时持续执行\nwhile x > 0:\nbreak\n立即终止当前循环\nbreak\ncontinue\n跳过本次循环剩余代码，进入下一次迭代\ncontinue\nelse（循环）\n循环正常结束（未被 break）时执行\nfor i in range(3): ... else: ...\npass\n循环中的占位语句（空操作）\nfor i in range(5): pass\nrange()\n生成整数序列，常与 for 循环配合使用\nrange(0, 5)\nenumerate()\n遍历时同时获取索引和值\nfor i, v in enumerate(list):\nwhile 循环\nPython 中 while 语句的一般形式：\nwhile 判断条件(condition)：\n 执行语句(statements)……\n执行流程图如下：\n执行 Gif 演示：\n同样需要注意冒号和缩进。另外，在 Python 中没有 do..while 循环。\n以下实例使用了 while 来计算 1 到 100 的总和：\n实例",
+    "examples": [
+     "#!/usr/bin/env python3\nn = 100\nsum = 0\ncounter = 1\nwhile counter <= n:\n    sum = sum + counter\ncounter += 1\nprint(\"1 到 %d 之和为: %d\" % (n,sum))"
+    ]
+   },
+   {
+    "title": "Python3 模块",
+    "url": "https://www.runoob.com/python3/python3-module.html",
+    "body": "在前面的几个章节中我们基本上是用 python 解释器来编程，如果你从 Python 解释器退出再进入，那么你定义的所有的方法和变量就都消失了。\n为此 Python 提供了一个办法，把这些定义存放在文件中，为一些脚本或者交互式的解释器实例使用，这个文件被称为模块。\nPython 中的模块（Module）是一个包含 Python 定义和语句的文件，文件名就是模块名加上 .py 后缀。\n模块可以包含函数、类、变量以及可执行的代码。通过模块，我们可以将代码组织成可重用的单元，便于管理和维护。\n模块的作用\n代码复用：将常用的功能封装到模块中，可以在多个程序中重复使用。\n命名空间管理：模块可以避免命名冲突，不同模块中的同名函数或变量不会互相干扰。\n代码组织：将代码按功能划分到不同的模块中，使程序结构更清晰。\n下面是一个使用 python 标准库中模块的例子。\n实例(Python 3.0+)",
+    "examples": [
+     "#!/usr/bin/python3\n# 文件名: using_sys.py\nimport sys\nprint('命令行参数如下:')\nfor i in sys.argv:\n   print(i)\nprint('\\n\\nPython 路径为：', sys.path, '\\n')"
+    ]
+   },
+   {
+    "title": "Python3 多线程",
+    "url": "https://www.runoob.com/python3/python3-multithreading.html",
+    "body": "多线程类似于同时执行多个不同程序，多线程运行有如下优点：\n使用线程可以把占据长时间的程序中的任务放到后台去处理。\n用户界面可以更加吸引人，比如用户点击了一个按钮去触发某些事件的处理，可以弹出一个进度条来显示处理的进度。\n程序的运行速度可能加快。\n在一些等待的任务实现上如用户输入、文件读写和网络收发数据等，线程就比较有用了。在这种情况下我们可以释放一些珍贵的资源如内存占用等等。\n每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。\n每个线程都有他自己的一组CPU寄存器，称为线程的上下文，该上下文反映了线程上次运行该线程的CPU寄存器的状态。\n指令指针和堆栈指针寄存器是线程上下文中两个最重要的寄存器，线程总是在进程得到上下文中运行的，这些地址都用于标志拥有线程的进程地址空间中的内存。\n线程可以被抢占（中断）。\n在其他线程正在运行时，线程可以暂时搁置（也称为睡眠） -- 这就是线程的退让。\n线程可以分为:\n内核线程：由操作系统内核创建和撤销。\n用户线程：不需要内核支持而在用户程序中实现的线程。\nPython3 线程中常用的两个模块为：\n_thread\nthreading(推荐使用)\nthread 模块已被废弃。用户可以使用 threading 模块代替。所以，在 Python3 中不能再使用\"thread\" 模块。为了兼容性，Python3 将 thread 重命名为 \"_thread\"。\n开始学习Python线程\nPython中使用线程有两种方式：函数或者用类来包装线程对象。\n函数式：调用 _thread 模块中的start_new_thread()函数来产生新线程。语法如下:\n_thread.start_new_thread ( function, args[, kwargs] )\n参数说明:\nfunction - 线程函数。\nargs - 传递给线程函数的参数,他必须是个tuple类型。\nkwargs - 可选参数。\n实例",
+    "examples": [
+     "#!/usr/bin/python3\n\nimport _thread\nimport time\n\n# 为线程定义一个函数\ndef print_time( threadName, delay):\n   count = 0\n   while count < 5:\n      time.sleep(delay)\n      count += 1\n      print (\"%s: %s\" % ( threadName, time.ctime(time.time()) ))\n\n# 创建两个线程\ntry:\n   _thread.start_new_thread( print_time, (\"Thread-1\", 2, ) )\n   _thread.start_new_thread( print_time, (\"Thread-2\", 4, ) )\nexcept:\n   print (\"Error: 无法启动线程\")\n\nwhile 1:\n   pass"
+    ]
+   },
+   {
+    "title": "Python3 MySQL 数据库连接 - PyMySQL 驱动",
+    "url": "https://www.runoob.com/python3/python3-mysql.html",
+    "body": "本文我们为大家介绍 Python3 使用 PyMySQL 连接数据库，并实现简单的增删改查。\n什么是 PyMySQL？\nPyMySQL 是在 Python3.x 版本中用于连接 MySQL 服务器的一个库，Python2 中则使用 mysqldb。\nPyMySQL 遵循 Python 数据库 API v2.0 规范，并包含了 pure-Python MySQL 客户端库。\nPyMySQL 安装\n在使用 PyMySQL 之前，我们需要确保 PyMySQL 已安装。\nPyMySQL 下载地址：https://github.com/PyMySQL/PyMySQL。\n如果还未安装，我们可以使用以下命令安装最新版的 PyMySQL：\n$ pip3 install PyMySQL\n如果你的系统不支持 pip 命令，可以使用以下方式安装：\n1、使用 git 命令下载安装包安装(你也可以手动下载)：\n$ git clone https://github.com/PyMySQL/PyMySQL\n$ cd PyMySQL/\n$ python3 setup.py install\n2、如果需要制定版本号，可以使用 curl 命令来安装：\n$ # X.X 为 PyMySQL 的版本号\n$ curl -L https://github.com/PyMySQL/PyMySQL/tarball/pymysql-X.X | tar xz\n$ cd PyMySQL*\n$ python3 setup.py install\n$ # 现在你可以删除 PyMySQL* 目录\n注意：请确保您有root权限来安装上述模块。\n安装的过程中可能会出现\"ImportError: No module named setuptools\"的错误提示，意思是你没有安装setuptools，你可以访问https://pypi.python.org/pypi/setuptools 找到各个系统的安装方法。\nLinux 系统安装实例：\n$ wget https://bootstrap.pypa.io/ez_setup.py\n$ python3 ez_setup.py\n数据库连接\n连接数据库前，请先确认以下事项：\n您已经创建了数据库 TESTDB.\n在 TESTDB 数据库中您已经创建了表 EMPLOYEE\nEMPLOYEE 表字段为 FIRST_NAME, LAST_NAME, AGE, SEX 和 INCOME。\n连接数据库 TESTDB 使用的用户名为 \"testuser\"，密码为 \"test123\"，你可以可以自己设定或者直接使用 root 用户名及其密码，MySQL 数据库用户授权请使用 Grant 命令。\n在你的机子上已经安装了 Python pymysql 模块。\n如果您对 sql 语句不熟悉，可以访问我们的 SQL基础教程\n实例：\n以下实例链接 Mysql 的 TESTDB 数据库：\n实例(Python 3.0+)",
+    "examples": [
+     "#!/usr/bin/python3\nimport pymysql\n# 打开数据库连接\ndb = pymysql.connect(host='localhost',\n                     user='testuser',\n                     password='test123',\n                     database='TESTDB')\n# 使用 cursor() 方法创建一个游标对象 cursor\ncursor = db.cursor()\n# 使用 execute()  方法执行 SQL 查询 \ncursor.execute(\"SELECT VERSION()\")\n# 使用 fetchone() 方法获取单条数据.\ndata = cursor.fetchone()\nprint (\"Database version : %s \" % data)\n# 关闭数据库连接\ndb.close()"
+    ]
+   },
+   {
+    "title": "Python __name__ 与 __main__",
+    "url": "https://www.runoob.com/python3/python3-name-main.html",
+    "body": "平时我们经常会看到这样的 Python 代码：\nif __name__ == \"__main__\":\n main()\n在 Python 中，__name__ 和 __main__ 是两个与模块和脚本执行相关的特殊变量。\n__name__ 和 __main__ 通常用于控制代码的执行方式，尤其是在模块既可以作为独立脚本运行，也可以被其他模块导入时。\n1. __name__ 变量\n__name__ 是一个内置变量，用于表示当前模块的名称。\n__name__ 的值取决于模块是如何被使用的：\n当模块作为主程序运行时：__name__ 的值被设置为 \"__main__\"。\n当模块被导入时：__name__ 的值被设置为模块的文件名（不包括 .py 扩展名）。\n假设有一个 module.py 文件：\nprint(f\"模块的 __name__ 值: {__name__}\")\n输出会是：\n模块的 __name__ 值: __main__\n2. __main__ 的含义\n__main__ 是一个特殊的字符串，用于表示当前模块是作为主程序运行的。\n__main__ 通常与 __name__ 变量一起使用，以确定模块是被导入还是作为独立脚本运行。\n3. 使用 if __name__ == \"__main__\": 的常见模式\n在 Python 中，常见的做法是在模块的末尾添加以下代码块：\n实例",
+    "examples": [
+     "if __name__ == \"__main__\":\n    # 这里的代码只有在模块作为主程序运行时才会执行\n    main()"
+    ]
+   },
+   {
+    "title": "Python3 命名空间和作用域",
+    "url": "https://www.runoob.com/python3/python3-namespace-scope.html",
+    "body": "命名空间\n先看看官方文档的一段话：\nA namespace is a mapping from names to objects.Most namespaces are currently implemented as Python dictionaries。\n命名空间(Namespace)是从名称到对象的映射，大部分的命名空间都是通过 Python 字典来实现的。\n命名空间提供了在项目中避免名字冲突的一种方法。各个命名空间是独立的，没有任何关系的，所以一个命名空间中不能有重名，但不同的命名空间是可以重名而没有任何影响。\n我们举一个计算机系统中的例子，一个文件夹(目录)中可以包含多个文件夹，每个文件夹中不能有相同的文件名，但不同文件夹中的文件可以重名。\n一般有三种命名空间：\n内置名称（built-in names）， Python 语言内置的名称，比如函数名 abs、char 和异常名称 BaseException、Exception 等等。\n全局名称（global names），模块中定义的名称，记录了模块的变量，包括函数、类、其它导入的模块、模块级的变量和常量。\n局部名称（local names），函数中定义的名称，记录了函数的变量，包括函数的参数和局部定义的变量。（类中定义的也是）\n命名空间查找顺序:\n假设我们要使用变量 runoob，则 Python 的查找顺序为：局部的命名空间 -> 全局命名空间 -> 内置命名空间。\n如果找不到变量 runoob，它将放弃查找并引发一个 NameError 异常:\nNameError: name 'runoob' is not defined。\n命名空间的生命周期：\n命名空间的生命周期取决于对象的作用域，如果对象执行完成，则该命名空间的生命周期就结束。\n因此，我们无法从外部命名空间访问内部命名空间的对象。\n实例",
+    "examples": [
+     "# var1 是全局名称\nvar1 = 5\ndef some_func(): \n  \n    # var2 是局部名称\n    var2 = 6\n    def some_inner_func(): \n  \n        # var3 是内嵌的局部名称\n        var3 = 7"
+    ]
+   },
+   {
+    "title": "Python3 数字(Number)",
+    "url": "https://www.runoob.com/python3/python3-number.html",
+    "body": "Python 数字数据类型用于存储数值。\n数据类型是不允许改变的，这就意味着如果改变数字数据类型的值，将重新分配内存空间。\n以下实例在变量赋值时 Number 对象将被创建：\nvar1 = 1\nvar2 = 10\n您也可以使用del语句删除一些数字对象的引用。\ndel语句的语法是：\ndel var1[,var2[,var3[....,varN]]]\n您可以通过使用del语句删除单个或多个对象的引用，例如：\ndel var\ndel var_a, var_b\nPython 支持三种不同的数值类型：\n整型(int) - 通常被称为是整型或整数，是正或负整数，不带小数点。Python3 整型是没有限制大小的，可以当作 Long 类型使用，所以 Python3 没有 Python2 的 Long 类型。布尔(bool)是整型的子类型。\n浮点型(float) - 浮点型由整数部分与小数部分组成，浮点型也可以使用科学计数法表示（2.5e2 = 2.5 x 102 = 250）\n复数( (complex)) - 复数由实数部分和虚数部分构成，可以用a + bj,或者complex(a,b)表示， 复数的实部a和虚部b都是浮点型。\n我们可以使用十六进制和八进制来代表整数：\n>>> number = 0xA0F # 十六进制\n>>> number\n2575\n\n>>> number=0o37 # 八进制\n>>> number\n31\nint\nfloat\ncomplex\n10\n0.0\n3.14j\n100\n15.20\n45.j\n-786\n-21.9\n9.322e-36j\n080\n32.3e+18\n.876j\n-0490\n-90.\n-.6545+0J\n-0x260\n-32.54e100\n3e+26J\n0x69\n70.2E-12\n4.53e-7j\nPython支持复数，复数由实数部分和虚数部分构成，可以用a + bj,或者complex(a,b)表示，\n复数的实部a和虚部b都是浮点型。\nPython 数字类型转换\n有时候，我们需要对数据内置的类型进行转换，数据类型的转换，你只需要将数据类型作为函数名即可。\nint(x) 将x转换为一个整数。\nfloat(x) 将x转换到一个浮点数。\ncomplex(x) 将x转换到一个复数，实数部分为 x，虚数部分为 0。\ncomplex(x, y) 将 x 和 y 转换到一个复数，实数部分为 x，虚数部分为 y。x 和 y 是数字表达式。\n以下实例将浮点数变量 a 转换为整数：\n>>> a = 1.0\n>>> int(a)\n1\nPython 数字运算\nPython 解释器可以作为一个简单的计算器，您可以在解释器里输入一个表达式，它将输出表达式的值。\n表达式的语法很直白： +, -, * 和 /, 和其它语言（如Pascal或C）里一样。例如：\n>>> 2 + 2\n4\n>>> 50 - 5*6\n20\n>>> (50 - 5*6) / 4\n5.0\n>>> 8 / 5 # 总是返回一个浮点数\n1.6\n注意：在不同的机器上浮点运算的结果可能会不一样。\n在整数除法中，除法 / 总是返回一个浮点数，如果只想得到整数的结果，丢弃可能的分数部分，可以使用运算符 // ：\n>>> 17 / 3 # 整数除法返回浮点型\n5.666666666666667\n>>>\n>>> 17 // 3 # 整数除法返回向下取整后的结果\n5\n>>> 17 % 3 # ％操作符返回除法的余数\n2\n>>> 5 * 3 + 2 \n17\n注意：// 得到的并不一定是整数类型的数，它与分母分子的数据类型有关系。\n>>> 7//2\n3\n>>> 7.0//2\n3.0\n>>> 7//2.0\n3.0\n>>>\n等号 = 用于给变量赋值。赋值之后，除了下一个提示符，解释器不会显示任何结果。\n>>> width = 20\n>>> height = 5*9\n>>> width * height\n900\nPython 可以使用 ** 操作来进行幂运算：\n>>> 5 ** 2 # 5 的平方\n25\n>>> 2 ** 7 # 2的7次方\n128\n变量在使用前必须先\"定义\"（即赋予变量一个值），否则会出现错误：\n>>> n # 尝试访问一个未定义的变量\nTraceback (most recent call last):\n File \"<stdin>\", line 1, in <module>\nNameError: name 'n' is not defined\n不同类型的数混合运算时会将整数转换为浮点数：\n>>> 3 * 3.75 / 1.5\n7.5\n>>> 7.0 / 2\n3.5\n在交互模式中，最后被输出的表达式结果被赋值给变量 _ 。例如：\n>>> tax = 12.5 / 100\n>>> price = 100.50\n>>> price * tax\n12.5625\n>>> price + _\n113.0625\n>>> round(_, 2)\n113.06\n此处， _ 变量应被用户视为只读变量。\n数学函数\n函数\n返回值 ( 描述 )\nabs(x)\n返回数字的绝对值，如abs(-10) 返回 10\nceil(x)\n返回数字的上入整数，如math.ceil(4.1) 返回 5\ncmp(x, y)\n如果 x < y 返回 -1, 如果 x == y 返回 0, 如果 x > y 返回 1。 Python 3 已废弃，使用 (x>y)-(x<y) 替换。\nexp(x)\n返回e的x次幂(ex),如math.exp(1) 返回2.718281828459045\nfabs(x)\n以浮点数形式返回数字的绝对值，如math.fabs(-10) 返回10.0\nfloor(x)\n返回数字的下舍整数，如math.floor(4.9)返回 4\nlog(x)\n如math.log(math.e)返回1.0,math.log(100,10)返回2.0\nlog10(x)\n返回以10为基数的x的对数，如math.log10(100)返回 2.0\nmax(x1, x2,...)\n返回给定参数的最大值，参数可以为序列。\nmin(x1, x2,...)\n返回给定参数的最小值，参数可以为序列。\nmodf(x)\n返回x的整数部分与小数部分，两部分的数值符号与x相同，整数部分以浮点型表示。\npow(x, y)\nx**y 运算后的值。\nround(x [,n])\n返回浮点数 x 的四舍五入值，如给出 n 值，则代表舍入到小数点后的位数。\n其实准确的说是保留值将保留到离上一位更近的一端。\nsqrt(x)\n返回数字x的平方根。\n随机数函数\n随机数可以用于数学，游戏，安全等领域中，还经常被嵌入到算法中，用以提高算法效率，并提高程序的安全性。\nPython包含以下常用随机数函数：\n函数\n描述\nchoice(seq)\n从序列的元素中随机挑选一个元素，比如random.choice(range(10))，从0到9中随机挑选一个整数。\nrandrange ([start,] stop [,step])\n从指定范围内，按指定基数递增的集合中获取一个随机数，基数默认值为 1\nrandom()\n随机生成下一个实数，它在[0,1)范围内。\nseed([x])\n改变随机数生成器的种子seed。如果你不了解其原理，你不必特别去设定seed，Python会帮你选择seed。\nshuffle(lst)\n将序列的所有元素随机排序\nuniform(x, y)\n随机生成下一个实数，它在[x,y]范围内。\n三角函数\nPython包括以下三角函数：\n函数\n描述\nacos(x)\n返回x的反余弦弧度值。\nasin(x)\n返回x的反正弦弧度值。\natan(x)\n返回x的反正切弧度值。\natan2(y, x)\n返回给定的 X 及 Y 坐标值的反正切值。\ncos(x)\n返回x的弧度的余弦值。\nhypot(x, y)\n返回欧几里德范数 sqrt(x*x + y*y)。\nsin(x)\n返回的x弧度的正弦值。\ntan(x)\n返回x弧度的正切值。\ndegrees(x)\n将弧度转换为角度,如degrees(math.pi/2) ， 返回90.0\nradians(x)\n将角度转换为弧度\n数学常量\n常量\n描述\npi\n数学常量 pi（圆周率，一般以π来表示）\ne\n数学常量 e，e即自然常数（自然常数）。",
+    "examples": []
+   },
+   {
+    "title": "Python3 OS 文件/目录方法",
+    "url": "https://www.runoob.com/python3/python3-os-file-methods.html",
+    "body": "os 模块是 Python 标准库中的一个重要模块，它提供了与操作系统交互的功能。\n通过 os 模块，你可以执行文件操作、目录操作、环境变量管理、进程管理等任务。\nos 模块是跨平台的，这意味着你可以在不同的操作系统（如 Windows、Linux、macOS）上使用相同的代码。\n在使用 os 模块之前，你需要先导入它。导入 os 模块的代码如下：\nimport os\nos 模块的常用功能\n1. 获取当前工作目录\nos.getcwd() 函数用于获取当前工作目录的路径。当前工作目录是 Python 脚本执行时所在的目录。\n实例",
+    "examples": [
+     "current_directory = os.getcwd()\nprint(\"当前工作目录:\", current_directory)"
+    ]
+   },
+   {
+    "title": "Python3 pip",
+    "url": "https://www.runoob.com/python3/python3-pip.html",
+    "body": "pip 是 Python 包管理工具，该工具提供了对 Python 包的查找、下载、安装、卸载的功能。\n软件包也可以在 https://pypi.org/ 中找到。\n目前最新的 Python 版本已经预装了 pip。\n注意：Python 2.7.9 + 或 Python 3.4+ 以上版本都自带 pip 工具。\n如果没有安装可以参考：Python pip 安装与使用。\n查看是否已经安装 pip 可以使用以下命令：\npip --version\n下载安装包使用以下命令：\npip install some-package-name\n例如我们安装 numpy 包：\npip install numpy\n我们也可以轻易地通过以下的命令来移除软件包：\npip uninstall some-package-name\n例如我们移除 numpy 包：\npip uninstall numpy\n如果要查看我们已经安装的软件包，可以使用以下命令：\npip list\n导出当前 Python 环境的配置\n要导出当前 Python 环境的配置，你可以使用 pip freeze 命令。\npip freeze 命令会列出当前环境中已安装的所有 Python 包及其版本信息，你可以将其保存到文件中，例如 requirements.txt，如下所示：\npip freeze > requirements.txt\n以上命令将在当前目录下创建一个名为 requirements.txt 的文件，其中包含当前环境中已安装的所有包及其版本信息。\n然后，你可以在其他地方使用该文件来重新创建相同的环境，运行以下命令：\npip install -r requirements.txt\n以上命令会根据 requirements.txt 中列出的包及其版本信息重新安装所有必需的包，从而重建相同的环境。\n扩展内容\nAnaconda 介绍\nAnaconda 发行版包含了 Python。\nAnaconda 是一个集成的数据科学和机器学习环境，其中包括了 Python 解释器以及大量常用的数据科学库和工具。\nAnaconda 包及其依赖项和环境的管理工具为 conda 命令，文与传统的 Python pip 工具相比 Anaconda 的 conda 可以更方便地在不同环境之间进行切换，环境管理较为简单。\nAnaconda详细安装与介绍参考：Anaconda 教程。",
+    "examples": []
+   },
+   {
+    "title": "Python3 正则表达式",
+    "url": "https://www.runoob.com/python3/python3-reg-expressions.html",
+    "body": "正则表达式是一个特殊的字符序列，它能帮助你方便的检查一个字符串是否与某种模式匹配。\n在 Python 中，使用 re 模块来处理正则表达式。\nre 模块提供了一组函数，允许你在字符串中进行模式匹配、搜索和替换操作。\nre 模块使 Python 语言拥有完整的正则表达式功能。\n本章节主要介绍 Python 中常用的正则表达式处理函数，如果你对正则表达式不了解，可以查看我们的 正则表达式 - 教程。\nre.match函数\nre.match 尝试从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match() 就返回 None。\n函数语法：\nre.match(pattern, string, flags=0)\n函数参数说明：\n参数\n描述\npattern\n匹配的正则表达式\nstring\n要匹配的字符串。\nflags\n标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。参见：正则表达式修饰符 - 可选标志\n匹配成功 re.match 方法返回一个匹配的对象，否则返回 None。\n我们可以使用 group(num) 或 groups() 匹配对象函数来获取匹配表达式。\n匹配对象方法\n描述\ngroup(num=0)\n匹配的整个表达式的字符串，group() 可以一次输入多个组号，在这种情况下它将返回一个包含那些组所对应值的元组。\ngroups()\n返回一个包含所有小组字符串的元组，从 1 到 所含的小组号。\n实例",
+    "examples": [
+     "#!/usr/bin/python\nimport re\nprint(re.match('www', 'www.runoob.com').span()) # 在起始位置匹配\nprint(re.match('com', 'www.runoob.com')) # 不在起始位置匹配"
+    ]
+   },
+   {
+    "title": "Python 有用的资源",
+    "url": "https://www.runoob.com/python3/python3-resources.html",
+    "body": "以下资源包含了 Python 有关的网站、书籍和文章。\n相关网站\nPython 3.6.3 中文手册\nPython3 最新文档\nPython 2.X 版本的教程\nPython 算法学习\n相关书籍：\n父与子的编程之旅\nPython 学习手册\nPython编程 从入门到实践\n利用Python进行数据分析\n流畅的Python\n更多书籍",
+    "examples": []
+   },
+   {
+    "title": "Python3 集合",
+    "url": "https://www.runoob.com/python3/python3-set.html",
+    "body": "集合（set）是一个无序的不重复元素序列。\n集合中的元素不会重复，并且可以进行交集、并集、差集等常见的集合操作。\n可以使用大括号 { } 创建集合，元素之间用逗号 , 分隔， 或者也可以使用 set() 函数创建集合。\n创建格式：\nparame = {value01,value02,...}\n或者\nset(value)\n以下是一个简单实例：\nset1 = {1, 2, 3, 4} # 直接使用大括号创建集合\nset2 = set([4, 5, 6, 7]) # 使用 set() 函数从列表创建集合\n注意：创建一个空集合必须用 set() 而不是 { }，因为 { } 是用来创建一个空字典。\n更多实例演示：\n实例(Python 3.0+)",
+    "examples": [
+     ">>> basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}\n>>> print(basket)                      # 这里演示的是去重功能\n{'orange', 'banana', 'pear', 'apple'}\n>>> 'orange' in basket                 # 快速判断元素是否在集合内\nTrue\n>>> 'crabgrass' in basket\nFalse\n\n>>> # 下面展示两个集合间的运算.\n...\n>>> a = set('abracadabra')\n>>> b = set('alacazam')\n>>> a                                  \n{'a', 'r', 'b', 'c', 'd'}\n>>> a - b                              # 集合a中包含而集合b中不包含的元素\n{'r', 'd', 'b'}\n>>> a | b                              # 集合a或b中包含的所有元素\n{'a', 'c', 'r', 'd', 'b', 'm', 'z', 'l'}\n>>> a & b                              # 集合a和b中都包含了的元素\n{'a', 'c'}\n>>> a ^ b                              # 不同时包含于a和b的元素\n{'r', 'd', 'b', 'm', 'z', 'l'}"
+    ]
+   },
+   {
+    "title": "Python3 SMTP发送邮件",
+    "url": "https://www.runoob.com/python3/python3-smtp.html",
+    "body": "SMTP（Simple Mail Transfer Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。\npython的smtplib提供了一种很方便的途径发送电子邮件。它对smtp协议进行了简单的封装。\nPython创建 SMTP 对象语法如下：\nimport smtplib\n\nsmtpObj = smtplib.SMTP( [host [, port [, local_hostname]]] )\n参数说明：\nhost: SMTP 服务器主机。 你可以指定主机的ip地址或者域名如:runoob.com，这个是可选参数。\nport: 如果你提供了 host 参数, 你需要指定 SMTP 服务使用的端口号，一般情况下SMTP端口号为25。\nlocal_hostname: 如果SMTP在你的本机上，你只需要指定服务器地址为 localhost 即可。\nPython SMTP对象使用sendmail方法发送邮件，语法如下：\nSMTP.sendmail(from_addr, to_addrs, msg[, mail_options, rcpt_options]\n参数说明：\nfrom_addr: 邮件发送者地址。\nto_addrs: 字符串列表，邮件发送地址。\nmsg: 发送消息\n这里要注意一下第三个参数，msg是字符串，表示邮件。我们知道邮件一般由标题，发信人，收件人，邮件内容，附件等构成，发送邮件的时候，要注意msg的格式。这个格式就是smtp协议中定义的格式。\n实例\n以下是一个使用Python发送邮件简单的实例：\n实例",
+    "examples": [
+     "#!/usr/bin/python3\nimport smtplib\nfrom email.mime.text import MIMEText\nfrom email.header import Header\nsender = 'from@runoob.com'\nreceivers = ['429240967@qq.com'] # 接收邮件，可设置为你的QQ邮箱或者其他邮箱\n# 三个参数：第一个为文本内容，第二个 plain 设置文本格式，第三个 utf-8 设置编码\nmessage = MIMEText('Python 邮件发送测试...', 'plain', 'utf-8')\nmessage['From'] = Header(\"菜鸟教程\", 'utf-8') # 发送者\nmessage['To'] =  Header(\"测试\", 'utf-8') # 接收者\nsubject = 'Python SMTP 邮件测试'\nmessage['Subject'] = Header(subject, 'utf-8')\ntry:\n    smtpObj = smtplib.SMTP('localhost')\nsmtpObj.sendmail(sender, receivers, message.as_string())\nprint (\"邮件发送成功\")\nexcept smtplib.SMTPException:\n    print (\"Error: 无法发送邮件\")"
+    ]
+   },
+   {
+    "title": "Python3 网络编程",
+    "url": "https://www.runoob.com/python3/python3-socket.html",
+    "body": "Python 提供了两个级别访问的网络服务。：\n低级别的网络服务支持基本的 Socket，它提供了标准的 BSD Sockets API，可以访问底层操作系统Socket接口的全部方法。\n高级别的网络服务模块 SocketServer， 它提供了服务器中心类，可以简化网络服务器的开发。\n什么是 Socket?\nSocket又称\"套接字\"，应用程序通常通过\"套接字\"向网络发出请求或者应答网络请求，使主机间或者一台计算机上的进程间可以通讯。\nsocket()函数\nPython 中，我们用 socket() 函数来创建套接字，语法格式如下：\nsocket.socket([family[, type[, proto]]])\n参数\nfamily: 套接字家族可以是 AF_UNIX 或者 AF_INET\ntype: 套接字类型可以根据是面向连接的还是非连接分为SOCK_STREAM或SOCK_DGRAM\nproto: 一般不填默认为0.\nSocket 对象(内建)方法\n函数\n描述\n服务器端套接字\ns.bind()\n绑定地址（host,port）到套接字， 在AF_INET下,以元组（host,port）的形式表示地址。\ns.listen()\n开始TCP监听。backlog指定在拒绝连接之前，操作系统可以挂起的最大连接数量。该值至少为1，大部分应用程序设为5就可以了。\ns.accept()\n被动接受TCP客户端连接,(阻塞式)等待连接的到来\n客户端套接字\ns.connect()\n主动初始化TCP服务器连接，。一般address的格式为元组（hostname,port），如果连接出错，返回socket.error错误。\ns.connect_ex()\nconnect()函数的扩展版本,出错时返回出错码,而不是抛出异常\n公共用途的套接字函数\ns.recv()\n接收TCP数据，数据以字符串形式返回，bufsize指定要接收的最大数据量。flag提供有关消息的其他信息，通常可以忽略。\ns.send()\n发送TCP数据，将string中的数据发送到连接的套接字。返回值是要发送的字节数量，该数量可能小于string的字节大小。\ns.sendall()\n完整发送TCP数据。将string中的数据发送到连接的套接字，但在返回之前会尝试发送所有数据。成功返回None，失败则抛出异常。\ns.recvfrom()\n接收UDP数据，与recv()类似，但返回值是（data,address）。其中data是包含接收数据的字符串，address是发送数据的套接字地址。\ns.sendto()\n发送UDP数据，将数据发送到套接字，address是形式为（ipaddr，port）的元组，指定远程地址。返回值是发送的字节数。\ns.close()\n关闭套接字\ns.getpeername()\n返回连接套接字的远程地址。返回值通常是元组（ipaddr,port）。\ns.getsockname()\n返回套接字自己的地址。通常是一个元组(ipaddr,port)\ns.setsockopt(level,optname,value)\n设置给定套接字选项的值。\ns.getsockopt(level,optname[.buflen])\n返回套接字选项的值。\ns.settimeout(timeout)\n设置套接字操作的超时期，timeout是一个浮点数，单位是秒。值为None表示没有超时期。一般，超时期应该在刚创建套接字时设置，因为它们可能用于连接的操作（如connect()）\ns.gettimeout()\n返回当前超时期的值，单位是秒，如果没有设置超时期，则返回None。\ns.fileno()\n返回套接字的文件描述符。\ns.setblocking(flag)\n如果 flag 为 False，则将套接字设为非阻塞模式，否则将套接字设为阻塞模式（默认值）。非阻塞模式下，如果调用 recv() 没有发现任何数据，或 send() 调用无法立即发送数据，那么将引起 socket.error 异常。\ns.makefile()\n创建一个与该套接字相关连的文件\n简单实例\n服务端\n我们使用 socket 模块的 socket 函数来创建一个 socket 对象。socket 对象可以通过调用其他函数来设置一个 socket 服务。\n现在我们可以通过调用 bind(hostname, port) 函数来指定服务的 port(端口)。\n接着，我们调用 socket 对象的 accept 方法。该方法等待客户端的连接，并返回 connection 对象，表示已连接到客户端。\n完整代码如下：\n实例",
+    "examples": [
+     "#!/usr/bin/python3\n# 文件名：server.py\n\n# 导入 socket、sys 模块\nimport socket\nimport sys\n\n# 创建 socket 对象\nserversocket = socket.socket(\n            socket.AF_INET, socket.SOCK_STREAM) \n\n# 获取本地主机名\nhost = socket.gethostname()\n\nport = 9999\n\n# 绑定端口号\nserversocket.bind((host, port))\n\n# 设置最大连接数，超过后排队\nserversocket.listen(5)\n\nwhile True:\n    # 建立客户端连接\n    clientsocket,addr = serversocket.accept()      \n\n    print(\"连接地址: %s\" % str(addr))\n    \n    msg='欢迎访问菜鸟教程！'+ \"\\r\\n\"\n    clientsocket.send(msg.encode('utf-8'))\n    clientsocket.close()"
+    ]
+   },
+   {
+    "title": "Python3 标准库概览",
+    "url": "https://www.runoob.com/python3/python3-stdlib.html",
+    "body": "Python 标准库非常庞大，所提供的组件涉及范围十分广泛，使用标准库我们可以让您轻松地完成各种任务。\n以下是一些 Python3 标准库中的模块：\nos 模块：os 模块提供了许多与操作系统交互的函数，例如创建、移动和删除文件和目录，以及访问环境变量等。\nsys 模块：sys 模块提供了与 Python 解释器和系统相关的功能，例如解释器的版本和路径，以及与 stdin、stdout 和 stderr 相关的信息。\ntime 模块：time 模块提供了处理时间的函数，例如获取当前时间、格式化日期和时间、计时等。\ndatetime 模块：datetime 模块提供了更高级的日期和时间处理函数，例如处理时区、计算时间差、计算日期差等。\nrandom 模块：random 模块提供了生成随机数的函数，例如生成随机整数、浮点数、序列等。\nmath 模块：math 模块提供了数学函数，例如三角函数、对数函数、指数函数、常数等。\nre 模块：re 模块提供了正则表达式处理函数，可以用于文本搜索、替换、分割等。\njson 模块：json 模块提供了 JSON 编码和解码函数，可以将 Python 对象转换为 JSON 格式，并从 JSON 格式中解析出 Python 对象。\nurllib 模块：urllib 模块提供了访问网页和处理 URL 的功能，包括下载文件、发送 POST 请求、处理 cookies 等。\n操作系统接口\nos 模块提供了不少与操作系统相关联的函数，例如文件和目录的操作。\n实例",
+    "examples": [
+     "import os\n\n# 获取当前工作目录\ncurrent_dir = os.getcwd()\nprint(\"当前工作目录:\", current_dir)\n\n# 列出目录下的文件\nfiles = os.listdir(current_dir)\nprint(\"目录下的文件:\", files)"
+    ]
+   },
+   {
+    "title": "Python3 编程第一步",
+    "url": "https://www.runoob.com/python3/python3-step1.html",
+    "body": "在前面的教程中我们已经学习了一些 Python3 的基本语法知识，接下来我们来尝试一些实例。\n打印字符串:\n实例",
+    "examples": [
+     "print(\"Hello, world!\")"
+    ]
+   },
+   {
+    "title": "Python3 字符串",
+    "url": "https://www.runoob.com/python3/python3-string.html",
+    "body": "字符串是 Python 中最常用的数据类型。我们可以使用引号( ' 或 \" )来创建字符串。\n创建字符串很简单，只要为变量分配一个值即可。例如：",
+    "examples": [
+     "var1 = 'Hello World!'\nvar2 = \"Runoob\""
+    ]
+   },
+   {
+    "title": "Python3 元组",
+    "url": "https://www.runoob.com/python3/python3-tuple.html",
+    "body": "Python 的元组与列表类似，不同之处在于元组的元素不能修改。\n元组使用小括号 ( )，列表使用方括号 [ ]。\n元组创建很简单，只需要在括号中添加元素，并使用逗号隔开即可。\n实例(Python 3.0+)",
+    "examples": [
+     ">>> tup1 = ('Google', 'Runoob', 1997, 2000)\n>>> tup2 = (1, 2, 3, 4, 5 )\n>>> tup3 = \"a\", \"b\", \"c\", \"d\"   #  不需要括号也可以\n>>> type(tup3)\n<class 'tuple'>"
+    ]
+   },
+   {
+    "title": "Python 3 教程",
+    "url": "https://www.runoob.com/python3/python3-tutorial.html",
+    "body": "Python 的 3.0 版本，常被称为 Python 3000，或简称 Py3k。相对于 Python 的早期版本，这是一个较大的升级。为了不带入过多的累赘，Python 3.0 在设计的时候没有考虑向下兼容。\nPython 介绍及安装教程我们在Python 2.X 版本的教程中已有介绍，这里就不再赘述。\n你也可以点击 Python2.x与3​​.x版本区别 来查看两者的不同。\n本教程主要针对 Python 3.x 版本的学习，如果你使用的是 Python 2.x 版本请移步至 Python 2.X 版本的教程。\n官方宣布，2020 年 1 月 1 日， 停止 Python 2 的更新。",
+    "examples": []
+   },
+   {
+    "title": "Python3 数据类型转换",
+    "url": "https://www.runoob.com/python3/python3-type-conversion.html",
+    "body": "有时候，我们需要对数据内置的类型进行转换，数据类型的转换，一般情况下你只需要将数据类型作为函数名即可。\nPython 数据类型转换可以分为两种：\n隐式类型转换 - 自动完成\n显式类型转换 - 需要使用类型函数来转换\n隐式类型转换\n在隐式类型转换中，Python 会自动将一种数据类型转换为另一种数据类型，不需要我们去干预。\n以下实例中，我们对两种不同类型的数据进行运算，较低数据类型（整数）就会转换为较高数据类型（浮点数）以避免数据丢失。\n实例",
+    "examples": [
+     "num_int = 123\nnum_flo = 1.23\n\nnum_new = num_int + num_flo\n\nprint(\"num_int 数据类型为:\",type(num_int))\nprint(\"num_flo 数据类型为:\",type(num_flo))\n\nprint(\"num_new 值为:\",num_new)\nprint(\"num_new 数据类型为:\",type(num_new))"
+    ]
+   },
+   {
+    "title": "Python while 循环",
+    "url": "https://www.runoob.com/python3/python3-while.html",
+    "body": "Python3 循环语句\nwhile 是 Python 中的条件循环语句，只要条件为 True，就会持续执行循环体。\n与 for 不同，while 循环更适合于不确定循环次数、需要根据条件退出的场景。\n单词释义： while 意为\"当...时\"，表示在条件为真时持续执行。\n基本语法与参数\n语法格式\nwhile 条件:\n # 循环体（必须缩进）\n 语句1\n 语句2\n ...\nelse:\n # 可选，当循环“正常结束”时执行\n 语句1\n 语句2\n ...\n语法说明\n条件： 每次循环开始前判断的条件表达式。\n执行逻辑： 为 True 时执行循环体，然后重新判断条件。\n退出条件： 条件为 False 时退出循环。\nelse 子句\n可选： 与 for 类似，while 也可以有 else。\n执行时机： 条件变为 False 时执行（正常退出）。\n实例\n示例 1：基础用法\n实例",
+    "examples": [
+     "# 基本的 while 循环\ncount = 0\n\nwhile count < 5:\n    print(count)\n    count += 1\n\nprint(\"循环结束\")"
+    ]
+   },
+   {
+    "title": "Python with 关键字",
+    "url": "https://www.runoob.com/python3/python3-with-keyword.html",
+    "body": "在 Python 编程中，资源管理是一个重要但容易被忽视的环节。with 关键字为我们提供了一种优雅的方式来处理文件操作、数据库连接等需要明确释放资源的场景。\nwith 是 Python 中的一个关键字，用于上下文管理协议（Context Management Protocol）。它简化了资源管理代码，特别是那些需要明确释放或清理的资源（如文件、网络连接、数据库连接等）。\n为什么需要 with 语句？\n传统资源管理的问题\n我们先看一个典型的文件操作示例：\n实例",
+    "examples": [
+     "file = open('example.txt', 'r')\ntry:\n    content = file.read()\n    # 处理文件内容\nfinally:\n    file.close()"
+    ]
+   },
+   {
+    "title": "Python3 XML 解析",
+    "url": "https://www.runoob.com/python3/python3-xml-processing.html",
+    "body": "什么是 XML？\nXML 指可扩展标记语言（eXtensible Markup Language），标准通用标记语言的子集，是一种用于标记电子文件使其具有结构性的标记语言。\n你可以通过本站学习 XML 教程\nXML 被设计用来传输和存储数据。\nXML 是一套定义语义标记的规则，这些标记将文档分成许多部件并对这些部件加以标识。\n它也是元标记语言，即定义了用于定义其他与特定领域有关的、语义的、结构化的标记语言的句法语言。\nPython 对 XML 的解析\n常见的 XML 编程接口有 DOM 和 SAX，这两种接口处理 XML 文件的方式不同，当然使用场合也不同。\nPython 有三种方法解析 XML：ElementTree、SAX 以及 DOM。\n1. ElementTree\nxml.etree.ElementTree 是 Python 标准库中用于处理 XML 的模块，它提供了简单而高效的 API，用于解析和生成 XML 文档。\n2.SAX (simple API for XML )\nPython 标准库包含 SAX 解析器，SAX 用事件驱动模型，通过在解析 XML 的过程中触发一个个的事件并调用用户定义的回调函数来处理 XML 文件。\n3.DOM(Document Object Model)\n将 XML 数据在内存中解析成一个树，通过对树的操作来操作 XML。\n本章节使用到的 XML 实例文件 movies.xml 内容如下：\n实例",
+    "examples": [
+     "<collection shelf=\"New Arrivals\">\n<movie title=\"Enemy Behind\">\n   <type>War, Thriller</type>\n   <format>DVD</format>\n   <year>2003</year>\n   <rating>PG</rating>\n   <stars>10</stars>\n   <description>Talk about a US-Japan war</description>\n</movie>\n<movie title=\"Transformers\">\n   <type>Anime, Science Fiction</type>\n   <format>DVD</format>\n   <year>1989</year>\n   <rating>R</rating>\n   <stars>8</stars>\n   <description>A schientific fiction</description>\n</movie>\n   <movie title=\"Trigun\">\n   <type>Anime, Action</type>\n   <format>DVD</format>\n   <episodes>4</episodes>\n   <rating>PG</rating>\n   <stars>10</stars>\n   <description>Vash the Stampede!</description>\n</movie>\n<movie title=\"Ishtar\">\n   <type>Comedy</type>\n   <format>VHS</format>\n   <rating>PG</rating>\n   <stars>2</stars>\n   <description>Viewable boredom</description>\n</movie>\n</collection>"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,200 @@
+{
+ "tutorial": {
+  "name": "Tailwind CSS",
+  "category": "前端开发",
+  "desc": "Tailwind CSS 是一个开放源代码 CSS 框架。",
+  "url": "https://www.runoob.com/tailwindcss/",
+  "chapters": [
+   {
+    "title": "Tailwind CSS 交互状态与动画",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-animations.html",
+    "body": "在现代前端开发中，交互效果和动画是提升用户体验的关键因素。\nTailwind CSS 作为一款实用的 CSS 框架，提供了强大的工具来处理元素的交互状态（如悬停、聚焦等）和创建流畅的动画效果。\n本文将带你全面了解 Tailwind 中的交互状态控制和动画实现方法，让你能够轻松为网页添加生动的交互体验。\n交互状态基础\n什么是交互状态\n交互状态是指用户与页面元素互动时元素表现出的不同样式状态。常见的交互状态包括：\n悬停 (hover)：鼠标指针悬停在元素上\n聚焦 (focus)：元素获得焦点（如表单输入）\n激活 (active)：元素被激活（如按钮被点击时）\n禁用 (disabled)：元素处于禁用状态\nTailwind 的状态变体\nTailwind 使用前缀来为不同状态添加样式：\n实例\n尝试一下 »",
+    "examples": [
+     "<button class=\"bg-blue-500 hover:bg-blue-700 focus:ring-2\">\n  点击我\n</button>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 背景颜色",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-backgrounds.html",
+    "body": "在 Tailwind CSS 中，背景颜色（Background Color）是最常用的工具类之一，它允许你快速为元素设置背景颜色。\nTailwind 提供了多种颜色选项以及不同的色调，确保你能灵活地应用所需的样式。\n背景颜色基本语法：\n<div class=\"bg-{color}\">\n <!-- 内容 -->\n</div>\n常见的背景颜色类：\n类名\n描述\n例子\nbg-{color}\n设置背景颜色\nbg-red-500，bg-blue-200\nbg-transparent\n设置透明背景颜色\nbg-transparent\nbg-current\n设置背景颜色为当前文本颜色（常用于图标的背景）\nbg-current\nbg-white\n设置背景颜色为白色\nbg-white\nbg-black\n设置背景颜色为黑色\nbg-black\nbg-gray-{n}\n设置背景颜色为灰色，{n} 为灰色的深浅度（从 50 到 900）\nbg-gray-100, bg-gray-700\n背景颜色的渐变（Gradient）：\nTailwind CSS 支持背景的线性渐变、径向渐变等。你可以使用 bg-gradient-to-{direction} 来指定渐变的方向，并使用 from-{color}、to-{color} 来设置渐变的起始颜色和结束颜色。\n类名\n描述\n例子\nbg-gradient-to-{direction}\n设置渐变背景的方向，direction 可以是 t、r、b、l、tr、tl、br、bl等\nbg-gradient-to-r (从左到右渐变)\nfrom-{color}\n设置渐变背景的起始颜色\nfrom-blue-500\nto-{color}\n设置渐变背景的结束颜色\nto-green-300\nvia-{color}\n设置渐变中间的颜色（可选）\nvia-purple-400\n实例",
+    "examples": [
+     "<div class=\"bg-gradient-to-r from-blue-500 to-green-300 p-10 text-white\">\n  渐变背景从蓝色到绿色\n</div>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 基础概念",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-basic.html",
+    "body": "Tailwind CSS 是一个高度可定制的 CSS 框架，它提供了一套预定义的工具类，允许开发者快速构建和设计用户界面。\n以下是 Tailwind CSS 的一些基础概念和用法：\n概念\n说明\n工具类 (Utility-First)\nTailwind CSS 的核心是工具类，用于快速设置样式，直接应用到 HTML 元素上。\n响应式前缀\n使用如 sm:, md:, lg:, xl: 的前缀来控制不同屏幕尺寸下的样式。\n颜色和尺寸\n提供了预定义的颜色（如 bg-red-500）和尺寸（如 text-lg）来快速设置样式。\n间距 (Spacing)\n通过 p-, m-, pt-, pr- 等类控制内边距和外边距。\n布局 (Layout)\n提供 flex, grid, float 等类来实现布局控制。\n文本样式\n包括文本对齐、字体样式、颜色和转换的实用类，如 text-center, font-bold, uppercase。\n背景和边框\n提供背景颜色、背景图片、边框样式和颜色的工具类，如 bg-gray-200, border-red-500。\n悬停和状态\n使用 hover:, focus:, active: 等前缀为交互状态定义样式。\n尺寸 (Sizing)\n使用 w-, h- 类控制宽度和高度，如 w-64, h-screen。\n可见性 (Visibility)\n使用 visible, invisible 等类控制元素的可见性。\n栅格系统 (Grid System)\n提供基于 CSS Grid 的工具类，如 grid, grid-cols-3, col-span-2，实现响应式网格布局。\n自定义配置\n通过 tailwind.config.js 自定义颜色、间距、字体大小等，以适应项目需求。\n暗色模式 (Dark Mode)\n支持暗色模式，通过 dark: 前缀设置样式，并可在配置中启用暗色模式功能。\n插件 (Plugins)\n通过插件扩展功能，添加自定义的工具类或功能。\n指令 (Directives)\n在 CSS 文件中使用 @tailwind 指令引入不同层次的样式，如 base, components, utilities。\n概念详解\n1. 工具类（Utility-First）\nTailwind 的工具类可以让开发者快速定义样式，无需手动编写 CSS。\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"text-center text-blue-500 font-bold\">\n  Tailwind Utility Classes\n</div>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 边框",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-borders.html",
+    "body": "在 Tailwind CSS 中，边框（Borders）是布局和设计中常见的样式，用于为元素添加边界或分隔线。\nTailwind 提供了多种边框工具类，帮助你控制边框的宽度、颜色、样式、半径以及各个方向的边框。\n边框宽度（Border Width）\n边框宽度决定了元素的边框线条的粗细。Tailwind CSS 提供了不同的边框宽度值，允许你快速控制元素边框的样式。\n类名\n描述\n示例\nborder-{n}\n设置所有边框宽度，n 为宽度值\nborder-2（宽度为 2px）\nborder-t-{n}\n设置顶部边框宽度\nborder-t-4（顶部边框宽度 4px）\nborder-r-{n}\n设置右侧边框宽度\nborder-r-8（右侧边框宽度 8px）\nborder-b-{n}\n设置底部边框宽度\nborder-b-1（底部边框宽度 1px）\nborder-l-{n}\n设置左侧边框宽度\nborder-l-3（左侧边框宽度 3px）\n边框颜色（Border Color）\n通过使用 border-{color} 工具类，你可以设置元素边框的颜色。Tailwind CSS 提供了大量的预设颜色，可以直接使用，也支持自定义颜色。\n类名\n描述\n示例\nborder-{color}\n设置边框颜色\nborder-red-500（红色边框）\nborder-t-{color}\n设置顶部边框颜色\nborder-t-blue-300（蓝色顶部边框）\nborder-r-{color}\n设置右侧边框颜色\nborder-r-gray-400（灰色右边框）\nborder-b-{color}\n设置底部边框颜色\nborder-b-green-600（绿色底部边框）\nborder-l-{color}\n设置左侧边框颜色\nborder-l-yellow-500（黄色左边框）\n<div class=\"border-2 border-red-500 p-4\">\n 红色边框，宽度为 2px\n</div>\n边框样式（Border Style）\nTailwind CSS 也支持设置边框的样式，如实线、虚线、点线等。通过 border-{style} 工具类，你可以控制边框的显示样式。\n类名\n描述\n示例\nborder-solid\n设置实线边框（默认）\nborder-solid\nborder-dashed\n设置虚线边框\nborder-dashed\nborder-dotted\n设置点线边框\nborder-dotted\nborder-double\n设置双线边框\nborder-double\n<div class=\"border-4 border-dashed border-blue-400 p-4\">\n 蓝色虚线边框，宽度为 4px\n</div>\n边框半径（Border Radius）\n通过设置 border-radius，你可以控制元素的圆角效果。Tailwind CSS 提供了多种边框半径值，并允许你在不同方向上设置不同的圆角。\n类名\n描述\n示例\nrounded-{size}\n设置统一的圆角大小\nrounded-lg（大圆角）\nrounded-tl-{size}\n设置左上角圆角\nrounded-tl-sm（小圆角）\nrounded-tr-{size}\n设置右上角圆角\nrounded-tr-md（中等圆角）\nrounded-br-{size}\n设置右下角圆角\nrounded-br-lg（大圆角）\nrounded-bl-{size}\n设置左下角圆角\nrounded-bl-xl（特大圆角）\n<div class=\"border-4 border-gray-400 rounded-lg p-6\">\n 大圆角边框\n</div>\n四个方向的边框控制\n你可以单独控制每个方向的边框（上、右、下、左），如：border-t-2 控制顶部边框的宽度，border-r-4 控制右侧边框的宽度，等等。\n类名\n描述\n示例\nborder-t-{size}\n设置顶部边框宽度\nborder-t-2（顶部边框宽度 2px）\nborder-r-{size}\n设置右侧边框宽度\nborder-r-4（右侧边框宽度 4px）\nborder-b-{size}\n设置底部边框宽度\nborder-b-1（底部边框宽度 1px）\nborder-l-{size}\n设置左侧边框宽度\nborder-l-3（左侧边框宽度 3px）\n<div class=\"border-t-4 border-r-2 border-b-1 border-l-3 border-blue-500 p-4\">\n 自定义各个方向的边框\n</div>\n统一的边框控制（Border）\n如果你想要为所有边框设置相同的样式，使用 border 工具类即可。可以结合其他工具类控制颜色、样式和宽度。\n类名\n描述\n示例\nborder\n设置所有边框的宽度为 1px，且为实线\nborder（默认宽度为 1px）\nborder-2\n设置所有边框宽度为 2px\nborder-2（2px 宽度的实线）\nborder-4\n设置所有边框宽度为 4px\nborder-4（4px 宽度的实线）\n<div class=\"border-4 border-solid border-green-500 p-4\">\n 绿色实线边框，宽度为 4px\n</div>\n内边框和外边框（Box Model）\nTailwind CSS 还提供了控制 盒模型 的工具类，尤其是内外边框、外边距和内填充等。\n类名\n描述\n示例\nbox-border\n设置盒子模型为 border-box（包含边框在内）\nbox-border\nbox-content\n设置盒子模型为 content-box（不包含边框）\nbox-content\n<div class=\"box-border border-4 border-red-500 p-4\">\n 边框包含在内的盒子模型\n</div>\n结合所有边框工具的综合实例\n实例\n尝试一下 »",
+    "examples": [
+     "<!-- 边框宽度和颜色 -->\n<div class=\"border-4 border-red-500 p-4 mb-6\">\n    4px 宽的红色边框\n</div>\n\n<!-- 边框样式 -->\n<div class=\"border-2 border-dashed border-blue-500 p-4 mb-6\">\n    蓝色虚线边框，宽度为 2px\n</div>\n\n<!-- 边框圆角 -->\n<div class=\"border-4 border-green-500 rounded-lg p-6 mb-6\">\n    圆角绿色边框\n</div>\n\n<!-- 边框方向控制 -->\n<div class=\"border-t-4 border-r-2 border-b-1 border-l-3 border-yellow-500 p-4\">\n    自定义方向的边框\n</div>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 配置",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-config.html",
+    "body": "Tailwind CSS 的核心配置文件为 tailwind.config.js。\ntailwind.config.js 是 Tailwind CSS 的配置文件，用于定制化 Tailwind 的默认配置。\n通过修改 tailwind.config.js 文件，开发者可以自定义颜色、间距、字体、断点等设计系统，满足特定项目需求。\n创建配置文件\n使用 Tailwind CSS 的 CLI 工具可以快速生成一个基础的 tailwind.config.js 文件。\n在项目根目录下运行以下命令：\nnpx tailwindcss init\n这将创建一个包含基本配置的 tailwind.config.js 文件。\n基本结构\n以下是一个典型的 tailwind.config.js 文件的结构：\n实例",
+    "examples": [
+     "/** @type {import('tailwindcss').Config} */\nmodule.exports = {\n  content: [\"./src/**/*.{html,js,vue}\"], // 定义需要扫描的模板文件路径\n  theme: {\n    extend: {}, // 自定义扩展\n  },\n  plugins: [], // 配置插件\n}"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 自定义样式",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-custom-styles.html",
+    "body": "Tailwind CSS 的自定义样式使用主要通过修改 tailwind.config.js 配置文件来实现。\nTailwind 提供了多种方式来进行自定义，包括自定义颜色、间距、字体、屏幕断点以及其他配置选项。\n通过以下命令可以创建 tailwind.config.js 文件：\nnpx tailwindcss init\n该命令将在项目根目录下生成一个默认配置文件。\n自定义主题（theme）\n在 tailwind.config.js 文件的 theme 部分，你可以定义颜色、字体、间距等。\n例如，扩展默认的颜色或添加新的颜色：\nmodule.exports = {\n theme: {\n extend: {\n colors: {\n cyan: '#9cdbff',\n }\n }\n }\n}\n这将添加一个名为 cyan 的新颜色，你可以在项目中使用 bg-cyan 或 text-cyan 这样的类名。\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"bg-cyan\">自定义颜色</div>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 深色模式",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-darkmode.html",
+    "body": "深色模式（Dark Mode）是一种常见的用户界面设计趋势，提供暗色调的界面以减少眼睛疲劳，同时节省设备电量。\nTailwind CSS 支持深色模式（Dark Mode）的功能，使得开发者可以轻松地为网站创建深色版本，以适应用户的系统偏好。\nTailwind CSS 提供了一个名为 dark 的修饰符，允许你针对深色模式定义样式。\n当用户设备或操作系统设置为深色模式时，带有 dark: 修饰符的样式将自动生效。\n以下实例基于系统首选项的媒体查询设置样式：\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"bg-white text-black dark:bg-black dark:text-white\">\n  该文本根据颜色模式而变化。\n</div>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 与 Flexbox 和 Grid 布局",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-flexbox-and-grid.html",
+    "body": "Tailwind CSS 提供了强大的工具类来管理布局，特别是 Flexbox 和 Grid。\nFlexbox 和 Grid 这些工具类使得你可以非常高效地创建响应式、灵活的布局，而无需编写自定义的 CSS。\nTailwind CSS 的理念是通过低层级的实用类（utility-first）来控制布局，灵活组合类以满足不同的设计需求。\n1、Flexbox 布局\nFlexbox 是一种布局模式，可以帮助开发者创建一维的（水平或垂直）布局。\nTailwind CSS 提供了多个简洁的工具类来控制 Flexbox 布局的各个方面，包括方向、对齐、伸缩等。\n设置 Flex 容器\n要创建一个 Flexbox 布局，首先需要将元素设为 flex 容器。\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"flex\">\n  <div>Item 1</div>\n  <div>Item 2</div>\n  <div>Item 3</div>\n</div>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 指令与函数",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-functions-and-directives.html",
+    "body": "Tailwind CSS 提供了一些非常有用的函数和指令，它们帮助开发者更好地管理样式和优化代码。\n通过函数与指令，Tailwind 可以为你提供更多的控制权和灵活性，尤其是在定制样式、处理响应式设计、扩展功能等方面。\nTailwind CSS 提供了多种指令和函数来帮助开发者管理和定制样式：\n使用 @tailwind 引入 Tailwind 的基础样式、组件样式和工具类。\n@apply 可以将多个工具类组合成自定义的类，避免样式重复。\n@layer 允许你在自定义 CSS 中组织和定义不同的层次样式。\n使用内建的颜色、间距、透明度、边框圆角等函数，可以动态计算和生成样式。\n@tailwind 指令\n@tailwind 指令用于在 CSS 文件中引入 Tailwind 的三大核心层：base, components 和 utilities。\n@tailwind base：引入 Tailwind 的基础样式（如浏览器的重置样式）。\n@tailwind components：引入组件样式，用于定义如按钮、卡片、表单等的基础样式。\n@tailwind utilities：引入工具类，Tailwind 样式库的核心部分，提供了用于布局、颜色、间距、边框等的低级实用类。\n这些层定义了你在使用 Tailwind 时所需的所有基本样式、组件样式和工具类。\n/* 自定义样式中引入 Tailwind 样式 */\n@tailwind base; /* 引入基础样式 */\n@tailwind components; /* 引入组件样式 */\n@tailwind utilities; /* 引入工具类 */\n@apply 指令\n@apply 指令用于在自定义 CSS 类中应用 Tailwind 的工具类。这允许你在保持 Tailwind 的可维护性和灵活性的同时，也可以将常用的样式组合在一起。\n.my-class {\n @apply <utility-class1> <utility-class2> ... ;\n}\n实例",
+    "examples": [
+     "/* 自定义按钮类 */\n.btn {\n  @apply px-4 py-2 bg-blue-500 text-white rounded-lg;\n}\n\n/* 自定义警告按钮类 */\n.btn-warning {\n  @apply px-4 py-2 bg-yellow-500 text-black rounded-lg;\n}"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 安装(CDN)",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-installbycdn.html",
+    "body": "如果只想简单体验，可以直接引入 CDN 链接：\n使用官网提供的 CDN 库，地址如下：",
+    "examples": [
+     "<script src=\"https://cdn.tailwindcss.com\"></script>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 安装(NPM)",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-installbynpm.html",
+    "body": "在开始之前，确保你已经安装了 Node.js 和 npm，你可以通过以下命令检查它们是否已经安装：\nnode -v\nnpm -v\n如果你的系统还不支持 Node.js 及 NPM 可以参考我们的 Node.js 教程。\n国内使用 npm 速度很慢，你可以使用淘宝定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:\n$ npm install -g cnpm --registry=https://registry.npmmirror.com\n$ npm config set registry https://registry.npmmirror.com\n这样就可以使用 cnpm 命令来安装模块了：\n$ cnpm install [name]\n更多信息可以查阅：http://npm.taobao.org/。\n安装 Tailwind CSS 3\n本章节是 Tailwind CSS 3 的安装方式，，Tailwind CSS 4 安装方式有所改变， 会自动检测 HTML 和 JavaScript 等文件，省去了手动配置内容源的麻烦。\n详细内容参见：Tailwind CSS4 安装。\n通过 npm 安装 在本地项目中安装并配置 Tailwind CSS：\nnpm install -D tailwindcss\nnpx tailwindcss init\n执行以上命令后，会生成一个基础配置文件 tailwind.config.js，供定制使用。\n配置模板路径\n接下来我们可以在 tailwind.config.js 文件中添加模版的路径：\ntailwind.config.js 文件代码：",
+    "examples": [
+     "/** @type {import('tailwindcss').Config} */\nmodule.exports = {\n  content: [\"./src/**/*.{html,js}\"],  // 根据项目实际文件类型调整\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 简介",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-intro.html",
+    "body": "Tailwind CSS 是一个实用优先的 CSS 框架，与传统的框架（如 Bootstrap、Foundation）不同，它没有预定义的组件，而是提供了一系列原子化的 CSS 类，允许你直接在 HTML 中应用样式。\nTailwind CSS 是一个工具优先的框架，意味着它提供了大量的预定义类，而不是预设的组件,这使得开发者可以构建几乎任何设计，而不需要编写 CSS。\nTailwind CSS 适合那些喜欢直接在 HTML 中使用类来控制样式的开发者，它使得快速原型制作和开发定制设计变得简单快捷。然而，它的这种\"无预设\"的方法也意味着需要更多的类名记忆和可能的陡峭学习曲线。\n核心特点：\n工具类优先（Utility-First）：遵循工具类优先的流程，使用具有约束性的基本工具类来构建复杂的组件。\n响应式设计：使用响应式布局标识符（responsive modifiers），构建完全支持响应式布局的用户界面，以适应任何大小的屏幕。\n鼠标悬停、聚焦以及其他状态：使用条件标识符（conditional modifiers），可以为处于交互状态（如鼠标悬停、聚焦等）中的元素设置样式。\n夜间模式（Dark Mode）：通过在HTML代码中添加夜间模式标识符（dark mode modifier），直接让你的网站支持夜间模式。\n重用样式：通过创建可重用的抽象来管理冗余并保持项目的可维护性。\n自定义整个框架：通过自定义整个框架使其匹配你的需求，使用你的自定义样式对其进行扩展。\n以下是一个简单的 Tailwind CSS 实例：<div> 元素显示为一个蓝色背景、白色文字、中等内边距和大圆角的框，内容为 \"Hello, Tailwind CSS!\"。\nTailwind CSS 实例",
+    "examples": [
+     "<div class=\"bg-blue-500 text-white p-4 rounded-lg\">\n  Hello, Tailwind CSS!\n</div>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 布局类",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-layout.html",
+    "body": "Tailwind CSS 提供了丰富的布局相关类，允许开发者以极其灵活的方式控制页面的各个方面。\n接下来，我们将详细解释一些关键的布局相关类。\n1、宽高比 (Aspect Ratio)\nAspect Ratio 类可以帮助你设置元素的宽高比，避免在响应式设计中元素拉伸或压缩。\n主要类：\n类名\nCSS属性及值\n描述\naspect-auto\naspect-ratio: auto;\n这个类会让元素保持其自然宽高比，不进行任何强制调整。适用于你想要元素根据内容自动调整大小，而不是强制填充或缩小到特定的宽高比。\naspect-square\naspect-ratio: 1 / 1;\n这个类会强制元素的宽高比为1:1，即宽度和高度相等，常用于创建正方形或圆形的元素。\naspect-video\naspect-ratio: 16 / 9;\n这个类会强制元素的宽高比为16:9，这是一种常见的视频宽高比，适用于需要显示视频或模拟视频播放器的元素。\n实例\n尝试一下 »",
+    "examples": [
+     "<!-- 保持 16:9 的宽高比 -->\n<div class=\"aspect-ratio\">\n  <img src=\"video.jpg\" alt=\"Video\" class=\"object-cover\">\n</div>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 响应式设计",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-responsive-design.html",
+    "body": "响应式设计是现代网页开发的重要组成部分，它确保网页在不同的屏幕尺寸上都有良好的显示效果。\nTailwind CSS 提供了非常方便的工具来实现响应式布局，其响应式设计主要通过 断点 和 前缀 来控制不同屏幕尺寸下的样式应用。\n使用响应式工具类构建自适应用户界面\nTailwind CSS 中的每一个工具类都可以通过断点条件化应用，使得在 HTML 中构建复杂的响应式界面变得轻而易举。\n1、确保视口设置正确\n在开始之前，确保你已经在 HTML 文档的 <head> 部分添加了以下视口元标签：\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n这一步确保网页内容在移动设备上可以正确缩放和显示。\n2、通过断点前缀应用工具类\n为了在某个断点上生效某工具类，只需要在类名前加上断点名称并用 : 分隔即可。\n实例",
+    "examples": [
+     "<!-- 默认宽度为 16，中等屏幕为 32，大屏幕为 48 -->\n<img class=\"w-16 md:w-32 lg:w-48\" src=\"...\">"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 重用样式",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-reusing-styles.html",
+    "body": "在 Tailwind CSS 中重用样式是一个常见的需求，尤其是当项目规模增长时，你可能会发现在不同的地方需要重复相同的样式组合。\n在 Tailwind CSS 中，样式通过低级的工具类（utility classes）进行实现，这种方式非常适合避免过早抽象（premature abstraction）的问题，能够让你灵活控制样式，并且在许多场景下非常高效。\n然而，随着项目的增大，代码中不可避免地会出现重复使用相同的工具类组合的情况，这就可能导致冗余和维护上的困难。这个时候，如何管理重复的样式并创建可复用的抽象就显得尤为重要。\n为什么会有重复样式？\nTailwind CSS 的核心理念是 工具优先（Utility-First）。通过组合一系列低级的工具类，你可以非常精确地控制元素的样式。虽然这种方式在初期很强大，但随着项目越来越复杂，尤其是在处理常见的 UI 元素（如按钮、卡片、头像等）时，往往会在多个地方重复使用相同的工具类。\n考虑以下模板，其中每个头像图片都使用了相同的工具类：\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"flex space-x-4\">\n  <img class=\"w-16 h-16 rounded-full border-2 border-white\" src=\"/img/avatar1.jpg\" alt=\"User 1\">\n  <img class=\"w-16 h-16 rounded-full border-2 border-white\" src=\"/img/avatar2.jpg\" alt=\"User 2\">\n  <img class=\"w-16 h-16 rounded-full border-2 border-white\" src=\"/img/avatar3.jpg\" alt=\"User 3\">\n  <img class=\"w-16 h-16 rounded-full border-2 border-white\" src=\"/img/avatar4.jpg\" alt=\"User 4\">\n  <img class=\"w-16 h-16 rounded-full border-2 border-white\" src=\"/img/avatar5.jpg\" alt=\"User 5\">\n</div>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 阴影",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-shadow.html",
+    "body": "在现代网页设计中，阴影效果是创建视觉层次和深度感的重要工具。\nTailwind CSS 提供了一套强大而灵活的阴影工具类，可以轻松实现各种阴影效果。\n本文将全面介绍 Tailwind CSS 中的阴影系统，包括 box-shadow（盒阴影）、text-shadow（文字阴影）、阴影颜色和透明度的控制，以及内阴影效果的应用。\n什么是 CSS 阴影？\n在深入 Tailwind 的具体实现前，我们先理解 CSS 阴影的基本概念。\nCSS 阴影主要分为两种类型：\n盒阴影 (box-shadow)：应用于元素的整个盒子模型\n文字阴影 (text-shadow)：仅应用于元素的文本内容\n阴影效果可以：\n增强元素的视觉层次\n创建\"浮动\"效果\n模拟光照和深度\n突出重要内容\nTailwind 中的 box-shadow\nTailwind 提供了一系列预设的 box-shadow 工具类，从细微到强烈共分为 6 个级别：\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"shadow-sm\">小型阴影</div>\n<div class=\"shadow\">默认阴影</div>\n<div class=\"shadow-md\">中等阴影</div>\n<div class=\"shadow-lg\">大型阴影</div>\n<div class=\"shadow-xl\">超大阴影</div>\n<div class=\"shadow-2xl\">特大型阴影</div>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 尺寸控制",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-sizing.html",
+    "body": "Tailwind CSS 提供了一组简洁的工具类，帮助开发者在 HTML 中快速控制元素的尺寸。\n以下是一些常见的尺寸控制工具类及其用法。\n宽度 - w-*\nw-* 用于设置元素的宽度。\nTailwind 提供了一些预定义的宽度，支持像素、百分比、视口单位等。\n类名\n含义\n示例\nw-1/2\n设置宽度为父元素的一半\n<div class=\"w-1/2\">Content</div>\nw-1/4\n设置宽度为父元素的四分之一\n<div class=\"w-1/4\">Content</div>\nw-full\n设置宽度为父元素的 100%\n<div class=\"w-full\">Content</div>\nw-screen\n设置宽度为视口宽度\n<div class=\"w-screen\">Content</div>\nw-64\n设置宽度为 16rem（256px）\n<div class=\"w-64\">Content</div>\nw-auto\n宽度根据内容自适应\n<div class=\"w-auto\">Content</div>\n使用 w-px、w-1、w-64 等工具类来设置元素的固定宽度。\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"w-96 ...\">w-96</div>\n<div class=\"w-80 ...\">w-80</div>\n<div class=\"w-64 ...\">w-64</div>\n<div class=\"w-48 ...\">w-48</div>\n<div class=\"w-40 ...\">w-40</div>\n<div class=\"w-32 ...\">w-32</div>\n<div class=\"w-24 ...\">w-24</div>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 间距",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-spacing.html",
+    "body": "Tailwind CSS 中，间距（Spacing）是布局的重要组成部分。\n间距指的是元素之间的距离，包括内边距（Padding）、外边距（Margin）、行间距（Line-Height）、字间距（Letter-Spacing）等。\nTailwind CSS 提供了一些常用的工具类，使得这些间距的设置变得更加简便且直观。\n外边距（Margin）\n外边距用于控制元素与其他元素之间的距离。Tailwind 提供了简洁的工具类来设置外边距，常用的格式为 m-{size}，其中 m 表示外边距，{size} 为具体的值。\nm-{size}: 设置四个方向的外边距。\nmt-{size}: 设置上外边距（margin-top）。\nmr-{size}: 设置右外边距（margin-right）。\nmb-{size}: 设置下外边距（margin-bottom）。\nml-{size}: 设置左外边距（margin-left）。\nmx-{size}: 设置水平外边距（左右外边距）。\nmy-{size}: 设置垂直外边距（上下外边距）。\n常见的外边距值:\nm-0: 设置外边距为 0。\nm-1 到 m-64: 设置不同大小的外边距，默认是根据 rem 单位来设置的。\nm-px: 设置外边距为 1px。\nm-auto: 设置外边距为自动，常用于居中对齐。\n使用 mt-*、mr-*、mb-* 和 ml-* 工具类来控制元素某一侧的外边距。\n例如，mt-6 会在元素的顶部添加 1.5rem 的外边距，mr-4 会在元素的右侧添加 1rem 的外边距，mb-8 会在元素的底部添加 2rem 的外边距，而 ml-2 会在元素的左侧添加 0.5rem 的外边距。\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"mt-6 ...\">mt-6</div>\n<div class=\"mr-4 ...\">mr-4</div>\n<div class=\"mb-8 ...\">mb-8</div>\n<div class=\"ml-2 ...\">ml-2</div>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 状态处理",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-state.html",
+    "body": "Tailwind CSS 提供了强大的状态类（状态修饰符），用于控制元素在不同交互状态下的样式变化。\nTailwind CSS 提供了多种状态类（如 hover:, focus:, active: 等）来帮助开发者快速处理交互效果，通过组合这些状态类，你可以非常简便地实现悬停、聚焦、点击等状态下的样式变化，提高用户体验。\n状态类的前缀:\n状态\n前缀\n作用\n悬停状态\nhover:\n控制元素在鼠标悬停时的样式变化\n聚焦状态\nfocus:\n控制元素在获得焦点时的样式变化\n激活状态\nactive:\n控制元素在被点击时的样式变化\n访问状态\nvisited:\n控制访问过的链接的样式变化\n焦点内状态\nfocus-within:\n控制父元素在其子元素获得焦点时的样式变化\n各状态组合\n无特定前缀\n可以同时组合多个状态前缀，如 hover:, focus:，以及 active:\n1. 悬停（Hover）\n悬停（hover）状态是指当用户将鼠标悬停在一个元素上时，元素的样式发生变化。使用 hover: 前缀，可以轻松实现这一效果。\n语法：\nhover:{class}\n例如，hover:bg-sky-700 会在鼠标悬停时将元素的背景颜色更改为 sky-700。\n常见用法：\n实例\n尝试一下 »",
+    "examples": [
+     "<button class=\"px-4 py-2 bg-blue-500 text-white hover:bg-sky-700\">\n  鼠标移动到这\n</button>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 表格",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-table.html",
+    "body": "Tailwind CSS 提供了一套方便的工具类，用于创建和自定义表格。\n通过这些工具类，你可以轻松地对表格进行样式控制，包括边框、间距、对齐方式、字体样式等。\n接下来，我们将详细介绍如何使用 Tailwind CSS 来创建和自定义表格。\n基础表格样式\nTailwind CSS 提供了一些基础类，用于控制表格的外观和布局。常用的工具类包括 table-auto 和 table-fixed，这两个类用来设置表格的布局。\ntable-auto：默认布局，表格的列宽由内容自动决定。\ntable-fixed：表格列宽固定。所有列的宽度都会根据表格的总宽度平分，适用于具有统一列宽的表格。\n使用 table-auto 允许表格自动调整列宽以适应单元格内容。\n实例\n尝试一下 »",
+    "examples": [
+     "<table class=\"table-auto\">\n  <thead>\n    <tr>\n      <th>Song</th>\n      <th>Artist</th>\n      <th>Year</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>\n      <td>Malcolm Lockyer</td>\n      <td>1961</td>\n    </tr>\n    <tr>\n      <td>Witchy Woman</td>\n      <td>The Eagles</td>\n      <td>1972</td>\n    </tr>\n    <tr>\n      <td>Shining Star</td>\n      <td>Earth, Wind, and Fire</td>\n      <td>1975</td>\n    </tr>\n  </tbody>\n</table>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 教程",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-tutorial.html",
+    "body": "Tailwind CSS 是一个开放源代码 CSS 框架。\nTailwind CSS 是一个功能丰富的、实用性优先的 CSS 框架，用于快速构建定制的设计。\nTailwind CSS 由 Adam Wathan 和 Jonathan Reinink 于 2017 年创建，并于 2018 年发布。\nTailwind CSS 的核心理念是提供大量的工具类（utility classes），这些类可以直接应用到 HTML 元素上，以实现设计。",
+    "examples": []
+   },
+   {
+    "title": "Tailwind CSS 排版",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-typography.html",
+    "body": "Tailwind CSS 的 Typography（排版）功能是一组实用工具，帮助开发者高效地设计文本样式。它包括设置字体、字重、行高、字距、文本对齐等基本排版属性，同时还支持复杂的排版需求，如响应式字体大小、文本阴影、文本装饰等。\n1. 字体（Font Family）\nTailwind 提供了一些工具类来设置字体系列（font-family），可以通过类名轻松应用。\n常用工具类：\nfont-sans: 设置无衬线字体。\nfont-serif: 设置衬线字体。\nfont-mono: 设置等宽字体。\n实例\n尝试一下 »",
+    "examples": [
+     "<p class=\"font-sans ...\">测试文本内容 ...</p>\n<p class=\"font-serif ...\">测试文本内容 ...</p>\n<p class=\"font-mono ...\">测试文本内容 ...</p>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS 工具类（Utility-First）",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss-utility-first.html",
+    "body": "Tailwind CSS 的工具类（Utility-First）是一种以实用为先的设计方法，它允许开发者直接在 HTML 元素上应用预定义的样式类，而无需编写传统的 CSS 代码。\nTailwind CSS 的核心理念是 工具类优先（Utility-First），这一设计思想意味着，你可以通过组合单一功能的 CSS 类来实现一个完整的样式，而不是依赖于复杂的自定义样式。\nTailwind CSS 提供了大量的工具类，每个类都执行一个简单的样式任务，例如，text-center 用来将文本居中，bg-blue-500 用来设置背景颜色，p-4 用来设置内边距等。\n常见的工具类：\n类别\n工具类示例\n描述\n排版（Typography）\ntext-center, text-lg, font-bold\n控制文本的对齐、字体大小、粗细等。\n背景（Background）\nbg-blue-500, bg-opacity-50\n设置元素的背景颜色、背景图和透明度。\n间距（Spacing）\np-4, m-2, mt-8\n控制元素的内外边距（padding 和 margin）。\n布局（Layout）\nflex, grid, block\n设置元素的显示类型和布局方式。\n尺寸（Sizing）\nw-32, h-48\n设置元素的宽度和高度。\n边框（Borders）\nborder, border-2, rounded\n设置元素的边框、边框宽度和圆角。\n阴影（Shadows）\nshadow, shadow-lg\n控制元素的阴影效果。\n透明度（Opacity）\nopacity-50, opacity-100\n设置元素的透明度。\n响应式（Responsive）\nsm:text-lg, md:bg-blue-300\n控制不同屏幕尺寸下的样式变化。\n状态（State）\nhover:bg-blue-700, focus:ring-4\n设置元素在不同交互状态（如 hover、focus、active）下的样式。\n工具类的优势\n简洁和高效：每个工具类只负责一个小的样式操作，开发者可以根据需要组合不同的类，快速完成页面布局和样式。\n灵活性：通过类的组合，几乎可以实现任何样式，无需编写复杂的 CSS 代码。\n响应式支持：Tailwind 提供了内建的响应式类，可以非常方便地根据屏幕尺寸调整布局和样式。\n避免命名冲突：由于每个类的作用非常明确且独立，使用工具类的方式避免了传统 CSS 中命名冲突和样式覆盖的问题。\n工具类的具体应用\n1、文本相关工具类\ntext-center：将文本对齐方式设置为居中。\ntext-lg：设置文本大小为 lg（大号字体）。\nfont-bold：将文本的字体加粗。\ntext-red-500：设置文本颜色为红色（500 是红色的一个具体深浅值）。\n实例",
+    "examples": [
+     "<p class=\"text-center text-lg font-bold text-red-500\">Hello, Tailwind!</p>"
+    ]
+   },
+   {
+    "title": "Tailwind CSS4 安装(NPM)",
+    "url": "https://www.runoob.com/tailwindcss/tailwindcss4-installbynpm.html",
+    "body": "在开始之前，确保你已经安装了 Node.js 和 npm，你可以通过以下命令检查它们是否已经安装：\nnode -v\nnpm -v\n如果你的系统还不支持 Node.js 及 NPM 可以参考我们的 Node.js 教程。\n国内使用 npm 速度很慢，你可以使用淘宝定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:\n$ npm install -g cnpm --registry=https://registry.npmmirror.com\n$ npm config set registry https://registry.npmmirror.com\n这样就可以使用 cnpm 命令来安装模块了：\n$ cnpm install [name]\n更多信息可以查阅：http://npm.taobao.org/。\n安装 Tailwind CSS\n与 Tailwind CSS 3 相比较，Tailwind CSS 4 自动检测 HTML 和 JavaScript 等文件，省去了手动配置内容源的麻烦。\nnpm 安装\n从零开始使用 Tailwind CSS 的最简单和最快方法是通过 Tailwind CLI 工具。\n通过 npm 安装 在本地项目中安装并配置 Tailwind CSS：\nnpm install tailwindcss @tailwindcss/cli\n1、在 CSS 中导入 Tailwind: 在 CSS 文件中添加 @import \"tailwindcss\";。\n比如在 src/input.css 文件开头导入：\nsrc/input.css 文件",
+    "examples": [
+     "@import \"tailwindcss\";"
+    ]
+   }
+  ]
+ }
+}

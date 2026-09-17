@@ -1,0 +1,204 @@
+{
+ "tutorial": {
+  "name": "Scala",
+  "category": "后端开发",
+  "desc": "Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要",
+  "url": "https://www.runoob.com/scala/",
+  "chapters": [
+   {
+    "title": "Scala 访问修饰符",
+    "url": "https://www.runoob.com/scala/scala-access-modifiers.html",
+    "body": "在 Scala 中，访问修饰符用于控制类、对象、特质（traits）及其成员（如字段和方法）的可见性和访问权限。\nScala 访问修饰符基本和 Java 的一样，分别有：private，protected，public。\n如果没有指定访问修饰符，默认情况下，Scala 对象的访问级别都是 public。\nScala 中的 private 限定符，比 Java 更严格，在嵌套类情况下，外层类甚至不能访问被嵌套类的私有成员。\n私有(Private)成员\n用 private 关键字修饰，带有此标记的成员仅在包含了成员定义的类或对象内部可见，同样的规则还适用内部类。\n实例",
+    "examples": [
+     "class Outer{\n    class Inner{\n        private def f(){\n            println(\"f\")\n        }\n        class InnerMost{\n            f() // 正确\n        }\n    }\n    (new Inner).f() //错误\n}"
+    ]
+   },
+   {
+    "title": "Scala 数组",
+    "url": "https://www.runoob.com/scala/scala-arrays.html",
+    "body": "Scala 语言中提供的数组是用来存储固定大小的同类型元素，数组对于每一门编程语言来说都是重要的数据结构之一。\n声明数组变量并不是声明 number0、number1、...、number99 一个个单独的变量，而是声明一个就像 numbers 这样的变量，然后使用 numbers[0]、numbers[1]、...、numbers[99] 来表示一个个单独的变量。数组中某个指定的元素是通过索引来访问的。\n数组的第一个元素索引为0，最后一个元素的索引为元素总数减1。\n声明数组\n以下是 Scala 数组声明的语法格式：\nvar z:Array[String] = new Array[String](3)\n\n或\n\nvar z = new Array[String](3)\n以上语法中，z 声明一个字符串类型的数组，数组长度为 3 ，可存储 3 个元素。我们可以为每个元素设置值，并通过索引来访问每个元素，如下所示：\nz(0) = \"Runoob\"; z(1) = \"Baidu\"; z(4/2) = \"Google\"\n最后一个元素的索引使用了表达式 4/2 作为索引，类似于 z(2) = \"Google\"。\n我们也可以使用以下方式来定义一个数组：\nvar z = Array(\"Runoob\", \"Baidu\", \"Google\")\n下图展示了一个长度为 10 的数组 myList，索引值为 0 到 9：\n处理数组\n数组的元素类型和数组的大小都是确定的，所以当处理数组元素时候，我们通常使用基本的 for 循环。\n以下实例演示了数组的创建，初始化等处理过程：\n实例",
+    "examples": [
+     "object Test {\n   def main(args: Array[String]) {\n      var myList = Array(1.9, 2.9, 3.4, 3.5)\n      \n      // 输出所有数组元素\n      for ( x <- myList ) {\n         println( x )\n      }\n\n      // 计算数组所有元素的总和\n      var total = 0.0;\n      for ( i <- 0 to (myList.length - 1)) {\n         total += myList(i);\n      }\n      println(\"总和为 \" + total);\n\n      // 查找数组中的最大元素\n      var max = myList(0);\n      for ( i <- 1 to (myList.length - 1) ) {\n         if (myList(i) > max) max = myList(i);\n      }\n      println(\"最大值为 \" + max);\n    \n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 基础语法",
+    "url": "https://www.runoob.com/scala/scala-basic-syntax.html",
+    "body": "如果你之前是一名 Java 程序员，并了解 Java 语言的基础知识，那么你能很快学会 Scala 的基础语法。\nScala 与 Java 的最大区别是：Scala 语句末尾的分号 ; 是可选的。\n我们可以认为 Scala 程序是对象的集合，通过调用彼此的方法来实现消息传递。接下来我们来理解下，类，对象，方法，实例变量的概念：\n对象 - \n对象有属性和行为。例如：一只狗的状属性有：颜色，名字，行为有：叫、跑、吃等。对象是一个类的实例。\n类 - 类是对象的抽象，而对象是类的具体实例。\n方法 - 方法描述的基本的行为，一个类可以包含多个方法。\n字段 - 每个对象都有它唯一的实例变量集合，即字段。对象的属性通过给字段赋值来创建。\n第一个 Scala 程序\n交互式编程\n交互式编程不需要创建脚本文件，可以通过以下命令调用：\n$ scala\nWelcome to Scala version 2.11.7 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_31).\nType in expressions to have them evaluated.\nType :help for more information.\n\nscala> 1 + 1\nres0: Int = 2\n\nscala> println(\"Hello World!\")\nHello World!\n\nscala>\n脚本形式\n我们也可以通过创建一个 HelloWorld.scala 的文件来执行代码，HelloWorld.scala 代码如下所示：\nHelloWorld.scala 文件代码：",
+    "examples": [
+     "object HelloWorld {\n   /* 这是我的第一个 Scala 程序\n    * 以下程序将输出'Hello World!' \n    */\n   def main(args: Array[String]) = {\n      println(\"Hello, world!\") // 输出 Hello World\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 类和对象",
+    "url": "https://www.runoob.com/scala/scala-classes-objects.html",
+    "body": "类是对象的抽象，而对象是类的具体实例。类是抽象的，不占用内存，而对象是具体的，占用存储空间。类是用于创建对象的蓝图，它是一个定义包括在特定类型的对象中的方法和变量的软件模板。\n我们可以使用 new 关键字来创建类的对象，实例如下：\n实例",
+    "examples": [
+     "class Point(xc: Int, yc: Int) {\n   var x: Int = xc\n   var y: Int = yc\n\n   def move(dx: Int, dy: Int) {\n      x = x + dx\n      y = y + dy\n      println (\"x 的坐标点: \" + x);\n      println (\"y 的坐标点: \" + y);\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 闭包",
+    "url": "https://www.runoob.com/scala/scala-closures.html",
+    "body": "在 Scala 中，闭包（Closure）是一种函数，它能够捕获并包含其定义环境中的自由变量。\n闭包是一个函数，返回值依赖于声明在函数外部的一个或多个变量。\n闭包可以访问函数外部的变量并在函数内部使用这些变量，即使在变量的作用域已经超出其定义环境时，闭包仍然可以访问这些变量。\n闭包的关键在于它可以\"关闭\"函数外部的变量，使得这些变量在函数内仍然可用。\n如下面这段匿名的函数：\nval multiplier = (i:Int) => i * 10\n函数体内有一个变量 i，它作为函数的一个参数。如下面的另一段代码：\nval multiplier = (i:Int) => i * factor\n在 multiplier 中有两个变量：i 和 factor。其中的一个 i 是函数的形式参数，在 multiplier 函数被调用时，i 被赋予一个新的值。然而，factor不是形式参数，而是自由变量，考虑下面代码：\nvar factor = 3 \nval multiplier = (i:Int) => i * factor\n这里我们引入一个自由变量 factor，这个变量定义在函数外面。\n这样定义的函数变量 multiplier 成为一个\"闭包\"，因为它引用到函数外面定义的变量，定义这个函数的过程是将这个自由变量捕获而构成一个封闭的函数。\n完整实例\n实例\n运行实例 »",
+    "examples": [
+     "object Test {  \n   def main(args: Array[String]) {  \n      println( \"muliplier(1) value = \" +  multiplier(1) )  \n      println( \"muliplier(2) value = \" +  multiplier(2) )  \n   }  \n   var factor = 3  \n   val multiplier = (i:Int) => i * factor  \n}"
+    ]
+   },
+   {
+    "title": "Scala Collection",
+    "url": "https://www.runoob.com/scala/scala-collections.html",
+    "body": "Scala提供了一套很好的集合实现，提供了一些集合类型的抽象。\nScala 集合分为可变的和不可变的集合。\n可变集合可以在适当的地方被更新或扩展。这意味着你可以修改，添加，移除一个集合的元素。\n而不可变集合类，相比之下，永远不会改变。不过，你仍然可以模拟添加，移除或更新操作。但是这些操作将在每一种情况下都返回一个新的集合，同时使原来的集合不发生改变。\n接下来我们将为大家介绍几种常用集合类型的应用：\n序号\n集合及描述\n1\nScala List(列表)List的特征是其元素以线性方式存储，集合中可以存放重复对象。\n参考 API文档\n2\nScala Set(集合) Set是最简单的一种集合。集合中的对象不按特定的方式排序，并且没有重复对象。\n参考 API文档\n3\nScala Map(映射)Map 是一种把键对象和值对象映射的集合，它的每一个元素都包含一对键对象和值对象。\n参考 API文档\n4\nScala 元组元组是不同类型的值的集合\n5\nScala OptionOption[T] 表示有可能包含值的容器，也可能不包含值。\n6\nScala Iterator（迭代器）迭代器不是一个容器，更确切的说是逐一访问容器内元素的方法。\n实例\n以下代码判断，演示了所有以上集合类型的定义实例：",
+    "examples": [
+     "// 定义整型 List\nval x = List(1,2,3,4)\n\n// 定义 Set\nval x = Set(1,3,5,7)\n\n// 定义 Map\nval x = Map(\"one\" -> 1, \"two\" -> 2, \"three\" -> 3)\n\n// 创建两个不同类型元素的元组\nval x = (10, \"Runoob\")\n\n// 定义 Option\nval x:Option[Int] = Some(5)"
+    ]
+   },
+   {
+    "title": "Scala 数据类型",
+    "url": "https://www.runoob.com/scala/scala-data-types.html",
+    "body": "Scala 支持的主要数据类型包括基本类型、集合类型、和特殊类型。\n下表列出了 Scala 支持的数据类型：\n类型类别\n数据类型\n描述\nScala标准库中的实际类\n基本类型\nByte\n8位有符号整数，数值范围为 -128 到 127\nscala.Byte\n基本类型\nShort\n16位有符号整数，数值范围为 -32768 到 32767\nscala.Short\n基本类型\nInt\n32位有符号整数，数值范围为 -2147483648 到 2147483647\nscala.Int\n基本类型\nLong\n64位有符号整数，数值范围为 -9223372036854775808 到 9223372036854775807\nscala.Long\n基本类型\nFloat\n32位IEEE 754单精度浮点数\nscala.Float\n基本类型\nDouble\n64位IEEE 754双精度浮点数\nscala.Double\n基本类型\nChar\n16位无符号Unicode字符，数值范围为 U+0000 到 U+FFFF\nscala.Char\n基本类型\nString\n字符串类型，表示字符序列\njava.lang.String\n基本类型\nBoolean\n布尔类型，值为 true 或 false\nscala.Boolean\n集合类型\nList\n不可变链表\nscala.collection.immutable.List\n集合类型\nSet\n不可变集合\nscala.collection.immutable.Set\n集合类型\nMap\n不可变键值对集合\nscala.collection.immutable.Map\n集合类型\nArray\n可变数组\nscala.Array\n集合类型\nTuple\n可包含不同类型元素的不可变容器\nscala.TupleN\n集合类型\nOption\n代表有可能含有值或为空的容器\nscala.Option\n集合类型\nEither\n表示两种可能的值类型之一\nscala.util.Either\n集合类型\nTry\n处理操作结果可能成功或失败的容器\nscala.util.Try\n特殊类型\nUnit\n表示无值，相当于Java中的 void\nscala.Unit\n特殊类型\nNull\n单例对象，表示所有引用类型的空值\nscala.Null\n特殊类型\nNothing\n表示无返回值类型，是所有类型的子类型\nscala.Nothing\n特殊类型\nAny\n所有类型的超类型\nscala.Any\n特殊类型\nAnyRef\n所有引用类型的超类型，等价于Java中的 Object\nscala.AnyRef\n在 Scala 中，所有数据类型都是对象。\nScala 没有像 Java 中的原生类型（primitive types）那样的概念。尽管 Scala 的基本数据类型（如 Int、Double 等）在语法上看起来类似于 Java 的原生类型，但它们实际上是对象。这意味着你可以在这些类型上调用方法。\n例如，Int 类型在 Scala 中实际上是 scala.Int 类的一个实例，而 scala.Int 是一个最终类，继承自 AnyVal。AnyVal 是 Scala 中的一个特殊类，表示值类型。\n下面是一个完整的 Scala 程序，展示了各种数据类型的使用：\nDataTypeExamples.scala 文件代码：",
+    "examples": [
+     "object DataTypeExamples {\n  def main(args: Array[String]): Unit = {\n    // 基本类型\n    val byteValue: Byte = 127\n    val shortValue: Short = 32767\n    val intValue: Int = 2147483647\n    val longValue: Long = 9223372036854775807L\n    val floatValue: Float = 3.14f\n    val doubleValue: Double = 3.141592653589793\n    val charValue: Char = 'A'\n    val stringValue: String = \"Hello, Scala!\"\n    val booleanValue: Boolean = true\n\n    // 集合类型\n    val listValue: List[Int] = List(1, 2, 3)\n    val setValue: Set[String] = Set(\"Scala\", \"Java\", \"Python\")\n    val mapValue: Map[String, Int] = Map(\"one\" -> 1, \"two\" -> 2, \"three\" -> 3)\n    val arrayValue: Array[Int] = Array(4, 5, 6)\n    val tupleValue: (Int, String, Boolean) = (42, \"Answer\", true)\n    val optionValue: Option[String] = Some(\"I am here\")\n    val eitherValue: Either[String, Int] = Right(42)\n    val tryValue: Try[Int] = Try(10 / 2)\n\n    // 特殊类型\n    val unitValue: Unit = ()\n    val nullValue: String = null\n    val nothingValue: Nothing = throw new RuntimeException(\"Nothing value\")\n\n    // 输出所有值\n    println(s\"Byte Value: $byteValue\")\n    println(s\"Short Value: $shortValue\")\n    println(s\"Int Value: $intValue\")\n    println(s\"Long Value: $longValue\")\n    println(s\"Float Value: $floatValue\")\n    println(s\"Double Value: $doubleValue\")\n    println(s\"Char Value: $charValue\")\n    println(s\"String Value: $stringValue\")\n    println(s\"Boolean Value: $booleanValue\")\n    \n    println(s\"List Value: $listValue\")\n    println(s\"Set Value: $setValue\")\n    println(s\"Map Value: $mapValue\")\n    println(s\"Array Value: ${arrayValue.mkString(\", \")}\")\n    println(s\"Tuple Value: $tupleValue\")\n    println(s\"Option Value: $optionValue\")\n    println(s\"Either Value: $eitherValue\")\n    println(s\"Try Value: $tryValue\")\n    \n    println(s\"Unit Value: $unitValue\")\n    println(s\"Null Value: $nullValue\")\n    \n    // nothingValue is not printed because it throws an exception\n  }\n}"
+    ]
+   },
+   {
+    "title": "Scala 转义字符",
+    "url": "https://www.runoob.com/scala/scala-escape-char.html",
+    "body": "在 Scala 中，转义字符用于表示无法直接在字符串字面量中书写的特殊字符。\n转义字符以反斜杠 \\ 开头，紧跟一个特定的字符，表示某种特殊含义或效果。\n下表列出了常见的转义字符：\n转义字符\n描述\n\\b\n退格符\n\\t\n制表符 (Tab)\n\\n\n换行符 (Line Feed)\n\\f\n换页符 (Form Feed)\n\\r\n回车符 (Carriage Return)\n\\\"\n双引号\n\\'\n单引号\n\\\\\n反斜杠\n在字符或字符串中，0 到 255 间的 Unicode 字符可以用一个八进制转义序列来表示，即反斜杠 \\ 后跟最多三位八进制数字。\n如果反斜杠 \\ 后面的字符序列不能构成一个合法的转义序列，将会导致编译错误。\n以下实例演示了一些转义字符的使用：\n实例\n运行实例 »",
+    "examples": [
+     "object Test {\n   def main(args: Array[String]) {\n      println(\"Hello\\tWorld\\n\\n\" );\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 异常处理",
+    "url": "https://www.runoob.com/scala/scala-exception-handling.html",
+    "body": "Scala 的异常处理和其它语言比如 Java 类似。\nScala 的方法可以通过抛出异常的方法的方式来终止相关代码的运行，不必通过返回值。\n抛出异常\nScala 抛出异常的方法和 Java一样，使用 throw 方法，例如，抛出一个新的参数异常：\nthrow new IllegalArgumentException\n捕获异常\n异常捕捉的机制与其他语言中一样，如果有异常发生，catch 字句是按次序捕捉的。因此，在 catch 字句中，越具体的异常越要靠前，越普遍的异常越靠后。 如果抛出的异常不在 catch 字句中，该异常则无法处理，会被升级到调用者处。\n捕捉异常的 catch 子句，语法与其他语言中不太一样。在 Scala 里，借用了模式匹配的思想来做异常的匹配，因此，在 catch 的代码里，是一系列 case 字句，如下例所示：\n实例",
+    "examples": [
+     "import java.io.FileReader\nimport java.io.FileNotFoundException\nimport java.io.IOException\n\nobject Test {\n   def main(args: Array[String]) {\n      try {\n         val f = new FileReader(\"input.txt\")\n      } catch {\n         case ex: FileNotFoundException =>{\n            println(\"Missing file exception\")\n         }\n         case ex: IOException => {\n            println(\"IO Exception\")\n         }\n      }\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 提取器(Extractor)",
+    "url": "https://www.runoob.com/scala/scala-extractors.html",
+    "body": "提取器是从传递给它的对象中提取出构造该对象的参数。\nScala 标准库包含了一些预定义的提取器，我们会大致的了解一下它们。\nScala 提取器是一个带有unapply方法的对象。unapply方法算是apply方法的反向操作：unapply接受一个对象，然后从对象中提取值，提取的值通常是用来构造该对象的值。\n以下实例演示了邮件地址的提取器对象：\n实例",
+    "examples": [
+     "object Test {\n   def main(args: Array[String]) {\n      \n      println (\"Apply 方法 : \" + apply(\"Zara\", \"gmail.com\"));\n      println (\"Unapply 方法 : \" + unapply(\"Zara@gmail.com\"));\n      println (\"Unapply 方法 : \" + unapply(\"Zara Ali\"));\n\n   }\n   // 注入方法 (可选)\n   def apply(user: String, domain: String) = {\n      user +\"@\"+ domain\n   }\n\n   // 提取方法（必选）\n   def unapply(str: String): Option[(String, String)] = {\n      val parts = str split \"@\"\n      if (parts.length == 2){\n         Some(parts(0), parts(1)) \n      }else{\n         None\n      }\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 文件 I/O",
+    "url": "https://www.runoob.com/scala/scala-file-io.html",
+    "body": "Scala 进行文件写操作，直接用的都是 java中 的 I/O 类 （java.io.File)：\n实例",
+    "examples": [
+     "import java.io._\n\nobject Test {\n   def main(args: Array[String]) {\n      val writer = new PrintWriter(new File(\"test.txt\" ))\n\n      writer.write(\"菜鸟教程\")\n      writer.close()\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 方法与函数",
+    "url": "https://www.runoob.com/scala/scala-functions.html",
+    "body": "Scala 有方法与函数，二者在语义上的区别很小。Scala 方法是类的一部分，而函数是一个对象可以赋值给一个变量。换句话来说在类中定义的函数即是方法。\nScala 中的方法跟 Java 的类似，方法是组成类的一部分。\nScala 中的函数则是一个完整的对象，Scala 中的函数其实就是继承了 Trait 的类的对象。\nScala 中使用 val 语句可以定义函数，def 语句定义方法。\nclass Test{\n def m(x: Int) = x + 3\n val f = (x: Int) => x + 3\n}\n注意：有些翻译上函数(function)与方法(method)是没有区别的。\n方法声明\nScala 方法声明格式如下：\ndef functionName ([参数列表]) : [return type]\n如果你不写等于号和方法主体，那么方法会被隐式声明为抽象(abstract)，包含它的类型于是也是一个抽象类型。\n方法定义\n方法定义由一个 def 关键字开始，紧接着是可选的参数列表，一个冒号 : 和方法的返回类型，一个等于号 = ，最后是方法的主体。\nScala 方法定义格式如下：\ndef functionName ([参数列表]) : [return type] = {\n function body\n return [expr]\n}\n以上代码中 return type 可以是任意合法的 Scala 数据类型。参数列表中的参数可以使用逗号分隔。\n以下方法的功能是将两个传入的参数相加并求和：\n实例",
+    "examples": [
+     "object add{\n   def addInt( a:Int, b:Int ) : Int = {\n      var sum:Int = 0\n      sum = a + b\n\n      return sum\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala IF...ELSE 语句",
+    "url": "https://www.runoob.com/scala/scala-if-else.html",
+    "body": "Scala IF...ELSE 语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。\n可以通过下图来简单了解条件语句的执行过程:\nif 语句\nif 语句有布尔表达式及之后的语句块组成。\n语法\nif 语句的语法格式如下：\nif(布尔表达式)\n{\n // 如果布尔表达式为 true 则执行该语句块\n}\n如果布尔表达式为 true 则执行大括号内的语句块，否则跳过大括号内的语句块，执行大括号之后的语句块。\n实例\n实例\n运行实例 »",
+    "examples": [
+     "object Test {\n   def main(args: Array[String]) {\n      var x = 10;\n\n      if( x < 20 ){\n         println(\"x < 20\");\n      }\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 安装",
+    "url": "https://www.runoob.com/scala/scala-install.html",
+    "body": "Scala 语言可以运行在 Window、Linux、Unix、 Mac OS X 等系统上。\nScala 是基于 Java 之上，大量使用 Java 的类库和变量，使用 Scala 之前必须先安装 Java（>1.5版本）。\nMac OS X 和 Linux 上安装 Scala\n第一步：Java 设置\n确保你本地已经安装了 JDK 1.5 以上版本，并且设置了 JAVA_HOME 环境变量及 JDK 的 bin 目录。\n我们可以使用以下命令查看是否安装了 Java：\n$ java -version\njava version \"1.8.0_31\"\nJava(TM) SE Runtime Environment (build 1.8.0_31-b13)\nJava HotSpot(TM) 64-Bit Server VM (build 25.31-b07, mixed mode)\n$\n接着，我们可以查看是否安装了 Java 编译器。输入以下命令查看：\n$ javac -version\njavac 1.8.0_31\n$\n如果还未安装，可以参考我们的Java 开发环境配置。\n要安装 Scala，建议使用由 Coursier 提供支持的 Scala 安装程序 cs setup\nmacOS 使用 brew 命令安装：\nbrew install coursier/formulas/coursier && cs setup\nLinux 使用 curl 命令下载源码包来安装。\nx86-64 架构：\ncurl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs && chmod +x cs && ./cs setup\nARM64 架构：\ncurl -fL https://github.com/VirtusLab/coursier-m1/releases/latest/download/cs-aarch64-pc-linux.gz | gzip -d > cs && chmod +x cs && ./cs setup\n可以通过 uname -m 命令查看你服务器 CPU 的架构：\n# uname -m\nx86_64\n二进制包安装\n我们可以从 Github 地址 https://github.com/lampepfl/dotty/tags 下载 Scala 二进制包，本教程我们将下载 2.11.7版本，如下图所示：\n点击我们要下载的版本号，然后将网页拉到底部，可以看到下载文件包：\n解压缩文件包，可将其移动至/usr/local/share下：\nmv scala-2.11.7 scala # 重命名 Scala 目录\nmv /download/scalapath /usr/local/share # 下载目录需要按你实际的下载路径\n修改环境变量，如果不是管理员可使用 sudo 进入管理员权限，修改配置文件profile:\nvim /etc/profile\n\n或\n\nsudo vim /etc/profile\n在文件的末尾加入:\nexport PATH=\"$PATH:/usr/local/share/scala/bin\"\n:wq!保存退出，重启终端，执行 scala 命令，输出以下信息，表示安装成功：\n$ scala\nWelcome to Scala version 2.11.7 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_31).\nType in expressions to have them evaluated.\nType :help for more information.\n注意：在编译的时候，如果有中文会出现乱码现象，解决方法查看：Scala 中文乱码解决\nwindow 上安装 Scala\n第一步：Java 设置\n检测方法前文已说明，这里不再描述。\n如果还未安装，可以参考我们的Java 开发环境配置。\n接下来，我们可以从 Scala 官网地址 http://www.scala-lang.org/downloads 下载 Scala 二进制包(页面底部)，本教程我们将下载 2.11.7版本，如下图所示：\n下载后，双击 exe 文件，一步步安装即可，安装过程你可以使用默认的安装目录。\n安装好scala后，系统会自动提示，单击 finish，完成安装。\n右击我的电脑，单击\"属性\"，进入如图所示页面。下面开始配置环境变量，右击【我的电脑】--【属性】--【高级系统设置】--【环境变量】，如图：\n设置 SCALA_HOME 变量：单击新建，在变量名栏输入：SCALA_HOME: 变量值一栏输入：D:\\Program Files（x86）\\scala 也就是 Scala 的安装目录，根据个人情况有所不同，如果安装在 C 盘，将 D 改成 C 即可。\n设置 Path 变量：找到系统变量下的\"Path\"如图，单击编辑。在\"变量值\"一栏的最前面添加如下的路径： %SCALA_HOME%\\bin;%SCALA_HOME%\\jre\\bin;\n注意：后面的分号 ； 不要漏掉。\n设置 Classpath 变量：找到找到系统变量下的\"Classpath\"如图，单击编辑，如没有，则单击\"新建\":\n\"变量名\"：ClassPath\n\"变量值\"：.;%SCALA_HOME%\\bin;%SCALA_HOME%\\lib\\dt.jar;%SCALA_HOME%\\lib\\tools.jar.;\n注意：\"变量值\"最前面的 .; 不要漏掉。最后单击确定即可。\n检查环境变量是否设置好了：调出\"cmd\"检查。单击 【开始】，在输入框中输入cmd，然后\"回车\"，输入 scala，然后回车，如环境变量设置ok，你应该能看到这些信息。\n以下列出了不同系统放置的目录（可作为参考）：\n系统环境\n变量\n值 (举例)\nUnix\n$SCALA_HOME\n/usr/local/share/scala\n$PATH\n$PATH:$SCALA_HOME/bin\nWindows\n%SCALA_HOME%\nc:\\Progra~1\\Scala\n%PATH%\n%PATH%;%SCALA_HOME%\\bin",
+    "examples": []
+   },
+   {
+    "title": "Scala 简介",
+    "url": "https://www.runoob.com/scala/scala-intro.html",
+    "body": "Scala 是 Scalable Language 的简写，意味着这种语言设计上支持大规模软件开发，是一门多范式的编程语言\nScala 语言是由 Martin Odersky 等人在 2003 年开发的，并于 2004 年首次发布。\nScala 运行于 Java 平台（Java 虚拟机），并兼容现有的 Java 程序。\nScala 的编译模型（独立编译，动态类加载）与 Java 和 C# 一样，所以 Scala 代码可以调用 Java 类库（对于.NET实现则可调用.NET类库）。\nScala 特性\n面向对象特性\nScala 是一种高度表达性的编程语言，它结合了面向对象编程和函数式编程的最佳特性。\n类和对象: Scala 支持类和对象，可以定义属性和方法。\n继承和多态: 支持类的继承和多态，可以创建层次结构和重用代码。\n抽象类和特质: 可以定义抽象类和特质（traits），用于定义接口和实现部分行为。\n封装: 支持访问控制修饰符（public、protected、private），实现数据的封装。\n函数式编程\n高阶函数: 函数可以作为参数传递给另一个函数，或者从另一个函数返回。\n不可变性: 默认使用不可变数据结构，有助于避免副作用，提高代码的并发安全性。\n模式匹配: 提供强大的模式匹配功能，可以解构复杂数据结构，进行条件判断。\n闭包: 支持闭包，可以捕获并记住其创建时的变量。\n类型系统\n静态类型\nScala具备类型系统，通过编译时检查，保证代码的安全性和一致性。类型系统具体支持以下特性：\n泛型类\n协变和逆变\n标注\n类型参数的上下限约束\n把类别和抽象类型作为对象成员\n复合类型\n引用自己时显式指定类型\n视图\n多态方法\n类型推断: 强大的类型推断机制，可以减少代码中的类型声明，提高代码的可读性。\n泛型编程: 支持泛型，允许编写更加通用和可复用的代码。\n类型系统扩展: 包括协变（covariance）和逆变（contravariance）、特质（traits）混入等。\n扩展性\nScala的设计秉承一项事实，即在实践中，某个领域特定的应用程序开发往往需要特定于该领域的语言扩展。Scala提供了许多独特的语言机制，可以以库的形式轻易无缝添加新的语言结构：\n任何方法可用作前缀或后缀操作符\n可以根据预期类型自动构造闭包。\n并发性\nAkka 框架: 基于 Actor 模型，用于构建并发、分布式和容错的应用程序。\nFutures 和 Promises: 提供异步编程的抽象，简化并发任务的管理。\nScala 并发集合: 提供线程安全的数据结构，方便并发编程。\n强大的标准库\n集合框架: 提供丰富的不可变和可变集合类，如List、Set、Map等。\n字符串处理: 提供强大的字符串操作和正则表达式支持。\nIO操作: 支持文件和网络IO操作。\n与 Java 互操作性\n无缝调用: Scala 可以直接调用 Java 代码，并且可以在 Java 中调用 Scala 代码。\nJava标准库: 可以使用 Java 的标准库和框架，利用其丰富的生态系统。\n模块化和可扩展性\n特质（Traits）: 可以混入类中，提供类似多重继承的功能，增强代码复用性。\n隐式转换和参数: 支持隐式转换和隐式参数，增强代码的灵活性和可扩展性。\n谁使用了 Scala\nScala凭借其强大的功能和灵活性，吸引了许多公司在其项目中使用。以下是一些著名公司和它们使用Scala的具体情况：\n1. Twitter\n用途: Twitter使用Scala重写了其部分服务，以提升性能和可扩展性。Scala被用于处理大量实时数据流和提供高并发的服务。\n具体案例: Twitter的消息队列系统和实时分析平台使用了Scala。\n2. LinkedIn\n用途: LinkedIn使用Scala进行大数据处理和实时数据流分析。\n具体案例: LinkedIn的流处理平台Kappa Architecture使用了Scala。\n3. Netflix\n用途: Netflix使用Scala开发了许多微服务和数据处理工具，以支持其全球范围的流媒体服务。\n具体案例: Netflix的中间层服务和部分数据管道使用了Scala。\n4. Airbnb\n用途: Airbnb使用Scala进行数据管道和机器学习模型的开发。\n具体案例: Airbnb的实时数据处理和推荐系统使用了Scala。\n5. Coursera\n用途: Coursera使用Scala开发其在线教育平台，处理大量用户数据和课程信息。\n具体案例: Coursera的后端服务和数据处理管道使用了Scala。\n6. The Guardian\n用途: The Guardian使用Scala开发其内容管理系统和数据处理工具。\n具体案例: The Guardian的内容发布和数据分析平台使用了Scala。\n7. Apple\n用途: Apple在一些大数据处理和分析工具中使用了Scala。\n具体案例: Apple的iCloud服务和其他内部数据处理项目使用了Scala。\n8. SoundCloud\n用途: SoundCloud使用Scala处理音频数据流和用户交互数据。\n具体案例: SoundCloud的后端服务和数据分析平台使用了Scala。\n9. Foursquare\n用途: Foursquare使用Scala开发其位置数据分析平台。\n具体案例: Foursquare的实时位置数据处理和推荐系统使用了Scala。\n10. PagerDuty\n用途: PagerDuty使用Scala开发其事件管理和通知系统。\n具体案例: PagerDuty的事件处理和实时通知系统使用了Scala。\n这些公司选择Scala主要是因为其高效的并发处理能力、与Java的互操作性以及强大的类型系统。Scala在大数据处理、实时数据流处理和高并发服务中表现尤为出色，因此在这些领域得到了广泛应用。\nScala Web 框架\n以下列出了两个目前比较流行的 Scala 的 Web应用框架：\nLift 框架\nPlay 框架",
+    "examples": []
+   },
+   {
+    "title": "Scala Iterator（迭代器）",
+    "url": "https://www.runoob.com/scala/scala-iterators.html",
+    "body": "Scala 集合\nScala Iterator（迭代器）不是一个集合，它是一种用于访问集合的方法。\n迭代器 it 的两个基本操作是 next 和 hasNext。\n调用 it.next() 会返回迭代器的下一个元素，并且更新迭代器的状态。\n调用 it.hasNext() 用于检测集合中是否还有元素。\n让迭代器 it 逐个返回所有元素最简单的方法是使用 while 循环：\n实例",
+    "examples": [
+     "object Test {\n   def main(args: Array[String]) {\n      val it = Iterator(\"Baidu\", \"Google\", \"Runoob\", \"Taobao\")\n      \n      while (it.hasNext){\n         println(it.next())\n      }\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 字面量",
+    "url": "https://www.runoob.com/scala/scala-literals.html",
+    "body": "在 Scala 中，字面量（Literals）是直接表示固定值的表达式。\nScala支持各种类型的字面量，涵盖了数值、字符、字符串、布尔值等。\n整型字面量\n整型字面量用于 Int 类型，如果表示 Long，可以在数字后面添加 L 或者小写 l 作为后缀。\n整型字面量可以是十进制、十六进制和八进制。\n十进制：42, 0, -99\n十六进制：以0x或0X开头，如0x2A, 0x0, 0XFF\n八进制：Scala 2.10 之前支持八进制字面量，以 0 开头，但在 Scala 2.10 及之后的版本中，八进制字面量被移除。\nval decimal = 42\nval hex = 0x2A\n浮点型字面量\n如果浮点数后面有 f 或者 F 后缀时，表示这是一个 Float 类型，否则就是一个 Double 类型的。\n双精度：3.14, -0.001, 1.0e-10\n单精度：3.14f, -0.001F\nval doubleValue = 3.14\nval floatValue = 3.14f\n布尔型字面量\n布尔型字面量有 true 和 false。\nval isScalaFun = true\nval isSkyGreen = false\n符号字面量\n符号字面量被写成： '<标识符> ，这里 <标识符> 可以是任何字母或数字的标识（注意：不能以数字开头）。这种字面量被映射成预定义类 scala.Symbol 的实例。\n如：符号字面量 'x 是表达式 scala.Symbol(\"x\") 的简写，符号字面量定义如下：\npackage scala\nfinal case class Symbol private (name: String) {\n override def toString: String = \"'\" + name\n}\n字符字面量\n在 Scala 字符变量使用单引号 ' 来定义，如下：\n'a' \n'\\u0041'\n'\\n'\n'\\t'\n其中 \\ 表示转义字符，其后可以跟 u0041 数字或者 \\r\\n 等固定的转义字符。\n字符串字面量\n在 Scala 字符串字面量使用双引号 \" 来定义，如下：\n\"Hello,\\nWorld!\"\n\"菜鸟教程官网：www.runoob.com\"\n普通字符串：\"Hello, World!\"\n多行字符串：使用三重引号 \"\"\" 括起来，可以包含换行符和引号。\n多行字符串的表示方法\n多行字符串用三个双引号来表示分隔符，格式为：\"\"\" ... \"\"\"。\n实例如下：\nval foo = \"\"\"菜鸟教程\nwww.runoob.com\nwww.runnoob.com\n以上三个地址都能访问\"\"\"\nNull 值\nNull是一个特殊的字面量，表示所有引用类型的空值。\n空值是 scala.Null 类型。\nScala.Null 和 scala.Nothing 是用统一的方式处理 Scala 面向对象类型系统的某些\"边界情况\"的特殊类型。\nNull 类是 null 引用对象的类型，它是每个引用类（继承自AnyRef的类）的子类。Null不兼容值类型。\nval nullValue: String = null\nUnit\nUnit 类型只有一个实例值，用字面量 () 表示，类似于 Java 中的 void。\nval unitValue: Unit = ()\n实例\n以下是使用不同类型字面量的示例代码：\n实例",
+    "examples": [
+     "object LiteralsExample {\n  def main(args: Array[String]): Unit = {\n    // 数值字面量\n    val decimal = 42\n    val hex = 0x2A\n    val doubleValue = 3.14\n    val floatValue = 3.14f\n    \n    // 字符字面量\n    val charA = 'A'\n    val charNewLine = '\\n'\n    \n    // 字符串字面量\n    val greeting = \"Hello, World!\"\n    val multilineString = \"\"\"This is\n                            |a multi-line\n                            |string\"\"\".stripMargin\n    \n    // 布尔字面量\n    val isScalaFun = true\n    val isSkyGreen = false\n    \n    // 特殊字面量\n    val nullValue: String = null\n    val unitValue: Unit = ()\n    \n    // 输出示例\n    println(s\"Decimal: $decimal, Hex: $hex\")\n    println(s\"Double: $doubleValue, Float: $floatValue\")\n    println(s\"Char: $charA, New Line: $charNewLine\")\n    println(s\"Greeting: $greeting\")\n    println(s\"Multiline String: $multilineString\")\n    println(s\"Is Scala Fun: $isScalaFun, Is Sky Green: $isSkyGreen\")\n    println(s\"Null Value: $nullValue, Unit Value: $unitValue\")\n  }\n}"
+    ]
+   },
+   {
+    "title": "Scala 循环",
+    "url": "https://www.runoob.com/scala/scala-loop-types.html",
+    "body": "有的时候，我们可能需要多次执行同一块代码。一般情况下，语句是按顺序执行的：函数中的第一个语句先执行，接着是第二个语句，依此类推。\n编程语言提供了更为复杂执行路径的多种控制结构。\n循环语句允许我们多次执行一个语句或语句组，下面是大多数编程语言中循环语句的流程图：\n循环类型\nScala 语言提供了以下几种循环类型。点击链接查看每个类型的细节。\n循环类型\n描述\nwhile 循环\n运行一系列语句，如果条件为true，会重复运行，直到条件变为false。\ndo...while 循环\n类似 while 语句区别在于判断循环条件之前，先执行一次循环的代码块。\nfor 循环\n用来重复执行一系列语句直到达成特定条件达成，一般通过在每次循环完成后增加计数器的值来实现。\n循环控制语句\n循环控制语句改变你代码的执行顺序，通过它你可以实现代码的跳转。Scala 以下几种循环控制语句：\nScala 不支持 break 或 continue 语句，但从 2.8 版本后提供了一种中断循环的方式，点击以下链接查看详情。\n控制语句\n描述\nbreak 语句\n中断循环\n无限循环\n如果条件永远为 true，则循环将变成无限循环。我们可以使用 while 语句来实现无限循环：\n实例",
+    "examples": [
+     "object Test {\n   def main(args: Array[String]) {\n      var a = 10;\n      // 无限循环\n      while( true ){\n         println( \"a 的值为 : \" + a );\n      }\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 运算符",
+    "url": "https://www.runoob.com/scala/scala-operators.html",
+    "body": "一个运算符是一个符号，用于告诉编译器来执行指定的数学运算和逻辑运算。\nScala 含有丰富的内置运算符，包括以下几种类型：\n算术运算符\n关系运算符\n逻辑运算符\n位运算符\n赋值运算符\n接下来我们将为大家详细介绍以上各种运算符的应用。\n算术运算符\n下表列出了 Scala 支持的算术运算符。\n假定变量 A 为 10，B 为 20：\n运算符\n描述\n实例\n+\n加号\nA + B 运算结果为 30\n-\n减号\nA - B 运算结果为 -10\n*\n乘号\nA * B 运算结果为 200\n/\n除号\nB / A 运算结果为 2\n%\n取余\nB % A 运算结果为 0\n实例\n实例\n运行实例 »",
+    "examples": [
+     "object Test {\n   def main(args: Array[String]) = {\n      var a = 10;\n      var b = 20;\n      var c = 25;\n      var d = 25;\n      println(\"a + b = \" + (a + b) );\n      println(\"a - b = \" + (a - b) );\n      println(\"a * b = \" + (a * b) );\n      println(\"b / a = \" + (b / a) );\n      println(\"b % a = \" + (b % a) );\n      println(\"c % a = \" + (c % a) );\n      \n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 模式匹配",
+    "url": "https://www.runoob.com/scala/scala-pattern-matching.html",
+    "body": "Scala 提供了强大的模式匹配机制，应用也非常广泛。\n一个模式匹配包含了一系列备选项，每个都开始于关键字 case。每个备选项都包含了一个模式及一到多个表达式。箭头符号 => 隔开了模式和表达式。\n以下是一个简单的整型值模式匹配实例：\n实例",
+    "examples": [
+     "object Test {\n   def main(args: Array[String]) {\n      println(matchTest(3))\n\n   }\n   def matchTest(x: Int): String = x match {\n      case 1 => \"one\"\n      case 2 => \"two\"\n      case _ => \"many\"\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 正则表达式",
+    "url": "https://www.runoob.com/scala/scala-regular-expressions.html",
+    "body": "Scala 通过 scala.util.matching 包中的 Regex 类来支持正则表达式。以下实例演示了使用正则表达式查找单词 Scala :\n实例",
+    "examples": [
+     "import scala.util.matching.Regex\n\nobject Test {\n   def main(args: Array[String]) {\n      val pattern = \"Scala\".r\n      val str = \"Scala is Scalable and cool\"\n      \n      println(pattern findFirstIn str)\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala 字符串",
+    "url": "https://www.runoob.com/scala/scala-strings.html",
+    "body": "以下实例将字符串赋值给一个常量：\n实例",
+    "examples": [
+     "object Test {\n   val greeting: String = \"Hello,World!\"\n\n   def main(args: Array[String]) {\n      println( greeting )\n   }\n}"
+    ]
+   },
+   {
+    "title": "Scala Trait(特征)",
+    "url": "https://www.runoob.com/scala/scala-traits.html",
+    "body": "Scala Trait(特征) 相当于 Java 的接口，实际上它比接口还功能强大。\n与接口不同的是，它还可以定义属性和方法的实现。\n一般情况下Scala的类只能够继承单一父类，但是如果是 Trait(特征) 的话就可以继承多个，从结果来看就是实现了多重继承。\nTrait(特征) 定义的方式与类类似，但它使用的关键字是 trait，如下所示：\n实例",
+    "examples": [
+     "trait Equal {\n  def isEqual(x: Any): Boolean\n  def isNotEqual(x: Any): Boolean = !isEqual(x)\n}"
+    ]
+   },
+   {
+    "title": "Scala 教程",
+    "url": "https://www.runoob.com/scala/scala-tutorial.html",
+    "body": "Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。\nScala 运行在 Java 虚拟机上，并兼容现有的 Java 程序。\nScala 源代码被编译成 Java 字节码，所以它可以运行于 JVM 之上，并可以调用现有的 Java 类库。",
+    "examples": []
+   },
+   {
+    "title": "Scala 变量",
+    "url": "https://www.runoob.com/scala/scala-variables.html",
+    "body": "变量是一种使用方便的占位符，用于引用计算机内存地址，变量创建后会占用一定的内存空间。\n基于变量的数据类型，操作系统会进行内存分配并且决定什么将被储存在保留内存中。因此，通过给变量分配不同的数据类型，你可以在这些变量中存储整数，小数或者字母。\n变量声明\n在学习如何声明变量与常量之前，我们先来了解一些变量与常量。\n变量：\n在程序运行过程中其值可能发生改变的量叫做变量。如：时间，年龄。\n常量：在程序运行过程中其值不会发生变化的量叫做常量。如：数值 3，字符'A'。\n在 Scala 中，使用关键词 \"var\" 声明变量，使用关键词 \"val\" 声明常量。\n不可变变量 (val)：\n使用 val 关键字声明的变量是不可变的，即一旦赋值后，其值不能再被改变。\n类似于 Java 中的 final 变量。\n可变变量 (var)：\n使用 var 关键字声明的变量是可变的，其值可以在程序的生命周期内多次改变。\n类似于 Java 中的普通变量。\n声明变量实例如下：\nvar myVar : String = \"Foo\"\nvar myVar : String = \"Too\"\n以上定义了变量 myVar，我们可以修改它。\n声明常量实例如下：\nval myVal : String = \"Foo\"\n以上定义了常量 myVal，它是不能修改的。如果程序尝试修改常量 myVal 的值，程序将会在编译时报错。\n变量类型声明\n变量的类型在变量名之后等号之前声明。定义变量的类型的语法格式如下：\nvar VariableName : DataType [= Initial Value]\n\n或\n\nval VariableName : DataType [= Initial Value]\n实例",
+    "examples": [
+     "object VariableExample {\n  def main(args: Array[String]): Unit = {\n    // 声明不可变变量\n    val immutableVariable: Int = 10\n    println(s\"Immutable Variable: $immutableVariable\")\n\n    // 声明可变变量\n    var mutableVariable: Int = 20\n    println(s\"Mutable Variable: $mutableVariable\")\n\n    // 修改可变变量的值\n    mutableVariable = 30\n    println(s\"Updated Mutable Variable: $mutableVariable\")\n\n    // 不可变变量不能被重新赋值，会导致编译错误\n    // immutableVariable = 15 // Uncommenting this line will cause a compilation error\n  }\n}"
+    ]
+   }
+  ]
+ }
+}

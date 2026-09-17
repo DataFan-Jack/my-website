@@ -1,0 +1,86 @@
+{
+ "tutorial": {
+  "name": "JSON",
+  "category": "前端开发",
+  "desc": "JSON: JavaScript Object Notation(JavaScr",
+  "url": "https://www.runoob.com/json/",
+  "chapters": [
+   {
+    "title": "JSON 数组",
+    "url": "https://www.runoob.com/json/js-json-arrays.html",
+    "body": "数组作为 JSON 对象\n实例",
+    "examples": [
+     "[ \"Google\", \"Runoob\", \"Taobao\" ]"
+    ]
+   },
+   {
+    "title": "JSON 对象",
+    "url": "https://www.runoob.com/json/js-json-objects.html",
+    "body": "对象语法\n实例",
+    "examples": [
+     "{ \"name\":\"runoob\", \"alexa\":10000, \"site\":null }"
+    ]
+   },
+   {
+    "title": "JSON 使用",
+    "url": "https://www.runoob.com/json/json-eval.html",
+    "body": "把 JSON 文本转换为 JavaScript 对象\nJSON 最常见的用法之一，是从 web 服务器上读取 JSON 数据（作为文件或作为 HttpRequest），将 JSON 数据转换为 JavaScript 对象，然后在网页中使用该数据。\n为了更简单地为您讲解，我们使用字符串作为输入进行演示（而不是文件）。\nJSON 实例 - 来自字符串的对象\n创建包含 JSON 语法的 JavaScript 字符串：",
+    "examples": [
+     "var txt = '{ \"sites\" : [' +\n'{ \"name\":\"菜鸟教程\" , \"url\":\"www.runoob.com\" },' +\n'{ \"name\":\"google\" , \"url\":\"www.google.com\" },' +\n'{ \"name\":\"微博\" , \"url\":\"www.weibo.com\" } ]}';"
+    ]
+   },
+   {
+    "title": "JSON - 简介",
+    "url": "https://www.runoob.com/json/json-intro.html",
+    "body": "在线实例\n通过我们的编辑器，您可以在线编辑 JavaScript 代码，然后通过点击一个按钮来查看结果：\nJSON 实例\nvarJSONObject= {\"name\":\"菜鸟教程\",\n \"url\":\"www.runoob.com\", \n \"slogan\":\"学的不仅是技术，更是梦想！\"};\ndocument.getElementById(\"jname\").innerHTML=JSONObject.namedocument.getElementById(\"jurl\").innerHTML=JSONObject.urldocument.getElementById(\"jslogan\").innerHTML=JSONObject.slogan",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<title>菜鸟教程(runoob.com)</title>\n</head>\n<body>\n<h2>JavaScript 创建 JSON 对象</h2>\n<p>\n网站名称: <span id=\"jname\"></span><br /> \n网站地址: <span id=\"jurl\"></span><br /> \n网站 slogan: <span id=\"jslogan\"></span><br />\n</p>\n<script>"
+    ]
+   },
+   {
+    "title": "JSONP 教程",
+    "url": "https://www.runoob.com/json/json-jsonp.html",
+    "body": "本章节我们将向大家介绍 JSONP 的知识。\nJsonp(JSON with Padding) 是 json 的一种\"使用模式\"，可以让网页从别的域名（网站）那获取资料，即跨域读取数据。\n为什么我们从不同的域（网站）访问数据需要一个特殊的技术( JSONP )呢？这是因为同源策略。\n同源策略，它是由 Netscape 提出的一个著名的安全策略，现在所有支持 JavaScript 的浏览器都会使用这个策略。\nJSONP 应用\n1. 服务端 JSONP 格式数据\n如客户想访问 : https://www.runoob.com/try/ajax/jsonp.php?jsoncallback=callbackFunction。\n假设客户期望返回数据：[\"customername1\",\"customername2\"]。\n真正返回到客户端的数据显示为: callbackFunction([\"customername1\",\"customername2\"])。\n服务端文件 jsonp.php 代码为：\njsonp.php 文件代码",
+    "examples": [
+     "<?php\nheader('Content-type: application/json');\n//获取回调函数名\n$jsoncallback = htmlspecialchars($_REQUEST ['jsoncallback']);\n//json数据\n$json_data = '[\"customername1\",\"customername2\"]';\n//输出jsonp格式的数据\necho $jsoncallback . \"(\" . $json_data . \")\";\n?>"
+    ]
+   },
+   {
+    "title": "JSON.parse()",
+    "url": "https://www.runoob.com/json/json-parse.html",
+    "body": "JSON 通常用于与服务端交换数据。\n在接收服务器数据时一般是字符串。\n我们可以使用 JSON.parse() 方法将数据转换为 JavaScript 对象。\n语法\nJSON.parse(text[, reviver])\n参数说明：\ntext:必需， 一个有效的 JSON 字符串。\nreviver: 可选，一个转换结果的函数， 将为对象的每个成员调用此函数。\nJSON 解析实例\n例如我们从服务器接收了以下数据：",
+    "examples": [
+     "{ \"name\":\"runoob\", \"alexa\":10000, \"site\":\"www.runoob.com\" }"
+    ]
+   },
+   {
+    "title": "JSON.stringify()",
+    "url": "https://www.runoob.com/json/json-stringify.html",
+    "body": "JSON 通常用于与服务端交换数据。\n在向服务器发送数据时一般是字符串。\n我们可以使用 JSON.stringify() 方法将 JavaScript 对象转换为字符串。\n语法\nJSON.stringify(value[, replacer[, space]])\n参数说明：\nvalue:必需， 要转换的 JavaScript 值（通常为对象或数组）。\nreplacer:可选。用于转换结果的函数或数组。\n如果 replacer 为函数，则 JSON.stringify 将调用该函数，并传入每个成员的键和值。使用返回值而不是原始值。如果此函数返回 undefined，则排除成员。根对象的键是一个空字符串：\"\"。\n如果 replacer 是一个数组，则仅转换该数组中具有键值的成员。成员的转换顺序与键在数组中的顺序一样。当 value 参数也为数组时，将忽略 replacer 数组。\nspace:可选，文本添加缩进、空格和换行符，如果 space 是一个数字，则返回值文本在每个级别缩进指定数目的空格，如果 space 大于 10，则文本缩进 10 个空格。space 也可以使用非数字，如：\\t。\nJavaScript 对象转换\n例如我们向服务器发送以下数据：",
+    "examples": [
+     "var obj = { \"name\":\"runoob\", \"alexa\":10000, \"site\":\"www.runoob.com\"};"
+    ]
+   },
+   {
+    "title": "JSON 语法",
+    "url": "https://www.runoob.com/json/json-syntax.html",
+    "body": "JSON 语法是 JavaScript 语法的子集。\nJSON 语法规则\nJSON 语法是 JavaScript 对象表示语法的子集。\n数据在名称/值对中\n数据由逗号 , 分隔\n使用斜杆 \\ 来转义字符\n大括号 {} 保存对象\n中括号 [] 保存数组，数组可以包含多个对象\nJSON 的两种结构：\n1、对象：大括号 {} 保存的对象是一个无序的名称/值对集合。一个对象以左括号 { 开始， 右括号 } 结束。每个\"键\"后跟一个冒号 :，名称/值对使用逗号 , 分隔。\n2、数组：中括号 [] 保存的数组是值（value）的有序集合。一个数组以左中括号 [ 开始， 右中括号 ] 结束，值之间使用逗号 , 分隔。\n值（value）可以是双引号括起来的字符串（string）、数值(number)、true、false、 null、对象（object）或者数组（array），它们是可以嵌套。\nJSON 名称/值对\nJSON 数据的书写格式是：\nkey : value\n名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：",
+    "examples": [
+     "\"name\" : \"菜鸟教程\""
+    ]
+   },
+   {
+    "title": "JSON 教程",
+    "url": "https://www.runoob.com/json/json-tutorial.html",
+    "body": "JSON: JavaScript Object Notation(JavaScript 对象表示法)\nJSON 是存储和交换文本信息的语法，类似 XML。\nJSON 比 XML 更小、更快，更易解析。\nJSON 易于人阅读和编写。\nC、Python、C++、Java、PHP、Go 等编程语言都支持 JSON。",
+    "examples": []
+   },
+   {
+    "title": "JSON vs XML",
+    "url": "https://www.runoob.com/json/json-vs-xml.html",
+    "body": "JSON 和 XML 都用于接收 web 服务端的数据。\nJSON 和 XML在写法上有所不同，如下所示：",
+    "examples": []
+   }
+  ]
+ }
+}

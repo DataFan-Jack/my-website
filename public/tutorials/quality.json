@@ -1,0 +1,54 @@
+{
+ "tutorial": {
+  "name": "网站品质",
+  "category": "工具与运维",
+  "desc": "在本教程中，你将学习到如何创建高质量的web网站。",
+  "url": "https://www.runoob.com/quality/",
+  "chapters": [
+   {
+    "title": "Web Quality - 无障碍(WAI)",
+    "url": "https://www.runoob.com/quality/quality-accessibility.html",
+    "body": "能够被残障人士使用的网站才能称得上一个易用的（易访问的）网站。\n残障人士指的是那些带有残疾或者身体不健康的用户。\nWeb Accessibility Initiative - WAI\nWAI （由 W3C 在1997年发起）是一系列计划供 web 开发者、创作者以及设计者使用的指导方针 - 关于如何使内容对残障人士更易用。\n这些指导方针的目标是易用性（accessibility），但是也有助于使 web 内容可用于更多的浏览器（语音浏览器、移动电话、手持设备），以及更多工作于困难环境的用户（非手持式的、强光、黑暗、弱视、噪音等）。\nWAI 对您的网站来说很重要吗？\n是的。\n每天都有百万计的残障人士在网上冲浪，并且甚至超过百万计的人们正在使用着不良的浏览器设备，或者工作在困难的环境当中。\n假如您的网站缺乏诸如可调节字体尺寸、带有文本描述的图形以及便捷的导航，那些人们就无法访问您的信息。\n事实上：您的网站剥夺了这些人的权利。\n增强网站易用性的理由还有：\n可提升网站的美誉度和形象\n可提升用户满意度\n可增加访问者的数量\n可增加访问者在站点的停留时间\n可增加访问者的回访数量\n可同样为无残疾人士增加可用性\n可为关闭图形功能的访问者增加可用性\n可为使用老式设备的人群增加可用性\n可使您的网站为增长速度最快的人群提供服务：老年人群\n使用可调节的字体大小\n请使用相对的字体尺寸，这样用户就能够使用浏览器菜单来改变默认的字体尺寸。\n你可以阅读吗？\n你可以阅读吗？\n你可以阅读吗？\n你可以阅读吗？\n可以在您的浏览器菜单选择\"查看 - 文字大小\"来 要改变字体大。\n使用 \"alt\" 属性\nalt 属性允许你为图像（也可以为其它的元素）提供一条相对应的文字。\n实例:\n<img src=\"images/banana.jpg\" alt=\"Banana\">",
+    "examples": []
+   },
+   {
+    "title": "Web 品质 - 重要的 HTML 元素",
+    "url": "https://www.runoob.com/quality/quality-elements.html",
+    "body": "对于提升 web 品质，<DOCTYPE>、<title> 以及 <h1> 都是重要的标签。\n<!DOCTYPE> 元素\n所有的 HTML 和 XHTML 页面都应当使用 <Doctype> 元素来定义遵照何种 HTML 版本。\ndoctype 定义了您正在使用的 HTML 版本，并为浏览器提供重要的信息以便其更快速一致地呈现您的页面。\n文档类型声明同时也使验证软件可以对页面的语法进行检查：\nHTML 5\n<!DOCTYPE html>\nHTML 4.01 Strict, Transitional, Frameset\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\"\n\"http://www.w3.org/TR/html4/strict.dtd\">\n\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Frameset//EN\"\n\"http://www.w3.org/TR/html4/frameset.dtd\">\nXHTML 1.0 Strict, Transitional, Frameset\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\n\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Frameset//EN\"\n\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd\">\nXHTML 1.1\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\"\n\"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">\n<title> 元素\n<title> 元素是最重要的 HTML 元素之一。它的主要功能是描述网页的内容。\n即使标题不是网页的一个可见的部分，它对于提升网站的品质依然是重要的，这是因为它在以下位置都是可见的：\n搜索引擎列表\n窗口的标题栏\n用户的书签中\n标题应当尽可能地短，并具有可描述性。\n当某个用户在 internet 上搜索网站时，大部分搜索引擎都会在搜索结果中显示出网站的标题。请确保标题与网页的内容是吻合的。这样的话用户有更多的可能通过点击这些链接来访问到你的网站。\n当用户访问您的网站时，在窗口的标题栏中标题是可见的。请确保即使窗口被最小化，标题同样能起到描述网站内容的作用。\n在用户访问你的网站之后，网页的标题会存储于历史文件夹（用户甚至会把网页收藏到他的收藏夹中）。为了后续的成功访问，同样请确保标题可以清楚地描述您的网站。\n优秀的标题：\n实例",
+    "examples": [
+     "<title>HTML Tutorial</title>\n\n<title>XML Introduction</title>"
+    ]
+   },
+   {
+    "title": "Web 品质 - 国际化",
+    "url": "https://www.runoob.com/quality/quality-international.html",
+    "body": "网络无国界。\n网络无国界。\n\"With the Internet follows an absolute requirement to \ninterchange data in a multiplicity of languages, which in turn utilize a \nbewildering number of characters.\"\nH. Alvestrand, Internet工程工作小组 (IETF), 1998年1月。\n国际字符集\n所有的 W3C 标准（自从1996年），包括 HTML、XHTML 和 XML 都定义了一个名为 Unicode (ISO 10646) 内部的内部字符集。\n所有现代 web 浏览器都在原生地使用此字符集。而大多数在 internet 上传输的文档并没有使用这个 Unicode 字符集。\n正因如此，Internet 客户（浏览器）与 Internet 服务器 之间必须有一种在通信中一致使用字符集的方法。\n对每个文档在用的字符集进行标记，对于提升网站的品质来说至关重要。\n请始终在 <head> 元素内使用下面的元素：\n<meta charset=\"x\">",
+    "examples": []
+   },
+   {
+    "title": "Web 品质- 可读性",
+    "url": "https://www.runoob.com/quality/quality-readability.html",
+    "body": "正确使用字体和颜色可使您的网站更易阅读。\n留意颜色的对比\n对于视力不太好的人或者对于不太好的显示设备来说，黑底白字或者白底黑字是最佳的。\n在亮色背景上的灰色文字，对比度是很差的：\nGrey text on a white background (#EEEEEE)\nGrey text on a white background (#CCCCCC)\nGrey text on a white background (#AAAAAA)\nGrey text on a white background (#888888)\nGrey text on a white background (#666666)\nGrey text on a white background (#444444)\nGrey text on a white background (#222222)\nGrey text on a white background (#111111)\n在暗色背景上的灰色文字，其对比度同样很差：\nGrey text on a black background (#222222)\nGrey text on a black background (#444444)\nGrey text on a black background (#666666)\nGrey text on a black background (#888888)\nGrey text on a black background (#AAAAAA)\nGrey text on a black background (#CCCCCC)\nGrey text on a black background (#DDDDDD)\nGrey text on a black background (#EEEEEE)\n某些搭配 - 比如黑色和红色，黑色和蓝色，黄色和绿色 - 都会使人产生视觉疲劳：\nBlack text on a red background\nBlack text on a blue background\nYellow text on a green background\n这些搭配并不糟糕：\nBlack text on a grey background\nBlack text on a light blue\nBlack text on antique white\nWhite text on dark blue\n留意字母的间距\n对于视力比较弱的读者，比较近的字母间距会带有不小的阅读困难。\n文字间距适中的文本就比较容易阅读了。\n文字间距少的文字难以阅读。\n当心你的行距\n以下行距易于阅读具有良好的行距的文本更易阅读\n以下行距难以阅读行距小的文本\n难以阅读\n避免花哨的字体\n这字体容易阅读....\n这种字体是难以阅读....\n尽量少用斜体\n普通字体易于阅读。\n斜体字体不那么容易阅读。",
+    "examples": []
+   },
+   {
+    "title": "Web 品质- 标准",
+    "url": "https://www.runoob.com/quality/quality-standards.html",
+    "body": "根据web标准编写您的页面有助于改善您的网站品质。\nHTML 标准\nXHTML 是最新的 HTML 标准，是用 XML 重新表达的 HTML 4.01。\n根据 HTML 4.01 编写页面可使您的站点尽可能地接近 XHTML 标准。\n阅读更多有关 HTML 的内容。\nCSS 标准\n对于高品质的站点来说，使用层叠样式表（CSS）是将内容与样式分离的首选方式。通过使用 CSS，您能够在一个单独的文档中存储有关页面样式的所有信息。\n所有现代的 web 浏览器均支持 CSS 1 和 CSS 2 标准。\n对于不同的浏览器，使用 CSS 都可以改进网站的品质，并提高可读性。同时还可以极大地减少您的网站开发成本。\n阅读更多关于 CSS 的内容。\nWeb 验证\nweb 验证工具是一种软件程序，可根据 web 标准对您的网站进行检查。\n当您使用验证工具检查过HTML, XHTML 或 CSS 文档之后，验证器就会根据您选择的标准返回一系列所发现的错误。通常，验证器会返回所发现错误的行号。\n请确保你在发布页面前进行验证成为一种习惯。\n阅读更多关于 页面验证 的内容。\nWAI - 无障碍网页倡议\nWAI 指的是无障碍网页倡议( \"Web Accessibility Initiative\")，是由 W3C 发起的。\nWAI 协调全球的组织通过六项主要的工作领域来提升因特网的可用性：技术、指导方针、工具、教育、研究以及开发。\n您能够通过根据 WAI 的指导方针编写的页面，来改善网站的品质，并使得您的站点可用于更多人群（及浏览器）。\n您将在本教程稍后的章节学习更多有关 WAI 的内容。",
+    "examples": []
+   },
+   {
+    "title": "Web 品质 - 样式表",
+    "url": "https://www.runoob.com/quality/quality-styles.html",
+    "body": "使用样式表对于提升网页品质至关重要。\n不要使用 <font> 标签！\n应使用 CSS 来设置显示网页上的字体尺寸。请不要使用 font 标签。\n使用 <font> 标签会增加文档的规模，而且使您每次改变标准文字尺寸的工作成为一场梦魇。\n请设想一下下面的情况：\n一天您决定修改网站中所有标题的颜色和尺寸。通过 CSS，您只需要修改一行就可以做到这一点。假如您使用了 <font>标签，那么您需要把网站中所有页面的所有标题都修改一遍。\n使用样式替代 <font> 标签可使我们更轻松地为网页制作高质量的界面。\n请勿使用固定的字体尺寸\n不要使用固定的尺寸值。请始终使用相对的尺寸值。\n这项建议最重要的理由是无法通过浏览器重新调整固定尺寸的大小。\n您的访问者会使用不同的设备（显示器）、不同的浏览环境（光线）以及可能的残疾（弱视）。\n例如，可以把某人的文字尺寸设置为100%（或者 medium ），主标题设置为140%（或者 x-large ），而次级的标题设置为120%（或者 large ），这样用户就可以使用浏览器来重新设定最喜欢的尺寸了。\n注意： 通过调整网页的文本尺寸的功能，也可以改变打印页面的文字数目。\n请勿使用很小的默认字体尺寸\n一些网站会使用很小的文字尺寸，这样就可以向每张页面\"塞\"入更多的内容，或者使页面看上去更\"时髦\"。\n再次重申，使用不同的设备（显示器）、不同的浏览环境（光线）以及可能的残疾（弱视），都可能对用户造成阅读障碍。\n请不要逼迫用户每次访问你的站点时都要放大文本的尺寸。\n始终使用一致的背景颜色\n大部分网页都会为不同的文本元素使用颜色。标题和链接的颜色通常与正文的文本颜色是不同的。\n作为一位 web 设计者，您应当意识到的事实是，您的访问者能够修改默认的颜色选项。\n如果您为 web 元素定义了颜色，那么同样应当定义背景颜色。\n如果不定义背景颜色，那么您的网站可能会被糟糕的颜色组合搞砸（比如红色背景上面的亮红文字，或者深色文本搭配的深色背景）。\n如果您不规定背景颜色，可能会使文本很难被识别。",
+    "examples": []
+   },
+   {
+    "title": "网站品质 教程",
+    "url": "https://www.runoob.com/quality/quality-tutorial.html",
+    "body": "在本教程中，你将学习到如何创建高质量的web网站。\n你将学习到非常重要的web标准，这会让你的网站更加的简易且可读性更强。\n开始学习网站品质。\n网站品质教程目录\n网站品质 - 标准\n本章内容：最重要的质量标准。\n网站品质 - HTML 元素\n本章内容：最重要的HTML元素。\n网站品质 - 样式表\n本章内容：最重要的 CSS 元素。\n网站品质 - 可读性\n本章内容：如何确保站点内容更易读。\n网站品质 - 易用性\n本章内容：如何确保您的网页对于大多数用户和浏览器具有更强的易用性和适用性。\n网站品质 - 国际化\n本章内容：关于国际化的不同的品质问题。",
+    "examples": []
+   }
+  ]
+ }
+}

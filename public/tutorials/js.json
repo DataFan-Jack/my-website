@@ -1,0 +1,632 @@
+{
+ "tutorial": {
+  "name": "JavaScript",
+  "category": "前端开发",
+  "desc": "JavaScript 是 Web 的编程语言。",
+  "url": "https://www.runoob.com/js/",
+  "chapters": [
+   {
+    "title": "JavaScript async/await",
+    "url": "https://www.runoob.com/js/js-async-await.html",
+    "body": "在讲解 async/await 之前，我们需要先理解 JavaScript 中的异步编程概念，可以参考：JavaScript 异步编程。\nJavaScript 是单线程语言，意味着它一次只能执行一个任务。为了避免长时间运行的任务阻塞主线程，JavaScript 使用异步编程模型。\n异步 vs 同步\n同步（Synchronous）编程：代码按顺序执行，前一个操作完成后才会执行下一个\n异步编程（Asynchronous）：某些操作被放入\"任务队列\"，主线程继续执行后续代码，等主线程空闲时再处理队列中的任务\n实例",
+    "examples": [
+     "// 同步示例\nconsole.log('1');\nconsole.log('2');\n// 输出: 1, 2\n\n// 异步示例\nconsole.log('1');\nsetTimeout(() => console.log('2'), 0);\nconsole.log('3');\n// 输出: 1, 3, 2"
+    ]
+   },
+   {
+    "title": "JavaScript 异步编程",
+    "url": "https://www.runoob.com/js/js-async.html",
+    "body": "异步的概念\n异步（Asynchronous, async）是与同步（Synchronous, sync）相对的概念。\n在我们学习的传统单线程编程中，程序的运行是同步的（同步不意味着所有步骤同时运行，而是指步骤在一个控制流序列中按顺序执行）。而异步的概念则是不保证同步的概念，也就是说，一个异步过程的执行将不再与原有的序列有顺序关系。\n简单来理解就是：同步按你的代码顺序执行，异步不按照代码顺序执行，异步的执行效率更高。\n以上是关于异步的概念的解释，接下来我们通俗地解释一下异步：异步就是从主线程发射一个子线程来完成任务。\n什么时候用异步编程\n在前端编程中（甚至后端有时也是这样），我们在处理一些简短、快速的操作时，例如计算 1 + 1 的结果，往往在主线程中就可以完成。主线程作为一个线程，不能够同时接受多方面的请求。所以，当一个事件没有结束时，界面将无法处理其他请求。\n现在有一个按钮，如果我们设置它的 onclick 事件为一个死循环，那么当这个按钮按下，整个网页将失去响应。\n为了避免这种情况的发生，我们常常用子线程来完成一些可能消耗时间足够长以至于被用户察觉的事情，比如读取一个大文件或者发出一个网络请求。因为子线程独立于主线程，所以即使出现阻塞也不会影响主线程的运行。但是子线程有一个局限：一旦发射了以后就会与主线程失去同步，我们无法确定它的结束，如果结束之后需要处理一些事情，比如处理来自服务器的信息，我们是无法将它合并到主线程中去的。\n为了解决这个问题，JavaScript 中的异步操作函数往往通过回调函数来实现异步任务的结果处理。\n回调函数\n回调函数就是一个函数，它是在我们启动一个异步任务的时候就告诉它：等你完成了这个任务之后要干什么。这样一来主线程几乎不用关心异步任务的状态了，他自己会善始善终。\n实例",
+    "examples": [
+     "function print() {\ndocument.getElementById(\"demo\").innerHTML=\"RUNOOB!\";\n}\nsetTimeout(print, 3000);"
+    ]
+   },
+   {
+    "title": "JavaScript break 和 continue 语句",
+    "url": "https://www.runoob.com/js/js-break.html",
+    "body": "break 语句用于跳出循环。\ncontinue 用于跳过循环中的一个迭代。\nbreak 语句\n我们已经在本教程之前的章节中见到过 break 语句。它用于跳出 switch() 语句。\nbreak 语句可用于跳出循环。\nbreak 语句跳出循环后，会继续执行该循环之后的代码（如果有的话）：\n实例",
+    "examples": [
+     "for (i=0;i<10;i++)\n{\nif (i==3)\n{\nbreak;\n    }\nx=x + \"The number is \" + i + \"<br>\";\n}"
+    ]
+   },
+   {
+    "title": "Chrome 浏览器中执行 JavaScript",
+    "url": "https://www.runoob.com/js/js-chrome.html",
+    "body": "本章节为大家介绍如何在 Chrome 浏览器上进行 JavaScript 代码的运行与调试。\nChrome 是由 Google 开发的免费网页浏览器，对于前端开发来说（尤其是调试代码）非常方便。\nChrome 官网地址：https://www.google.com/intl/zh-CN/chrome/。\n我们在 Chrome 浏览器中可以通过按下 F12 按钮或者右击页面，选择\"检查\"来开启开发者工具。\n也可以在右上角菜单栏选择 \"更多工具\"=》\"开发者工具\" 来开启：\n1、Console 窗口调试 JavaScript 代码\n打开开发者工具后，我们可以在 Console 窗口调试 JavaScript代码，如下图：\n上图中我们在 > 符号后输入我们要执行的代码 console.log(\"runoob\")，按回车后执行。\n我们也可以在其他地方复制一段代码过来执行，比如复制以下代码到 Console 窗口，按回车执行：\nconsole.log(\"runoob-1\")\nconsole.log(\"runoob-2\")\n清空 Console 窗口到内容可以按以下按钮：\n2、Chrome snippets 小脚本\n我们也可以在 Chrome 浏览器中创建一个脚本来执行，在开发者工具中点击 Sources 面板，选择 Snippets 选项卡，在导航器中右击鼠标，然后选择 Create new snippet 来新建一个脚本文件：\n如果你没看到 Snippets ，可以点下面板上到 >> 就能看到了。\n点击 Create new snippet 后，会自动创建一个文件，你只需在右侧窗口输入以下代码，然后按 Command+S（Mac）或 Ctrl+S（Windows 和 Linux）保存更改即可。\nconsole.log(\"runoob-1\")\nconsole.log(\"runoob-2\")\n保存后，右击文件名，选择 \"Run\" 执行代码：",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 类继承",
+    "url": "https://www.runoob.com/js/js-class-inheritance.html",
+    "body": "JavaScript 类继承使用 extends 关键字。\n继承允许我们依据另一个类来定义一个类，这使得创建和维护一个应用程序变得更容易。\nsuper() 方法用于调用父类的构造函数。\n当创建一个类时，您不需要重新编写新的数据成员和成员函数，只需指定新建的类继承了一个已有的类的成员即可。这个已有的类称为基类（父类），新建的类称为派生类（子类）。\n继承代表了 is a 关系。例如，哺乳动物是动物，狗是哺乳动物，因此，狗是动物，等等。\n代码如下：",
+    "examples": [
+     "// 基类\nclass Animal {\n// eat() 函数\n// sleep() 函数\n};\n \n \n//派生类\nclass Dog extends Animal {\n// bark() 函数\n};"
+    ]
+   },
+   {
+    "title": "JavaScript 类(class)",
+    "url": "https://www.runoob.com/js/js-class-intro.html",
+    "body": "类是用于创建对象的模板。\n我们使用 class 关键字来创建一个类，类体在一对大括号 {} 中，我们可以在大括号 {} 中定义类成员的位置，如方法或构造函数。\n每个类中包含了一个特殊的方法 constructor()，它是类的构造函数，这种方法用于创建和初始化一个由 class 创建的对象。\n创建一个类的语法格式如下：",
+    "examples": [
+     "class ClassName {\nconstructor() { ... }\n}"
+    ]
+   },
+   {
+    "title": "JavaScript 静态方法",
+    "url": "https://www.runoob.com/js/js-class-static.html",
+    "body": "静态方法是使用 static 关键字修饰的方法，又叫类方法，属于类的，但不属于对象，在实例化对象之前可以通过 类名.方法名 调用静态方法。\n静态方法不能在对象上调用，只能在类中调用。\n实例",
+    "examples": [
+     "class Runoob {\nconstructor(name) {\nthis.name = name;\n  }\nstatic hello() {\nreturn \"Hello!!\";\n  }\n}\nlet noob = new Runoob(\"菜鸟教程\");\n \n// 可以在类中调用 'hello()' 方法\ndocument.getElementById(\"demo\").innerHTML = Runoob.hello();\n \n// 不能通过实例化后的对象调用静态方法\n// document.getElementById(\"demo\").innerHTML = noob.hello();\n// 以上代码会报错"
+    ]
+   },
+   {
+    "title": "JavaScript 注释",
+    "url": "https://www.runoob.com/js/js-comments.html",
+    "body": "JavaScript 注释可用于提高代码的可读性。\nJavaScript 注释\nJavaScript 不会执行注释。\n我们可以添加注释来对 JavaScript 进行解释，或者提高代码的可读性。\n单行注释以 // 开头。\n本例用单行注释来解释代码：\n实例",
+    "examples": [
+     "// 输出标题：\ndocument.getElementById(\"myH1\").innerHTML=\"欢迎来到我的主页\";\n// 输出段落：\ndocument.getElementById(\"myP\").innerHTML=\"这是我的第一个段落。\";"
+    ]
+   },
+   {
+    "title": "JavaScript 比较 和 逻辑运算符",
+    "url": "https://www.runoob.com/js/js-comparisons.html",
+    "body": "比较和逻辑运算符用于测试 true 或者\nfalse。\n比较运算符\n比较运算符在逻辑语句中使用，以测定变量或值是否相等。\nx=5，下面的表格解释了比较运算符：\n运算符\n描述\n比较\n返回值\n实例\n==\n等于\nx==8\nfalse\n实例 »\nx==5\ntrue\n实例 »\n===\n绝对等于（值和类型均相等）\nx===\"5\"\nfalse\n实例 »\nx===5\ntrue\n实例 »\n!=\n不等于\nx!=8\ntrue\n实例 »\n!==\n严格不等于运算符（值和类型有一个不相等，或两个都不相等）\nx!==\"5\"\ntrue\n实例 »\nx!==5\nfalse\n实例 »\n>\n大于\nx>8\nfalse\n实例 »\n<\n小于\nx<8\ntrue\n实例 »\n>=\n大于或等于\nx>=8\nfalse\n实例 »\n<=\n小于或等于\nx<=8\ntrue\n实例 »\n如何使用\n可以在条件语句中使用比较运算符对值进行比较，然后根据结果来采取行动：\nif (age<18) x=\"Too young\";",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 代码规范",
+    "url": "https://www.runoob.com/js/js-conventions.html",
+    "body": "所有的 JavaScript \n项目适用同一种规范。\nJavaScript 代码规范\n代码规范通常包括以下几个方面:\n变量和函数的命名规则\n空格，缩进，注释的使用规则。\n其他常用规范……\n规范的代码可以更易于阅读与维护。\n代码规范一般在开发前规定，可以跟你的团队成员来协商设置。\n变量名\n变量名推荐使用驼峰法来命名(camelCase):",
+    "examples": [
+     "firstName = \"John\";lastName = \"Doe\";price = 19.90;\n tax = 0.20;fullPrice = price + (price * tax);"
+    ]
+   },
+   {
+    "title": "JavaScript Cookie",
+    "url": "https://www.runoob.com/js/js-cookies.html",
+    "body": "Cookie 用于存储 web 页面的用户信息。\n什么是 Cookie？\nCookie 是一些数据, 存储于你电脑上的文本文件中。\n当 web 服务器向浏览器发送 web 页面时，在连接关闭后，服务端不会记录用户的信息。\nCookie 的作用就是用于解决 \"如何记录客户端的用户信息\":\n当用户访问 web 页面时，他的名字可以记录在 cookie 中。\n在用户下一次访问该页面时，可以在 cookie 中读取用户访问记录。\nCookie 以名/值对形式存储，如下所示:\nusername=John Doe",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 数据类型",
+    "url": "https://www.runoob.com/js/js-datatypes.html",
+    "body": "值类型(基本类型)：字符串（String）、数字(Number)、布尔(Boolean)、空（Null）、未定义（Undefined）、Symbol。\n引用数据类型（对象类型）：对象(Object)、数组(Array)、函数(Function)，还有两个特殊的对象：正则（RegExp）和日期（Date）。\n注：Symbol 是 ES6 引入了一种新的原始数据类型，表示独一无二的值。\nJavaScript 拥有动态类型\nJavaScript 拥有动态类型。这意味着相同的变量可用作不同的类型：\n实例",
+    "examples": [
+     "var x;               \n\t// x 为 undefinedvar x = 5;           \n\t// 现在 x 为数字\nvar x = \"John\";      // 现在 x 为字符串"
+    ]
+   },
+   {
+    "title": "JavaScript 调试",
+    "url": "https://www.runoob.com/js/js-debugging.html",
+    "body": "在编写 JavaScript 时，如果没有调试工具将是一件很痛苦的事情。\nJavaScript 调试\n没有调试工具是很难去编写 JavaScript 程序的。\n你的代码可能包含语法错误，逻辑错误，如果没有调试工具，这些错误比较难于发现。\n通常，如果 JavaScript 出现错误，是不会有提示信息，这样你就无法找到代码错误的位置。\n通常，你在编写一个新的 JavaScript 代码过程中都会发生错误。\nJavaScript 调试工具\n在程序代码中寻找错误叫做代码调试。\n调试很难，但幸运的是，很多浏览器都内置了调试工具。\n内置的调试工具可以开启或关闭，严重的错误信息会发送给用户。\n有了调试工具，我们就可以设置断点 (代码停止执行的位置), 且可以在代码执行时检测变量。\n浏览器启用调试工具一般是按下 F12 键，并在调试菜单中选择 \"Console\" 。\nconsole.log() 方法\n如果浏览器支持调试，你可以使用 console.log() 方法在调试窗口上打印 JavaScript 值：\n实例",
+    "examples": [
+     "a = 5;\nb = 6;\nc = a + b;\nconsole.log(c);"
+    ]
+   },
+   {
+    "title": "JavaScript 错误 - throw、try 和 catch",
+    "url": "https://www.runoob.com/js/js-errors.html",
+    "body": "try 语句测试代码块的错误。\ncatch 语句处理错误。\nthrow 语句创建自定义错误。\nfinally 语句在 try 和 catch 语句之后，无论是否有触发异常，该语句都会执行。\nJavaScript 错误\n当 JavaScript 引擎执行 JavaScript 代码时，会发生各种错误。\n可能是语法错误，通常是程序员造成的编码错误或错别字。\n可能是拼写错误或语言中缺少的功能（可能由于浏览器差异）。\n可能是由于来自服务器或用户的错误输出而导致的错误。\n当然，也可能是由于许多其他不可预知的因素。\nJavaScript 抛出（throw）错误\n当错误发生时，当事情出问题时，JavaScript 引擎通常会停止，并生成一个错误消息。\n描述这种情况的技术术语是：JavaScript 将抛出一个错误。\nJavaScript try 和 catch\ntry 语句允许我们定义在执行时进行错误测试的代码块。\ncatch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。\nJavaScript 语句 try 和 catch 是成对出现的。\n语法",
+    "examples": [
+     "try {\n    ...    //异常的抛出\n} catch(e) {\n    ...    //异常的捕获与处理\n} finally {\n    ...    //结束处理\n}"
+    ]
+   },
+   {
+    "title": "JavaScript 事件",
+    "url": "https://www.runoob.com/js/js-events.html",
+    "body": "HTML 事件是发生在 HTML 元素上的事情。\n当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。\nHTML 事件\nHTML 事件可以是浏览器行为，也可以是用户行为。\n以下是 HTML 事件的实例：\nHTML 页面完成加载\nHTML input 字段改变时\nHTML 按钮被点击\n通常，当事件发生时，你可以做些事情。\n在事件触发时 JavaScript 可以执行一些代码。\nHTML 元素中可以添加事件属性，使用 JavaScript 代码来添加 HTML 元素。\n单引号:\n<some-HTML-element some-event='JavaScript 代码'>\n双引号:\n<some-HTML-element some-event=\"JavaScript 代码\">\n在以下实例中，按钮元素中添加了 onclick 属性 (并加上代码):\n实例",
+    "examples": [
+     "<button onclick=\"getElementById('demo').innerHTML=Date()\">现在的时间是?</button>"
+    ]
+   },
+   {
+    "title": "JavaScript Browser 对象 实例",
+    "url": "https://www.runoob.com/js/js-ex-browser.html",
+    "body": "使用JavaScript来访问和控制浏览器对象实例。\nWindow 对象\n弹出一个警告框\n弹出一个带折行的警告框\n弹出一个确认框，并提醒访客点击的内容\n弹出一个提示框\n点击一个按钮时，打开一个新窗口\n打开一个新窗口，并控制其外观\n打开多个新窗口\n确保新的窗口没有获得焦点\n确保新的窗口获得焦点\n关闭新窗口\n检查新的窗口是否已关闭\n返回新窗口的名字\n传输一些文本到源（父）窗口\n相对于当前位置移动新窗口\n移动新窗口到指定位置\n打印当前页面\n用像素指定窗口大小\n指定窗口大小\n由指定的像素数滚动内容\n滚动到指定内容处\n一个简单的时钟\n用setTimeout() 和 clearTimeout()设置和停止定时器\n用setInterval() 和 clearInterval()设置和停止定时器\n更多的Window 对象的例子，在我们的JavaScript  参考手册。\nNavigator 对象\n访问者的浏览器的详细\n更多的Navigator 对象的例子，在我们的JavaScript  参考手册。\nScreen 对象\n访问者的屏幕的详细\n更多的Screen 对象的例子，在我们的JavaScript 参考手册。\nHistory 对象\n返回一个url的历史清单\n创建一个后退按钮\n创建一个前进按钮\n从url的历史清单转到指定的url\n更多的History 对象对象的例子，在我们的JavaScript 参考手册。\nLocation 对象\n返回主机名和当前url的端口号\n返回当前页面的整个URL\n返回当前url的路径名\n返回当前URL的协议部分\n加载个新文档\n重新载入当前文档\n替代当前文档\n跳出框架\n更多Location 对象实例在我们的JavaScript 参考手册。",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 对象 实例",
+    "url": "https://www.runoob.com/js/js-ex-dom.html",
+    "body": "使用内置 JavaScript 的对象实例。\nDocument 对象\n使用 document.write() 输出文本\n使用 document.write() 输出 HTML\n返回文档中锚的数目\n返回文档中第一个锚的 innerHTML\n返回文档中表单的数目\n返回文档中第一个表单的名字\n返回文档中的图像数\n返回文档中第一个图像的ID\n返回文档中的链接数\n返回文档中的第一个链接的ID\n返回文档中的所有cookies的名称/值对\n返回加载的文档的服务器域名\n返回文档的最后一次修改时间\n返回加载的当前文档的URL\n返回文档的标题\n返回文档的完整的URL\n打开输出流，向流中输入文本\nwrite() 和 writeln()的不同\n用指定的ID弹出一个元素的innerHTML\n用指定的Name弹出元素的数量\n用指定的tagname弹出元素的数量\n更多的 Document 对象的例子，在我们的JavaScript  参考手册。\nAnchor 对象\n返回和设置链接的charset属性\n返回和设置链接的href属性\n返回和设置链接的hreflang属性\n返回一个锚的名字\n返回当前的文件和链接的文档之间的关系\n改变链接的target属性\n返回一个链接的type属性的值\n更多的 Anchor 对象的例子，在我们的JavaScript  参考手册。\nArea 对象\n返回图像映射某个区域的替代文字\n返回图像映射某个区域的坐标\n返回一个区域的href属性的锚部分\n返回的主机名：图像映射的某个区域的端口\n返回图像映射的某个区域的hostname\n返回图像映射的某个区域的port\n返回图像映射的某个区域的href\n返回图像映射的某个区域的pathname\n返回图像映射的某个区域的protocol\n返回一个区域的href属性的querystring部分\n返回图像映射的某个区域的shape\n返回图像映射的某个区域的target的值\n更多的 Area 对象的例子，在我们的JavaScript 参考手册。\nBase 对象\n返回页面上所有相对URL的基URL\n返回页面上所有相对链接的基链接\n更多的 Base 对象对象的例子，在我们的JavaScript 参考手册。\nButton 对象\n当点击完button不可用\n返回一个button的name\n返回一个button的type\n返回一个button的value\n返回一个button所属表的ID\n更多 Button 对象实例在我们的JavaScript 参考手册。\nForm 对象\n返回一个表单中所有元素的value\n返回一个表单acceptCharset属性的值\n返回一个表单action属性的值\n返回表单中的enctype属性的值\n返回一个表单中元素的数量\n返回发送表单数据的方法\n返回一个表单的name\n返回一个表单target属性的值\n重置表单\n提交表单\n更多 Form 对象实例在我们的JavaScript 参考手册。\nFrame/IFrame 对象\n对iframe排版\n改变一个包含在iframe中的文档的背景颜色\n返回一个iframe中的frameborder属性的值\n删除iframe的frameborder\n改变iframe的高度和宽度\n返回一个iframe中的longdesc属性的值\n返回一个iframe中的marginheight属性的值\n返回一个iframe中的marginwidth属性的值\n返回一个iframe中的name属性的值\n返回和设置一个iframe中的scrolling属性的值\n改变一个iframe的src\n更多 Frame/IFrame 对象实例在我们的JavaScript 参考手册。\nImage 对象\n对image排版\n返回image的替代文本\n给image加上border\n改变image的高度和宽度\n设置image的hspace和vspace属性\n返回image的longdesc属性的值\n创建一个链接指向一个低分辨率的image\n返回image的name\n改变image的src\n返回一个客户端图像映射的usemap的值\n更多 Image 对象实例在我们的JavaScript 参考手册。\nEvent 对象\n被按下的键盘键的keycode？\n鼠标的坐标？\n鼠标相对于屏幕的坐标？\nshift键被按下了吗？\n哪个事件发生了？\nOption 和 Select 对象\n禁用和启用下拉列表\n获得有下拉列表的表单的ID\n获得下拉列表的选项数量\n将下拉列表变成多行列表\n在下拉列表中选择多个选项\n弹出下拉列表中被选中的选项\n弹出下拉列表中被选中的选项的索引\n改变下拉列表中被选中的选项的文本\n删除下拉列表中的选项\nTable, TableHeader, TableRow, TableData 对象\n改变表格边框的宽度\n改变表格的cellpadding和cellspacing\n指定表格的frame\n为表格指定规则\n一个行的innerHTML\n一个单元格的innerHTML\n为表格创建一个标题\n删除表格中的行\n添加表格中的行\n添加表格行中的单元格\n单元格内容水平对齐\n单元格内容垂直对齐\n对单个单元格的内容水平对齐\n对单个单元格的内容垂直对齐\n改变单元格的内容\n改变行的内容",
+    "examples": []
+   },
+   {
+    "title": "js-examples",
+    "url": "https://www.runoob.com/js/js-examples.html",
+    "body": "基础 JavaScript 实例\n用JavaScript输出文本\n用JavaScript改变HTML元素\n一个外部JavaScript\n实例解析\nJavaScript 语句、注释和代码块\nJavaScript 语句\nJavaScript 代码块\nJavaScript 单行注释\nJavaScript 多行注释\n使用单行注释来防止执行\n使用多行注释来防止执行\n实例解析\nJavaScript 变量\n声明一个变量，为它赋值，然后显示出来\n实例解析\nJavaScript 条件语句 If ... Else\nIf 语句\nIf...else 语句\n随机链接\nSwitch 语句\n实例解析\nJavaScript 消息框\nAlert(警告)框\n带有换行的警告框\n确认框\n提示框\n实例解析\nJavaScript 函数\n函数\n带有参数的函数\n带有参数的函数 2\n返回值的函数\n带有参数并返回值的函数\n实例解析\nJavaScript 循环\nFor 循环\n循环输出 HTML 标题\nWhile 循环\nDo while 循环\nbreak 语句\ncontinue 语句\n使用 For...In 声明来遍历数组内的元素\n实例解析\nJavaScript 事件\nonclick事件\nonmouseover 事件\n实例解析\nJavaScript 错误处理\ntry...catch 语句\n带有确认框的 try...catch 语句\nonerror 事件\n实例解析\n高级 JavaScript 实例\n创建一个欢迎 cookie\n简单的计时\n另一个简单的计时\n在一个无穷循环中的计时事件\n带有停止按钮的无穷循环中的计时事件\n使用计时事件制作的钟表\n创建对象的实例\n创建用于对象的模板\nJavaScript 应用实例\njavascript 幻灯片代码(含自动播放)\nCSS 日历样式\nJavaScript 弹窗\nJavaScript 图片弹窗\nJavaScript Lightbox\njavascript 搜索框自动提示\nJavaScript 表格数据搜索\nJavaScript 实现列表按字母排序\nJavaScript 实现表格单列按字母排序\nJavaScript 动画应用实例\nJavaScript 进度条实例\nJavaScript 百分比进度条\nJavaScript/CSS 实现提示弹窗\nJavaScript/CSS 实现待办事项列表(To Do List)\nHTML CSS, JavaScript 计算器\nHTML、CSS、JavaScript 实现下拉菜单效果\nJS/CSS 各种操作信息提示效果\nJS/CSS 在屏幕底部弹出消息(snackbar)\nJS/CSS 登录表单\nJS/CSS 注册表单\nJavaScript 计算器(倒计时)\nJS/CSS 菜单按钮切换(打开/关闭)\nJS/CSS 手风琴动画效果\nJS/CSS 带图标手风琴动画效果\nJS/CSS 选项卡\nJS/CSS 选项卡 – 淡入效果\nJS/CSS 选项卡 – 设置默认选项\nJS/CSS 选项卡 – 设置关闭按钮\nJS/CSS 选项卡 – 垂直方向\nJS/CSS 选项卡 – 幻灯片效果\nJS/CSS 响应式顶部导航样式实例\nJS/CSS 侧边栏动画实例\nJS/CSS 侧边栏动画实例 - 页面主体内容向右移动\nJS/CSS 侧边栏动画实例 - 页面主体内容黑色透明背景\nJS/CSS 全屏幕侧边栏\nJS/CSS 侧边栏 - 无动画效果\nJS/CSS 右侧侧边栏\nJS/CSS 全屏幕导航 – 从上到下动画\nJS/CSS 点击式下拉菜单\nJS/CSS 点击式下拉菜单 - 右对齐\nJS/CSS 点击式导航栏下拉菜单\nJS/CSS 下拉菜单可进行搜索/过滤操作\nJS 联想、自动补齐功能\nJavaScript 按下回车(Enter)键触发按钮点击事件\nJavaScript 创建一个菜单搜索\nJavascript 判断是移动端浏览器还是 PC 端浏览器\nJavaScript 判断是否微信浏览器\nJavaScript/CSS 列表搜索功能\nJavaScript/CSS 表格搜索功能\nJavaScript/CSS 下拉菜单搜索功能\nJavaScript/CSS 列表排序功能\nJavaScript/CSS 表格排序功能\n更多实例：https://www.jyshare.com/examples/",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 表单验证",
+    "url": "https://www.runoob.com/js/js-form-validation.html",
+    "body": "表单验证是确保用户输入的数据符合预期格式和规则的过程。\n在 Web 开发中，表单验证通常用于检查用户输入的有效性，例如电子邮件地址、密码、电话号码等。\n通过表单验证，可以防止无效数据提交到服务器，从而提高数据的准确性和安全性。\nJavaScript 表单验证\nJavaScript 可用来在数据被送往服务器前对 HTML 表单中的这些输入数据进行验证。\n表单数据经常需要使用 JavaScript 来验证其正确性：\n验证表单数据是否为空？\n验证输入是否是一个正确的email地址？\n验证日期是否输入正确？\n验证表单输入内容是否为数字型？\n为什么需要表单验证？\n数据准确性：确保用户输入的数据符合预期格式，避免无效数据。\n安全性：防止恶意用户提交有害数据，如 SQL 注入、跨站脚本攻击（XSS）等。\n用户体验：及时反馈用户输入错误，帮助用户快速纠正问题。\nJavaScript 表单验证的基本方法\nJavaScript 提供了多种方法来实现表单验证。以下是几种常见的方式：\n1. 使用 HTML5 内置验证\nHTML5 提供了一些内置的表单验证功能，例如 required、pattern、min、max 等属性。这些属性可以简单地实现基本的表单验证。\n实例",
+    "examples": [
+     "<form>\n  <label for=\"email\">Email:</label>\n  <input type=\"email\" id=\"email\" name=\"email\" required>\n  <input type=\"submit\" value=\"Submit\">\n</form>"
+    ]
+   },
+   {
+    "title": "JavaScript 闭包",
+    "url": "https://www.runoob.com/js/js-function-closures.html",
+    "body": "JavaScript 变量可以是局部变量或全局变量。\n私有变量可以用到闭包。\n全局变量\n函数可以访问由函数内部定义的变量，如：\n实例",
+    "examples": [
+     "function myFunction() {\nvar a = 4;\n    return a * a;\n}"
+    ]
+   },
+   {
+    "title": "JavaScript 函数定义",
+    "url": "https://www.runoob.com/js/js-function-definition.html",
+    "body": "JavaScript 使用关键字\nfunction 定义函数。\n函数可以通过声明定义，也可以是一个表达式。\n函数声明\n在之前的教程中，你已经了解了函数声明的语法 :\nfunction functionName(parameters) {\n 执行的代码\n}\n函数声明后不会立即执行，会在我们需要的时候调用到。\n实例\n尝试一下 »",
+    "examples": [
+     "function myFunction(a, b) {\n\t    return a * b;}"
+    ]
+   },
+   {
+    "title": "JavaScript 函数调用",
+    "url": "https://www.runoob.com/js/js-function-invocation.html",
+    "body": "JavaScript 函数有 4 种调用方式。\n每种方式的不同在于 this 的初始化。\nthis 关键字\n一般而言，在Javascript中，this指向函数执行时的当前对象。\n注意 this 是保留关键字，你不能修改 this 的值。\n调用 JavaScript 函数\n在之前的章节中我们已经学会了如何创建函数。\n函数中的代码在函数被调用后执行。\n作为一个函数调用\n实例",
+    "examples": [
+     "function myFunction(a, b) {\nreturn a * b;\n}\nmyFunction(10, 2);           // myFunction(10, 2) 返回 20"
+    ]
+   },
+   {
+    "title": "JavaScript 函数参数",
+    "url": "https://www.runoob.com/js/js-function-parameters.html",
+    "body": "JavaScript 函数对参数的值没有进行任何的检查。\n函数显式参数(Parameters)与隐式参数(Arguments)\n在先前的教程中，我们已经学习了函数的显式参数:",
+    "examples": [
+     "functionName(parameter1, parameter2, parameter3) {\n// 要执行的代码……\n}"
+    ]
+   },
+   {
+    "title": "JavaScript 函数",
+    "url": "https://www.runoob.com/js/js-functions.html",
+    "body": "函数是由事件驱动的或者当它被调用时执行的可重复使用的代码块。\n实例",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<title>测试实例</title>\n<script>\nfunction myFunction()\n{\n    alert(\"Hello World!\");\n}\n</script>\n</head>\n<body>\n<button onclick=\"myFunction()\">点我</button>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "JavaScript 声明提升",
+    "url": "https://www.runoob.com/js/js-hoisting.html",
+    "body": "JavaScript 中，函数及变量的声明都将被提升到函数的最顶部。\nJavaScript 中，变量可以在使用后声明，也就是变量可以先使用再声明。\n以下两个实例将获得相同的结果：\n实例 1\n尝试一下 »",
+    "examples": [
+     "x = 5; // 变量 x 设置为 5\n\nelem = document.getElementById(\"demo\"); // 查找元素 \nelem.innerHTML = x;                     \n// 在元素中显示 xvar x; // 声明 x"
+    ]
+   },
+   {
+    "title": "JavaScript 用法",
+    "url": "https://www.runoob.com/js/js-howto.html",
+    "body": "HTML 中的 Javascript 脚本代码必须位于 <script> 与 </script> 标签之间。\nJavascript 脚本代码可被放置在 HTML 页面的 <body> 和 <head> 部分中。\n<script> 标签\n如需在 HTML 页面中插入 JavaScript，请使用 <script> 标签。\n<script> 和 </script> 会告诉 JavaScript 在何处开始和结束。\n<script> 和 </script> 之间的代码行包含了 JavaScript:",
+    "examples": [
+     "<script>\nalert(\"我的第一个 JavaScript\");\n</script>"
+    ]
+   },
+   {
+    "title": "JavaScript HTML DOM 集合(Collection)",
+    "url": "https://www.runoob.com/js/js-htmldom-collections.html",
+    "body": "本章节介绍 DOM 集合的使用。\nHTMLCollection 对象\ngetElementsByTagName() 方法返回 HTMLCollection 对象。\nHTMLCollection 对象类似包含 HTML 元素的一个数组。\n以下代码获取文档所有的 <p> 元素：\n实例",
+    "examples": [
+     "var x = document.getElementsByTagName(\"p\");"
+    ]
+   },
+   {
+    "title": "JavaScript HTML DOM - 改变CSS",
+    "url": "https://www.runoob.com/js/js-htmldom-css.html",
+    "body": "HTML DOM 允许 JavaScript 改变 HTML 元素的样式。\n改变 HTML 样式\n如需改变 HTML 元素的样式，请使用这个语法：\ndocument.getElementById(id).style.property=新样式",
+    "examples": []
+   },
+   {
+    "title": "JavaScript HTML DOM 元素 (节点)",
+    "url": "https://www.runoob.com/js/js-htmldom-elements.html",
+    "body": "本章节介绍如何向文档中添加和移除元素(节点)。\n创建新的 HTML 元素 (节点) - appendChild()\n要创建新的 HTML 元素 (节点)需要先创建一个元素，然后在已存在的元素中添加它。\n实例",
+    "examples": [
+     "<div id=\"div1\">\n<p id=\"p1\">这是一个段落。</p>\n<p id=\"p2\">这是另外一个段落。</p>\n</div>\n<script>\nvar para = document.createElement(\"p\");\nvar node = document.createTextNode(\"这是一个新的段落。\");\npara.appendChild(node);\n \nvar element = document.getElementById(\"div1\");\nelement.appendChild(para);\n</script>"
+    ]
+   },
+   {
+    "title": "JavaScript HTML DOM EventListener",
+    "url": "https://www.runoob.com/js/js-htmldom-eventlistener.html",
+    "body": "addEventListener() 方法\n实例\n在用户点击按钮时触发监听事件：\n尝试一下 »",
+    "examples": [
+     "document.getElementById(\"myBtn\").addEventListener(\"click\", displayDate);"
+    ]
+   },
+   {
+    "title": "JavaScript HTML DOM 事件",
+    "url": "https://www.runoob.com/js/js-htmldom-events.html",
+    "body": "HTML DOM 使 JavaScript 有能力对 HTML 事件做出反应。\n实例\nClick Me",
+    "examples": [
+     "Mouse Over Me"
+    ]
+   },
+   {
+    "title": "JavaScript HTML DOM - 改变 HTML",
+    "url": "https://www.runoob.com/js/js-htmldom-html.html",
+    "body": "HTML DOM 允许 JavaScript 改变 HTML 元素的内容。\n改变 HTML 输出流\nJavaScript 能够创建动态的 HTML 内容：\n今天的日期是：\n在 JavaScript 中，document.write() 可用于直接向 HTML 输出流写内容。\n实例\n尝试一下 »",
+    "examples": [
+     "<!DOCTYPE html><html>\n<body>\n<script>\ndocument.write(Date());\n</script>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "JavaScript HTML DOM 节点列表",
+    "url": "https://www.runoob.com/js/js-htmldom-nodelist.html",
+    "body": "NodeList 对象是一个从文档中获取的节点列表 (集合) 。\nNodeList 对象类似 HTMLCollection 对象。\n一些旧版本浏览器中的方法（如：getElementsByClassName()）返回的是 NodeList 对象，而不是 HTMLCollection 对象。\n所有浏览器的 childNodes 属性返回的是 NodeList 对象。\n大部分浏览器的 querySelectorAll() 返回 NodeList 对象。\n以下代码选取了文档中所有的 <p> 节点：\n实例",
+    "examples": [
+     "var myNodeList = document.querySelectorAll(\"p\");"
+    ]
+   },
+   {
+    "title": "JavaScript HTML DOM",
+    "url": "https://www.runoob.com/js/js-htmldom.html",
+    "body": "通过 HTML DOM，可访问 JavaScript HTML 文档的所有元素。\nHTML DOM (文档对象模型)\n当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）。\nHTML DOM 模型被构造为对象的树：\nHTML DOM 树",
+    "examples": [
+     ""
+    ]
+   },
+   {
+    "title": "JavaScript if...Else 语句",
+    "url": "https://www.runoob.com/js/js-if-else.html",
+    "body": "条件语句用于基于不同的条件来执行不同的动作。\n条件语句\n通常在写代码时，您总是需要为不同的决定来执行不同的动作。您可以在代码中使用条件语句来完成该任务。\n在 JavaScript 中，我们可使用以下条件语句：\nif 语句 - 只有当指定条件为 true 时，使用该语句来执行代码\nif...else 语句 - 当条件为 true 时执行代码，当条件为 false 时执行其他代码\nif...else if....else 语句- 使用该语句来选择多个代码块之一来执行\nswitch 语句 - 使用该语句来选择多个代码块之一来执行\nif 语句\n只有当指定条件为 true 时，该语句才会执行代码。\n语法\nif (condition)\n{    当条件为 true 时执行的代码}",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 简介",
+    "url": "https://www.runoob.com/js/js-intro.html",
+    "body": "JavaScript 是互联网上最流行的脚本语言，这门语言可用于 HTML 和 web，更可广泛用于服务器、PC、笔记本电脑、平板电脑和智能手机等设备。\nJavaScript 是脚本语言\nJavaScript 是一种轻量级的编程语言。\nJavaScript 是可插入 HTML 页面的编程代码。\nJavaScript 插入 HTML 页面后，可由所有的现代浏览器执行。\nJavaScript 很容易学习。\n您将学到什么\n下面是您将在本教程中学到的主要内容。\nJavaScript：直接写入 HTML 输出流\n实例",
+    "examples": [
+     "document.write(\"<h1>这是一个标题</h1>\");\ndocument.write(\"<p>这是一个段落。</p>\");"
+    ]
+   },
+   {
+    "title": "JavaScript JSON",
+    "url": "https://www.runoob.com/js/js-json.html",
+    "body": "JSON 是用于存储和传输数据的格式。\nJSON 通常用于服务端向网页传递数据 。\n什么是 JSON?\nJSON 英文全称 JavaScript Object Notation\nJSON 是一种轻量级的数据交换格式。\nJSON是独立的语言 *\nJSON 易于理解。\n* JSON 使用 JavaScript 语法，但是 JSON 格式仅仅是一个文本。文本可以被任何编程语言读取及作为数据格式传递。\nJSON 实例\n以下 JSON 语法定义了 sites 对象: 3 条网站信息（对象）的数组:\nJSON 实例",
+    "examples": [
+     "{\"sites\":[\n{\"name\":\"Runoob\", \"url\":\"www.runoob.com\"}, \n    {\"name\":\"Google\", \"url\":\"www.google.com\"},\n    {\"name\":\"Taobao\", \"url\":\"www.taobao.com\"}\n]}"
+    ]
+   },
+   {
+    "title": "JavaScript let 和 const",
+    "url": "https://www.runoob.com/js/js-let-const.html",
+    "body": "ECMAScript 2015(ECMAScript 6)\nES2015(ES6) 新增加了两个重要的 JavaScript 关键字: let 和 const。\nlet 声明的变量只在 let 命令所在的代码块内有效。\nconst 声明一个只读的常量，一旦声明，常量的值就不能改变。\n在 ES6 之前，JavaScript 只有两种作用域： 全局变量 与 函数内的局部变量。\n全局变量\n在函数外声明的变量作用域是全局的：\n实例",
+    "examples": [
+     "var carName = \"Volvo\";\n \n// 这里可以使用 carName 变量\nfunction myFunction() {\n// 这里也可以使用 carName 变量\n}"
+    ]
+   },
+   {
+    "title": "JavaScript - 测试 jQuery",
+    "url": "https://www.runoob.com/js/js-lib-jquery.html",
+    "body": "测试 JavaScript 框架库 - jQuery\n引用 jQuery\n如需测试 JavaScript 库，您需要在网页中引用它。\n为了引用某个库，请使用 <script> 标签，其 src 属性设置为库的 URL：\n引用 jQuery",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<script src=\"https://cdn.staticfile.org/jquery/1.8.3/jquery.min.js\">\n</script>\n</head>\n<body>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "JavaScript - 测试 Prototype",
+    "url": "https://www.runoob.com/js/js-lib-prototype.html",
+    "body": "测试 JavaScript 框架库 - Prototype\n引用 Prototype\n如需测试 JavaScript 库，您需要在网页中引用它。\n为了引用某个库，请使用 <script> 标签，其 src 属性设置为库的 URL：\n引用 Prototype",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<script\nsrc=\"https://cdn.staticfile.org/prototype/1.7.3/prototype.min.js\">\n</script>\n</head>\n<body>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "JavaScript 库",
+    "url": "https://www.runoob.com/js/js-libraries.html",
+    "body": "JavaScript 库 - jQuery、Prototype、MooTools。\nJavaScript 框架（库）\nJavaScript 高级程序设计（特别是对浏览器差异的复杂处理），通常很困难也很耗时。\n为了应对这些调整，许多的 JavaScript (helper) 库应运而生。\n这些 JavaScript 库常被称为 JavaScript 框架。\n在本教程中，我们将了解到一些广受欢迎的 JavaScript 框架：\njQuery\nPrototype\nMooTools\n所有这些框架都提供针对常见 JavaScript 任务的函数，包括动画、DOM 操作以及 Ajax 处理。\n在本教程中，您将学习到如何开始使用它们，来使得 JavaScript 编程更容易、更安全且更有乐趣。\njQuery\njQuery 是目前最受欢迎的 JavaScript 框架。\n它使用 CSS 选择器来访问和操作网页上的 HTML 元素（DOM 对象）。\njQuery 同时提供 companion UI（用户界面）和插件。\n许多大公司在网站上使用 jQuery：\nGoogle\nMicrosoft\nIBM\nNetflix\n如需更深入地学习 jQuery，请访问我们的 jQuery 教程。\nPrototype\nPrototype 是一种库，提供用于执行常见 web 任务的简单 API。\nAPI 是应用程序编程接口（Application Programming Interface）的缩写。它是包含属性和方法的库，用于操作 HTML DOM。\nPrototype 通过提供类和继承，实现了对 JavaScript 的增强。\nMooTools\nMooTools 也是一个框架，提供了可使常见的 JavaScript 编程更为简单的 API。\nMooTools 也含有一些轻量级的效果和动画函数。\n其他框架\n下面是其他一些在上面未涉及的框架：\nYUI - Yahoo! User Interface Framework，涵盖大量函数的大型库，从简单的 JavaScript 功能到完整的 internet widget。\nExt JS - 可定制的 widget，用于构建富因特网应用程序（rich Internet applications）。\nDojo - 用于 DOM 操作、事件、widget 等的工具包。\nscript.aculo.us - 开源的 JavaScript 框架，针对可视效果和界面行为。\nUIZE - Widget、AJAX、DOM、模板等等。\nCDN -内容分发网络\n您总是希望网页可以尽可能地快。您希望页面的容量尽可能地小，同时您希望浏览器尽可能多地进行缓存。\n如果许多不同的网站使用相同的 JavaScript 框架，那么把框架库存放在一个通用的位置供每个网页分享就变得很有意义了。\nCDN (Content Delivery Network) 解决了这个问题。CDN 是包含可分享代码库的服务器网络。\n国内免费的 CDN 资源有：\nStaticfile CDN：https://staticfile.net/\n海外免费的 CDN 资源有：\ncdnjs：https://cdnjs.com/\n如需在您的网页中使用 JavaScript 框架库，只需在 <script> 标签中引用该库即可：\n引用 jQuery",
+    "examples": [
+     "<script src=\"https://cdn.staticfile.net/jquery/3.4.0/jquery.min.js\">\n</script>"
+    ]
+   },
+   {
+    "title": "JavaScript for 循环",
+    "url": "https://www.runoob.com/js/js-loop-for.html",
+    "body": "循环可以将代码块执行指定的次数。\nJavaScript 循环\n如果您希望一遍又一遍地运行相同的代码，并且每次的值都不同，那么使用循环是很方便的。\n我们可以这样输出数组的值：\n一般写法：",
+    "examples": [
+     "document.write(cars[0] + \"<br>\"); \ndocument.write(cars[1] + \"<br>\"); \ndocument.write(cars[2] + \"<br>\"); \ndocument.write(cars[3] + \"<br>\"); \ndocument.write(cars[4] + \"<br>\"); \ndocument.write(cars[5] + \"<br>\");"
+    ]
+   },
+   {
+    "title": "JavaScript while 循环",
+    "url": "https://www.runoob.com/js/js-loop-while.html",
+    "body": "只要指定条件为 true，循环就可以一直执行代码块。\nwhile 循环\nwhile 循环会在指定条件为真时循环执行代码块。\n语法\nwhile (条件)\n{    需要执行的代码\n}",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 使用误区",
+    "url": "https://www.runoob.com/js/js-mistakes.html",
+    "body": "本章节我们将讨论 JavaScript 的使用误区。\n赋值运算符应用错误\n在 JavaScript 程序中如果你在 if 条件语句中使用赋值运算符的等号 (=) 将会产生一个错误结果, 正确的方法是使用比较运算符的两个等号\n(==)。\nif 条件语句返回 false (是我们预期的)因为 x 不等于 10:\n尝试一下 »",
+    "examples": [
+     "var x = 0;if (x == 10)"
+    ]
+   },
+   {
+    "title": "JavaScript Array（数组） 对象",
+    "url": "https://www.runoob.com/js/js-obj-array.html",
+    "body": "数组对象的作用是：使用单独的变量名来存储一系列的值。\n在线实例",
+    "examples": []
+   },
+   {
+    "title": "JavaScript Boolean（布尔） 对象",
+    "url": "https://www.runoob.com/js/js-obj-boolean.html",
+    "body": "Boolean（布尔）对象用于将非布尔值转换为布尔值（true 或者 false）。\n在线实例",
+    "examples": []
+   },
+   {
+    "title": "JavaScript Date（日期） 对象",
+    "url": "https://www.runoob.com/js/js-obj-date.html",
+    "body": "日期对象用于处理日期和时间。\n在线实例",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 对象",
+    "url": "https://www.runoob.com/js/js-obj-intro.html",
+    "body": "JavaScript 对象是拥有属性和方法的数据。\n真实生活中的对象，属性和方法\n真实生活中，一辆汽车是一个对象。\n对象有它的属性，如重量和颜色等，方法有启动停止等:\n对象\n属性\n方法\ncar.name = Fiat\ncar.model = 500\ncar.weight = 850kg\ncar.color = white\ncar.start()\ncar.drive()\ncar.brake()\ncar.stop()\n所有汽车都有这些属性，但是每款车的属性都不尽相同。\n所有汽车都拥有这些方法，但是它们被执行的时间都不尽相同。\nJavaScript 对象\n在 JavaScript中，几乎所有的事物都是对象。\n在\nJavaScript 中，对象是非常重要的，当你理解了对象，就可以了解 JavaScript 。\n你已经学习了 JavaScript 变量的赋值。\n以下代码为变量 car 设置值为 \"Fiat\" :",
+    "examples": [
+     "var car = \"Fiat\";"
+    ]
+   },
+   {
+    "title": "JavaScript Math（算数） 对象",
+    "url": "https://www.runoob.com/js/js-obj-math.html",
+    "body": "Math（算数）对象的作用是：执行常见的算数任务。\n在线实例",
+    "examples": []
+   },
+   {
+    "title": "JavaScript Number 对象",
+    "url": "https://www.runoob.com/js/js-obj-number.html",
+    "body": "JavaScript 只有一种数字类型。\n可以使用也可以不使用小数点来书写数字。\nJavaScript 数字\nJavaScript 数字可以使用也可以不使用小数点来书写：\n实例",
+    "examples": [
+     "var\npi=3.14;    // 使用小数点\nvar\nx=34;       // 不使用小数点"
+    ]
+   },
+   {
+    "title": "JavaScript RegExp 对象",
+    "url": "https://www.runoob.com/js/js-obj-regexp.html",
+    "body": "RegExp：是正则表达式（regular expression）的简写。\n完整 RegExp 对象参考手册\n请查看我们的 JavaScript RegExp 对象的参考手册，其中提供了可以与字符串对象一同使用的所有的属性和方法。\n这个手册包含的关于每个属性和方法的用法的详细描述和实例。\n什么是 RegExp？\n正则表达式描述了字符的模式对象。\n当您检索某个文本时，可以使用一种模式来描述要检索的内容。RegExp 就是这种模式。\n简单的模式可以是一个单独的字符。\n更复杂的模式包括了更多的字符，并可用于解析、格式检查、替换等等。\n您可以规定字符串中的检索位置，以及要检索的字符类型，等等。\n语法\nvar patt=new RegExp(pattern,modifiers);\n或更简单的方法\nvar patt=/pattern/modifiers;",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 字符串（String） 对象",
+    "url": "https://www.runoob.com/js/js-obj-string.html",
+    "body": "String 对象用于处理已有的字符块。\nJavaScript 字符串\n一个字符串用于存储一系列字符就像 \"John Doe\".\n一个字符串可以使用单引号或双引号：\n实例",
+    "examples": [
+     "var\ncarname=\"Volvo XC60\";\nvar\ncarname='Volvo XC60';"
+    ]
+   },
+   {
+    "title": "JavaScript prototype（原型对象）",
+    "url": "https://www.runoob.com/js/js-object-prototype.html",
+    "body": "在 JavaScript 中，原型（prototype）是一个非常重要的概念，它为对象提供了继承和共享属性的机制。每个 JavaScript 对象都有一个与之关联的原型对象，通过原型对象，可以实现属性和方法的共享，从而减少内存占用。\n所有的 JavaScript 对象都会从一个 prototype（原型对象）中继承属性和方法。\n原型是一个对象，它是其他对象的模板或蓝图。\n当一个对象试图访问一个属性或方法时，如果在该对象自身没有找到，JavaScript 会沿着原型链向上查找，直到找到对应的属性或方法，或者达到原型链的顶端 null 为止。\n对象的 __proto__ 属性\n每个 JavaScript 对象（除了 null）都自动拥有一个隐藏的属性 __proto__，它指向该对象的原型对象。这个 __proto__ 是实现继承的关键：\nlet obj = {};\nconsole.log(obj.__proto__); // 输出: [object Object], 即 obj 的原型是 Object.prototype\n构造函数和原型\n在前面的章节中我们学会了如何使用对象的构造器（constructor）：\n实例",
+    "examples": [
+     "function Person(first, last, age, eyecolor) {\nthis.firstName = first;\n  this.lastName = last;\n  this.age = age;\n  this.eyeColor = eyecolor;\n}\nvar myFather = new Person(\"John\", \"Doe\", 50, \"blue\");\nvar myMother = new Person(\"Sally\", \"Rally\", 48, \"green\");"
+    ]
+   },
+   {
+    "title": "JavaScript 运算符",
+    "url": "https://www.runoob.com/js/js-operators.html",
+    "body": "运算符 = 用于赋值。\n运算符 + 用于加值。\n运算符 = 用于给 JavaScript 变量赋值。\n算术运算符 + 用于把值加起来。\n实例\n指定变量值，并将值相加：",
+    "examples": [
+     "y=5;\nz=2;\nx=y+z;"
+    ]
+   },
+   {
+    "title": "JavaScript 输出",
+    "url": "https://www.runoob.com/js/js-output.html",
+    "body": "JavaScript 没有任何打印或者输出的函数。\nJavaScript 显示数据\nJavaScript 可以通过不同的方式来输出数据：\n使用 window.alert() 弹出警告框。\n使用 document.write() 方法将内容写到 HTML 文档中。\n使用 innerHTML 写入到 HTML 元素。\n使用 console.log() 写入到浏览器的控制台。\n使用 window.alert()\n你可以弹出警告框来显示数据：\n实例\n尝试一下 »",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<body>\n<h1>我的第一个页面</h1><p>我的第一个段落。</p>\n\n<script>window.alert(5 + 6);\n</script>\n\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "JavaScript 弹窗",
+    "url": "https://www.runoob.com/js/js-popup.html",
+    "body": "可以在 JavaScript 中创建三种消息框：警告框、确认框、提示框。\n警告框\n警告框经常用于确保用户可以得到某些信息。\n当警告框出现后，用户需要点击确定按钮才能继续进行操作。\n语法\nwindow.alert(\"sometext\");",
+    "examples": []
+   },
+   {
+    "title": "JavaScript Promise",
+    "url": "https://www.runoob.com/js/js-promise.html",
+    "body": "在学习本章节内容前，你需要先了解什么是异步编程，可以参考：JavaScript 异步编程\nPromise 是一个 ECMAScript 6 提供的类，目的是更加优雅地书写复杂的异步任务。\nPromise 是 JavaScript 中用于处理异步操作的对象，它代表一个异步操作的最终完成（或失败）及其结果值。\n简单来说，Promise 是一个\"承诺\"，表示将来某个时间点会返回一个结果（可能是成功的结果，也可能是失败的原因）。\nPromise 有三种状态：\npending：初始状态，既不是成功，也不是失败状态\nfulfilled：意味着操作成功完成\nrejected：意味着操作失败\n实例",
+    "examples": [
+     "const myPromise = new Promise((resolve, reject) => {\n  // 异步操作代码\n  \n  if (/* 操作成功 */) {\n    resolve('成功的结果'); // 将 Promise 状态改为 fulfilled\n  } else {\n    reject('失败的原因'); // 将 Promise 状态改为 rejected\n  }\n});"
+    ]
+   },
+   {
+    "title": "JavaScript 基础测验",
+    "url": "https://www.runoob.com/js/js-quiz.html",
+    "body": "",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 正则表达式",
+    "url": "https://www.runoob.com/js/js-regexp.html",
+    "body": "正则表达式（英语：Regular Expression，在代码中常简写为regex、regexp或RE）使用单个字符串来描述、匹配一系列符合某个句法规则的字符串搜索模式。\n搜索模式可用于文本搜索和文本替换。\n什么是正则表达式？\n正则表达式是由一个字符序列形成的搜索模式。\n当你在文本中搜索数据时，你可以用搜索模式来描述你要查询的内容。\n正则表达式可以是一个简单的字符，或一个更复杂的模式。\n正则表达式可用于所有文本搜索和文本替换的操作。\n更多正则表达式内容可以访问：正则表达式 - 教程。\n语法\n/正则表达式主体/修饰符(可选)\n其中修饰符是可选的。\n实例：",
+    "examples": [
+     "var patt = /runoob/i"
+    ]
+   },
+   {
+    "title": "JavaScript 保留关键字",
+    "url": "https://www.runoob.com/js/js-reserved.html",
+    "body": "在 JavaScript 中，一些标识符是保留关键字，不能用作变量名或函数名。\nJavaScript 标准\n所有的现代浏览器完全支持 ECMAScript 3（ES3，JavaScript 的第三版，从 1999 年开始）。\nECMAScript 4（ES4）未通过。\nECMAScript 5（ES5，2009 年发布）。\nECMAScript 6（ES6，2015 年发布），是 JavaScript 最新的官方版本。\n随着时间的推移，我们开始看到，所有的现代浏览器已经完全支持 ES6。\nJavaScript 保留关键字\nJavascript 的保留关键字不可以用作变量、标签或者函数名。有些保留关键字是作为 Javascript 以后扩展使用。\nabstract\narguments\nboolean\nbreak\nbyte\ncase\ncatch\nchar\nclass*\nconst\ncontinue\ndebugger\ndefault\ndelete\ndo\ndouble\nelse\nenum*\neval\nexport*\nextends*\nfalse\nfinal\nfinally\nfloat\nfor\nfunction\ngoto\nif\nimplements\nimport*\nin\ninstanceof\nint\ninterface\nlet\nlong\nnative\nnew\nnull\npackage\nprivate\nprotected\npublic\nreturn\nshort\nstatic\nsuper*\nswitch\nsynchronized\nthis\nthrow\nthrows\ntransient\ntrue\ntry\ntypeof\nvar\nvoid\nvolatile\nwhile\nwith\nyield\n* 标记的关键字是 ECMAScript5 中新添加的。\nJavaScript 对象、属性和方法\n您也应该避免使用 JavaScript 内置的对象、属性和方法的名称作为 Javascript 的变量或函数名：\nArray\nDate\neval\nfunction\nhasOwnProperty\nInfinity\nisFinite\nisNaN\nisPrototypeOf\nlength\nMath\nNaN\nname\nNumber\nObject\nprototype\nString\ntoString\nundefined\nvalueOf\nJava 保留关键字\nJavaScript 经常与 Java 一起使用。您应该避免使用一些 Java 对象和属性作为 JavaScript 标识符：\ngetClass\njava\nJavaArray\njavaClass\nJavaObject\nJavaPackage\nWindow 保留关键字\nJavaScript 可以在 HTML 外部使用。它可在许多其他应用程序中作为编程语言使用。\n在 HTML 中，您必须（为了可移植性，您也应该这么做）避免使用 HTML 和 Window 对象和属性的名称作为 Javascript 的变量及函数名：\nalert\nall\nanchor\nanchors\narea\nassign\nblur\nbutton\ncheckbox\nclearInterval\nclearTimeout\nclientInformation\nclose\nclosed\nconfirm\nconstructor\ncrypto\ndecodeURI\ndecodeURIComponent\ndefaultStatus\ndocument\nelement\nelements\nembed\nembeds\nencodeURI\nencodeURIComponent\nescape\nevent\nfileUpload\nfocus\nform\nforms\nframe\ninnerHeight\ninnerWidth\nlayer\nlayers\nlink\nlocation\nmimeTypes\nnavigate\nnavigator\nframes\nframeRate\nhidden\nhistory\nimage\nimages\noffscreenBuffering\nopen\nopener\noption\nouterHeight\nouterWidth\npackages\npageXOffset\npageYOffset\nparent\nparseFloat\nparseInt\npassword\npkcs11\nplugin\nprompt\npropertyIsEnum\nradio\nreset\nscreenX\nscreenY\nscroll\nsecure\nselect\nself\nsetInterval\nsetTimeout\nstatus\nsubmit\ntaint\ntext\ntextarea\ntop\nunescape\nuntaint\nwindow\nHTML 事件句柄\n除此之外，您还应该避免使用 HTML 事件句柄的名称作为 Javascript 的变量及函数名。\n实例：\nonblur\nonclick\nonerror\nonfocus\nonkeydown\nonkeypress\nonkeyup\nonmouseover\nonload\nonmouseup\nonmousedown\nonsubmit",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 作用域",
+    "url": "https://www.runoob.com/js/js-scope.html",
+    "body": "作用域是可访问变量的集合。\nJavaScript 作用域\n在 JavaScript 中, 对象和函数同样也是变量。\n在 JavaScript 中, 作用域为可访问变量，对象，函数的集合。\nJavaScript 函数作用域: 作用域在函数内修改。\nJavaScript 局部作用域\n变量在函数内声明，变量为局部变量，具有局部作用域。\n局部变量：只能在函数内部访问。\n实例",
+    "examples": [
+     "// 此处不能调用 carName 变量\nfunction myFunction() {\nvar carName = \"Volvo\";\n    // 函数内可调用 carName 变量\n}"
+    ]
+   },
+   {
+    "title": "JavaScript 语句",
+    "url": "https://www.runoob.com/js/js-statements.html",
+    "body": "JavaScript 语句向浏览器发出的命令。语句的作用是告诉浏览器该做什么。\nJavaScript 语句\nJavaScript 语句是发给浏览器的命令。\n这些命令的作用是告诉浏览器要做的事情。\n下面的 JavaScript 语句向 id=\"demo\" 的 HTML 元素输出文本 \"你好 Dolly\" ：\n实例",
+    "examples": [
+     "document.getElementById(\"demo\").innerHTML = \"你好 Dolly\";"
+    ]
+   },
+   {
+    "title": "JavaScript 严格模式(use strict)",
+    "url": "https://www.runoob.com/js/js-strict.html",
+    "body": "JavaScript 严格模式（strict mode）即在严格的条件下运行。\n使用 \"use strict\" 指令\n\"use strict\" 指令在 JavaScript 1.8.5 (ECMAScript5) 中新增。\n它不是一条语句，但是是一个字面量表达式，在 JavaScript 旧版本中会被忽略。\n\"use strict\" 的目的是指定代码在严格条件下执行。\n严格模式下你不能使用未声明的变量。\n支持严格模式的浏览器:Internet Explorer 10 +、Firefox 4+、 Chrome 13+、 Safari 5.1+、 Opera 12+。\n严格模式声明\n严格模式通过在脚本或函数的头部添加 use strict; 表达式来声明。\n实例中我们可以在浏览器按下 F12 (或点击\"工具>更多工具>开发者工具\") 开启调试模式，查看报错信息。\n也可以通过右击鼠标，选择 \"检查\" 来查看，Gif 图演示如下：\n实例\n尝试一下 »",
+    "examples": [
+     "\"use strict\";x = 3.14;       // 报错 (x 未定义)"
+    ]
+   },
+   {
+    "title": "JavaScript 模板字符串",
+    "url": "https://www.runoob.com/js/js-string-templates.html",
+    "body": "JavaScript 中的模板字符串是一种方便的字符串语法，允许你在字符串中嵌入表达式和变量。\n模板字符串使用反引号 `` 作为字符串的定界符分隔的字面量。\n模板字面量是用反引号（`）分隔的字面量，允许多行字符串、带嵌入表达式的字符串插值和一种叫带标签的模板的特殊结构。\n语法\n`string text`\n\n`string text line 1\n string text line 2`\n\n`string text ${expression} string text`\n\ntagFunction`string text ${expression} string text`\n参数\nstring text：将成为模板字面量的一部分的字符串文本。几乎允许所有字符，包括换行符和其他空白字符。但是，除非使用了标签函数，否则无效的转义序列将导致语法错误。\nexpression：要插入当前位置的表达式，其值被转换为字符串或传递给 tagFunction。\ntagFunction：如果指定，将使用模板字符串数组和替换表达式调用它，返回值将成为模板字面量的值。\n实例\n尝试一下 »",
+    "examples": [
+     "let text = `Hello RUNOOB!`;"
+    ]
+   },
+   {
+    "title": "JavaScript 字符串",
+    "url": "https://www.runoob.com/js/js-strings.html",
+    "body": "JavaScript 字符串用于存储和处理文本。\nJavaScript 字符串\n字符串可以存储一系列字符，如 \"John Doe\"。\n字符串可以是插入到引号中的任何字符。你可以使用单引号或双引号：\n实例",
+    "examples": [
+     "var\ncarname = \"Volvo XC60\";\nvar\ncarname = 'Volvo XC60';"
+    ]
+   },
+   {
+    "title": "现在您已经学习了 JavaScript， 接下来该学习什么呢？",
+    "url": "https://www.runoob.com/js/js-summary.html",
+    "body": "JavaScript 总结\n本教程中我们向您讲授了如何向 html 页面添加 JavaScript，使得网站的动态性和交互性更强。\n你已经学习了如何创建对事件的响应，验证表单，以及如何根据不同的情况运行不同的脚本。\n你也学到了如何创建和使用对象，以及如何使用 JavaScript 的内置对象。\n如需更多关于 JavaScript 的信息和知识，请参阅我们的 JavaScript 实例 和 JavaScript 参考手册。\n现在你已经学习了 JavaScript，接下来该学习什么呢？\n下一步应该学习 HTML DOM 和 DHTML。\n如果你希望学习关于服务器端脚本的知识，那么下一步应该学习 ASP,PHP, .Net。\nHTML DOM\nHTML DOM 定义了访问和操作 HTML 文档的标准方法。\nHTML DOM 独立于平台和语言，可被任何编程语言使用，比如 Java、JavaScript 和 VBscript。\n假如希望了解更多关于 DOM 的知识，请访问我们的 HTML DOM 教程。\n\njQuery\njQuery 是一个 JavaScript 库。\njQuery 极大地简化了 JavaScript 编程。\njQuery 很容易学习。\n假如希望了解更多关于 jQuery 的知识，请访问我们的 jQuery 教程。\nAJAX\nAJAX = 异步 JavaScript 和 XML。\nAJAX 不是一种新的编程语言，而是一种使用现有标准的新方法。\n通过与服务器进行数据交换，AJAX 可以在不重新加载整个网页的情况下，对网页的某部分进行更新。\n有很多使用 AJAX 的应用程序案例：新浪微博、Google 地图、开心网等等。\n假如您希望学习更多关于 AJAX 的知识，请访问我们的 AJAX 教程。\nASP / PHP / .NET\n和 HTML 文档中的脚本运行于客户端（浏览器）不同，ASP/PHP 文件中的脚本在服务器上运行。\n使用 ASP，你可以动态地编辑、改变或者添加网站内容，对由 HTML 表单提交而来的数据进行响应，访问数据或者数据库并向浏览器返回结果，或者定制对不同的用户来说更有帮助的网页。\n由于 ASP/PHP 文件返回的是纯粹的 HTML，因此可显示在任何浏览器中。\n如果希望学习更多关于 ASP 的知识，请访问我们的 ASP 教程。\n如果希望学习更多关于 PHP 的知识，请访问我们的 PHP 教程。\n如果希望学习更多关于 .NET 的知识，请访问我们的.NET 实例/教程",
+    "examples": []
+   },
+   {
+    "title": "JavaScript switch 语句",
+    "url": "https://www.runoob.com/js/js-switch.html",
+    "body": "switch 语句用于基于不同的条件来执行不同的动作。\nJavaScript switch 语句\n请使用 switch 语句来选择要执行的多个代码块之一。\n语法",
+    "examples": [
+     "switch(n)\n{\ncase 1:\n        执行代码块 1\nbreak;\n    case 2:\n        执行代码块 2\nbreak;\n    default:\n        与 case 1 和 case 2 不同时执行的代码\n}"
+    ]
+   },
+   {
+    "title": "JavaScript 语法",
+    "url": "https://www.runoob.com/js/js-syntax.html",
+    "body": "JavaScript 是一个程序语言。语法规则定义了语言结构。\nJavaScript 语法\nJavaScript 是一个脚本语言。\n它是一个轻量级，但功能强大的编程语言。\nJavaScript 字面量\n在编程语言中，一般固定值称为字面量，如 3.14。\n数字（Number）字面量 可以是整数或者是小数，或者是科学计数(e)。\n尝试一下 »",
+    "examples": [
+     "3.14\n1001\n123e5"
+    ]
+   },
+   {
+    "title": "JavaScript this 关键字",
+    "url": "https://www.runoob.com/js/js-this.html",
+    "body": "面向对象语言中 this 表示当前对象的一个引用。\n但在 JavaScript 中 this 不是固定不变的，它会随着执行环境的改变而改变。\n在方法中，this 表示该方法所属的对象。\n如果单独使用，this 表示全局对象。\n在函数中，this 表示全局对象。\n在函数中，在严格模式下，this 是未定义的(undefined)。\n在事件中，this 表示接收事件的元素。\n类似 call() 和 apply() 方法可以将 this 引用到任何对象。\n实例",
+    "examples": [
+     "var person = {\nfirstName: \"John\",\n  lastName : \"Doe\",\n  id       : 5566,\n  fullName : function() {\nreturn this.firstName + \" \" + this.lastName;\n  }\n};"
+    ]
+   },
+   {
+    "title": "JavaScript 计时事件",
+    "url": "https://www.runoob.com/js/js-timing.html",
+    "body": "1",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 教程",
+    "url": "https://www.runoob.com/js/js-tutorial.html",
+    "body": "JavaScript 是 Web 的编程语言。\n所有现代的 HTML 页面都可以使用 JavaScript。\nJavaScript 非常容易学。\n本教程将教你学习从初级到高级 JavaScript 知识。",
+    "examples": []
+   },
+   {
+    "title": "JavaScript 类型转换",
+    "url": "https://www.runoob.com/js/js-type-conversion.html",
+    "body": "Number() 转换为数字， String() 转换为字符串， Boolean() 转换为布尔值。\nJavaScript 数据类型\n在 JavaScript 中有 6 种不同的数据类型：\nstring\nnumber\nboolean\nobject\nfunction\nsymbol\n3 种对象类型：\nObject\nDate\nArray\n2 个不包含任何值的数据类型：\nnull\nundefined\ntypeof 操作符\n你可以使用 typeof 操作符来查看 JavaScript 变量的数据类型。\n实例\n尝试一下 »",
+    "examples": [
+     "typeof \"John\"                 \n// 返回 string \ntypeof 3.14                   \n// 返回 number\ntypeof NaN                    \n// 返回 numbertypeof false                  // 返回 booleantypeof [1,2,3,4]              // 返回 object\ntypeof {name:'John', age:34} \n// 返回 objecttypeof new Date()             \n// 返回 objecttypeof function () {}         // 返回 function\ntypeof myCar                  \n// 返回 undefined (如果 myCar 没有声明)\ntypeof null                   \n// 返回 object"
+    ]
+   },
+   {
+    "title": "JavaScript typeof, null, 和 undefined",
+    "url": "https://www.runoob.com/js/js-typeof.html",
+    "body": "typeof 操作符\n你可以使用 typeof 操作符来检测变量的数据类型。\n实例\n尝试一下 »",
+    "examples": [
+     "typeof \"John\"                // 返回 string \ntypeof 3.14                  // 返回 number\ntypeof false                 // 返回 boolean\ntypeof [1,2,3,4]             // 返回 object\ntypeof {name:'John', age:34} // 返回 object"
+    ]
+   },
+   {
+    "title": "JavaScript 验证 API",
+    "url": "https://www.runoob.com/js/js-validation-api.html",
+    "body": "约束验证 DOM 方法\nProperty\nDescription\ncheckValidity()\n如果 input 元素中的数据是合法的返回 true，否则返回 false。\nsetCustomValidity()\n设置 input 元素的 validationMessage 属性，用于自定义错误提示信息的方法。\n使用 setCustomValidity 设置了自定义提示后，validity.customError 就会变成 true，checkValidity 总是会返回 false。如果要重新判断需要取消自定义提示，方式如下：\nsetCustomValidity('') \nsetCustomValidity(null) \nsetCustomValidity(undefined)\n以下实例如果输入信息不合法，则返回错误信息：\ncheckValidity() 方法\nfunctionmyFunction(){varinpObj = document.getElementById(\"id1\");\n if(inpObj.checkValidity() == false){document.getElementById(\"demo\").innerHTML = inpObj.validationMessage;\n }}",
+    "examples": [
+     "<input id=\"id1\" type=\"number\" min=\"100\" max=\"300\" required>\n<button onclick=\"myFunction()\">验证</button>\n<p id=\"demo\"></p>\n<script>"
+    ]
+   },
+   {
+    "title": "JavaScript 表单",
+    "url": "https://www.runoob.com/js/js-validation.html",
+    "body": "JavaScript 表单验证\nHTML 表单验证可以通过 JavaScript 来完成。\n以下实例代码用于判断表单字段(fname)值是否存在， 如果不存在，就弹出信息，阻止表单提交：\nJavaScript 实例",
+    "examples": [
+     "function validateForm() {\nvar x = document.forms[\"myForm\"][\"fname\"].value;\n    if (x == null || x == \"\") {\nalert(\"需要输入名字。\");\n        return false;\n    }\n}"
+    ]
+   },
+   {
+    "title": "JavaScript 变量",
+    "url": "https://www.runoob.com/js/js-variables.html",
+    "body": "变量是用于存储信息的\"容器\"。\n在 JavaScript 中，变量用于存储数据，并可以在程序执行过程中动态更改。\n在 JavaScript 中，变量可以存储各种类型的数据，如数字、字符串、对象、函数等。\n变量名是标识符，用于引用存储在变量中的数据。\n在 JavaScript 中，可以使用 var、let 和 const 关键字来声明变量。",
+    "examples": []
+   },
+   {
+    "title": "javascript:void(0) 含义",
+    "url": "https://www.runoob.com/js/js-void.html",
+    "body": "我们经常会使用到 javascript:void(0) 这样的代码，那么在 JavaScript 中 javascript:void(0) 代表的是什么意思呢？\njavascript:void(0) 中最关键的是 void 关键字，\nvoid 是 JavaScript 中非常重要的关键字，该操作符指定要计算一个表达式但是不返回值。\n语法格式如下：\nvoid func()\njavascript:void func()\n或者\nvoid(func())\njavascript:void(func())\n下面的代码创建了一个超级链接，当用户点击以后不会发生任何事。\n实例",
+    "examples": [
+     "<a href=\"javascript:void(0)\">单击此处什么也不会发生</a>"
+    ]
+   },
+   {
+    "title": "JavaScript VScode",
+    "url": "https://www.runoob.com/js/js-vscode.html",
+    "body": "在上一章节中我们已经介绍了 JavaScript 基本概念及实例，本章节我们将介绍 JS 代码的编辑器 -- VScode。\nVSCode（全称：Visual Studio Code）是一款由微软开发且跨平台的免费源代码编辑器，VSCode 开发环境非常简单易用。\nVisual Studio Code 已经内置了对 JavaScript 功能的支持，包括 JavaScript 的智能感知、调试、格式化等功能。\n感知功能如下所示：\n您的浏览器不支持 HTML5 video 标签。\n 安装 VS Code\nVSCode 安装也很简单，打开官网 https://code.visualstudio.com/，下载软件包，一步步安装即可，安装过程注意安装路径设置、环境变量默认自动添加到系统中，勾选以下所有选项：\nVSCode 完整安装教程参考：https://www.runoob.com/vscode/vscode-tutorial.html\n创建一个 JS 代码文件\n打开 VScode，然后点击新建文件：\n点击选择语言：\n在搜索框输入 js，创建 test.js 文件：\n输入代码：\nconsole.log(\"Hello, World!\");\n保存 test.js 文件代码，右击文件名，在集成终端执行以下命令：\n# node test.js\nHello, World! # 输出结果\nnode 是可以运行在 JavaScript 的命令，基于 Chrome V8 引擎的 JavaScript 运行时环境。\n更多 Node.js 内容可以参考：Node.js 教程\n更多相关工具",
+    "examples": []
+   },
+   {
+    "title": "JavaScript Window History",
+    "url": "https://www.runoob.com/js/js-window-history.html",
+    "body": "window.history 对象包含浏览器的历史。\nWindow History\nwindow.history对象在编写时可不使用 window 这个前缀。\n为了保护用户隐私，对 JavaScript 访问该对象的方法做出了限制。\n一些方法：\nhistory.back() - 与在浏览器点击后退按钮相同\nhistory.forward() - 与在浏览器中点击向前按钮相同\nWindow history.back()\nhistory.back() 方法加载历史列表中的前一个 URL。\n这与在浏览器中点击后退按钮是相同的：\n实例\n在页面上创建后退按钮：",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<head>\n<script>\nfunction goBack()\n{\n    window.history.back()\n}\n</script>\n</head>\n<body>\n<input type=\"button\" value=\"Back\" onclick=\"goBack()\">\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "JavaScript Window Location",
+    "url": "https://www.runoob.com/js/js-window-location.html",
+    "body": "window.location 对象用于获得当前页面的地址 (URL)，并把浏览器重定向到新的页面。\nWindow Location\nwindow.location 对象在编写时可不使用 window 这个前缀。\n一些例子：\n一些实例:\nlocation.hostname 返回 web 主机的域名\nlocation.pathname 返回当前页面的路径和文件名\nlocation.port 返回 web 主机的端口 （80 或 443）\nlocation.protocol 返回所使用的 web 协议（http: 或 https:）\nWindow Location href\nlocation.href 属性返回当前页面的 URL。\n实例\n返回（当前页面的）整个 URL：\n以上代码输出为：",
+    "examples": [
+     "<script>\ndocument.write(location.href);\n</script>",
+     ""
+    ]
+   },
+   {
+    "title": "JavaScript Window Navigator",
+    "url": "https://www.runoob.com/js/js-window-navigator.html",
+    "body": "window.navigator 对象包含有关访问者浏览器的信息。\nWindow Navigator\nwindow.navigator 对象在编写时可不使用 window 这个前缀。\n实例",
+    "examples": [
+     "<script>\ntxt = \"<p>浏览器代号: \" + navigator.appCodeName + \"</p>\";\ntxt+= \"<p>浏览器名称: \" + navigator.appName + \"</p>\";\ntxt+= \"<p>浏览器版本: \" + navigator.appVersion + \"</p>\";\ntxt+= \"<p>启用Cookies: \" + navigator.cookieEnabled + \"</p>\";\ntxt+= \"<p>硬件平台: \" + navigator.platform + \"</p>\";\ntxt+= \"<p>用户代理: \" + navigator.userAgent + \"</p>\";\ntxt+= \"<p>用户代理语言: \" + navigator.language + \"</p>\";\ndocument.getElementById(\"example\").innerHTML=txt;\n</script>"
+    ]
+   },
+   {
+    "title": "JavaScript Window Screen",
+    "url": "https://www.runoob.com/js/js-window-screen.html",
+    "body": "window.screen 对象包含有关用户屏幕的信息。\nWindow Screen\nwindow.screen对象在编写时可以不使用 window 这个前缀。\n一些属性：\nscreen.availWidth - 可用的屏幕宽度\nscreen.availHeight - 可用的屏幕高度\nWindow Screen 可用宽度\nscreen.availWidth 属性返回访问者屏幕的宽度，以像素计，减去界面特性，比如窗口任务栏。\n实例\n返回您的屏幕的可用宽度：\n以上代码输出为：\n尝试一下 »",
+    "examples": [
+     "<script>\ndocument.write(\"可用宽度: \" + screen.availWidth);\n</script>",
+     ""
+    ]
+   },
+   {
+    "title": "JavaScript Window - 浏览器对象模型",
+    "url": "https://www.runoob.com/js/js-window.html",
+    "body": "浏览器对象模型 (BOM) 使 JavaScript 有能力与浏览器\"对话\"。\n浏览器对象模型 (BOM)\n浏览器对象模型（Browser Object\nModel (BOM)）尚无正式标准。\n由于现代浏览器已经（几乎）实现了 JavaScript 交互性方面的相同方法和属性，因此常被认为是 BOM 的方法和属性。\nWindow 对象\n所有浏览器都支持 window 对象。它表示浏览器窗口。\n所有 JavaScript 全局对象、函数以及变量均自动成为 window 对象的成员。\n全局变量是 window 对象的属性。\n全局函数是 window 对象的方法。\n甚至 HTML DOM 的 document 也是 window 对象的属性之一：\nwindow.document.getElementById(\"header\");\n与此相同：\ndocument.getElementById(\"header\");\nWindow 尺寸\n有三种方法能够确定浏览器窗口的尺寸。\n对于Internet Explorer、Chrome、Firefox、Opera 以及 Safari：\nwindow.innerHeight - 浏览器窗口的内部高度(包括滚动条)\nwindow.innerWidth - 浏览器窗口的内部宽度(包括滚动条)\n对于 Internet Explorer 8、7、6、5：\ndocument.documentElement.clientHeight\ndocument.documentElement.clientWidth\n或者\ndocument.body.clientHeight\ndocument.body.clientWidth\n实用的 JavaScript 方案（涵盖所有浏览器，包含 IE8 及以下版本的浏览器）：\n实例",
+    "examples": [
+     "var w=window.innerWidth\n|| document.documentElement.clientWidth\n|| document.body.clientWidth;\n \nvar h=window.innerHeight\n|| document.documentElement.clientHeight\n|| document.body.clientHeight;"
+    ]
+   }
+  ]
+ }
+}

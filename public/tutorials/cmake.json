@@ -1,0 +1,60 @@
+{
+ "tutorial": {
+  "name": "CMake",
+  "category": "工具与运维",
+  "desc": "CMake 是个一个开源的跨平台自动化建构系统，用来管理软件建置的程序，并不依赖",
+  "url": "https://www.runoob.com/cmake/",
+  "chapters": [
+   {
+    "title": "CMake 高级特性",
+    "url": "https://www.runoob.com/cmake/cmake-advanced-features.html",
+    "body": "掌握 CMake 基础之后，高级特性可以帮助你更灵活地管理复杂项目的构建配置。\n本文涵盖自定义模块、多配置构建、高级包查找、自定义构建步骤、跨平台交叉编译以及目标属性配置六大主题。\n整体内容概览：\n主题\n核心能力\n典型应用场景\n自定义模块和脚本\n封装可复用的 CMake 逻辑\n统一编译器选项、自定义查找逻辑、团队共享构建规则\n构建配置和目标\n管理多配置和多目标\nDebug/Release 切换、构建多种输出产物\n高级查找和配置\n灵活定位外部依赖\n查找特定组件、通过配置文件传递构建信息\n自定义构建步骤\n扩展构建流程\n代码生成、资源处理、构建后自动化\n跨平台和交叉编译\n面向多平台构建\n嵌入式开发、为不同操作系统编译\n目标属性和配置\n精细控制编译链接\n针对特定目标设置警告级别、链接路径\n自定义 CMake 模块和脚本\n当多个 CMakeLists.txt 中需要重复同样的逻辑时，将这些逻辑封装成自定义模块可以大幅减少代码冗余。\n自定义模块和脚本的本质是将常用的 CMake 函数、宏和配置提取到独立文件中，供多个项目复用。\n自定义 CMake 模块\n自定义模块是一个以 .cmake 为扩展名的文件，其中定义了可被 include 加载的 CMake 函数和宏。\n创建步骤：\n步骤\n操作\n说明\n1\n创建 cmake/ 目录\n在项目根目录下创建，用于集中存放自定义模块\n2\n创建模块文件\n例如 cmake/MyModule.cmake，编写自定义函数\n3\n扩展模块搜索路径\n在 CMakeLists.txt 中通过 CMAKE_MODULE_PATH 注册该目录\n4\n加载模块\n使用 include() 引入模块并调用其中的函数\n自定义模块示例——MyModule.cmake：\n实例",
+    "examples": [
+     "# 文件路径：cmake/MyModule.cmake\n# 自定义模块：提供项目通用的辅助函数\n\n# 函数：为所有目标统一设置编译器警告选项\n# 参数 ARG_TARGET：需要设置警告的目标名称\nfunction(runoob_set_warnings ARG_TARGET)\n    # 根据编译器类型设置不同的警告标志\n    if(MSVC)\n        # MSVC 编译器：启用 /W4 警告级别\n        target_compile_options(${ARG_TARGET} PRIVATE /W4)\n    else()\n        # GCC / Clang 编译器：启用常用警告\n        target_compile_options(${ARG_TARGET} PRIVATE -Wall -Wextra -Wpedantic)\n    endif()\nendfunction()\n\n# 函数：打印目标的基本构建信息\nfunction(runoob_print_target_info ARG_TARGET)\n    message(STATUS \"目标名称：${ARG_TARGET}\")\n    message(STATUS \"源文件列表：$<TARGET_PROPERTY:${ARG_TARGET},SOURCES>\")\nendfunction()"
+    ]
+   },
+   {
+    "title": "CMake 基础",
+    "url": "https://www.runoob.com/cmake/cmake-basic.html",
+    "body": "CMake 是一个跨平台的构建系统生成工具，用于管理 C/C++ 项目的编译过程。\n通过编写 CMakeLists.txt 配置文件，你可以定义项目的构建规则、依赖关系和编译选项，CMake 会自动生成对应平台的构建文件（如 Unix 下的 Makefile 或 Windows 下的 Visual Studio 解决方案）。\nCMakeLists.txt 文件\nCMakeLists.txt 是 CMake 的核心配置文件，每个 CMake 项目至少需要一个 CMakeLists.txt 文件。\nCMake 通过读取文件中的指令来了解项目的结构、源文件列表和编译要求。\n基本语法\nCMakeLists.txt 由一系列 CMake 指令组成，每个指令的格式为：命令名(参数列表)。\n下面是构建 CMake 项目时最常用的指令及其实例。\n指定 CMake 最低版本：\n实例",
+    "examples": [
+     "# 语法：cmake_minimum_required(VERSION <version>)\n# 该指令必须放在 CMakeLists.txt 的最顶部\n# 示例：要求 CMake 版本不低于 3.10\ncmake_minimum_required(VERSION 3.10)"
+    ]
+   },
+   {
+    "title": "CMake 构建实例",
+    "url": "https://www.runoob.com/cmake/cmake-build-demo.html",
+    "body": "本文通过一个完整的 C++ 项目示例，演示如何使用 CMake 从零开始构建一个包含可执行文件和库文件的项目。\n示例项目包含一个主程序和一个自定义库，覆盖了 CMake 构建的完整生命周期。\n项目准备\n在开始构建之前，先创建项目文件并了解项目结构。\n项目结构\n示例项目包含一个主程序源文件、一个库源文件和一个库头文件，目录结构如下：\nMyProject/\n├── CMakeLists.txt # CMake 配置文件\n├── src/\n│ ├── main.cpp # 主程序源文件\n│ └── mylib.cpp # 库源文件\n└── include/\n └── mylib.h # 库头文件\n文件\n作用\n说明\nCMakeLists.txt\nCMake 配置文件\n定义项目的构建规则、目标和依赖关系\nsrc/main.cpp\n主程序源文件\n包含 main() 函数，程序的入口点\nsrc/mylib.cpp\n库源文件\n自定义库的功能实现\ninclude/mylib.h\n库头文件\n库的公开接口声明，供主程序包含使用\nCMakeLists.txt 配置文件\n在 MyProject 根目录下创建 CMakeLists.txt 文件，编写以下内容：\n实例",
+    "examples": [
+     "# 文件路径：MyProject/CMakeLists.txt\n\n# 指定 CMake 最低版本（必须放在文件第一行）\ncmake_minimum_required(VERSION 3.10)\n\n# 定义项目名称和版本号\nproject(MyProject VERSION 1.0)\n\n# 设置 C++ 标准为 C++11，并要求编译器强制使用\nset(CMAKE_CXX_STANDARD 11)\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\n\n# 添加全局头文件搜索路径\ninclude_directories(${PROJECT_SOURCE_DIR}/include)\n\n# 创建库目标 MyLib（源文件为 src/mylib.cpp）\nadd_library(MyLib src/mylib.cpp)\n\n# 创建可执行文件目标 MyExecutable（源文件为 src/main.cpp）\nadd_executable(MyExecutable src/main.cpp)\n\n# 将 MyLib 库链接到 MyExecutable 可执行文件\ntarget_link_libraries(MyExecutable MyLib)"
+    ]
+   },
+   {
+    "title": "CMake 构建流程",
+    "url": "https://www.runoob.com/cmake/cmake-build-flow.html",
+    "body": "CMake 的构建流程分为几个主要步骤，从创建构建目录到执行编译，再到清理和重新配置。\n整个过程围绕 CMakeLists.txt 配置文件展开，CMake 读取配置后生成适合当前平台的构建文件。\n构建流程概览\n一个完整的 CMake 构建流程包含以下五个关键步骤，每一步都有其特定的作用和命令。\n步骤\n操作\n命令\n说明\n1\n创建构建目录\nmkdir build && cd build\n使用 Out-of-source 方式，保持源码目录整洁\n2\n生成构建文件\ncmake ..\n读取 CMakeLists.txt，生成 Makefile / Ninja / .sln 等\n3\n编译和构建\ncmake --build .\n执行实际的编译和链接过程\n4\n清理构建文件\ncmake --build . --target clean\n删除编译产生的中间文件和目标文件\n5\n重新配置和构建\ncmake .. && cmake --build .\nCMakeLists.txt 变更后重新生成并编译\n构建流程详解\n下面详细说明每个步骤的具体操作和常用选项。\n创建构建目录\nCMake 推荐使用 Out-of-source（源码外）构建方式，即将构建文件放在源代码目录之外的独立目录中。\n这种方式可以保持源代码目录的整洁，同时支持同一份源码配置多个不同的构建方案（如 Debug 和 Release 并存）。\n始终使用 Out-of-source 构建方式。直接在源码目录中运行 cmake 会污染项目结构，生成的中间文件难以清理，也不便于切换构建类型。\n创建构建目录：\n# 在项目根目录下创建 build 目录\nmkdir build\n进入构建目录：\n# 切换到构建目录，后续所有 cmake 命令在此执行\ncd build\n生成构建文件\n在构建目录中运行 CMake，读取源代码目录中的 CMakeLists.txt，生成适合当前平台的构建系统文件。\nCMake 支持多种构建系统生成器，如 Unix Makefiles、Ninja、Visual Studio、Xcode 等。\n基本用法——生成默认构建文件：\n# .. 指向包含 CMakeLists.txt 的源代码目录\ncmake ..\n指定生成器：\n使用 -G 参数可以指定要生成的构建系统类型。\n# 使用 Ninja 作为构建系统（速度比 Make 更快）\ncmake -G \"Ninja\" ..\n指定构建类型：\n使用 -DCMAKE_BUILD_TYPE 参数设置编译优化级别和调试信息。\n# 四种常见的构建类型：Debug / Release / RelWithDebInfo / MinSizeRel\ncmake -DCMAKE_BUILD_TYPE=Release ..\n检查配置结果：\nCMake 会输出配置过程中的详细信息，包括检测到的编译器、找到的库、定义的选项等。\n如果没有错误，构建系统文件将被生成到当前构建目录中。\n如果配置过程中出现错误（如找不到指定的库），CMake 会中止并输出错误信息。解决错误后，重新运行 cmake 命令即可继续。\n编译和构建\n构建文件生成后，就可以执行实际的编译和链接过程了。\n不同的构建系统使用不同的编译命令，你也可以使用 CMake 提供的通用构建命令。\n推荐方式——使用 CMake 通用构建命令：\n# 无论底层使用哪种构建系统，该命令都能正确编译\ncmake --build .\n构建特定目标：\n# 只编译指定的目标（如某个可执行文件或库）\ncmake --build . --target MyExecutable\n使用 Makefile 构建系统：\n# 编译所有目标\nmake\n\n# 使用多核并行编译（-j 参数指定并行任务数）\nmake -j$(nproc)\n\n# 编译特定目标\nmake MyExecutable\n使用 Ninja 构建系统：\n# Ninja 自动并行编译，无需手动指定 -j\nninja\n\n# 编译特定目标\nninja MyExecutable\n使用 Visual Studio：\n如果生成了 Visual Studio 工程文件，可以打开 .sln 解决方案文件，在 IDE 中选择生成解决方案。\n# 也可以使用 MSBuild 命令行工具编译\nmsbuild MyProject.sln /p:Configuration=Release\n清理构建文件\n构建过程中生成的中间文件（.o、.obj 等）和目标文件可以通过清理操作删除，释放磁盘空间。\n使用 CMake 通用清理命令：\ncmake --build . --target clean\n使用 Makefile：\nmake clean\n使用 Ninja：\nninja clean\n手动清理：\n# 删除构建目录中的所有文件，保留源代码目录不变\nrm -rf build/*\n最简单彻底的清理方式是直接删除整个 build 目录，然后重新创建并运行 cmake。这比单独执行 clean 更可靠，因为 clean 目标可能未正确定义。\n重新配置和构建\n当你修改了 CMakeLists.txt 文件或调整了项目设置后，需要重新运行 CMake 配置并重新编译。\n重新配置：\n# CMake 会自动检测变更的文件，只重新生成受影响的部分\ncmake ..\n重新编译：\n# 编译系统会自动识别哪些源文件发生了变更，只重新编译改动的部分\ncmake --build .\n大多数情况下，修改 CMakeLists.txt 后直接运行 cmake --build . 即可。构建系统会自动检测到 CMakeLists.txt 的变更并重新运行 cmake 配置步骤。\n构建系统对比\nCMake 支持生成多种构建系统文件，以下是三种最常用构建系统的对比。\n构建系统\n适用平台\n并行编译\n特点\nUnix Makefiles\nLinux / macOS\n需手动指定 -j\n兼容性最广，几乎所有 Unix 系统自带\nNinja\n跨平台\n自动并行\n速度更快，特别适合增量编译和大型项目\nVisual Studio\nWindows\nIDE 自动管理\n与 VS IDE 深度集成，支持图形化调试和配置\n注意事项\n始终使用 Out-of-source 构建。在源码目录中运行 cmake 会生成大量中间文件，污染版本控制。将 build 目录添加到 .gitignore 中是最佳实践。\n优先使用 cmake --build . 命令。这个命令是跨平台的通用构建入口，无论底层是 Make、Ninja 还是 MSBuild 都能正确工作。在脚本和 CI 环境中尤其推荐使用。\n构建类型影响性能和调试体验。Debug 模式包含调试符号且不优化，适合开发；Release 模式启用优化且去除调试信息，适合生产部署。不要用 Debug 模式测试性能，也不要用 Release 模式调试代码。\n遇到奇怪的构建错误时，删除 build 目录重来。CMake 的缓存有时会保留过期的配置信息，导致难以排查的错误。删除整个 build 目录并重新 cmake 是最快的排查方式。",
+    "examples": []
+   },
+   {
+    "title": "CMake 实战练习",
+    "url": "https://www.runoob.com/cmake/cmake-exercises.html",
+    "body": "本文将演示如何使用 CMake 管理一个中等复杂度的 C++ 项目，从创建项目到编译和运行的完整流程。\n内容涵盖基本配置、库链接、单元测试、自定义命令以及跨平台交叉编译等高级特性。\nCMake 构建流程\n下图展示了 CMake 从源码到最终可执行文件的完整构建流程：\n项目概述\n我们将构建一个包含主程序、静态库和单元测试的 C++ 项目。\n库中提供数学运算功能（加法、减法、乘法），主程序调用这些功能，测试代码验证其正确性。\n项目目录结构\nMyProject/\n├── CMakeLists.txt # 根构建配置（项目定义、全局设置）\n├── src/\n│ ├── main.cpp # 主程序入口\n│ ├── CMakeLists.txt # src 子目录构建配置（库 + 可执行文件）\n│ ├── lib/\n│ │ ├── module1.cpp # 数学模块一：加法、减法\n│ │ └── module2.cpp # 数学模块二：乘法\n│ └── include/\n│ └── mylib.h # 公共头文件（函数声明）\n└── tests/\n ├── test_main.cpp # 单元测试用例\n └── CMakeLists.txt # 测试子目录构建配置\nOut-of-Source Build（源外构建）是 CMake 的最佳实践：所有构建产物（Makefile、目标文件、可执行文件）都放在独立的 build 目录中，不会污染源码目录。\n创建 CMakeLists.txt 文件\nCMakeLists.txt 是 CMake 的核心配置文件，采用层级结构，根目录和每个子目录各有一个。\n根目录 CMakeLists.txt\n根配置定义项目级信息，并通过 add_subdirectory 管理子目录。\n实例",
+    "examples": [
+     "cmake_minimum_required(VERSION 3.10)    # 指定最低 CMake 版本要求\nproject(MyProject VERSION 1.0)          # 定义项目名称和版本号\n\n# 设置 C++ 标准为 C++11，并设为强制要求\nset(CMAKE_CXX_STANDARD 11)\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\n\n# 添加全局头文件搜索路径（PROJECT_SOURCE_DIR 为项目根目录）\ninclude_directories(${PROJECT_SOURCE_DIR}/src/include)\n\n# 添加子目录，CMake 将依次处理其中的 CMakeLists.txt\nadd_subdirectory(src)      # 处理库和可执行文件\nadd_subdirectory(tests)    # 处理测试"
+    ]
+   },
+   {
+    "title": "CMake 安装与配置",
+    "url": "https://www.runoob.com/cmake/cmake-install-setup.html",
+    "body": "CMake 支持的操作系统：\nMicrosoft Windows\nApple macOS\nLinux\nFreeBSD\nOpenBSD\nSolaris\nAIX\n安装 CMake\nCMake 可以在不同操作系统上进行安装，本文将介绍 Windows、Linux 以及 macOS 系统下的安装与配置。\nCMake 安装包下载地址：https://cmake.org/download/。\n下载页面包含了源码包及二进制包：\n我们可以在上面二进制包列表中下载适用于我们操作系统的安装包。\nWindows\n选择 Windows 版本的安装包（通常是 .msi 文件）。\n下载后，双击下载的 .msi 文件，按照安装向导的指示进行安装。\n在安装过程中，可以选择将 CMake 添加到系统的 PATH 环境变量中（建议选择此选项，以便在命令行中直接使用 cmake 命令）。\n验证安装：打开命令提示符（CMD）或 PowerShell，输入 cmake --version，查看是否能正确显示 CMake 的版本信息。\nmacOS\n通过 Homebrew 安装\n打开终端（Terminal），执行以下安装命令：\nbrew install cmake\n通过官方安装包\n访问 CMake 官方网站的下载页面，选择 macOS 版本的 .dmg 文件。\n下载并运行 .dmg 文件，拖动 CMake 图标到应用程序文件夹。\n安装成功后，命令都在 /Applications/CMake.app/Contents/bin 目录下，我们需要将环境变量添加到 .bash_profile 文件中，使用 vim 进行编辑：\nvim ~/.bash_profile\n将以下内容添加到文件末尾：\nexport PATH=\"/Applications/CMake.app/Contents/bin\":\"$PATH\"\n添加完成后，执行 source ~/.bash_profile 或者重新启动终端。\n验证安装：打开终端，输入 cmake --version，确认 CMake 已正确安装。\nLinux\n通过包管理器安装（适用于大多数发行版）：\n对于 Ubuntu 或 Debian 系统：sudo apt-get install cmake\n对于 Fedora 系统：sudo dnf install cmake\n对于 Arch Linux 系统：sudo pacman -S cmake\n从源码编译安装：\n访问 CMake 官方网站下载源码包。\n解压源码包，进入解压后的目录。\n执行以下命令编译和安装：\n./bootstrap\nmake\nsudo make install\n验证安装：打开终端，输入 cmake --version，确认 CMake 安装成功。\n配置 CMake\n确保 CMake 的安装路径被添加到系统的 PATH 环境变量中，这样可以在任何位置的命令行中访问 CMake。\nWindows 环境变量设置\n如果在安装过程中选择了将 CMake 添加到 PATH，则不需要额外配置。\n如果未选择，可以手动添加：右键点击\"计算机\"或\"此电脑\"，选择\"属性\" -> \"高级系统设置\" -> \"环境变量\"，在\"系统变量\"中找到 Path，点击\"编辑\"，将 CMake 的安装路径添加进去。\nmacOS 和 Linux\n通常安装程序会自动配置 PATH，如果没有，可以手动配置。\n打开终端，编辑 ~/.bash_profile 或 ~/.zshrc 文件，添加以下行：\nexport PATH=\"/usr/local/bin:$PATH\"\n运行 source ~/.bash_profile 或 source ~/.zshrc 使更改生效。\nCMake GUI 使用\nCMake 也提供了图形用户界面（GUI），可以用于更直观地配置项目。\n在 Windows 中，通常可以从开始菜单启动。\n在 macOS 和 Linux 中，使用终端命令 cmake-gui 启动。\n设置源代码目录和构建目录：\n源代码目录（Source Code Directory）： 指向包含 CMakeLists.txt 文件的目录。\n构建目录（Build Directory）： 指向用于存放生成的构建文件的目录。建议使用独立的目录以保持源代码的整洁。\n配置和生成：\n点击 \"Configure\" 按钮，选择编译器和构建选项，CMake 会检查依赖项并生成配置。\n点击 \"Generate\" 按钮，CMake 会生成适合当前平台的构建文件。\n通过上述步骤，用户可以安装和配置 CMake，并使其准备好用于构建和管理项目。",
+    "examples": []
+   },
+   {
+    "title": "CMake 教程",
+    "url": "https://www.runoob.com/cmake/cmake-tutorial.html",
+    "body": "CMake 是个一个开源的跨平台自动化建构系统，用来管理软件建置的程序，并不依赖于某特定编译器，并可支持多层目录、多个应用程序与多个函数库。\nCMake 通过使用简单的配置文件 CMakeLists.txt，自动生成不同平台的构建文件（如 Makefile、Ninja 构建文件、Visual Studio 工程文件等），简化了项目的编译和构建过程。\nCMake 本身不是构建工具，而是生成构建系统的工具，它生成的构建系统可以使用不同的编译器和工具链。",
+    "examples": []
+   }
+  ]
+ }
+}

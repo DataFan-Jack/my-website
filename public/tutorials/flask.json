@@ -1,0 +1,428 @@
+{
+ "tutorial": {
+  "name": "Flask",
+  "category": "后端开发",
+  "desc": "Flask 是一个用 Python 编写的轻量级 Web 应用框架。",
+  "url": "https://www.runoob.com/flask/",
+  "chapters": [
+   {
+    "title": "Flask 应用对象 API",
+    "url": "https://www.runoob.com/flask/flask-api-application-object.html",
+    "body": "Flask 类是整个框架的核心，它作为 WSGI 应用运行，并集中管理路由、模板、配置、钩子等所有功能。\n创建方式：\napp = Flask(__name__)\n构造函数参数\n以下是创建 Flask 实例时可以传递的全部参数：\n参数\n类型\n默认值\n说明\nimport_name\nstr\n必填\n应用模块/包名，Flask 用它定位模板和静态文件的位置。单文件传递 __name__，包传递包名\nstatic_url_path\nstr\nNone\n静态文件对外暴露的 URL 路径。不设置时使用 static_folder 的文件夹名，如 /static\nstatic_folder\nstr\n\"static\"\n存放静态文件（CSS、JS、图片）的文件夹路径，相对于 root_path 或绝对路径\nstatic_host\nstr\nNone\n静态文件路由的主机名，仅在 host_matching=True 时需要\nhost_matching\nbool\nFalse\n是否按 Host 头匹配路由\nsubdomain_matching\nbool\nFalse\n是否启用子域名路由匹配\ntemplate_folder\nstr\n\"templates\"\n存放 Jinja2 模板文件的文件夹路径\ninstance_path\nstr\nNone（自动发现）\ninstance 文件夹路径，存储运行时不提交版本控制的文件。设为绝对路径\ninstance_relative_config\nbool\nFalse\n为 True 时，配置文件的相对路径基于 instance_path 而非 root_path\nroot_path\nstr\nNone（自动发现）\n应用的根路径，通常自动推断，仅命名空间包需要手动设置\n核心属性\n属性\n类型\n说明\nname\nstr\n应用名称。如果 import_name 为 __main__，则取主文件名\nconfig\nConfig\n配置字典对象，存储所有配置项\ndebug\nbool\n是否开启调试模式。等价于 config[\"DEBUG\"]\ntesting\nbool\n是否开启测试模式。等价于 config[\"TESTING\"]\nsecret_key\nstr\n安全密钥，用于 Session 签名。等价于 config[\"SECRET_KEY\"]\npermanent_session_lifetime\ntimedelta\n永久 Session 的有效期，默认 31 天\nurl_map\nMap\nWerkzeug 的 URL 映射表，存储所有路由规则\nview_functions\ndict\nendpoint → 视图函数的映射字典\nblueprints\ndict\n已注册的蓝图名称 → Blueprint 实例映射\nextensions\ndict\n扩展存储字典，扩展按模块名存储自己的状态\nlogger\nLogger\nPython 标准 logging.Logger，应用名作为 logger 名\njinja_env\nEnvironment\nJinja2 环境实例，控制模板加载方式\njson\nJSONProvider\nJSON 处理提供者实例，可替换为自定义 JSON 库\naborter\nAborter\nHTTP 异常抛出器，被 abort() 函数调用\ncli\nAppGroup\nClick 命令组，可添加自定义 CLI 命令\ninstance_path\nstr\ninstance 文件夹的绝对路径\nroot_path\nstr\n应用根目录的绝对路径\n可重写的类属性\n以下属性可在子类中覆盖，以自定义框架行为：\n属性\n默认值\n说明\nrequest_class\nRequest\n用于创建请求对象的类\nresponse_class\nResponse\n用于创建响应对象的类\nsession_interface\nSecureCookieSessionInterface()\nSession 后端接口，可替换为 Redis/数据库 Session\njinja_environment\nEnvironment\nJinja2 环境类\napp_ctx_globals_class\n_AppCtxGlobals\ng 对象的类\nconfig_class\nConfig\n配置对象的类\naborter_class\nAborter\n异常抛出器的类\njson_provider_class\nDefaultJSONProvider\nJSON 处理器的类\nurl_rule_class\nRule\nURL 规则的类（Werkzeug）\nurl_map_class\nMap\nURL 映射表的类（Werkzeug）\ntest_client_class\nNone（默认 FlaskClient）\n测试客户端的类\ntest_cli_runner_class\nNone（默认 FlaskCliRunner）\nCLI 测试运行器的类\njinja_options\n{}\n传递给 Jinja2 环境的额外选项\nURL 路由方法\n方法\n签名\n说明\nroute\n(rule, **options)\n装饰器，将一个 URL 规则绑定到视图函数\nget\n(rule, **options)\n装饰器，仅绑定 GET 方法（等价于 methods=[\"GET\"]）\npost\n(rule, **options)\n装饰器，仅绑定 POST 方法\nput\n(rule, **options)\n装饰器，仅绑定 PUT 方法\ndelete\n(rule, **options)\n装饰器，仅绑定 DELETE 方法\npatch\n(rule, **options)\n装饰器，仅绑定 PATCH 方法\nadd_url_rule\n(rule, endpoint, view_func, provide_automatic_options, **options)\n以编程方式添加 URL 规则。route 装饰器底层调用此方法\nurl_for\n(endpoint, *, _anchor, _method, _scheme, _external, **values)\n根据 endpoint 和参数生成 URL。蓝图中 endpoint 需加蓝图名前缀\nregister_blueprint\n(blueprint, **options)\n注册一个蓝图，可指定 url_prefix、subdomain 等覆盖参数\niter_blueprints\n()\n按注册顺序遍历所有蓝图\nroute 装饰器支持的 options 包括：methods（HTTP 方法列表）、endpoint（自定义端点名）、defaults（默认参数）、subdomain（子域名）等。\n请求生命周期钩子（装饰器）\n以下方法均可用作装饰器，在请求的不同阶段插入自定义逻辑。\n方法\n执行时机\n返回非None的行为\n典型用途\nbefore_request\n路由分发之前\n返回值作为最终响应，跳过视图函数\n登录检查、权限验证\nafter_request\n响应构建之后、发送之前\n必须接收并返回 Response 对象\n添加安全头、CORS 头\nteardown_request\n请求上下文弹出时\n返回值被忽略\n释放请求级资源\nteardown_appcontext\n应用上下文弹出时\n返回值被忽略\n关闭数据库连接\nerrorhandler\n指定状态码或异常发生时\n返回值作为错误页面的响应\n自定义 404/500 页面\nurl_value_preprocessor\nURL 变量提取后、视图调用前\n返回值被忽略\n对 URL 参数做预处理\nurl_defaults\nurl_for 构建 URL 时\n修改传入的 values 字典\n为 url_for 添加默认参数\ntemplate_filter\n—（注册性质）\n—\n注册 Jinja2 模板过滤器\ntemplate_test\n—（注册性质）\n—\n注册 Jinja2 模板测试\ntemplate_global\n—（注册性质）\n—\n注册 Jinja2 全局函数\nshell_context_processor\nflask shell 启动时\n返回 dict，合并到 shell 上下文中\n预导入常用对象到 flask shell\n请求处理方法\n以下方法在请求处理流程中被内部调用，可在子类中重写：\n方法\n说明\npreprocess_request(ctx)\n请求预处理：执行 before_request 函数和 URL 预处理器\ndispatch_request(ctx)\n核心分发：匹配 URL，调用对应视图函数\nmake_response(rv)\n将视图函数的返回值转换为 Response 对象\nfinalize_request(ctx, rv)\n最终化：调用 make_response 和 after_request 钩子\nprocess_response(ctx, response)\n响应后处理：执行 after_request 函数和 Session 保存\nfull_dispatch_request(ctx)\n完整的请求调度入口：preprocess → dispatch → finalize\nhandle_http_exception(ctx, e)\n处理 HTTP 异常，查找对应的 errorhandler\nhandle_user_exception(ctx, e)\n处理用户代码异常，区分 HTTP 异常和普通异常\nhandle_exception(ctx, e)\n最终异常处理，返回 500 响应\nensure_sync(func)\n确保函数同步执行。async 函数会被包装为同步\nmake_default_options_response(ctx)\n生成自动的 OPTIONS 响应\nraise_routing_exception(request)\n处理路由异常（如尾斜线重定向）\n模板和静态文件\n方法\n说明\ncreate_jinja_environment()\n创建并配置 Jinja2 环境。首次访问 jinja_env 时自动调用\ncreate_global_jinja_loader()\n创建 Jinja2 全局加载器，支持应用和蓝图的模板分发\nselect_jinja_autoescape(filename)\n判断给定文件是否需要自动转义。默认 .html/.htm/.xml/.xhtml/.svg 返回 True\nupdate_template_context(ctx, context)\n向模板上下文注入 request、session、g、config 等内置变量\nsend_static_file(filename)\n从 static_folder 发送文件，自动注册为 /static/ 路由\nget_send_file_max_age(filename)\n获取静态文件的缓存时间，默认使用 SEND_FILE_MAX_AGE_DEFAULT 配置\nopen_resource(resource, mode=\"rb\")\n以二进制模式打开 root_path 下的资源文件\nopen_instance_resource(resource, mode=\"rb\")\n打开 instance_path 下的资源文件，支持写入模式\n上下文管理\n方法\n说明\napp_context()\n创建应用上下文，用 with 语句手动推入。使 current_app 和 g 可用\nrequest_context(environ)\n根据 WSGI environ 创建请求上下文\ntest_request_context(*args, **kwargs)\n创建模拟的请求上下文，用于测试。接收 path、method、data、json 等参数\nwsgi_app(environ, start_response)\n核心 WSGI 应用方法。可通过 app.wsgi_app = Middleware(app.wsgi_app) 包装中间件\n测试和开发工具\n方法\n说明\ntest_client(use_cookies=True, **kwargs)\n创建测试客户端，模拟浏览器发送请求。返回 FlaskClient 实例\ntest_cli_runner(**kwargs)\n创建 CLI 测试运行器，用于测试自定义命令。返回 FlaskCliRunner 实例\nrun(host, port, debug, load_dotenv, **options)\n启动开发服务器。生产环境应使用 Gunicorn/ Waitress\nmake_shell_context()\n构建 flask shell 的上下文字典。运行所有 shell_context_processor\nlog_exception(ctx, exc_info)\n记录异常到 logger，传入 exc_info 元组\n工具方法\n方法\n说明\nredirect(location, code=303)\n创建重定向响应对象\nasync_to_sync(func)\n将异步协程函数转换为同步函数\ncreate_url_adapter(request)\n根据请求或配置创建 URL 适配器，用于 URL 构建\ninject_url_defaults(endpoint, values)\n向 URL 构建过程注入默认参数\nhandle_url_build_error(error, endpoint, values)\n处理 url_for 构建失败的情况，可返回替代 URL\nmake_config(instance_relative)\n创建 Config 实例，可被子类重写以自定义配置\nmake_aborter()\n创建 Aborter 实例\ntrap_http_exception(e)\n判断是否将 HTTP 异常作为普通异常向上抛出\nauto_find_instance_path()\n自动查找 instance 文件夹路径\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask\n\n# 创建应用，指定模板和静态文件夹\napp = Flask(__name__,\n           template_folder=\"templates\",\n           static_folder=\"static\",\n           instance_relative_config=True)\n\n# 设置密钥\napp.secret_key = \"your-secret-key\"\n\n# 注册路由\n@app.route(\"/\")\ndef index():\n    return \"<h1>Hello, RUNOOB!</h1>\"\n\n# 注册 before_request 钩子\n@app.before_request\ndef check_auth():\n    # 在此检查用户认证状态\n    pass\n\n# 注册 after_request 钩子\n@app.after_request\ndef add_header(response):\n    # 为每个响应添加自定义头\n    response.headers[\"X-Custom-Header\"] = \"RUNOOB\"\n    return response\n\n# 注册错误处理器\n@app.errorhandler(404)\ndef not_found(error):\n    return \"<h1>页面未找到</h1>\", 404\n\n# 注册自定义 CLI 命令\n@app.cli.command(\"hello\")\ndef hello_command():\n    \"\"\"打印问候语\"\"\"\n    print(\"Hello from RUNOOB Flask App!\")"
+    ]
+   },
+   {
+    "title": "Flask Application Globals - g 对象 API",
+    "url": "https://www.runoob.com/flask/flask-application-globals-g-object-api.html",
+    "body": "g 是一个请求级别的全局命名空间，用于在同一请求的多个函数之间共享数据。\n通过 from flask import g 导入，仅在应用上下文活跃时可用。\ng 对象说明\n特性\n说明\n类型\nflask.ctx._AppCtxGlobals 实例\n生命周期\n随应用上下文创建，随应用上下文销毁\n线程安全\n每个请求/上下文拥有独立的 g 对象\n用法\n像普通对象一样读写属性：g.user = ...、g.db = ...\n_AppCtxGlobals 方法\n方法\n说明\nget(name, default=None)\n获取属性值，属性不存在时返回默认值\npop(name, default=None)\n移除并返回属性值\nsetdefault(name, default=None)\n如果属性不存在则设置默认值并返回\n__contains__(name)\n支持 hasattr(g, \"name\") 或 \"name\" in g\n典型使用模式\n实例",
+    "examples": [
+     "from flask import Flask, g\n\napp = Flask(__name__)\n\ndef get_db():\n    \"\"\"数据库连接只创建一次，存储在 g 中复用\"\"\"\n    if \"db\" not in g:\n        g.db = connect_to_database()\n    return g.db\n\n@app.before_request\ndef load_user():\n    \"\"\"在请求开始前加载用户信息到 g\"\"\"\n    user_id = session.get(\"user_id\")\n    if user_id:\n        g.user = query_user(user_id)  # 视图函数中可直接用 g.user\n    else:\n        g.user = None\n\n@app.route(\"/profile\")\ndef profile():\n    if g.user is None:\n        return \"Not logged in\"\n    return f\"Hello, {g.user.name}\"\n\n@app.teardown_appcontext\ndef close_db(error):\n    \"\"\"请求结束时清理资源\"\"\"\n    db = g.pop(\"db\", None)\n    if db is not None:\n        db.close()"
+    ]
+   },
+   {
+    "title": "Flask 基本概念",
+    "url": "https://www.runoob.com/flask/flask-basic-concept.html",
+    "body": "上一个章节我们已经学会了如何创建第一个 Flask 应用，本章节我们将来详细了解 Flask 的一些基本概念。\n了解 Flask 的基本概念对于开发高效的 Web 应用非常重要。\n以下是 Flask 的主要基本概念的详细解析：\n路由：路由是 URL 到 Python 函数的映射。Flask 允许你定义路由，这样当特定的 URL 被访问时，就会调用相应的函数。\n视图函数：视图函数是处理请求并返回响应的 Python 函数。它们通常接收请求对象作为参数，并返回响应对象。\n请求对象：请求对象包含了客户端发送的请求信息，如请求方法、URL、请求头、表单数据等。\n响应对象：响应对象包含了发送给客户端的响应信息，如状态码、响应头、响应体等。\n模板：Flask 使用 Jinja2 模板引擎来渲染 HTML 模板。模板允许你将 Python 代码嵌入到 HTML 中，从而动态生成网页。\n应用工厂：应用工厂是一个 Python 函数，它创建并返回一个 Flask 应用实例。这允许你配置和初始化你的应用，并且可以创建多个应用实例。\n配置对象：Flask 应用有一个配置对象，你可以使用它来设置各种配置选项，如数据库连接字符串、调试模式等。\n蓝图：蓝图是 Flask 中的一个组织代码的方式，它允许你将相关的视图函数、模板和静态文件组织在一起，并且可以在多个应用中重用。\n静态文件：静态文件是不会被服务器端执行的文件，如 CSS、JavaScript 和图片文件。Flask 提供了一个简单的方法来服务这些文件。\n扩展：Flask 有许多扩展，可以添加额外的功能，如数据库集成、表单验证、用户认证等。\n会话：Flask 使用客户端会话来存储用户信息，这允许你在用户浏览你的应用时记住他们的状态。\n错误处理：Flask 允许你定义错误处理函数，当特定的错误发生时，这些函数会被调用。\n1. 路由 (Routing)\n路由是 URL 到 Python 函数的映射。Flask 允许你定义路由，使得当用户访问特定 URL 时，Flask 会调用对应的视图函数来处理请求。\n实例",
+    "examples": [
+     "from flask import Flask\n\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    return 'Welcome to the Home Page!'\n\n@app.route('/about')\ndef about():\n    return 'This is the About Page.'"
+    ]
+   },
+   {
+    "title": "打包上线 — 部署到 Railway",
+    "url": "https://www.runoob.com/flask/flask-blog-deploy.html",
+    "body": "本章你将学会应用工厂模式、生产环境配置，并用 Railway 将 Flask 博客部署上线。\n应用工厂模式 create_app()\n到目前为止，app.py 中直接创建了 app = Flask(__name__)，这在开发时够用，但有几个问题：\n测试时无法创建独立的 app 实例\n无法按环境（开发/测试/生产）切换不同配置\n扩展初始化与 app 实例紧耦合\n应用工厂模式 解决了这些问题：把 app 的创建封装到一个函数中。\n实例",
+    "examples": [
+     "# 文件路径：app/__init__.py\nfrom flask import Flask\nfrom flask_sqlalchemy import SQLAlchemy\nfrom flask_login import LoginManager\nfrom flask_migrate import Migrate\nfrom config import Config\n\ndb = SQLAlchemy()\nlogin_manager = LoginManager()\nmigrate = Migrate()\n\ndef create_app(config_class=Config):\n    \"\"\"应用工厂：根据配置类创建 Flask 应用实例\"\"\"\n    app = Flask(__name__)\n    app.config.from_object(config_class)\n\n    # 初始化扩展（先创建 app 实例，再将扩展绑定到 app）\n    db.init_app(app)\n    login_manager.init_app(app)\n    migrate.init_app(app, db)\n\n    login_manager.login_view = 'auth.login'\n    login_manager.login_message = '请先登录后再访问。'\n\n    # 注册 Blueprint\n    from app.blueprints.main import main_bp\n    from app.blueprints.posts import posts_bp\n    from app.blueprints.auth import auth_bp\n    from app.blueprints.user import user_bp\n    app.register_blueprint(main_bp)\n    app.register_blueprint(posts_bp)\n    app.register_blueprint(auth_bp)\n    app.register_blueprint(user_bp)\n\n    # user_loader 需要在 app 存在后定义\n    from app.models import User\n    @login_manager.user_loader\n    def load_user(user_id):\n        return User.query.get(int(user_id))\n\n    return app"
+    ]
+   },
+   {
+    "title": "收藏功能与后台管理",
+    "url": "https://www.runoob.com/flask/flask-blog-favorites-admin.html",
+    "body": "本章你将学会用多对多关系实现收藏功能，并用 Flask-Admin 快速搭建后台管理。\n多对多关系设计\n收藏功能的需求：一个用户可以收藏多篇文章，一篇文章可以被多个用户收藏。\n在 SQLAlchemy 中，多对多关系通过关联表（Association Table）实现。\n实例",
+    "examples": [
+     "# 文件路径：models.py 新增关联表和修改 Post 模型\nfrom datetime import datetime\n\n# 关联表：不需要定义为模型类，用 db.Table 直接创建\nfavorites = db.Table('favorites',\n    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),\n    db.Column('post_id', db.Integer, db.ForeignKey('posts.id'), primary_key=True),\n    db.Column('created_at', db.DateTime, default=datetime.utcnow)\n)\n\nclass Post(db.Model):\n    __tablename__ = 'posts'\n    # ... 已有字段不变 ..."
+    ]
+   },
+   {
+    "title": "Jinja2 模板 — 渲染 HTML 页面",
+    "url": "https://www.runoob.com/flask/flask-blog-jinja2-templates.html",
+    "body": "本章你将学会用 Jinja2 模板引擎渲染完整的 HTML 页面，抽取公共布局。\n从字符串到模板\n上一章视图函数直接返回字符串，里行嵌 HTML 标签，无法复用、难以维护。\nrender_template() 是 Flask 渲染模板的入口：它加载 HTML 文件、注入变量、返回完整的 HTML 响应。\n实例",
+    "examples": [
+     "# 文件路径：app.py\nfrom flask import Flask, render_template\n\napp = Flask(__name__)\n\n@app.route(\"/\")\ndef index():\n    # render_template('模板文件名', 变量名=值, ...)\n    return render_template('index.html', title='RUNOOB 博客')"
+    ]
+   },
+   {
+    "title": "Flask-Login — 用户注册、登录、登出",
+    "url": "https://www.runoob.com/flask/flask-blog-login.html",
+    "body": "本章你将学会用 Flask-Login 实现 Session 用户认证，这是 Flask Web 开发最重要的安全保障。\nFlask-Login 是什么？\nWeb 应用的 HTTP 请求本质上是无状态的——服务器不会自动记住你是谁。\nFlask-Login 通过 Session 机制实现用户状态的维护：登录后服务器在 Session 中存入用户 ID，后续请求自动识别当前用户。\n安装与初始化\n(venv) $ pip install flask-login\n实例",
+    "examples": [
+     "# 文件路径：app.py\nfrom flask import Flask\nfrom flask_sqlalchemy import SQLAlchemy\nfrom flask_login import LoginManager\n\napp = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'\napp.config['SECRET_KEY'] = 'your-secret-key-here'   # Session 加密密钥（生产环境用环境变量）\n\ndb = SQLAlchemy(app)\n\n# 初始化 LoginManager\nlogin_manager = LoginManager()\nlogin_manager.init_app(app)\nlogin_manager.login_view = 'auth.login'     # 未登录用户重定向到登录页\nlogin_manager.login_message = '请先登录后再访问。'"
+    ]
+   },
+   {
+    "title": "Flask-Migrate — 数据库迁移",
+    "url": "https://www.runoob.com/flask/flask-blog-migrate.html",
+    "body": "本章你将学会用 Flask-Migrate 安全地管理数据库结构变更，并理解与 Django migration 的对应关系。\n为什么不能一直用 db.create_all()？\ndb.create_all() 有两个致命缺陷：\n只在表不存在时创建。修改模型（如新增字段），已存在的表不会更新\n不保留变更历史。无法回滚到之前的数据库状态\n数据库迁移 就像数据库的 Git——每次结构变更生成一个版本文件，支持升级和回滚。\nFlask-Migrate 是 Alembic 的 Flask 扩展，专为 SQLAlchemy 设计。\n安装与配置\n(venv) $ pip install flask-migrate\n实例",
+    "examples": [
+     "# 文件路径：app.py\nfrom flask import Flask\nfrom flask_sqlalchemy import SQLAlchemy\nfrom flask_migrate import Migrate\n\napp = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'\n\ndb = SQLAlchemy(app)\nmigrate = Migrate(app, db)    # 将 app 和 db 绑定到 Migrate"
+    ]
+   },
+   {
+    "title": "Flask Web 应用",
+    "url": "https://www.runoob.com/flask/flask-blog-project-init.html",
+    "body": "本章带你从零开始，用 Flask 创建第一个 Web 应用，理解微框架的设计哲学。\nFlask 与 Django 的定位差异\nDjango 是「大而全」的全栈框架，自带 ORM、模板引擎、管理后台、用户认证、表单处理等。\nFlask 是微框架——核心极简，只提供路由和模板渲染，其他功能通过扩展按需添加。\n特性\nDjango\nFlask\n设计哲学\n开箱即用（电池全包）\n微框架，按需扩展\nORM\n内置 Django ORM\nFlask-SQLAlchemy（扩展）\n数据库迁移\n内置 makemigrations/migrate\nFlask-Migrate（扩展）\n用户认证\n内置 auth 模块\nFlask-Login（扩展）\n后台管理\n内置 Django Admin\nFlask-Admin（扩展）\n模板引擎\nDjango Templates\nJinja2（语法几乎一样）\n路由配置\nurls.py 集中配置\n装饰器就近声明\n选择建议：新手快速出成果用 Django，喜欢自己掌控、按需组装的用 Flask。\n环境准备\n确认 Python 版本（需要 3.8 以上）：\n$ python3 --version\nPython 3.12.0\n创建虚拟环境并安装 Flask\n$ python3 -m venv venv\n$ source venv/bin/activate # Windows：venv\\Scripts\\activate\n(venv) $ pip install flask\n验证安装：\n(venv) $ python -c \"import flask; print(flask.__version__)\"\n3.1.0\nFlask 最小应用\n一个 Flask 应用只需要一个 Python 文件。\n实例",
+    "examples": [
+     "# 文件路径：app.py\nfrom flask import Flask\n\n# 创建 Flask 应用实例\n# __name__ 告诉 Flask 当前模块的位置（用于查找模板和静态文件）\napp = Flask(__name__)\n\n# @app.route(\"/\") — 路由装饰器：访问 / 路径时执行下面的函数\n@app.route(\"/\")\ndef index():\n    return '<h1>欢迎来到 RUNOOB 博客</h1>'\n\n# 如果直接运行 python app.py（而非 flask run），启动开发服务器\nif __name__ == '__main__':\n    app.run(debug=True)"
+    ]
+   },
+   {
+    "title": "关键词搜索与分页",
+    "url": "https://www.runoob.com/flask/flask-blog-search-pagination.html",
+    "body": "本章你将学会用 SQLAlchemy 实现联合搜索，并用 Flask-SQLAlchemy 内置分页功能优化列表页。\nilike — 大小写不敏感搜索\nSQLAlchemy 的 ilike 方法实现了大小写不敏感的模糊匹配。\n它对应 SQL 的 LIKE 操作符，但忽略大小写。\n实例",
+    "examples": [
+     "# 单字段搜索\nposts = Post.query.filter(Post.title.ilike('%flask%')).all()\n\n# 多字段联合搜索：or_() 表示 OR 关系\nfrom sqlalchemy import or_\nposts = Post.query.filter(\n    or_(\n        Post.title.ilike('%flask%'),\n        Post.summary.ilike('%flask%')\n    )\n).all()"
+    ]
+   },
+   {
+    "title": "Flask-SQLAlchemy — 设计数据库模型",
+    "url": "https://www.runoob.com/flask/flask-blog-sqlalchemy.html",
+    "body": "本章你将学会用 Flask-SQLAlchemy 定义数据模型，创建 SQLite 数据库表，并插入测试数据。\n为什么要用 ORM？\n直接写 SQL 语句操作数据库繁琐且容易出错。\nORM（对象关系映射） 让你用 Python 类来定义表结构，用 Python 方法操作数据。\nFlask-SQLAlchemy 是 SQLAlchemy 的 Flask 集成版，封装了常见操作，配置更简单。\n安装与配置\n(venv) $ pip install flask-sqlalchemy\n实例",
+    "examples": [
+     "# 文件路径：app.py\nfrom flask import Flask\nfrom flask_sqlalchemy import SQLAlchemy\n\napp = Flask(__name__)\n\n# SQLite 数据库文件路径（位于项目根目录）\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'\n# 关闭修改追踪（节省内存，将来版本默认关闭）\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\n\n# 创建 db 实例，绑定到 app\ndb = SQLAlchemy(app)"
+    ]
+   },
+   {
+    "title": "视图函数 — 渲染文章列表与详情页",
+    "url": "https://www.runoob.com/flask/flask-blog-views-blueprint.html",
+    "body": "本章你将学会用视图函数从数据库查询数据，渲染首页和详情页，并用 Blueprint 拆分路由。\n视图函数的职责\nFlask 视图函数的职责与 Django 一致：接收请求 → 查询数据 → 渲染模板。\n实例",
+    "examples": [
+     "# 文件路径：app.py\nfrom flask import Flask, render_template\nfrom models import Post, Category\n\n@app.route(\"/\")\ndef index():\n    \"\"\"博客首页：展示所有文章\"\"\"\n    posts = Post.query.order_by(Post.created_at.desc()).all()\n    categories = Category.query.all()\n    return render_template('index.html', posts=posts, categories=categories)"
+    ]
+   },
+   {
+    "title": "表单处理 — Flask-WTF",
+    "url": "https://www.runoob.com/flask/flask-blog-wtf.html",
+    "body": "本章你将学会用 Flask-WTF 规范化处理表单：定义表单类、自动 CSRF 保护、字段校验与错误提示。\n为什么要用 Flask-WTF？\n上一章的注册和登录表单是手写的：手动从 request.form.get() 取值、手动校验、手动显示错误。\nFlask-WTF 基于 WTForms 为 Flask 封装，提供：\n表单类定义，字段 + 校验规则集中管理\n自动 CSRF 保护\n模板中渲染字段和错误信息\nform.validate_on_submit() 统一处理 GET/POST 判断与校验\n安装与配置\n(venv) $ pip install flask-wtf\n在 app.py 中配置 SECRET_KEY（CSRF Token 依赖此密钥）：\n实例",
+    "examples": [
+     "# 文件路径：app.py\napp.config['SECRET_KEY'] = 'your-secret-key'    # 生产环境用环境变量\napp.config['WTF_CSRF_ENABLED'] = True            # 默认开启，显式声明一下"
+    ]
+   },
+   {
+    "title": "Flask Blueprint 蓝图对象 API",
+    "url": "https://www.runoob.com/flask/flask-blueprint-api.html",
+    "body": "Blueprint 用于将应用拆分为可复用的模块，每个蓝图可以有自己的路由、模板、静态文件和钩子。\n创建方式：\nbp = Blueprint(\"auth\", __name__)\n构造函数参数\n参数\n类型\n默认值\n说明\nname\nstr\n必填\n蓝图名称，用于 url_for 中的 endpoint 前缀\nimport_name\nstr\n必填\n蓝图所在模块名，用于定位资源。通常传递 __name__\nstatic_folder\nstr\nNone\n蓝图的静态文件文件夹\nstatic_url_path\nstr\nNone\n静态文件对外暴露的 URL 路径\ntemplate_folder\nstr\nNone\n蓝图的模板文件夹\nurl_prefix\nstr\nNone\n蓝图所有路由的统一前缀，如 \"/auth\"\nsubdomain\nstr\nNone\n蓝图路由匹配的子域名\nurl_defaults\ndict\nNone\n蓝图路由的默认 URL 参数\nroot_path\nstr\nNone\n蓝图根路径，通常自动发现\ncli_group\nstr\nNone\nCLI 命令组名。默认使用蓝图名称\n核心属性\n属性\n类型\n说明\nname\nstr\n蓝图名称，注册后用于 endpoint 前缀\ncli\nAppGroup\n蓝图专属的 CLI 命令组，可添加自定义命令\nhas_static_folder\nbool\n是否配置了静态文件夹\n路由方法\n蓝图的用法与 Flask 应用一致，只是把 app 换为 bp：\n方法\n说明\nroute(rule, **options)\n装饰器，绑定 URL 到视图函数\nget / post / put / delete / patch(rule, **options)\nHTTP 方法快捷装饰器\nadd_url_rule(rule, endpoint, view_func, **options)\n编程方式添加 URL 规则\n钩子装饰器\n蓝图的钩子只影响该蓝图内的路由：\n方法\n说明\nbefore_request\n蓝图内所有请求前执行\nafter_request\n蓝图内请求响应后执行\nteardown_request\n蓝图内请求上下文销毁时执行\nerrorhandler(code_or_exception)\n蓝图内错误处理器\nurl_value_preprocessor\n蓝图内 URL 值预处理器\nurl_defaults\n蓝图内 URL 默认参数\ntemplate_filter / template_test / template_global\n蓝图模板过滤器/测试/全局函数\n蓝图特有方法\n方法\n说明\nregister(app, options)\n将蓝图注册到 Flask 应用。由 app.register_blueprint() 内部调用\nrecord(func)\n注册一个回调函数，在蓝图注册到应用时调用\nrecord_once(func)\n同 record，但多次注册蓝图时只执行一次\nmake_setup_state(app, options)\n创建蓝图注册状态对象\nsend_static_file(filename)\n从蓝图静态文件夹发送文件\nopen_resource(resource, mode=\"rb\")\n打开蓝图根路径下的资源文件\n注册蓝图时的 options 参数\n调用 app.register_blueprint(bp, **options) 时可传递：\n参数\n说明\nurl_prefix\n覆盖蓝图的 URL 前缀\nsubdomain\n覆盖蓝图的子域名\nurl_defaults\n覆盖蓝图的 URL 默认值\nname\n重命名蓝图（同一蓝图可注册多次，每次用不同名称）\n代码示例\n实例",
+    "examples": [
+     "from flask import Blueprint, render_template\n\n# 创建蓝图\nbp = Blueprint(\"blog\", __name__,\n               url_prefix=\"/blog\",\n               template_folder=\"templates\",\n               static_folder=\"static\")\n\n# 注册路由\n@bp.route(\"/\")\ndef index():\n    return render_template(\"blog/index.html\")\n\n@bp.route(\"/<int:post_id>\")\ndef show(post_id):\n    return f\"Show post {post_id}\"\n\n# 蓝图内钩子\n@bp.before_request\ndef check_login():\n    # 只对 /blog/* 路径生效\n    pass\n\n# 在 app 中注册\n# app.register_blueprint(bp)"
+    ]
+   },
+   {
+    "title": "蓝图（Blueprint）",
+    "url": "https://www.runoob.com/flask/flask-blueprints.html",
+    "body": "当应用只有一个文件时，所有路由写在一起还没问题。\n但随着功能增长——用户模块、文章模块、管理后台——代码会变得难以维护。\nBlueprint（蓝图）就是 Flask 提供的模块化解决方案，让你将应用拆分为独立的功能单元。\n为什么需要蓝图\n蓝图解决的核心问题：\n代码组织：将相关的路由、模板、静态文件归为一组\n复用性：同一个蓝图可以注册到不同应用，或注册多次（加不同前缀）\n团队协作：不同开发者负责不同的蓝图模块，减少冲突\n创建蓝图\n蓝图使用 Blueprint 类创建，用法和 Flask 非常相似——同样的路由装饰器、同样的视图函数写法：\n实例",
+    "examples": [
+     "# 文件路径：auth.py（用户认证蓝图）\nfrom flask import Blueprint, render_template, request, session, redirect, url_for\n\n# 创建蓝图实例\n# 第一个参数 \"auth\" 是蓝图的名称（用于 url_for 引用）\n# __name__ 告诉蓝图从哪里查找模板和静态文件\nbp = Blueprint(\"auth\", __name__)\n\n# 蓝图中使用 bp.route，而不是 app.route\n@bp.route(\"/login\", methods=[\"GET\", \"POST\"])\ndef login():\n    if request.method == \"POST\":\n        username = request.form.get(\"username\", \"\")\n        if username:\n            session[\"username\"] = username\n            return redirect(url_for(\"blog.index\"))\n    return render_template(\"auth/login.html\")\n\n@bp.route(\"/register\", methods=[\"GET\", \"POST\"])\ndef register():\n    if request.method == \"POST\":\n        username = request.form.get(\"username\", \"\")\n        if username:\n            return redirect(url_for(\"auth.login\"))\n    return render_template(\"auth/register.html\")\n\n@bp.route(\"/logout\")\ndef logout():\n    session.clear()\n    return redirect(url_for(\"blog.index\"))"
+    ]
+   },
+   {
+    "title": "Flask 类视图 API",
+    "url": "https://www.runoob.com/flask/flask-class-based-views-api.html",
+    "body": "Flask 提供了两种类视图，让你用面向对象的方式组织视图逻辑。\nView 是最基础的类视图，MethodView 按 HTTP 方法自动分发。\nView 基类\n属性/方法\n说明\nmethods\n类属性，视图接受的 HTTP 方法列表。默认 None（使用 add_url_rule 的默认值）\ndecorators\n类属性，装饰器列表。按顺序应用到生成的视图函数\ninit_every_request\n类属性，bool。True（默认）时每个请求创建新实例，False 时复用单实例\nprovide_automatic_options\n类属性，是否自动实现 OPTIONS。默认 None（使用应用配置）\ndispatch_request(**kwargs)\n核心方法，必须被重写。kwargs 为 URL 变量\nas_view(name, *class_args, **class_kwargs)\n类方法，创建可在 add_url_rule 中使用的视图函数\nMethodView 类\n继承自 View，按 HTTP 方法自动分发到对应实例方法。\n方法命名规则\n说明\nget(self, **kwargs)\n处理 GET 请求\npost(self, **kwargs)\n处理 POST 请求\nput(self, **kwargs)\n处理 PUT 请求\ndelete(self, **kwargs)\n处理 DELETE 请求\npatch(self, **kwargs)\n处理 PATCH 请求\n定义这些方法后，methods 属性会自动根据已定义的方法设置。\nView vs MethodView\n特性\nView\nMethodView\n分发方式\n单一 dispatch_request 处理所有方法\n按方法名自动分发（get→GET 等）\n适用场景\n通用视图、模板渲染\nRESTful API\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask, request, session, redirect, url_for\nfrom flask.views import View, MethodView\n\napp = Flask(__name__)\n\n# 基础 View：单一的 dispatch_request\nclass HelloView(View):\n    def dispatch_request(self, name):\n        return f\"<h1>Hello, {name}!</h1>\"\n\napp.add_url_rule(\"/hello/<name>\", view_func=HelloView.as_view(\"hello\"))\n\n# MethodView：RESTful API\nclass PostAPI(MethodView):\n    # 自定义初始化（每次请求都会调用）\n    def __init__(self):\n        self.db = get_database_connection()\n\n    def get(self, post_id=None):\n        if post_id is None:\n            posts = self.db.query_all_posts()\n            return {\"posts\": posts}\n        return self.db.get_post(post_id)\n\n    def post(self):\n        data = request.json\n        post_id = self.db.create_post(data[\"title\"], data[\"body\"])\n        return {\"id\": post_id}, 201\n\n    def delete(self, post_id):\n        self.db.delete_post(post_id)\n        return {\"message\": \"deleted\"}\n\n# 注册：同一视图函数处理多个方法\npost_view = PostAPI.as_view(\"post_api\")\napp.add_url_rule(\"/api/posts\", defaults={\"post_id\": None},\n                 view_func=post_view, methods=[\"GET\", \"POST\"])\napp.add_url_rule(\"/api/posts/<int:post_id>\",\n                 view_func=post_view, methods=[\"GET\", \"DELETE\"])"
+    ]
+   },
+   {
+    "title": "Flask 命令行 API",
+    "url": "https://www.runoob.com/flask/flask-command-line-interface-api.html",
+    "body": "Flask 基于 Click 构建了命令行工具。\n通过 flask 命令运行应用和管理任务。\n所有 CLI 类都在 flask.cli 模块中。\nFlaskGroup\nFlask 的主命令组。通过 flask 命令使用。\n参数\n说明\nadd_default_commands=True\n是否添加 run、shell、routes 等默认命令\ncreate_app=None\n应用工厂函数，返回 Flask 实例\nadd_version_option=True\n是否添加 --version 选项\nload_dotenv=True\n是否加载 .env 和 .flaskenv 文件\nset_debug_flag=True\n是否根据环境变量设置 debug 标志\nAppGroup\n应用和蓝图的 CLI 命令组基类。通过 app.cli 或 bp.cli 添加自定义命令。\n方法\n说明\ncommand(*args, **kwargs)\n注册 CLI 命令。默认自动包装 with_appcontext\ngroup(*args, **kwargs)\n注册子命令组。默认使用 AppGroup 作为组类\nAppGroup.command() 默认启用 with_appcontext=True，意味着你的命令函数会自动拥有应用上下文。如果不需要，传 with_appcontext=False。\nScriptInfo\n存储脚本运行时的信息，用于加载应用。通常不需要手动操作。\n属性\n说明\napp_import_path\n应用导入路径（--app 选项值）\ncreate_app\n应用工厂函数\ndata\n任意附加数据字典\nload_app()\n加载并返回 Flask 应用实例\n工具函数\n函数\n说明\nwith_appcontext(f)\n装饰器。确保被装饰的函数在应用上下文中执行\npass_script_info(f)\n装饰器。将 ScriptInfo 实例作为第一个参数传递给函数\nload_dotenv(path)\n加载 .env 文件中的环境变量\n默认命令\n命令\n说明\n常用参数\nflask run\n启动开发服务器\n--host, --port, --debug, --reload/--no-reload\nflask shell\n启动交互式 Python Shell\n自动加载 app、g 等上下文变量\nflask routes\n列出所有注册的路由\n--sort (endpoint/methods/domain/rule/match), --all-methods\n标准选项\n选项\n说明\n-A / --app IMPORT\n指定应用模块和实例，如 \"app:create_app()\"\n--debug / --no-debug\n启用/禁用调试模式\n-e / --env-file FILE\n指定 .env 文件路径\n--version\n显示 Flask 和依赖版本\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask\n\napp = Flask(__name__)\n\n# 注册自定义命令\n@app.cli.command(\"init-db\")\ndef init_db_command():\n    \"\"\"初始化数据库\"\"\"\n    print(\"Database initialized.\")\n\n# 注册带参数的命令\n@app.cli.command(\"greet\")\n@app.cli.option(\"--name\", \"-n\", default=\"RUNOOB\", help=\"问候对象\")\ndef greet_command(name):\n    \"\"\"发送问候\"\"\"\n    print(f\"Hello, {name}!\")\n\n# 注册子命令组\nuser_cli = app.cli.group(\"user\")\n\n@user_cli.command(\"list\")\ndef list_users():\n    \"\"\"列出所有用户\"\"\"\n    print(\"Listing users...\")\n\n@user_cli.command(\"create\")\n@user_cli.option(\"--username\", required=True)\ndef create_user(username):\n    \"\"\"创建新用户\"\"\"\n    print(f\"Creating user: {username}\")\n\n# 使用方式：\n# flask init-db\n# flask greet --name World\n# flask user list\n# flask user create --username runoob"
+    ]
+   },
+   {
+    "title": "Flask Config 配置类 API",
+    "url": "https://www.runoob.com/flask/flask-config-api.html",
+    "body": "Config 是一个字典子类，用于管理 Flask 应用的所有配置项。\n通过 app.config 访问，支持从多种来源加载配置。\nConfig 类方法\n方法\n签名\n说明\nfrom_pyfile\n(filename, silent=False)\n从 Python 文件加载配置。silent=True 时忽略文件不存在错误\nfrom_object\n(obj)\n从对象（模块、类、字符串导入路径）加载配置。只加载大写属性\nfrom_envvar\n(variable_name, silent=False)\n从环境变量指向的文件加载配置。等价于 from_pyfile(os.environ[var])\nfrom_prefixed_env\n(prefix=\"FLASK\", *, loads=json.loads)\n从环境变量加载。读取 FLASK_ 前缀的变量，去掉前缀后设为配置\nfrom_file\n(filename, load, silent=False, text=True)\n从任意格式文件加载。load 为解析函数（如 json.load、tomllib.load）\nfrom_mapping\n(mapping=None, **kwargs)\n从映射对象加载配置。可选**kwargs键值对。只加载大写键\nget_namespace\n(namespace, lowercase=True, trim_namespace=True)\n获取指定前缀的配置子集。如 get_namespace(\"DB_\") 获取所有数据库配置\n加载方式对比\n加载方法\n适用场景\n示例\nfrom_pyfile\n配置文件为 Python 格式\napp.config.from_pyfile(\"config.py\")\nfrom_object\n使用类或模块组织配置，区分环境\napp.config.from_object(\"myapp.config.ProductionConfig\")\nfrom_prefixed_env\n12-Factor App，环境变量配置\napp.config.from_prefixed_env()\nfrom_file\nJSON、TOML 等非 Python 格式\napp.config.from_file(\"config.json\", load=json.load)\nget_namespace\n提取配置子集传给库的构造函数\ndb_config = app.config.get_namespace(\"DB_\")\n配置键命名规则\n配置键名 必须全部大写。这是 Flask 的约定，from_object、from_mapping、from_prefixed_env 等方法都会自动忽略小写键。\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask\n\napp = Flask(__name__)\n\n# 方式1：从 Python 文件加载\napp.config.from_pyfile(\"config.py\")\n\n# 方式2：从环境变量加载（读取 FLASK_ 前缀）\napp.config.from_prefixed_env()\n\n# 方式3：直接设置\napp.config[\"MY_SETTING\"] = \"value\"\n\n# 方式4：从 JSON 加载\nimport json\napp.config.from_file(\"config.json\", load=json.load)\n\n# 方式5：获取命名空间配置\n# 假设有 DB_HOST、DB_PORT、DB_NAME 等配置\ndb_config = app.config.get_namespace(\"DB_\")\n# db_config = {\"host\": \"...\", \"port\": ..., \"name\": \"...\"}"
+    ]
+   },
+   {
+    "title": "Flask 配置管理",
+    "url": "https://www.runoob.com/flask/flask-config.html",
+    "body": "任何应用都需要配置——数据库地址、密钥、调试模式开关等。\nFlask 提供了灵活的配置系统，支持从多种来源加载配置，满足开发和生产的不同需求。\nConfig 对象基础\nFlask 应用的配置存储在 app.config 中，它像一个字典，可以用键名读写任何配置值：\n实例",
+    "examples": [
+     "from flask import Flask\n\napp = Flask(__name__)\n\n# 直接设置配置项\napp.config[\"SECRET_KEY\"] = \"your-secret-key\"\napp.config[\"DEBUG\"] = True\napp.config[\"DATABASE\"] = \"runoob.db\"\n\n# 读取配置\nprint(app.config[\"SECRET_KEY\"])  # 输出: your-secret-key\nprint(app.debug)                 # 输出: True（DEBUG 可通过 app.debug 属性访问）"
+    ]
+   },
+   {
+    "title": "Flask 数据库集成",
+    "url": "https://www.runoob.com/flask/flask-database.html",
+    "body": "大多数 Web 应用都需要持久化存储数据。\n本章使用 Python 内置的 SQLite 数据库，展示如何在 Flask 中集成数据库，无需安装额外依赖。\nSQLite 快速入门\nSQLite 是一个轻量级数据库，数据存储在一个文件中，Python 标准库自带支持。\n它是学习和原型开发的最佳选择——无需安装数据库服务器，无需配置。\n实例",
+    "examples": [
+     "# 一个简单的 SQLite 示例（不使用 Flask）\nimport sqlite3\n\n# 连接数据库（如果 runoob.db 不存在则自动创建）\nconn = sqlite3.connect(\"runoob.db\")\n# row_factory 让查询结果像字典一样可用字段名访问\nconn.row_factory = sqlite3.Row\n\n# 创建表\nconn.execute(\"CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY, username TEXT UNIQUE, password TEXT)\")\n# 插入数据\nconn.execute(\"INSERT INTO user (username, password) VALUES (?, ?)\", (\"runoob\", \"pass123\"))\nconn.commit()\n\n# 查询数据\nrows = conn.execute(\"SELECT * FROM user\").fetchall()\nfor row in rows:\n    print(dict(row))  # 输出: {'id': 1, 'username': 'runoob', 'password': 'pass123'}\n\nconn.close()"
+    ]
+   },
+   {
+    "title": "Flask 部署",
+    "url": "https://www.runoob.com/flask/flask-deployment.html",
+    "body": "开发完成后，需要将 Flask 应用部署到生产环境，让真实用户能够访问。\n本章介绍从开发到生产的关键步骤和注意事项。\n开发服务器 vs 生产服务器\n重要：Flask 内置的开发服务器（flask run）仅适用于开发环境。它不具备生产环境所需的安全性、稳定性和性能。生产环境必须使用专业的 WSGI 服务器。\n特性\nFlask 开发服务器\n生产 WSGI 服务器（Gunicorn/Waitress）\n并发处理\n单线程（默认）\n多进程/多线程/协程\n安全性\nDebug 模式可在浏览器执行代码\n无调试功能，安全可控\n性能\n未经优化\n针对高并发优化\n适用场景\n本地开发、调试\n线上生产环境\n部署检查清单\n在部署之前，确保以下事项都已完成：\n实例",
+    "examples": [
+     "# 文件路径：app.py（生产环境相关配置检查）\nimport os\n\napp.config.update(\n    # 1. 关闭 Debug 模式（必须！）\n    DEBUG=False,\n\n    # 2. 从环境变量读取密钥（永远不要硬编码）\n    SECRET_KEY=os.environ.get(\"FLASK_SECRET_KEY\", \"\"),\n\n    # 3. 配置 Session Cookie 安全选项\n    SESSION_COOKIE_SECURE=True,   # 仅通过 HTTPS 传输\n    SESSION_COOKIE_HTTPONLY=True, # 禁止 JavaScript 访问\n    SESSION_COOKIE_SAMESITE=\"Lax\",  # 防止 CSRF 攻击\n)"
+    ]
+   },
+   {
+    "title": "Flask 错误处理",
+    "url": "https://www.runoob.com/flask/flask-error.html",
+    "body": "Flask 提供了灵活的错误处理机制，可以捕获并处理应用中的各种错误。\n优秀的错误处理不只是「不出 Bug」，更是当 Bug 发生时，给用户一个友好的体验。\n本章介绍 Flask 中如何自定义错误页面和管理日志。\n自定义错误页面\n默认情况下，Flask 对 404 等错误会显示简单的黑底白字页面。\n使用 @app.errorhandler 装饰器可以为特定 HTTP 状态码定制错误页面：\n实例",
+    "examples": [
+     "from flask import Flask, render_template\n\napp = Flask(__name__)\n\n# 处理 404 错误——页面未找到\n@app.errorhandler(404)\ndef page_not_found(error):\n    # 注意：必须显式返回状态码 404\n    return render_template(\"404.html\"), 404\n\n# 处理 500 错误——服务器内部错误\n@app.errorhandler(500)\ndef internal_error(error):\n    return render_template(\"500.html\"), 500\n\n# 处理 403 错误——禁止访问\n@app.errorhandler(403)\ndef forbidden(error):\n    return render_template(\"403.html\"), 403"
+    ]
+   },
+   {
+    "title": "Flask 表单处理",
+    "url": "https://www.runoob.com/flask/flask-form.html",
+    "body": "在 Flask 中，表单处理是构建 Web 应用时一个常见的需求。\n处理表单数据涉及到接收、验证和处理用户提交的表单。Flask 提供了基本的表单处理功能，但通常结合 Flask-WTF 扩展来简化表单操作和验证。\n基本表单处理：使用 request.form 获取表单数据。\n使用 Flask-WTF：结合 WTForms 进行表单处理和验证，简化表单操作。\n表单验证：使用验证器确保表单数据的有效性。\n文件上传：处理文件上传和保存文件。\nCSRF 保护：确保表单免受跨站请求伪造攻击。\n1. 基本表单处理\nFlask 提供了直接处理表单数据的方式，使用 request 对象来获取提交的数据。\n创建 HTML 表单\ntemplates/form.html 文件代码：\n实例",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n    <title>Form Example</title>\n</head>\n<body>\n    <form action=\"/submit\" method=\"post\">\n        <label for=\"name\">Name:</label>\n        <input type=\"text\" id=\"name\" name=\"name\">\n        <br>\n        <label for=\"email\">Email:</label>\n        <input type=\"email\" id=\"email\" name=\"email\">\n        <br>\n        <input type=\"submit\" value=\"Submit\">\n    </form>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "Flask 实用函数与类 API",
+    "url": "https://www.runoob.com/flask/flask-func-api.html",
+    "body": "Flask 提供了一系列全局可用函数，用于生成 URL、终止请求、构建响应等常见操作。\n全部通过 from flask import ... 导入。\n全局代理对象\n对象\n类型\n说明\ncurrent_app\n代理 → Flask\n指向当前活跃的 Flask 应用实例。在应用上下文中可用\nURL 和重定向\n函数\n签名\n说明\nurl_for\n(endpoint, *, _anchor, _method, _scheme, _external, **values)\n根据视图函数名生成 URL。_external=True 生成绝对 URL\nredirect\n(location, code=303, Response=None)\n创建重定向响应。code 默认 303（See Other）\n请求终止和响应构建\n函数\n签名\n说明\nabort\n(code, *args, **kwargs)\n立即终止请求并返回 HTTP 错误。code 为状态码，description 为描述\nmake_response\n(*args)\n将视图返回值转换为 Response 对象。传多个参数时按元组处理\nafter_this_request\n(func)\n注册一个仅在当前请求后执行一次的函数。用于动态添加 after_request\n上下文检查\n函数\n说明\nhas_request_context()\n返回 True 如果当前有活跃的请求上下文\nhas_app_context()\n返回 True 如果当前有活跃的应用上下文\ncopy_current_request_context(func)\n装饰器。复制当前请求上下文，使被装饰的函数在上下文外运行时仍能访问 request、g 等\n文件发送\n函数\n签名\n说明\nsend_file\n(path_or_file, mimetype, as_attachment, download_name, conditional, etag, last_modified, max_age)\n发送文件内容。as_attachment=True 触发下载。支持条件请求和 ETag\nsend_from_directory\n(directory, path, **kwargs)\n从指定目录安全发送文件。使用 safe_join 防路径遍历攻击\n代码示例\n实例",
+    "examples": [
+     "from flask import (Flask, current_app, url_for, redirect,\n                   abort, make_response, after_this_request,\n                   has_request_context, send_file, send_from_directory)\n\napp = Flask(__name__)\n\n@app.route(\"/\")\ndef index():\n    # url_for 生成 URL\n    login_url = url_for(\"login\")\n    # 生成绝对 URL（含域名）\n    full_url = url_for(\"profile\", username=\"runoob\", _external=True)\n    return f'<a href=\"{login_url}\">Login</a>'\n\n@app.route(\"/redirect-me\")\ndef redirect_me():\n    # 重定向到首页\n    return redirect(url_for(\"index\"))\n\n@app.route(\"/profile/<username>\")\ndef profile(username):\n    return f\"Profile: {username}\"\n\n@app.route(\"/admin\")\ndef admin():\n    # 未授权访问，返回 403\n    abort(403, description=\"Access denied\")\n\n@app.route(\"/download\")\ndef download():\n    # 发送文件（触发浏览器下载）\n    return send_from_directory(\"uploads\", \"report.pdf\",\n                               as_attachment=True,\n                               download_name=\"runoob_report.pdf\")\n\n@app.route(\"/custom-response\")\ndef custom_response():\n    # 手动构建响应对象\n    resp = make_response(\"<h1>Custom</h1>\")\n    resp.headers[\"X-Powered-By\"] = \"RUNOOB\"\n\n    @after_this_request\n    def log_response(response):\n        app.logger.info(f\"Request to {request.path} done, status={response.status_code}\")\n        return response\n\n    return resp"
+    ]
+   },
+   {
+    "title": "Flask 安装",
+    "url": "https://www.runoob.com/flask/flask-install.html",
+    "body": "在开始编写 Flask 应用之前，我们需要先准备好 Python 环境并安装 Flask。\nFlask 安装还是比较简单的。\nFlask 是 Python的一个库，所以首先需要确保你的计算机上已经安装了 Python。\nPython 版本要求\nFlask 3.x 要求 Python 3.9 及以上版本。\n如果你还没有安装 Python，可以从 python.org 下载安装。\n安装完成后，打开终端验证：\n$ python3 --version\nPython 3.12.3\n\n$ pip3 --version\npip 24.0 from /usr/lib/python3.12/site-packages/pip (python 3.12)\nmacOS 和大多数 Linux 发行版已预装 Python 3。如果你用的是 Windows，安装时请勾选 Add Python to PATH 选项。\n虚拟环境\n虚拟环境（Virtual Environment）是 Python 项目的标配做法，它为每个项目创建独立的 Python 包空间。\n为什么要用虚拟环境\n假设你有两个项目：项目 A 需要 Flask 3.0，项目 B 需要 Flask 2.3。\n如果全局安装，两个版本的 Flask 会互相冲突。\n虚拟环境让每个项目拥有独立的依赖包，互不干扰。\nPython 自带的 venv 模块就可以创建虚拟环境，无需安装额外工具。\n创建虚拟环境\n首先创建项目目录，然后在其中创建虚拟环境：\n$ mkdir runoob-flask-test\n$ cd runoob-flask-test\n$ python3 -m venv .venv\n.venv 是虚拟环境的目录名，你可以改成自己喜欢的名称，但 .venv 是社区最常见的约定。\n激活虚拟环境\n操作系统\n激活命令\nmacOS / Linux\n. .venv/bin/activate 或 source .venv/bin/activate\nWindows (CMD)\n.venv\\Scripts\\activate\nWindows (PowerShell)\n.venv\\Scripts\\Activate.ps1\n激活成功后，终端提示符前会出现 (.venv) 标识，表示虚拟环境已生效。\n$ . .venv/bin/activate\n(.venv) $ # <-- 提示符变了，说明虚拟环境已经激活\n退出虚拟环境\n完成开发后，使用 deactivate 命令退出：\n(.venv) $ deactivate\n$\n每次打开新终端窗口时，都需要重新激活虚拟环境才能使用 Flask。\n另外也可以使用 uv 这个Python 包与环境管理工具，参考：https://www.runoob.com/python3/uv-tutorial.html\n# 使用指定 Python 版本创建虚拟环境\nuv venv --python 3.12\n激活虚拟环境：\n\n# macOS / Linux\nsource .venv/bin/activate\n\n# Windows（PowerShell）\n.venv\\Scripts\\activate\n安装 Flask\n在虚拟环境已激活的状态下，使用 pip 安装 Flask：\n(.venv) $ pip install Flask\n安装完成后，验证 Flask 是否安装成功：\nflask --version\n输出类似如下信息：\nPython 3.9.6\nFlask 3.0.0\nWerkzeug 3.1.5\n也可以用以下代码验证：\nfrom importlib.metadata import version\n\nflask_version = version(\"flask\")\nprint(flask_version)\n如果按照成功会输出类似如下的版本号：\n3.1.3\n此时，以下依赖包也被一并安装：Werkzeug、Jinja2、Click、itsdangerous、blinker。\n可选：安装 python-dotenv\npython-dotenv 让你可以通过 .env 和 .flaskenv 文件管理环境变量，简化 Flask 命令的使用：\n(.venv) $ pip install python-dotenv\n虽然不是必须的，但在实际开发中强烈建议安装。它让你省去每次输入 --app 参数，也方便团队共享环境配置。\n项目目录结构\n在开始编码前，了解一个标准的 Flask 项目目录结构很有帮助：\nmyflaskapp/\n├── .venv/ # 虚拟环境（不要提交到 Git）\n├── app.py # 应用入口文件\n├── templates/ # Jinja2 模板文件目录\n├── static/ # CSS、JS、图片等静态文件目录\n├── .flaskenv # Flask 环境变量（可选）\n└── .gitignore # 忽略 .venv 等不需要提交的文件\n虚拟环境目录 .venv 不应该提交到 Git。在 .gitignore 中添加 .venv/ 即可。\n开发环境\n开发环境推荐：\nVS Code 开发工具\nPyCharm 开发工具\n国内阿里与字节也有基于 VS Code 开发的 AI IDE：\n字节 Trae",
+    "examples": []
+   },
+   {
+    "title": "Flask 简介",
+    "url": "https://www.runoob.com/flask/flask-intro.html",
+    "body": "Flask 是一个轻量级的 Python Web 应用框架，由 Pallets 组织开发维护。\n它以简单灵活著称，让你能够快速上手构建 Web 应用，同时具备扩展到复杂项目的能力。\nFlask 是基于 Python 开发的微型 Web 框架，被称作微框架，核心原因是本身不绑定任何专用工具与依赖库，原生不内置数据库抽象层、表单验证等通用 Web 组件。\nFlask 具备良好的扩展支持能力，可按需额外加装功能插件；目前已有 ORM 对象关系映射、表单校验、文件上传、开放认证及各类配套开发工具的成熟扩展，能按需补齐项目所需功能。\nFlask 是什么\nFlask 是一个 WSGI（Web Server Gateway Interface） Web 应用框架。\nWSGI 是 Python 定义的一套标准接口，规定了 Web 服务器如何与 Python Web 应用通信，你可以把它理解为 Python Web 世界的「通用插座」。\nFlask 最初只是 Werkzeug 和 Jinja 的一个简单包装层，如今已发展成为 Python 社区最受欢迎的 Web 框架之一。\n核心依赖\n安装 Flask 时，以下依赖会自动安装，它们各司其职：\n依赖库\n作用\n你在什么时候会接触到它\nWerkzeug\nWSGI 工具库，负责 HTTP 请求解析、响应封装、URL 路由匹配\n处理请求（request）、返回响应（response）时，底层都是 Werkzeug 在工作\nJinja2\n模板引擎，负责将数据渲染为 HTML 页面\n使用 render_template() 生成动态页面时\nClick\n命令行工具框架，提供 flask 终端命令\n运行 flask run、自定义 CLI 命令时\nitsdangerous\n数据签名库，确保数据完整性不被篡改\nSession Cookie 的签名验证\nblinker\n信号机制，允许在特定事件发生时触发回调\n想在请求开始/结束时执行自定义逻辑\n理解记忆：把 Flask 想象成一辆车，Werkzeug 是发动机（核心动力），Jinja2 是内饰（用户看到的部分），Click 是方向盘（你操控的方式），itsdangerous 是安全带（安全保障）。\nFlask 的设计哲学\nFlask 的两个核心理念决定了它的使用方式。\n微框架，不微能力\nFlask 核心非常精简，但通过丰富的扩展生态，几乎可以满足任何需求。\n它不强制你使用特定的数据库、表单库或项目结构——开发者自己选择最适合的工具。\n这种设计意味着：小型项目不会被框架拖累，大型项目可以按需组装。\n显式优于隐式\n与一些「全家桶」框架不同，Flask 不会偷偷帮你做很多事。\n每个功能都需要你明确地引入和配置，这在初学时可能需要多写几行代码，但换来的是对项目的完全掌控。\n如果你之前接触过 Django，可能会觉得 Flask「什么都要自己来」。这恰恰是 Flask 的设计意图：让你清楚地知道每个功能从何而来。\nFlask 特点\n轻量级和简洁：Flask 是一个微框架，提供了最基本的功能，不强制使用任何特定的工具或库。它的核心是简单而灵活的，允许开发者根据需要添加功能。\n灵活性：Flask 提供了基本的框架结构，但没有强制性的项目布局或组件，开发者可以根据自己的需求自定义。\n可扩展性：Flask 的设计允许你通过插件和扩展来添加功能。许多常见的功能，如表单处理、数据库交互和用户认证，都可以通过社区提供的扩展来实现。\n内置开发服务器：Flask 内置了一个开发服务器，方便在本地进行调试和测试。\nRESTful 支持：Flask 支持 RESTful API 的开发，适合构建现代的 Web 服务和应用程序。\n如果你之前接触过 Django，可能会觉得 Flask「什么都要自己来」。这恰恰是 Flask 的设计意图：让你清楚地知道每个功能从何而来，拥有对项目的完全掌控。\nFlask 适用场景\n小型项目：对于小型的个人项目或初创项目，Flask 的简单性和灵活性可以快速启动和迭代。\n原型开发：在产品开发的早期阶段，Flask 可以用来快速构建原型，验证概念和用户界面。\n微服务：在微服务架构中，Flask 可以用来构建独立的、轻量级的服务组件。\nAPI 开发：Flask 非常适合开发 RESTful API，因为它的路由系统简单明了，可以轻松地定义 API 端点。\n教育和学习：由于其易用性，Flask 是学习 Web 开发和 Python 编程的优秀工具。\n内部工具：Flask 可以用于开发公司内部使用的工具或仪表板，这些工具通常不需要复杂的用户界面。\n插件或扩展：Flask 可以作为其他大型框架的插件或扩展，提供特定的功能。\n定制 Web 应用：对于需要高度定制的 Web 应用，Flask 提供了足够的灵活性来满足特定需求。\n数据可视化：Flask 可以与数据可视化库（如 Bokeh 或 Plotly）结合使用，创建交互式的数据可视化 Web 应用。\n科学计算和数据分析：Flask 可以与科学计算库（如 NumPy、Pandas）结合，用于开发数据分析和科学计算的 Web 应用。\n轻量级 CMS：Flask 可以用来构建轻量级的内容管理系统，尤其是当需要高度定制化时。\nWeb Scraping：Flask 可以作为 Web Scraping 项目的后端，处理数据抓取和 API 请求。\nFlask 的组成\n/Users/tianqixin/runoob-test/runoob-article/2026-05-13/images/flask-architecture.svg\nFlask 应用实例：Flask 的核心是应用实例，通过创建 Flask 对象来初始化应用。\n路由和视图函数：路由将 URL 映射到视图函数，视图函数处理请求并返回响应。\n模板系统：Flask 使用 Jinja2 模板引擎来渲染 HTML 页面，将数据动态插入到页面中。\n请求和响应：Flask 处理 HTTP 请求并生成响应，支持多种 HTTP 方法（如 GET、POST）。\n技术栈全景图\n下图展示了 Flask 应用的典型分层结构，帮助你从整体上理解各组件的位置：",
+    "examples": []
+   },
+   {
+    "title": "Flask JSON",
+    "url": "https://www.runoob.com/flask/flask-json.html",
+    "body": "Flask 的 JSON 模块提供了序列化/反序列化功能，底层默认使用 Python 标准库 json，可通过 JSONProvider 替换。\n导入方式：\nfrom flask import jsonify\n或\nfrom flask.json import dumps, loads\njsonify 函数\n最常用的 JSON 响应构建函数。将 Python 对象序列化为 JSON Response。\n用法\n说明\njsonify(*args, **kwargs)\n将参数序列化为 JSON，返回 Response（Content-Type: application/json）\njsonify(dict)\n序列化字典为 JSON 响应\njsonify(key=value, ...)\n序列化关键字参数为 JSON 响应\ndumps / loads / dump / load\n函数\n签名\n说明\ndumps\n(obj, *, skipkeys=False, ensure_ascii=True, ...)\n将 Python 对象序列化为 JSON 字符串\nloads\n(s, *, ...)\n将 JSON 字符串反序列化为 Python 对象\ndump\n(obj, fp, *, ...)\n将 Python 对象序列化并写入文件\nload\n(fp, *, ...)\n从文件读取并反序列化 JSON\nJSONProvider 类\n可自定义的 JSON 处理器基类。要替换默认 JSON 实现，继承此类并覆盖相关方法。\n方法\n说明\ndumps(obj, **kwargs)\n序列化对象为 JSON 字符串\nloads(s, **kwargs)\n从 JSON 字符串反序列化为 Python 对象\nresponse(obj)\n将对象转换为 JSON Response。用于 jsonify 和返回 dict/list 时\nDefaultJSONProvider\n默认的 JSONProvider 实现，基于 Python 标准库 json。\n属性/方法\n说明\nensure_ascii\n是否转义非 ASCII 字符。可设为 False 支持中文输出\nsort_keys\n是否按 key 排序输出。默认为 True\ncompact\n是否紧凑输出（无空格）。默认为 False\nJSON Tag 序列化\nflask.json.tag 模块支持序列化更多 Python 类型，如 datetime、tuple、set 等。\n标签\n对应的 Python 类型\nJSONTaggedJSONSerializer\n增强版序列化器，Session 默认使用。支持带标签的 JSON 格式\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask, jsonify\n\napp = Flask(__name__)\n\n@app.get(\"/api/me\")\ndef me():\n    # 返回 dict，Flask 自动调用 jsonify\n    return {\n        \"username\": \"runoob\",\n        \"email\": \"test@runoob.com\",\n        \"roles\": [\"admin\", \"editor\"]\n    }\n\n@app.get(\"/api/users\")\ndef users():\n    # 返回 list，Flask 自动调用 jsonify\n    return [\n        {\"id\": 1, \"name\": \"runoob\"},\n        {\"id\": 2, \"name\": \"admin\"}\n    ]\n\n@app.get(\"/api/status\")\ndef status():\n    # 显式使用 jsonify\n    return jsonify(status=\"ok\", version=\"1.0\")\n\n# 配置中文 JSON 输出\napp.json.ensure_ascii = False\n# {\"username\": \"runoob\", \"description\": \"中文描述内容\"}"
+    ]
+   },
+   {
+    "title": "Flask 项目结构",
+    "url": "https://www.runoob.com/flask/flask-layout.html",
+    "body": "一个 Flask 应用可以简单到只有一个文件。\n比如以下 hello.py 文件就是一个 Flask 应用：\n实例",
+    "examples": [
+     "from flask import Flask\n\napp = Flask(__name__)\n\n\n@app.route('/')\ndef hello():\n    return 'Hello, World!'"
+    ]
+   },
+   {
+    "title": "Flask Message Flashing API",
+    "url": "https://www.runoob.com/flask/flask-message-flashing-api.html",
+    "body": "消息闪现（Flash）机制用于在下一次请求中显示一次性反馈消息，典型场景是「操作成功」或「输入错误」提示。\nFlask 将消息存储在 Session 中，读取后自动清除。\nflash 函数\n参数\n类型\n默认值\n说明\nmessage\nstr\n必填\n要显示的消息文本\ncategory\nstr\n\"message\"\n消息分类，推荐值：message、success、error、warning、info\nget_flashed_messages 函数\n参数\n类型\n默认值\n说明\nwith_categories\nbool\nFalse\n为 True 时返回 (category, message) 元组列表\ncategory_filter\niterable\n()\n只返回指定分类的消息\n返回值\n说明\nwith_categories=False\n返回消息文本列表：[\"msg1\", \"msg2\"]\nwith_categories=True\n返回分类+消息元组列表：[(\"success\", \"msg1\"), (\"error\", \"msg2\")]\n模板中使用\nget_flashed_messages() 在模板中可以直接调用，无需通过 render_template 传递。\n实例",
+    "examples": [
+     "<!-- 显示所有 flash 消息 -->\n{% with messages = get_flashed_messages(with_categories=true) %}\n    {% if messages %}\n        {% for category, message in messages %}\n        <div class=\"flash-{{ category }}\">{{ message }}</div>\n        {% endfor %}\n    {% endif %}\n{% endwith %}\n\n<!-- 只显示错误消息 -->\n{% for msg in get_flashed_messages(category_filter=[\"error\"]) %}\n    <div class=\"error\">{{ msg }}</div>\n{% endfor %}"
+    ]
+   },
+   {
+    "title": "Flask 中间件和扩展",
+    "url": "https://www.runoob.com/flask/flask-middleware.html",
+    "body": "在 Flask 中，中间件和扩展是增强和扩展应用功能的两个关键机制。\n通过中间件和扩展，你可以大大增强 Flask 应用的功能和灵活性，使得应用能够满足各种复杂的需求。\n下面详细介绍这两者的概念和如何使用它们。\nFlask 中间件：\n使用请求钩子在请求处理的不同阶段插入代码。\n创建自定义中间件类来处理请求和响应。\nFlask 扩展：\n使用现有的扩展（如 Flask-SQLAlchemy、Flask-WTF）来添加功能。\n创建自定义扩展来满足特定需求。\n1. Flask 中间件\nFlask 的中间件（middleware）是对请求和响应进行处理的钩子，通常用于在请求到达视图函数之前或在响应发送到客户端之前执行一些操作。中间件可以用于日志记录、请求修改、响应修改等。\n1.1 请求钩子\n请求钩子允许你在处理请求的不同阶段插入代码，Flask 提供了几种钩子来处理请求生命周期的不同阶段：\nbefore_request：在每个请求处理之前执行。\nafter_request：在每个请求处理之后执行。\nteardown_request：请求处理结束后，无论是否发生异常都会执行。\nbefore_first_request：仅在应用第一次处理请求之前执行。\napp.py 文件代码：\n实例",
+    "examples": [
+     "from flask import Flask, request\n\napp = Flask(__name__)\n\n@app.before_request\ndef before_request():\n    print('Before request')\n\n@app.after_request\ndef after_request(response):\n    print('After request')\n    return response\n\n@app.teardown_request\ndef teardown_request(exception):\n    print('Teardown request')\n\n@app.route('/')\ndef index():\n    return 'Hello, World!'\n\nif __name__ == '__main__':\n    app.run(debug=True)"
+    ]
+   },
+   {
+    "title": "Flask 数据库操作",
+    "url": "https://www.runoob.com/flask/flask-orm.html",
+    "body": "在 Flask 中，数据库操作是构建 Web 应用的一个重要方面。\nFlask 提供了多种方式来与数据库进行交互，包括直接使用 SQL 和利用 ORM（对象关系映射）工具，如 SQLAlchemy。\n以下是对 Flask 数据库操作的详细说明，包括使用 SQLAlchemy 的基本操作和 SQL 语句的直接执行。\n使用 SQLAlchemy：定义模型，配置数据库，执行基本的 CRUD 操作。\n创建和管理数据库：使用 db.create_all() 创建表。\nCRUD 操作：添加、读取、更新和删除记录。\n查询操作：执行基本和复杂查询，包括排序和分页。\nFlask-Migrate：使用 Flask-Migrate 管理数据库迁移。\n执行原始 SQL：使用原始 SQL 语句进行数据库操作。\n1. 使用 SQLAlchemy\nSQLAlchemy 是一个强大的 ORM 库，可以简化数据库操作，通过 Python 对象与数据库表进行交互。\nFlask-SQLAlchemy 是 Flask 的一个扩展，用于集成 SQLAlchemy。\n安装 Flask-SQLAlchemy\npip install flask-sqlalchemy\n配置 SQLAlchemy\napp.py 文件代码：\n实例",
+    "examples": [
+     "from flask import Flask\nfrom flask_sqlalchemy import SQLAlchemy\n\napp = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///example.db'  # 使用 SQLite 数据库\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)"
+    ]
+   },
+   {
+    "title": "Flask Request 请求对象 API",
+    "url": "https://www.runoob.com/flask/flask-request-api.html",
+    "body": "Request 类封装了客户端发来的 HTTP 请求的所有信息。\n通过 from flask import request 导入代理对象，在视图函数中直接使用。\n常用属性速查\n属性\n类型\n说明\n示例值\nmethod\nstr\nHTTP 请求方法\n\"GET\"、\"POST\"\npath\nstr\nURL 路径部分（不含域名和查询字符串）\n\"/search\"\nfull_path\nstr\n路径 + 查询字符串\n\"/search?q=runoob\"\nurl\nstr\n完整请求 URL（不含查询字符串）\n\"http://localhost:5000/search\"\nbase_url\nstr\n同 url，去掉最后的查询字符串\n\"http://localhost:5000/search\"\nurl_root\nstr\n域名 + 应用根路径\n\"http://localhost:5000/\"\nhost\nstr\nHost 头，含端口\n\"localhost:5000\"\nhost_url\nstr\nscheme + host + 应用根\n\"http://localhost:5000/\"\nscheme\nstr\n协议\n\"http\"、\"https\"\nremote_addr\nstr\n客户端 IP 地址\n\"127.0.0.1\"\nendpoint\nstr\n匹配到的路由 endpoint\n\"index\"、\"blog.show\"\nurl_rule\nRule\n匹配到的路由规则对象\nWerkzeug Rule 实例\nview_args\ndict\nURL 中的动态变量\n{\"post_id\": 42}\nblueprint\nstr\n当前蓝图名称\n\"auth\"、\"blog\"\nblueprints\nlist\n当前匹配的蓝图层级列表\n[\"auth\"]\nis_json\nbool\n请求 Content-Type 是否为 JSON\nTrue / False\n获取请求数据\n属性/方法\n类型\n说明\nargs\nMultiDict\nURL 查询参数。访问 /search?q=flask → request.args.get(\"q\")\nform\nMultiDict\nPOST 表单数据（application/x-www-form-urlencoded 或 multipart/form-data）\njson\ndict / None\nJSON 请求体（已解析为 Python 对象）。不是 JSON 请求时返回 None\ndata\nbytes\n原始请求体数据\nfiles\nFileMultiDict\n上传的文件。request.files[\"file\"] 返回 FileStorage 对象\ncookies\ndict\n客户端发来的 Cookie\nheaders\nHeaders\n请求头。支持多种访问方式\nget_json(force=False, silent=False, cache=True)\n—\n解析 JSON 请求体。force 强制解析非 JSON 类型，silent 出错时返回 None\n对 args、form 等 MultiDict 类型，始终使用 .get(key, default) 方法获取值。直接用 request.args[\"key\"] 访问不存在的键会抛出 KeyError（返回 400 错误）。\n内容协商属性\n属性/方法\n说明\naccept_mimetypes\n客户端接受的 MIME 类型列表（MIMEAccept 对象）\naccept_charsets\n客户端接受的字符集\naccept_encodings\n客户端接受的编码方式\naccept_languages\n客户端接受的语言\ncontent_type\n请求的 Content-Type\ncontent_length\n请求体长度（字节）\ncontent_md5\n请求体的 MD5 校验值\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask, request\n\napp = Flask(__name__)\n\n@app.route(\"/demo\", methods=[\"GET\", \"POST\"])\ndef demo():\n    # 获取查询参数\n    keyword = request.args.get(\"q\", \"\")\n\n    # 获取表单数据\n    username = request.form.get(\"username\", \"\")\n\n    # 获取 JSON 数据\n    if request.is_json:\n        data = request.json\n        name = data.get(\"name\", \"unknown\")\n\n    # 获取请求头\n    user_agent = request.headers.get(\"User-Agent\", \"\")\n    accept_lang = request.accept_languages.best\n\n    # 获取 URL 信息\n    url_info = {\n        \"method\": request.method,       # \"GET\" 或 \"POST\"\n        \"path\": request.path,           # \"/demo\"\n        \"url\": request.url,             # 完整 URL\n        \"remote_addr\": request.remote_addr,  # 客户端 IP\n    }\n    return url_info"
+    ]
+   },
+   {
+    "title": "Flask 请求生命周期",
+    "url": "https://www.runoob.com/flask/flask-request-lifecycle.html",
+    "body": "理解 Flask 请求的完整生命周期，是写好 Flask 应用的关键。\n本章从源码层面拆解一个 HTTP 请求从进入服务器到返回响应的全过程，帮你建立清晰的执行模型。\n什么是请求生命周期\n请求生命周期（Request Lifecycle）指的是一个 HTTP 请求在 Flask 内部经历的完整处理过程。\n它包含以下阶段：接收请求 → 创建上下文 → 预处理 → 路由分发 → 视图执行 → 响应构建 → 清理上下文 → 返回响应。\n了解这个过程，你就能正确回答以下问题：\ng 对象的数据什么时候可用？什么时候被清理？\nbefore_request 和 after_request 的执行顺序是什么？\n异常发生时会依次经过哪些处理环节？\n为什么在视图函数外使用 request 会报错？\n完整流程图\n下图展示了 Flask 从接收请求到返回响应的完整调用链：\n分步详解\n第一阶段：WSGI 入口\n当 HTTP 请求到达服务器时，WSGI 服务器（如 Gunicorn、Werkzeug 开发服务器）会调用 Flask 应用实例。\nFlask 实现了 __call__ 方法，使其成为一个合法的 WSGI 应用：\n实例",
+    "examples": [
+     "# Flask 源码简化版（实际位置：flask/app.py）\n# WSGI 服务器会这样调用你的应用：\n# response = app(environ, start_response)\n\nclass Flask(App):\n    def __call__(self, environ, start_response):\n        \"\"\"WSGI 服务器调用的入口点\"\"\"\n        return self.wsgi_app(environ, start_response)\n\n    def wsgi_app(self, environ, start_response):\n        \"\"\"真正的 WSGI 处理逻辑\"\"\"\n        # 第一步：根据 environ 创建请求上下文\n        ctx = self.request_context(environ)\n        try:\n            ctx.push()                    # 推入上下文栈\n            response = self.full_dispatch_request(ctx)  # 完整调度\n        except Exception as e:\n            response = self.handle_exception(ctx, e)    # 异常兜底\n        finally:\n            ctx.pop(error)               # 弹出上下文，执行清理\n        return response(environ, start_response)"
+    ]
+   },
+   {
+    "title": "Flask 请求与响应",
+    "url": "https://www.runoob.com/flask/flask-request-response.html",
+    "body": "Web 应用的核心是「接收请求，返回响应」，本章全面讲解 Flask 中如何读取请求数据和构造各种类型的响应。\n所有示例都可以在开发服务器中直接运行验证。\n请求对象——request\nFlask 通过全局代理对象 request 提供所有请求信息。\n虽然它是「全局」对象，但 Flask 内部通过线程隔离机制确保每个请求获取的是自己的数据。\n实例",
+    "examples": [
+     "# 导入 request，这是一个线程安全的代理对象\nfrom flask import Flask, request\n\napp = Flask(__name__)\n\n@app.route(\"/debug\")\ndef debug():\n    # 输出请求的各种信息，帮助理解 request 对象\n    return f\"\"\"\n    <h1>请求调试信息</h1>\n    <ul>\n        <li>方法：{request.method}</li>\n        <li>路径：{request.path}</li>\n        <li>完整 URL：{request.url}</li>\n        <li>主机：{request.host}</li>\n        <li>客户端 IP：{request.remote_addr}</li>\n        <li>User-Agent：{request.headers.get('User-Agent')}</li>\n    </ul>\n    \"\"\""
+    ]
+   },
+   {
+    "title": "Flask Response 响应对象 API",
+    "url": "https://www.runoob.com/flask/flask-response-api.html",
+    "body": "Response 类表示 Flask 视图函数返回的 HTTP 响应。大多数情况下你不需要直接创建它——Flask 会自动将视图函数返回值转换为 Response。\n需要手动控制时，使用 make_response() 函数。\n构造函数\n参数\n类型\n默认值\n说明\nresponse\nstr / bytes / iterator\n必填\n响应体内容\nstatus\nint / str\n200\nHTTP 状态码或状态文本，如 404 或 \"404 Not Found\"\nheaders\ndict / list\nNone\n响应头，dict 或 (key, value) 元组列表\nmimetype\nstr\nNone\nMIME 类型，如 \"application/json\"\ncontent_type\nstr\nNone\nContent-Type 头，含编码，如 \"text/html; charset=utf-8\"\ndirect_passthrough\nbool\nFalse\n为 True 时直接传递响应体，不做任何处理\n核心属性\n属性\n类型\n说明\nstatus\nstr\n响应状态（文本形式），如 \"200 OK\"、\"404 Not Found\"\nstatus_code\nint\nHTTP 状态码，如 200、404\nheaders\nHeaders\n响应头对象，支持字典式操作\ndata\nbytes\n响应体的字节表示\nmimetype\nstr\nMIME 类型（不含编码），如 \"text/html\"\ncontent_type\nstr\nContent-Type（含编码），如 \"text/html; charset=utf-8\"\ncontent_length\nint\n响应体字节长度\n响应头操作\n方法\n说明\nheaders.get(key)\n获取指定响应头的值\nheaders[key] = value\n设置响应头\nheaders.update(dict)\n批量更新响应头\nCookie 操作\n方法\n说明\nset_cookie(key, value, max_age, expires, path, domain, secure, httponly, samesite)\n设置一个 Cookie。max_age 为秒数，expires 为 datetime，secure 仅 HTTPS\ndelete_cookie(key, path, domain)\n删除指定的 Cookie\nset_cookie 参数：max_age\nCookie 有效秒数，如 max_age=3600 表示 1 小时\nset_cookie 参数：secure\n默认为 SESSION_COOKIE_SECURE 配置值，True 时仅 HTTPS 发送\nset_cookie 参数：httponly\n默认为 True，禁止 JavaScript 访问此 Cookie\nset_cookie 参数：samesite\n\"Strict\"、\"Lax\" 或 None，控制跨站 Cookie 发送行为\n其他方法\n方法\n说明\nget_json(force=False, silent=False)\n将响应体解析为 JSON（主要用于测试）\nfreeze()\n将响应冻结为不可变状态\nforce_type(response, environ)\n类方法，将其他类型的响应强制转为 Response 类型\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask, make_response\n\napp = Flask(__name__)\n\n@app.route(\"/custom\")\ndef custom_response():\n    # 使用 make_response 手动构建响应\n    resp = make_response(\"<h1>Hello, RUNOOB!</h1>\")\n\n    # 设置状态码\n    resp.status_code = 201\n\n    # 设置自定义响应头\n    resp.headers[\"X-Custom-Header\"] = \"my-value\"\n\n    # 设置 Cookie\n    resp.set_cookie(\"theme\", \"dark\", max_age=86400)    # 24 小时有效\n    resp.set_cookie(\"lang\", \"zh-CN\", samesite=\"Lax\")   # SameSite 限制\n\n    return resp\n\n@app.route(\"/delete-cookie\")\ndef delete_cookie():\n    resp = make_response(\"Cookie 已删除\")\n    resp.delete_cookie(\"theme\")\n    return resp\n\n@app.route(\"/api/data\")\ndef api_data():\n    # 直接返回 dict，Flask 自动序列化为 JSON Response\n    return {\"status\": \"ok\", \"data\": [1, 2, 3]}"
+    ]
+   },
+   {
+    "title": "Flask 路由",
+    "url": "https://www.runoob.com/flask/flask-router.html",
+    "body": "路由（Routing）是 Web 框架最核心的功能之一，它决定了哪个 URL 由哪个函数处理。\nFlask 路由是 Web 应用程序中将 URL 映射到 Python 函数的机制。\nFlask 路由是 Flask 应用的核心部分，用于处理不同 URL 的请求，并将请求的处理委托给相应的视图函数。\n以下是关于 Flask 路由的详细说明，包括路由的定义、参数、方法和规则等。\n基础路由\n使用 @app.route() 装饰器将 URL 路径绑定到视图函数：\n实例",
+    "examples": [
+     "from flask import Flask\n\napp = Flask(__name__)\n\n# 绑定根路径 \"/\"\n@app.route(\"/\")\ndef index():\n    return \"这是首页\"\n\n# 绑定 \"/hello\" 路径\n@app.route(\"/hello\")\ndef hello():\n    return \"Hello, RUNOOB!\"\n\n# 不同路径对应不同函数\n@app.route(\"/about\")\ndef about():\n    return \"关于本站\""
+    ]
+   },
+   {
+    "title": "Flask Session API",
+    "url": "https://www.runoob.com/flask/flask-session-api.html",
+    "body": "Session 用于在同一用户的不同请求之间保存数据。Flask 默认使用签名 Cookie 实现，数据存储在客户端但无法被篡改。\n通过 from flask import session 导入，像字典一样使用。\nsession 代理对象\nsession 是一个代理，指向当前请求的 SessionMixin 实例。只在请求上下文中可用。\n属性/方法\n说明\nsession[key] = value\n设置 session 值\nsession.get(key, default)\n安全获取 session 值，键不存在时返回 default\nsession.pop(key, default)\n移除并返回指定键的值\nsession.clear()\n清空所有 session 数据\n\"key\" in session\n检查键是否存在\nsession.permanent\n设为 True 时，Session 在浏览器关闭后仍保持（使用 PERMANENT_SESSION_LIFETIME）\nsession.modified\n当修改 session 中的可变值时（如列表 append），需手动设为 True\nsession.accessed\nsession 被访问时为 True，Flask 会自动添加 Vary: Cookie 头\nsession.new\nsession 是否为新创建（部分实现不支持精确判断）\n当修改 session 中嵌套的可变对象（如列表、字典）时，Flask 无法自动检测到修改。\n必须手动设置 session.modified = True，否则修改不会保存到 Cookie 中。\n配置项\n配置键\n默认值\n说明\nSECRET_KEY\nNone\n签名 Session 的密钥，必须设置才能使用 Session\nSESSION_COOKIE_NAME\n\"session\"\nSession Cookie 的名称\nSESSION_COOKIE_DOMAIN\nNone\nCookie 的 Domain 属性\nSESSION_COOKIE_PATH\nNone\nCookie 的 Path 属性\nSESSION_COOKIE_HTTPONLY\nTrue\n禁止 JavaScript 访问 Session Cookie\nSESSION_COOKIE_SECURE\nFalse\n为 True 时仅通过 HTTPS 发送 Cookie\nSESSION_COOKIE_SAMESITE\nNone\n\"Strict\"、\"Lax\" 或 None\nPERMANENT_SESSION_LIFETIME\ntimedelta(days=31)\n永久 Session 的有效期\nSESSION_REFRESH_EACH_REQUEST\nTrue\n每次请求都刷新 Session Cookie 的有效期\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask, session, redirect, url_for\n\napp = Flask(__name__)\napp.secret_key = \"your-secret-key\"\n\n@app.route(\"/\")\ndef index():\n    if \"username\" in session:\n        return f'Logged in as {session[\"username\"]}'\n    return 'You are not logged in'\n\n@app.route(\"/login\", methods=[\"GET\", \"POST\"])\ndef login():\n    if request.method == \"POST\":\n        session[\"username\"] = request.form[\"username\"]\n        # 设置永久 session（浏览器关闭后保持 31 天）\n        session.permanent = True\n        return redirect(url_for(\"index\"))\n    return '<form method=\"post\"><input name=\"username\"></form>'\n\n@app.route(\"/appends\")\ndef append_to_list():\n    # 注意：修改嵌套列表需要手动标记 modified\n    if \"items\" not in session:\n        session[\"items\"] = []\n    session[\"items\"].append(\"new_item\")\n    session.modified = True  # 必须手动标记！\n    return f'Items: {session[\"items\"]}'\n\n@app.route(\"/logout\")\ndef logout():\n    session.clear()\n    return redirect(url_for(\"index\"))"
+    ]
+   },
+   {
+    "title": "Flask Session 与 Cookie",
+    "url": "https://www.runoob.com/flask/flask-session-cookie.html",
+    "body": "HTTP 协议本身是无状态的——服务器不会自动记住两次请求是否来自同一用户。\nFlask 通过 Session 机制解决了这个问题，让 Web 应用能够「记住」用户的状态。\nSession 的工作原理\nFlask 默认使用 SecureCookieSession，它的工作方式是：\nSession 数据被序列化后用密钥签名，保存在浏览器的 Cookie 中\n每次请求时，浏览器自动带上这个 Cookie\nFlask 验证签名后，将数据还原为 Python 字典供你使用\n用户可以看到 Cookie 中的内容（因为是 base64 编码的），但无法篡改——因为任何修改都会导致签名验证失败。\n配置 SECRET_KEY\n要使用 Session，必须先设置 SECRET_KEY——用于签名的密钥。\n实例",
+    "examples": [
+     "import secrets\nfrom flask import Flask\n\napp = Flask(__name__)\n\n# 生成一个安全的随机密钥（只在首次运行时生成即可）\n# secrets.token_hex() 产生 64 字符的十六进制随机字符串\napp.secret_key = secrets.token_hex()\n# 或者直接设置一个固定值（方便开发，但不要用在生产环境）\n# app.secret_key = \"dev-secret-key-change-in-production\""
+    ]
+   },
+   {
+    "title": "Flask Session Interface API",
+    "url": "https://www.runoob.com/flask/flask-session-interface-api.html",
+    "body": "SessionInterface 是 Session 的底层抽象，允许你替换 Flask 默认的 Cookie 存储方式为 Redis、数据库等外部存储。\n自定义实现只需继承 SessionInterface 并实现两个方法。\nSessionInterface 抽象基类\n属性/方法\n说明\nnull_session_class\n当 Session 不可用时使用的类。默认为 NullSession\npickle_based\nbool，Session 是否基于 pickle 序列化。默认为 False\nopen_session(app, request)\n从请求中读取 Session 数据。返回 SessionMixin 实例或 None\nsave_session(app, session, response)\n将 Session 数据保存到响应中\nmake_null_session(app)\n创建空 Session（当 open_session 返回 None 时自动调用）\nis_null_session(obj)\n判断是否为 NullSession 实例\nCookie 选项方法\n以下方法用于获取 Session Cookie 的各项属性，可被重写：\n方法\n说明\nget_cookie_name(app)\n获取 Cookie 名称。默认读取 SESSION_COOKIE_NAME 配置\nget_cookie_domain(app)\n获取 Cookie Domain。默认读取 SESSION_COOKIE_DOMAIN 配置\nget_cookie_path(app)\n获取 Cookie Path。默认读取 SESSION_COOKIE_PATH 或 APPLICATION_ROOT\nget_cookie_httponly(app)\n获取 HttpOnly 标志。默认读取 SESSION_COOKIE_HTTPONLY\nget_cookie_secure(app)\n获取 Secure 标志。默认读取 SESSION_COOKIE_SECURE\nget_cookie_samesite(app)\n获取 SameSite 值。默认读取 SESSION_COOKIE_SAMESITE\nget_cookie_partitioned(app)\n获取 Partitioned 标志。默认读取 SESSION_COOKIE_PARTITIONED（v3.1+）\nget_expiration_time(app, session)\n获取 Session 过期时间。永久 Session 返回 now + lifetime\nshould_set_cookie(app, session)\n判断是否需要设置 Cookie。Session 被修改或永久 + SESSION_REFRESH_EACH_REQUEST 时返回 True\n内置实现\n类\n说明\nSecureCookieSessionInterface\n默认实现。使用 itsdangerous 签名 Cookie 存储 Session 数据。key_derivation=\"hmac\"，digest_method=sha1\nSecureCookieSession\n基于 CallbackDict 的 Session 类。检测顶层键的修改，自动设置 modified=True\nNullSession\n未设置 SECRET_KEY 时使用的占位 Session。读取正常，修改时报错\nSessionMixin\nSession 类的 Mixin。提供 permanent、new、modified、accessed 属性\n替换默认 Session 实现\n实例",
+    "examples": [
+     "from flask import Flask\nfrom flask.sessions import SessionInterface, SessionMixin\n\n# 自定义 Session 类\nclass MySession(dict, SessionMixin):\n    pass\n\n# 自定义 Session 接口\nclass MySessionInterface(SessionInterface):\n    def open_session(self, app, request):\n        # 从请求中加载 Session\n        user_id = request.headers.get(\"X-User-ID\")\n        if user_id:\n            return MySession(user_id=user_id)\n        return MySession()\n\n    def save_session(self, app, session, response):\n        # 保存 Session 到响应\n        if \"user_id\" in session:\n            response.headers[\"X-Session-ID\"] = session[\"user_id\"]\n\napp = Flask(__name__)\n# 替换默认的 Session 实现\napp.session_interface = MySessionInterface()"
+    ]
+   },
+   {
+    "title": "Flask Signals 信号 API",
+    "url": "https://www.runoob.com/flask/flask-signals-api.html",
+    "body": "Flask 使用 Blinker 库在关键事件发生时发送信号。你可以连接这些信号来执行额外的日志记录、监控等操作。\n信号并非 Flask 的核心功能——大部分需求通过钩子（before_request 等）即可满足。\n核心请求信号\n信号\n触发时机\n传递的参数\nrequest_started\n请求上下文建立后、预处理之前\nsender=app\nrequest_finished\n响应构建完成后、发送之前\nsender=app, response\ngot_request_exception\n请求过程中发生未处理的异常\nsender=app, exception\nrequest_tearing_down\n请求上下文销毁时（始终执行）\nsender=app, exc（可选）\n应用上下文信号\n信号\n触发时机\n传递的参数\nappcontext_pushed\n应用上下文推入栈时\nsender=app\nappcontext_popped\n应用上下文弹出栈时\nsender=app\nappcontext_tearing_down\n应用上下文销毁时（始终执行）\nsender=app, exc（可选）\n模板和消息信号\n信号\n触发时机\n传递的参数\ntemplate_rendered\n模板渲染成功时\nsender=app, template, context\nbefore_render_template\n模板渲染之前\nsender=app, template, context\nmessage_flashed\n调用 flash() 时\nsender=app, message, category\n连接信号的方式\n方式\n说明\nsignal.connect(func, app)\n直接连接信号。func 接收 sender 和关键字参数\nsignal.connect_via(app)(func)\n装饰器形式。自动将 app 作为 sender\nwith signal.connected_to(func, app):\n上下文管理器。临时连接信号\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask, request_started, request_finished, template_rendered\n\napp = Flask(__name__)\n\n# 方式1：直接连接\ndef log_request_start(sender, **extra):\n    print(f\"Request started on {sender.name}\")\n\nrequest_started.connect(log_request_start, app)\n\n# 方式2：装饰器连接\n@request_finished.connect_via(app)\ndef log_request_end(sender, response, **extra):\n    print(f\"Request finished with status {response.status_code}\")\n\n# 方式3：模板渲染信号\n@template_rendered.connect_via(app)\ndef log_template(sender, template, context, **extra):\n    print(f\"Template rendered: {template.name}\")\n\n# 方式4：捕获异常\nfrom flask import got_request_exception\n\ndef log_error(sender, exception, **extra):\n    sender.logger.error(f\"Exception: {exception}\")\n\ngot_request_exception.connect(log_error, app)"
+    ]
+   },
+   {
+    "title": "Flask 静态文件",
+    "url": "https://www.runoob.com/flask/flask-static-file.html",
+    "body": "任何一个完整的 Web 应用都离不开 CSS、JavaScript 和图片等静态资源。\n本章介绍 Flask 如何管理和提供静态文件。\n默认静态文件约定\nFlask 默认从应用目录下的 static/ 文件夹提供静态文件。\n你只需要创建这个文件夹并将静态资源放入其中即可：\nmyflaskapp/\n├── app.py\n├── templates/\n│ └── index.html\n└── static/\n ├── css/\n │ └── style.css # 样式文件\n ├── js/\n │ └── main.js # JavaScript 文件\n └── images/\n └── logo.png # 图片文件\n在模板中引用静态文件\n不要硬编码路径，使用 url_for('static', filename='...') 生成静态文件的 URL。\n这样做的好处是：即使将来应用挂载到子路径（如 /myapp），URL 也会自动调整。\n实例",
+    "examples": [
+     "<!-- 文件路径：templates/index.html -->\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\">\n    <title>RUNOOB Flask 教程</title>\n    <!-- 引用 CSS 文件 -->\n    <link rel=\"stylesheet\" href=\"{{ url_for('static', filename='css/style.css') }}\">\n\n    <!-- 网站图标 favicon -->\n    <link rel=\"icon\" href=\"{{ url_for('static', filename='images/favicon.ico') }}\">\n</head>\n<body>\n    <!-- 引用图片 -->\n    <img src=\"{{ url_for('static', filename='images/logo.png') }}\" alt=\"RUNOOB Logo\" width=\"200\">\n\n    <h1>欢迎来到 RUNOOB</h1>\n    <p>这是一个使用 Flask 构建的 Web 应用。</p>\n\n    <!-- 引用 JavaScript 文件 -->\n    <script src=\"{{ url_for('static', filename='js/main.js') }}\"></script>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "Flask 第一个应用",
+    "url": "https://www.runoob.com/flask/flask-step1.html",
+    "body": "上一章节我们已经成功安装了 Flask，接下来我们可以创建一个简单的 Flask 应用。\n首先，创建一个名为 app.py 的文件，并添加以下内容：\n实例（ app.py ）",
+    "examples": [
+     "from flask import Flask\n\napp = Flask(__name__)\n\n@app.route('/')\ndef hello_world():\n    return 'Hello, World!'\n\nif __name__ == '__main__':\n    app.run(debug=True)"
+    ]
+   },
+   {
+    "title": "Flask Stream Helpers API",
+    "url": "https://www.runoob.com/flask/flask-stream-helpers-api.html",
+    "body": "stream_with_context 用于在生成器函数中保持请求上下文，使流式响应中仍能访问 request、session 等对象。\nstream_with_context\n参数\n类型\n说明\ngenerator_or_function\niterator / callable\n生成器函数或可调用对象。作为装饰器或包装函数使用\n两种用法\n用法\n说明\n装饰器模式\n@stream_with_context 装饰生成器函数\n包装模式\nstream_with_context(generator()) 包裹已创建的生成器\n注意事项：一旦响应体开始发送，就不能再修改响应头。如果生成器中需要访问 session，必须在视图函数中先访问 session 以触发 Vary: Cookie 头的设置。\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask, stream_with_context, request, Response\n\napp = Flask(__name__)\n\n@app.get(\"/stream\")\ndef streamed_response():\n    \"\"\"流式响应示例：逐行发送数据\"\"\"\n    @stream_with_context\n    def generate():\n        # 即使响应已开始发送，仍可访问 request\n        yield f\"data: Hello {request.args.get('name', 'RUNOOB')}\\n\"\n        for i in range(5):\n            yield f\"data: Line {i}\\n\"\n        yield \"data: [DONE]\\n\"\n\n    return Response(generate(), mimetype=\"text/event-stream\")\n\n@app.get(\"/stream-wrap\")\ndef stream_wrap():\n    \"\"\"包装模式\"\"\"\n    def generate():\n        yield \"Hello \"\n        yield request.args.get(\"name\", \"World\")\n        yield \"!\"\n\n    # 使用 stream_with_context 包裹已创建的生成器\n    return Response(stream_with_context(generate()))"
+    ]
+   },
+   {
+    "title": "Flask 模板渲染 API",
+    "url": "https://www.runoob.com/flask/flask-template-rendering-api.html",
+    "body": "Flask 使用 Jinja2 引擎渲染模板，将 Python 数据嵌入 HTML 页面。\n模板文件默认放在项目根目录的 templates/ 文件夹中。\nrender_template\n最常用的模板渲染函数，从文件加载模板并渲染。\n参数\n类型\n说明\ntemplate_name_or_list\nstr / list\n模板文件名（相对于 templates 文件夹），或模板名列表（返回第一个存在的）\n**context\n关键字参数\n传递给模板的变量，如 title=\"Hello\", user=user_obj\n全部渲染函数\n函数\n说明\nrender_template(template_name_or_list, **context)\n从文件渲染模板，返回 HTML 字符串\nrender_template_string(source, **context)\n从字符串渲染模板，适用于嵌入式模板\nstream_template(template_name_or_list, **context)\n流式渲染模板，返回生成器。适用于大型页面\nstream_template_string(source, **context)\n流式渲染字符串模板\nget_template_attribute(template_name, attribute)\n获取模板中的宏或变量。可从 Python 调用 Jinja2 宏\n模板中的内置对象\n以下对象在模板中无需显式传递即可使用：\n对象\n说明\nrequest\n当前请求对象\nsession\n当前 Session 对象\ng\n请求级全局对象\nconfig\n应用配置字典\nurl_for\nURL 生成函数\nget_flashed_messages\nFlask 消息获取函数\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask, render_template, render_template_string\n\napp = Flask(__name__)\n\n@app.route(\"/\")\ndef index():\n    return render_template(\"index.html\",\n                          title=\"RUNOOB 首页\",\n                          posts=[{\"id\": 1, \"title\": \"文章A\"},\n                                 {\"id\": 2, \"title\": \"文章B\"}])\n\n@app.route(\"/inline\")\ndef inline_template():\n    # 从字符串渲染（模板内容直接写在代码中）\n    return render_template_string(\"\"\"\n        <h1>Hello, {{ name }}!</h1>\n        <p>Welcome to RUNOOB.</p>\n    \"\"\", name=\"World\")\n\n@app.route(\"/stream\")\ndef stream_large_page():\n    # 流式渲染大页面，边生成边发送\n    return stream_template(\"large_report.html\",\n                          items=get_10k_items())"
+    ]
+   },
+   {
+    "title": "Flask 模板渲染",
+    "url": "https://www.runoob.com/flask/flask-templates.html",
+    "body": "在 Python 代码中拼接 HTML 字符串既繁琐又危险（容易产生 XSS 漏洞），Flask 集成了 Jinja2 模板引擎来解决这个问题。\n模板让你将业务逻辑和页面展示分离，写出更安全、更易维护的代码。\nrender_template 基础\nrender_template() 是 Flask 中最常用的模板渲染函数。\n它的第一个参数是模板文件名，后面的关键字参数会作为变量传递给模板。\n实例",
+    "examples": [
+     "# 文件路径：app.py\nfrom flask import Flask, render_template\n\napp = Flask(__name__)\n\n@app.route(\"/\")\ndef index():\n    # 渲染 templates/index.html 模板，传递 title 和 name 变量\n    return render_template(\"index.html\", title=\"RUNOOB 首页\", name=\"World\")\n\n@app.route(\"/user/<username>\")\ndef profile(username):\n    # 将 URL 中的 username 传递给模板\n    return render_template(\"user.html\", username=username, posts=[\n        {\"title\": \"Flask 入门\", \"date\": \"2026-05-01\"},\n        {\"title\": \"Jinja2 模板\", \"date\": \"2026-05-10\"},\n    ])"
+    ]
+   },
+   {
+    "title": "Flask Test CLI Runner API",
+    "url": "https://www.runoob.com/flask/flask-test-cli-runner-api.html",
+    "body": "FlaskCliRunner 基于 Click 的 CliRunner，用于测试 Flask CLI 命令。\n通过 app.test_cli_runner() 创建实例。\n创建方式\n方式\n说明\napp.test_cli_runner(**kwargs)\n创建 CLI 测试运行器。kwargs 传递给 CliRunner 构造函数\n核心方法\n方法\n说明\ninvoke(cli=None, args=None, **kwargs)\n调用 CLI 命令。默认使用 app.cli。返回 click.testing.Result 对象\nResult 对象属性\n属性\n说明\nexit_code\n命令退出码。0 表示成功\noutput\n命令的标准输出内容（str）\nexception\n如果命令抛出异常，此处包含异常对象\n代码示例\n实例",
+    "examples": [
+     "from app import create_app\n\napp = create_app()\nrunner = app.test_cli_runner()\n\n# 测试内置命令\nresult = runner.invoke(args=[\"routes\"])\nassert result.exit_code == 0\nassert \"/api/posts\" in result.output\n\n# 测试自定义命令\nresult = runner.invoke(args=[\"init-db\"])\nassert result.exit_code == 0\n\n# 测试带参数的命令\nresult = runner.invoke(args=[\"greet\", \"--name\", \"RUNOOB\"])\nassert \"RUNOOB\" in result.output\n\n# 直接用 invoke 测试应用 CLI 组\nresult = runner.invoke(app.cli, [\"run\", \"--help\"])\nassert result.exit_code == 0"
+    ]
+   },
+   {
+    "title": "Flask Test Client API",
+    "url": "https://www.runoob.com/flask/flask-test-client-api.html",
+    "body": "FlaskClient 是一个模拟浏览器，可以在不启动服务器的情况下发送请求并验证响应。\n通过 app.test_client() 创建实例。\n创建测试客户端\n方式\n说明\napp.test_client(use_cookies=True)\n标准创建方式。use_cookies=False 禁用 Cookie 处理\nwith app.test_client() as client:\n上下文管理器。退出时自动清理请求上下文\n请求方法\n所有方法返回 TestResponse 对象（继承自 Response）。\n方法\n说明\nget(path, **kwargs)\n发送 GET 请求\npost(path, **kwargs)\n发送 POST 请求\nput(path, **kwargs)\n发送 PUT 请求\ndelete(path, **kwargs)\n发送 DELETE 请求\npatch(path, **kwargs)\n发送 PATCH 请求\nopen(path, method, **kwargs)\n通用请求方法，需显式指定 method\n请求参数（kwargs）\n参数\n说明\ndata\n请求体（字符串或字节）。用于表单提交\njson\nJSON 数据，自动序列化并设置 Content-Type: application/json\nquery_string\nURL 查询参数字符串或字典\nheaders\n请求头字典\ncontent_type\n自定义 Content-Type\nfollow_redirects\nbool，是否自动跟随重定向。默认为 False\nbuffered\nbool，是否缓冲响应。默认为 False\n响应对象（TestResponse）\n属性/方法\n说明\nstatus_code\nHTTP 状态码（int）\nstatus\nHTTP 状态文本，如 \"200 OK\"\ndata\n响应体（bytes）\ntext\n以文本方式获取响应体（str）\nget_json()\n将响应体解析为 JSON。返回 dict 或 list\nheaders\n响应头（Headers 对象）\nlocation\n重定向目标 URL（仅 3xx 响应）\njson_module\n用于 JSON 序列化的模块（默认为 app.json）\nSession 测试\n方法\n说明\nsession_transaction(**kwargs)\n上下文管理器，用于直接读写 session。返回 SessionMixin 对象\n代码示例\n实例",
+    "examples": [
+     "from app import create_app\n\napp = create_app()\napp.config[\"TESTING\"] = True\n\ndef test_api():\n    with app.test_client() as client:\n        # GET 请求\n        resp = client.get(\"/api/posts\")\n        assert resp.status_code == 200\n        data = resp.get_json()\n        assert isinstance(data, list)\n\n        # POST JSON 请求\n        resp = client.post(\"/api/posts\", json={\n            \"title\": \"RUNOOB 教程\",\n            \"body\": \"入门内容\"\n        })\n        assert resp.status_code == 201\n        assert resp.get_json()[\"title\"] == \"RUNOOB 教程\"\n\n        # 带查询参数的请求\n        resp = client.get(\"/search?q=flask\")\n        assert b\"flask\" in resp.data\n\n        # 模拟已登录状态\n        with client.session_transaction() as sess:\n            sess[\"username\"] = \"runoob\"\n        resp = client.get(\"/dashboard\")\n        assert b\"runoob\" in resp.data\n\n        # 跟随重定向\n        resp = client.post(\"/login\", data={\n            \"username\": \"admin\"\n        }, follow_redirects=True)\n        assert resp.status_code == 200"
+    ]
+   },
+   {
+    "title": "Flask 测试",
+    "url": "https://www.runoob.com/flask/flask-testing.html",
+    "body": "测试是保证代码质量的基础。\nFlask 提供了内置的测试客户端，配合 pytest 可以高效编写和运行测试。\n测试客户端——test_client\nFlask 的 test_client() 方法创建了一个模拟的 HTTP 客户端，可以在不启动服务器的情况下发送请求：\n实例",
+    "examples": [
+     "# 文件路径：test_demo.py（在 Python 交互环境中测试）\nfrom app import create_app\n\n# 创建测试用的 app 实例\napp = create_app()\n\n# 创建测试客户端\nwith app.test_client() as client:\n    # 发送 GET 请求\n    response = client.get(\"/\")\n    print(response.status_code)   # 200\n    print(response.data[:100])    # 响应体的前 100 个字节\n\n    # 发送 POST 请求并以 JSON 发送数据\n    response = client.post(\"/api/posts\",\n                          json={\"title\": \"RUNOOB 教程\", \"body\": \"内容\", \"author_id\": 1})\n    print(response.status_code)   # 201\n    print(response.get_json())    # 解析 JSON 响应"
+    ]
+   },
+   {
+    "title": "Flask 教程",
+    "url": "https://www.runoob.com/flask/flask-tutorial.html",
+    "body": "Flask 是一个用 Python 编写的轻量级 Web 应用框架。\nFlask 基于 WSGI（Web Server Gateway Interface）和 Jinja2 模板引擎，旨在帮助开发者快速、简便地创建 Web 应用。\nFlask 让我们用 Python 快速写出网站、接口、后台服务。\nFlask 适合小项目、API 接口、微服务。",
+    "examples": []
+   },
+   {
+    "title": "URL 定义路由 API",
+    "url": "https://www.runoob.com/flask/flask-url-route-registrations-api.html",
+    "body": "Flask 提供三种方式定义路由规则：@app.route() 装饰器、add_url_rule() 方法、直接操作 url_map。\nURL 变量转换器\n转换器\n语法\n匹配规则\nPython 类型\nstring\n<string:name> 或 <name>\n不含 / 的任意文本（默认）\nstr\nint\n<int:id>\n正整数\nint\nfloat\n<float:value>\n正浮点数\nfloat\npath\n<path:filepath>\n任意文本（包含 /）\nstr\nany\n<any(a,b,c):item>\n匹配列表中任一值\nstr\nuuid\n<uuid:id>\n标准 UUID 格式\nstr\nadd_url_rule 参数\n参数\n类型\n说明\nrule\nstr\nURL 规则字符串，如 \"/user/<username>\"\nendpoint\nstr\n端点名，默认使用函数名。url_for 以此引用路由\nview_func\ncallable\n视图函数。可不传，稍后存入 view_functions 字典\ndefaults\ndict\nURL 变量的默认值。如 defaults={\"page\": 1}\nsubdomain\nstr\n子域名匹配。需启用 subdomain_matching\nmethods\nlist\n允许的 HTTP 方法。默认 [\"GET\"]（HEAD 和 OPTIONS 自动添加）\nhost\nstr\n主机名匹配。需启用 host_matching\n尾斜线行为\n规则\n访问不带 /\n访问带 /\n@app.route(\"/projects/\")\n308 重定向到 /projects/\n正常访问\n@app.route(\"/about\")\n正常访问\n404 Not Found\n默认值路由\n通过 defaults 参数实现可选的 URL 变量：\n实例",
+    "examples": [
+     "# 两个 URL 指向同一函数，/users/ 等同于 /users/page/1\n@app.route(\"/users/\", defaults={\"page\": 1})\n@app.route(\"/users/page/<int:page>\")\ndef show_users(page):\n    return f\"Showing page {page}\"\n\n# 访问 /users/        → page=1\n# 访问 /users/page/3  → page=3"
+    ]
+   },
+   {
+    "title": "Flask 内部对象 API",
+    "url": "https://www.runoob.com/flask/flask-useful-internals-api.html",
+    "body": "Flask 提供了几个底层内部对象，用于访问活跃的应用上下文和蓝图的注册状态。大多数应用不需要直接使用它们。\nAppContext 应用上下文\n方法/属性\n说明\nAppContext(app)\n创建应用上下文实例。通常不手动创建，使用 app.app_context()\npush()\n推入上下文栈。使 current_app、g 等代理指向此上下文\npop(error=None)\n弹出上下文栈。执行 teardown 回调。error 为未处理的异常对象\napp\n此上下文关联的 Flask 应用\ng\n此上下文的 g 对象（_AppCtxGlobals 实例）\nurl_adapter\nURL 适配器（MapAdapter），用于 URL 构建\nrequest\n当前请求对象（Request）。仅在请求上下文中可用\nsession\n当前 Session 对象。仅在请求上下文中可用\napp_ctx 代理\n属性\n说明\nflask.globals.app_ctx\n指向当前活跃 AppContext 的代理。内部使用，多数情况用 current_app 和 g 即可\nBlueprintSetupState\n蓝图注册时的状态对象，可在 record 回调中使用。\n属性\n说明\napp\n蓝图注册到的 Flask 应用\nblueprint\n被注册的 Blueprint 实例\nurl_prefix\n蓝图的 URL 前缀\nsubdomain\n蓝图的子域名\nurl_defaults\n蓝图的 URL 默认值\noptions\n注册蓝图时传入的额外选项\n废弃的 RequestContext\n自 Flask 3.2 起，RequestContext 已合并到 AppContext。相关的 request_ctx 代理也已合并到 app_ctx。旧名称将在 Flask 4.0 中移除。\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask\nfrom flask.ctx import AppContext\n\napp = Flask(__name__)\n\n# 手动管理应用上下文\nctx = app.app_context()\nctx.push()\n# current_app 和 g 现在可用\nfrom flask import current_app, g\ng.user = \"runoob\"\n# 执行操作...\nctx.pop()  # 触发 teardown 回调，g 被清理\n\n# with 语句方式（推荐）\nwith app.app_context():\n    g.temp_data = 42\n# 退出 with 后自动 pop"
+    ]
+   },
+   {
+    "title": "Flask 视图函数 API",
+    "url": "https://www.runoob.com/flask/flask-view-function-options-api.html",
+    "body": "视图函数可以附加特殊属性来控制路由行为。这些属性通常不需要手动设置，但在某些高级场景下非常有用。\n视图函数属性\n属性\n类型\n默认值\n说明\n__name__\nstr\n函数名\n用作 endpoint 名。在蓝图中会自动加蓝图名前缀\nmethods\nlist\nNone\n视图函数接受的 HTTP 方法。若未在 add_url_rule 中指定，则使用此值\nrequired_methods\nset\nNone\n必须添加的 HTTP 方法。即使 add_url_rule 显式指定了 methods，这些方法也会被强制添加\nprovide_automatic_options\nbool\nNone\n是否自动处理 OPTIONS 请求。设为 False 可自定义 OPTIONS 响应\n使用场景\n场景\n使用的属性\n说明\n自定义 OPTIONS 响应\nprovide_automatic_options=False\n阻止 Flask 自动生成 OPTIONS，由视图函数自行处理\n在装饰器中设置方法\nmethods\n装饰器可预先设置视图函数的方法列表\n强制添加方法\nrequired_methods\n确保特定方法总是被注册\n代码示例\n实例",
+    "examples": [
+     "from flask import Flask, request\n\napp = Flask(__name__)\n\n# 示例1：自定义 OPTIONS 响应\ndef custom_endpoint():\n    if request.method == \"OPTIONS\":\n        # 返回自定义的 OPTIONS 响应\n        return \"\", 200, {\"Allow\": \"GET, POST\"}\n    return \"Hello, RUNOOB!\"\n\n# 关闭自动 OPTIONS\ncustom_endpoint.provide_automatic_options = False\ncustom_endpoint.methods = [\"GET\", \"POST\", \"OPTIONS\"]\n\napp.add_url_rule(\"/custom\", view_func=custom_endpoint)\n\n# 示例2：定义装饰器自动设置方法\ndef api_view(func):\n    \"\"\"自定义装饰器：自动为视图函数设置方法\"\"\"\n    func.methods = [\"GET\", \"POST\"]\n    return func\n\n@api_view\ndef api_handler():\n    return {\"status\": \"ok\"}\n\napp.add_url_rule(\"/api\", view_func=api_handler)\n# 此时 methods 会自动从函数属性中读取"
+    ]
+   },
+   {
+    "title": "Flask 视图函数",
+    "url": "https://www.runoob.com/flask/flask-views-functions.html",
+    "body": "视图函数是 Flask 应用中的核心部分，它负责处理请求并生成响应。\n视图函数与路由紧密结合，通过路由将 URL 映射到具体的视图函数。\n以下是对 Flask 视图函数的详细说明，包括如何定义、使用请求数据、返回响应、以及如何处理错误等。\n定义视图函数：视图函数是处理请求并返回响应的核心功能。\n接收请求数据：使用 request 对象获取 URL 参数、表单数据、查询参数等。\n返回响应：可以返回字符串、HTML、JSON 或自定义响应对象。\n处理请求和响应：使用 request 对象和 make_response 来处理请求和生成自定义响应。\n处理错误：视图函数内处理异常或使用 Flask 的错误处理机制。\n视图函数的装饰器：使用 @app.before_request、@app.after_request 等装饰器处理请求前后逻辑。\n视图函数返回的状态码：可以指定 HTTP 状态码来表示请求的处理结果。\n1. 定义视图函数\n视图函数是一个普通的 Python 函数，它接收请求并返回响应。视图函数通常与路由配合使用，通过装饰器将 URL 映射到视图函数。\n实例",
+    "examples": [
+     "from flask import Flask\n\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    return 'Hello, World!'"
+    ]
+   }
+  ]
+ }
+}

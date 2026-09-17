@@ -1,0 +1,200 @@
+{
+ "tutorial": {
+  "name": "Julia",
+  "category": "后端开发",
+  "desc": "Julia 是一个开源的编程语言，采用 MIT 许可证，每个人都可以免费使用。",
+  "url": "https://www.runoob.com/julia/",
+  "chapters": [
+   {
+    "title": "Julia 数组",
+    "url": "https://www.runoob.com/julia/julia-array.html",
+    "body": "数组，就是相同数据类型的元素按一定顺序排列的集合，可以是一维数组和多维数组。\nJulia 数组是可变类型集合，用于列表、向量、表格和矩阵。\nJulia 数组的索引从 1 开始（不是 0），数组的大小不是固定的，可以动态增长。\nJulia 数组用方括号 [...] 指定，多个元素使用逗号 , 分隔。创建一个一维数组（即一个向量）语法为：\n[A, B, C, ...]\n创建一维数组\n下面实例创建了一个简单的一维数组：\n实例",
+    "examples": [
+     "julia> arr = [1, 2, 3]\n3-element Vector{Int64}:\n 1\n 2\n 3"
+    ]
+   },
+   {
+    "title": "Julia 基本运算符",
+    "url": "https://www.runoob.com/julia/julia-basic-operators.html",
+    "body": "运算符是一种告诉编译器执行特定的数学或逻辑操作的符号，如: 3+2=5。\nJulia 语言内置了丰富的运算符，支持的运算有：\n算术运算符\n布尔运算符\n关系运算符\n位运算符\n赋值运算符\n向量化 \"点\" 运算符\n算术运算符\n下表显示了 Julia 的基本算术运算符，适用于所有的基本数值类型：\n表达式\n名称\n描述\n+x\n一元加法运算符\n恒等操作\n-x\n一元减法运算符\n将值变为其相反数\nx + y\n二元加法运算符\n两数相加\nx - y\n二元减法运算符\n两数相减\nx * y\n乘法运算符\n两数相乘\nx / y\n除法运算符\n两数相除，结果总是浮点数\nx ÷ y\n整除\n取 x / y 的整数部分（向零取整）\nx \\ y\n反向除法\n等价于 y / x\nx ^ y\n幂操作符\nx 的 y 次幂\nx % y\n取余\n等价于 rem(x,y)\n实例",
+    "examples": [
+     "julia> 1 + 2 + 3\n6\njulia> 1 - 2\n-1\njulia> 3*2/12\n0.5\njulia> 2+20-5\n17\njulia> 50*2/10\n10.0\njulia> 23%2\n1\njulia> 2^4\n16\n\n# 整除符号 ÷ 可以在 REPL 中用 \\div + Tab 输入\njulia> 7 ÷ 2\n3\n\n# 与大多数语言不同，Julia 的整数除法 1/0 不会报错，而是返回 Inf\njulia> 1/0\nInf"
+    ]
+   },
+   {
+    "title": "Julia 基本语法",
+    "url": "https://www.runoob.com/julia/julia-basic-syntax.html",
+    "body": "变量来源于数学，是计算机语言中能储存计算结果或能表示值抽象概念。\n变量可以通过变量名访问。\nJulia 变量使用很简单，只需赋值即可，不需要提前声明类型：\n实例",
+    "examples": [
+     "# 将 10 赋值给变量 x\njulia> x = 10\n10\n\n# 使用 x 的值做计算\njulia> x + 1\n11\n\n# 将字符串赋值给变量 site_name\njulia> site_name = \"RUNOOB\"\n\"RUNOOB\"\n\n# 浮点型数据\njulia> marks_math = 9.5\n9.5"
+    ]
+   },
+   {
+    "title": "Julia 复数和有理数",
+    "url": "https://www.runoob.com/julia/julia-complex-and-rational-numbers.html",
+    "body": "Julia 语言包含了预定义的复数和有理数类型，并且支持它们的各种标准数学运算和初等函数。\n类型提升机制保证了复数、有理数与其他数值类型的混合运算都能得到符合数学直觉的结果。\n复数\n复数是实数的延伸，它使任一多项式方程都有根。\n我们把形如 z=a+bi（a、b 均为实数）的数称为复数。其中，a 称为实部，b 称为虚部，i 称为虚数单位，满足 i² = -1。\nJulia 用全局常量 im 表示虚数单位 i（代表 -1 的主平方根）。之所以不用 i 或 j，是因为它们是太常用的循环变量名，避免冲突。\n由于 Julia 允许数值字面量作为系数，这种绑定就足以为复数提供很方便的语法，类似于传统的数学记法：\n实例",
+    "examples": [
+     "julia> 1+2im\n1 + 2im"
+    ]
+   },
+   {
+    "title": "Julia 数据类型",
+    "url": "https://www.runoob.com/julia/julia-data-type.html",
+    "body": "在编程语言中，都有基本的数学运算和科学计算，它们常用的数据类型为整数和浮点数。\n另外还有一个\"字面量\"的术语，字面量（literal）用于表达源代码中一个固定值的表示法（notation），整数、浮点数以及字符串等等都是字面量。\n例如：\na = 1 # a 是变量，1 是整型字面量\nb = 1.0 # b 是变量，1.0 是浮点型字面量\nJulia 提供了很丰富的原始数值类型，并基于它们定义了一整套算术运算操作，另外还提供按位运算符以及一些标准数学函数。\n整数类型\n下表列出了 Julia 支持的整数类型：\n类型\n带符号？\n比特数\n最小值\n最大值\nInt8\n✓\n8\n-2^7\n2^7 - 1\nUInt8\n8\n0\n2^8 - 1\nInt16\n✓\n16\n-2^15\n2^15 - 1\nUInt16\n16\n0\n2^16 - 1\nInt32\n✓\n32\n-2^31\n2^31 - 1\nUInt32\n32\n0\n2^32 - 1\nInt64\n✓\n64\n-2^63\n2^63 - 1\nUInt64\n64\n0\n2^64 - 1\nInt128\n✓\n128\n-2^127\n2^127 - 1\nUInt128\n128\n0\n2^128 - 1\nBool\nN/A\n8\nfalse (0)\ntrue (1)\n整数字面量形式：\n实例",
+    "examples": [
+     "julia> 1\n1\n\njulia> 1234\n1234"
+    ]
+   },
+   {
+    "title": "Julia 日期和时间",
+    "url": "https://www.runoob.com/julia/julia-date-time.html",
+    "body": "Julia 通过标准库 Dates 模块提供了以下三个类型来处理日期和时间：\nDate：表示日期，精确到日，只显示日期。\nDateTime：表示日期和时间，精确到毫秒。\nTime：表示日时间，精确到纳秒，代表一天 24 小时中的特定时刻。\n使用前，我们需要先导入 Dates 模块：\nusing Dates\nDate 和 DateTime 类型可以通过整数或 Period 类型解析。\nPeriod 基于日期值，表示年、月、日等时间段：\nYear # 年\nQuarter # 季度\nMonth # 月\nWeek # 周\nDay # 日\nHour # 小时\nMinute # 分钟\nSecond # 秒\nMillisecond # 毫秒\nMicrosecond # 微秒（仅 Time）\nNanosecond # 纳秒（仅 Time）\nDate 和 DateTime 都是抽象类型 TimeType 的子类型。\n下图展示了日期类型间的关系，点击图片可以放大查看：\n获取当前日期时间\n实例",
+    "examples": [
+     "julia> using Dates\n\n# 当前日期时间\njulia> rightnow = now()\n2022-05-11T08:41:15.917\n\n# 当前日期\njulia> today_date = today()\n2022-05-11\n\n# UTC 时区的当前时间\njulia> now(UTC)\n2022-05-11T00:44:20.136\n\n# 现在的时刻（只含时间，不含日期）\njulia> Dates.Time(now())\n08:41:15.917\n\n# 指定日期创建对象\njulia> theday = Date(2022, 5, 6)\n2022-05-06"
+    ]
+   },
+   {
+    "title": "Julia 字典和集合",
+    "url": "https://www.runoob.com/julia/julia-dictionaries-sets.html",
+    "body": "除了数组和元组，Julia 还提供了两种常用的集合：字典（Dict）和 Set（无序集合）。\n字典\n字典是一种可变容器模型，且可存储任意类型对象。\n字典的每个键值对用 => 分割，每个键值对之间用逗号 , 分割，整个字典包括在花括号 {} 中。\n创建字典\n创建字典的语法格式如下：\nDict(\"key1\" => value1, \"key2\" => value2, ..., \"keyn\" => valuen)\n以下实例创建一个简单的字典，键 A 对应的值为 1，键 B 对应的值为 2：\n实例",
+    "examples": [
+     "julia> D = Dict(\"A\"=>1, \"B\"=>2)\nDict{String, Int64} with 2 entries:\n  \"B\" => 2\n  \"A\" => 1"
+    ]
+   },
+   {
+    "title": "Julia 环境安装",
+    "url": "https://www.runoob.com/julia/julia-environment.html",
+    "body": "Julia 语言支持以下系统：\nWindows\nmacOS\nLinux\nFreeBSD\nJulia 官方推荐使用 Juliaup 版本管理器安装，它会自动管理多个 Julia 版本并保持更新。\nJulia 安装包下载地址为：https://julialang.org/downloads/。\nGithub 源码地址：https://github.com/JuliaLang/julia。\n国内镜像地址：https://mirrors.tuna.tsinghua.edu.cn/julia-releases/bin/\n各个系统对应的包名（以 Julia 1.10.4 为例）：\n操作系统\n包名\nWindows\njulia-1.10.4-win64.exe\nLinux\njulia-1.10.4-linux-x86_64.tar.gz\nMac (Intel)\njulia-1.10.4-mac64.tar.gz 或 .dmg\nMac (Apple Silicon)\njulia-1.10.4-macaarch64.tar.gz 或 .dmg\nFreeBSD\njulia-1.10.4-freebsd-x86_64.tar.gz\n注：CPU 是 X86 还是 ARM 可以通过 uname -m 命令查看，输出 x86_64 表示 X86 架构，输出 arm64 或 aarch64 表示 ARM 架构：\n$ uname -m\nx86_64\n使用 Juliaup 安装（推荐）\nWindows 安装\nWindows 下最简单的方式是从 Microsoft Store 安装 Julia，或者用 winget 命令安装：\nwinget install --name Julia --id 9NJNWW8PVKMN -e -s msstore\nLinux 和 macOS 安装\n在 Linux 或 macOS 上，执行以下命令安装 Juliaup 及最新稳定版 Julia：\ncurl -fsSL https://install.julialang.org | sh\n安装完成后重新打开终端，即可使用 julia 命令。\n常用的安装器参数：\n参数\n说明\n--yes\n非交互模式安装，全部使用默认配置\n--default-channel=lts\n安装长期支持（LTS）版本并设为默认\n--add-to-path=no\n不将 Julia 加入 PATH 环境变量\n安装后可以使用 juliaup 命令管理版本：\n$ juliaup status # 查看当前使用的版本\n$ juliaup add 1.10 # 安装 1.10 版本\n$ juliaup default 1.10 # 设置默认版本\n使用二进制包安装\n如果不使用 Juliaup，也可以直接下载二进制包安装。\nWindows 下安装\n从 https://julialang.org/downloads/ 下载 Windows Julia 安装程序。\n注：32 位 Julia 二进制文件可在 32 位和 64 位 Windows 上运行，但 64 位 Julia 二进制文件只能在 64 位 Windows (x86_64) 上运行，现在电脑基本上都是 64 位的。\n运行安装程序，安装过程点击 Next 就好了。\n勾选 Add Julia To PATH 自动将 Julia 添加到环境变量。\n这样我们就可以在终端执行 julia 命令了。\nJulia 默认安装目录类似于 C:\\Users\\RUNOOB\\AppData\\Local\\Programs\\Julia 1.10.4。\nLinux/FreeBSD 安装\n下载 x86_64 二进制包：\nwget https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.4-linux-x86_64.tar.gz\n以上是官网提供的下载地址，如果速度慢，可以采用国内镜像地址下载（注意路径中是 x64 目录）：\nwget https://mirrors.tuna.tsinghua.edu.cn/julia-releases/bin/linux/x64/1.10/julia-1.10.4-linux-x86_64.tar.gz\n解压：\ntar zxvf julia-1.10.4-linux-x86_64.tar.gz\nLinux/FreeBSD 二进制文件不需要安装，但需要我们的系统可以找到 julia 可执行文件，这就需要将 julia 的目录添加到系统环境中。\n解压完成后将 julia 的解压目录移动到 /usr/local 目录下：\nsudo mv julia-1.10.4 /usr/local/\n移动完成后我们就可以使用完整目录执行 julia 命令：\n$ /usr/local/julia-1.10.4/bin/julia -v\njulia version 1.10.4\njulia -v 命令用于查看版本号。\n也可以将 julia 命令添加到您的系统 PATH 环境变量中，编辑 ~/.bashrc（或 ~/.bash_profile）文件，在最后一行添加以下代码：\nexport PATH=\"$PATH:/usr/local/julia-1.10.4/bin/\"\n添加后执行以下命令，让环境变量立即生效：\nsource ~/.bashrc\n或\nsource ~/.bash_profile\n这样我们就可以直接执行 julia 命令而不需要添加完整路径：\n$ julia -v\njulia version 1.10.4\nmacOS 安装\nApple Silicon（M1/M2/M3 等）芯片下载 macaarch64 包，Intel 芯片下载 mac64 包：\n# Apple Silicon 版本\nwget https://julialang-s3.julialang.org/bin/mac/aarch64/1.10/julia-1.10.4-macaarch64.tar.gz\n\n# Intel 版本\nwget https://julialang-s3.julialang.org/bin/mac/x64/1.10/julia-1.10.4-mac64.tar.gz\n解压：\ntar zxvf julia-1.10.4-macaarch64.tar.gz\n将解压目录移动到 /usr/local 目录下：\nsudo mv julia-1.10.4 /usr/local/\n将 julia 添加到 PATH 环境变量，编辑 ~/.zshrc（macOS 默认 shell 是 zsh）文件，在最后一行添加：\nexport PATH=\"$PATH:/usr/local/julia-1.10.4/bin/\"\n添加后执行以下命令，让环境变量立即生效：\nsource ~/.zshrc\n验证安装：\n$ julia -v\njulia version 1.10.4\n也可以使用 Homebrew 安装：\nbrew install julia\n验证安装\n安装完成后，执行 julia 命令进入交互式窗口，执行 versioninfo() 查看详细的版本信息：\n实例",
+    "examples": [
+     "julia> versioninfo()\nJulia Version 1.10.4\nCommit 48d4fd48430 (2024-03-25 16:10 UTC)\nBuild Info:\n  Official https://julialang.org/ release\nPlatform Info:\n  OS: macOS (arm64-apple-darwin22.4.0)\n  CPU: 8 × Apple M1\n  WORD_SIZE: 64\n  LIBM: libopenlibm\n  LLVM: libLLVM-15.0.7 (ORCJIT, apple-m1)"
+    ]
+   },
+   {
+    "title": "Julia 运行外部程序",
+    "url": "https://www.runoob.com/julia/julia-external-programs.html",
+    "body": "Julia 借鉴 Shell、Perl 和 Ruby 的反引号（backtick）语法来运行外部命令。命令用反引号 `...` 包围：\n实例",
+    "examples": [
+     "julia> mycommand = `echo hello`\n`echo hello`\n\njulia> typeof(mycommand)\nCmd"
+    ]
+   },
+   {
+    "title": "Julia 文件读写",
+    "url": "https://www.runoob.com/julia/julia-file.html",
+    "body": "Julia 提供了一些基本的函数来处理文件：\nopen() - 打开文件\nread() - 读取文件内容\nwrite() - 写入内容\nclose() - 关闭文件\n从文件读取或者写入数据需要使用文件句柄。\n文件句柄其实就是一个指针，指向文件中的某个位置。从一个文件读取数据，应用程序首先要调用操作系统函数并传送文件名来打开文件，打开文件的函数会返回一个顺序号，即文件句柄（file handle），该文件句柄对于打开的文件是唯一的识别依据。\nopen() 函数\nJulia 可以使用 open() 函数打开一个文件，该函数返回文件句柄：\n语法格式：\nopen(filename, mode)\nfilename 为文件名，mode 为读写模式，可以是以下值：\nmode(模式)\n描述\n关键词\nr\n读取（默认模式）\nnone\nw\n写入、创建、截断\nwrite = true\na\n写入、创建、追加\nappend = true\nr+\n读取, 写入\nread = true, write = true\nw+\n读取, 写入、创建、截断\ntruncate = true, read = true\na+\n读取, 写入、创建、追加\nappend = true, read = true\n# Windows 打开文件\nfoo = open(\"D://runoob-test//julia//runoob-file.txt\")\n\n# Linux 或 Mac 打开文件\nfoo = open(\"./runoob-test/julia/runoob-file.txt\")\nclose() 函数\n在对文件操作完成后，我们需要对文件进行关闭操作，不然会造成资源泄露等问题，关闭文件使用 close() 函数：\n# 关闭上面代码中打开文件返回的 foo 句柄\nclose(foo)\n在 Julia 中，我们建议把文件处理包装在 do 语句块中：当该语句块执行完成时，打开的文件将自动关闭（自动调用 close() 函数），即使中途抛出异常也能保证关闭：\n实例",
+    "examples": [
+     "open(\"./runoob-test/julia/runoob-file.txt\") do file\n   # 执行文件操作\nend"
+    ]
+   },
+   {
+    "title": "Julia 流程控制",
+    "url": "https://www.runoob.com/julia/julia-flow-control.html",
+    "body": "流程控制语句通过程序设定一个或多个条件语句来实现。在条件为 true 时执行指定程序代码，在条件为 false 时执行其他指定代码。\nJulia 提供了大量的流程控制语句：\n复合表达式：begin 和 ;。\n条件表达式：if-elseif-else 和 ?: (三元运算符)。\n短路运算：逻辑运算符 &&（与）和 ||（或），以及链式比较。\n循环语句：while 和 for。\n异常处理：try-catch、error 和 throw。\nTask（协程）：非局部控制流，详见 Task 与并发。\n复合表达式\nbegin ... end 表达式可以按顺序计算若干子表达式，并返回最后一个子表达式的值：\n实例",
+    "examples": [
+     "julia> z = begin\n           x = 1\n           y = 2\n           x + y\n       end\n3"
+    ]
+   },
+   {
+    "title": "Julia 函数",
+    "url": "https://www.runoob.com/julia/julia-functions.html",
+    "body": "函数是一组一起执行一个任务的语句。\n在 Julia 里，函数是将参数值组成的元组映射到返回值的一个对象。\n定义函数\nJulia 中使用 function 定义函数，基本语法是：\nfunction functionname(args)\n expression\n ...\nend\n默认情况下，函数返回的值是最后计算的表达式的值，所以上面的写法没有 return 语句。当然，如果使用 return 关键字，函数就会立即返回：\n实例",
+    "examples": [
+     "julia> function f(x, y)\n           x + y\n       end\nf (generic function with 1 method)\n\njulia> f(2, 3)\n5\n\n# 使用 return 提前返回\njulia> function bills(money)\n           if money < 0\n               return false\n           else\n               return true\n           end\n       end\nbills (generic function with 1 method)\n\njulia> bills(50)\ntrue\n\njulia> bills(-50)\nfalse"
+    ]
+   },
+   {
+    "title": "Julia 数学函数",
+    "url": "https://www.runoob.com/julia/julia-mathematical-functions.html",
+    "body": "Julia 提供了一套高效、可移植的标准数学函数。\n数值比较函数\n下表列出了用于数值比较的函数：\n函数\n测试是否满足如下性质\nisequal(x, y)\nx 与 y 数值与类型上是否完全相同\nisfinite(x)\nx 是否是有限大的数字\nisinf(x)\nx 是否是（正/负）无穷大\nisnan(x)\nx 是否是 NaN\nisapprox(x, y)\nx 与 y 是否近似相等（运算符 ≈）\nisequal 认为 NaN 之间是相等的，这一点和 == 运算符不同：\n实例",
+    "examples": [
+     "julia> isequal(NaN, NaN)\ntrue\n\njulia> NaN == NaN\nfalse\n\njulia> isequal([1 NaN], [1 NaN])\ntrue\n\njulia> [1 NaN] == [1 NaN]\nfalse"
+    ]
+   },
+   {
+    "title": "Julia 元编程",
+    "url": "https://www.runoob.com/julia/julia-metaprogramming.html",
+    "body": "Julia 把自己的代码表示为语言中的数据结构，这样我们就可以编写操纵程序的程序。\n元编程也可以简单理解为编写可以生成代码的代码。\n元编程（英语：Metaprogramming），是指某类计算机程序的编写，这类计算机程序编写或者操纵其它程序（或者自身）作为它们的资料，或者在编译时完成部分本应在运行时完成的工作。多数情况下，与手工编写全部代码相比，程序员可以获得更高的工作效率，或者给与程序更大的灵活度去处理新的情形而无需重新编译。\n编写元程序的语言称之为元语言。被操纵的程序的语言称之为\"目标语言\"。一门编程语言同时也是自身的元语言的能力称之为\"反射\"或者\"自反\"。\n-- 维基百科\nJulia 源代码执行阶段\n1、解析原始 Julia 代码：Julia 解析器首先将源码字符串解析成抽象语法树（AST），AST 是一种以易于操作的格式包含全部代码的结构。\n2、执行已解析的 Julia 代码：在这个阶段，执行已解析的 Julia 代码。\n当我们在 REPL 中输入代码并按回车键时，会依次执行以上两个阶段。\n使用元编程工具，我们就可以访问这两个阶段之间的 Julia 代码，即在源代码解析之后、但在执行之前。\n提醒：元编程是强大的工具，但也增加了代码的理解成本。官方建议只有在高阶函数和闭包无法满足需求时才使用宏和 eval，大多数功能应该优先用普通函数实现。\n程序表示\nJulia 提供了 Meta 模块，可以用 Meta.parse(str) 把字符串解析成表达式对象，解析结果是 Expr 类型：\n实例",
+    "examples": [
+     "julia> prog = \"1 + 1\"\n\"1 + 1\"\n\njulia> ex1 = Meta.parse(prog)\n:(1 + 1)\n\njulia> typeof(ex1)\nExpr"
+    ]
+   },
+   {
+    "title": "Julia 方法与多重派发",
+    "url": "https://www.runoob.com/julia/julia-methods.html",
+    "body": "多重派发（multiple dispatch）是 Julia 最核心的语言特性：同一个函数可以针对不同参数类型的组合定义多个实现（方法），调用时根据所有参数的类型选择最匹配的实现。\n这与传统面向对象语言不同：C++、Java、Python 的方法派发只看第一个参数（this 对象），而 Julia 的函数不属于任何类型，派发时会考虑全部参数。\n函数与方法的关系\n在 Julia 中，函数（function）是一个名字，方法（method）是具体实现。同一个函数名下可以挂多个方法：\n实例",
+    "examples": [
+     "# 方法 1：两个 Float64 参数\njulia> f(x::Float64, y::Float64) = 2x + y\nf (generic function with 1 method)\n\n# 方法 2：两个 Number 参数（更宽泛）\njulia> f(x::Number, y::Number) = 2x - y\nf (generic function with 2 methods)"
+    ]
+   },
+   {
+    "title": "Julia 模块与包管理",
+    "url": "https://www.runoob.com/julia/julia-modules.html",
+    "body": "模块（module）用于把代码组织成独立的命名空间，避免命名冲突；包（package）则是打包发布的模块，通过内置的包管理器 Pkg 安装。\n定义模块\n使用 module ... end 定义模块：\n实例",
+    "examples": [
+     "module MyModule\n\n# export 声明对外公开的名字（可以写在模块任意位置）\nexport myfunc, PI\n\nconst PI = 3.14159\n\nmyfunc(x) = x * 2\n\n# 没有导出的名字属于模块私有\nhelper(x) = x + 1\n\nend"
+    ]
+   },
+   {
+    "title": "Julia 性能技巧",
+    "url": "https://www.runoob.com/julia/julia-performance.html",
+    "body": "Julia 的性能来自类型推断和 JIT 编译：编译器需要知道每个值的类型才能生成高效代码。因此 Julia 的性能问题几乎都源于\"编译器猜不出类型\"，掌握了这一点，写出接近 C 速度的代码并不难。\n性能关键代码放进函数\n任何性能关键的代码都应该放进函数里。函数内的代码会被编译优化，而顶层（全局作用域）代码运行慢得多：\n实例",
+    "examples": [
+     "# 不好：写在脚本顶层的循环很慢\nfor i in 1:1_000_000\n    x += sin(i)     # 慢\nend\n\n# 好：封装成函数\nfunction mysum(n)\n    x = 0.0\n    for i in 1:n\n        x += sin(i)     # 快\n    end\n    return x\nend"
+    ]
+   },
+   {
+    "title": "Julia 正则表达式",
+    "url": "https://www.runoob.com/julia/julia-regexes.html",
+    "body": "正则表达式(regular expression)描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。\nJulia 使用 PCRE 库，支持与 Perl 兼容的正则表达式（Perl-Compatible Regular Expressions）。\nJulia 中正则表达式通过 r\"...\" 形式的非标准字符串字面量创建，正则表达式字面量内部不做字符串插值和转义（双引号除外）：\n实例",
+    "examples": [
+     "julia> re = r\"^\\s*(?:#|$)\"\nr\"^\\s*(?:#|$)\"\n\njulia> typeof(re)\nRegex"
+    ]
+   },
+   {
+    "title": "Julia 交互式命令窗口",
+    "url": "https://www.runoob.com/julia/julia-repl.html",
+    "body": "执行 julia 命令可以直接进入交互式命令窗口：\n$ julia \n _\n _ _ _(_)_ | Documentation: https://docs.julialang.org\n (_) | (_) (_) |\n _ _ _| |_ __ _ | Type \"?\" for help, \"]?\" for Pkg help.\n | | | | | | |/ _` | |\n | | |_| | | | (_| | | Version 1.7.2 (2022-02-06)\n _/ |\\__'_|_|_|\\__'_| | release-1.7/bf53498635 (fork: 461 commits, 259 days)\n|__/ |\n\njulia>\n执行 exit() 退出交互式命令窗口，也可以通过输入 CTRL-D（同时按 Ctrl 键和 d 键）退出。\n输入一段完整的表达式并回车，REPL 会计算并显示它的值：\n实例",
+    "examples": [
+     "julia> 1 + 2\n3\n\njulia> ans\n3"
+    ]
+   },
+   {
+    "title": "Julia 字符串",
+    "url": "https://www.runoob.com/julia/julia-strings.html",
+    "body": "字符串是由零个或多个字符组成的有限序列。它是编程语言中表示文本的数据类型。\nJulia 通常使用单引号 ' 创建单个字符，双引号 \" 或三个双引号 \"\"\" 创建字符串：\nc = 'x' # Char 字符\n\nstr = \"RUNOOB\" # String 字符串\n\nrunoob = \"\"\"菜鸟教程 \"RUNOOB\"，包含了引号\"\"\" # 三引号字符串\nJulia 字符串类型特性：\nJulia 中用于字符串（和字符串字面量）的内置具体类型是 String。\nJulia 的字符串类型都是抽象类型 AbstractString 的子类型。\nJulia 有优秀的表示单字符的类型，即 AbstractChar。Char 是 AbstractChar 的内置子类型，它能表示任何 Unicode 字符的 32 位原始类型。\nJulia 字符串是不可更改的——任何 AbstractString 对象的值不可改变，拼接等操作总是生成新的字符串。\n字符\n单个字符用 Char 值表示，字符字面量用单引号包围。\nChar 是 32 位原始类型，可以转换为其对应的整数值，即 Unicode 码点：\n实例",
+    "examples": [
+     "julia> c = 'x'\n'x': ASCII/Unicode U+0078 (category Ll: Letter, lowercase)\n\njulia> typeof(c)\nChar\n\njulia> c = Int('x')     # 字符转整数\n120\n\njulia> typeof(c)\nInt64"
+    ]
+   },
+   {
+    "title": "Julia 结构体与类型系统",
+    "url": "https://www.runoob.com/julia/julia-struct-types.html",
+    "body": "结构体（struct）是把多个相关数据组合成一个整体的自定义类型，类似 C 语言的 struct 或 Python 的类（但不包含方法）。\n在 Julia 中，数据（结构体）和方法（函数）是分离的：函数不属于任何类型，而是通过多重派发根据参数类型选择实现，这一点会在方法与多重派发章节详细讲解。\n定义结构体\n使用 struct 关键字定义结构体，字段可以带类型标注，不带则默认为 Any：\n实例",
+    "examples": [
+     "julia> struct Point\n           x::Int      # 带类型标注的字段\n           y::Int\n           label       # 不带标注，类型为 Any\n       end"
+    ]
+   },
+   {
+    "title": "Julia Task 与并发",
+    "url": "https://www.runoob.com/julia/julia-tasks.html",
+    "body": "Task（也称协程 coroutine）是 Julia 的轻量级执行单元，可以在计算之间灵活地暂停和恢复，是 Julia 处理并发编程的基础。\nJulia 支持以下几类并发与并行编程：\n类别\n说明\n异步任务（协程）\nTask 暂停/恢复，适合 IO 密集场景\n多线程\n多个 Task 同时跑在多个 CPU 线程上，共享内存\n分布式计算\n多个 Julia 进程协作，各进程有独立内存\nGPU 计算\n通过 CUDA.jl 等包在 GPU 上运行 Julia 代码\n本章介绍最常用的协程与多线程，分布式计算只做简要说明。\nTask 基础\n用 @task 宏可以把一段代码包装成 Task，此时任务还没有运行；调用 schedule() 让它开始执行：\n实例",
+    "examples": [
+     "# 创建一个任务（还没有运行）\njulia> t = @task begin\n           sleep(1)\n           println(\"done\")\n       end\nTask (runnable) @0x00007f13a40c0eb0\n\n# 调度执行，schedule 会立即返回\njulia> schedule(t);\n\n# wait 阻塞等待任务完成\njulia> wait(t);\ndone"
+    ]
+   },
+   {
+    "title": "Julia 元组",
+    "url": "https://www.runoob.com/julia/julia-tuples.html",
+    "body": "Julia 的元组与数组类似，都是有序的元素集合，不同之处在于元组的元素不能修改，元组是不可变类型。\n另外元组使用小括号 (...)，数组使用方括号 [...]。\n元组创建很简单，只需要在括号中添加元素，并使用逗号隔开即可，数组中的很多函数也可以在元组中使用。\n实例",
+    "examples": [
+     "julia> tupl = (5, 10, 15, 20, 25, 30)   # 创建一个元组\n(5, 10, 15, 20, 25, 30)\n\njulia> tupl[3:end]          # 输出第三个到最后一个元素的元组\n(15, 20, 25, 30)\n\njulia> tupl = ((1, 2), (3, 4))   # 创建嵌套元组\n((1, 2), (3, 4))\n\njulia> tupl[1]      # 访问嵌套元组元素，输出第一个元组\n(1, 2)\n\njulia> tupl[1][2]    # 输出第一个元组的第二个元素\n2"
+    ]
+   },
+   {
+    "title": "Julia 教程",
+    "url": "https://www.runoob.com/julia/julia-tutorial.html",
+    "body": "Julia 是一个开源的编程语言，采用 MIT 许可证，每个人都可以免费使用。\nJulia 是一个面向科学计算的高性能动态高级程序设计语言。\nJulia 最初是为了满足高性能数值分析和计算科学的需要而设计的，它通过 JIT（即时）编译获得接近 C 语言的执行速度。\nJulia 于 2012 年首次发行，支持各种平台：macOS、Windows、Linux、FreeBSD。",
+    "examples": []
+   }
+  ]
+ }
+}

@@ -1,0 +1,384 @@
+{
+ "tutorial": {
+  "name": "Swift",
+  "category": "后端开发",
+  "desc": "Swift 是一种支持多编程范式和编译式的开源编程语言,苹果于2014年WWDC",
+  "url": "https://www.runoob.com/swift/",
+  "chapters": [
+   {
+    "title": "Swift 访问控制",
+    "url": "https://www.runoob.com/swift/swift-access-control.html",
+    "body": "访问控制决定「谁可以看到、使用、继承一段代码」。\nSwift 一共有六个访问级别，从最严格到最开放依次是 private、fileprivate、internal、package、public、open。\n很多旧资料只讲到 public，并且把 private 说成「只能在类中访问」，这两点都不准确。\n本篇把六个级别逐个讲清，并说明 open、package、private(set) 这些容易被忽略的用法。\n六个访问级别一览\n先看整体对比表，后面的每一节再逐个展开。\n级别\n可见范围\n能否跨模块\n能否跨模块继承或重写\nprivate\n声明所在的作用域 + 同文件的扩展\n否\n否\nfileprivate\n声明所在的整个源文件\n否\n否\ninternal\n声明所在的模块（默认级别）\n否\n否\npackage\n同一个包内的所有模块\n包内可以\n否，仍需 open\npublic\n任何模块\n是\n否\nopen\n任何模块\n是\n是\n这里有两个容易踩坑的地方。\n第一，public 不是最高级别，open 才是，而且 open 只能用于类以及类的成员。\n第二，package 的可见范围比 internal 大、比 public 小，它针对的是「同一个 Swift Package 里的多个模块」。\nprivate：声明作用域加同文件扩展\nprivate 是最严格的级别，但它并不等于「只能在类内部访问」。\n准确的说法是：private 成员在声明所在的作用域以及同一个文件里的扩展中可见。\n实例",
+    "examples": [
+     "import Foundation\n\nstruct RunoobUser {\n    private var token: String = \"RUNOOB-SECRET\"\n    fileprivate var site: String = \"www.runoob.com\"\n    private(set) var visitCount: Int = 0\n\n    mutating func visit() {\n        visitCount += 1   // 类型内部可以写\n    }\n}\n\nextension RunoobUser {\n    // 同文件的扩展可以访问 private 成员\n    func maskedToken() -> String {\n        String(token.prefix(3)) + \"****\"\n    }\n}\n\nvar user = RunoobUser()\nuser.visit()\nuser.visit()\nprint(user.visitCount)          // 外部可读\nprint(user.maskedToken())\nprint(user.site)                // fileprivate：同文件可读写"
+    ]
+   },
+   {
+    "title": "Swift actor 与数据隔离",
+    "url": "https://www.runoob.com/swift/swift-actors.html",
+    "body": "多个任务同时修改同一份数据，就会出现数据竞争：两个任务都读到旧值，各自加一，结果只加了一次。\n传统的解决办法是加锁，但锁容易漏、容易死锁，编译器也帮不上忙。\nSwift 用 actor（SE-0306，Swift 5.5 引入）把「这份状态只能串行访问」变成类型系统的一部分，由编译器检查。\n为什么需要 actor\n先看问题本身。下面的类没有任何保护，多个任务并发调用会互相覆盖。\n即使只有一个 += 1，它也不是原子操作：读值、加一、写回三步之间可能被打断。\nSwift 的并发检查会在编译期指出这类共享可变状态的问题，而 actor 就是给出的解法。\n做法\n谁保证安全\n主要风险\n不加保护\n没人，靠自觉\n数据竞争，结果不可预测\n手动加锁\n开发者，靠纪律\n漏加锁、死锁、锁粒度不当\nactor\n编译器检查\n使用上有 await 的语法负担\nactor 的定义与隔离状态\nactor 的写法和 class 很像，区别在于它的可变状态默认被隔离。\n隔离的意思是：外部不能直接读写这些属性，只能通过 actor 自己的方法来访问。\n定义一个 actor\n下面的计数器把 value 设为私有，只暴露两个方法。\n实例",
+    "examples": [
+     "import Foundation\n\nactor Counter {\n    private var value = 0        // 隔离状态，外部不能直接访问\n\n    func increment() {\n        value += 1               // 在 actor 内部可以自由读写\n    }\n\n    func current() -> Int {\n        return value\n    }\n}\n\n// 串行访问\nlet counter = Counter()\nawait counter.increment()\nawait counter.increment()\nprint(await counter.current())\n\n// 并发访问：100 个任务同时加，actor 会排队执行\nlet shared = Counter()\nawait withTaskGroup(of: Void.self) { group in\n    for _ in 1...100 {\n        group.addTask { await shared.increment() }\n    }\n}\nprint(await shared.current())"
+    ]
+   },
+   {
+    "title": "Swift 自动引用计数（ARC）",
+    "url": "https://www.runoob.com/swift/swift-arc.html",
+    "body": "自动引用计数（Automatic Reference Counting，简称 ARC）是 Swift 管理类实例内存的方式。\n它自动跟踪每个实例被多少个引用持有，一旦没人再引用，就释放这块内存。\nARC 处理不了的是「互相引用」和「闭包捕获自己」这两种情况，需要配合 weak 与 unowned 手动打破。\nARC 的工作原理\n每创建一个类实例，ARC 就为它记一个引用计数。\n每多一个强引用，计数加一；每少一个强引用，计数减一；计数归零时，实例被销毁并调用 deinit。\n这些加减由编译器自动插入，不需要手写 retain 或 release。\n实例",
+    "examples": [
+     "import Foundation\n\nclass Runoob {\n    let name: String\n    init(name: String) {\n        self.name = name\n        print(\"\\(name) 被创建\")\n    }\n    deinit {\n        print(\"\\(name) 被销毁\")\n    }\n}\n\nvar site: Runoob? = Runoob(name: \"Runoob\")   // 引用计数 1\nprint(\"创建完成\")\n\nsite = nil                                   // 引用计数归零，触发 deinit\nprint(\"置 nil 完成\")"
+    ]
+   },
+   {
+    "title": "Swift 数组",
+    "url": "https://www.runoob.com/swift/swift-arrays.html",
+    "body": "数组（Array）用来按顺序存放同一类型的多个元素，是 Swift 中最常用的集合类型。\n它保留了元素的插入顺序，可以按下标随机访问，也能动态地追加和删除元素。\n本篇讲数组的创建、下标访问、增删改、三种遍历写法，以及 Swift 数组最重要的特性之一：值语义与写时复制。\n键值对集合请见《Swift 字典》，无序集合与高阶函数请见《Set 与高阶函数》。\n创建数组\n数组的类型写作方括号里放元素类型，比如 [String]、[Int]，字面量则用方括号直接列出元素。\n类型和字面量的括号长得很像，但一个是类型标注，一个是值。\n实例",
+    "examples": [
+     "import Foundation\n\n// 数组字面量，元素类型由编译器推断为 [String] 与 [Int]\nvar sites: [String] = [\"Runoob\", \"RUNOOB\"]\nlet numbers = [1, 2, 3]\n\n// 空数组，两种写法等价\nvar empty: [Int] = []\nvar empty2 = [Int]()\n\n// 创建 3 个 0 组成的数组\nlet zeros = [Int](repeating: 0, count: 3)\n\n// 用区间创建数组\nlet rangeArray = Array(1...5)\n\nprint(sites, numbers, zeros, rangeArray, separator: \" | \")\nprint(empty.count, empty2.isEmpty)"
+    ]
+   },
+   {
+    "title": "Swift 基本语法",
+    "url": "https://www.runoob.com/swift/swift-basic-syntax.html",
+    "body": "Swift 的语法设计目标是「简洁且安全」，很多在 C 系语言里靠程序员自觉遵守的规则，在 Swift 里由编译器强制保证。\n本篇讲最基础的语法元素：导入模块、分号、注释、标识符、关键字、语句与表达式、输入输出，以及条件编译。\n这些内容看起来琐碎，但后面每一篇都会用到。\nimport 与 Foundation\nSwift 用 import 引入其他模块，用法和 Python 的 import 类似。\n标准库是自动可用的，不需要导入，print、Array、String 这些都属于标准库。\n一旦需要日期、文件、网络、JSON 解析这类能力，就要导入 Foundation。\n实例",
+    "examples": [
+     "import Foundation\n\n// 使用 Foundation 提供的 Date 与 DateFormatter\nlet now = Date(timeIntervalSince1970: 0)\nlet formatter = DateFormatter()\nformatter.dateFormat = \"yyyy-MM-dd\"\nformatter.timeZone = TimeZone(identifier: \"UTC\")\nprint(formatter.string(from: now))"
+    ]
+   },
+   {
+    "title": "Swift 字符",
+    "url": "https://www.runoob.com/swift/swift-characters.html",
+    "body": "字符（Character）表示人眼看到的一个字符，是字符串的组成单位。\nSwift 的 Character 既不是字节，也不是 Unicode 码点，而是一个扩展字素簇，这是它和 C 系语言里的 char 最大的区别。\n本篇讲 Character 的含义、扩展字素簇语义、与 String 的互转，以及字面量和类型标注的区别；字符串本身的用法见《Swift 字符串》。\nCharacter 是什么\nCharacter 表示单个扩展字素簇，必须用双引号赋值，并且里面只能放一个字符。\n声明时必须写类型标注，否则编译器会把双引号里的内容推断成 String，而不是 Character。\n实例",
+    "examples": [
+     "let char1: Character = \"A\"\nlet char2: Character = \"牛\"\n\nprint(\"char1 的值为 \\(char1)\")\nprint(\"char2 的值为 \\(char2)\")"
+    ]
+   },
+   {
+    "title": "Swift 类",
+    "url": "https://www.runoob.com/swift/swift-classes.html",
+    "body": "类（class）是 Swift 中另一种自定义类型，和结构体最大的区别是它是引用类型。\n同一个类实例可以被多个变量同时引用，通过任意一个变量修改，其他变量都会看到变化。\n本文讲类的定义与实例化、引用语义、恒等运算符，以及 final 与 open 这两个修饰类的关键字。\n定义与实例化\n用 class 关键字定义类，属性写法与结构体一致。\n和结构体不同，类不会自动获得成员逐一初始化器，所以每个存储属性都必须有一个初始值：要么在声明时给默认值，要么在 init 里赋值。\n实例",
+    "examples": [
+     "// 属性没有默认值，必须自己写 init 给它们赋值\nclass RunoobSite {\n    var name: String\n    var url: String\n\n    init(name: String, url: String) {\n        self.name = name\n        self.url = url\n    }\n}\n\nlet site = RunoobSite(name: \"Runoob\", url: \"www.runoob.com\")\nprint(site.name)\n\n// 所有属性都有默认值时，可以省略 init\nclass RunoobCourse {\n    var title = \"Swift 教程\"\n    var lessons = 43\n}\n\nlet course = RunoobCourse()\nprint(course.title, course.lessons)"
+    ]
+   },
+   {
+    "title": "Swift 闭包",
+    "url": "https://www.runoob.com/swift/swift-closures.html",
+    "body": "闭包是一段可以像值一样传递和使用的代码块，它能捕获并保存定义处周围的变量。\n在 Swift 里，全局函数、嵌套函数和闭包表达式本质上都是闭包，区别只在于写法与命名。\n本文讲解闭包表达式的简化过程、尾随闭包、捕获机制，以及逃逸与非逃逸这两个容易出错的概念。\n闭包的三种形式\nSwift 官方把闭包分成三种形式，它们的能力一致，只是形态不同。\n形式\n写法\n特点\n全局函数\nfunc name(...) { }\n有名字，不捕获任何值\n嵌套函数\n定义在另一个函数内部\n有名字，可以捕获外层函数的变量\n闭包表达式\n{ ... }\n没有名字，用轻量语法书写，可捕获上下文\n闭包表达式语法\n闭包表达式用一对大括号包住，参数和返回类型写在 in 前面，代码写在 in 后面。\n完整形式是 { (参数) -> 返回类型 in 语句 }。\n实例",
+    "examples": [
+     "import Foundation\n\n// 完整写法：参数列表、返回类型、in 关键字缺一不可\nlet full = { (a: Int, b: Int) -> Int in\n    return a + b\n}\n\nprint(full(3, 4))"
+    ]
+   },
+   {
+    "title": "Swift 并发编程：async 与 await",
+    "url": "https://www.runoob.com/swift/swift-concurrency.html",
+    "body": "下载图片、读取文件、请求接口，这些操作都要等待外部设备或网络，耗时远高于 CPU 计算。\n如果让主线程一直等，界面就会卡住。\nSwift 用 async / await（SE-0296，Swift 5.5 引入）把「等待」变成语言级别的语法，让异步代码读起来和同步代码一样线性。\n并发要解决什么问题\n传统的并发写法是回调嵌套：请求 A 的回调里发起请求 B，B 的回调里再处理结果。\n这种代码层级深、错误处理分散，还容易漏掉某条分支。\nSwift 的并发模型做三件事：用 async 标记异步函数，用 await 在调用点等待，用 Task 管理任务的生命周期。\n概念\n写法\n作用\n异步函数\nfunc f() async -> T\n声明这个函数可能挂起等待\n等待\nlet x = await f()\n挂起当前任务，结果就绪后继续\n任务\nTask { ... }\n创建一个独立的并发执行单元\n任务组\nwithTaskGroup\n动态并发执行一批同类型的任务\n执行器隔离\n@MainActor\n保证代码在指定线程上执行，如主线程\nawait 不是「阻塞」，而是「挂起」。当前任务让出执行权，线程可以去跑别的工作，等结果回来再恢复。这是它和 sleep 阻塞线程的本质区别。\nasync 函数与 await\n把一个函数标记为 async，就表示它的执行过程中可能暂停。\n调用它的地方必须写 await，这是在语法上明确标出「这里会等待」。\n定义一个异步函数\n下面的例子模拟两次网络请求，用 Task.sleep 代表等待耗时。\n实例",
+    "examples": [
+     "import Foundation\n\n// async 标记异步函数，函数体内可以挂起等待\nfunc fetchPage(_ name: String) async -> String {\n    try? await Task.sleep(for: .milliseconds(20))\n    return \"\\(name) 内容\"\n}\n\nfunc loadAll() async {\n    // await 表示在这里挂起，等结果回来再继续\n    let home = await fetchPage(\"RUNOOB 首页\")\n    let doc = await fetchPage(\"Swift 教程\")\n    print(home)\n    print(doc)\n}\n\nawait loadAll()"
+    ]
+   },
+   {
+    "title": "Swift 常量",
+    "url": "https://www.runoob.com/swift/swift-constants.html",
+    "body": "常量用来保存一旦确定就不再改变的值，Swift 用 let 声明常量。\nlet 和 var 的声明语法几乎一样，区别只在能否再次赋值：let 只能赋值一次。\n本篇讲 let 的不可变语义、它对引用类型的真实含义、延迟初始化、命名惯例，以及和 var 之间的选择准则；var 的用法见《Swift 变量》。\n用 let 声明常量\nlet 声明一个只能赋值一次的常量，初始化之后它的值就固定下来。\n声明写法和 var 完全一致，把关键字换掉即可。\n实例",
+    "examples": [
+     "import Foundation\n\n// let 声明常量：赋值之后不能再改\nlet site = \"www.runoob.com\"\nlet visits = 100\nlet price = 9.9\n\nprint(\"站点 \\(site) 访问量：\\(visits)，单价：\\(price)\")"
+    ]
+   },
+   {
+    "title": "Swift 数据类型",
+    "url": "https://www.runoob.com/swift/swift-data-types.html",
+    "body": "Swift 是强类型语言，每个值都有确定的类型，类型决定了它能存什么、能做什么运算。\n本章节按「数值 → 文本 → 元组 → 集合 → 特殊类型」的顺序，把 Swift 的基础数据类型过一遍。\n其中数组、字典、集合只做概览，详细用法在后面的专门章节展开。\nhttps://www.runoob.com/wp-content/uploads/2015/10/05-type-system.svg\n整数类型\nSwift 的整数分为有符号和无符号两大类，各自又有不同的位宽。\n最常用的是 Int，它的位宽跟随平台，在 64 位设备上等同于 Int64。\n实例",
+    "examples": [
+     "// Int 的位数取决于平台：64 位平台上是 Int64\nprint(\"Int 最大值：\\(Int.max)\")\nprint(\"Int 最小值：\\(Int.min)\")\n\n// 固定宽度的整数类型\nprint(\"Int8 范围：\\(Int8.min) ~ \\(Int8.max)\")\nprint(\"UInt8 范围：\\(UInt8.min) ~ \\(UInt8.max)\")\nprint(\"Int64 最大值：\\(Int64.max)\")"
+    ]
+   },
+   {
+    "title": "Swift 条件语句",
+    "url": "https://www.runoob.com/swift/swift-decision-making.html",
+    "body": "条件语句根据一个或多个条件的真假，决定执行哪一段代码。\nSwift 提供了 if、switch、guard 和三元运算符，它们的共同前提是条件必须是 Bool。\nif 语句\nif 语句由一个布尔条件和一段代码块组成，条件为 true 时才执行代码块。\n实例",
+    "examples": [
+     "func checkIf(_ varA: Int) {\n    if varA < 20 {\n        print(\"varA 小于 20\")\n    }\n    print(\"varA 变量的值为 \\(varA)\")\n}\n\ncheckIf(10)"
+    ]
+   },
+   {
+    "title": "Swift 析构过程",
+    "url": "https://www.runoob.com/swift/swift-deinitialization.html",
+    "body": "析构器（deinitializer）在类的实例被释放之前自动调用，用来完成资源清理工作。\n用关键字 deinit 声明，只有类类型才有析构器，结构体和枚举没有。\ndeinit 语法与执行时机\n每个类最多只能有一个析构器，它不带任何参数，写法上也不写括号。\ndeinit {\n // 执行清理工作\n}\n析构器由系统在实例即将被释放时自动调用，你不需要、也不能自己发起调用。\n下面的例子用一个静态计数器观察实例的创建与释放。\n实例",
+    "examples": [
+     "import Foundation\n\nclass RunoobCounter {\n    static var count = 0\n\n    init() {\n        RunoobCounter.count += 1\n        print(\"创建实例，当前实例数：\\(RunoobCounter.count)\")\n    }\n\n    deinit {\n        RunoobCounter.count -= 1\n        print(\"释放实例，当前实例数：\\(RunoobCounter.count)\")\n    }\n}\n\nvar a: RunoobCounter? = RunoobCounter()\nvar b: RunoobCounter? = RunoobCounter()\na = nil\nb = nil"
+    ]
+   },
+   {
+    "title": "Swift 字典",
+    "url": "https://www.runoob.com/swift/swift-dictionaries.html",
+    "body": "字典（Dictionary）用来按键值对存放元素，通过键快速找到对应的值，查找过程与元素数量无关。\n它和数组一样是值类型，赋值和传参时保持独立；但它不保证顺序，这一点和数组正好相反。\n本篇讲字典的创建、增删改、default 下标、遍历、mapValues 与 merging，以及键的 Hashable 要求。\n按位置存放元素请见《Swift 数组》。\n创建字典\n字典的类型写作方括号里放「键类型: 值类型」，比如 [String: Int]。\n字面量用 键: 值 的形式列出，空字典有两种写法。\n实例",
+    "examples": [
+     "import Foundation\n\n// 字典字面量的类型标注是 [键类型: 值类型]\nvar ages: [String: Int] = [\"Runoob\": 10, \"RUNOOB\": 5]\n\n// 空字典，两种写法等价\nlet empty = [String: Int]()\nvar empty2: [String: Int] = [:]\n\nprint(ages.count, empty.isEmpty, empty2.count)"
+    ]
+   },
+   {
+    "title": "Swift 枚举",
+    "url": "https://www.runoob.com/swift/swift-enumerations.html",
+    "body": "枚举（Enumeration）用来描述「一组有限的可能取值」。\n比如一周只有七天、订单只有几种状态，用枚举比用字符串常量安全得多：写错的 case 会在编译期被发现。\nSwift 的枚举比 C 语言强大，可以带关联值、方法、计算属性，还能遵循协议。\n枚举是值类型，赋值和传参时按值复制，这点和结构体一样。\n定义与 case\n用 enum 关键字定义枚举，每个取值用 case 列出。\n多个 case 可以写在同一行，用逗号分隔。\n实例",
+    "examples": [
+     "import Foundation\n\n// 定义一周中的工作日\nenum RunoobWeekday {\n    case monday, tuesday, wednesday, thursday, friday\n}\n\nfunc plan(_ day: RunoobWeekday) -> String {\n    switch day {\n    case .monday:\n        return \"周一：例会\"\n    case .tuesday, .wednesday, .thursday:\n        return \"周中：开发\"\n    case .friday:\n        return \"周五：发布\"\n    }\n}\n\nprint(plan(.wednesday))\nprint(plan(.friday))"
+    ]
+   },
+   {
+    "title": "Swift 环境搭建",
+    "url": "https://www.runoob.com/swift/swift-environment.html",
+    "body": "Swift是一门开源的编程语言，该语言用于开发 OS X和 iOS 应用程序。\n在正式开发应用程序前，我们需要搭建 Swift 开发环境，以便更好友好的使用各种开发工具和语言进行快速应用开发。由于Swift开发环境需要在 OS X系统中运行，因此其环境的搭建将不同于 Windows 环境，下面就一起来学习一下swift开发环境的搭建方法。\n成功搭建swift开发环境的前提：\n必须拥有一台苹果电脑。因为集成开发环境 XCode 只能运行在 OS X 系统上。\n电脑系统必须在 OS 10.9.3 及以上。\n电脑必须安装 Xcode 集成开发环境。\n安装 Xcode 16\n在 macOS 上开发 Apple 平台应用，Xcode 是官方唯一的完整 IDE。\n打开 App Store 搜索 Xcode 安装，或者到 developer.apple.com/xcode 下载安装包。\n下载完成后，双击下载的 dmg 文件安装，安装完成后我们将 Xcode 图标移动到应用文件夹。\n你也可以在 App Store 中搜索 xcode 安装，如下图所示：\nXcode 16 自带的 Swift 编译器是 6.x，支持 Swift 6 语言模式，也向下兼容 Swift 5 模式。\n安装完成后第一次启动需要同意许可协议并安装额外组件，这一步会占用几分钟。\n验证是否安装成功，在终端执行：\n$ swift --version\nswift-driver version: 1.148.6 Apple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)\nTarget: arm64-apple-macosx26.0\n只要能看到 Apple Swift version 和对应的目标平台，就说明工具链已经可用。\n注意：Xcode 的命令行工具需要单独激活一次。如果提示找不到 swift 命令，执行 xcode-select --install 安装命令行工具，再执行 sudo xcode-select -s /Applications/Xcode.app 指定路径。\n第一个 Swift 程序\nXcode 安装完成后，我们就可以开始编写 Swift 代码了。\n接下来我们在应用文件夹打开 Xcode，打开后在屏幕顶部选择 File => New => Playground。\n接着 为 playground 设置一个名字并选择 iOS 平台。\nSwift 的 playground 就像是一个可交互的文档，它是用来练手学swift的，写一句代码出一行结果（右侧），可以实时查看代码结果，是学习swift语言的利器！\n以下是 Swift Playground 窗口默认的代码：\nimport UIKit\n\nvar str = \"Hello, playground\"\n如果你想创建 OS x 程序，需要导入 Cocoa 包 import Cocoa 代码如下所示：\nimport Cocoa\n\nvar str = \"Hello, playground\"\n以上程序载入后，会在Playground 窗口右侧显示程序执行结果：\nHello, playground\n至此，你已经完成了第一个 Swift 程序的学习，恭喜你入门了。\n创建第一个项目\n1、打开 xcode 工具，选择 File => New => Project\n2、我们选择一个\"Single View Application\"，并点击\"next\"，创建一个简单示例app应用。\n3、接着我们输入项目名称（ProductName),公司名称（Organization Name),公司标识前缀名（Organization identifier)\n还要选择开发语言(Language),选择设备（Devices)。\n其中Language有两个选项：Objective-c和swift，因为我们是学习swift当然选择swift项了。\n点击\"Next\"下一步。\n4、选择存放的目录，如果要使用Git源代码管理，将勾上Source Control的create git repository on My Mac.\n点击create创建项目。\n5、项目创建后，默认生成了一个示例文件，可以看到swift将oc中的h和m文件合并成了一个文件（即swift后缀名文件).\nMain.storyboard相当于xib文件，有比xib更多的功能。\n6、打开main.storyboard,默认看到一个简单的空白的应用界面，大小为平板界面大小。\n如果开发都只需要开发兼容iphone手机的app,那么可以把Use Auto Layout的勾去掉（默认为勾上）。\n7、弹出了一个对话框，让我们选择界面尺寸，iPhone 或 iPad。我们选择iPhone的尺寸。\n8、可以看到，界面大小变为了手机iphone的宽度和高度。\n大家可以记住界面相关的尺寸，方便以后布局计算位置：\n9.我们为界面添加点内容，在右下方找到Text控件，将它拖入storyboard上，并双击写入文本\"Hello World!\"。\n运行一下模拟器（command+R 快捷键或在菜单栏中选择 Product => Run)。\n至此，我们的第一个Swift项目就完成了。\n新建一个 SwiftUI 项目\nXcode 16 新建项目时默认推荐 SwiftUI，它是 Apple 目前主推的声明式 UI 框架。\n启动 Xcode，选择 File → New → Project，在 iOS 页签下选择 App，然后按下面填写。\n选项\n建议值\n说明\nProduct Name\nRunoobDemo\n项目名称，同时作为模块名\nTeam\n个人账号或 None\n真机调试才必须选择\nOrganization Identifier\ncom.runoob\n反向域名，用于生成 Bundle ID\nInterface\nSwiftUI\n另一个选项是 Storyboard\nLanguage\nSwift\n另一个选项是 Objective-C\nInterface 这一项决定项目用哪套 UI 框架，选错不会报错，但后续写法完全不同。\nSwiftUI 用声明式的代码描述界面，界面随数据自动更新；Storyboard 用可视化拖拽加 XML 描述界面，再通过 IBOutlet 连接代码。\n新项目建议选 SwiftUI，因为它是 Apple 当前的重点方向，新系统特性会优先在 SwiftUI 上提供。\n创建完成后，Xcode 会自动生成 RunoobDemoApp.swift 和 ContentView.swift 两个文件。\n点击左上角的运行按钮，或者按 Command + R，模拟器就会启动并显示默认界面。\n使用 Playground\nPlayground 是最适合练习语法的工具，输入代码后右侧会实时显示结果，不需要手动编译运行。\n在 Xcode 中选择 File → New → Playground，选择 Blank 模板，保存到本地即可。\n输入一行 print(\"RUNOOB\")，右侧结果栏会立刻显示 RUNOOB。\nPlayground 左侧还有两个特殊目录：\n目录\n作用\n注意事项\nSources\n存放辅助代码与自定义类型\n这里的代码需要是 public 才能被主页调用\nResources\n存放图片、JSON、音频等资源\n用 Bundle.main 读取\nPlayground 也支持 import SwiftUI 后直接预览界面，适合快速试验 UI 效果。\n注意：Playground 里顶层代码可以写表达式并自动显示结果，但用 swift 命令运行 .swift 文件时，普通表达式不会自动打印，必须显式调用 print。\n命令行运行\n不打开 Xcode 也能运行 Swift，这在验证一小段代码时最快。\n先用任意编辑器新建文件 hello.swift：\n实例",
+    "examples": [
+     "import Foundation\n\n// 命令行程序的入口就是文件顶层的代码\nlet site = \"RUNOOB\"\nprint(\"Hello, \\(site)!\")"
+    ]
+   },
+   {
+    "title": "Swift 错误处理",
+    "url": "https://www.runoob.com/swift/swift-error-handling.html",
+    "body": "程序运行中总会遇到预期之外的情况：文件不存在、网络断开、用户输入格式不对。\nSwift 用一套显式的错误处理机制来描述这些可恢复的失败，把「这个操作可能失败」直接写进函数签名，让编译器帮你盯住每一个调用点。\n本文覆盖 Error 协议、throw / throws / try / do-catch、try? / try!、defer、rethrows 与 Result，最后说明什么时候该用错误、什么时候用可选类型就够了。\n为什么需要错误处理\n没有错误处理机制时，函数通常只能靠特殊返回值来报告失败，例如返回 -1、空字符串或者 nil。\n这种做法的问题在于：调用方很容易忘记检查，而且「为什么失败」的信息在传递过程中丢掉了。\nSwift 的做法是把失败写进函数签名，调用方必须用 try 明确表态，编译器负责检查你是否处理了这个错误。\n报告失败的方式\n失败时返回什么\n调用方需要做什么\n适用场景\n特殊返回值\n约定的哨兵值，如 -1\n自己记得检查\n失败含义单一，且哨兵值不会与正常结果冲突\n可选类型\nnil\n用 if let 或 ?? 解包\n只关心「有没有值」，不关心失败原因\nthrows 错误\n抛出一个遵循 Error 的值\n用 try 处理或继续传播\n失败原因对调用方有意义，且可能恢复\nError 协议与自定义错误类型\nSwift 中的错误类型必须遵循 Error 协议。\n这个协议没有任何必须实现的要求，它只是一个标记，表示这个类型可以当作错误抛出。\n最常用的定义方式是用枚举，因为枚举可以把所有可能的失败原因清楚列出来，再用 switch 或 catch 逐一处理。\n用枚举定义错误\n下面的例子定义了一个网络错误类型，并用 throws 标记可能失败的函数。\n实例",
+    "examples": [
+     "import Foundation\n\n// 遵循 Error 协议即可成为错误类型\nenum NetworkError: Error {\n    case invalidURL(String)       // 关联值：出错的地址\n    case timeout(seconds: Int)    // 关联值：超时的秒数\n    case serverError(code: Int)   // 关联值：HTTP 状态码\n}\n\n// 可能失败的函数用 throws 标记\nfunc fetchData(from url: String) throws -> String {\n    if url.isEmpty {\n        throw NetworkError.invalidURL(url)\n    }\n    if url.contains(\"timeout\") {\n        throw NetworkError.timeout(seconds: 30)\n    }\n    return \"RUNOOB 首页数据\"\n}\n\ndo {\n    let data = try fetchData(from: \"https://www.runoob.com\")\n    print(\"获取成功：\\(data)\")\n} catch {\n    print(\"获取失败：\\(error)\")\n}"
+    ]
+   },
+   {
+    "title": "Swift 扩展",
+    "url": "https://www.runoob.com/swift/swift-extensions.html",
+    "body": "扩展（Extension）可以给一个已有的类型添加新功能，而不需要修改它的原始定义。\n被扩展的类型可以是结构体、类、枚举，也可以是协议，甚至是 Swift 标准库里的 Int、String 这类内置类型。\n本文所有代码基于 Swift 6.x 与 Xcode 16，示例可直接用 swift 命令运行。\n扩展能做什么\n先看一张能力清单，明确扩展的边界在哪里。\n能力\n是否支持\n说明\n添加计算属性\n支持\n不能添加存储属性\n添加实例方法、类型方法\n支持\n结构体方法需要修改自身时加 mutating\n添加构造器\n支持\n类的便捷构造器可以，指定构造器不行\n添加下标\n支持\n读写皆可\n添加嵌套类型\n支持\n枚举、结构体、类都可以\n让类型遵循协议\n支持\n最常用的场景之一\n添加存储属性\n不支持\n会直接编译报错\n添加析构器 deinit\n不支持\n只能写在类体内部\n重写已有功能\n不支持\n扩展不是继承\n扩展的语法很简单，用关键字 extension 加上类型名，大括号里写新增的成员。\n实例",
+    "examples": [
+     "extension 已有类型 {\n    // 在这里添加计算属性、方法、构造器、下标、嵌套类型\n}"
+    ]
+   },
+   {
+    "title": "Swift 函数",
+    "url": "https://www.runoob.com/swift/swift-functions.html",
+    "body": "函数把一段完成特定任务的代码封装起来，给它起一个名字，之后就可以反复调用。\nSwift 的函数功能比多数语言丰富：参数可以有外部标签、默认值、可变个数，还可以把函数本身当作参数和返回值。\n本文从最基本的定义与调用讲起，再逐步覆盖标签、默认值、inout、函数类型、嵌套函数，以及 @escaping、@autoclosure、@discardableResult 三个常用属性。\n定义与调用\n用 func 关键字定义函数，参数写在括号里，返回类型用 -> 指向。\n下面的函数接收一个字符串，返回一句问候语。\n实例",
+    "examples": [
+     "import Foundation\n\n// 定义函数：首参数前写 _，表示调用时不写标签\nfunc greet(_ name: String) -> String {\n    return \"Hello, \\(name)!\"\n}\n\n// 调用时直接传值，不写 name:\nprint(greet(\"Runoob\"))"
+    ]
+   },
+   {
+    "title": "Swift 泛型",
+    "url": "https://www.runoob.com/swift/swift-generics.html",
+    "body": "泛型（Generics）让代码在编写时可以不绑定具体类型，等真正调用时再决定用哪种类型。\n同一个泛型函数或泛型类型，可以处理 Int、String、自定义结构体等任意类型，同时保持编译期类型检查。\nSwift 标准库里的 Array、Dictionary、Optional 都是泛型类型，所以你在使用它们时其实一直在用泛型。\n为什么需要泛型\n假设要写一个交换两个变量值的函数。如果不使用泛型，就得为每种类型各写一份。\n实例",
+    "examples": [
+     "// 只支持 Int 的版本\nfunc runoobSwapInt(_ a: inout Int, _ b: inout Int) {\n    let temp = a\n    a = b\n    b = temp\n}\n\n// 只支持 String 的版本\nfunc runoobSwapString(_ a: inout String, _ b: inout String) {\n    let temp = a\n    a = b\n    b = temp\n}"
+    ]
+   },
+   {
+    "title": "Swift 继承",
+    "url": "https://www.runoob.com/swift/swift-inheritance.html",
+    "body": "继承是类区别于结构体和枚举的核心能力：一个类可以获取另一个类的属性、方法和下标。\n被继承的类叫父类（也叫超类、基类），继承的类叫子类。\n子类除了直接使用父类的成员，还能重写它们，或者加上自己的新成员。\nSwift 中只有类支持继承，结构体和枚举都不行，这一点在《Swift 结构体》里已经对比过。\n基类与子类\n没有被任何类继承的类叫基类，Swift 里不需要像 Java 那样显式写一个根父类。\n下面的 RunoobEmployee 就是一个基类，它有 name、salary 两个存储属性和一个 describe() 方法。\n实例",
+    "examples": [
+     "import Foundation\n\n// 基类：没有继承任何其他类的类\nclass RunoobEmployee {\n    var name: String\n    var salary: Double\n\n    init(name: String, salary: Double) {\n        self.name = name\n        self.salary = salary\n    }\n\n    func describe() -> String {\n        return \"\\(name) 的月薪是 \\(salary)\"\n    }\n}\n\n// 子类：继承 RunoobEmployee，并新增自己的存储属性\nclass RunoobManager: RunoobEmployee {\n    var bonus: Double\n\n    init(name: String, salary: Double, bonus: Double) {\n        self.bonus = bonus                      // 先初始化子类自己的存储属性\n        super.init(name: name, salary: salary)  // 再调用父类构造器\n    }\n\n    func totalIncome() -> Double {\n        return salary * 12 + bonus\n    }\n}\n\nlet employee = RunoobEmployee(name: \"小明\", salary: 8000)\nprint(employee.describe())\n\nlet manager = RunoobManager(name: \"小红\", salary: 15000, bonus: 30000)\nprint(manager.describe())          // 调用继承自父类的方法\nprint(\"年收入：\\(manager.totalIncome())\")"
+    ]
+   },
+   {
+    "title": "Swift 构造过程",
+    "url": "https://www.runoob.com/swift/swift-initialization.html",
+    "body": "构造过程是创建类、结构体或枚举实例时，为每个存储属性设置初始值并完成必要准备工作的过程。\n这个过程由构造器（initializer）完成，用关键字 init 声明。构造器不返回任何值，它的职责是保证实例在第一次使用前已经处于有效状态。\n存储属性初始赋值\n实例创建时，所有存储属性都必须有初始值，有两种给法：在声明时直接给默认值，或者在构造器里赋值。\n在构造器中给属性赋值是直接设置，不会触发属性观察器。\n实例",
+    "examples": [
+     "import Foundation\n\nclass Rectangle {\n    var length = 6.0     // 声明时直接给默认值\n    var breadth: Double  // 没有默认值，必须在构造器里赋值\n\n    init(breadth: Double) {\n        self.breadth = breadth\n    }\n}\n\nlet rect = Rectangle(breadth: 12.0)\nprint(\"面积：\\(rect.length * rect.breadth)\")"
+    ]
+   },
+   {
+    "title": "Swift 与 Objective-C / C 互操作",
+    "url": "https://www.runoob.com/swift/swift-interop.html",
+    "body": "Swift 从设计之初就考虑了与既有生态的共存，因此调用 Objective-C 和 C 代码几乎是零成本的。\n反方向也能走通：给 Swift 的成员加上 @objc，Objective-C 就能像使用原生类一样调用它们。\n与 C++ 的互操作更晚一些，需要显式打开互操作模式，而且有明确的限制。\n本篇按「Swift 调用对方」和「对方调用 Swift」两个方向，把三条边界都走一遍。\n三种互操作边界\n先看整体，三条边界的开启方式和限制各不相同。\n方向\n开启方式\n主要限制\nSwift 调用 Objective-C\n桥接头文件或模块映射\n需要 Objective-C 运行时，主要在 Apple 平台\nObjective-C 调用 Swift\nSwift 成员加 @objc，导入生成的 -Swift.h\n成员类型必须能表示成 Objective-C 类型\nSwift 调用 C\n桥接头文件或模块映射\n需要手动管理指针生命周期\nC 调用 Swift\n用 @_cdecl 导出\n参数和返回值必须是 C 兼容类型\nSwift 与 C++ 互操作\n打开 -cxx-interoperability-mode\n不支持 C++ 异常与虚函数继承\n桥接头文件（bridging header）是给 App target 用的，模块映射（module map）是给框架和包用的。\nSwift 调用 Objective-C\n在 Xcode 工程里第一次添加 Objective-C 文件时，Xcode 会主动询问是否创建桥接头文件。\n也可以在 Build Settings 的 Objective-C Bridging Header 里手动指定一个头文件路径。\n桥接头文件里 #import 进来的 Objective-C 头文件，Swift 代码可以直接使用，不需要再 import。\n实例",
+    "examples": [
+     "// 文件路径：RunoobGreeter.h\n#import <Foundation/Foundation.h>\n\nNS_ASSUME_NONNULL_BEGIN\n\n@interface RunoobGreeter : NSObject\n@property (nonatomic, copy) NSString *site;\n- (NSString *)greet;\n@end\n\nNS_ASSUME_NONNULL_END"
+    ]
+   },
+   {
+    "title": "Swift 简介",
+    "url": "https://www.runoob.com/swift/swift-intro.html",
+    "body": "Swift 是 Apple 于 2014 年发布的一门通用编程语言，主要用来开发 iOS、iPadOS、macOS、watchOS、tvOS 应用，2015 年开源后交给 Swift 社区与 Apple 共同维护，编译器、标准库、包管理器的源码都可以在 GitHub 上找到。\nSwift 把 C 与 Objective-C 的优点结合在一起，同时摆脱了 C 兼容性带来的历史包袱，与 Objective-C 相比，Swift 语法更简洁，并且把空值安全、类型安全、内存管理这些容易出错的地方交给编译器在编译期检查。\nSwift 是一门编译型语言，源码先由 Swift 编译器编译成机器码，再直接运行，不需要虚拟机。\nSwift 同时支持面向过程、面向对象、函数式和面向协议四种编程范式。\n注意：Swift 的语法在 Swift 3 有过一次大改，网上的老教程如果还在用 println、++、C 风格 for 循环，基本都是 Swift 2 时代的写法，已经无法编译。\nSwift 发展历程\n了解版本演进能帮你判断一段老代码是否还能用，下面这张表列出了每个重要版本的关键变化。\n年份\n版本\n里程碑\n2014\nSwift 1.0\nApple 在 WWDC 发布，随 Xcode 6 提供\n2015\nSwift 2.0\n宣布开源，新增错误处理、协议扩展、guard\n2016\nSwift 3.0\nAPI 命名大改，参数标签规则调整，移除 C 风格 for 循环\n2017\nSwift 4.0\n字符串 API 改进，引入 Codable\n2019\nSwift 5.0\nABI 稳定，二进制框架可以跨版本复用，引入 Result\n2021\nSwift 5.5\n引入 async/await（SE-0296）、actor 与结构化并发\n2022\nSwift 5.7\n引入 if let x { 简写绑定与 any 存在类型\n2023\nSwift 5.9\n引入宏、package 访问级别与 C++ 互操作\n2024\nSwift 6.0\n引入严格并发检查，编译期拦截数据竞争\n从 Swift 5.5 开始，语言进入了「每年两个小版本」的稳定节奏，语法改动越来越小，工程能力越来越强。\nSwift 6 的重点不是新语法，而是把并发安全从「运行时可能崩溃」提前到「编译期直接报错」。\n为什么选择 Swift\n选择一门语言，通常看四点：安全、性能、表达力和生态，Swift 在这四点上的表现都比较均衡。\n安全 是 Swift 最强调的设计目标。\n可选类型 Optional 强制你在使用一个可能为空的值之前先处理空值，从语言层面消灭了「空指针解引用」这类崩溃。\n类型安全让不同类型之间不会隐式转换，例如 Int 和 Double 必须显式转换才能运算，编译期就能发现类型错误。\n整数溢出默认会直接终止程序而不是静默回绕，这避免了大量难以排查的数值 bug。\n快速 是第二个优势。\nSwift 编译器使用 LLVM 后端，会做大量内联、泛型特化和内存优化，性能接近 C 语言，远高于脚本语言。\n字符串、数组、字典等基础类型都用结构体实现，配合写时复制（COW）机制，既有值语义的安全性，又有引用语义的效率。\n表达力 让代码更接近自然语言。\n字符串插值、闭包简写、协议扩展、属性包装器等特性，让很多在其他语言里需要写几十行的逻辑，在 Swift 里几行就能表达清楚。\n跨平台 是 Swift 从 2015 年开源后逐步补齐的能力。\nSwift 现在可以在 macOS、Linux、Windows 上编译运行，也支持服务器端开发和嵌入式设备。\nSwift 能做什么\nSwift 的应用场景早已不限于 iPhone 应用，下面按领域说明它现在能做什么。\n领域\n典型用途\n常用框架\nApple 平台应用\niOS、iPadOS、macOS、watchOS、tvOS 的界面与逻辑\nSwiftUI、UIKit、AppKit\n服务端开发\nREST API、Web 服务、微服务\nVapor、Hummingbird\n系统与命令行工具\n脚本、命令行程序、系统服务\nFoundation、SwiftPM\n机器学习\n模型推理与训练\nCreate ML、swift-coreml\n嵌入式\n单片机与资源受限设备\nEmbedded Swift\n如果你是初学者，建议从 Apple 平台应用入手，因为这是 Swift 工具链最成熟、资料最多的方向。\n如果你已经熟悉后端开发，也可以直接用 Vapor 写一个 Web 服务，用同一门语言覆盖前端和后端。\n第一个 Swift 程序\n按照惯例，第一个程序从输出一行文字开始。\n实例",
+    "examples": [
+     "// 我的第一个 Swift 程序\nprint(\"Hello, World!\")"
+    ]
+   },
+   {
+    "title": "Swift 字面量",
+    "url": "https://www.runoob.com/swift/swift-literals.html",
+    "body": "字面量（literal）是直接写在源码里、一眼就能看出类型的值，例如 42、3.14、\"Runoob\" 和 true。\nSwift 会根据字面量的写法和上下文推断类型，所以写代码时通常不需要额外标注。\n什么是字面量\n下面三行赋值，右侧都是字面量，左侧变量的类型由 Swift 自动推断出来。\n实例",
+    "examples": [
+     "let aNumber = 3          // 推断为 Int\nlet aString = \"Runoob\"   // 推断为 String\nlet aBool = true         // 推断为 Bool\n\nprint(aNumber, aString, aBool)"
+    ]
+   },
+   {
+    "title": "Swift 循环与控制转移",
+    "url": "https://www.runoob.com/swift/swift-loops.html",
+    "body": "循环让同一段代码重复执行，直到满足退出条件。\nSwift 提供 for-in、while、repeat-while 三种循环结构，配合 break、continue 和带标签的跳转语句控制流程。\n本文合并了旧版分散的 for-in、while、repeat-while、break、continue 等多篇内容，并统一到 Swift 6 的写法。\nfor-in 循环\nfor-in 是 Swift 中最常用的循环，用来遍历区间、数组、字典、字符串等序列。\n遍历数字区间\n闭区间运算符 ... 包含两端的值，半开区间 ..< 不包含右端。\n实例",
+    "examples": [
+     "import Foundation\n\n// 闭区间 1...5 会依次取到 1、2、3、4、5\nfor i in 1...5 {\n    print(\"\\(i) 乘以 5 等于 \\(i * 5)\")\n}"
+    ]
+   },
+   {
+    "title": "Swift 方法",
+    "url": "https://www.runoob.com/swift/swift-methods.html",
+    "body": "方法是与某个特定类型（类、结构体或枚举）关联的函数，用来描述这个类型能做什么。\n它与普通函数最大的区别是：方法要通过某个实例或类型来调用，并且可以直接访问该实例的属性。\n实例方法\n实例方法属于某个具体实例，可以读取和修改该实例的属性，也可以调用同类型的其他方法。\n下面这个 Counter 类用三个实例方法管理一个计数器。\n实例",
+    "examples": [
+     "import Foundation\n\nclass Counter {\n    var count = 0\n\n    func increment() {\n        count += 1\n    }\n\n    // 用 _ 显式省略外部标签，调用时直接传值\n    func incrementBy(_ amount: Int) {\n        count += amount\n    }\n\n    func reset() {\n        count = 0\n    }\n}\n\nlet counter = Counter()\ncounter.increment()          // 计数值变成 1\ncounter.incrementBy(5)       // 计数值变成 6\nprint(\"计数器的值：\\(counter.count)\")\ncounter.reset()\nprint(\"重置后的值：\\(counter.count)\")"
+    ]
+   },
+   {
+    "title": "Swift 版本新特性",
+    "url": "https://www.runoob.com/swift/swift-new-features.html",
+    "body": "Swift 从 2014 年发布到现在，语言面貌已经换过好几轮。\n老教程里常见的 ++、C 风格 for、println 之所以编译不过，就是版本差异造成的。\n本文按版本梳理关键特性，重点讲 Swift 6 的严格并发和迁移路径，最后简单介绍 Swift 5.9 引入的宏。\n版本时间线\n先看一张总表，把「哪个版本带来了什么」对齐到时间轴上。\n表中所有特性都能在 Swift Evolution 提案页查到，提案页会标注 Implemented in Swift X。\n版本\n时间\n关键特性\nSwift 1.0\n2014 年，随 Xcode 6\n首次发布，只能在 Apple 平台使用\nSwift 2.0\n2015 年，随 Xcode 7\n错误处理 try / catch；同年 12 月开源\nSwift 3.0\n2016 年，随 Xcode 8\nAPI 命名大改，首参数默认不带外部标签（SE-0046）\nSwift 4.0\n2017 年，随 Xcode 9\nCodable（SE-0166）、内存独占访问检查（SE-0176）\nSwift 4.1\n2018 年，随 Xcode 9.3\n自动合成 Equatable / Hashable（SE-0185）\nSwift 4.2\n2018 年，随 Xcode 10\nCaseIterable、#error / #warning、随机数 API\nSwift 5.0\n2019 年，随 Xcode 10.2\nABI 稳定；Result（SE-0235）、@unknown default（SE-0192）、原始字符串（SE-0200）\nSwift 5.1\n2019 年，随 Xcode 11\n不透明返回类型 some（SE-0244）、属性包装器（SE-0258）\nSwift 5.2\n2020 年，随 Xcode 11.4\n编译诊断改进、构建速度提升\nSwift 5.3\n2020 年，随 Xcode 12\n多尾随闭包（SE-0279）、@main（SE-0281）\nSwift 5.4\n2021 年，随 Xcode 12.5\n结果构造器 result builder（SE-0289），SwiftUI 声明式语法的基础\nSwift 5.5\n2021 年，随 Xcode 13\nasync / await（SE-0296）、actor（SE-0306）、结构化并发（SE-0304）、Sendable（SE-0302）\nSwift 5.6\n2022 年，随 Xcode 13.3\n存在类型 any（SE-0335）\nSwift 5.7\n2022 年，随 Xcode 14\nif let 同名简写（SE-0345）、主关联类型（SE-0346）、并发检查的渐进迁移（SE-0337）\nSwift 5.8\n2023 年，随 Xcode 14.3\n语言特性的渐进启用机制进一步完善\nSwift 5.9\n2023 年，随 Xcode 15\n宏（SE-0382、SE-0389、SE-0397）、package 访问级别（SE-0386）、if / switch 表达式（SE-0380）、Observation（SE-0395）\nSwift 5.10\n2024 年，随 Xcode 15.3\n完整并发检查（complete concurrency checking）\nSwift 6.0\n2024 年，随 Xcode 16\nSwift 6 语言模式，数据竞争由警告升级为错误；区域隔离（SE-0414）、全局变量并发安全（SE-0412）、类型化 throws（SE-0413）\nSwift 6.x\n6.0 之后\n在 6.0 基础上持续完善并发诊断与工具链\n注意：表中没有写具体版本号的小项，是因为官方提案页没有明确标注 Implemented in Swift X。写文档时不确定的版本号宁可不写，也不要编。\n几个高频特性速览\n下面挑出日常最常用、也最容易和旧教程冲突的几组特性，各配一段可运行的代码。\nsome 与 any\nsome 表示「某个具体的遵循类型，但我不告诉你它是谁」，编译期就确定了真实类型。\nany 表示「任何遵循该协议的类型」，运行时才知道，代价是动态派发。\n实例",
+    "examples": [
+     "import Foundation\n\nprotocol Greeter {\n    var name: String { get }\n    func greet() -> String\n}\n\nstruct RunoobGreeter: Greeter {\n    let name: String\n    func greet() -> String { return \"你好，\\(name)\" }\n}\n\n// some：返回某个具体的遵循类型，调用方不需要知道它是谁\nfunc makeGreeter() -> some Greeter {\n    return RunoobGreeter(name: \"Runoob\")\n}\nprint(makeGreeter().greet())\n\n// any：把不同的遵循类型装进同一个数组，代价是动态派发\nlet greeters: [any Greeter] = [\n    RunoobGreeter(name: \"www.runoob.com\"),\n    RunoobGreeter(name: \"RUNOOB\")\n]\nfor g in greeters { print(g.greet()) }"
+    ]
+   },
+   {
+    "title": "Swift some 与 any",
+    "url": "https://www.runoob.com/swift/swift-opaque-types.html",
+    "body": "在 Swift 里，some P 和 any P 都可以表示「某个遵循协议 P 的类型」，但它们的含义完全不同。\nsome 是不透明类型：对外隐藏具体类型，但编译器知道它是唯一确定的一种类型。\nany 是存在类型：运行时可以装任何遵循 P 的类型，代价是失去静态类型信息。\n本文基于 Swift 6.x，示例可直接运行。\n为什么需要这两种写法\n先看一个共同的需求：函数返回的东西只要满足某个协议即可，具体类型不想暴露。\nSwift 提供了两条路，一条是 some，一条是 any，它们解决的是不同问题。\n对比项\nsome P（不透明类型）\nany P（存在类型）\n具体类型\n编译期固定为一种\n运行时可以是任意遵循者\n类型信息\n调用者看不到，编译器看得到\n被擦除\n能否装不同类型\n不能\n可以\n调用方式\n静态派发\n动态派发，有装箱开销\n典型用途\n隐藏实现细节、SwiftUI 的 body\n异构集合、运行时才确定类型\n下面分别展开。\n不透明返回类型 some\n在返回类型前写 some 协议名，就表示「我返回一个遵循该协议的类型，但具体是哪个类型不告诉你」。\n调用者只能使用协议里声明的成员，看不到具体类型，也就无法依赖实现细节。\n实例",
+    "examples": [
+     "import Foundation\n\nprotocol RunoobShape {\n    func area() -> Double\n}\n\nstruct RunoobCircle: RunoobShape {\n    var radius: Double\n    func area() -> Double { .pi * radius * radius }\n}\n\nstruct RunoobSquare: RunoobShape {\n    var side: Double\n    func area() -> Double { side * side }\n}\n\n// 返回 some：调用者只知道「这是一个 RunoobShape」，具体类型被隐藏\nfunc makeCircle(_ radius: Double) -> some RunoobShape {\n    return RunoobCircle(radius: radius)\n}\n\nlet circle = makeCircle(2.0)\nprint(String(format: \"圆面积：%.4f\", circle.area()))\nprint(\"静态类型是 \\(type(of: circle))\")"
+    ]
+   },
+   {
+    "title": "Swift 运算符",
+    "url": "https://www.runoob.com/swift/swift-operators.html",
+    "body": "运算符是一个符号，用来告诉编译器对操作数执行某种运算，例如相加、比较大小或做逻辑判断。\nSwift 的运算符大体可以分为算术、溢出、比较、逻辑、位运算、区间和空合等几类。\n运算符分类\n下表按用途对 Swift 的常用运算符做了归类，后面各节会逐类展开。\n类别\n运算符\n算术\n+-*/%\n溢出\n&+&-&*\n比较\n==!=<<=>>====!==\n逻辑\n&&||!\n位运算\n&|^~<<>>&<<&>>\n区间\na...ba..<b...ba...\n空合\n??\n三元\n条件 ? 值1 : 值2\n算术运算符\n算术运算符用于加减乘除和求余，下表中的 A 为 10，B 为 20。\n运算符\n描述\n示例\n+\n加\nA + B 结果为 30\n-\n减\nA - B 结果为 -10\n*\n乘\nA * B 结果为 200\n/\n除\nB / A 结果为 2\n%\n求余\nB % A 结果为 0\n实例",
+    "examples": [
+     "let A = 10\nlet B = 20\n\nprint(\"A + B 结果为：\\(A + B)\")\nprint(\"A - B 结果为：\\(A - B)\")\nprint(\"A * B 结果为：\\(A * B)\")\nprint(\"B / A 结果为：\\(B / A)\")\nprint(\"B % A 结果为：\\(B % A)\")"
+    ]
+   },
+   {
+    "title": "Swift 可选链",
+    "url": "https://www.runoob.com/swift/swift-optional-chaining.html",
+    "body": "可选链（Optional Chaining）是一种在值可能为 nil 时安全访问其属性、方法或下标的写法。\n它把「先判断是不是 nil，再取值」压缩成一个问号：链上任意一环为 nil，整个表达式就返回 nil，程序不会崩溃。\n可选链语法\n在可选值后面紧跟一个问号 ?，然后照常写属性、方法或下标，这就是可选链。\n下面先定义一套贯穿全文的模型类，它们构成一条 Person → Residence → Address → Room 的链。\n实例",
+    "examples": [
+     "import Foundation\n\n// 房间\nclass Room {\n    let name: String\n    init(name: String) {\n        self.name = name\n    }\n}\n\n// 地址\nclass Address {\n    var buildingName: String?       // 楼名，可选\n    var buildingNumber: String      // 门牌号\n    var street: String              // 街道\n    init(buildingNumber: String, street: String) {\n        self.buildingNumber = buildingNumber\n        self.street = street\n    }\n    // 返回地址标识：有楼名就用「楼名 + 门牌号」\n    func buildingIdentifier() -> String? {\n        if let buildingName = buildingName {\n            return \"\\(buildingName) \\(buildingNumber)\"\n        } else {\n            return buildingNumber\n        }\n    }\n}\n\n// 住所\nclass Residence {\n    var rooms: [Room] = []          // 房间列表，默认空数组\n    var address: Address?           // 地址，可能为 nil\n    var numberOfRooms: Int {        // 计算属性：房间数量\n        return rooms.count\n    }\n    subscript(i: Int) -> Room {     // 下标：按索引取房间\n        return rooms[i]\n    }\n    func printNumberOfRooms() {\n        print(\"房间数量：\\(numberOfRooms)\")\n    }\n}\n\n// 人\nclass Person {\n    var residence: Residence?       // 住所，可能为 nil\n}"
+    ]
+   },
+   {
+    "title": "Swift 可选(Optionals)类型",
+    "url": "https://www.runoob.com/swift/swift-optionals.html",
+    "body": "可选类型（Optional）用来表示「这里可能有一个值，也可能没有值」。\n当变量可能为「空」时，就把它声明成可选类型；Swift 会强制你在使用前处理这种「空」的情况，从而在编译期消灭大量空指针问题。\n本文基于 Swift 6.x，示例可直接用 swift 命令运行。\nOptional<T> 与 T?\n可选类型本质是一个泛型枚举 Optional<T>，它只有两个取值：.some(值) 和 .none。\nSwift 提供了后缀问号 T? 作为 Optional<T> 的简写，两者完全等价。\n实例",
+    "examples": [
+     "import Foundation\n\n// 三种写法完全等价\nvar a: Int? = 42\nvar b: Optional<Int> = 42\nvar c: Int? = nil\n\nprint(a as Any)\nprint(b as Any)\nprint(c as Any)\n\n// 可选类型本质是一个枚举：.some(值) 或 .none\nlet someValue: Int? = .some(7)\nlet noneValue: Int? = .none\nprint(someValue as Any, noneValue as Any)\n\n// 声明可选变量但未赋值，默认为 nil\nvar site: String?\nprint(site as Any)\nsite = \"www.runoob.com\"\nprint(site as Any)\n\n// 可选数组：? 作用在整个 [Int] 上，不是 Int 上\nvar numbers: [Int]? = [1, 2, 3]\nprint(numbers as Any)\nnumbers = nil\nprint(numbers as Any)"
+    ]
+   },
+   {
+    "title": "Swift Package Manager（包管理）",
+    "url": "https://www.runoob.com/swift/swift-package-manager.html",
+    "body": "Swift Package Manager（简称 SwiftPM 或 SPM）是 Swift 官方的依赖管理与构建工具。\n它负责三件事：描述一个包由哪些代码组成、从远端拉取依赖、把代码编译成库或可执行文件。\n它已经集成进 Swift 工具链和 Xcode，不需要额外安装，是当前管理 Swift 项目依赖的首选方式。\nSwiftPM 的核心概念\n在动手之前，先把几个术语对应到实际的目录和文件上。\n概念\n对应实体\n说明\n包（package）\n一个含 Package.swift 的目录\n分发和依赖管理的基本单位\n清单（manifest）\nPackage.swift\n用 Swift 代码描述包的结构\n目标（target）\nSources 下的一个子目录\n一个编译模块，是代码的组织单位\n产品（product）\nproducts 数组中的条目\n包对外提供的东西，库或可执行文件\n依赖（dependency）\ndependencies 数组中的条目\n本包使用的其他包\n最容易混淆的是「目标」和「产品」：目标是内部怎么组织代码，产品是外部能用什么。\n一个目标可以不出现在任何产品里（纯内部实现），一个产品也可以由多个目标组成。\n创建一个包\nSwiftPM 自带脚手架命令，可以直接生成标准目录结构。\n$ swift package init --type executable --name RunoobCLI\nCreating executable package: RunoobCLI\nCreating Package.swift\nCreating .gitignore\nCreating Sources\nCreating Sources/RunoobCLI/RunoobCLI.swift\nCreating Tests/\nCreating Tests/RunoobCLITests/\nCreating Tests/RunoobCLITests/RunoobCLITests.swift\n生成的结构非常固定，源文件放在 Sources 下，测试放在 Tests 下。\nRunoobCLI/\n├── Package.swift\n├── Sources/\n│ └── RunoobCLI/\n│ └── RunoobCLI.swift\n└── Tests/\n └── RunoobCLITests/\n └── RunoobCLITests.swift\n--type 支持多种模板，最常用的是 library、executable 和 empty，分别对应库、可执行程序和空包。\n此外还有 tool（带命令行参数解析的可执行程序）、macro（宏包）、build-tool-plugin 等模板。\n不指定名字时，SwiftPM 会使用当前目录名作为包名。\nPackage.swift 结构\n清单文件本身就是一个 Swift 源文件，用 PackageDescription 提供的类型来描述包。\n第一行的 swift-tools-version 是必须的，它决定清单文件能用哪些 API。\n实例",
+    "examples": [
+     "// 文件路径：Package.swift\n// swift-tools-version: 6.0\nimport PackageDescription\n\nlet package = Package(\n    // 包名，也是 Xcode 中显示的工程名\n    name: \"RunoobKit\",\n    // 声明支持的最低平台版本\n    platforms: [\n        .macOS(.v14)\n    ],\n    products: [\n        // 库产品：供其他包或 App 依赖\n        .library(name: \"RunoobCore\", targets: [\"RunoobCore\"]),\n        // 可执行产品：swift run 运行的目标\n        .executable(name: \"RunoobCLI\", targets: [\"RunoobCLI\"]),\n    ],\n    targets: [\n        // 库目标：只包含可复用的代码，没有 main 入口\n        .target(name: \"RunoobCore\"),\n        // 可执行目标：必须有 main 入口\n        .executableTarget(\n            name: \"RunoobCLI\",\n            dependencies: [\"RunoobCore\"]\n        ),\n        // 测试目标：依赖被测模块\n        .testTarget(\n            name: \"RunoobCoreTests\",\n            dependencies: [\"RunoobCore\"]\n        ),\n    ],\n    // 使用 Swift 6 语言模式\n    swiftLanguageModes: [.v6]\n)"
+    ]
+   },
+   {
+    "title": "Swift 属性",
+    "url": "https://www.runoob.com/swift/swift-properties.html",
+    "body": "属性是类型和实例携带的数据，Swift 把它们分成存储属性和计算属性两大类。\n存储属性真正占用内存保存一个值，计算属性则每次访问时现算，不占存储空间。\n本文讲存储与计算属性、只读计算属性、属性观察器、延迟属性 lazy，以及容易被写错的类型属性 static 与 class 的区别。\n存储属性与计算属性\n存储属性用 var 或 let 声明，直接保存一个值。\n计算属性必须用 var 声明，通过 get 和 set 两个代码块来读取和写入，本身不存储任何数据。\n实例",
+    "examples": [
+     "struct RunoobRect {\n    var originX: Double = 0.0    // 存储属性：真实保存一个值\n    var width: Double = 0.0      // 存储属性\n\n    var centerX: Double {        // 计算属性：每次访问时计算\n        get { originX + width / 2 }\n        set { originX = newValue - width / 2 }\n    }\n}\n\nvar rect = RunoobRect(originX: 10, width: 20)\nprint(rect.centerX)     // 读取时执行 get\nrect.centerX = 50       // 写入时执行 set，newValue 就是 50\nprint(rect.originX)"
+    ]
+   },
+   {
+    "title": "Swift 属性包装器",
+    "url": "https://www.runoob.com/swift/swift-property-wrappers.html",
+    "body": "写业务代码时经常遇到同一类需求：给属性加范围校验、读写时自动转换格式、把值同步到 UserDefaults。\n这些逻辑如果每个属性都手写一遍，既啰嗦又容易漏。\n属性包装器（property wrapper，SE-0258，Swift 5.1 引入）就是为此设计的：把「读写属性时附带的那层逻辑」抽成一个可复用的类型，再用 @ 语法套到属性上。\n什么是属性包装器\n属性包装器本质上是一个带有 @propertyWrapper 标记的类型，它必须提供一个名为 wrappedValue 的属性。\n使用方在声明属性时加上 @包装器名，之后读写这个属性，实际经过的就是包装器里的 wrappedValue 的 getter 和 setter。\n换句话说，包装器把「存储 + 附加逻辑」打包成一个类型，属性声明处只留下一行注解。\n角色\n写在哪里\n职责\n包装器类型\n标了 @propertyWrapper 的 struct / class / enum\n实现 wrappedValue，负责真正的读写逻辑\n包装器属性\n使用方的 @Wrapper var x: T\n声明被包装的属性，只写业务意图\nwrappedValue\n包装器类型内部\n对外的值，getter 返回、setter 接收\nprojectedValue\n包装器类型内部（可选）\n额外的投影值，通过 $x 访问\n@propertyWrapper 语法\n先看一个最小可用的包装器，它在写入时把值限制在指定范围内。\n实例",
+    "examples": [
+     "import Foundation\n\n// 用 @propertyWrapper 标记，类型名前的 @ 只在声明属性时使用\n@propertyWrapper\nstruct Clamped {\n    private var value: Int              // 真正存值的地方\n    let range: ClosedRange<Int>         // 允许的取值范围\n\n    // wrappedValue 参数对应属性声明处的初始值\n    init(wrappedValue: Int, _ range: ClosedRange<Int>) {\n        self.range = range\n        // 初始化时也要夹紧，否则初始值可能越界\n        self.value = min(max(wrappedValue, range.lowerBound), range.upperBound)\n    }\n\n    var wrappedValue: Int {\n        get { value }\n        set { value = min(max(newValue, range.lowerBound), range.upperBound) }\n    }\n}\n\nstruct Player {\n    @Clamped(0...100) var health: Int = 120   // 初始值 120 会被夹到 100\n    @Clamped(1...10) var level: Int = 3\n}\n\nvar player = Player()\nprint(player.health)\nplayer.health = 250\nprint(player.health)\nplayer.health = -5\nprint(player.health)\nprint(player.level)"
+    ]
+   },
+   {
+    "title": "Swift 协议扩展与面向协议编程",
+    "url": "https://www.runoob.com/swift/swift-protocol-extensions.html",
+    "body": "协议只写要求、不给实现，这带来了灵活性，但也意味着每个遵循者都要重复写一遍相同的代码。\n协议扩展（Protocol Extension）解决了这个问题：它可以给协议补上方法、计算属性和下标的具体实现。\n把共享实现放进协议扩展、让不同类型按需遵循，就是 Swift 常说的面向协议编程（Protocol-Oriented Programming）。\n这一篇既讲它的用法，也讲它最容易踩的坑。\n协议扩展提供默认实现\n用 extension 协议名 给协议添加成员，写法和扩展普通类型一样。\n扩展里的实现会作为默认实现，遵循者不写也能直接用。\n实例",
+    "examples": [
+     "import Foundation\n\nprotocol RunoobGreetable {\n    var name: String { get }\n    func greet() -> String\n}\n\n// 协议扩展提供默认实现\nextension RunoobGreetable {\n    func greet() -> String {\n        return \"你好，我是 \\(name)\"\n    }\n}\n\nstruct RunoobGuest: RunoobGreetable {\n    var name: String\n    // 不写 greet()，直接使用默认实现\n}\n\nstruct RunoobVip: RunoobGreetable {\n    var name: String\n    // 提供自己的实现，覆盖默认实现\n    func greet() -> String {\n        return \"贵宾 \\(name)，欢迎回来\"\n    }\n}\n\nprint(RunoobGuest(name: \"RUNOOB\").greet())\nprint(RunoobVip(name: \"小明\").greet())"
+    ]
+   },
+   {
+    "title": "Swift 协议",
+    "url": "https://www.runoob.com/swift/swift-protocols.html",
+    "body": "协议（Protocol）是一份「能力清单」，只规定需要提供哪些属性、方法和构造器，不关心具体怎么实现。\n类、结构体和枚举都可以遵循协议，这让完全不同类型的对象可以被同一段代码处理。\nSwift 是面向协议编程的语言，标准库里的 Sequence、Collection、Equatable、Codable 都是协议。\n协议定义与遵循\n用 protocol 定义协议，遵循时把协议名写在类型名后面，用冒号分隔。\n一个类型可以同时遵循多个协议，协议之间用逗号分隔。\n实例",
+    "examples": [
+     "import Foundation\n\n// 协议只描述\"需要什么\"，不提供实现\nprotocol RunoobDescribable {\n    var name: String { get }\n    func describe() -> String\n}\n\nstruct RunoobSite: RunoobDescribable {\n    var name: String\n    func describe() -> String {\n        return \"站点：\\(name)\"\n    }\n}\n\nstruct RunoobUser: RunoobDescribable {\n    var name: String\n    func describe() -> String {\n        return \"用户：\\(name)\"\n    }\n}\n\nlet items: [any RunoobDescribable] = [\n    RunoobSite(name: \"www.runoob.com\"),\n    RunoobUser(name: \"RUNOOB\")\n]\nfor item in items {\n    print(item.describe())\n}"
+    ]
+   },
+   {
+    "title": "Swift Sendable 与严格并发",
+    "url": "https://www.runoob.com/swift/swift-sendable.html",
+    "body": "Swift 6 最重要的变化，是把「并发安全」从开发者自觉遵守的约定，变成了编译器强制检查的规则。\n这套规则的核心是一个叫 Sendable 的协议：它回答同一个问题——这个值能不能安全地跨越并发边界，被另一条线程或另一个 actor 使用。\n本篇从数据竞争讲起，再说明 Sendable 的自动推导、手动标注、@unchecked Sendable 的代价，最后给出从 Swift 5 迁移到 Swift 6 的完整路径。\n注意：本页示例均在 Swift 6 语言模式下验证。用命令行脚本方式运行时，需要显式加上 -swift-version 6，否则 swift 命令默认仍按 Swift 5 的宽松规则编译，很多错误不会出现。\n数据竞争：并发里最难查的一类 bug\n数据竞争（data race）指两条以上线程同时访问同一块内存，其中至少一次是写操作，而且没有任何同步机制。\n它的可怕之处在于「不一定出错」：多数时候结果正确，偶尔给出错误结果，或者干脆崩溃，换台机器又复现不了。\n实例",
+    "examples": [
+     "import Foundation\n\n// 一个可变的引用类型，没有任何同步保护\nfinal class RunoobCounter {\n    var value = 0\n}\n\nfunc runoobDemo() {\n    let counter = RunoobCounter()\n    let group = DispatchGroup()\n\n    for _ in 0..<1000 {\n        group.enter()\n        DispatchQueue.global().async {\n            counter.value += 1   // 多条线程同时写同一块内存：数据竞争\n            group.leave()\n        }\n    }\n    group.wait()\n    print(counter.value)\n}\nrunoobDemo()"
+    ]
+   },
+   {
+    "title": "Swift Set 与高阶函数",
+    "url": "https://www.runoob.com/swift/swift-set-higher-order.html",
+    "body": "Swift 的 Set 用来保存一组无序且不重复的值，适合做去重和集合运算。\n高阶函数指的是可以接收函数作为参数、或者把函数作为返回值的函数，标准库里的 map、filter、reduce 都属于这一类。\n本文先讲 Set 的创建与集合运算，再讲集合类型上最常用的几个高阶函数，最后演示把它们串起来的链式写法。\n创建 Set\nSet 的元素类型必须遵循 Hashable 协议，Swift 的 Int、String、Double、Bool 等基本类型都满足这个要求。\n用数组字面量可以直接创建 Set，重复的元素会被自动去掉。\n实例",
+    "examples": [
+     "// 用数组字面量创建 Set，重复元素会被自动去掉\nvar runoobSet: Set<String> = [\"Swift\", \"Kotlin\", \"Rust\"]\nrunoobSet.insert(\"Go\")                  // 插入一个元素\nprint(runoobSet.count)                  // count 是元素个数\nprint(runoobSet.contains(\"Swift\"))      // 判断是否包含某个元素\nprint(runoobSet.contains(\"Python\"))\nprint(runoobSet.sorted())               // Set 无序，排序后再输出才稳定\n\n// 数组里的重复元素会自动去重\nlet repeated: Set<Int> = [1, 2, 2, 3, 3, 3]\nprint(repeated.sorted())"
+    ]
+   },
+   {
+    "title": "Swift 字符串",
+    "url": "https://www.runoob.com/swift/swift-strings.html",
+    "body": "字符串（String）是一系列字符的有序集合，是 Swift 里使用频率最高的类型之一。\nSwift 的字符串基于 Unicode 构建，中文、emoji 这类非 ASCII 文本都能自然处理。\n本篇讲字符串的创建、索引、常用方法、多行写法、Unicode 视图与比较；组成字符串的字符本身，见《Swift 字符》。\n创建、拼接与插值\n字符串可以用字面量创建，也可以用 String() 初始化；拼接用 + 或 +=，把变量塞进字符串则用 \\(...) 插值。\n实例",
+    "examples": [
+     "// 字面量与初始化器\nlet stringA = \"Hello, World!\"\nlet stringB = String(\"Hello, World!\")\nprint(stringA)\nprint(stringB)\n\n// 拼接\nlet constA = \"菜鸟教程：\"\nlet constB = \"http://www.runoob.com\"\nprint(constA + constB)\n\nvar greet = \"Runoob\"\ngreet += \" 教程\"\nprint(greet)\n\n// 插值\nlet num = 20\nprint(\"\\(num) 乘于 100 等于 \\(num * 100)\")"
+    ]
+   },
+   {
+    "title": "Swift 结构体",
+    "url": "https://www.runoob.com/swift/swift-structures.html",
+    "body": "结构体（struct）是 Swift 中最常用的自定义类型，用来把一组相关的数据打包在一起。\n它和类长得很像，但本质区别在于结构体是值类型，类是引用类型。\n本文先讲结构体的定义、实例化与成员逐一初始化器，再重点澄清「结构体的值不可修改」这个流传很广的误解，最后用一张表把结构体和类的区别一次讲清。\n定义与实例化\n用 struct 关键字定义结构体，属性写在花括号里，然后调用它的构造器创建实例。\n实例",
+    "examples": [
+     "// 定义一个描述网站的结构体\nstruct RunoobSite {\n    var name: String    // 网站名称\n    var url: String     // 网站地址\n    var year: Int       // 成立年份\n}\n\n// 用自动生成的构造器创建实例\nvar site = RunoobSite(name: \"Runoob\", url: \"www.runoob.com\", year: 2014)\nprint(site.name)\nprint(site.url)\n\n// 用点语法访问和修改属性\nsite.year = 2026\nprint(site.year)"
+    ]
+   },
+   {
+    "title": "Swift 编码规范",
+    "url": "https://www.runoob.com/swift/swift-style.html",
+    "body": "代码写出来是给人看的，顺带才让编译器读懂。\n同样的功能，不同的人可以写出完全不同的 Swift 代码，可读性差别巨大。\n本文先讲 Apple 官方 API 设计指南的核心要点，再落到命名、格式化这些每天都要打交道的细节，最后用一张反模式对照表把常见坏味道一次讲清。\n为什么需要编码规范\n规范不是审美问题，它直接影响三件事：读代码的速度、改代码的风险、协作时的沟通成本。\nSwift 的语法本身就在鼓励某些写法，比如值类型、可选绑定、协议扩展，顺着语言的设计走，代码会自然变短变清楚。\n下面这套约定大部分来自 Apple 官方的 API Design Guidelines，也就是设计 Foundation 和 SwiftUI 时用的同一套标准。\n官方 API 设计指南要点\n指南的第一条是「调用处的清晰度比简洁更重要」，其余要点都可以看作这条的展开。\n命名时不要盯着定义处怎么写最短，而要想象调用处读起来是什么样子。\n要点\n说明\n示例\n调用处清晰\n让调用点一眼看懂意图，宁长勿含糊\narticles.filter { !$0.isPublished }\n按角色命名\n用角色而不是类型来命名，避免 string、array 这类词\ngreeting 而不是 string\n参数标签成句\n参数标签负责让调用处读起来像一句英文\nmove(from:to:)\n无副作用加 -ed / -ing\n返回新值的方法用形容词结尾，原地修改的用动词\nsorted() 与 sort()\n布尔读起来像断言\n布尔属性能直接放进 if 里读成一句话\nisPublished、hasCover\n文档注释写契约\n用 - Parameter、- Returns 说清输入输出与前提\n见下方示例\n下面这段代码把「参数标签成句」和「文档注释写契约」放在一起演示。\n实例",
+    "examples": [
+     "import Foundation\n\nstruct RunoobPoint {\n    var x: Int\n    var y: Int\n}\n\n/// 计算从 start 到 end 的位移向量。\n/// - Parameters:\n///   - start: 起点坐标。\n///   - end: 终点坐标。\n/// - Returns: 由 end 减 start 得到的新坐标。\nfunc move(from start: RunoobPoint, to end: RunoobPoint) -> RunoobPoint {\n    return RunoobPoint(x: end.x - start.x, y: end.y - start.y)\n}\n\n// 调用处读起来就是「从 A 移到 B」，参数标签承担了可读性\nlet delta = move(from: RunoobPoint(x: 1, y: 1), to: RunoobPoint(x: 4, y: 5))\nprint(\"位移：\\(delta.x), \\(delta.y)\")\n\nextension RunoobPoint {\n    // 参数标签 by 让调用处读成「按 factor 缩放」\n    func scaled(by factor: Int) -> RunoobPoint {\n        return RunoobPoint(x: x * factor, y: y * factor)\n    }\n}\n\nprint(RunoobPoint(x: 2, y: 3).scaled(by: 4))"
+    ]
+   },
+   {
+    "title": "Swift 下标",
+    "url": "https://www.runoob.com/swift/swift-subscripts.html",
+    "body": "下标（subscript）是访问集合、序列或自定义类型中元素的快捷方式，用方括号语法 实例[索引] 取值和赋值。\n数组的 array[0]、字典的 dict[\"key\"] 都是下标，你可以在自己的类、结构体或枚举里定义同样的语法。\n下标语法与应用\n定义下标用 subscript 关键字，写法介于实例方法和计算属性之间：有参数列表和返回类型，但没有名字。\n实例",
+    "examples": [
+     "import Foundation\n\nstruct TimesTable {\n    let multiplier: Int\n\n    // 只读下标可以省略 get 关键字和花括号\n    subscript(index: Int) -> Int {\n        return multiplier * index\n    }\n}\n\nlet threeTimesTable = TimesTable(multiplier: 3)\nprint(\"3 的 6 倍是 \\(threeTimesTable[6])\")"
+    ]
+   },
+   {
+    "title": "Swift 教程",
+    "url": "https://www.runoob.com/swift/swift-tutorial.html",
+    "body": "Swift 是一种支持多编程范式和编译式的开源编程语言,苹果于2014年WWDC（苹果开发者大会）发布，用于开发 iOS，OS X 和 watchOS 应用程序。\nSwift 结合了 C 和 Objective-C 的优点并且不受 C 兼容性的限制。\nSwift 是 Apple 于 2014 年发布的一门通用编程语言，主要用来开发 iOS、iPadOS、macOS、watchOS、tvOS 应用。\nSwift 在 Mac OS 和 iOS 平台可以和 Object-C 使用相同的运行环境。\nSwift 是 Apple 于 2014 年发布的一门通用编程语言，主要用来开发 iOS、iPadOS、macOS、watchOS、tvOS 应用。",
+    "examples": []
+   },
+   {
+    "title": "Swift 类型转换",
+    "url": "https://www.runoob.com/swift/swift-type-casting.html",
+    "body": "类型转换（Type Casting）用来在类层次或协议层次中判断实例的真实类型，并把它当成另一种类型来使用。\nSwift 提供了 is 做类型检查，as? 与 as! 做向下转型，type(of:) 取运行时类型。\n准备一个类层次\n下面定义一套贯穿全文的类层次：媒体资料库的条目。\nMovie、Song、Audiobook 都继承自基类 MediaItem。\n实例",
+    "examples": [
+     "import Foundation\n\n// 资料库条目的基类\nclass MediaItem {\n    var name: String\n    init(name: String) {\n        self.name = name\n    }\n}\n\n// 电影\nclass Movie: MediaItem {\n    var director: String\n    init(name: String, director: String) {\n        self.director = director\n        super.init(name: name)\n    }\n}\n\n// 歌曲\nclass Song: MediaItem {\n    var artist: String\n    init(name: String, artist: String) {\n        self.artist = artist\n        super.init(name: name)\n    }\n}\n\n// 有声书\nclass Audiobook: MediaItem {\n    var narrator: String\n    init(name: String, narrator: String) {\n        self.narrator = narrator\n        super.init(name: name)\n    }\n}"
+    ]
+   },
+   {
+    "title": "Swift 值语义与写时复制",
+    "url": "https://www.runoob.com/swift/swift-value-semantics.html",
+    "body": "值语义（value semantics）说的是：一个值被复制之后，两个副本互不影响。\nSwift 的结构体、枚举和标准库容器默认具备值语义，但结构体内部一旦持有引用类型，共享状态就可能悄悄出现。\n这一篇从官方定义讲起，再拆开写时复制（copy-on-write）的原理和它带来的陷阱。\n值语义与引用语义\n《The Swift Programming Language》给出的定义是：值类型在被赋给变量或常量、或被作为参数传给函数时，它的值会被复制。\n引用类型则相反：赋值或传参时不会复制，而是共享同一个实例。\n换句话说，判断一个类型属于哪一种，只需要看三个操作：初始化、赋值、传参。\n操作\n值类型（struct / enum）\n引用类型（class）\n初始化\n创建一个独立的值\n创建一个实例，变量持有它的引用\n赋值\n复制值，两份互不影响\n复制引用，两个变量指向同一个实例\n传参\n传入副本，函数内修改不影响调用方\n传入引用，函数内修改调用方可见\n下面用同一个坐标模型对比这两种行为。\n实例",
+    "examples": [
+     "import Foundation\n\n// 值类型：坐标\nstruct PointValue {\n    var x: Int\n    var y: Int\n}\n\n// 引用类型：坐标\nfinal class PointReference {\n    var x: Int\n    var y: Int\n    init(x: Int, y: Int) {\n        self.x = x\n        self.y = y\n    }\n}\n\nvar p1 = PointValue(x: 1, y: 2)\nvar p2 = p1          // 赋值：复制出一个独立的值\np2.x = 100           // 修改 p2，p1 完全不受影响\n\nvar q1 = PointReference(x: 1, y: 2)\nvar q2 = q1          // 赋值：两个变量指向同一个实例\nq2.x = 100           // 修改 q2，q1 看到的是同一份数据\n\nprint(\"值类型 p1：\\(p1.x), \\(p1.y)\")\nprint(\"值类型 p2：\\(p2.x), \\(p2.y)\")\nprint(\"引用类型 q1：\\(q1.x), \\(q1.y)\")\nprint(\"引用类型 q2：\\(q2.x), \\(q2.y)\")"
+    ]
+   },
+   {
+    "title": "Swift 变量",
+    "url": "https://www.runoob.com/swift/swift-variables.html",
+    "body": "变量用来保存会变化的值，Swift 用 var 声明变量。\n和 C、Java 不同，Swift 的变量必须先初始化才能读取，编译器不允许使用没有赋值的变量。\n本篇讲 var 的声明与修改、类型标注与类型推断、延迟初始化、命名规则和字符串插值；确定之后不再改变的值请用 let，写法见《Swift 常量》。\n用 var 声明变量\nvar 声明一个可以重新赋值的变量，第一次赋值叫初始化，之后每次赋值都会覆盖旧值。\n变量名写在 var 后面，等号右边是初始值。\n实例",
+    "examples": [
+     "import Foundation\n\n// var 声明变量，声明后可以重新赋值\nvar site = \"www.runoob.com\"\nprint(site)\n\nsite = \"RUNOOB\"\nprint(site)\n\n// 变量的新值可以基于旧值计算\nvar visits = 100\nvisits = visits + 50\nprint(\"访问量：\\(visits)\")"
+    ]
+   }
+  ]
+ }
+}

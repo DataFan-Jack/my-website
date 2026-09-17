@@ -1,0 +1,350 @@
+{
+ "tutorial": {
+  "name": "Playwright",
+  "category": "工具与运维",
+  "desc": "Playwright 是微软（Microsoft） 在 2020 年推出的一个开",
+  "url": "https://www.runoob.com/playwright/",
+  "chapters": [
+   {
+    "title": "Playwright 网络与输入 API",
+    "url": "https://www.runoob.com/playwright/network-input-api.html",
+    "body": "本附录列出网络请求、键盘、鼠标和触控相关的 API。\nRequest 类\n方法\n说明\nrequest.url()\n请求 URL\nrequest.method()\n请求方法（GET/POST 等）\nrequest.headers()\n请求头\nrequest.postData()\nPOST 请求的 body 数据\nrequest.postDataJSON()\nPOST 请求的 JSON body\nrequest.postDataBuffer()\nPOST 请求的 Buffer body\nrequest.isNavigationRequest()\n是否为导航请求\nrequest.frame()\n发起请求的 Frame\nrequest.redirectedFrom()\n重定向来源 Request\nrequest.redirectedTo()\n重定向目标 Request\nrequest.failure()\n请求失败信息（无失败则返回 null）\nrequest.timing()\n请求时间信息\nResponse 类\n方法\n说明\nresponse.url()\n响应 URL\nresponse.status()\nHTTP 状态码\nresponse.statusText()\n状态文本\nresponse.headers()\n响应头\nresponse.body()\n响应 body（Buffer）\nresponse.text()\n响应 body（文本）\nresponse.json()\n响应 body（JSON）\nresponse.ok()\n状态码是否在 200-299 范围\nresponse.request()\n对应的 Request 对象\nresponse.frame()\n发起请求的 Frame\nRoute 类\n方法\n说明\nroute.abort(errorCode?)\n阻止请求\nroute.continue(options?)\n修改后继续请求\nroute.fulfill(options?)\n返回自定义响应\nroute.fetch(options?)\n实际发送请求并获取响应\nroute.request()\n获取对应的 Request\nWebSocket 类\n方法/事件\n说明\nwebSocket.url()\nWebSocket URL\nwebSocket.isClosed()\n是否已关闭\nwebSocket.on('framereceived', handler)\n接收帧事件\nwebSocket.on('framesent', handler)\n发送帧事件\nwebSocket.on('close', handler)\n关闭事件\nAPIRequestContext 类\n方法\n说明\nrequest.get(url, options?)\n发送 GET 请求\nrequest.post(url, options?)\n发送 POST 请求\nrequest.put(url, options?)\n发送 PUT 请求\nrequest.patch(url, options?)\n发送 PATCH 请求\nrequest.delete(url, options?)\n发送 DELETE 请求\nrequest.head(url, options?)\n发送 HEAD 请求\nrequest.fetch(urlOrRequest, options?)\n发送请求（通用）\nrequest.storageState(options?)\n获取存储状态\nrequest.dispose()\n释放资源\nAPIResponse 类\n方法\n说明\nresponse.status()\nHTTP 状态码\nresponse.statusText()\n状态文本\nresponse.headers()\n响应头\nresponse.body()\nbody（Buffer）\nresponse.text()\nbody（文本）\nresponse.json()\nbody（JSON）\nresponse.ok()\n状态码是否在 200-299\nresponse.url()\n响应的最终 URL\nresponse.dispose()\n释放资源\nKeyboard 类\n方法\n说明\nkeyboard.press(key)\n按下并释放按键\nkeyboard.down(key)\n按下按键不释放\nkeyboard.up(key)\n释放按键\nkeyboard.type(text, options?)\n逐字符输入\nkeyboard.insertText(text)\n直接插入文本\nMouse 类\n方法\n说明\nmouse.click(x, y, options?)\n坐标点击\nmouse.dblclick(x, y, options?)\n坐标双击\nmouse.move(x, y, options?)\n移动鼠标到坐标\nmouse.down(options?)\n按下鼠标按钮\nmouse.up(options?)\n释放鼠标按钮\nmouse.wheel(deltaX, deltaY)\n滚动滚轮\nTouchscreen 类\n方法\n说明\ntouchscreen.tap(x, y)\n触控点击",
+    "examples": []
+   },
+   {
+    "title": "Playwright 操作（Actions）",
+    "url": "https://www.runoob.com/playwright/playwright-actions.html",
+    "body": "本章介绍 Playwright 中与导航和点击相关的操作，以及操作背后的自动等待机制。\n什么是 Action\nAction（操作）是 Playwright 中用来模拟用户行为的方法，比如点击按钮、输入文字、选择下拉框。\n每个 Action 在执行之前，Playwright 会自动等待目标元素变为可操作状态。\nActionability 可操作性检查\n在执行每个操作前，Playwright 会对目标元素进行一系列检查：\n步骤\n检查条件\n说明\n1. Attached\n元素已挂载到 DOM 树\n元素存在于页面中\n2. Visible\n元素可见（非 display:none 或 visibility:hidden）\n用户能看见元素\n3. Stable\n元素位置稳定（动画结束）\n避免动画期间的误操作\n4. Receives Events\n元素没有被其他元素遮挡\n确保点击能被元素接收\n5. Enabled\n元素未被禁用（非 disabled）\n用户可以与之交互\n任意一步未通过，Playwright 都会等待并重试，直到超时。\n这 5 步检查是 Playwright 自动完成的，你不需要写任何额外的等待代码。这也是 Playwright 能够大幅减少不稳定测试的根本原因。\n强制操作 { force: true }\n有时你需要绕过可操作性检查，例如点击一个被遮罩隐藏的按钮或测试不可见元素的状态。\n实例",
+    "examples": [
+     "// 强制点击，跳过所有可操作性检查\nawait page.getByRole('button', { name: '提交' }).click({ force: true });"
+    ]
+   },
+   {
+    "title": "Playwright 高级页面操作",
+    "url": "https://www.runoob.com/playwright/playwright-advanced-page-operations.html",
+    "body": "本章节我们将介绍 Playwright 高级页面操作，这部分会更贴近真实测试需求，覆盖 等待机制、表单处理、弹窗对话框 等高级功能。\n等待机制\nPlaywright 最大的优势之一就是 智能等待（auto-waiting）：大部分操作（如 click, fill）会自动等待元素可见且可操作。但在复杂场景中，仍需要手动控制等待。\n1. 隐式等待（Auto-waiting）\nPlaywright 内置的等待机制：\n元素可见\n可点击 / 可交互\n页面加载完成\n实例",
+    "examples": [
+     "await page.click('#submit'); // 自动等待按钮可见并可点击"
+    ]
+   },
+   {
+    "title": "Playwright 断言（Assertions）",
+    "url": "https://www.runoob.com/playwright/playwright-assertions.html",
+    "body": "本章全面介绍 Playwright 的断言体系，包括自动重试断言、通用断言以及软断言的用法。\n什么是断言\n断言（Assertion）用来验证测试的预期结果是否与实际结果一致。\nPlaywright 提供了两套断言：通用断言（来自 Jest）和自动重试断言（Playwright 独有）。\n自动重试断言 vs 通用断言\n自动重试断言（Async Matchers）\nPlaywright 的 Web 特定断言会自动重试，直到条件满足或超时，必须使用 await。\n实例",
+    "examples": [
+     "// 自动重试断言 —— 会等待条件满足\nawait expect(page.getByText('RUNOOB')).toBeVisible();"
+    ]
+   },
+   {
+    "title": "Playwright 认证（Authentication）",
+    "url": "https://www.runoob.com/playwright/playwright-authentication.html",
+    "body": "本章介绍如何在 Playwright 中处理认证，避免每个测试都重复登录，同时保持测试的隔离性。\n认证的核心问题\n大多数 Web 应用的测试都需要用户登录。\n如果每个测试都从头执行登录流程，会显著拖慢测试速度。\nPlaywright 的解决方案是：认证一次，保存状态，所有测试复用。\n准备工作：.auth 目录\n实例",
+    "examples": [
+     "# 创建认证状态存储目录\nmkdir -p playwright/.auth\n\n# 添加到 .gitignore（认证状态包含机密信息）\necho 'playwright/.auth' >> .gitignore"
+    ]
+   },
+   {
+    "title": "Playwright 最佳实践",
+    "url": "https://www.runoob.com/playwright/playwright-best-practices.html",
+    "body": "本章汇总 Playwright 测试编写和维护过程中最重要的最佳实践，帮助你编写稳定、可维护的测试。\n测试哲学\n测试用户可见行为\n自动化测试应该验证最终用户能看到和交互的内容，而不是验证代码实现细节。\n比如，测试应该验证页面上显示了正确的文本、按钮可以点击、表单提交后跳转到正确页面，而不是验证某个 JavaScript 函数的返回值或 DOM 的内部结构。\n实例",
+    "examples": [
+     "// 不推荐：测试实现细节\nexpect(await page.evaluate(() => window.__store.getState().user.name))\n  .toBe('runoob');\n\n// 推荐：测试用户看到的内容\nawait expect(page.getByText('欢迎，runoob')).toBeVisible();"
+    ]
+   },
+   {
+    "title": "Playwright 测试隔离与 Browser Context",
+    "url": "https://www.runoob.com/playwright/playwright-browser-context.html",
+    "body": "本章介绍 Playwright 的测试隔离机制和 Browser Context 的概念，这是保证测试稳定可靠的关键设计。\n什么是测试隔离\n测试隔离是指每个测试用例运行在完全独立的环境中，互不影响。\n在 Playwright 中，每个测试自动获得一个独立的Browser Context（浏览器上下文）。\nBrowser Context 是什么\nBrowser Context 相当于一个全新的浏览器配置文件。\n创建一个 Context 就像打开一个全新的浏览器窗口，拥有自己的 Cookie、localStorage、sessionStorage，但开销极低（毫秒级）。\n概念\n类比\n说明\nBrowser（浏览器实例）\n打开了一个浏览器程序\n开销大，一般整个测试运行只创建一次\nBrowser Context（浏览器上下文）\n浏览器中的独立配置文件\n开销小，每个测试一个\nPage（标签页）\n浏览器中的一个标签页\n在 Context 中打开页面\n每个测试中的 page 和 context 都是全新的，所以一个测试修改了 localStorage 或 Cookie，不会影响其他测试。\nContext 隔离的内容\n每个 Browser Context 之间完全隔离以下内容：\n隔离项\n说明\nCookies\n每个 Context 有独立的 Cookie 存储\nlocalStorage\n本地存储完全隔离\nsessionStorage\n会话存储完全隔离\nIndexedDB\n浏览器数据库隔离\n缓存（Cache）\nHTTP 缓存隔离\n实例",
+    "examples": [
+     "// 测试 A 设置了 Cookie\ntest('测试 A', async ({ page }) => {\n  await page.goto('https://www.runoob.com/');\n\n  // 设置 Cookie（仅在当前 Context 生效）\n  await page.context().addCookies([{\n    name: 'runoob_session',\n    value: 'abc123',\n    domain: 'www.runoob.com',\n    path: '/',\n  }]);\n\n  // 后续操作使用该 Cookie\n});\n\n// 测试 B 收到一个全新的 Context，没有测试 A 设置的 Cookie\ntest('测试 B', async ({ page }) => {\n  await page.goto('https://www.runoob.com/');\n\n  // context().cookies() 返回空数组\n  const cookies = await page.context().cookies();\n  console.log(cookies); // []\n});"
+    ]
+   },
+   {
+    "title": "Playwright CI/CD 集成",
+    "url": "https://www.runoob.com/playwright/playwright-ci-cd.html",
+    "body": "本章介绍如何将 Playwright 测试集成到 CI/CD 流水线中，包括 GitHub Actions 和其他常见 CI 平台。\nGitHub Actions 集成\n当你在 npm init playwright@latest 时选择添加 GitHub Actions，Playwright 会自动生成工作流配置。\n自动生成的工作流\n实例",
+    "examples": [
+     "# 文件路径：.github/workflows/playwright.yml\nname: Playwright Tests\n\non:\n  push:\n    branches: [main, master]\n  pull_request:\n    branches: [main, master]\n\njobs:\n  test:\n    timeout-minutes: 60\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4      # 1. 检出代码\n      - uses: actions/setup-node@v4     # 2. 安装 Node.js\n        with:\n          node-version: 20\n      - name: Install dependencies\n        run: npm ci                     # 3. 安装依赖\n      - name: Install Playwright Browsers\n        run: npx playwright install --with-deps  # 4. 安装浏览器及系统依赖\n      - name: Run Playwright tests\n        run: npx playwright test        # 5. 运行测试\n      - uses: actions/upload-artifact@v4\n        if: always()                    # 6. 上传测试报告（即使测试失败也上传）\n        with:\n          name: playwright-report\n          path: playwright-report/\n          retention-days: 30"
+    ]
+   },
+   {
+    "title": "Playwright Codegen 测试生成器",
+    "url": "https://www.runoob.com/playwright/playwright-codegen.html",
+    "body": "本章介绍 Playwright 的命令行测试生成器 Codegen，通过浏览器操作自动生成测试代码。\n什么是 Codegen\nCodegen（Code Generator）是 Playwright 内置的交互式测试生成工具。\n你像普通用户一样操作浏览器，Codegen 自动将你的操作转换为 Playwright 测试代码。\n启动 Codegen\n# 基本用法：打开一个 URL 并开始录制\nnpx playwright codegen https://www.runoob.com/\n\n# 指定代码生成的语言（默认 TypeScript）\nnpx playwright codegen --target=javascript https://www.runoob.com/\nnpx playwright codegen --target=python https://www.runoob.com/\n启动后会打开两个窗口：\n浏览器窗口：你在这个窗口中操作页面\nPlaywright Inspector 窗口：实时显示生成的代码\n录制操作\n在浏览器窗口中进行任何操作，Codegen 都会自动生成对应的 Playwright 代码：\n导航\n在地址栏输入新的 URL 并回车，会生成 page.goto() 语句。\n点击\n点击任意元素（按钮、链接、菜单），会生成 page.getByRole(...).click() 或类似的定位+点击代码。\n输入\n在输入框中输入文字，会生成 page.getByLabel(...).fill(...) 或 page.getByPlaceholder(...).fill(...)。\n选择\n在下拉菜单中选择选项，会生成 page.getByLabel(...).selectOption(...)。\n复选框\n勾选或取消勾选复选框，会生成 page.getByLabel(...).check() 或 .uncheck()。\n自动选择最佳 Locator\nCodegen 会分析页面元素的属性，按以下优先级生成 Locator：\ngetByRole() —— 元素具有明确的 ARIA 角色\ngetByText() —— 元素有明确文本内容\ngetByLabel() —— 表单元素有 label 关联\ngetByPlaceholder() —— 输入框有 placeholder\ngetByAltText() —— 图片有 alt 属性\ngetByTestId() —— 元素有 data-testid\ngetByTitle() —— 元素有 title 属性\nlocator() —— CSS 选择器（最后选择）\n如果 Codegen 找到多个匹配元素，它会自动优化 Locator，直到能唯一确定目标元素。\n生成断言\n在 Inspector 窗口的工具栏中，可以点击断言按钮来生成断言代码：\nAssert Visibility —— 点击后选中元素，生成 await expect(locator).toBeVisible()\nAssert Text —— 生成 await expect(locator).toHaveText(...)\nAssert Value —— 生成 await expect(locator).toHaveValue(...)\nAssert Snapshot —— 生成 await expect(locator).toHaveScreenshot()\n常用 Codegen 选项\n选项\n说明\n--target=javascript\n生成 JavaScript 代码（默认为 TypeScript）\n--target=python\n生成 Python 代码\n--target=java\n生成 Java 代码\n--target=csharp\n生成 C# 代码\n--save-storage=auth.json\n录制结束后保存认证状态\n--load-storage=auth.json\n加载已有的认证状态后再录制\n-o tests/test.spec.ts\n指定输出文件（默认输出到终端）\n--viewport-size=375,812\n自定义视口大小（模拟移动端）\n--device=\"iPhone 15\"\n使用设备预设\n--color-scheme=dark\n指定颜色方案\nCodegen vs VS Code 录制的选择\n方式\n适用场景\nVS Code Record New\n日常测试开发，代码直接进入编辑器，可立即修改\nCodegen 命令行\n快速原型，跨语言代码生成，不依赖 IDE",
+    "examples": []
+   },
+   {
+    "title": "Playwright 配置详解",
+    "url": "https://www.runoob.com/playwright/playwright-config.html",
+    "body": "本章详细介绍 playwright.config.ts 中的各项配置，让你能够根据项目需求灵活调整测试行为。\n配置文件概览\nplaywright.config.ts 是 Playwright 的中央配置文件，所有测试运行参数都在此定义。\n实例",
+    "examples": [
+     "// 文件路径：playwright.config.ts\nimport { defineConfig, devices } from '@playwright/test';\n\nexport default defineConfig({\n  // ===== 基础配置 =====\n  testDir: './tests',\n  fullyParallel: true,\n  forbidOnly: !!process.env.CI,\n  retries: process.env.CI ? 2 : 0,\n  workers: process.env.CI ? 1 : undefined,\n  reporter: 'html',\n  timeout: 30000,\n\n  // ===== 全局共享配置 =====\n  use: {\n    baseURL: 'http://localhost:3000',\n    trace: 'on-first-retry',\n    screenshot: 'only-on-failure',\n    video: 'retain-on-failure',\n  },\n\n  // ===== 多浏览器项目 =====\n  projects: [\n    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },\n    { name: 'firefox',  use: { ...devices['Desktop Firefox'] } },\n    { name: 'webkit',   use: { ...devices['Desktop Safari'] } },\n  ],\n\n  // ===== Web 服务器 =====\n  webServer: {\n    command: 'npm run start',\n    url: 'http://localhost:3000',\n    reuseExistingServer: !process.env.CI,\n  },\n});"
+    ]
+   },
+   {
+    "title": "Playwright 核心类 API",
+    "url": "https://www.runoob.com/playwright/playwright-core-api.html",
+    "body": "本附录列出 Playwright 核心类的常用 API，供快速查阅。\nPlaywright 类\nPlaywright 是 Playwright Library 的入口对象。\n方法/属性\n说明\nplaywright.chromium\n返回 Chromium 的 BrowserType 对象\nplaywright.firefox\n返回 Firefox 的 BrowserType 对象\nplaywright.webkit\n返回 WebKit 的 BrowserType 对象\nplaywright.request\n返回 APIRequest 对象\nplaywright.selectors\n返回 Selectors 对象\nBrowserType 类\nBrowserType 用于启动和连接到浏览器。\n方法\n说明\nbrowserType.launch(options?)\n启动浏览器实例\nbrowserType.launchPersistentContext(userDataDir, options?)\n启动持久化 Context（使用本地用户数据目录）\nbrowserType.connect(url, options?)\n连接到一个已运行的浏览器\nbrowserType.connectOverCDP(url, options?)\n通过 CDP 协议连接到已运行的浏览器\nbrowserType.executablePath()\n返回浏览器可执行文件路径\nbrowserType.name()\n返回浏览器名称\nBrowser 类\nBrowser 代表一个浏览器实例。\n方法/属性\n说明\nbrowser.newContext(options?)\n创建新的 BrowserContext\nbrowser.newPage(options?)\n在新 Context 中创建新 Page\nbrowser.contexts()\n返回所有 Context 的列表\nbrowser.close()\n关闭浏览器及所有页面\nbrowser.browserType()\n返回对应的 BrowserType\nbrowser.version()\n返回浏览器版本\nbrowser.isConnected()\n是否已连接\nBrowserContext 类\nBrowserContext 代表一个独立的浏览器上下文。\n方法\n说明\ncontext.newPage()\n创建新页面\ncontext.pages()\n返回所有打开的页面\ncontext.close()\n关闭 Context\ncontext.cookies(urls?)\n获取 Cookie\ncontext.addCookies(cookies)\n添加 Cookie\ncontext.clearCookies()\n清除所有 Cookie\ncontext.storageState(options?)\n获取当前存储状态（用于认证复用）\ncontext.grantPermissions(permissions)\n授予权限\ncontext.clearPermissions()\n清除权限\ncontext.setGeolocation(geolocation)\n设置地理位置\ncontext.setExtraHTTPHeaders(headers)\n设置额外 HTTP 头\ncontext.route(url, handler)\n拦截网络请求\ncontext.unroute(url, handler?)\n取消拦截\ncontext.exposeFunction(name, fn)\n向页面暴露函数\ncontext.exposeBinding(name, callback)\n向页面暴露绑定\nBrowserServer 类\nBrowserServer 代表通过 launchServer() 启动的浏览器进程。\n方法\n说明\nbrowserServer.wsEndpoint()\n返回 WebSocket 端点 URL（用于远程连接）\nbrowserServer.close()\n关闭服务器和浏览器\nbrowserServer.kill()\n强制终止浏览器进程",
+    "examples": []
+   },
+   {
+    "title": "Playwright 数据提取和验证",
+    "url": "https://www.runoob.com/playwright/playwright-data-extraction-and-verification.html",
+    "body": "数据提取和验证是自动化测试的关键，主要包括 获取页面数据、断言验证、截图和录制，不仅能验证功能是否正确，还能辅助调试和回归测试。\n元素信息获取\n在测试中经常需要读取页面信息进行验证，Playwright 提供了丰富的 API。\n1. 获取文本内容\n实例",
+    "examples": [
+     "// 获取单个元素的文本\nconst text = await page.textContent('#welcome');\nconsole.log(text);\n\n// 获取多个元素的文本\nconst items = await page.$$eval('.list-item', els => els.map(e => e.textContent));\nconsole.log(items);"
+    ]
+   },
+   {
+    "title": "Playwright 调试工具",
+    "url": "https://www.runoob.com/playwright/playwright-debugging.html",
+    "body": "本章介绍 Playwright 的三大调试工具：UI Mode、Trace Viewer 和命令行 Debug 模式。\nUI Mode 完整介绍\nUI Mode 是 Playwright 内置的图形化测试界面，提供探索、运行和调试测试的一站式体验。\n启动 UI Mode\nnpx playwright test --ui\n测试列表浏览\n启动后，左侧边栏显示所有测试文件。\n你可以展开每个文件和 describe 块，单独运行、查看、Watch 或调试每个测试。\nWatch Mode\n点击 Watch 按钮后，Playwright 会监听文件变化，一旦测试代码或源代码更新，自动重新运行受影响的测试。\n时间轴视图（Timeline）\n在测试执行后，顶部会显示时间轴视图，用不同颜色标记导航和操作。\n你可以悬停查看每个步骤的快照，双击选中一个时间段，查看该时间段的详细日志。\nDOM Snapshot\n在时间轴中点击某个步骤，右侧会显示该时刻的 DOM 快照。\n你可以看到页面在操作前后的实际状态，快速定位问题。\n测试过滤\nUI Mode 支持多种过滤方式：\n按测试名称搜索\n按 @tag\n过滤\n按项目（Project）过滤\n按状态过滤：通过（passed）、失败（failed）、跳过（skipped）\nTrace Viewer 深度调试\nTrace Viewer 是 Playwright 的记录回放工具，能让你像调试录制一样检查测试的每一步。\n配置 Trace 收集\n实例",
+    "examples": [
+     "// 文件路径：playwright.config.ts\nexport default defineConfig({\n  use: {\n    // 只在失败重试时收集 Trace\n    trace: 'on-first-retry',\n\n    // 可选值：\n    // 'off'              —— 不收集\n    // 'on'               —— 每次都收集\n    // 'on-first-retry'   —— 只在第一次重试时收集（推荐）\n    // 'retain-on-failure' —— 只在失败时保留 Trace\n  },\n});"
+    ]
+   },
+   {
+    "title": "Playwright 设备与浏览器模拟",
+    "url": "https://www.runoob.com/playwright/playwright-emulation.html",
+    "body": "本章介绍如何在 Playwright 中模拟移动设备、地理位置、时区、语言、颜色方案等浏览器环境参数。\n移动端设备模拟\nPlaywright 内置了大量设备预设，可以模拟各种手机和平板的视口、User-Agent 和触控行为。\n使用 devices 预设\n通过 devices 对象可以快速模拟特定设备。\n实例",
+    "examples": [
+     "import { chromium, devices } from 'playwright';\n\n// 模拟 iPhone 15\nconst browser = await chromium.launch();\nconst context = await browser.newContext(devices['iPhone 15']);\nconst page = await context.newPage();\n\nawait page.goto('https://www.runoob.com/');\n// 页面将以 iPhone 15 的视口和 UA 渲染"
+    ]
+   },
+   {
+    "title": "Playwright 扩展与迁移",
+    "url": "https://www.runoob.com/playwright/playwright-extensions.html",
+    "body": "本章介绍 Playwright 生态的扩展功能，包括 Library 脚本模式、MCP 服务、Test Agents，以及从其他框架迁移到 Playwright 的指南。\nPlaywright Library 脚本模式\nPlaywright Library 是单独的浏览器自动化库，适用于测试运行器之外的场景。\n安装\nnpm i playwright\n典型用法\n实例",
+    "examples": [
+     "// 截图脚本\nimport { chromium } from 'playwright';\n\n(async () => {\n  const browser = await chromium.launch({ headless: true });\n  const page = await browser.newPage();\n  await page.goto('https://www.runoob.com/');\n  await page.screenshot({ path: 'runoob.png', fullPage: true });\n  await browser.close();\n  console.log('截图已保存到 runoob.png');\n})();"
+    ]
+   },
+   {
+    "title": "Playwright 文件操作",
+    "url": "https://www.runoob.com/playwright/playwright-file-operations.html",
+    "body": "虽然 Playwright 主要是做浏览器自动化的，但它在文件上传和下载方面也很强大，可以轻松应对前端常见的文件交互场景。\n文件上传\n在 Web 表单中，文件上传通常通过 <input type=\"file\"> 完成。Playwright 提供了专门的 API 来处理：\n方法一：setInputFiles()\nawait page.setInputFiles('input[type=\"file\"]', 'tests/fixtures/avatar.png');\n参数说明：\n选择器：文件选择框的定位方式。\n文件路径：相对/绝对路径，支持单文件或多文件数组。\n如果传入 []，表示清空已选择的文件。\n方法二：直接通过 Locator\nconst upload = page.locator('input[type=file]');\nawait upload.setInputFiles(['tests/fixtures/1.png', 'tests/fixtures/2.png']);\n方法三：模拟拖拽上传（部分应用支持）\nconst fileChooserPromise = page.waitForEvent('filechooser');\nawait page.click('button#upload'); // 触发选择文件\nconst fileChooser = await fileChooserPromise;\nawait fileChooser.setFiles('tests/fixtures/test.pdf');\n文件下载\nPlaywright 可以捕获浏览器下载事件，并获取文件保存路径。\n基本用法：监听下载\n实例",
+    "examples": [
+     "const [download] = await Promise.all([\n  page.waitForEvent('download'),          // 等待下载开始\n  page.click('a#downloadButton'),         // 触发下载\n]);\n\n// 保存文件到指定路径\nawait download.saveAs('downloads/report.pdf');\n\n// 获取默认保存路径（系统临时目录）\nconst path = await download.path();\nconsole.log('下载路径:', path);\n\n// 获取下载信息\nconsole.log(await download.url());        // 下载链接\nconsole.log(await download.suggestedFilename()); // 推荐文件名"
+    ]
+   },
+   {
+    "title": "Playwright 第一个脚本",
+    "url": "https://www.runoob.com/playwright/playwright-first-script.html",
+    "body": "在编写代码之前，理解 Playwright 的核心概念至关重要，最核心的三个对象是 Browser、BrowserContext 和 Page，这三个对象构成了你与网页交互的基础：\nBrowser（浏览器）：这是自动化过程的起点。一个 Browser 实例代表了一个实际的浏览器，例如 Chromium、Firefox 或 WebKit。你可以启动一个浏览器，然后在其内部创建多个独立的会话。\nBrowserContext（浏览器上下文）：一个 BrowserContext 就像一个独立的浏览器会话。它完全隔离了页面、本地存储、cookies 等数据。这使得你可以在一个浏览器中同时运行多个互不影响的自动化任务，就像你在隐身模式下打开了多个标签页一样。\nPage（页面）：Page 是你进行实际操作的地方。它代表了浏览器上下文中的一个标签页或窗口。所有的操作，如点击、输入、导航、截图等，都是在 Page 对象上执行的。\n三者之间的关系：\n一个 Browser 可以包含多个 BrowserContext，而一个 BrowserContext 可以包含多个 Page。通常，我们只需要一个 Browser 和一个 BrowserContext，但在某些需要隔离数据的场景下，BrowserContext 就显得非常有用。\n编写你的第一个脚本\n接下来我们将编写一个简单的脚本，它会启动浏览器，访问百度，然后截取一张图片。\n创建一个名为 baidu_script.js 的文件，并粘贴以下代码：\n实例",
+    "examples": [
+     "const { chromium } = require('playwright');\n\n(async () => {\n  // 启动浏览器，并创建一个新的浏览器上下文。\n  const browser = await chromium.launch({ headless: false }); // headless: false 会显示浏览器窗口\n  const context = await browser.newContext();\n  const page = await context.newPage();\n\n  // 导航到你想要访问的网站。\n  await page.goto('https://www.baidu.com');\n\n  // 在搜索框中输入文本。\n  await page.fill('#kw', 'Playwright');\n\n  // 按下回车键或点击搜索按钮。\n  await page.press('#kw', 'Enter');\n\n  // 等待导航完成，这很重要，以确保页面加载完毕。\n  await page.waitForNavigation();\n\n  // 截图并保存。\n  await page.screenshot({ path: 'baidu_search_results.png' });\n\n  // 打印当前页面的标题。\n  console.log(`页面标题是: ${await page.title()}`);\n\n  // 关闭浏览器。\n  await browser.close();\n})();"
+    ]
+   },
+   {
+    "title": "Playwright 测试",
+    "url": "https://www.runoob.com/playwright/playwright-first-test.html",
+    "body": "本章带领你编写并运行第一个 Playwright 测试，理解测试的基本组成和执行流程。\n运行示例测试\n初始化项目后，先运行一下自动生成的示例测试，确认一切正常：\n# 运行所有测试\nnpx playwright test\n运行后你会看到类似以下的输出：\nRunning 6 tests using 4 workers\n\n ✓ 1 [chromium] › tests/example.spec.ts:3:1 › has title (2.1s)\n ✓ 2 [chromium] › tests/example.spec.ts:10:1 › get started link (1.8s)\n ✓ 3 [firefox] › tests/example.spec.ts:3:1 › has title (1.9s)\n ✓ 4 [firefox] › tests/example.spec.ts:10:1 › get started link (1.7s)\n ✓ 5 [webkit] › tests/example.spec.ts:3:1 › has title (2.3s)\n ✓ 6 [webkit] › tests/example.spec.ts:10:1 › get started link (2.0s)\n\n 6 passed (12s)\n从输出中可以看到：测试在 3 个浏览器上各运行了 2 个测试，共 6 个测试全部通过。\n创建第一个测试文件\n清空 tests/example.spec.ts 的内容，我们来从头写一个测试。\n实例",
+    "examples": [
+     "// 文件路径：tests/first-test.spec.ts\nimport { test, expect } from '@playwright/test';\n\n// test(name, callback) 定义一个测试\n// name：测试名称，会显示在测试报告中\n// callback 的参数 { page } 是 Playwright 提供的 fixture（夹具）\ntest('访问 RUNOOB 首页并检查标题', async ({ page }) => {\n  // 导航到指定 URL\n  await page.goto('https://www.runoob.com/');\n\n  // 断言：页面标题包含 \"RUNOOB\"\n  await expect(page).toHaveTitle(/RUNOOB/);\n});"
+    ]
+   },
+   {
+    "title": "Playwright Fixtures 与参数化",
+    "url": "https://www.runoob.com/playwright/playwright-fixtures.html",
+    "body": "本章介绍 Playwright 的 Fixture 机制、如何创建自定义 Fixture 以及参数化测试的技巧。\n什么是 Fixture\nFixture（夹具）是 Playwright 测试函数参数的依赖注入机制。\n每个测试通过解构参数的方式获取所需的 Fixture（如 { page }），Playwright 负责创建和清理。\n实例",
+    "examples": [
+     "// page 和 context 是内置 Fixture\ntest('使用内置 Fixture', async ({ page, context }) => {\n  // Playwright 自动创建 page 和 context\n  // 测试结束后自动清理\n  await page.goto('https://www.runoob.com/');\n});"
+    ]
+   },
+   {
+    "title": "Playwright Frame 与新窗口",
+    "url": "https://www.runoob.com/playwright/playwright-frame.html",
+    "body": "本章介绍如何处理 iframe、弹窗对话框、新标签页以及 Playwright 的事件系统。\niframe 操作\nPlaywright 通过 frameLocator() 来定位和操作 iframe 内的元素。\npage.frameLocator() 定位 iframe\n实例",
+    "examples": [
+     "test('操作 iframe 中的元素', async ({ page }) => {\n  await page.goto('https://www.runoob.com/iframe-demo');\n\n  // 定位 iframe，然后在其中定位元素\n  const iframe = page.frameLocator('#my-iframe');\n\n  // 在 iframe 内操作元素\n  await iframe.getByRole('button', { name: '提交' }).click();\n  await iframe.getByLabel('用户名').fill('runoob_user');\n\n  // 在 iframe 内断言\n  await expect(iframe.getByText('操作成功')).toBeVisible();\n});"
+    ]
+   },
+   {
+    "title": "Playwright 安装",
+    "url": "https://www.runoob.com/playwright/playwright-install.html",
+    "body": "Playwright 是一个 Node.js 库，所以需要我们本地安装 Node.js，如果你已经安装了可以跳过。\n1、安装 Node.js\nPlaywright 官方推荐使用 Node.js。\n打开 Node.js 官网\n下载并安装 LTS（长期支持版）\n验证是否安装成功：\nnode -v\nnpm -v\n能看到版本号即可。\n更多安装可以参考：https://www.runoob.com/nodejs/nodejs-install-setup.html\n2、新建项目目录\n如果成功安装 node，我们就可以开始 Playwright 的安装与使用。\n在命令行执行：\nmkdir runoob-playwright-demo\ncd runoob-playwright-demo\n3、初始化并安装 Playwright\n执行：\nnpm init playwright@latest\n安装过程会提示：\n选择语言：JavaScript 或 TypeScript，熟悉哪个选哪个\n是否要安装测试示例：推荐选 Yes（方便学习）\n是否下载浏览器：选 Yes（Playwright 会下载 Chromium、Firefox、WebKit 三大引擎）\n安装完成后，你的项目目录大概长这样：\nplaywright-demo/\n├─ tests/ # 示例测试用例\n├─ playwright.config.js # 配置文件\n├─ package.json\n└─ node_modules/\n4、使用 yarn 初始化\nyarn create playwright\n5、使用 pnpm 初始化\npnpm create playwright\n三种包管理器的初始化效果完全相同，选择你熟悉的一个即可。\n手动安装\n如果你已有项目，想手动添加 Playwright，可以分两步完成。\n第一步：安装 npm 包\n# 安装 Playwright Test 作为开发依赖\nnpm i -D @playwright/test\n\n# 如果只需要浏览器自动化库（不用测试运行器）\nnpm i playwright\n第二步：安装浏览器\n# 安装所有浏览器（Chromium、Firefox、WebKit）\nnpx playwright install\n\n# 或者只安装特定浏览器\nnpx playwright install chromium\nnpx playwright install firefox\nnpx playwright install webkit\n浏览器二进制文件默认下载到操作系统缓存目录（如 macOS 的 ~/Library/Caches/ms-playwright/），不会占用你的项目空间。\n安装的浏览器说明\nPlaywright 安装的是浏览器的测试版本，而非你日常使用的浏览器：\nPlaywright 中的名称\n对应浏览器\n说明\nChromium\nGoogle Chrome 的开源基础\nChrome 的核心引擎，行为几乎一致\nFirefox\nMozilla Firefox\n官方 Firefox 的测试构建版本\nWebKit\nApple Safari 的引擎\nSafari 的底层渲染引擎\n这些测试版本与用户日常使用的浏览器存在微小差异，但在绝大多数测试场景中表现一致。\n验证安装\n安装完成后，运行以下命令验证是否成功：\n# 查看已安装的 Playwright 版本和浏览器\nnpx playwright --version\n预期输出大致如下：\nVersion 1.52.0\n运行示例测试来验证一切正常：\nnpx playwright test\n如果看到测试运行的输出（包括通过和失败的测试），说明安装成功。\n常见安装问题\n下载浏览器很慢\n浏览器二进制文件较大（约 400-500 MB），下载速度取决于网络环境。\n可以通过设置环境变量使用国内镜像：\n# 设置下载源为国内镜像\nexport PLAYWRIGHT_DOWNLOAD_HOST=https://npmmirror.com/mirrors/playwright/\nnpx playwright install\nLinux 系统缺少系统依赖\n在 Linux 上运行 Playwright 需要安装额外的系统库。\n# 安装 Playwright 所需的系统依赖\nnpx playwright install-deps\n\n# 如果只需要某个浏览器对应的依赖\nnpx playwright install-deps chromium\n在 Docker 容器中使用 Playwright 时，请使用微软官方 Docker 镜像（mcr.microsoft.com/playwright），它已预装所有依赖。\n第一个脚本：Hello World\n新建一个 test.js 文件，写入以下内容：\n实例",
+    "examples": [
+     "// test.js\nconst { chromium } = require('playwright');\n\n(async () => {\n  // 1. 启动浏览器\n  const browser = await chromium.launch({ headless: false }); // 设置 false 可以看到浏览器\n  const page = await browser.newPage();\n\n  // 2. 打开网页\n  await page.goto('https://www.baidu.com');\n\n  // 3. 截图保存\n  await page.screenshot({ path: 'baidu.png' });\n\n  // 4. 关闭浏览器\n  await browser.close();\n\n  console.log(\"截图已保存到 example.png\");\n})();"
+    ]
+   },
+   {
+    "title": "Playwright 简介",
+    "url": "https://www.runoob.com/playwright/playwright-intro.html",
+    "body": "Playwright 是由微软开发的一个开源 Web 自动化测试框架，用于在 Chromium、Firefox 和 WebKit 三大浏览器引擎中进行端到端测试。\n简单来说，它就是一个可以帮你通过编程来控制浏览器的工具，我们可以把它想象成一个虚拟用户，它能像人一样在网页上进行各种操作，比如：点击按钮、填写表单、导航到不同的页面、截图和保存网页内容。\nPlaywright 是微软开源的现代浏览器自动化框架，用少量代码就能在 Chromium（Chrome/Edge）、Firefox、WebKit（Safari 引擎）里自动完成人类的浏览器操作：打开网页、点击、输入、拖拽、上传文件、截图/PDF、录制日志与回放，最常见的用途是 端到端（E2E）测试，也可做轻量爬取与流程自动化。\nPlaywright 提供 JS/TS、Python、Java、.NET 多语言 SDK，其中 JS/TS + Playwright Test 是最主流组合。\n支持的浏览器\n浏览器\n渲染引擎\n平台支持\nChromium\nBlink（与 Chrome 同）\nWindows / macOS / Linux\nFirefox\nGecko\nWindows / macOS / Linux\nWebKit\nWebKit（与 Safari 同）\nWindows / macOS / Linux\nPlaywright 使用的是官方浏览器的测试版本（Chromium 而非 Google Chrome，WebKit 而非 Safari），但行为与官方版本高度一致。\nPlaywright 的主要应用场景\nPlaywright 不仅仅用于测试，它的强大功能使其在多个领域都大有作为：\n端到端（E2E）测试： 这是 Playwright 最主要的应用。它可以模拟真实用户的使用场景，测试你的网站从头到尾的整个流程是否正常工作。\nWeb 爬虫和数据抓取： 如果你想从网页上自动化地获取数据，Playwright 可以帮你轻松完成。它可以渲染 JavaScript 动态加载的内容，这比传统的爬虫工具更强大。\n网页自动化： 任何重复性的网页操作，比如自动签到、批量下载文件、填写报告等，都可以用 Playwright 来自动化。\n生成截图和 PDF： 你可以用 Playwright 来对网页进行截图，或者将网页内容保存为 PDF 文件。\nPlaywright 能干什么？\n用一句话总结：只要人能在浏览器里点的，Playwright 几乎都能自动化完成。\n具体能力包括：\n多浏览器支持：一次代码，能同时跑在 Chromium（Chrome/Edge）、Firefox、WebKit（Safari）上。\n跨平台运行：支持 Windows、Linux、macOS。\n跨语言调用：不仅支持 JavaScript/TypeScript，还支持 Python、C#、Java。\n现代网页支持：对单页应用（SPA）、动态加载、iframe、多标签页都有稳定的处理。\n举个例子：你要测试一个\"登录\"功能。\n手动测试：每次打开浏览器 → 输入账号密码 → 点击登录 → 检查页面。\nPlaywright 测试：写一段脚本，自动完成上面的动作，还能重复执行上百次，毫不费劲。\nPlaywright vs 其他测试工具\nPlaywright vs Puppeteer\n对比维度\nPlaywright\nPuppeteer\n浏览器支持\nChromium + Firefox + WebKit\n仅 Chromium / Firefox（有限）\n测试运行器\n内置完整的 Test Runner\n无内置，需配合 Jest/Mocha\n自动等待\n全面内置\n需手动处理\n测试隔离\nBrowser Context 原生支持\n需自己管理\n移动端模拟\n完整的设备模拟\n基本的设备模拟\n维护方\n微软\nGoogle\nPuppeteer 适合简单的浏览器自动化脚本。\nPlaywright 在功能完备性和测试体验上全面超越，是测试场景的首选。\nPlaywright vs Cypress\n对比维度\nPlaywright\nCypress\n架构\n进程外执行，完全控制浏览器\n运行在浏览器内部（沙箱受限）\n多标签/多窗口\n完全支持\n不支持\n多浏览器\nChromium + Firefox + WebKit\n仅 Chromium 系 + 实验性 Firefox/WebKit\niframe 支持\n原生支持\n受限\n并行执行\n原生支持，无需额外配置\n需付费 Dashboard\n网络拦截\n完整的请求/响应拦截和修改\n只能 Stub 或 Spy\n执行速度\n一般更快\n一般较慢（浏览器内执行开销）\nCypress 的开发者体验优秀，调试界面友好。\n如果你需要多浏览器支持、多标签页操作，或者大型测试套件的并行执行，Playwright 更适合。\nPlaywright vs Selenium\n提到浏览器自动化，很多人第一时间想到的是 Selenium。那 Playwright 和它相比，有啥不同？\n特点\nSelenium\nPlaywright\n诞生时间\n2004 年，历史悠久\n2020 年，后起之秀\n浏览器支持\nChrome, Firefox, Safari, IE 等\nChromium, Firefox, WebKit（现代浏览器全覆盖）\nAPI 设计\n早期接口多，稍显复杂\nAPI 简洁现代，学习成本低\n执行速度\n较慢，常遇到等待问题\n更快，更少超时\n特殊功能\n较强大，生态成熟\n原生支持截图、录制视频、Mock 网络请求\n一句话对比：\nSelenium 更像是\"老牌全能选手\"，历史悠久、生态庞大。\nPlaywright 更像是\"年轻小钢炮\"，速度快，支持现代网页特性，API 也更友好。\n适合哪些场景？\nPlaywright 不光能用来做测试，还能用在很多场景：\n前端测试：自动测试网页的按钮、表单、导航等是否正常。\n回归测试：新功能上线前，跑一遍全站测试用例，确保旧功能不出问题。\n数据采集（爬虫）：抓取动态网页（比如需要滚动才能看到的数据）。\n网页截图 & PDF：给页面生成截图或 PDF（比如生成报告）。\n流程自动化：自动化重复操作（如自动登录、批量表单填写）。\n为什么要学 Playwright？\n初学者友好：安装简单，几行代码就能跑通。\nAPI 直观：用 page.click()、page.fill() 就能完成网页操作。\n学了能赚钱：前端开发、测试工程师、甚至一些数据采集的兼职工作都会用到。\n社区活跃：Playwright 的更新很快，文档清晰，遇到问题容易找到解决方案。\n总结一句话：Playwright = 一个会自动帮你打开网页、点按钮、填表单、截屏的\"智能机器人\"，既能用来做测试，也能当爬虫，还能做自动化小工具。\n为什么选择 Playwright？\n对于初学者来说，Playwright 有几个非常吸引人的特点：\n自动等待： 这是 Playwright 最强大的功能之一。在编写自动化脚本时，你经常需要等待某个元素加载或变得可见。Playwright 内置了智能的自动等待机制，它会自动等待元素变得可用，而无需你手动添加繁琐的 sleep 或 wait 函数。这让你的代码更简洁、更稳定。\n快速且可靠： Playwright 的执行速度非常快，因为它直接与浏览器进行通信，而不是通过中间的协议。这种直接连接确保了操作的稳定性和可靠性。\n强大的 API： Playwright 的 API 设计得非常人性化。它提供了丰富的操作方法，可以让你轻松地处理各种复杂的网页交互，比如处理弹窗、上传文件、管理新标签页等。\n自带测试框架： Playwright 团队还提供了一个强大的测试运行器 @playwright/test。这个框架自带了断言库、测试报告生成器以及并行执行等高级功能，让编写和管理测试用例变得非常方便。\nPlaywright 最核心的优势在于它的跨浏览器支持。 它可以同时控制 Chromium（Google Chrome 和 Microsoft Edge）、Firefox 和 WebKit（Safari 的引擎）这三种主流浏览器。这意味着你只需要编写一套代码，就可以在所有这些浏览器上运行你的自动化脚本，大大减少了重复工作。\nPlaywright 的四大核心特性\n1. 真正的跨浏览器支持\nPlaywright 是唯一一个同时支持 Chromium、Firefox 和 WebKit 三大浏览器引擎的测试框架。\n每个浏览器都有专门维护的驱动层（Chromium 使用 CDP，Firefox 使用 Juggler 协议，WebKit 使用 Playwright 自定义协议），确保底层操作的稳定性和一致性。\n2. 自动等待机制\nPlaywright 在执行每个操作前，会自动等待元素变为可操作状态（附加到 DOM、可见、稳定、可接收事件、已启用）。\n断言也会自动重试，直到条件满足或超时。\n这从根本上解决了传统测试中最常见的 不稳定测试（flaky tests） 问题。\n3. 测试隔离\nPlaywright 引入了 Browser Context 的概念，每个测试运行在独立的浏览器上下文（相当于一个全新的浏览器配置文件）中。\n每个 context 拥有独立的 localStorage、sessionStorage、cookies，测试之间不会相互影响。\n创建 context 的开销极低（毫秒级），远快于每次启动新的浏览器实例。\n4. 多语言支持\nPlaywright 提供了 JavaScript/TypeScript、Python、Java、.NET 四种语言的 API，所有语言共享相同的设计理念和功能。\n语言\n安装命令\n适用场景\nJavaScript / TypeScript\nnpm init playwright@latest\n前端团队、Node.js 项目\nPython\npip install playwright\nPython 生态、AI/ML 项目\nJava\nMaven/Gradle 依赖\n企业级 Java 项目\n.NET\nNuGet 包\n微软技术栈\nPlaywright 产品矩阵\nPlaywright 不是一个单一的工具，而是一个包含多个组件的平台：\n产品\n用途\n安装方式\nPlaywright Test\n完整的端到端测试框架\nnpm init playwright@latest\nPlaywright Library\n浏览器自动化脚本库\nnpm i playwright\nPlaywright MCP\nAI Agent 浏览器控制（MCP 协议）\nnpx @playwright/mcp@latest\nPlaywright CLI\nCoding Agent 命令行工具\nnpm i -g @playwright/cli@latest\nVS Code 扩展\n编辑器内测试调试与录制\nVS Code Marketplace",
+    "examples": []
+   },
+   {
+    "title": "Playwright JavaScript 执行",
+    "url": "https://www.runoob.com/playwright/playwright-javascript.html",
+    "body": "本章介绍如何在 Playwright 中执行 JavaScript 代码，包括页面上下文执行、参数传递和初始化脚本注入。\npage.evaluate() 页面上下文执行\npage.evaluate() 在页面的 JavaScript 环境中执行代码，可以访问 DOM 和页面全局变量。\n实例",
+    "examples": [
+     "test('获取页面数据', async ({ page }) => {\n  await page.goto('https://www.runoob.com/');\n\n  // 获取页面标题（在页面上下文中执行）\n  const title = await page.evaluate(() => {\n    return document.title;\n  });\n  console.log('页面标题：', title);\n\n  // 获取页面中所有链接数量\n  const linkCount = await page.evaluate(() => {\n    return document.querySelectorAll('a').length;\n  });\n  console.log('链接数量：', linkCount);\n\n  // 获取页面滚动位置\n  const scrollY = await page.evaluate(() => {\n    return window.scrollY;\n  });\n});"
+    ]
+   },
+   {
+    "title": "Playwright Locator 类 API",
+    "url": "https://www.runoob.com/playwright/playwright-locator-api.html",
+    "body": "Locator 是 Playwright 的定位器对象，提供链式筛选、操作和断言。\nLocator 操作方法\n方法\n说明\nlocator.click(options?)\n点击元素\nlocator.dblclick(options?)\n双击元素\nlocator.hover(options?)\n鼠标悬停\nlocator.fill(value, options?)\n清空并填入文本\nlocator.type(text, options?)\n逐字符输入\nlocator.clear(options?)\n清空输入框\nlocator.check(options?)\n勾选复选框\nlocator.uncheck(options?)\n取消勾选\nlocator.setChecked(checked, options?)\n设置复选框状态\nlocator.selectOption(values, options?)\n选择下拉框选项\nlocator.setInputFiles(files, options?)\n设置文件上传\nlocator.dragTo(target, options?)\n拖拽到目标元素\nlocator.press(key, options?)\n按键\nlocator.screenshot(options?)\n元素截图\nlocator.scrollIntoViewIfNeeded(options?)\n滚动到可见\nLocator 链式筛选\n方法\n说明\nlocator.first()\n取第一个匹配元素\nlocator.last()\n取最后一个匹配元素\nlocator.nth(index)\n取第 n 个（从 0 开始）\nlocator.filter(options?)\n按条件过滤（hasText、has、hasNot）\nlocator.locator(selector)\n在匹配结果中继续查找\nlocator.getByRole(role, options?)\n在匹配结果中按角色查找\nlocator.getByText(text)\n在匹配结果中按文本查找\nlocator.getByLabel(text)\n在匹配结果中按标签查找\nlocator.and(locator)\n逻辑与（1.63+）\nlocator.or(locator)\n逻辑或（1.63+）\nLocator 信息获取\n方法\n说明\nlocator.textContent(options?)\n获取文本内容\nlocator.innerHTML(options?)\n获取 innerHTML\nlocator.innerText(options?)\n获取可见文本\nlocator.inputValue(options?)\n获取 input 值\nlocator.getAttribute(name)\n获取属性值\nlocator.count()\n获取匹配数量\nlocator.isVisible(options?)\n是否可见\nlocator.isHidden(options?)\n是否隐藏\nlocator.isEnabled(options?)\n是否启用\nlocator.isDisabled(options?)\n是否禁用\nlocator.isEditable(options?)\n是否可编辑\nlocator.isChecked(options?)\n是否已勾选\nlocator.boundingBox(options?)\n获取元素位置和大小\nLocator JS 执行\n方法\n说明\nlocator.evaluate(fn, arg?, options?)\n在元素上下文执行 JS\nlocator.evaluateAll(fn, arg?)\n在所有匹配元素上执行 JS\nlocator.evaluateHandle(fn, arg?, options?)\n执行 JS 并返回 JSHandle\nLocatorAssertions（自动重试）\n断言方法\n说明\nexpect(locator).toBeAttached()\n元素在 DOM 中\nexpect(locator).toBeChecked()\n已勾选\nexpect(locator).toBeDisabled()\n已禁用\nexpect(locator).toBeEditable()\n可编辑\nexpect(locator).toBeEmpty()\n内容为空\nexpect(locator).toBeEnabled()\n已启用\nexpect(locator).toBeFocused()\n已获得焦点\nexpect(locator).toBeHidden()\n元素不可见\nexpect(locator).toBeInViewport()\n元素在视口内\nexpect(locator).toBeVisible()\n元素可见\nexpect(locator).toContainText(text)\n包含文本\nexpect(locator).toHaveAccessibleDescription(desc)\n有无障碍描述\nexpect(locator).toHaveAccessibleName(name)\n有无障碍名称\nexpect(locator).toHaveAttribute(name, value?)\n有 DOM 属性\nexpect(locator).toHaveClass(className)\n有 CSS 类名\nexpect(locator).toHaveCount(count)\n有指定数量\nexpect(locator).toHaveCSS(name, value)\n有 CSS 属性值\nexpect(locator).toHaveId(id)\n有 ID\nexpect(locator).toHaveText(text)\n文本内容匹配\nexpect(locator).toHaveValue(value)\n输入值匹配\nexpect(locator).toHaveValues(values)\n多值匹配（多选）\nexpect(locator).toHaveScreenshot(options?)\n元素截图对比\nFrameLocator 类\n方法\n说明\nframeLocator.getByRole(role, options?)\n按角色定位\nframeLocator.getByText(text)\n按文本定位\nframeLocator.getByLabel(text)\n按标签定位\nframeLocator.getByPlaceholder(text)\n按占位符定位\nframeLocator.getByTestId(id)\n按 testId 定位\nframeLocator.locator(selector)\nCSS/XPath 定位\nframeLocator.frameLocator(selector)\n嵌套 iframe 定位\nframeLocator.first()\n取第一个\nframeLocator.last()\n取最后一个\nframeLocator.nth(index)\n取第 n 个",
+    "examples": []
+   },
+   {
+    "title": "Playwright 定位器（Locators）",
+    "url": "https://www.runoob.com/playwright/playwright-locators.html",
+    "body": "Locator（定位器）是 Playwright 中最核心的概念之一，它代表了一种在页面上查找元素的方式。\n本章介绍 Playwright 推荐的定位方法：通过角色、文本、标签和占位符来定位元素。\n什么是 Locator\nLocator 是 Playwright 用来在页面上查找元素的抽象对象。\n与传统的 document.querySelector() 不同，Playwright 的 Locator 具有自动等待和自动重试能力。\n当页面内容动态变化时，Locator 会不断重新查找元素，直到找到匹配的元素或超时。\n实例",
+    "examples": [
+     "// 创建一个 Locator（此时不会立即查找元素）\nconst button = page.getByRole('button', { name: '提交' });\n\n// 执行操作时，Playwright 会自动等待按钮出现并变为可操作状态\nawait button.click();"
+    ]
+   },
+   {
+    "title": "Playwright 移动端测试",
+    "url": "https://www.runoob.com/playwright/playwright-mobile-test.html",
+    "body": "Playwright 移动端测试，主要包括模拟移动设备、地理位置、权限控制等功能。\nPlaywright 除了能模拟桌面浏览器，还支持 移动端设备测试，包括：\n模拟不同手机型号（屏幕大小、分辨率、UA 等）\n模拟触摸事件（点击、滑动、长按）\n模拟地理位置（GPS）\n模拟权限（摄像头、定位、通知）\n这让我们能在 PC 上测试出接近真实手机的效果。\n模拟设备\nPlaywright 提供了一些常见的设备配置（基于 Chrome DevTools 设备描述），可以通过 devices 调用。\n实例",
+    "examples": [
+     "const { chromium, devices } = require('playwright');\n\n(async () => {\n  const iPhone = devices['iPhone 12']; // 选择设备\n\n  const browser = await chromium.launch();\n  const context = await browser.newContext({\n    ...iPhone  // 应用设备配置\n  });\n\n  const page = await context.newPage();\n  await page.goto('https://www.example.com');\n\n  await page.screenshot({ path: 'mobile.png' });\n  await browser.close();\n})();"
+    ]
+   },
+   {
+    "title": "Playwright 网络拦截",
+    "url": "https://www.runoob.com/playwright/playwright-network-interception.html",
+    "body": "Playwright 的网络拦截 (Network Interception) 是自动化测试和爬虫场景中非常有用的能力，可以让我们拦截、修改、模拟网络请求与响应。\nPlaywright 提供了 page.route() 和 page.on('request') / page.on('response') 等 API，可以：\n拦截请求：决定是否放行、修改 URL/headers/body、或者直接返回 mock 响应。\n监听请求/响应：查看请求的 URL、方法、头部、响应状态码、响应体等。\n模拟网络错误：阻止请求、返回错误码，测试应用的容错逻辑。\n常见应用场景：\nMock API：不用后端接口也能跑前端 UI 测试。\n修改请求：比如加 token，测试异常 header。\n性能调试：统计请求数、响应时间。\n错误注入：模拟 500/404 等服务端异常。\n拦截请求：page.route()\nawait page.route('**/api/todos', async route => {\n // 拦截匹配的请求\n console.log('拦截到请求:', route.request().url());\n\n // 1. 直接放行（继续请求）\n await route.continue();\n\n // 2. 修改请求\n // await route.continue({ headers: { ...route.request().headers(), 'X-Test': 'true' } });\n\n // 3. 返回 mock 响应\n // await route.fulfill({\n // status: 200,\n // contentType: 'application/json',\n // body: JSON.stringify([{ id: 1, text: 'mock todo', done: false }]),\n // });\n\n // 4. 拒绝请求\n // await route.abort();\n});\n参数说明：\npage.route(url, handler)：注册一个拦截器，url 支持字符串、正则或 ** 通配。\nroute.request()：获取请求对象。\nroute.continue([options])：放行请求，可以修改方法、headers、postData。\nroute.fulfill(response)：直接返回伪造的响应。\nroute.abort([errorCode])：中断请求，常见错误码如 \"failed\", \"aborted\", \"timedout\"。\n监听请求和响应\n// 监听所有请求\npage.on('request', req => {\n console.log(`&#x27a1;&#xfe0f; 请求: ${req.method()} ${req.url()}`);\n});\n\n// 监听所有响应\npage.on('response', async res => {\n console.log(`&#x2b05;&#xfe0f; 响应: ${res.status()} ${res.url()}`);\n});\n\n// 获取响应 body\nconst response = await page.waitForResponse('**/api/data');\nconsole.log('响应内容:', await response.text());\n常用方法：\nrequest.url() / request.method() / request.headers() / request.postData()\nresponse.status() / response.headers() / response.text() / response.json()\n模拟网络环境\n实例",
+    "examples": [
+     "// 模拟网络错误\nawait page.route('**/*.png', route => route.abort('failed'));\n\n// 模拟延迟\nawait page.route('**/api/**', async route => {\n  await new Promise(r => setTimeout(r, 2000));\n  await route.continue();\n});\n</pre>\n<hr>\n<h2>完整示例：Mock API</h2>\nimport { test, expect } from '@playwright/test';\n\ntest('拦截并 mock API', async ({ page }) => {\n  // 拦截 /api/todos 请求并返回固定数据\n  await page.route('**/api/todos', async route => {\n    await route.fulfill({\n      status: 200,\n      contentType: 'application/json',\n      body: JSON.stringify([\n        { id: 1, text: 'Playwright 学习', done: false },\n        { id: 2, text: '写自动化测试', done: true },\n      ]),\n    });\n  });\n\n  await page.goto('https://example-todo-app.com');\n  const items = await page.locator('.todo-item').allTextContents();\n  console.log('加载到的待办事项:', items);\n\n  // 断言 UI 显示 mock 数据\n  await expect(page.locator('.todo-item')).toHaveCount(2);\n  await expect(page.locator('.todo-item').first()).toContainText('Playwright 学习');\n});"
+    ]
+   },
+   {
+    "title": "Playwright 网络拦截与 Mock",
+    "url": "https://www.runoob.com/playwright/playwright-network-mock.html",
+    "body": "本章介绍如何使用 Playwright 拦截、修改和模拟网络请求，实现不依赖后端 API 的独立测试。\n什么是网络拦截\n网络拦截允许你在浏览器发起 HTTP 请求时进行干预。\n你可以阻止请求、修改响应、返回模拟数据，让测试不依赖外部 API 或网络状态。\npage.route() 拦截请求\npage.route(url, handler) 用于拦截匹配指定 URL 模式的所有网络请求。\n基本拦截\n实例",
+    "examples": [
+     "test('拦截所有图片请求', async ({ page }) => {\n  // 拦截所有 PNG 和 JPEG 图片\n  await page.route('**/*.{png,jpg,jpeg}', route => route.abort());\n\n  // 导航到页面（图片不会被加载）\n  await page.goto('https://www.runoob.com/');\n  // 页面可能加载更快，因为没有下载图片\n});"
+    ]
+   },
+   {
+    "title": "Playwright 网络监控与 API 测试",
+    "url": "https://www.runoob.com/playwright/playwright-network-monitor.html",
+    "body": "本章介绍如何监控浏览器网络流量，以及使用 Playwright 进行独立的 API 测试。\n监听网络请求与响应\npage.on('request') 监听请求\n实例",
+    "examples": [
+     "test('监控网络请求', async ({ page }) => {\n  const requests = [];\n\n  // 监听所有请求\n  page.on('request', request => {\n    requests.push({\n      url: request.url(),\n      method: request.method(),\n      postData: request.postData(),\n    });\n  });\n\n  await page.goto('https://www.runoob.com/');\n\n  // 打印所有请求\n  console.log('页面共发起了', requests.length, '个请求');\n  requests.forEach(r => console.log(r.method, r.url));\n});"
+    ]
+   },
+   {
+    "title": "Playwright 其他 API",
+    "url": "https://www.runoob.com/playwright/playwright-other-api.html",
+    "body": "本附录列出 Dialog、Download、Video、Tracing 等辅助类的 API。\nDialog 类\n方法\n说明\ndialog.accept(promptText?)\n确认弹窗\ndialog.dismiss()\n取消弹窗\ndialog.message()\n弹窗消息\ndialog.type()\n弹窗类型：'alert' | 'confirm' | 'prompt' | 'beforeunload'\ndialog.defaultValue()\n弹窗默认输入值\ndialog.page()\n弹窗所属页面\nDownload 类\n方法\n说明\ndownload.saveAs(path)\n保存文件到指定路径\ndownload.suggestedFilename()\n获取建议的文件名\ndownload.url()\n下载的 URL\ndownload.page()\n所属页面\ndownload.failure()\n下载失败信息（无失败返回 null）\ndownload.delete()\n删除下载的文件\nFileChooser 类\n方法\n说明\nfileChooser.setFiles(files, options?)\n选择文件\nfileChooser.isMultiple()\n是否多选模式\nfileChooser.page()\n所属页面\nConsoleMessage 类\n方法\n说明\nconsoleMessage.type()\n消息类型：'log' | 'error' | 'warning' | 'info' | 'debug'\nconsoleMessage.text()\n消息文本\nconsoleMessage.location()\n消息来源位置\nconsoleMessage.args()\n消息参数（JSHandle 数组）\nVideo 类\n方法\n说明\nvideo.saveAs(path)\n保存视频到文件\nvideo.delete()\n删除视频文件\nvideo.path()\n视频文件路径\nTracing 类\n方法\n说明\ntracing.start(options?)\n开始录制 Trace\ntracing.startChunk(options?)\n开始新的 Trace 块\ntracing.stopChunk(options?)\n停止 Trace 块并保存\ntracing.stop(options?)\n停止录制并保存 Trace\nClock 类\n方法\n说明\nclock.install(options?)\n安装假时钟\nclock.pauseAt(time)\n暂停在指定时间\nclock.resume()\n恢复执行\nclock.setFixedTime(time)\n设置固定时间\nclock.fastForward(time)\n快进时间\nclock.runFor(time)\n运行指定时间\nSelectors 类\n方法\n说明\nselectors.register(name, script, options?)\n注册自定义选择器引擎\nElementHandle 类\n方法\n说明\nelementHandle.click(options?)\n点击\nelementHandle.fill(value)\n填入文本\nelementHandle.screenshot(options?)\n元素截图\nelementHandle.boundingBox()\n获取位置大小\nelementHandle.getAttribute(name)\n获取属性\nelementHandle.textContent()\n获取文本\nelementHandle.ownerFrame()\n所属 Frame\nJSHandle 类\n方法\n说明\njsHandle.evaluate(fn, arg?)\n执行 JS\njsHandle.getProperty(name)\n获取属性\njsHandle.getProperties()\n获取所有属性\njsHandle.jsonValue()\n获取 JSON 值\njsHandle.dispose()\n释放资源\nCDPSession 类\n方法\n说明\ncdpSession.send(method, params?)\n发送 CDP 命令\ncdpSession.detach()\n分离 CDP 会话\nWorker 类\n方法/事件\n说明\nworker.url()\nWorker URL\nworker.evaluate(fn, arg?)\n在 Worker 中执行 JS\nworker.on('close', handler)\nWorker 关闭事件\nFrame 类\n方法\n说明\nframe.name()\nFrame 名称\nframe.url()\nFrame URL\nframe.goto(url, options?)\nFrame 导航\nframe.locator(selector)\nCSS/XPath 定位\nframe.getByRole(role, options?)\n按角色定位\nframe.getByText(text)\n按文本定位\nframe.evaluate(fn, arg?)\n执行 JS\nframe.content()\n获取 HTML 内容\nframe.parentFrame()\n父 Frame\nframe.childFrames()\n子 Frame 列表\n错误类\n类\n说明\nPlaywrightException\n通用 Playwright 异常\nTimeoutError\n超时错误（断言超时、操作超时等）",
+    "examples": []
+   },
+   {
+    "title": "Playwright Page 类 API 参考",
+    "url": "https://www.runoob.com/playwright/playwright-page-api.html",
+    "body": "Page 是 Playwright 中最常用的类，提供页面交互的全部方法。\n导航方法\n方法\n说明\npage.goto(url, options?)\n导航到 URL\npage.goBack(options?)\n后退\npage.goForward(options?)\n前进\npage.reload(options?)\n刷新页面\n定位器方法\n方法\n说明\npage.getByRole(role, options?)\n按 ARIA 角色定位\npage.getByText(text, options?)\n按文本内容定位\npage.getByLabel(text, options?)\n按关联 label 定位\npage.getByPlaceholder(text)\n按 placeholder 定位\npage.getByAltText(text)\n按图片 alt 属性定位\npage.getByTitle(text)\n按 title 属性定位\npage.getByTestId(id)\n按 data-testid 定位\npage.locator(selector)\nCSS / XPath 定位\npage.frameLocator(selector)\niframe 定位\n页面属性获取\n方法\n说明\npage.title()\n获取页面标题\npage.url()\n获取当前 URL\npage.content()\n获取完整 HTML 内容\npage.viewportSize()\n获取视口大小\n截图与 PDF\n方法\n说明\npage.screenshot(options?)\n页面截图\npage.pdf(options?)\n生成 PDF（仅 Chromium）\npage.video()\n获取视频对象\n键盘与鼠标\n属性\n说明\npage.keyboard\nKeyboard 对象\npage.mouse\nMouse 对象\npage.touchscreen\nTouchscreen 对象\nJS 执行\n方法\n说明\npage.evaluate(fn, arg?)\n在页面上下文执行 JS\npage.evaluateHandle(fn, arg?)\n执行 JS 并返回 JSHandle\npage.addInitScript(script)\n注入初始化脚本\npage.addStyleTag(options?)\n添加样式标签\npage.addScriptTag(options?)\n添加脚本标签\npage.exposeFunction(name, fn)\n向页面暴露函数\n等待方法\n方法\n说明\npage.waitForURL(url, options?)\n等待 URL 变化\npage.waitForLoadState(state?)\n等待加载状态\npage.waitForTimeout(ms)\n固定等待\npage.waitForEvent(event, options?)\n等待事件\npage.waitForResponse(urlOrPredicate, options?)\n等待网络响应\npage.waitForRequest(urlOrPredicate, options?)\n等待网络请求\n网络与路由\n方法\n说明\npage.route(url, handler)\n拦截网络请求\npage.unroute(url, handler?)\n取消拦截\npage.routeFromHAR(har, options?)\n从 HAR 文件回放网络\n事件\n事件\n说明\npage.on('request', handler)\n监听请求\npage.on('response', handler)\n监听响应\npage.on('dialog', handler)\n监听弹窗\npage.on('download', handler)\n监听下载\npage.on('popup', handler)\n监听弹窗页面\npage.on('console', handler)\n监听控制台\npage.on('pageerror', handler)\n监听页面错误\npage.on('close', handler)\n监听页面关闭\nFrame 相关\n方法\n说明\npage.mainFrame()\n获取主 Frame\npage.frames()\n获取所有 Frame\n其他\n方法\n说明\npage.context()\n获取所属 BrowserContext\npage.close()\n关闭页面\npage.pause()\n暂停执行（调试用）\npage.setViewportSize(size)\n设置视口大小\npage.bringToFront()\n将页面置为前台\npage.emulateMedia(options?)\n模拟媒体特性\npage.clock\nClock 对象（时间模拟）\nPageAssertions（自动重试断言）\n断言方法\n说明\nexpect(page).toHaveTitle(title)\n页面标题断言\nexpect(page).toHaveURL(url)\n页面 URL 断言\nexpect(page).toHaveScreenshot(options?)\n页面截图对比",
+    "examples": []
+   },
+   {
+    "title": "Playwright 页面操作基础",
+    "url": "https://www.runoob.com/playwright/playwright-page-operation-basics.html",
+    "body": "本章节我们来了解下 Playwright 如何与网页进行实际交互及最常用的页面操作 API。\n页面导航\n页面导航是最常见的操作，Playwright 提供了多个 API 来打开、刷新和控制页面的跳转。\n1. 打开网页（page.goto）\nawait page.goto('https://example.com');\n常用参数：\nurl：要访问的地址\ntimeout：超时时间，默认 30 秒\nwaitUntil：等待页面加载的条件\n'load'：等待 load 事件（页面和资源全部加载完）\n'domcontentloaded'：等待 DOM 内容加载完\n'networkidle'：等待网络空闲\n实例",
+    "examples": [
+     "await page.goto('https://example.com', { waitUntil: 'domcontentloaded' });"
+    ]
+   },
+   {
+    "title": "Playwright 并行、分片与重试",
+    "url": "https://www.runoob.com/playwright/playwright-parallel-sharding.html",
+    "body": "本章介绍 Playwright 的并行执行策略、分片运行和失败重试机制，帮助你高效运行大规模测试套件。\n并行执行\nPlaywright 默认使用多个 Worker 进程并行运行测试，充分利用多核 CPU。\nfullyParallel 配置\nfullyParallel 控制同一文件内的测试是否并行执行。\n实例",
+    "examples": [
+     "// 文件路径：playwright.config.ts\nexport default defineConfig({\n  fullyParallel: true,  // 同一文件内的测试也并行运行\n});"
+    ]
+   },
+   {
+    "title": "Playwright 页面对象模型（POM）",
+    "url": "https://www.runoob.com/playwright/playwright-pom.html",
+    "body": "本章介绍页面对象模型（Page Object Model）的设计思想和实现方式，帮助你组织大型测试套件。\n什么是 POM\n页面对象模型是一种测试设计模式，将页面的元素和操作封装到独立的类中。\n每个页面对象代表 Web 应用中的一个页面或组件，包含该页面的定位器和操作方法。\nPOM 的优势\n优势\n说明\n简化测试编写\n测试代码使用高层 API（如 loginPage.login('user', 'pass')）而非原始的 Locator 操作\n降低维护成本\n页面结构的变更只需要修改 Page Object 类，不需要修改每个测试\n提高可读性\n测试代码更像业务语言，非技术人员也能理解\n避免重复\n相同的定位器和操作只需定义一次\n创建 Page Object 类\n下面以 RUNOOB 网站为例，创建一个登录页面的 Page Object。\n实例",
+    "examples": [
+     "// 文件路径：pages/LoginPage.ts\nimport { type Page, type Locator, expect } from '@playwright/test';\n\nexport class LoginPage {\n  readonly page: Page;\n  // 将所有定位器声明为只读属性\n  readonly usernameInput: Locator;\n  readonly passwordInput: Locator;\n  readonly loginButton: Locator;\n  readonly errorMessage: Locator;\n\n  constructor(page: Page) {\n    this.page = page;\n    // 在构造函数中初始化所有定位器\n    this.usernameInput = page.getByLabel('用户名');\n    this.passwordInput = page.getByLabel('密码');\n    this.loginButton = page.getByRole('button', { name: '登录' });\n    this.errorMessage = page.getByTestId('login-error');\n  }\n\n  // 导航到登录页\n  async goto() {\n    await this.page.goto('/login');\n  }\n\n  // 执行登录操作\n  async login(username: string, password: string) {\n    await this.usernameInput.fill(username);\n    await this.passwordInput.fill(password);\n    await this.loginButton.click();\n  }\n\n  // 验证登录失败的错误提示\n  async expectLoginError(message: string) {\n    await expect(this.errorMessage).toBeVisible();\n    await expect(this.errorMessage).toContainText(message);\n  }\n}"
+    ]
+   },
+   {
+    "title": "Playwright 项目结构",
+    "url": "https://www.runoob.com/playwright/playwright-project-structure.html",
+    "body": "成功初始化 Playwright 项目后，你的项目目录中会生成一系列文件和文件夹，本章详细解读每个部分的用途。\n初始化的项目结构一览\n运行 npm init playwright@latest 后，项目目录中会生成以下结构：\nyour-project/\n├── playwright.config.ts # Playwright 配置文件\n├── package.json # 项目依赖与脚本\n├── package-lock.json # 依赖锁定文件\n├── tests/ # 测试文件目录\n│ └── example.spec.ts # 示例测试文件\n├── tests-examples/ # 更多示例测试（可选）\n│ └── demo-todo-app.spec.ts\n├── .github/ # GitHub Actions 配置（可选）\n│ └── workflows/\n│ └── playwright.yml\n└── node_modules/ # npm 依赖包\nplaywright.config.ts —— 配置文件\n这是 Playwright 的核心配置文件，控制测试运行的所有方面。\n实例",
+    "examples": [
+     "// 文件路径：playwright.config.ts\nimport { defineConfig, devices } from '@playwright/test';\n\nexport default defineConfig({\n  // 测试文件目录，相对于此配置文件的路径\n  testDir: './tests',\n\n  // 完全并行运行所有测试\n  fullyParallel: true,\n\n  // 如果源码中遗留了 test.only，在 CI 上则构建失败\n  forbidOnly: !!process.env.CI,\n\n  // CI 环境下失败后重试 2 次，本地不重试\n  retries: process.env.CI ? 2 : 0,\n\n  // CI 环境下使用单线程，本地使用默认多线程\n  workers: process.env.CI ? 1 : undefined,\n\n  // 使用 HTML 报告器\n  reporter: 'html',\n\n  // 所有测试共享的配置\n  use: {\n    // 基础 URL，测试中使用相对路径即可\n    baseURL: 'http://localhost:3000',\n\n    // 失败重试时收集 Trace\n    trace: 'on-first-retry',\n  },\n\n  // 多浏览器/多设备项目配置\n  projects: [\n    {\n      name: 'chromium',\n      use: { ...devices['Desktop Chrome'] },\n    },\n    {\n      name: 'firefox',\n      use: { ...devices['Desktop Firefox'] },\n    },\n    {\n      name: 'webkit',\n      use: { ...devices['Desktop Safari'] },\n    },\n  ],\n\n  // 在测试开始前启动本地开发服务器（可选）\n  // webServer: {\n  //   command: 'npm run start',\n  //   url: 'http://localhost:3000',\n  //   reuseExistingServer: !process.env.CI,\n  // },\n});"
+    ]
+   },
+   {
+    "title": "Playwright 多项目配置（Projects）",
+    "url": "https://www.runoob.com/playwright/playwright-projects.html",
+    "body": "本章介绍如何通过 Projects 配置在多个浏览器和设备上运行测试，以及项目依赖的用法。\n什么是 Project\n在 Playwright 中，一个 Project 代表一组在特定浏览器和设备配置下运行的测试。\n通过配置多个 Project，你可以用同一套测试代码在 Chromium、Firefox、WebKit 以及移动端设备上运行。\n基础多浏览器配置\n实例",
+    "examples": [
+     "// 文件路径：playwright.config.ts\nimport { defineConfig, devices } from '@playwright/test';\n\nexport default defineConfig({\n  projects: [\n    {\n      name: 'chromium',\n      use: { ...devices['Desktop Chrome'] },\n    },\n    {\n      name: 'firefox',\n      use: { ...devices['Desktop Firefox'] },\n    },\n    {\n      name: 'webkit',\n      use: { ...devices['Desktop Safari'] },\n    },\n  ],\n});"
+    ]
+   },
+   {
+    "title": "Playwright 运行测试",
+    "url": "https://www.runoob.com/playwright/playwright-running-tests.html",
+    "body": "本章全面介绍 Playwright 测试的运行方式、命令行参数以及各种筛选技巧。\n基本运行命令\n实例",
+    "examples": [
+     "# 运行所有测试\nnpx playwright test\n\n# 默认使用 package.json 中配置的项目\nnpm test"
+    ]
+   },
+   {
+    "title": "Playwright 截图与视频",
+    "url": "https://www.runoob.com/playwright/playwright-screenshots-videos.html",
+    "body": "本章介绍如何使用 Playwright 进行截图和视频录制，帮助你在测试失败时快速定位问题。\npage.screenshot() 截图\n全页面截图\n实例",
+    "examples": [
+     "// 保存到文件\nawait page.screenshot({ path: 'screenshots/runoob-homepage.png' });\n\n// 获取 Buffer 数据（直接使用，不写文件）\nconst buffer = await page.screenshot();"
+    ]
+   },
+   {
+    "title": "Playwright VS Code 开发环境配置",
+    "url": "https://www.runoob.com/playwright/playwright-setup.html",
+    "body": "Playwright 开发推荐用 VS Code，因为它对 JavaScript/TypeScript、调试器、扩展支持都很强大。\n安装 VS Code\n前往 VS Code 官网 下载并安装。\n安装完成后，建议同时装上 中文语言包（扩展市场搜索 Chinese (Simplified)）。\nVS Code 相关内容参考：https://www.runoob.com/vscode/vscode-tutorial.html\n必备扩展插件\n在 VS Code 的扩展（Extensions）面板里，搜索并安装以下插件：\nPlaywright Test for VSCode\n官方出品的 Playwright 插件\n功能：运行/调试用例、查看测试报告、录制脚本、生成 trace\n扩展 ID：ms-playwright.playwright\nJavaScript / TypeScript 支持（VS Code 自带，通常不用额外装）\n推荐（可选）：\nESLint（保证代码风格一致）\nPrettier - Code formatter（一键格式化代码）\n初始化 Playwright 项目\n如果还没初始化过项目，先执行：\nnpm init playwright@lates\nVS Code 插件会自动识别项目里的 playwright.config.ts/js，并启用测试视图。\nVS Code 设置\n打开 VS Code 设置（快捷键 Ctrl+, 或 Cmd+,），确认以下配置：\n保存时自动格式化搜索 format on save → 勾选 Editor: Format On Save\n终端默认 shell（根据自己系统选择）Windows 推荐 PowerShell 或 Git BashmacOS/Linux 默认即可\n调试配置（launch.json）\n在 VS Code 左侧点击 运行与调试 → 创建配置，选择 Node.js，生成 .vscode/launch.json，添加 Playwright 调试配置，例如：\n{\n \"version\": \"0.2.0\",\n \"configurations\": [\n {\n \"name\": \"Debug Playwright Test\",\n \"type\": \"node\",\n \"request\": \"launch\",\n \"program\": \"${workspaceFolder}/node_modules/.bin/playwright\",\n \"args\": [\"test\", \"--project=chromium\", \"--headed\"],\n \"console\": \"integratedTerminal\",\n \"internalConsoleOptions\": \"neverOpen\"\n }\n ]\n}\n这样就可以在 VS Code 里按 F5 启动调试，Playwright 会跑在有界面模式，方便观察。\n使用 Playwright 插件面板\n安装好 Playwright Test for VSCode 插件后，左侧会出现一个\"Playwright\"图标：\n可以直接看到项目里的测试文件和用例列表\n点击某个用例右侧的 ▶ 按钮就能运行\n右键选择 Debug Test 可以单步调试\n运行失败的测试可以直接查看 trace 文件\n常用命令\n在 VS Code 的终端运行：\nnpx playwright test # 运行全部测试\nnpx playwright test login.spec.js # 运行指定文件\nnpx playwright codegen # 启动录制工具（自动生成脚本）\nnpx playwright show-report # 打开测试报告\nTesting Sidebar 测试侧边栏\n安装扩展后，VS Code 左侧会出现 Testing 图标（实验室烧杯图标）。\n点击进入 Testing Sidebar，可以看到所有测试文件列表。\n在这里你可以：\n展开文件查看每个 describe 和 test\n点击播放按钮运行单个测试或全部测试\n实时查看测试执行状态（绿色通过、红色失败、灰色跳过）\n右键测试访问更多选项（调试、跳转到定义等）\nDebug Mode 调试\nVS Code 扩展让你可以像调试普通代码一样调试 Playwright 测试：\n设置断点\n在代码行号左侧点击即可添加红色断点。\n右键点击断点旁边，选择 Debug Test，测试会在断点处暂停。\n调试功能\n单步跳过（F10）、单步进入（F11）、单步跳出（Shift+F11）\n查看变量当前值\n查看调用堆栈\n在调试控制台中执行表达式\nLive Debugging 实时调试\nLive Debugging 是 VS Code 扩展的独特功能。\n启用 Show Browser 选项运行测试时，点击代码中的 Locator，浏览器窗口中会高亮显示对应的页面元素。\n如果 Locator 匹配了多个元素，Playwright 会同时高亮所有匹配项。\n你可以直接在代码中编辑 Locator，浏览器会实时显示修改后的匹配结果。\nPick Locator 拾取定位器\n点击 Testing Sidebar 底部的 Pick Locator 按钮。\n在弹出的浏览器中点击目标元素，VS Code 的 Pick Locator 框中会显示最佳定位器。\n按 Enter 复制到剪贴板，粘贴到测试代码中即可。\nPlaywright 会自动选择最稳定、最语义化的定位方式（优先 role > text > testid）。\nRecord New Test 录制新测试\n在 Testing Sidebar 点击 Record new 按钮。\nPlaywright 会打开浏览器窗口，你在其中的所有操作（导航、点击、输入）都会被录制下来。\n还可以通过工具栏生成断言：\nAssert visibility —— 断言元素可见\nAssert text —— 断言元素包含文本\nAssert value —— 断言元素的值\n录制完成后关闭浏览器，代码会自动生成在 test-1.spec.ts 文件中。\nRecord at Cursor 光标处录制\n在已有测试代码中将光标放在想要插入操作的位置，点击 Record at cursor。\nPlaywright 会在浏览器中录制后续操作，并将生成的代码插入到光标所在位置。\n这个功能非常适合在已有测试中补充步骤。",
+    "examples": []
+   },
+   {
+    "title": "Playwright Test 与 Reporter API",
+    "url": "https://www.runoob.com/playwright/playwright-test-reporter-api.html",
+    "body": "本附录列出 Playwright Test Runner 的配置、Fixture、Reporter 等 API。\nTest 函数\n方法\n说明\ntest(name, fn)\n定义测试\ntest.describe(name, fn)\n定义测试分组\ntest.describe.serial(name, fn)\n串行测试分组\ntest.describe.parallel(name, fn)\n并行测试分组\ntest.describe.configure(options)\n配置分组行为（mode、retries）\ntest.skip(name?, fn?)\n跳过测试\ntest.fail(name?, fn?)\n标记为预期失败\ntest.fixme(name?, fn?)\n标记为待修复\ntest.slow(name?, fn?)\n标记为慢测试（超时×3）\ntest.only(name, fn)\n只运行此测试\ntest.beforeEach(fn)\n每个测试前执行\ntest.afterEach(fn)\n每个测试后执行\ntest.beforeAll(fn)\n所有测试前执行一次\ntest.afterAll(fn)\n所有测试后执行一次\ntest.extend(fixtures)\n创建自定义 Fixture\ntest.use(options)\n覆盖当前作用域的配置\ntest.setTimeout(ms)\n设置当前测试的超时\ntest.step(name, fn)\n定义测试步骤（报告中可见）\ntest.info()\n获取 TestInfo 对象\nTestConfig 配置接口\n字段\n类型\n说明\ntestDir\nstring\n测试目录\nfullyParallel\nboolean\n完全并行\nworkers\nnumber\nWorker 数量\nretries\nnumber\n重试次数\ntimeout\nnumber\n测试总超时\nreporter\nstring | array\n报告器\nforbidOnly\nboolean\n禁止 only\ntestMatch\nstring | RegExp\n测试匹配模式\ntestIgnore\nstring | RegExp\n忽略模式\nprojects\nProject[]\n项目列表\nwebServer\nobject\nWeb 服务器配置\nglobalSetup\nstring\n全局 Setup 脚本路径\nglobalTeardown\nstring\n全局 Teardown 脚本路径\nuse\nobject\n共享配置\nexpect\nobject\n断言配置\nTestInfo 接口\n字段/方法\n说明\ntestInfo.title\n测试名称\ntestInfo.file\n测试文件路径\ntestInfo.line\n测试所在行号\ntestInfo.column\n测试所在列号\ntestInfo.expectedStatus\n预期状态：'passed' | 'failed' | 'skipped'\ntestInfo.timeout\n当前测试超时\ntestInfo.annotations\n注解列表\ntestInfo.attachments\n附件列表\ntestInfo.project.name\n当前项目名称\ntestInfo.retry\n当前重试次数\ntestInfo.parallelIndex\n并行索引\ntestInfo.skip(reason?)\n跳过测试（动态）\ntestInfo.fail(reason?)\n标记失败（动态）\ntestInfo.attach(name, options?)\n附加文件到报告\nFixtures 接口\nFixture\n类型\n说明\npage\nPage\n浏览器标签页\ncontext\nBrowserContext\n浏览器上下文\nbrowser\nBrowser\n浏览器实例\nbrowserName\nstring\n浏览器名称\nrequest\nAPIRequestContext\nHTTP 请求客户端\nWorkerInfo 接口\n字段\n说明\nworkerInfo.project.name\n项目名称\nworkerInfo.parallelIndex\nWorker 并行索引\nworkerInfo.config\nFullConfig 对象\nReporter 接口\n方法\n说明\nreporter.onBegin(config, suite)\n测试开始\nreporter.onTestBegin(test)\n单个测试开始\nreporter.onTestEnd(test, result)\n单个测试结束\nreporter.onStepBegin(test, result, step)\n步骤开始\nreporter.onStepEnd(test, result, step)\n步骤结束\nreporter.onEnd(result)\n测试结束\nreporter.onExit()\n进程退出\nreporter.printsToStdio()\n是否输出到标准输出\nSuite 类\n字段\n说明\nsuite.title\nSuite 名称\nsuite.suites\n子 Suite 列表\nsuite.tests\n测试列表\nsuite.location\nSuite 位置\nTestCase 类\n字段\n说明\ntest.title\n测试名称\ntest.location\n测试位置\ntest.expectedStatus\n预期状态\ntest.annotations\n注解列表\ntest.parent\n所属 Suite\ntest.id()\n测试 ID\nTestResult 类\n字段\n说明\nresult.status\n状态：'passed' | 'failed' | 'skipped' | 'interrupted'\nresult.duration\n执行时长（毫秒）\nresult.error\n错误信息（TestError）\nresult.attachments\n附件列表\nresult.stdout\n标准输出\nresult.stderr\n标准错误\nElectron API\n方法\n说明\nelectron.launch(options?)\n启动 Electron 应用\nElectronApplication 类\n方法\n说明\nelectronApp.firstWindow()\n获取第一个窗口\nelectronApp.windows()\n获取所有窗口\nelectronApp.close()\n关闭应用\nAndroid API\n方法/类\n说明\nandroid.devices()\n获取连接的设备列表\nAndroidDevice\nAndroid 设备对象\nAndroidWebView\nWebView 对象",
+    "examples": []
+   },
+   {
+    "title": "Playwright 测试结构与钩子",
+    "url": "https://www.runoob.com/playwright/playwright-test-structure.html",
+    "body": "本章介绍 Playwright 测试的组织方式，包括测试分组、执行控制以及生命周期钩子的用法。\ntest.describe() 测试分组\ntest.describe() 用于将相关的测试组织在一起，形成逻辑分组。\n实例",
+    "examples": [
+     "// 文件路径：tests/describe-demo.spec.ts\nimport { test, expect } from '@playwright/test';\n\n// 第一层分组\ntest.describe('RUNOOB 首页测试', () => {\n\n  test('页面标题正确', async ({ page }) => {\n    await page.goto('https://www.runoob.com/');\n    await expect(page).toHaveTitle(/RUNOOB/);\n  });\n\n  test('导航栏存在', async ({ page }) => {\n    await page.goto('https://www.runoob.com/');\n    // 断言导航元素存在\n    await expect(page.locator('nav')).toBeVisible();\n  });\n});\n\n// 可以定义多个 describe 块\ntest.describe('搜索功能测试', () => {\n\n  test('搜索框可见', async ({ page }) => {\n    await page.goto('https://www.runoob.com/');\n    await expect(\n      page.getByPlaceholder('搜索')\n    ).toBeVisible();\n  });\n});"
+    ]
+   },
+   {
+    "title": "Playwright Test",
+    "url": "https://www.runoob.com/playwright/playwright-test.html",
+    "body": "Playwright 除了作为浏览器自动化工具，还自带了一个 完整的测试框架 —— Playwright Test。\nPlaywright Test 可以帮助我们组织测试用例、生成报告、并行执行、失败重试，功能完备，开箱即用。\nPlaywright Test 是一个 集成的测试框架，无需额外依赖。\n配置文件可设置 超时、重试、报告、浏览器项目等。\n测试用例支持 分组、钩子、数据驱动。\n提供 并行执行、HTML 报告、失败重试 等高级能力。\n测试框架概述\n集成测试框架：自带测试运行器，无需额外安装 Jest、Mocha。\n内置断言库：支持 expect 断言。\n测试隔离：每个 test 默认在新的浏览器上下文中执行，互不干扰。\n丰富功能：并行执行、重试、截图、录制、HTML 报告等。\n安装方式：\nnpm init playwright@latest\n自动生成项目结构，包含配置文件 playwright.config.js。\n1. 配置文件详解\nPlaywright Test 使用 playwright.config.js（或 .ts）作为配置入口。\n// playwright.config.js\nimport { defineConfig } from '@playwright/test';\n\nexport default defineConfig({\n testDir: './tests', // 测试目录\n timeout: 30 * 1000, // 单个测试超时时间\n retries: 2, // 失败重试次数\n reporter: [['html'], ['list']], // 测试报告类型\n use: {\n headless: true, // 是否无头模式\n screenshot: 'only-on-failure', // 失败时截图\n video: 'retain-on-failure', // 失败时保留视频\n baseURL: 'https://example.com', // 基础 URL\n },\n projects: [\n { name: 'Chromium', use: { browserName: 'chromium' } },\n { name: 'Firefox', use: { browserName: 'firefox' } },\n { name: 'WebKit', use: { browserName: 'webkit' } },\n ],\n});\n2. 测试脚本结构\nPlaywright Test 脚本通常包含：\n1、导入测试库\nimport { test, expect } from '@playwright/test';\n2、编写测试用例\ntest('示例测试', async ({ page }) => {\n await page.goto('https://example.com');\n await expect(page).toHaveTitle('Example Domain');\n});\n3、分组与钩子\n使用 describe 组织测试\n使用 beforeEach / afterEach 做前后置处理\n编写测试用例\n1. test() 函数使用\ntest('页面标题验证', async ({ page }) => {\n await page.goto('https://playwright.dev');\n await expect(page).toHaveTitle(/Playwright/);\n});\n2. describe() 分组\ntest.describe('用户登录模块', () => {\n test('输入正确账号密码', async ({ page }) => {\n // 登录逻辑...\n });\n\n test('输入错误密码', async ({ page }) => {\n // 验证错误提示...\n });\n});\n3. 测试钩子\ntest.describe('购物车模块', () => {\n test.beforeEach(async ({ page }) => {\n await page.goto('https://example.com/cart');\n });\n\n test.afterEach(async ({ page }) => {\n await page.screenshot({ path: 'cart.png' });\n });\n\n test('添加商品', async ({ page }) => {\n await page.click('#add-item');\n await expect(page.locator('#cart-count')).toHaveText('1');\n });\n});\n4. 测试数据准备\n支持参数化测试：\nconst users = [\n { name: 'admin', password: '123456' },\n { name: 'guest', password: 'guest' },\n];\n\nfor (const user of users) {\n test(`用户 ${user.name} 登录`, async ({ page }) => {\n await page.goto('https://example.com/login');\n await page.fill('#username', user.name);\n await page.fill('#password', user.password);\n await page.click('#submit');\n await expect(page.locator('.welcome')).toBeVisible();\n });\n}\n运行和报告\n1. 测试执行命令\nnpx playwright test # 运行全部测试\nnpx playwright test login.spec.js # 运行单个文件\nnpx playwright test -g \"登录\" # 运行指定用例\n2. 并行测试\nPlaywright 默认 按文件并行执行，也可在配置文件中指定 workers 数量：\nnpx playwright test --workers=4\n3. 测试报告生成\n运行后生成 HTML 报告：\nnpx playwright show-report\n4. 失败重试机制\n在配置文件 playwright.config.js 中设置：\nretries: 2\n测试失败时会自动重试，适合处理偶发性错误。\nPlaywright Test 是一个 集成的测试框架，无需额外依赖。\n配置文件可设置 超时、重试、报告、浏览器项目等。\n测试用例支持 分组、钩子、数据驱动。\n提供 并行执行、HTML 报告、失败重试 等高级能力。\n完整测试套件示例\n1、项目结构\nplaywright-demo/\n├─ playwright.config.ts # 全局配置（多项目、多浏览器、报告、重试…）\n├─ package.json\n├─ tests/\n│ ├─ auth.setup.ts # 一次性登录，生成 storageState\n│ ├─ smoke/\n│ │ └─ home.spec.ts # 冒烟用例：标题/URL/截图对比\n│ └─ e2e/\n│ └─ cart.spec.ts # 端到端：添加购物车、断言、附件、步骤\n├─ fixtures/\n│ ├─ pages.ts # 页面对象（PO）\n│ └─ test.extend.ts # 自定义 fixtures\n└─ snapshots/ # 视觉基线（自动生成）\n2、配置文件（playwright.config.ts）\n实例",
+    "examples": [
+     "// playwright.config.ts\nimport { defineConfig, devices } from '@playwright/test';\n\nexport default defineConfig({\n  testDir: './tests',\n  timeout: 30_000,\n  retries: 2,\n  workers: 4,\n  reporter: [['html', { outputFolder: 'report' }], ['list']],\n  forbidOnly: !!process.env.CI,\n\n  // 统一默认使用（可在项目或测试级覆盖）\n  use: {\n    baseURL: 'https://demo.playwright.dev',\n    headless: true,\n    screenshot: 'only-on-failure',\n    video: 'retain-on-failure',\n    trace: 'retain-on-failure',\n    viewport: { width: 1366, height: 900 },\n    locale: 'zh-CN',\n  },\n\n  // 多项目：不同浏览器/设备/登录态\n  projects: [\n    { name: 'Chromium', use: { ...devices['Desktop Chrome'] } },\n    { name: 'Firefox',  use: { ...devices['Desktop Firefox'] } },\n    {\n      name: 'Mobile Chrome',\n      use: { ...devices['Pixel 7'], headless: true },\n    },\n    // 带登录态项目（复用 storageState）\n    {\n      name: 'Chromium Logged-in',\n      use: { storageState: 'storageState.json' },\n      dependencies: ['setup'], // 依赖前置项目生成登录态\n    },\n    // 前置\"setup\"项目：只跑一次生成 storageState\n    {\n      name: 'setup',\n      testMatch: /auth\\.setup\\.ts/,\n    },\n  ],\n});"
+    ]
+   },
+   {
+    "title": "Playwright 教程",
+    "url": "https://www.runoob.com/playwright/playwright-tutorial.html",
+    "body": "Playwright 是微软（Microsoft） 在 2020 年推出的一个开源项目，用于 Web 自动化和端到端（End-to-End）测试的开源框架。\nPlaywright支持多种浏览器（Chromium、Firefox 和 WebKit）和多种编程语言（JavaScript/TypeScript、Python、Java 和 .NET），旨在提供可靠、快速且功能丰富的自动化测试解决方案。",
+    "examples": []
+   },
+   {
+    "title": "Playwright 视觉回归测试",
+    "url": "https://www.runoob.com/playwright/playwright-visual.html",
+    "body": "本章介绍 Playwright 的视觉回归测试功能，通过截图对比检测 UI 的意外变化。\n什么是视觉回归测试\n视觉回归测试（Visual Regression Testing）通过比较当前截图与基准截图（Golden File）之间的像素差异，检测页面的 UI 变化。\n当某个 CSS 改动意外影响了其他页面的布局时，视觉回归测试能直接捕获这个问题。\nexpect(page).toHaveScreenshot() 页面截图对比\n实例",
+    "examples": [
+     "test('RUNOOB 首页视觉回归', async ({ page }) => {\n  await page.goto('https://www.runoob.com/');\n\n  // 首次运行：保存基准截图\n  // 后续运行：与基准截图对比\n  await expect(page).toHaveScreenshot('runoob-homepage.png');\n});"
+    ]
+   },
+   {
+    "title": "Playwright 自动等待与超时",
+    "url": "https://www.runoob.com/playwright/playwright-waiting-timeout.html",
+    "body": "本章深入介绍 Playwright 的自动等待机制，以及手动等待和超时配置的完整知识。\n为什么需要自动等待\n现代 Web 应用大量使用异步渲染，页面内容不会瞬间全部加载完毕。\n传统测试框架中，开发者不得不写 sleep 或 waitFor 来等待，但这些操作不够灵活，要么等待太久拖慢测试，要么等待不够导致 flaky。\nPlaywright 将等待逻辑内置到每个 Locator 和 Action 中，从根本上解决这个问题。\n三层自动等待体系\n第一层：Locator 的自动等待\n当你创建 Locator 时，Playwright 不立即查找元素，而是在你执行操作或断言时才开始查找并自动等待。\n实例",
+    "examples": [
+     "// 创建 Locator（此时不会查找元素）\nconst btn = page.getByRole('button', { name: '延迟出现的按钮' });\n\n// 点击时自动等待按钮出现（最多等待 action timeout 时间）\nawait btn.click();"
+    ]
+   }
+  ]
+ }
+}

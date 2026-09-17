@@ -1,0 +1,354 @@
+{
+ "tutorial": {
+  "name": "CSS",
+  "category": "前端开发",
+  "desc": "CSS (Cascading Style Sheets，层叠样式表），是一种用来",
+  "url": "https://www.runoob.com/css/",
+  "chapters": [
+   {
+    "title": "CSS 布局 - 水平 & 垂直对齐",
+    "url": "https://www.runoob.com/css/css-align.html",
+    "body": "水平 & 垂直居中对齐",
+    "examples": []
+   },
+   {
+    "title": "CSS 属性 选择器",
+    "url": "https://www.runoob.com/css/css-attribute-selectors.html",
+    "body": "CSS 属性选择器用于根据元素的属性或属性值来选择 HTML 元素。\n属性选择器可以帮助你在不需要为元素添加类或 ID 的情况下对其进行样式化。\n注意：IE7 和 IE8 需声明 !DOCTYPE 才支持属性选择器！IE6 和更低的版本不支持属性选择器。\n以下是常见的 CSS 属性选择器：\n1、[attribute]\n选择带有指定属性的所有元素（无论属性值是什么）。\n/* 选择所有具有 `type` 属性的元素 */\n[type] {\n border: 1px solid red;\n}\n2、[attribute=\"value\"]\n选择具有指定属性和值完全匹配的元素。\n/* 选择所有 `type` 属性等于 `text` 的元素 */\n[type=\"text\"] {\n background-color: yellow;\n}\n3、[attribute~=\"value\"]\n选择属性值中包含指定词（用空格分隔的词列表之一）的元素。\n/* 选择属性值中包含 `button` 的元素 */\n[class~=\"button\"] {\n font-weight: bold;\n}\n4、[attribute|=\"value\"]\n选择具有指定值或者以指定值开头并紧跟着连字符 - 的属性值的元素，常用于语言代码。\n/* 选择所有 `lang` 属性是 `en` 或者以 `en-` 开头的元素 */\n[lang|=\"en\"] {\n color: green;\n}\n5、[attribute^=\"value\"]\n选择属性值以指定值开头的元素。\n/* 选择所有 `href` 属性以 `https` 开头的链接 */\n[href^=\"https\"] {\n text-decoration: none;\n}\n6、[attribute$=\"value\"]\n选择属性值以指定值结尾的元素。\n/* 选择所有 src 属性以 .jpg 结尾的图片 */\n[src$=\".jpg\"] {\n border: 2px solid blue;\n}\n7、[attribute*=\"value\"]\n选择属性值中包含指定值的元素。\n/* 选择所有 `title` 属性中包含 `tutorial` 的元素 */\n[title*=\"tutorial\"] {\n font-style: italic;\n}\n通过属性选择器，你可以轻松选择元素并基于它们的属性设置特定样式，增加了灵活性和可维护性。\n属性选择器\n下面的例子是把包含标题（title）的所有元素变为蓝色：\n实例",
+    "examples": [
+     "[title]\n{\ncolor:blue;\n}"
+    ]
+   },
+   {
+    "title": "CSS 背景",
+    "url": "https://www.runoob.com/css/css-background.html",
+    "body": "CSS 背景属性用于定义HTML元素的背景。\nCSS 属性定义背景效果:\nbackground-color\nbackground-image\nbackground-repeat\nbackground-attachment\nbackground-position\n背景颜色\nbackground-color 属性定义了元素的背景颜色.\n页面的背景颜色使用在body的选择器中:\n实例\n尝试一下 »",
+    "examples": [
+     "body {background-color:#b0c4de;}"
+    ]
+   },
+   {
+    "title": "CSS 边框",
+    "url": "https://www.runoob.com/css/css-border.html",
+    "body": "CSS 边框（Border）是用于定义元素边框样式的属性。\n边框可以应用于任何 HTML 元素，用于增强视觉效果、分隔内容或突出显示元素。\nCSS 边框属性主要包括边框宽度、边框样式、边框颜色以及简写属性。\nCSS 边框属性\nCSS边框属性允许你指定一个元素边框的样式和颜色。\n在四边都有边框",
+    "examples": []
+   },
+   {
+    "title": "CSS 盒子模型",
+    "url": "https://www.runoob.com/css/css-boxmodel.html",
+    "body": "CSS 盒子模型(Box Model)\n所有HTML元素可以看作盒子，在CSS中，\"box model\"这一术语是用来设计和布局时使用。\nCSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：边距，边框，填充，和实际内容。\n盒模型允许我们在其它元素和周围元素边框之间的空间放置元素。\n下面的图片说明了盒子模型(Box Model)：\n不同部分的说明：\nMargin(外边距) - 清除边框外的区域，外边距是透明的。\nBorder(边框) - 围绕在内边距和内容外的边框。\nPadding(内边距) - 清除内容周围的区域，内边距是透明的。\nContent(内容) - 盒子的内容，显示文本和图像。\n为了正确设置元素在所有浏览器中的宽度和高度，你需要知道的盒模型是如何工作的。\n元素的宽度和高度\n重要: 当您指定一个 CSS 元素的宽度和高度属性时，你只是设置内容区域的宽度和高度。要知道，完整大小的元素，你还必须添加内边距，边框和外边距。\n下面的例子中的元素的总宽度为 450px：\n实例",
+    "examples": [
+     "div {\nwidth: 300px;\n    border: 25px solid green;\n    padding: 25px;\n    margin: 25px;\n}"
+    ]
+   },
+   {
+    "title": "CSS 组合选择符",
+    "url": "https://www.runoob.com/css/css-combinators.html",
+    "body": "CSS 组合选择符\n组合选择符说明了两个选择器之间的关系。\nCSS组合选择符包括各种简单选择符的组合方式。\n在 CSS3 中包含了四种组合方式:\n后代选择器(以空格    分隔)\n子元素选择器(以大于 > 号分隔）\n相邻兄弟选择器（以加号 + 分隔）\n普通兄弟选择器（以波浪号 ～ 分隔）\n后代选择器\n后代选择器用于选取某元素的后代元素。\n以下实例选取所有 <p> 元素插入到 <div> 元素中:\n实例",
+    "examples": [
+     "div p\n{\nbackground-color:yellow;\n}"
+    ]
+   },
+   {
+    "title": "CSS 计数器",
+    "url": "https://www.runoob.com/css/css-counters.html",
+    "body": "CSS 计数器通过一个变量来设置，根据规则递增变量。\n使用计数器自动编号\nCSS 计数器根据规则来递增变量。\nCSS 计数器使用到以下几个属性：\ncounter-reset - 创建或者重置计数器\ncounter-increment - 递增变量\ncontent - 插入生成的内容\ncounter() 或 counters() 函数 - 将计数器的值添加到元素\n要使用 CSS 计数器，得先用 counter-reset 创建：\n以下实例在页面创建一个计数器 (在 body 选择器中)，每个 <h2> 元素的计数值都会递增，并在每个 <h2> 元素前添加 \"Section <计数值>:\"\nCSS 实例",
+    "examples": [
+     "body {\ncounter-reset: section;\n}\nh2::before {\ncounter-increment: section;\n  content: \"Section \" counter(section) \": \";\n}"
+    ]
+   },
+   {
+    "title": "CSS 尺寸 (Dimension)",
+    "url": "https://www.runoob.com/css/css-dimension.html",
+    "body": "CSS 尺寸 (Dimension) 属性允许你控制元素的高度和宽度。同样，它允许你增加行间距。\n更多实例",
+    "examples": []
+   },
+   {
+    "title": "CSS Display(显示) 与 Visibility（可见性）",
+    "url": "https://www.runoob.com/css/css-display-visibility.html",
+    "body": "display属性设置一个元素应如何显示，visibility属性指定一个元素应可见还是隐藏。\nBox 1",
+    "examples": []
+   },
+   {
+    "title": "CSS 下拉菜单",
+    "url": "https://www.runoob.com/css/css-dropdowns.html",
+    "body": "使用 CSS 创建一个鼠标移动上去后显示下拉菜单的效果。\n下拉菜单实例\n实例演示 1\n文本下拉菜单菜鸟教程\nwww.runoob.com",
+    "examples": []
+   },
+   {
+    "title": "CSS 编辑器",
+    "url": "https://www.runoob.com/css/css-editor.html",
+    "body": "可以使用专业的 CSS 编辑器来编辑 CSS，为大家推荐几款常用的编辑器：",
+    "examples": []
+   },
+   {
+    "title": "CSS 实例",
+    "url": "https://www.runoob.com/css/css-examples.html",
+    "body": "CSS背景\n设置页面的背景颜色\n设置不同元素的背景颜色\n设置一个图像作为页面的背景\n错误的背景图片\n如何在水平方向重复背景图像\n如何定位背景图像\n一个固定的背景图片（这个图片不会随页面的其余部分滚动）\n声明背景属性\n高级的背景例子\n背景属性的解释\nCSS文本\n设置不同元素的文本颜色\n文本对齐\n移除链接下划线\n装饰文字\n控制文本中的字母\n缩进文本\n指定了字符之间的空间\n指定了行与行之间的空间\n设置元素的文本方向\n增加单词之间的空格\n在一个元素内禁用文字换行\n内部文字图像的垂直对齐\nText属性的解释\nCSS的字体\n设置文本的字体\n设置字体大小\n用px设置的字体的大小\n用em设置的字体的大小\n用百分比和em设置字体的大小\n设置字体样式\n设置字体的异体\n设置字体的粗细\n在一个声明的所有字体属性\nFont属性的解释\nCSS链接\n为访问/未访问链接添加不同的颜色\n在链接上使用文本装饰\n指定链接的背景颜色\n超链接添加其他样式\n高级 - 创建链接框\n链接属性的解释\nCSS列表\n列表中所有不同的列表项标记\n设置作为列表项标记的图像\n使用跨浏览器解决方案设置一个列表项标记的图像\n在一个声明中的所有列表属性\ncss 移除列表项 li 默认样式\n列表属性的解释\nCSS表格\n指定一个表的Th，TD元素和黑色边框\n使用border-collapse\n指定表格的宽度和高度\n设置内容的水平对齐方式（文本对齐）\n设置内容的垂直对齐（垂直对齐）\n指定TH和TD元素的填充\n指定表格边框的颜色\n设置表格标题的位置\n创建一个奇特的表\n表格属性的解释\nCSS盒模型\n指定元素的总宽度为250像素\n使用跨浏览器的解决方案指定元素的总宽度为250像素的\n盒模型的解释\nCSS边框\n设置四个边框的宽度\n设置上边框的宽度\n设置底部边框的宽度\n设置左边框的宽度\n设置右边框的宽度\n设置四个边框的样式\n设置上边框的样式\n设置下边框的样式\n设置左边框的样式\n设置右边框的样式\n设置四个边框的颜色\n设置上边框的颜色\n设置下边框的颜色\n设置左边框的颜色\n设置右边框的颜色\n在一个声明中的所有边框属性\n每边设置不同的边框\n在一个声明中的所有顶部边框属性\n在一个声明中的所有下边框属性\n在一个声明中的所有左边框属性\n在一个声明中的所有右边框属性\n边框属性的解释\nCSS轮廓\n围绕一个元素（outline），绘制一条线\n设置轮廓的样式\n设置轮廓颜色\n设置轮廓的宽度\n轮廓属性的解释\nCSS边距\n指定一个元素的边距\n边距缩写属性\n文本顶部边距设置的值使用厘米\n使用百分比值设置文本的底部边缘\n使用厘米值设置文本的左边距\nMargin属性的解释\nCSS填充\n设置元素的左部填充\n设置元素的右部填充\n设置元素的顶部填充\n设置元素的底部填充\n在一个声明中的所有填充属性\npadding属性的解释\nCSS分组和嵌套\n组选择器\n嵌套选择器\n分组和嵌套解释\nCSS尺寸\n使用像素值设置图像的高度\n使用百分比设置图像的高度\n使用像素值来设置元素的宽度\n使用百分比来设置元素的宽度\n设置元素的最大高度\n使用像素值设置元素的最大宽度\n使用百分比来设置元素的最大宽度\n设置元素的最低高度\n使用像素值来设置元素的最小宽度\n使用百分比来设置元素的最小宽度\n尺寸属性的解释\nCSS显示\n如何隐藏一个元素(visibility:hidden)\n如何不显示元素(display:none)\n如何显示一个元素的内联元素\n如何显示一个元素的块元素\n如何使用表格的collapse属性\nDisplay属性的解释\nCSS定位\n元素相对浏览器窗口的位置\n元素的相对定位\n元素的绝对定位\n重叠的元素\n设置元素的形状\n如何使用滚动条来显示元素内溢出的内容\n如何设置浏览器自动溢出处理\n使用像素值设置图像的顶部\n使用像素值设置图像的底部\n使用像素值设置图像的左边\n使用像素值设置图像的右边\n更改光标\n定位属性的解释\nCSS浮动\n简单的使用float属性\n为图像添加边框和边距并浮动到段落的左侧\n标题和图片向右侧浮动\n让段落的第一个字母浮动到左侧\n使用float属性创建一个图片廊\n开启float - clear属性\n创建一个水平菜单\n创建一个没有表格的网页\nFloat属性的解释\nCSS对齐元素\n使用margin的中间调整\n左/右位置对齐\n使用跨浏览器解决方案，设置左/右位置对齐\n左/右对齐，浮动\n使用跨浏览器解决方案，设置左/右位置对齐，浮动\n对齐属性解释\nCSS生成的内容\n把括号内的URL用content属性插入到每个链接后面\n章节和分节的编号是\"第1节\"，\"1.1\"，\"1.2\"等\nquotes 属性指定了引号\nCSS伪类\n添加不同颜色的超链接\n给超链接添加其他样式\n使用：焦点\n:first-child - 匹配了第一个 p 元素\n:first-child - 匹配了 p 元素中的第一个 i 元素\n:first-child - 匹配了第一个p元素中的所有I元素\n使用:lang\n伪类的解释\nCSS伪元素\n把文本的第一个字母设为特殊的字母\n把第一行文字设置为特殊\n把第一行文字的第一个字母设置为特殊\n使用：在一个元素之前插入一些内容\n使用：在一个元素之后插入一些内容\n伪元素的解释\nCSS导航栏\n垂直导航栏的全样式\n水平导航栏的全样式\n导航栏的解释\nCSS图片廊\n图片廊\n图片廊解释\nCSS图像的不透明度\n创建透明图像 - 鼠标悬停效果\n创建一个背景图像与文本的透明框\n图像的不透明度解释\nCSS图像拼合\n图像拼合\n图像拼合-导航列表\n悬停效果与图像拼合\n图像拼合解释\nCSS属性选择器\n选择具有title属性的元素\n选择标题=一个特定值的元素\n选择标题=一个特定值的元素(使用（~）分隔属性和值)\n选择标题=一个特定值的元素(使用（|）分隔属性和值)\n属性选择器解释\nCSS 应用实例\nCSS 加载进度条\nCSS 分页样式\nCSS 进度条\nCSS 提示信息实例\nCSS 文字覆盖图像悬停效果\nCSS 文字覆盖图像悬停效果 - 从上至下\nCSS 文字覆盖图像悬停效果 – 从下至上\nCSS 文字覆盖图像悬停效果 – 从右至左\nCSS 文字覆盖图像悬停效果 – 从左至右\nCSS 文字覆盖图像悬停效果 – 淡入透明\nCSS 垂直按钮组\nCSS 按钮组\nCSS Loading(加载) 动画效果\nCSS Loading(加载) 动画效果2\nCSS Loading(加载) 动画效果3\nCSS Loading(加载) 动画效果4\nCSS 动态搜索框\nCSS 用户信息卡片\nCSS 卡片样式\nCSS 上一页、下一页样式\nCSS 各种提示信息框\nCSS 三种价格表样式\nCSS 开关样式\nCSS 让 DIV 水平居中显示\nCSS 上下左右四个方向箭头\nCSS 反馈信息表单\nCSS font-awesome 图标菜单栏\nCSS 顶部导航样式实例\nCSS 便签样式效果\nCSS 水平滚动菜单\nCSS 垂直菜单\nCSS 垂直滚动菜单\nCSS 固定菜单栏\nCSS 响应式登陆表单\nCSS 固定底部菜单栏\nCSS 下拉菜单\nCSS 下拉内容的对齐方式\nCSS 导航条下拉菜单\nCSS 带搜索框的导航栏\nCSS 带搜索导航栏 - 带提交按钮\nCSS 带搜索导航栏 - 带提搜索图标\nCSS 固定左侧导航栏\nCSS 固定左侧导航栏 – 高度自适应\nHTML/CSS/JS 联系我们表单模板(带百度地图)\nCSS 设计一个网页\n更多实例：https://www.jyshare.com/examples/",
+    "examples": []
+   },
+   {
+    "title": "CSS Float(浮动)",
+    "url": "https://www.runoob.com/css/css-float.html",
+    "body": "什么是 CSS Float（浮动）？",
+    "examples": []
+   },
+   {
+    "title": "CSS 字体",
+    "url": "https://www.runoob.com/css/css-font.html",
+    "body": "CSS字体属性定义字体，加粗，大小，文字样式。\nserif和sans-serif字体之间的区别\n在计算机屏幕上，sans-serif字体被认为是比serif字体容易阅读\nCSS字型\n在CSS中，有两种类型的字体系列名称：\n通用字体系列 - 拥有相似外观的字体系统组合（如 \"Serif\" 或 \"Monospace\"）\n特定字体系列 - 一个特定的字体系列（如 \"Times\" 或 \"Courier\"）\nGeneric family\n字体系列\n说明\nSerif\nTimes New RomanGeorgia\nSerif字体中字符在行的末端拥有额外的装饰\nSans-serif\nArialVerdana\n\"Sans\"是指无 - 这些字体在末端没有额外的装饰\nMonospace\nCourier NewLucida Console\n所有的等宽字符具有相同的宽度\n字体系列\nfont-family 属性设置文本的字体系列。\nfont-family 属性应该设置几个字体名称作为一种\"后备\"机制，如果浏览器不支持第一种字体，他将尝试下一种字体。\n注意: 如果字体系列的名称超过一个字，它必须用引号，如Font Family：\"宋体\"。\n多个字体系列是用一个逗号分隔指明：\n实例\n尝试一下 »",
+    "examples": [
+     "p{font-family:\"Times New Roman\", Times, serif;}"
+    ]
+   },
+   {
+    "title": "CSS 表单",
+    "url": "https://www.runoob.com/css/css-form.html",
+    "body": "一个表单案例，我们使用 CSS 来渲染 HTML 的表单元素：\nCSS 实例",
+    "examples": [
+     "input[type=text], select {\nwidth: 100%;\n  padding: 12px 20px;\n  margin: 8px 0;\n  display: inline-block;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  box-sizing: border-box;\n}\ninput[type=submit] {\nwidth: 100%;\n  background-color: #4CAF50;\n  color: white;\n  padding: 14px 20px;\n  margin: 8px 0;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\ninput[type=submit]:hover {\nbackground-color: #45a049;\n}\ndiv {\nborder-radius: 5px;\n  background-color: #f2f2f2;\n  padding: 20px;\n}"
+    ]
+   },
+   {
+    "title": "CSS 分组 和 嵌套 选择器",
+    "url": "https://www.runoob.com/css/css-grouping-nesting.html",
+    "body": "分组选择器\n在样式表中有很多具有相同样式的元素。",
+    "examples": [
+     "h1 {\ncolor:green;\n}\nh2 {\ncolor:green;\n}\np {\ncolor:green;\n}"
+    ]
+   },
+   {
+    "title": "CSS 创建",
+    "url": "https://www.runoob.com/css/css-howto.html",
+    "body": "当读到一个样式表时，浏览器会根据它来格式化 HTML 文档。\n如何插入样式表\n插入样式表的方法有三种:\n外部样式表(External style sheet)\n内部样式表(Internal style sheet)\n内联样式(Inline style)\n外部样式表\n当样式需要应用于很多页面时，外部样式表将是理想的选择。在使用外部样式表的情况下，你可以通过改变一个文件来改变整个站点的外观。每个页面使用 <link> 标签链接到样式表。 <link> 标签在（文档的）头部：",
+    "examples": [
+     "<head>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"mystyle.css\">\n</head>"
+    ]
+   },
+   {
+    "title": "CSS id 和 class",
+    "url": "https://www.runoob.com/css/css-id-class.html",
+    "body": "id 和 class 选择器\n如果你要在HTML元素中设置CSS样式，你需要在元素中设置\"id\" 和 \"class\"选择器。\nid 选择器\nid 选择器可以为标有特定 id 的 HTML 元素指定特定的样式。\nHTML元素以id属性来设置id选择器,CSS 中 id 选择器以 \"#\" 来定义。\n以下的样式规则应用于元素属性 id=\"para1\":\n实例",
+    "examples": [
+     "#para1\n{\ntext-align:center;\n    color:red;\n}"
+    ]
+   },
+   {
+    "title": "CSS 图片廊",
+    "url": "https://www.runoob.com/css/css-image-gallery.html",
+    "body": "以下是使用CSS创建图片廊：\n这里添加图片文本描述",
+    "examples": []
+   },
+   {
+    "title": "CSS 图像拼合技术",
+    "url": "https://www.runoob.com/css/css-image-sprites.html",
+    "body": "图像拼合\n图像拼合就是单个图像的集合。\n有许多图像的网页可能需要很长的时间来加载和生成多个服务器的请求。\n使用图像拼合会降低服务器的请求数量，并节省带宽。\n图像拼合 - 简单实例\n与其使用三个独立的图像，不如我们使用这种单个图像（\"img_navsprites.gif\"）：\n有了CSS，我们可以只显示我们需要的图像的一部分。\n在下面的例子CSS指定显示 \"img_navsprites.gif\" 的图像的一部分：\n实例\n尝试一下 »",
+    "examples": [
+     "img.home\n{\nwidth:46px;\nheight:44px;\nbackground:url(img_navsprites.gif) 0 0;\n}"
+    ]
+   },
+   {
+    "title": "CSS 图像透明/不透明",
+    "url": "https://www.runoob.com/css/css-image-transparency.html",
+    "body": "使用CSS很容易创建透明的图像。\n注意：CSS Opacity属性是W3C的CSS3建议的一部分。\n更多实例",
+    "examples": []
+   },
+   {
+    "title": "CSS !important 规则",
+    "url": "https://www.runoob.com/css/css-important.html",
+    "body": "什么是 !important\nCSS 中的 !important 规则用于增加样式的权重。\n!important 与优先级无关，但它与最终的结果直接相关，使用一个 !important 规则时，此声明将覆盖任何其他声明。\n实例",
+    "examples": [
+     "#myid {\nbackground-color: blue;\n}\n.myclass {\nbackground-color: gray;\n}\np {\nbackground-color: red !important;\n}"
+    ]
+   },
+   {
+    "title": "CSS 简介",
+    "url": "https://www.runoob.com/css/css-intro.html",
+    "body": "你需要具备的知识\n在继续学习之前，你需要对下面的知识有基本的了解：\nHTML / XHTML\n如果你希望首先学习这些项目，请在 首页 访问相关教程。\n什么是 CSS?\nCSS 指层叠样式表 (Cascading Style Sheets)\n样式定义如何显示 HTML 元素\n样式通常存储在样式表中\n把样式添加到 HTML 4.0 中，是为了解决内容与表现分离的问题\n外部样式表可以极大提高工作效率\n外部样式表通常存储在 CSS 文件中\n多个样式定义可层叠为一个\nCSS 实例\n一个HTML文档可以显示不同的样式:\n查看CSS是如何工作的\n样式解决了一个很大的问题\nHTML 标签原本被设计为用于定义文档内容，如下实例：\n<h1>这是一个标题</h1>\n<p>这是一个段落。</p>\n样式表定义如何显示 HTML 元素，就像 HTML 中的字体标签和颜色属性所起的作用那样。样式通常保存在外部的 .css 文件中。我们只需要编辑一个简单的 CSS 文档就可以改变所有页面的布局和外观。",
+    "examples": []
+   },
+   {
+    "title": "CSS 链接",
+    "url": "https://www.runoob.com/css/css-link.html",
+    "body": "不同的链接可以有不同的样式。\n链接样式\n链接的样式，可以用任何CSS属性（如颜色，字体，背景等）。\n特别的链接，可以有不同的样式，这取决于他们是什么状态。\n这四个链接状态是：\na:link - 正常，未访问过的链接\na:visited - 用户已访问过的链接\na:hover - 当用户鼠标放在链接上时\na:active - 链接被点击的那一刻\n实例",
+    "examples": [
+     "a:link {color:#000000;} /* 未访问链接*/\na:visited {color:#00FF00;} /* 已访问链接 */\na:hover {color:#FF00FF;} /* 鼠标移动到链接上 */\na:active {color:#0000FF;} /* 鼠标点击时 */"
+    ]
+   },
+   {
+    "title": "CSS 列表",
+    "url": "https://www.runoob.com/css/css-list.html",
+    "body": "CSS 列表属性作用如下：\n设置不同的列表项标记为有序列表\n设置不同的列表项标记为无序列表\n设置列表项标记为图像\n列表\n在 HTML中，有两种类型的列表：\n无序列表 ul - 列表项标记用特殊图形（如小黑点、小方框等）\n有序列表 ol - 列表项的标记有数字或字母\n使用 CSS，可以列出进一步的样式，并可用图像作列表项标记。\n无序列表如下所示:\nCoffee\nTea\nCoca Cola\nCoffee\nTea\nCoca Cola\n有序列表如下所示:\nCoffee\nTea\nCoca Cola\nCoffee\nTea\nCoca Cola\n不同的列表项标记\nlist-style-type属性指定列表项标记的类型是：\n实例",
+    "examples": [
+     "ul.a {list-style-type: circle;}\nul.b {list-style-type: square;}\nol.c {list-style-type: upper-roman;}\nol.d {list-style-type: lower-alpha;}"
+    ]
+   },
+   {
+    "title": "CSS margin(外边距)",
+    "url": "https://www.runoob.com/css/css-margin.html",
+    "body": "CSS margin(外边距)属性定义元素周围的空间。\nmargin\nmargin 清除周围的（外边框）元素区域。margin 没有背景颜色，是完全透明的。\nmargin 可以单独改变元素的上，下，左，右边距，也可以一次改变所有的属性。\n可能的值\n值\n说明\nauto\n设置浏览器边距。这样做的结果会依赖于浏览器\nlength\n定义一个固定的margin（使用像素，pt，em等）\n%\n定义一个使用百分比的边距\nMargin可以使用负值，重叠的内容。\nMargin - 单边外边距属性\n在CSS中，它可以指定不同的侧面不同的边距：\n实例",
+    "examples": [
+     "margin-top:100px;\nmargin-bottom:100px;\nmargin-right:50px;\nmargin-left:50px;"
+    ]
+   },
+   {
+    "title": "CSS 媒体类型",
+    "url": "https://www.runoob.com/css/css-mediatypes.html",
+    "body": "媒体类型允许你指定文件将如何在不同媒体呈现。该文件可以以不同的方式显示在屏幕上，在纸张上，或听觉浏览器等等。\n媒体类型\n一些 CSS 属性只设计了某些媒体。例如 voice-family 属性是专为听觉用户代理。其他一些属性可用于不同的媒体类型。例如， font-size 属性可用于屏幕和印刷媒体，但有不同的值。屏幕和纸上的文件不同，通常需要一个更大的字体，sans-serif 字体比较适合在屏幕上阅读，而 serif 字体更容易在纸上阅读。\n@media 规则\n@media 规则允许在相同样式表为不同媒体设置不同的样式。\n在下面的例子告诉我们浏览器屏幕上显示一个 14 像素的 Verdana 字体样式。但是如果页面打印，将是 10 个像素的 Times 字体。请注意，font-weight 在屏幕上和纸上设置为粗体：\n实例",
+    "examples": [
+     "@media screen\n{\np.test {font-family:verdana,sans-serif;font-size:14px;}\n}\n@media print\n{\np.test {font-family:times,serif;font-size:10px;}\n}\n@media screen,print\n{\np.test {font-weight:bold;}\n}"
+    ]
+   },
+   {
+    "title": "CSS 导航栏",
+    "url": "https://www.runoob.com/css/css-navbar.html",
+    "body": "垂直\n主页\n新闻\n联系\n关于\n水平\n主页\n新闻\n联系\n关于\n主页\n新闻\n联系\n关于\n导航栏\n熟练使用导航栏，对于任何网站都非常重要。\n使用CSS你可以转换成好看的导航栏而不是枯燥的HTML菜单。\n导航栏=链接列表\n作为标准的 HTML 基础一个导航栏是必须的。\n在我们的例子中我们将建立一个标准的 HTML 列表导航栏。\n导航条基本上是一个链接列表，所以使用 <ul> 和 <li>元素非常有意义：\n实例",
+    "examples": [
+     "<ul>\n<li><a href=\"#home\">主页</a></li>\n<li><a href=\"#news\">新闻</a></li>\n<li><a href=\"#contact\">联系</a></li>\n<li><a href=\"#about\">关于</a></li>\n</ul>"
+    ]
+   },
+   {
+    "title": "CSS 轮廓（outline）",
+    "url": "https://www.runoob.com/css/css-outline.html",
+    "body": "轮廓（outline）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。\n轮廓（outline）属性指定元素轮廓的样式、颜色和宽度。\n轮廓（outline）实例\n在元素周围画线\n本例演示使用outline属性在元素周围画一条线。\n设置轮廓的样式\n本例演示如何设置轮廓的样式。\n设置轮廓的颜色\n本例演示如何设置轮廓的颜色。\n设置轮廓的宽度\n本例演示如何设置轮廓的宽度。\nCSS 轮廓（outline）\n轮廓（outline）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。\nCSS outline 属性规定元素轮廓的样式、颜色和宽度。\n所有CSS 轮廓（outline）属性\n\"CSS\" 列中的数字表示哪个CSS版本定义了该属性(CSS1 或者CSS2)。\n属性\n说明\n值\nCSS\noutline\n在一个声明中设置所有的轮廓属性\noutline-color\n outline-style\n outline-widthinherit\n2\noutline-color\n设置轮廓的颜色\ncolor-name\n hex-number\n rgb-numberinvert\n inherit\n2\noutline-style\n设置轮廓的样式\nnone\n dotted\n dashed\n solid\n double\n groove\n ridge\n inset\n outset\n inherit\n2\noutline-width\n设置轮廓的宽度\nthin\n medium\n thicklengthinherit\n2",
+    "examples": []
+   },
+   {
+    "title": "CSS 布局 - Overflow",
+    "url": "https://www.runoob.com/css/css-overflow.html",
+    "body": "CSS overflow 属性用于控制内容溢出元素框时显示的方式。\n这里的文本内容是可以滚动的，滚动条方向是垂直方向。\n这里的文本内容是可以滚动的，滚动条方向是垂直方向。\n这里的文本内容是可以滚动的，滚动条方向是垂直方向。\n这里的文本内容是可以滚动的，滚动条方向是垂直方向。\n这里的文本内容是可以滚动的，滚动条方向是垂直方向。\n这里的文本内容是可以滚动的，滚动条方向是垂直方向。",
+    "examples": []
+   },
+   {
+    "title": "CSS padding（填充）",
+    "url": "https://www.runoob.com/css/css-padding.html",
+    "body": "CSS padding（填充）是一个简写属性，定义元素边框与元素内容之间的空间，即上下左右的内边距。\npadding（填充）\n当元素的 padding（填充）内边距被清除时，所释放的区域将会受到元素背景颜色的填充。\n单独使用 padding 属性可以改变上下左右的填充。\n可能的值\n值\n说明\nlength\n定义一个固定的填充(像素, pt, em,等)\n%\n使用百分比值定义一个填充\n填充- 单边内边距属性\n在CSS中，它可以指定不同的侧面不同的填充：\n实例\n尝试一下 »",
+    "examples": [
+     "padding-top:25px;\npadding-bottom:25px;\npadding-right:50px;\npadding-left:50px;"
+    ]
+   },
+   {
+    "title": "CSS Position(定位)",
+    "url": "https://www.runoob.com/css/css-positioning.html",
+    "body": "position 属性用于指定元素的定位方式。\n常见的五种取值如下：\n值\n说明\n锚点\nstatic\n默认值，元素按照正常文档流排列，不受 top/right/bottom/left 影响\n查看示例\nrelative\n相对自身原始位置进行偏移，不会脱离文档流\n查看示例\nabsolute\n相对于最近的已定位祖先元素进行定位（否则相对于 body），脱离文档流\n查看示例\nfixed\n相对于浏览器窗口定位，滚动页面时位置不会改变\n查看示例\nsticky\n在滚动到指定位置前表现为 relative，之后表现为 fixed\n查看示例\n元素可以通过 top、right、bottom 和 left 属性进行位置调整，\n但这些属性只有在设置了 position（且值不为 static）时才会生效。\n不同的定位方式会影响这些属性的参照对象和表现形式。\nstatic 定位\nHTML 元素的默认值，即没有定位，遵循正常的文档流对象。\n静态定位的元素不会受到 top, bottom, left, right影响。\n实例",
+    "examples": [
+     "div.static {\nposition: static;\n    border: 3px solid #73AD21;\n}"
+    ]
+   },
+   {
+    "title": "CSS 伪类(Pseudo-classes)",
+    "url": "https://www.runoob.com/css/css-pseudo-classes.html",
+    "body": "CSS伪类是用来添加一些选择器的特殊效果。\n语法\n伪类的语法：\nselector:pseudo-class {property:value;}",
+    "examples": []
+   },
+   {
+    "title": "CSS 伪元素",
+    "url": "https://www.runoob.com/css/css-pseudo-elements.html",
+    "body": "CSS 伪元素是一种特殊的选择器，它可以在不改变 HTML 结构的情况下对页面元素的特定部分进行样式设置。\nCSS 伪元素是用来添加一些选择器的特殊效果。\n常用的 CSS 伪元素有 ::before、::after、::first-line、::first-letter 等。\n语法\n伪元素的语法：\nselector::pseudo-element {\n property: value;\n}\nCSS 类也可以使用伪元素：\nselector.class::pseudo-element {\n property: value;\n}\n:first-line 伪元素\n\"first-line\" 伪元素用于向文本的首行设置特殊样式。\n在下面的例子中，浏览器会根据 \"first-line\" 伪元素中的样式对 p 元素的第一行文本进行格式化：\n实例",
+    "examples": [
+     "p:first-line\n{\ncolor:#ff0000;\n    font-variant:small-caps;\n}"
+    ]
+   },
+   {
+    "title": "响应式 Web 设计 - 框架",
+    "url": "https://www.runoob.com/css/css-rwd-frameworks.html",
+    "body": "本章节为大家介绍响应式 Web 设计框架 Bootstrap。\nBootstrap，来自 Twitter，是目前最受欢迎的前端框架。Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的，它简洁灵活，使得 Web 开发更加快捷。\n实例\n尝试一下 »",
+    "examples": [
+     "<!DOCTYPE html><html lang=\"en\"><head><title>Bootstrap \n\tExample</title><meta charset=\"utf-8\"><meta name=\"viewport\"\ncontent=\"width=device-width, initial-scale=1\"><link rel=\"stylesheet\"\nhref=\"http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css\">\n<script\nsrc=\"http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js\"></script>\n<script\nsrc=\"http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js\"></script>\n</head><body><div class=\"container\">  <div\nclass=\"jumbotron\">    <h1>我的第一个 Bootstrap 页面</h1>  \n\t</div>  <div class=\"row\">    <div\nclass=\"col-sm-4\">      ...    \n\t</div>    <div class=\"col-sm-4\">      \n\t...    </div>    <div\nclass=\"col-sm-4\">    ...    </div>  \n\t</div></div></body></html>"
+    ]
+   },
+   {
+    "title": "响应式 Web 设计 - 网格视图",
+    "url": "https://www.runoob.com/css/css-rwd-grid.html",
+    "body": "什么是网格视图?\n很多网页都是基于网格设计的，这说明网页是按列来布局的。\n使用网格视图有助于我们设计网页。这让我们向网页添加元素变的更简单。\n响应式网格视图通常是 12 列，宽度为100%，在浏览器窗口大小调整时会自动伸缩。\n响应式网格视图\n创建响应式网格视图\n接下来我们来创建一个响应式网格视图。\n首先确保所有的 HTML 元素都有 box-sizing 属性且设置为 border-box。\n确保边距和边框包含在元素的宽度和高度间。\n添加如下代码：\n* {\n box-sizing: border-box;\n}\n查看更多 box-sizing 内容请点击：CSS3 box-sizing 属性 。\n以下实例演示了简单的响应式网页，包含两列：\n实例\n尝试一下 »",
+    "examples": [
+     ".menu {    width: 25%;    \n\tfloat: left;}\n.main {    width: 75%;    \n\tfloat: left;}"
+    ]
+   },
+   {
+    "title": "响应式 Web 设计 - 图片",
+    "url": "https://www.runoob.com/css/css-rwd-images.html",
+    "body": "使用 width 属性\n如果 width 属性设置为 100%，图片会根据上下范围实现响应式功能：\n实例\n尝试一下 »",
+    "examples": [
+     "img {\n    width: 100%;    height: auto;\n}"
+    ]
+   },
+   {
+    "title": "响应式 Web 设计 - 媒体查询",
+    "url": "https://www.runoob.com/css/css-rwd-mediaqueries.html",
+    "body": "媒体(media)查询在 CSS3 上有介绍：CSS3 @media 查询。\n使用 @media 查询，你可以针对不同的媒体类型定义不同的样式。\n实例\n如果浏览器窗口小于 500px, 背景将变为浅蓝色：\n尝试一下 »",
+    "examples": [
+     "@media only screen and (max-width: 500px) {    body {\n\t       \n\tbackground-color: lightblue;    }}"
+    ]
+   },
+   {
+    "title": "响应式 Web 设计 - 视频(Video)",
+    "url": "https://www.runoob.com/css/css-rwd-videos.html",
+    "body": "使用 width 属性\n如果 width 属性设置为 100%，视频播放器会根据屏幕大小自动调整比例：\n实例\n尝试一下 »",
+    "examples": [
+     "video {\n    width: 100%;    height: auto;\n}"
+    ]
+   },
+   {
+    "title": "响应式 Web 设计 - Viewport",
+    "url": "https://www.runoob.com/css/css-rwd-viewport.html",
+    "body": "什么是 Viewport?\nviewport 是用户网页的可视区域。\nviewport 翻译为中文可以叫做\"视区\"。\n手机浏览器是把页面放在一个虚拟的\"窗口\"（viewport）中，通常这个虚拟的\"窗口\"（viewport）比屏幕宽，这样就不用把每个网页挤到很小的窗口中（这样会破坏没有针对手机浏览器优化的网页的布局），用户可以通过平移和缩放来看网页的不同部分。\n设置 Viewport\n一个常用的针对移动网页优化过的页面的 viewport meta 标签大致如下：\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\nwidth：控制 viewport 的大小，可以指定的一个值，如 600，或者特殊的值，如 device-width 为设备的宽度（单位为缩放为 100% 时的 CSS 的像素）。\nheight：和 width 相对应，指定高度。\ninitial-scale：初始缩放比例，也即是当页面第一次 load 的时候缩放比例。\nmaximum-scale：允许用户缩放到的最大比例。\nminimum-scale：允许用户缩放到的最小比例。\nuser-scalable：用户是否可以手动缩放。\n以下实例演示了使用viewport和没使用viewport在移动端上的效果：\n实例1、没有添加 viewport：点击查看\n实例2、添加 viewport：点击查看\n如果你在平板电脑或手机上访问，可以直接点击查看效果。",
+    "examples": []
+   },
+   {
+    "title": "你已经学习了CSS,下一步学习什么呢?",
+    "url": "https://www.runoob.com/css/css-summary.html",
+    "body": "CSS 总结\n本教程已向你讲解了如何创建样式表来同时控制多重页面的样式和布局。\n你已经学会如何使用 CSS 来添加背景、格式化文本、以及格式化边框，并定义元素的填充和边距。\n同时，你也学会了如何定位元素、控制元素的可见性和尺寸、设置元素的形状、将一个元素置于另一个之后，以及向某些选择器添加特殊的效果，比如链接。\n如果需要更多关于 CSS 的信息，请参阅我们的\nCSS 实例、\nCSS 参考手册 和 CSS3 教程.\n你已经学习了CSS,下一步学习什么呢?\n下一步应该学习 JavaScript 。\nJavaScript 是最流行的语言之一。\nJavaScript 是属于 web 的语言，它适用于 PC、笔记本电脑、平板电脑和移动电话。\nJavaScript可以使您的网站更具活力。\n许多 HTML 开发者都不是程序员，但是 JavaScript 却拥有非常简单的语法。几乎每个人都有能力将小的 JavaScript 片段添加到网页中。\n如果您希望学习更多关于 JavaScript 的知识，可以访问我们的JavaScript 教程。",
+    "examples": []
+   },
+   {
+    "title": "CSS 语法",
+    "url": "https://www.runoob.com/css/css-syntax.html",
+    "body": "实例\n查看 实例 1\n查看 实例 2\nCSS 实例\nCSS 规则由两个主要的部分构成：选择器，以及一条或多条声明:\n选择器通常是您需要改变样式的 HTML 元素。\n每条声明由一个属性和一个值组成。\n属性（property）是您希望设置的样式属性（style attribute）。每个属性有一个值。属性和值被冒号分开。\nCSS 实例\nCSS声明总是以分号 ; 结束，声明总以大括号 {} 括起来:\np {color:red;text-align:center;}\n为了让CSS可读性更强，你可以每行只描述一个属性:\n实例",
+    "examples": [
+     "p\n{\ncolor:red;\n    text-align:center;\n}"
+    ]
+   },
+   {
+    "title": "CSS 表格",
+    "url": "https://www.runoob.com/css/css-table.html",
+    "body": "使用 CSS 可以使 HTML 表格更美观。\nCompany\nContact\nCountry\nAlfreds Futterkiste\nMaria Anders\nGermany\nBerglunds snabbköp\nChristina Berglund\nSweden\nCentro comercial Moctezuma\nFrancisco Chang\nMexico\nErnst Handel\nRoland Mendel\nAustria\nIsland Trading\nHelen Bennett\nUK\nKöniglich Essen\nPhilip Cramer\nGermany\nLaughing Bacchus Winecellars\nYoshi Tannamuri\nCanada\nMagazzini Alimentari Riuniti\nGiovanni Rovelli\nItaly\nNorth/South\nSimon Crowther\nUK\nParis spécialités\nMarie Bertrand\nFrance\nThe Big Cheese\nLiz Nixon\nUSA\nVaffeljernet\nPalle Ibsen\nDenmark\n表格边框\n指定CSS表格边框，使用border属性。\n下面的例子指定了一个表格的Th和TD元素的黑色边框：\n实例",
+    "examples": [
+     "table, th, td\n{\nborder: 1px solid black;\n}"
+    ]
+   },
+   {
+    "title": "CSS 文本格式文本格式",
+    "url": "https://www.runoob.com/css/css-text.html",
+    "body": "This text is styled with some of the text formatting properties. The heading uses the text-align, text-transform, and color properties.\nThe paragraph is indented, aligned, and the space between characters is specified. The underline is removed from the\n\"尝试一下\" link.",
+    "examples": []
+   },
+   {
+    "title": "CSS 提示工具(Tooltip)",
+    "url": "https://www.runoob.com/css/css-tooltip.html",
+    "body": "本文我们为大家介绍如何使用 HTML 与 CSS 来创建提示工具。\n提示工具在鼠标移动到指定元素后触发，先看以下四个实例：\n头部显示\n 提示框文本",
+    "examples": []
+   },
+   {
+    "title": "CSS 教程",
+    "url": "https://www.runoob.com/css/css-tutorial.html",
+    "body": "CSS (Cascading Style Sheets，层叠样式表），是一种用来为结构化文档（如 HTML 文档或 XML 应用）添加样式（字体、间距和颜色等）的计算机语言，CSS 文件扩展名为 .css。\n通过使用 CSS 我们可以大大提升网页开发的工作效率！\n在我们的 CSS 教程中，您会学到如何使用 CSS 同时控制多重网页的样式和布局。\nCSS3 现在已被大部分现代浏览器支持，而下一版的 CSS4 仍在开发中。",
+    "examples": []
+   },
+   {
+    "title": "CSS 网页布局",
+    "url": "https://www.runoob.com/css/css-website-layout.html",
+    "body": "网页布局\n网页布局有很多种方式，一般分为以下几个部分：头部区域、菜单导航区域、内容区域、底部区域。\n头部区域\n头部区域位于整个网页的顶部，一般用于设置网页的标题或者网页的 logo：\nCSS3 实例",
+    "examples": [
+     ".header {\nbackground-color: #F1F1F1;\n  text-align: center;\n  padding: 20px;\n}"
+    ]
+   },
+   {
+    "title": "CSS3 圆角",
+    "url": "https://www.runoob.com/css/css3-border-radius.html",
+    "body": "CSS3 圆角\n使用 CSS3 border-radius 属性，你可以给任何元素制作 \"圆角\"。",
+    "examples": []
+   }
+  ]
+ }
+}

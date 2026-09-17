@@ -1,0 +1,310 @@
+{
+ "tutorial": {
+  "name": "FastAPI",
+  "category": "后端开发",
+  "desc": "FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Python ",
+  "url": "https://www.runoob.com/fastapi/",
+  "chapters": [
+   {
+    "title": "FastAPI 交互式 API 文档",
+    "url": "https://www.runoob.com/fastapi/fastapi-api-doc.html",
+    "body": "FastAPI 基于代码中的类型注解自动生成交互式 API 文档，默认提供 Swagger UI 和 ReDoc 两种界面。开发者可以直接在文档中测试 API，无需额外的工具。\n访问 API 文档\n运行 FastAPI 应用后，访问以下地址查看文档：\n地址\n文档类型\n特点\nhttp://127.0.0.1:8000/docs\nSwagger UI\n可交互测试，点击\"Try it out\"即可发送请求\nhttp://127.0.0.1:8000/redoc\nReDoc\n阅读体验好，适合浏览和查阅 API 定义\nhttp://127.0.0.1:8000/openapi.json\nOpenAPI JSON\n原始的 OpenAPI 规范 JSON，可供工具消费\nSwagger UI\nSwagger UI 提供了直观的用户界面，可以直接在浏览器中测试 API：\n测试 API 的步骤\n点击要测试的路由，展开详情\n点击 \"Try it out\" 按钮\n填写参数值\n点击 \"Execute\" 按钮发送请求\n查看响应结果\nReDoc\nReDoc 注重文档的可读性，适合浏览 API 定义：\nOpenAPI 规范\nFastAPI 使用 OpenAPI 标准将 API 转换为\"模式\"（Schema）。访问 http://127.0.0.1:8000/openapi.json 可以查看原始的 OpenAPI JSON：\n{\n \"openapi\": \"3.1.0\",\n \"info\": {\n \"title\": \"FastAPI\",\n \"version\": \"0.1.0\"\n },\n \"paths\": {\n \"/items/{item_id}\": {\n \"get\": {\n \"responses\": {\n \"200\": {\n \"description\": \"Successful Response\"\n }\n }\n }\n }\n }\n}\nOpenAPI 规范的用途：\n驱动 Swagger UI 和 ReDoc 文档系统\n自动生成各种语言的客户端代码\n与 API 测试工具（如 Postman）集成\n兼容大量第三方工具和平台\n自定义 API 文档信息\n创建 FastAPI 实例时，可以自定义文档的元数据：\n实例",
+    "examples": [
+     "from fastapi import FastAPI\n\napp = FastAPI(\n    title=\"我的 API\",                    # API 标题\n    description=\"这是一个示例 API，展示文档自定义功能\",  # API 描述\n    version=\"1.0.0\",                    # API 版本\n    terms_of_service=\"http://example.com/terms/\",  # 服务条款 URL\n    contact={                           # 联系信息\n        \"name\": \"开发者\",\n        \"url\": \"http://example.com/contact/\",\n        \"email\": \"dev@example.com\",\n    },\n    license_info={                      # 许可证信息\n        \"name\": \"MIT\",\n        \"url\": \"https://opensource.org/licenses/MIT\",\n    },\n)"
+    ]
+   },
+   {
+    "title": "Alembic 数据库迁移",
+    "url": "https://www.runoob.com/fastapi/fastapi-blog-alembic.html",
+    "body": "本章你将学会用 Alembic 管理数据库结构变更，理解与 Django Migration、Flask-Migrate 的异同。\n为什么需要迁移工具？\nBase.metadata.create_all() 同样有致命缺陷：只在表不存在时创建，修改已有表结构不会自动同步。\nAlembic 是 SQLAlchemy 官方的迁移工具，Django 的 makemigrations/migrate 和 Flask 的 Flask-Migrate，底层都是借鉴了 Alembic 的设计。\n安装与初始化\n(venv) $ pip install alembic\n(venv) $ alembic init alembic\nCreating directory alembic/... done\n生成的目录结构：\nalembic/\n├── versions/ # 迁移脚本存放目录\n├── env.py # 迁移环境配置（需手动修改！）\n└── script.py.mako # 迁移脚本模板\nalembic.ini # Alembic 配置文件\n配置 env.py 连接到你的模型\n这是关键步骤——Alembic 默认不知道你的 SQLAlchemy 模型在哪里。\n实例",
+    "examples": [
+     "# 文件路径：alembic/env.py（修改关键部分）\nimport sys\nfrom pathlib import Path\n\n# 将项目根目录加入 sys.path（确保能导入你自己的模块）\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\n\nfrom database import Base, engine\nfrom models import Category, Post   # 导入所有模型，确保 Base.metadata 包含它们\n\n# target_metadata 必须设置为模型的元数据\ntarget_metadata = Base.metadata"
+    ]
+   },
+   {
+    "title": "打包上线 — 部署到 Railway",
+    "url": "https://www.runoob.com/fastapi/fastapi-blog-deploy.html",
+    "body": "本章你将学会 FastAPI 的生产环境配置，并用 Railway 将博客部署上线。\n生产环境配置管理\n(venv) $ pip install pydantic-settings python-dotenv\n实例",
+    "examples": [
+     "# 文件路径：config.py\nfrom pydantic_settings import BaseSettings\n\nclass Settings(BaseSettings):\n    \"\"\"应用配置（自动从 .env 文件中读取）\"\"\"\n    app_name: str = \"RUNOOB 博客\"\n    debug: bool = False\n    secret_key: str = \"dev-secret-key-change-me\"\n    database_url: str = \"sqlite:///./blog.db\"\n    access_token_expire_minutes: int = 60 * 24 * 7   # 7 天\n\n    class Config:\n        env_file = \".env\"     # 指定环境变量文件\n\nsettings = Settings()"
+    ]
+   },
+   {
+    "title": "收藏功能与后台管理",
+    "url": "https://www.runoob.com/fastapi/fastapi-blog-favorites-admin.html",
+    "body": "本章你将学会用多对多关系实现收藏功能，并用 sqladmin 搭建后台管理。\n多对多关系设计\n实例",
+    "examples": [
+     "# 文件路径：models.py 新增关联表和修改 Post 模型\nfrom sqlalchemy import Table\n\n# 关联表：User 和 Post 的多对多中间表\nfavorites = Table(\n    \"favorites\",\n    Base.metadata,\n    Column(\"user_id\", Integer, ForeignKey(\"users.id\"), primary_key=True),\n    Column(\"post_id\", Integer, ForeignKey(\"posts.id\"), primary_key=True),\n    Column(\"created_at\", DateTime, default=datetime.utcnow)\n)"
+    ]
+   },
+   {
+    "title": "Jinja2 模板",
+    "url": "https://www.runoob.com/fastapi/fastapi-blog-jinja2-templates.html",
+    "body": "本章你将学会在 FastAPI 中配置 Jinja2 模板引擎，用静态文件和模板继承构建完整的 HTML 页面。\nFastAPI 的两种渲染模式\nFastAPI 默认返回 JSON（适合 API），但也能返回 HTML（适合 SSR）。\n两种模式可以共存——同一个项目既可以提供 JSON API，也可以渲染网页。\n挂载静态文件\n静态文件（CSS、JS、图片）通过 StaticFiles 挂载到指定路径。\n实例",
+    "examples": [
+     "# 文件路径：main.py\nfrom fastapi import FastAPI\nfrom fastapi.staticfiles import StaticFiles\n\napp = FastAPI()\n\n# 将 static/ 目录挂载到 /static 路径\n# 访问 /static/css/style.css → 实际读取 static/css/style.css\napp.mount(\"/static\", StaticFiles(directory=\"static\"), name=\"static\")"
+    ]
+   },
+   {
+    "title": "用户系统 — 注册、登录、JWT 认证",
+    "url": "https://www.runoob.com/fastapi/fastapi-blog-jwt-auth.html",
+    "body": "本章你将学会 FastAPI 的 JWT 认证方案，理解它和 Django/Flask Session 认证的区别。\nJWT vs Session 认证\nDjango 和 Flask 用的是 Session 认证：服务器存储用户状态，Cookie 中只存 Session ID。\nFastAPI 推荐 JWT 认证：用户登录后获得一个 Token（令牌），后续请求携带 Token 即可认证。\n特性\nSession（Django/Flask）\nJWT（FastAPI）\n存储位置\n服务器端（内存/数据库）\n客户端（Cookie/LocalStorage）\n扩展性\n服务器需共享 Session\n无状态，天然支持分布式\n适用场景\n服务端渲染的网站\nAPI + SPA / 移动端\n过期控制\n服务端可随时失效\nToken 有效期内一直有效\n安装依赖\n(venv) $ pip install passlib python-jose python-multipart\npasslib：密码哈希（对标 werkzeug.security）\npython-jose：JWT 的生成和验证\npython-multipart：处理表单提交（OAuth2 登录表单）\n定义 User 模型\n实例",
+    "examples": [
+     "# 文件路径：models.py 新增\nfrom passlib.context import CryptContext\n\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n\nclass User(Base):\n    __tablename__ = \"users\"\n    id = Column(Integer, primary_key=True, index=True)\n    username = Column(String(50), unique=True, nullable=False)\n    email = Column(String(120), unique=True, nullable=False)\n    hashed_password = Column(String(256), nullable=False)\n\n    def set_password(self, password: str):\n        \"\"\"哈希密码\"\"\"\n        self.hashed_password = pwd_context.hash(password)\n\n    def verify_password(self, password: str) -> bool:\n        \"\"\"校验密码\"\"\"\n        return pwd_context.verify(password, self.hashed_password)"
+    ]
+   },
+   {
+    "title": "FastAPI Web 应用",
+    "url": "https://www.runoob.com/fastapi/fastapi-blog-project-init.html",
+    "body": "本章带你从零开始，用 FastAPI 创建第一个 Web 应用，体验自动生成的 API 文档。\nFastAPI 与 Django/Flask 的定位差异\nFastAPI 是 Python Web 框架中的新星，定位介于 Django 和 Flask 之间。\n特性\nDjango\nFlask\nFastAPI\n设计哲学\n电池全包\n微框架，按需扩展\n高性能，类型驱动\n异步支持\n3.1+ 开始支持\n无原生支持\n原生 async/await\nAPI 文档\n需 drf-spectacular\n需 Flasgger\n自动生成 Swagger UI\n数据验证\nDjango Forms / DRF Serializer\nFlask-WTF / 手动\nPydantic（内置）\n服务器\nWSGI（Gunicorn）\nWSGI（Gunicorn）\nASGI（Uvicorn）\n类型安全\n可选\n可选\n强制 Python 类型提示\nFastAPI 最大的不同：用 Python 类型提示驱动一切——路由参数自动校验、请求/响应自动序列化、交互文档自动生成。\n环境准备\n$ python3 -m venv venv\n$ source venv/bin/activate\n(venv) $ pip install fastapi uvicorn jinja2 python-multipart\n三个核心依赖说明：\nfastapi：Web 框架本身\nuvicorn：ASGI 服务器（相当于 Flask 的 Gunicorn）\njinja2：模板引擎（可选，但做 SSR 需要）\nFastAPI 最小应用\n实例",
+    "examples": [
+     "# 文件路径：main.py\nfrom fastapi import FastAPI\n\n# 创建 FastAPI 实例\napp = FastAPI(\n    title=\"RUNOOB 博客\",\n    description=\"用 FastAPI 构建的个人博客展示站\",\n    version=\"1.0.0\"\n)\n\n@app.get(\"/\")           # GET 请求的路由装饰器\ndef index():\n    \"\"\"首页\"\"\"\n    return {\"message\": \"欢迎来到 RUNOOB 博客\"}\n\n@app.get(\"/hello/{name}\")   # 路径参数 {name}\ndef hello(name: str):       # FastAPI 根据类型提示自动校验\n    return {\"greeting\": f\"你好，{name}！\"}"
+    ]
+   },
+   {
+    "title": "Pydantic Schema — 数据验证与序列化",
+    "url": "https://www.runoob.com/fastapi/fastapi-blog-pydantic-schema.html",
+    "body": "本章你将学会 Pydantic Schema，理解它与 ORM 模型的职责分离，这是 FastAPI 最核心的特性。\n为什么需要 Schema？\nORM 模型（models.py）定义数据库结构，但不能直接用于 API 的请求/响应校验。\n原因：ORM 模型包含数据库专用逻辑（如 relationship），且不希望将所有字段暴露给 API。\nPydantic Schema 是纯数据类，专门负责 API 的输入输出校验和序列化。\n这三者的关系：\n客户端 → [Pydantic Schema 校验] → 路由函数 → [ORM 模型] → 数据库\n客户端 ← [Pydantic Schema 序列化] ← 路由函数 ← [ORM 模型] ← 数据库\nPydantic Schema 基础\nPydantic V2 是 FastAPI 的数据引擎，通过类型提示定义数据结构。\n实例",
+    "examples": [
+     "from pydantic import BaseModel, ConfigDict\n\nclass ItemCreate(BaseModel):\n    \"\"\"创建请求的 Schema\"\"\"\n    name: str\n    price: float                       # 自动校验类型\n    is_offer: bool = False             # 带默认值（可选字段）\n\nclass ItemResponse(BaseModel):\n    \"\"\"响应 Schema\"\"\"\n    id: int\n    name: str\n    price: float\n\n    # V2 写法：开启 ORM 模式，允许从 ORM 对象直接转换\n    model_config = ConfigDict(from_attributes=True)"
+    ]
+   },
+   {
+    "title": "路由与文章列表、详情页",
+    "url": "https://www.runoob.com/fastapi/fastapi-blog-routers-views.html",
+    "body": "本章你将学会用 APIRouter 拆分路由，实现首页文章列表和文章详情页。\nAPIRouter — FastAPI 的路由拆分方案\nAPIRouter 对标 Flask 的 Blueprint 和 Django 的 include()。\n实例",
+    "examples": [
+     "# 文件路径：routers/posts.py\nfrom fastapi import APIRouter, Depends, HTTPException, Request\nfrom sqlalchemy.orm import Session\nfrom database import get_db\nfrom models import Post, Category\nfrom schemas import PostResponse\n\nrouter = APIRouter(\n    prefix=\"/posts\",       # 所有路由自动加上 /posts 前缀\n    tags=[\"文章\"]          # Swagger 文档中的分组标签\n)\n\n@router.get(\"/{post_id}\", response_model=PostResponse, name=\"post_detail\")\ndef post_detail(post_id: int, db: Session = Depends(get_db)):\n    \"\"\"文章详情（JSON API）\"\"\"\n    post = db.query(Post).filter(Post.id == post_id).first()\n    if not post:\n        raise HTTPException(status_code=404, detail=\"文章不存在\")\n    return post"
+    ]
+   },
+   {
+    "title": "关键词搜索与分页",
+    "url": "https://www.runoob.com/fastapi/fastapi-blog-search-pagination.html",
+    "body": "本章你将学会用 SQLAlchemy 实现联合搜索，并用 offset/limit 实现分页。\nilike 大小写不敏感搜索\n实例",
+    "examples": [
+     "# 单字段搜索\nposts = db.query(Post).filter(Post.title.ilike(f'%{keyword}%')).all()\n\n# 多字段联合搜索（OR 关系）\nfrom sqlalchemy import or_\nposts = db.query(Post).filter(\n    or_(\n        Post.title.ilike(f'%{keyword}%'),\n        Post.summary.ilike(f'%{keyword}%')\n    )\n).all()"
+    ]
+   },
+   {
+    "title": "SQLAlchemy 模型 — 设计数据库表",
+    "url": "https://www.runoob.com/fastapi/fastapi-blog-sqlalchemy.html",
+    "body": "本章你将学会用原生 SQLAlchemy ORM 定义数据模型，并通过 FastAPI 依赖注入管理数据库会话。\nFastAPI 为什么不用自带 ORM？\nDjango 有内置 ORM，Flask 推荐 Flask-SQLAlchemy。\nFastAPI 没有内置 ORM——它希望你选择最适合的工具，SQLAlchemy + Pydantic 是社区公认的最佳组合。\n(venv) $ pip install sqlalchemy\n配置数据库连接\n实例",
+    "examples": [
+     "# 文件路径：database.py\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.orm import sessionmaker, DeclarativeBase\n\n# SQLite 数据库文件路径\nSQLALCHEMY_DATABASE_URL = \"sqlite:///./blog.db\"\n\n# 创建引擎：check_same_thread 是 SQLite 特需参数\nengine = create_engine(\n    SQLALCHEMY_DATABASE_URL,\n    connect_args={\"check_same_thread\": False}   # SQLite 专有：允许跨线程\n)\n\n# 创建会话工厂\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n\n# Base 类：所有 ORM 模型继承自它\nclass Base(DeclarativeBase):\n    pass"
+    ]
+   },
+   {
+    "title": "FastAPI 请求体字段与嵌套模型",
+    "url": "https://www.runoob.com/fastapi/fastapi-body-fields.html",
+    "body": "在 Pydantic 模型内部，你可以使用 Field 为字段声明校验规则和元数据，也可以将模型嵌套使用来处理复杂的 JSON 数据结构。\n使用 Field 声明字段校验\n与路径操作函数中使用 Query、Path 声明校验的方式一样，Pydantic 模型内部使用 Field 声明字段校验：\n实例",
+    "examples": [
+     "from typing import Annotated\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel, Field\n\napp = FastAPI()\n\n\nclass Item(BaseModel):\n    name: str = Field(min_length=1, max_length=100, description=\"商品名称\")  # 必填，1-100字符\n    description: str | None = Field(default=None, max_length=300, description=\"商品描述\")  # 可选\n    price: float = Field(gt=0, description=\"商品价格\")  # 必填，必须大于 0\n    tax: float | None = Field(default=None, ge=0, description=\"税费\")  # 可选，>= 0\n\n\n@app.post(\"/items/\")\nasync def create_item(item: Item):\n    return item"
+    ]
+   },
+   {
+    "title": "FastAPI 核心概念",
+    "url": "https://www.runoob.com/fastapi/fastapi-core.html",
+    "body": "FastAPI 是一个现代、快速（高性能）的 Python Web 框架，用于构建 API。它基于标准 Python 类型提示，使用 Starlette 和 Pydantic 构建。\n主要特点\n高性能：与 NodeJS 和 Go 相当，是最快的 Python 框架之一\n快速开发：开发速度提高约 200%-300%\n减少错误：减少约 40% 的人为错误\n直观：强大的编辑器支持，自动补全无处不在\n简单：易于使用和学习，减少阅读文档的时间\nASGI 与异步编程\n什么是 ASGI？\nASGI（Asynchronous Server Gateway Interface）是 Python 异步 Web 服务器和应用程序之间的标准接口。\nWSGI vs ASGI 对比：\n实例",
+    "examples": [
+     "# WSGI 应用（同步）- 传统 Flask 风格\ndef wsgi_app(environ, start_response):\n    status = '200 OK'\n    response_headers = [('Content-type', 'text/plain')]\n    start_response(status, response_headers)\n    return [b'Hello World']\n\n# ASGI 应用（异步）- FastAPI 风格\nasync def asgi_app(scope, receive, send):\n    await send({\n        'type': 'http.response.start',\n        'status': 200,\n        'headers': [(b'content-type', b'text/plain')],\n    })\n    await send({\n        'type': 'http.response.body',\n        'body': b'Hello World',\n    })"
+    ]
+   },
+   {
+    "title": "FastAPI CORS 跨域",
+    "url": "https://www.runoob.com/fastapi/fastapi-cors.html",
+    "body": "CORS（Cross-Origin Resource Sharing，跨域资源共享）是一种安全机制，允许或限制网页从不同域名请求资源。当前后端分离开发时，前端页面通常运行在不同的域名或端口上，需要配置 CORS 才能正常访问后端 API。\n什么是跨域问题\n浏览器的同源策略限制了网页向不同域名发送请求。例如：\n前端地址\n后端 API 地址\n是否跨域\nhttp://localhost:3000\nhttp://localhost:8000\n跨域（端口不同）\nhttp://example.com\nhttp://api.example.com\n跨域（域名不同）\nhttps://example.com\nhttp://example.com\n跨域（协议不同）\nhttp://example.com\nhttp://example.com/api\n同源（相同域名、端口、协议）\n同源的三要素：协议、域名、端口，任一不同即为跨域。\n配置 CORS\nFastAPI 使用 Starlette 的 CORSMiddleware 来处理跨域：\n实例",
+    "examples": [
+     "from fastapi import FastAPI\nfrom fastapi.middleware.cors import CORSMiddleware\n\napp = FastAPI()\n\n# 配置 CORS 中间件\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[               # 允许的源（域名列表）\n        \"http://localhost:3000\",   # 前端开发服务器\n        \"http://localhost:8080\",\n    ],\n    allow_credentials=True,       # 允许携带 Cookie\n    allow_methods=[\"*\"],          # 允许的 HTTP 方法\n    allow_headers=[\"*\"],          # 允许的请求头\n)\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World\"}"
+    ]
+   },
+   {
+    "title": "FastAPI 错误处理",
+    "url": "https://www.runoob.com/fastapi/fastapi-error-handling.html",
+    "body": "在 API 开发中，需要向客户端返回错误信息。FastAPI 提供了 HTTPException 来抛出 HTTP 错误，也支持自定义异常处理器来处理更复杂的错误场景。\n使用 HTTPException\n当需要返回错误响应时，抛出 HTTPException：\n实例",
+    "examples": [
+     "from fastapi import FastAPI, HTTPException\n\napp = FastAPI()\n\nitems = {\"foo\": \"The Foo Wrestlers\", \"bar\": \"The Bar Fighters\"}\n\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(item_id: str):\n    if item_id not in items:\n        # 资源不存在时，抛出 404 错误\n        raise HTTPException(status_code=404, detail=\"Item not found\")\n    return {\"item\": items[item_id]}"
+    ]
+   },
+   {
+    "title": "FastAPI 文件上传",
+    "url": "https://www.runoob.com/fastapi/fastapi-file-upload.html",
+    "body": "FastAPI 提供了 File 和 UploadFile 两种方式来处理文件上传，支持单独上传文件和表单与文件混合上传。\n安装依赖\n文件上传同样依赖 python-multipart：\npip install python-multipart\n使用 UploadFile\nUploadFile 是推荐的方式，它提供了更丰富的文件信息访问接口：\n实例",
+    "examples": [
+     "from fastapi import FastAPI, UploadFile\n\napp = FastAPI()\n\n\n@app.post(\"/uploadfile/\")\nasync def create_upload_file(file: UploadFile):\n    # UploadFile 提供的属性和方法\n    return {\n        \"filename\": file.filename,          # 文件名\n        \"content_type\": file.content_type,  # 文件 MIME 类型\n        \"size\": file.size,                  # 文件大小（字节）\n    }"
+    ]
+   },
+   {
+    "title": "FastAPI 表单数据",
+    "url": "https://www.runoob.com/fastapi/fastapi-form.html",
+    "body": "当客户端通过 HTML 表单（application/x-www-form-urlencoded）提交数据时，需要使用 Form 来接收表单字段，而不是 BaseModel。\n安装 python-multipart\n使用表单功能前，需要先安装 python-multipart：\npip install python-multipart\n接收表单数据\n使用 Form 声明表单字段：\n实例",
+    "examples": [
+     "from fastapi import FastAPI, Form\n\napp = FastAPI()\n\n\n@app.post(\"/login/\")\nasync def login(\n    username: str = Form(),      # 必填表单字段\n    password: str = Form(),      # 必填表单字段\n):\n    return {\"username\": username}"
+    ]
+   },
+   {
+    "title": "FastAPI 请求头与 Cookie",
+    "url": "https://www.runoob.com/fastapi/fastapi-header-cookie.html",
+    "body": "FastAPI 提供了 Header 和 Cookie 类型，用于从 HTTP 请求头和 Cookie 中获取数据。\n请求头参数\n使用 Header 声明请求头参数：\n实例",
+    "examples": [
+     "from typing import Annotated\nfrom fastapi import FastAPI, Header\n\napp = FastAPI()\n\n\n@app.get(\"/items/\")\nasync def read_items(\n    # 接收 User-Agent 请求头\n    user_agent: Annotated[str | None, Header()] = None,\n):\n    return {\"User-Agent\": user_agent}"
+    ]
+   },
+   {
+    "title": "FastAPI 安装与环境配置",
+    "url": "https://www.runoob.com/fastapi/fastapi-install.html",
+    "body": "FastAPI 依赖 Python 3.8 及更高版本。本节介绍如何安装 FastAPI 以及配置开发环境。\n检查 Python 版本\n在安装 FastAPI 之前，先确认你的 Python 版本：\n$ python --version\nPython 3.11.0\n\n# 或者\n$ python3 --version\nPython 3.11.0\n如果你的 Python 版本低于 3.8，请先升级 Python。\n创建虚拟环境\n推荐在虚拟环境中安装 FastAPI，避免与系统 Python 包产生冲突：\n# 创建虚拟环境\n$ python -m venv venv\n\n# 激活虚拟环境（macOS/Linux）\n$ source venv/bin/activate\n\n# 激活虚拟环境（Windows）\n$ venv\\Scripts\\activate\n虚拟环境是 Python 开发的最佳实践。每个项目使用独立的虚拟环境，可以避免不同项目之间的依赖冲突。\n安装 FastAPI\n使用 pip 安装 FastAPI：\n$ pip install fastapi\n这条命令只安装 FastAPI 核心包。如果你需要一次性安装 FastAPI 及其所有可选依赖，可以使用：\n$ pip install \"fastapi[all]\"\nfastapi[all] 会安装以下组件：\n包名\n用途\nuvicorn[standard]\nASGI 服务器，用于运行 FastAPI 应用\npython-multipart\n表单数据和文件上传支持\njinja2\nHTML 模板引擎\npython-jose[cryptography]\nJWT 令牌支持\npasslib[bcrypt]\n密码哈希与加密\npython-dotenv\n环境变量管理\n安装 Uvicorn\nFastAPI 是一个 ASGI 框架，需要一个 ASGI 服务器来运行。最常用的是 Uvicorn：\n$ pip install \"uvicorn[standard]\"\n[standard] 会安装 uvloop（高性能事件循环）和 httptools（高性能 HTTP 解析器），显著提升性能。\nASGI（Asynchronous Server Gateway Interface）是 Python 异步 Web 服务器与应用程序之间的标准接口，是 WSGI 的异步版本。传统框架如 Flask 使用 WSGI（同步），而 FastAPI 使用 ASGI（异步），能够更高效地处理并发请求。\n运行第一个 FastAPI 应用\n安装完成后，创建一个名为 main.py 的文件：\n实例",
+    "examples": [
+     "from fastapi import FastAPI\n\n# 创建 FastAPI 应用实例\napp = FastAPI()\n\n# 定义根路径的 GET 路由\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World\"}"
+    ]
+   },
+   {
+    "title": "FastAPI 中间件",
+    "url": "https://www.runoob.com/fastapi/fastapi-middleware.html",
+    "body": "中间件是一种在每个请求到达路由处理函数之前和之后执行的函数。\n中间件可以用于添加日志、修改请求/响应、处理 CORS 等通用逻辑。\n中间件的工作原理\n中间件的执行流程：\n请求到达中间件\n中间件执行预处理逻辑\n中间件将请求传递给下一个中间件或路由函数\n路由函数返回响应\n中间件执行后处理逻辑\n响应返回给客户端\n名称\n作用\n客户端（Client）\n浏览器、前端 App、Postman 等向 FastAPI 发起 HTTP 请求\nRequest 请求\nHTTP 请求对象，包含 URL、Header、Body、Cookie 等数据\n中间件 1\n请求进入后的第一层处理\n中间件 2\n第二层处理逻辑\n中间件 N\n多个中间件按顺序执行\n路由处理函数（Path Operation）\n真正执行业务代码的位置\n响应阶段\n路由返回 Response 后，响应会再次经过中间件\n中间件逆序返回\n响应按\"相反顺序\"返回\nResponse 响应\n最终返回给客户端的数据\n创建中间件\n使用 @app.middleware(\"http\") 装饰器创建中间件：\n实例",
+    "examples": [
+     "import time\nfrom fastapi import FastAPI, Request\n\napp = FastAPI()\n\n\n@app.middleware(\"http\")\nasync def add_process_time_header(request: Request, call_next):\n    # 1. 请求前的处理：记录开始时间\n    start_time = time.time()\n\n    # 2. 将请求传递给下一个中间件或路由函数\n    response = await call_next(request)\n\n    # 3. 响应后的处理：计算处理时间并添加响应头\n    process_time = time.time() - start_time\n    response.headers[\"X-Process-Time\"] = str(process_time)\n    return response\n\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World\"}"
+    ]
+   },
+   {
+    "title": "FastAPI 依赖注入",
+    "url": "https://www.runoob.com/fastapi/fastapi-path-operation-dependencies.html",
+    "body": "FastAPI 提供了一个强大而简洁的依赖注入系统。\n依赖注入是一种设计模式，让你可以将通用的逻辑（如数据库连接、身份验证、参数校验等）提取为可复用的组件，然后在路由中按需使用。\n什么是依赖注入\n简单来说，依赖就是一个函数，它可以使用与路径操作函数相同的参数（查询参数、路径参数、请求体等），FastAPI 会在执行路由函数之前自动调用依赖函数，并将其返回值传递给路由函数。\n实例",
+    "examples": [
+     "from typing import Annotated\nfrom fastapi import Depends, FastAPI\n\napp = FastAPI()\n\n\n# 1. 定义依赖函数\ndef common_parameters(q: str | None = None, skip: int = 0, limit: int = 100):\n    return {\"q\": q, \"skip\": skip, \"limit\": limit}\n\n\n# 2. 在路由中使用依赖\n@app.get(\"/items/\")\nasync def read_items(commons: dict = Depends(common_parameters)):\n    # commons 接收依赖函数的返回值\n    return commons\n\n\n@app.get(\"/users/\")\nasync def read_users(commons: dict = Depends(common_parameters)):\n    # 多个路由可以复用同一个依赖\n    return commons"
+    ]
+   },
+   {
+    "title": "FastAPI 路径参数数值校验",
+    "url": "https://www.runoob.com/fastapi/fastapi-path-params-validation.html",
+    "body": "与查询参数使用 Query 添加校验的方式相同，你可以使用 Path 为路径参数声明数值校验和元数据。\n导入 Path\n从 fastapi 导入 Path，从 typing 导入 Annotated：\n实例",
+    "examples": [
+     "from typing import Annotated\nfrom fastapi import FastAPI, Path\n\napp = FastAPI()\n\n\n@app.get(\"/items/{item_id}\")\nasync def read_items(\n    # 为路径参数添加元数据和校验\n    item_id: Annotated[int, Path(title=\"商品ID\", description=\"要获取的商品ID\", ge=1)],\n):\n    return {\"item_id\": item_id}"
+    ]
+   },
+   {
+    "title": "FastAPI 路径参数",
+    "url": "https://www.runoob.com/fastapi/fastapi-path-params.html",
+    "body": "路径参数是 URL 路径中的动态部分，使用花括号 {} 声明。FastAPI 会自动将路径参数传递给路径操作函数，并根据类型注解进行数据转换和校验。\n基本用法\n使用 Python 格式化字符串的语法声明路径参数：\n实例",
+    "examples": [
+     "from fastapi import FastAPI\n\napp = FastAPI()\n\n# {item_id} 是路径参数\n@app.get(\"/items/{item_id}\")\nasync def read_item(item_id: int):\n    return {\"item_id\": item_id}"
+    ]
+   },
+   {
+    "title": "FastAPI Pydantic 模型",
+    "url": "https://www.runoob.com/fastapi/fastapi-pydantic.html",
+    "body": "Pydantic 是 FastAPI 的核心依赖，用于数据校验和序列化。它让你使用标准的 Python 类型注解来定义数据模型，自动完成数据校验、类型转换和文档生成。\nPydantic 是什么\nPydantic 是一个 Python 数据校验库，它的核心思想是：用 Python 类型注解定义数据结构，Pydantic 自动负责校验和转换。在 FastAPI 中，Pydantic 主要用于：\n用途\n说明\n请求体校验\n自动校验客户端发送的 JSON 数据是否符合模型定义\n响应体序列化\n将模型数据自动转换为 JSON 响应\n自动文档\n模型的字段、类型和校验规则自动出现在 API 文档中\n编辑器支持\n模型属性在编辑器中获得完整的自动补全\n定义 Pydantic 模型\n创建一个继承 BaseModel 的类，使用 Python 标准类型声明字段：\n实例",
+    "examples": [
+     "from pydantic import BaseModel\n\n\nclass Item(BaseModel):\n    name: str               # 必填：商品名称\n    description: str | None = None  # 可选：商品描述\n    price: float            # 必填：商品价格\n    tax: float | None = None        # 可选：税费"
+    ]
+   },
+   {
+    "title": "FastAPI 查询参数校验",
+    "url": "https://www.runoob.com/fastapi/fastapi-query-params-validation.html",
+    "body": "FastAPI 允许你为查询参数声明额外的校验规则和元数据，例如字符串长度限制、正则匹配等。通过 Query 和 Annotated，你可以在不改变函数逻辑的情况下增强参数校验。\n基本校验\n以下示例为查询参数 q 添加最大长度限制：\n实例",
+    "examples": [
+     "from typing import Annotated\nfrom fastapi import FastAPI, Query\n\napp = FastAPI()\n\n\n@app.get(\"/items/\")\nasync def read_items(\n    # 使用 Annotated + Query 添加校验\n    q: Annotated[str | None, Query(max_length=50)] = None,\n):\n    results = {\"items\": [{\"item_id\": \"Foo\"}, {\"item_id\": \"Bar\"}]}\n    if q:\n        results.update({\"q\": q})\n    return results"
+    ]
+   },
+   {
+    "title": "FastAPI 查询参数",
+    "url": "https://www.runoob.com/fastapi/fastapi-query-params.html",
+    "body": "查询参数是 URL 中 ? 之后、以 & 分隔的键值对。当函数参数不是路径参数也不是请求体时，FastAPI 会将其自动解释为查询参数。\n基本用法\n声明查询参数只需要在函数参数中添加类型注解和默认值：\n实例",
+    "examples": [
+     "from fastapi import FastAPI\n\napp = FastAPI()\n\n# skip 和 limit 是查询参数，有默认值\nfake_items_db = [{\"item_name\": \"Foo\"}, {\"item_name\": \"Bar\"}, {\"item_name\": \"Baz\"}]\n\n\n@app.get(\"/items/\")\nasync def read_item(skip: int = 0, limit: int = 10):\n    # 模拟分页查询\n    return fake_items_db[skip : skip + limit]"
+    ]
+   },
+   {
+    "title": "FastAPI 请求体",
+    "url": "https://www.runoob.com/fastapi/fastapi-request-body.html",
+    "body": "请求体是客户端发送给 API 的数据。当你需要从客户端接收 JSON 数据时，使用请求体来传递。FastAPI 使用 Pydantic 模型来声明请求体的结构，自动完成数据校验、转换和文档生成。\n请求体与查询参数的区别\n数据传递方式\n位置\n适用场景\nHTTP 方法\n路径参数\nURL 路径 /items/5\n标识资源\nGET、PUT、DELETE 等\n查询参数\nURL 中 ?key=value\n筛选、分页等可选参数\n主要是 GET\n请求体\n请求的 JSON 数据\n提交复杂数据\nPOST、PUT、PATCH\n发送数据应使用 POST（最常见）、PUT、DELETE 或 PATCH。虽然 FastAPI 技术上支持 GET 请求携带请求体，但这不符合 HTTP 规范，Swagger UI 也不会为 GET 请求显示请求体文档。\n使用 Pydantic 模型声明请求体\n1. 导入 BaseModel\nfrom pydantic import BaseModel\n2. 创建数据模型\n定义一个继承 BaseModel 的类，使用 Python 标准类型声明所有属性：\n实例",
+    "examples": [
+     "from fastapi import FastAPI\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\n\n# 定义请求体数据模型\nclass Item(BaseModel):\n    name: str               # 必填：商品名称\n    description: str | None = None  # 可选：商品描述\n    price: float            # 必填：商品价格\n    tax: float | None = None        # 可选：税费\n\n\n@app.post(\"/items/\")\nasync def create_item(item: Item):\n    return item"
+    ]
+   },
+   {
+    "title": "FastAPI 请求和响应",
+    "url": "https://www.runoob.com/fastapi/fastapi-request-response.html",
+    "body": "在 FastAPI 中，请求（Request）和响应（Response）是与客户端交互的核心。\nFastAPI 提供了强大的工具来解析请求数据，并根据需要生成规范的响应。\n接下来我们来详细看下 FastAPI 的请求和响应。\nHTTP 相关内容可以参考：HTTP 请求方法。\n请求数据\n查询参数\n以下实例中我们定义了一个 /items/ 路由，接受两个查询参数 skip 和 limit，它们的类型均为整数，默认值分别为 0 和 10。\n实例",
+    "examples": [
+     "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/items/\")\ndef read_item(skip: int = 0, limit: int = 10):\n    return {\"skip\": skip, \"limit\": limit}"
+    ]
+   },
+   {
+    "title": "FastAPI 响应模型",
+    "url": "https://www.runoob.com/fastapi/fastapi-response-model.html",
+    "body": "响应模型用于声明 API 返回的数据结构。通过声明响应模型，FastAPI 会自动完成输出数据的校验、序列化和过滤，确保客户端只接收到预期的数据。\n使用返回类型注解\n最简单的方式是直接注解路径操作函数的返回类型：\n实例",
+    "examples": [
+     "from fastapi import FastAPI\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\n\nclass Item(BaseModel):\n    name: str\n    description: str | None = None\n    price: float\n\n\n@app.get(\"/items/{item_id}\", response_model=Item)\nasync def read_item(item_id: int):\n    # 返回的数据会自动按照 Item 模型过滤和校验\n    return {\n        \"name\": \"Foo\",\n        \"description\": \"A very nice Item\",\n        \"price\": 22.2,\n        \"secret\": \"this should not be visible\",  # 不在 Item 中的字段会被过滤\n    }"
+    ]
+   },
+   {
+    "title": "FastAPI 基本路由",
+    "url": "https://www.runoob.com/fastapi/fastapi-route.html",
+    "body": "在 FastAPI 中，基本路由是定义 API 端点的关键。\n每个路由都映射到应用程序中的一个函数，用于处理特定的 HTTP 请求，并返回相应的响应。\n根路径路由\n创建 FastAPI 实例和根路径路由：\n实例",
+    "examples": [
+     "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}"
+    ]
+   },
+   {
+    "title": "FastAPI 安全认证",
+    "url": "https://www.runoob.com/fastapi/fastapi-security.html",
+    "body": "FastAPI 内置了多种安全工具，支持 OAuth2、JWT 令牌、API Key 等常见的认证和授权方式。本节介绍如何实现基于 OAuth2 + JWT 的用户认证。\n安全认证概述\nFastAPI 支持的安全方案：\n方案\n适用场景\n说明\nHTTP Basic Auth\n简单内部服务\n用户名密码编码在请求头中，安全性较低\nAPI Key\n服务间调用\n通过请求头、查询参数或 Cookie 传递密钥\nOAuth2 + JWT\n前后端分离应用\n最常用的方案，安全且灵活\nOAuth2 密码模式 + JWT\n这是前后端分离应用中最常用的认证方案。流程：\n客户端发送用户名和密码到 /token 端点\n服务器验证凭据，返回 JWT 访问令牌\n客户端在后续请求中携带令牌（Authorization: Bearer <token>）\n服务器验证令牌，识别用户身份\n1. 安装依赖\npip install \"python-jose[cryptography]\" passlib[bcrypt]\n2. 完整示例\n实例",
+    "examples": [
+     "from datetime import datetime, timedelta\nfrom typing import Annotated\n\nfrom fastapi import Depends, FastAPI, HTTPException, status\nfrom fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm\nfrom jose import JWTError, jwt\nfrom passlib.context import CryptContext\nfrom pydantic import BaseModel\n\n# ===== 配置 =====\nSECRET_KEY = \"your-secret-key-keep-it-secret\"  # 生产环境使用环境变量\nALGORITHM = \"HS256\"\nACCESS_TOKEN_EXPIRE_MINUTES = 30\n\n# ===== 密码哈希 =====\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\n\n# ===== OAuth2 方案 =====\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n\n# ===== 数据模型 =====\nclass Token(BaseModel):\n    access_token: str\n    token_type: str\n\n\nclass TokenData(BaseModel):\n    username: str | None = None\n\n\nclass User(BaseModel):\n    username: str\n    email: str | None = None\n    full_name: str | None = None\n    disabled: bool | None = None\n\n\nclass UserInDB(User):\n    hashed_password: str\n\n\n# ===== 模拟数据库 =====\nfake_users_db = {\n    \"alice\": {\n        \"username\": \"alice\",\n        \"full_name\": \"Alice Wonderson\",\n        \"email\": \"alice@example.com\",\n        \"hashed_password\": pwd_context.hash(\"secret\"),  # 密码: secret\n        \"disabled\": False,\n    }\n}\n\n\n# ===== 工具函数 =====\ndef verify_password(plain_password: str, hashed_password: str) -> bool:\n    \"\"\"验证密码\"\"\"\n    return pwd_context.verify(plain_password, hashed_password)\n\n\ndef get_password_hash(password: str) -> str:\n    \"\"\"生成密码哈希\"\"\"\n    return pwd_context.hash(password)\n\n\ndef get_user(db: dict, username: str) -> UserInDB | None:\n    \"\"\"从数据库获取用户\"\"\"\n    if username in db:\n        return UserInDB(**db[username])\n    return None\n\n\ndef authenticate_user(db: dict, username: str, password: str):\n    \"\"\"验证用户凭据\"\"\"\n    user = get_user(db, username)\n    if not user:\n        return False\n    if not verify_password(password, user.hashed_password):\n        return False\n    return user\n\n\ndef create_access_token(data: dict, expires_delta: timedelta | None = None):\n    \"\"\"创建 JWT 访问令牌\"\"\"\n    to_encode = data.copy()\n    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=15))\n    to_encode.update({\"exp\": expire})\n    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)\n\n\nasync def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):\n    \"\"\"从令牌中获取当前用户（依赖函数）\"\"\"\n    credentials_exception = HTTPException(\n        status_code=status.HTTP_401_UNAUTHORIZED,\n        detail=\"无法验证凭据\",\n        headers={\"WWW-Authenticate\": \"Bearer\"},\n    )\n    try:\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        username: str = payload.get(\"sub\")\n        if username is None:\n            raise credentials_exception\n    except JWTError:\n        raise credentials_exception\n\n    user = get_user(fake_users_db, username)\n    if user is None:\n        raise credentials_exception\n    return user\n\n\nasync def get_current_active_user(\n    current_user: Annotated[User, Depends(get_current_user)],\n):\n    \"\"\"获取当前活跃用户\"\"\"\n    if current_user.disabled:\n        raise HTTPException(status_code=400, detail=\"用户已被禁用\")\n    return current_user\n\n\n# ===== 路由 =====\napp = FastAPI()\n\n\n@app.post(\"/token\")\nasync def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):\n    \"\"\"登录获取令牌\"\"\"\n    user = authenticate_user(fake_users_db, form_data.username, form_data.password)\n    if not user:\n        raise HTTPException(\n            status_code=status.HTTP_401_UNAUTHORIZED,\n            detail=\"用户名或密码错误\",\n            headers={\"WWW-Authenticate\": \"Bearer\"},\n        )\n    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)\n    access_token = create_access_token(\n        data={\"sub\": user.username}, expires_delta=access_token_expires\n    )\n    return {\"access_token\": access_token, \"token_type\": \"bearer\"}\n\n\n@app.get(\"/users/me\")\nasync def read_users_me(\n    current_user: Annotated[User, Depends(get_current_active_user)],\n):\n    \"\"\"获取当前用户信息（需要认证）\"\"\"\n    return current_user\n\n\n@app.get(\"/users/me/items\")\nasync def read_own_items(\n    current_user: Annotated[User, Depends(get_current_active_user)],\n):\n    \"\"\"获取当前用户的条目（需要认证）\"\"\"\n    return [{\"item_id\": \"Foo\", \"owner\": current_user.username}]"
+    ]
+   },
+   {
+    "title": "FastAPI 数据库集成",
+    "url": "https://www.runoob.com/fastapi/fastapi-sql-database.html",
+    "body": "FastAPI 可以与各种数据库集成，最常用的方式是使用 SQLAlchemy 作为 ORM。本节介绍如何使用 FastAPI + SQLAlchemy 构建具有 CRUD（创建、读取、更新、删除）功能的 API。\n安装依赖\npip install sqlalchemy\n项目结构\nproject/\n├── main.py # FastAPI 应用入口\n├── database.py # 数据库连接配置\n├── models.py # SQLAlchemy 模型\n├── schemas.py # Pydantic 数据模型\n└── crud.py # 数据库操作函数\n1. 数据库配置\n在 database.py 中配置数据库连接：\n实例",
+    "examples": [
+     "# database.py\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.orm import sessionmaker, DeclarativeBase\n\n# SQLite 数据库（适合开发）\nSQLALCHEMY_DATABASE_URL = \"sqlite:///./sql_app.db\"\n\n# 创建数据库引擎\n# connect_args 仅 SQLite 需要，允许多线程访问\nengine = create_engine(\n    SQLALCHEMY_DATABASE_URL,\n    connect_args={\"check_same_thread\": False}\n)\n\n# 创建会话工厂\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n\n\n# 声明基类\nclass Base(DeclarativeBase):\n    pass"
+    ]
+   },
+   {
+    "title": "FastAPI 静态文件",
+    "url": "https://www.runoob.com/fastapi/fastapi-static-files.html",
+    "body": "FastAPI 可以方便地提供静态文件服务（如图片、CSS、JavaScript 文件），使用 Starlette 的 StaticFiles 实现。\n安装依赖\nStaticFiles 包含在 aiofiles 中，需要安装：\npip install aiofiles\n挂载静态文件目录\n使用 app.mount() 将静态文件目录挂载到应用上：\n实例",
+    "examples": [
+     "from fastapi import FastAPI\nfrom fastapi.staticfiles import StaticFiles\n\napp = FastAPI()\n\n# 挂载静态文件目录\n# \"/static\" 是 URL 路径前缀\n# directory=\"static\" 是本地目录名\napp.mount(\"/static\", StaticFiles(directory=\"static\"), name=\"static\")\n\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World\"}"
+    ]
+   },
+   {
+    "title": "FastAPI 响应状态码",
+    "url": "https://www.runoob.com/fastapi/fastapi-status-code.html",
+    "body": "HTTP 状态码是响应的一部分，用于告知客户端请求的处理结果。FastAPI 允许你在路径操作装饰器中声明默认的状态码，也可以在函数中动态修改。\n声明状态码\n使用 status_code 参数在装饰器中声明响应状态码：\n实例",
+    "examples": [
+     "from fastapi import FastAPI, status\n\napp = FastAPI()\n\n\n# 创建资源时，使用 201 状态码\n@app.post(\"/items/\", status_code=status.HTTP_201_CREATED)\nasync def create_item(name: str):\n    return {\"name\": name}"
+    ]
+   },
+   {
+    "title": "FastAPI 第一个应用",
+    "url": "https://www.runoob.com/fastapi/fastapi-step1.html",
+    "body": "本节通过一个完整的示例，带你从零开始创建一个 FastAPI 应用，并理解其中每一行代码的含义。\n最简应用\n创建一个名为 main.py 的文件，添加以下代码：\n实例",
+    "examples": [
+     "from fastapi import FastAPI\n\n# 步骤1：导入 FastAPI 类\n# 步骤2：创建应用实例\napp = FastAPI()\n\n# 步骤3：定义路径操作装饰器\n# 步骤4：定义路径操作函数\n@app.get(\"/\")\nasync def root():\n    # 步骤5：返回响应内容\n    return {\"message\": \"Hello World\"}"
+    ]
+   },
+   {
+    "title": "FastAPI 测试",
+    "url": "https://www.runoob.com/fastapi/fastapi-testing.html",
+    "body": "FastAPI 基于 Starlette 的 TestClient 提供了便捷的测试支持，可以在不启动服务器的情况下测试 API 的请求和响应。\n安装依赖\nTestClient 基于 httpx，需要安装：\npip install httpx\n基本测试\n使用 TestClient 创建测试客户端，然后像使用 httpx 一样发送请求：\n实例",
+    "examples": [
+     "from fastapi import FastAPI\nfrom fastapi.testclient import TestClient\n\napp = FastAPI()\n\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World\"}\n\n\n# 创建测试客户端\nclient = TestClient(app)\n\n\n# 测试函数\ndef test_root():\n    response = client.get(\"/\")\n    assert response.status_code == 200\n    assert response.json() == {\"message\": \"Hello World\"}"
+    ]
+   },
+   {
+    "title": "FastAPI 教程",
+    "url": "https://www.runoob.com/fastapi/fastapi-tutorial.html",
+    "body": "FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Python Web 框架，专为构建 RESTful API 而设计。\nFastAPI 使用 Python 3.8+ 并基于标准的 Python 类型提示，使用 Starlette 和 Pydantic 构建，能够自动生成 API 文档并进行数据校验。",
+    "examples": []
+   },
+   {
+    "title": "VS Code 开发 FastAPI",
+    "url": "https://www.runoob.com/fastapi/vscode-fastapi.html",
+    "body": "VS Code（全称 Visual Studio Code）是一款由微软推出的免费、开源、跨平台的代码编辑器。\nVS Code 支持 Windows、macOS 和 Linux，拥有强大的功能和灵活的扩展性。\nVS Code 教程：https://www.runoob.com/vscode/vscode-tutorial.html\n下载地址： https://code.visualstudio.com/ 。\n推荐安装以下扩展：\nPython (Microsoft)\nPylance (Microsoft)\nFastAPI Snippets\n另外国内阿里与字节也有基于 VS Code 开发的 AI IDE：\n阿里 Qoder",
+    "examples": []
+   }
+  ]
+ }
+}

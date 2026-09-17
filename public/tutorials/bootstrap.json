@@ -1,0 +1,388 @@
+{
+ "tutorial": {
+  "name": "Bootstrap",
+  "category": "前端开发",
+  "desc": "Bootstrap，来自 Twitter，是目前最受欢迎的前端框架。Bootst",
+  "url": "https://www.runoob.com/bootstrap/",
+  "chapters": [
+   {
+    "title": "Bootstrap 附加导航（Affix）插件",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-affix-plugin.html",
+    "body": "附加导航（Affix）插件允许指定 <div> 固定在页面的某个位置。一个常见的例子是社交图标。它们将在某个位置开始，但当页面点击某个标记，该 <div> 会锁定在某个位置，不会随着页面其他部分一起滚动。\n如果您想要单独引用该插件的功能，那么您需要引用 affix.js。或者，正如 Bootstrap 插件概览 一章中所提到，您可以引用 bootstrap.js 或压缩版的 bootstrap.min.js。\n用法\n您可以通过 data 属性或者通过 JavaScript 来使用附加导航（Affix）插件。\n通过 data 属性：如需向元素添加附加导航（Affix）行为，只需要向需要监听的元素添加 data-spy=\"affix\" 即可。请使用偏移来定义何时切换元素的锁定和移动。\n实例\n下面的实例演示了通过 data 属性使用附加导航（Affix）插件的用法：\n实例\n/* Custom Styles */ul.nav-tabs{width:140px;\n margin-top:20px;\n border-radius:4px;\n border:1pxsolid#ddd;\n box-shadow:01px4pxrgba(0, 0, 0, 0.067);\n }ul.nav-tabsli{margin:0;\n border-top:1pxsolid#ddd;\n }ul.nav-tabsli:first-child{border-top:none;\n }ul.nav-tabslia{margin:0;\n padding:8px16px;\n border-radius:0;\n }ul.nav-tabsli.activea, ul.nav-tabsli.activea:hover{color:#fff;\n background:#0088cc;\n border:1pxsolid#0088cc;\n }ul.nav-tabsli:first-childa{border-radius:4px4px00;\n }ul.nav-tabsli:last-childa{border-radius:004px4px;\n }ul.nav-tabs.affix{top:30px; /* Set the top position of pinned element */}",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"UTF-8\">\n<title>Bootstrap 附加导航（Affix）插件</title>\n<link rel=\"stylesheet\" href=\"http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css\">\n<script src=\"http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js\"></script>\n<script src=\"http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<style>"
+    ]
+   },
+   {
+    "title": "Bootstrap 警告框（Alert）插件",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-alert-plugin.html",
+    "body": "警告框（Alert）消息大多是用来向终端用户显示诸如警告或确认消息的信息。使用警告框（Alert）插件，您可以向所有的警告框消息添加可取消（dismiss）功能。\n用法\n您可以有以下两种方式启用警告框的可取消（dismissal）功能：\n通过 data 属性：通过数据 API（Data API）添加可取消功能，只需要向关闭按钮添加 data-dismiss=\"alert\"，就会自动为警告框添加关闭功能。\n\n<a class=\"close\" data-dismiss=\"alert\" href=\"#\" aria-hidden=\"true\">\n    &times;\n</a>\n通过 JavaScript：通过 JavaScript 添加可取消功能：\n\n$(\".alert\").alert()\n实例\n下面的实例演示了通过 data 属性使用警告框（Alert）插件的用法。\n实例",
+    "examples": [
+     "<div class=\"alert alert-warning\">\n<a href=\"#\" class=\"close\" data-dismiss=\"alert\">\n&times;\n</a>\n<strong>警告！</strong>您的网络连接有问题。\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 警告（Alerts）",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-alerts.html",
+    "body": "本章将讲解警告（Alerts）以及 Bootstrap 所提供的用于警告的 class。警告（Alerts）向用户提供了一种定义消息样式的方式。它们为典型的用户操作提供了上下文信息反馈。\n您可以为警告框添加一个可选的关闭按钮。为了创建一个内联的可取消的警告框，请使用 警告（Alerts） jQuery 插件。\n您可以通过创建一个 <div>，并向其添加一个 .alert class 和四个上下文 class（即 .alert-success、.alert-info、.alert-warning、.alert-danger）之一，来添加一个基本的警告框。下面的实例演示了这点：\n实例",
+    "examples": [
+     "<div class=\"alert alert-success\">成功！很好地完成了提交。</div>\n<div class=\"alert alert-info\">信息！请注意这个信息。</div>\n<div class=\"alert alert-warning\">警告！请不要提交。</div>\n<div class=\"alert alert-danger\">错误！请进行一些更改。</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 徽章（Badges）",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-badges.html",
+    "body": "本章将讲解 Bootstrap 徽章（Badges）。徽章与标签相似，主要的区别在于徽章的边角更加圆滑。\n徽章（Badges）主要用于突出显示新的或未读的项。如需使用徽章，只需要把 <span class=\"badge\"> 添加到链接、Bootstrap 导航等这些元素上即可。\n下面的实例演示了这点：\n实例\n展示未读邮件：",
+    "examples": [
+     "<a href=\"#\">Mailbox <span class=\"badge\">50</span></a>"
+    ]
+   },
+   {
+    "title": "Bootstrap 面包屑导航（Breadcrumbs）",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-breadcrumbs.html",
+    "body": "面包屑导航（Breadcrumbs）是一种基于网站层次信息的显示方式。以博客为例，面包屑导航可以显示发布日期、类别或标签。它们表示当前页面在导航层次结构内的位置。\nBootstrap 中的面包屑导航（Breadcrumbs）是一个简单的带有 .breadcrumb class 的无序列表。分隔符会通过 CSS（bootstrap.min.css）中下面所示的 class 自动被添加：\n.breadcrumb > li + li:before {\n color: #CCCCCC;\n content: \"/ \";\n padding: 0 5px;\n}\n下面的实例演示了面包屑导航：\n实例",
+    "examples": [
+     "<ul class=\"breadcrumb\">\n<li><a href=\"#\">Home</a></li>\n<li><a href=\"#\">2013</a></li>\n<li class=\"active\">十一月</li>\n</ul>"
+    ]
+   },
+   {
+    "title": "Bootstrap 按钮下拉菜单",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-button-dropdowns.html",
+    "body": "本章将讲解如何使用 Bootstrap class 向按钮添加下拉菜单。如需向按钮添加下拉菜单，只需要简单地在一个 .btn-group 容器中放置按钮和下拉菜单即可。您也可以使用 <span class=\"caret\"></span> 来指示按钮作为下拉菜单。\n下面的实例演示了一个基本的简单的按钮下拉菜单：\n实例",
+    "examples": [
+     "<div class=\"btn-group\">\n<button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">默认\n        <span class=\"caret\"></span>\n</button>\n<ul class=\"dropdown-menu\" role=\"menu\">\n<li>\n<a href=\"#\">功能</a>\n</li>\n<li>\n<a href=\"#\">另一个功能</a>\n</li>\n<li>\n<a href=\"#\">其他</a>\n</li>\n<li class=\"divider\"></li>\n<li>\n<a href=\"#\">分离的链接</a>\n</li>\n</ul>\n</div>\n<div class=\"btn-group\">\n<button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\">原始\n        <span class=\"caret\"></span>\n</button>\n<ul class=\"dropdown-menu\" role=\"menu\">\n<li>\n<a href=\"#\">功能</a>\n</li>\n<li>\n<a href=\"#\">另一个功能</a>\n</li>\n<li>\n<a href=\"#\">其他</a>\n</li>\n<li class=\"divider\"></li>\n<li>\n<a href=\"#\">分离的链接</a>\n</li>\n</ul>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 按钮组",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-button-groups.html",
+    "body": "按钮组允许多个按钮被堆叠在同一行上。当你想要把按钮对齐在一起时，这就显得非常有用。您可以通过 Bootstrap 按钮（Button） 插件 添加可选的 JavaScript 单选框和复选框样式行为。\n下面的表格总结了 Bootstrap 提供的使用按钮组的一些重要的 class：\nClass\n描述\n代码示例\n.btn-group\n该 class 用于形成基本的按钮组。在 .btn-group 中放置一系列带有 class .btn 的按钮。\n<div class=\"btn-group\">\n <button type=\"button\" class=\"btn btn-default\">Button1</button>\n <button type=\"button\" class=\"btn btn-default\">Button2</button>\n</div>\n.btn-toolbar\n该 class 有助于把几组 <div class=\"btn-group\"> 结合到一个 <div class=\"btn-toolbar\"> 中，一般获得更复杂的组件。\n<div class=\"btn-toolbar\" role=\"toolbar\">\n <div class=\"btn-group\">...</div>\n <div class=\"btn-group\">...</div>\n</div>\n.btn-group-lg, .btn-group-sm, .btn-group-xs\n这些 class 可应用到整个按钮组的大小调整，而不需要对每个按钮进行大小调整。\n<div class=\"btn-group btn-group-lg\">...</div>\n<div class=\"btn-group btn-group-sm\">...</div>\n<div class=\"btn-group btn-group-xs\">...</div>\n.btn-group-vertical\n该 class 让一组按钮垂直堆叠显示，而不是水平堆叠显示。\n<div class=\"btn-group-vertical\">\n ...\n</div>",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap 按钮（Button）插件",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-button-plugin.html",
+    "body": "按钮（Button）在 Bootstrap 按钮 一章中介绍过。通过按钮（Button）插件，您可以添加进一些交互，比如控制按钮状态，或者为其他组件（如工具栏）创建按钮组。\n加载状态\n如需向按钮添加加载状态，只需要简单地向 button 元素添加 data-loading-text=\"Loading...\" 作为其属性即可，如下面实例所示：\n实例",
+    "examples": [
+     "<button id=\"fat-btn\" class=\"btn btn-primary\" data-loading-text=\"Loading...\"\ntype=\"button\"> 加载状态\n</button>\n<script>\n    $(function() {\n        $(\".btn\").click(function(){\n            $(this).button('loading').delay(1000).queue(function() {\n            // $(this).button('reset');\n            // $(this).dequeue(); \n            });\n        });\n    });  \n</script>"
+    ]
+   },
+   {
+    "title": "Bootstrap 按钮",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-buttons.html",
+    "body": "本章将通过实例讲解如何使用 Bootstrap 按钮。任何带有 class .btn 的元素都会继承圆角灰色按钮的默认外观。但是 Bootstrap 提供了一些选项来定义按钮的样式，具体如下表所示：\n以下样式可用于<a>, <button>, 或 <input> 元素上：\n类\n描述\n实例\n.btn\n为按钮添加基本样式\n尝试一下\n.btn-default\n默认/标准按钮\n尝试一下\n.btn-primary\n原始按钮样式（未被操作）\n尝试一下\n.btn-success\n表示成功的动作\n尝试一下\n.btn-info\n该样式可用于要弹出信息的按钮\n尝试一下\n.btn-warning\n表示需要谨慎操作的按钮\n尝试一下\n.btn-danger\n表示一个危险动作的按钮操作\n尝试一下\n.btn-link\n让按钮看起来像个链接 (仍然保留按钮行为)\n尝试一下\n.btn-lg\n制作一个大按钮\n尝试一下\n.btn-sm\n制作一个小按钮\n尝试一下\n.btn-xs\n制作一个超小按钮\n尝试一下\n.btn-block\n块级按钮(拉伸至父元素100%的宽度)\n尝试一下\n.active\n按钮被点击\n尝试一下\n.disabled\n禁用按钮\n尝试一下\n下面的实例演示了上面所有的按钮 class：\n实例",
+    "examples": [
+     "<!-- 标准的按钮 -->\n<button type=\"button\" class=\"btn btn-default\">默认按钮</button>\n<!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->\n<button type=\"button\" class=\"btn btn-primary\">原始按钮</button>\n<!-- 表示一个成功的或积极的动作 -->\n<button type=\"button\" class=\"btn btn-success\">成功按钮</button>\n<!-- 信息警告消息的上下文按钮 -->\n<button type=\"button\" class=\"btn btn-info\">信息按钮</button>\n<!-- 表示应谨慎采取的动作 -->\n<button type=\"button\" class=\"btn btn-warning\">警告按钮</button>\n<!-- 表示一个危险的或潜在的负面动作 -->\n<button type=\"button\" class=\"btn btn-danger\">危险按钮</button>\n<!-- 并不强调是一个按钮，看起来像一个链接，但同时保持按钮的行为 -->\n<button type=\"button\" class=\"btn btn-link\">链接按钮</button>"
+    ]
+   },
+   {
+    "title": "Bootstrap 轮播（Carousel）插件",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-carousel-plugin.html",
+    "body": "Bootstrap 轮播（Carousel）插件是一种灵活的响应式的向站点添加滑块的方式。除此之外，内容也是足够灵活的，可以是图像、内嵌框架、视频或者其他您想要放置的任何类型的内容。\n如果您想要单独引用该插件的功能，那么您需要引用 carousel.js。或者，正如 Bootstrap 插件概览 一章中所提到，您可以引用 bootstrap.js 或压缩版的 bootstrap.min.js。\n实例\n下面是一个简单的幻灯片，使用 Bootstrap 轮播（Carousel）插件显示了一个循环播放元素的通用组件。为了实现轮播，您只需要添加带有该标记的代码即可。不需要使用 data 属性，只需要简单的基于 class 的开发即可。\n实例",
+    "examples": [
+     "<div id=\"myCarousel\" class=\"carousel slide\">\n<!-- 轮播（Carousel）指标 -->\n<ol class=\"carousel-indicators\">\n<li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>\n<li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>\n<li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>\n</ol>\n<!-- 轮播（Carousel）项目 -->\n<div class=\"carousel-inner\">\n<div class=\"item active\">\n<img src=\"/wp-content/uploads/2014/07/slide1.png\" alt=\"First slide\">\n</div>\n<div class=\"item\">\n<img src=\"/wp-content/uploads/2014/07/slide2.png\" alt=\"Second slide\">\n</div>\n<div class=\"item\">\n<img src=\"/wp-content/uploads/2014/07/slide3.png\" alt=\"Third slide\">\n</div>\n</div>\n<!-- 轮播（Carousel）导航 -->\n<a class=\"carousel-control left\" href=\"#myCarousel\"\ndata-slide=\"prev\"> <span _ngcontent-c3=\"\" aria-hidden=\"true\" class=\"glyphicon glyphicon-chevron-right\"></span></a>\n<a class=\"carousel-control right\" href=\"#myCarousel\"\ndata-slide=\"next\">&rsaquo;</a>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 代码",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-code.html",
+    "body": "Bootstrap 允许您以两种方式显示代码：\n第一种是 <code> 标签。如果您想要内联显示代码，那么您应该使用 <code> 标签。\n第二种是 <pre> 标签。如果代码需要被显示为一个独立的块元素或者代码有多行，那么您应该使用 <pre> 标签。\n请确保当您使用 <pre> 和 <code> 标签时，开始和结束标签使用了 unicode 变体： &lt; 和 &gt;。\n让我们来看看下面的实例：\n实例",
+    "examples": [
+     "<p><code>&lt;header&gt;</code> 作为内联元素被包围。</p>\n<p>如果需要把代码显示为一个独立的块元素，请使用 &lt;pre&gt; 标签：</p>\n<pre>\n&lt;article&gt;\n&lt;h1&gt;Article Heading&lt;/h1&gt;\n&lt;/article&gt;\n</pre>"
+    ]
+   },
+   {
+    "title": "Bootstrap 折叠（Collapse）插件",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-collapse-plugin.html",
+    "body": "折叠（Collapse）插件可以很容易地让页面区域折叠起来。无论您用它来创建折叠导航还是内容面板，它都允许很多内容选项。\n如果您想要单独引用该插件的功能，那么您需要引用 collapse.js。同时，也需要在您的 Bootstrap 版本中引用 Transition（过渡）插件。或者，正如 Bootstrap 插件概览 一章中所提到，您可以引用 bootstrap.js 或压缩版的 bootstrap.min.js。\n您可以使用折叠（Collapse）插件：\n创建可折叠的分组或折叠面板（accordion），如下所示：\n实例",
+    "examples": [
+     "<div class=\"panel-group\" id=\"accordion\">\n<div class=\"panel panel-default\">\n<div class=\"panel-heading\">\n<h4 class=\"panel-title\">\n<a data-toggle=\"collapse\" data-parent=\"#accordion\"\nhref=\"#collapseOne\">\n                点击我进行展开，再次点击我进行折叠。第 1 部分\n                </a>\n</h4>\n</div>\n<div id=\"collapseOne\" class=\"panel-collapse collapse in\">\n<div class=\"panel-body\">\n                Nihil anim keffiyeh helvetica, craft beer labore wes anderson \n                cred nesciunt sapiente ea proident. Ad vegan excepteur butcher \n                vice lomo.\n            </div>\n</div>\n</div>\n<div class=\"panel panel-default\">\n<div class=\"panel-heading\">\n<h4 class=\"panel-title\">\n<a data-toggle=\"collapse\" data-parent=\"#accordion\"\nhref=\"#collapseTwo\">\n                点击我进行展开，再次点击我进行折叠。第 2 部分\n            </a>\n</h4>\n</div>\n<div id=\"collapseTwo\" class=\"panel-collapse collapse\">\n<div class=\"panel-body\">\n            Nihil anim keffiyeh helvetica, craft beer labore wes anderson \n            cred nesciunt sapiente ea proident. Ad vegan excepteur butcher \n            vice lomo.\n        </div>\n</div>\n</div>\n<div class=\"panel panel-default\">\n<div class=\"panel-heading\">\n<h4 class=\"panel-title\">\n<a data-toggle=\"collapse\" data-parent=\"#accordion\"\nhref=\"#collapseThree\">\n                点击我进行展开，再次点击我进行折叠。第 3 部分\n                </a>\n</h4>\n</div>\n<div id=\"collapseThree\" class=\"panel-collapse collapse\">\n<div class=\"panel-body\">\n                Nihil anim keffiyeh helvetica, craft beer labore wes anderson \n                cred nesciunt sapiente ea proident. Ad vegan excepteur butcher \n                vice lomo.\n            </div>\n</div>\n</div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap CSS编码规范",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-css-codeguide-html.html",
+    "body": "语法\n用两个空格来代替制表符（tab） -- 这是唯一能保证在所有环境下获得一致展现的方法。\n为选择器分组时，将单独的选择器单独放在一行。\n为了代码的易读性，在每个声明块的左花括号前添加一个空格。\n声明块的右花括号应当单独成行。\n每条声明语句的 : 后应该插入一个空格。\n为了获得更准确的错误报告，每条声明都应该独占一行。\n所有声明语句都应当以分号结尾。最后一条声明语句后面的分号是可选的，但是，如果省略这个分号，你的代码可能更易出错。\n对于以逗号分隔的属性值，每个逗号后面都应该插入一个空格（例如，box-shadow）。\n不要在 rgb()、rgba()、hsl()、hsla() 或 rect() 值的内部的逗号后面插入空格。这样利于从多个属性值（既加逗号也加空格）中区分多个颜色值（只加逗号，不加空格）。\n对于属性值或颜色参数，省略小于 1 的小数前面的 0 （例如，.5 代替 0.5；-.5px 代替 -0.5px）。\n十六进制值应该全部小写，例如，#fff。在扫描文档时，小写字符易于分辨，因为他们的形式更易于区分。\n尽量使用简写形式的十六进制值，例如，用 #fff 代替 #ffffff。\n为选择器中的属性添加双引号，例如，input[type=\"text\"]。只有在某些情况下是可选的，但是，为了代码的一致性，建议都加上双引号。\n避免为 0 值指定单位，例如，用 margin: 0; 代替 margin: 0px;。\n对于这里用到的术语有疑问吗？请参考 Wikipedia 上的 层叠样式表 - 语法。\n/* Bad CSS */\n.selector, .selector-secondary, .selector[type=text] {\n padding:15px;\n margin:0px 0px 15px;\n background-color:rgba(0, 0, 0, 0.5);\n box-shadow:0px 1px 2px #CCC,inset 0 1px 0 #FFFFFF\n}\n\n/* Good CSS */\n.selector,\n.selector-secondary,\n.selector[type=\"text\"] {\n padding: 15px;\n margin-bottom: 15px;\n background-color: rgba(0,0,0,.5);\n box-shadow: 0 1px 2px #ccc, inset 0 1px 0 #fff;\n}\n声明顺序\n相关的属性声明应当归为一组，并按照下面的顺序排列：\nPositioning\nBox model\nTypographic\nVisual\n由于定位（positioning）可以从正常的文档流中移除元素，并且还能覆盖盒模型（box model）相关的样式，因此排在首位。盒模型排在第二位，因为它决定了组件的尺寸和位置。\n其他属性只是影响组件的内部（inside）或者是不影响前两组属性，因此排在后面。\n完整的属性列表及其排列顺序请参考 Recess。\n.declaration-order {\n /* Positioning */\n position: absolute;\n top: 0;\n right: 0;\n bottom: 0;\n left: 0;\n z-index: 100;\n\n /* Box-model */\n display: block;\n float: right;\n width: 100px;\n height: 100px;\n\n /* Typography */\n font: normal 13px \"Helvetica Neue\", sans-serif;\n line-height: 1.5;\n color: #333;\n text-align: center;\n\n /* Visual */\n background-color: #f5f5f5;\n border: 1px solid #e5e5e5;\n border-radius: 3px;\n\n /* Misc */\n opacity: 1;\n}\n不要使用 @import\n与 <link> 标签相比，@import 指令要慢很多，不光增加了额外的请求次数，还会导致不可预料的问题。替代办法有以下几种：\n使用多个 <link> 元素\n通过 Sass 或 Less 类似的 CSS 预处理器将多个 CSS 文件编译为一个文件\n通过 Rails、Jekyll 或其他系统中提供过 CSS 文件合并功能\n请参考 Steve Souders 的文章了解更多知识。\n<!-- Use link elements -->\n<link rel=\"stylesheet\" href=\"core.css\">\n\n<!-- Avoid @imports -->\n<style>\n @import url(\"more.css\");\n</style>\n媒体查询（Media query）的位置\n将媒体查询放在尽可能相关规则的附近。不要将他们打包放在一个单一样式文件中或者放在文档底部。如果你把他们分开了，将来只会被大家遗忘。下面给出一个典型的实例。\n.element { ... }\n.element-avatar { ... }\n.element-selected { ... }\n\n@media (min-width: 480px) {\n .element { ...}\n .element-avatar { ... }\n .element-selected { ... }\n}\n带前缀的属性\n当使用特定厂商的带有前缀的属性时，通过缩进的方式，让每个属性的值在垂直方向对齐，这样便于多行编辑。\n在 Textmate 中，使用 Text → Edit Each Line in Selection (⌃⌘A)。在 Sublime Text 2 中，使用 Selection → Add Previous Line (⌃⇧↑) 和 Selection → Add Next Line (⌃⇧↓)。\n/* Prefixed properties */\n.selector {\n -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);\n box-shadow: 0 1px 2px rgba(0,0,0,.15);\n}\n单行规则声明\n对于只包含一条声明的样式，为了易读性和便于快速编辑，建议将语句放在同一行。对于带有多条声明的样式，还是应当将声明分为多行。\n这样做的关键因素是为了错误检测 -- 例如，CSS 校验器指出在 183 行有语法错误。如果是单行单条声明，你就不会忽略这个错误；如果是单行多条声明的话，你就要仔细分析避免漏掉错误了。\n/* Single declarations on one line */\n.span1 { width: 60px; }\n.span2 { width: 140px; }\n.span3 { width: 220px; }\n\n/* Multiple declarations, one per line */\n.sprite {\n display: inline-block;\n width: 16px;\n height: 15px;\n background-image: url(../img/sprite.png);\n}\n.icon { background-position: 0 0; }\n.icon-home { background-position: 0 -20px; }\n.icon-account { background-position: 0 -40px; }\n简写形式的属性声明\n在需要显示地设置所有值的情况下，应当尽量限制使用简写形式的属性声明。常见的滥用简写属性声明的情况如下：\npadding\nmargin\nfont\nbackground\nborder\nborder-radius\n大部分情况下，我们不需要为简写形式的属性声明指定所有值。例如，HTML 的 heading 元素只需要设置上、下边距（margin）的值，因此，在必要的时候，只需覆盖这两个值就可以。过度使用简写形式的属性声明会导致代码混乱，并且会对属性值带来不必要的覆盖从而引起意外的副作用。\nMDN（Mozilla Developer Network）上一篇非常好的关于shorthand properties 的文章，对于不太熟悉简写属性声明及其行为的用户很有用。\n/* Bad example */\n.element {\n margin: 0 0 10px;\n background: red;\n background: url(\"image.jpg\");\n border-radius: 3px 3px 0 0;\n}\n\n/* Good example */\n.element {\n margin-bottom: 10px;\n background-color: red;\n background-image: url(\"image.jpg\");\n border-top-left-radius: 3px;\n border-top-right-radius: 3px;\n}\nLess 和 Sass 中的嵌套\n避免非必要的嵌套。这是因为虽然你可以使用嵌套，但是并不意味着应该使用嵌套。只有在必须将样式限制在父元素内（也就是后代选择器），并且存在多个需要嵌套的元素时才使用嵌套。\n// Without nesting\n.table > thead > tr > th { … }\n.table > thead > tr > td { … }\n\n// With nesting\n.table > thead > tr {\n > th { … }\n > td { … }\n}\n注释\n代码是由人编写并维护的。请确保你的代码能够自描述、注释良好并且易于他人理解。好的代码注释能够传达上下文关系和代码目的。不要简单地重申组件或 class 名称。\n对于较长的注释，务必书写完整的句子；对于一般性注解，可以书写简洁的短语。\n/* Bad example */\n/* Modal header */\n.modal-header {\n ...\n}\n\n/* Good example */\n/* Wrapping element for .modal-title and .modal-close */\n.modal-header {\n ...\n}\nclass 命名\nclass 名称中只能出现小写字符和破折号（dashe）（不是下划线，也不是驼峰命名法）。破折号应当用于相关 class 的命名（类似于命名空间）（例如，.btn 和 .btn-danger）。\n避免过度任意的简写。.btn 代表 button，但是 .s 不能表达任何意思。\nclass 名称应当尽可能短，并且意义明确。\n使用有意义的名称。使用有组织的或目的明确的名称，不要使用表现形式（presentational）的名称。\n基于最近的父 class 或基本（base） class 作为新 class 的前缀。\n使用 .js-* class 来标识行为（与样式相对），并且不要将这些 class 包含到 CSS 文件中。\n在为 Sass 和 Less 变量命名是也可以参考上面列出的各项规范。\n/* Bad example */\n.t { ... }\n.red { ... }\n.header { ... }\n\n/* Good example */\n.tweet { ... }\n.important { ... }\n.tweet-header { ... }\n选择器\n对于通用元素使用 class ，这样利于渲染性能的优化。\n对于经常出现的组件，避免使用属性选择器（例如，[class^=\"...\"]）。浏览器的性能会受到这些因素的影响。\n选择器要尽可能短，并且尽量限制组成选择器的元素个数，建议不要超过 3 。\n只有在必要的时候才将 class 限制在最近的父元素内（也就是后代选择器）（例如，不使用带前缀的 class 时 -- 前缀类似于命名空间）。\n扩展阅读：\nScope CSS classes with prefixes\nStop the cascade\n/* Bad example */\nspan { ... }\n.page-container #stream .stream-item .tweet .tweet-header .username { ... }\n.avatar { ... }\n\n/* Good example */\n.avatar { ... }\n.tweet-header .username { ... }\n.tweet .avatar { ... }\n代码组织\n以组件为单位组织代码段。\n制定一致的注释规范。\n使用一致的空白符将代码分隔成块，这样利于扫描较大的文档。\n如果使用了多个 CSS 文件，将其按照组件而非页面的形式分拆，因为页面会被重组，而组件只会被移动。\n/*\n * Component section heading\n */\n\n.element { ... }\n\n\n/*\n * Component section heading\n *\n * Sometimes you need to include optional context for the entire component. Do that up here if it's important enough.\n */\n\n.element { ... }\n\n/* Contextual sub-component or modifer */\n.element-heading { ... }\n编辑器配置\n将你的编辑器按照下面的配置进行设置，以避免常见的代码不一致和差异：\n用两个空格代替制表符（soft-tab 即用空格代表 tab 符）。\n保存文件时，删除尾部的空白符。\n设置文件编码为 UTF-8。\n在文件结尾添加一个空白行。\n参照文档并将这些配置信息添加到项目的 .editorconfig 文件中。例如：Bootstrap 中的 .editorconfig 实例。更多信息请参考 about EditorConfig。",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap CSS 概览",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-css-overview.html",
+    "body": "在这一章中，我们将讲解 Bootstrap 底层结构的关键部分，包括我们让 web 开发变得更好、更快、更强壮的最佳实践。\nHTML 5 文档类型（Doctype）\nBootstrap 使用了一些 HTML5 元素和 CSS 属性。为了让这些正常工作，您需要使用 HTML5 文档类型（Doctype）。\n因此，请在使用 Bootstrap 项目的开头包含下面的代码段。\n<!DOCTYPE html>\n<html>\n....\n</html>\n如果在 Bootstrap 创建的网页开头不使用 HTML5 的文档类型（Doctype），您可能会面临一些浏览器显示不一致的问题，甚至可能面临一些特定情境下的不一致，以致于您的代码不能通过 W3C 标准的验证。\n移动设备优先\n移动设备优先是 Bootstrap 3 的最显著的变化。\n在之前的 Bootstrap 版本中（直到 2.x），您需要手动引用另一个 CSS，才能让整个项目友好的支持移动设备。\n现在不一样了，Bootstrap 3 默认的 CSS 本身就对移动设备友好支持。\nBootstrap 3 的设计目标是移动设备优先，然后才是桌面设备。这实际上是一个非常及时的转变，因为现在越来越多的用户使用移动设备。\n为了让 Bootstrap 开发的网站对移动设备友好，确保适当的绘制和触屏缩放，需要在网页的 head 之中添加 viewport meta 标签，如下所示：\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\nwidth 属性控制设备的宽度。假设您的网站将被带有不同屏幕分辨率的设备浏览，那么将它设置为 device-width 可以确保它能正确呈现在不同设备上。\ninitial-scale=1.0 确保网页加载时，以 1:1 的比例呈现，不会有任何的缩放。\n在移动设备浏览器上，通过为 viewport meta 标签添加 user-scalable=no 可以禁用其缩放（zooming）功能。\n通常情况下，maximum-scale=1.0 与 user-scalable=no 一起使用。这样禁用缩放功能后，用户只能滚动屏幕，就能让您的网站看上去更像原生应用的感觉。\n注意，这种方式我们并不推荐所有网站使用，还是要看您自己的情况而定！\n<meta name=\"viewport\" content=\"width=device-width, \n initial-scale=1.0, \n maximum-scale=1.0, \n user-scalable=no\">\n响应式图像\n<img src=\"...\" class=\"img-responsive\" alt=\"响应式图像\">\n通过添加 img-responsive class 可以让 Bootstrap 3 中的图像对响应式布局的支持更友好。\n接下来让我们看下这个 class 包含了哪些 css 属性。\n在下面的代码中，可以看到img-responsive class 为图像赋予了 max-width: 100%; 和 height: auto; 属性，可以让图像按比例缩放，不超过其父元素的尺寸。\n.img-responsive {\n display: block;\n height: auto;\n max-width: 100%;\n}\n这表明相关的图像呈现为 block。当您把元素的 display 属性设置为 block，以块级元素显示。\n设置 height:auto，相关元素的高度取决于浏览器。\n设置 max-width 为 100% 会重写任何通过 width 属性指定的宽度。这让图片对响应式布局的支持更友好。\n如果需要让使用了 .img-responsive 类的图片水平居中，请使用 .center-block 类，不要用 .text-center。\n全局显示、排版和链接\n基本的全局显示\nBootstrap 3 使用 body {margin: 0;} 来移除 body 的边距。\n请看下面有关 body 的设置：\nbody {\n font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n font-size: 14px;\n line-height: 1.428571429;\n color: #333333;\n background-color: #ffffff;\n}\n第一条规则设置 body 的默认字体样式为 \"Helvetica Neue\", Helvetica, Arial, sans-serif。\n第二条规则设置文本的默认字体大小为 14 像素。\n第三条规则设置默认的行高度为 1.428571429。\n第四条规则设置默认的文本颜色为 #333333。\n最后一条规则设置默认的背景颜色为白色。\n排版\n使用 @font-family-base、 @font-size-base 和 @line-height-base 属性作为排版样式。\n链接样式\n通过属性 @link-color 设置全局链接的颜色。\n对于链接的默认样式，如下设置：\na:hover,\na:focus {\n color: #2a6496;\n text-decoration: underline;\n}\n\na:focus {\n outline: thin dotted #333;\n outline: 5px auto -webkit-focus-ring-color;\n outline-offset: -2px;\n}\n所以，当鼠标悬停在链接上，或者点击过的链接，颜色会被设置为 #2a6496。同时，会呈现一条下划线。\n除此之外，点击过的链接，会呈现一个颜色码为 #333 的细的虚线轮廓。另一条规则是设置轮廓为 5 像素宽，且对于基于 webkit 浏览器有一个 -webkit-focus-ring-color 的浏览器扩展。轮廓偏移设置为 -2 像素。\n以上所有这些样式都可以在 scaffolding.less 中找到。\n避免跨浏览器的不一致\nBootstrap 使用 Normalize 来建立跨浏览器的一致性。\nNormalize.css 是一个很小的 CSS 文件，在 HTML 元素的默认样式中提供了更好的跨浏览器一致性。\n容器（Container）\n<div class=\"container\">\n ...\n</div>\nBootstrap 3 的 container class 用于包裹页面上的内容。让我们一起来看看 bootstrap.css 文件中的这个 .container class。\n.container {\n padding-right: 15px;\n padding-left: 15px;\n margin-right: auto;\n margin-left: auto;\n}\n通过上面的代码，把 container 的左右外边距（margin-right、margin-left）交由浏览器决定。\n请注意，由于内边距（padding）是固定宽度，默认情况下容器是不可嵌套的。\n.container:before,\n.container:after {\n display: table;\n content: \" \";\n}\n这会产生伪元素。设置 display 为 table，会创建一个匿名的 table-cell 和一个新的块格式化上下文。:before 伪元素防止上边距崩塌，:after 伪元素清除浮动。\n如果 conteneditable 属性出现在 HTML 中，由于一些 Opera bug，围绕上述元素创建一个空格。这可以通过使用 content: \" \" 来修复。\n.container:after {\n clear: both;\n}\n它创建了一个伪元素，并确保了所有的容器包含所有的浮动元素。\nBootstrap 3 CSS 有一个申请响应的媒体查询，在不同的媒体查询阈值范围内都为 container 设置了max-width，用以匹配网格系统。\n@media (min-width: 768px) {\n .container {\n width: 750px;\n}\nBootstrap 浏览器/设备支持\nBootstrap 可以在最新的桌面系统和移动端浏览器中很好的工作。\n旧的浏览器可能无法很好的支持。\n下表为 Bootstrap 支持最新版本的浏览器和平台：\nChrome\nFirefox\nIE\nOpera\nSafari\nAndroid\nYES\nYES\n不适用\n不适用\n不适用\niOS\nYES\n不适用\n不适用\n不适用\nYES\nMac OS X\nYES\nYES\n不适用\nYES\nYES\nWindows\nYES\nYES\nYES*\nYES\n不适用\n* Bootstrap 支持 Internet Explorer 8 及更高版本的 IE 浏览器。",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap 下拉菜单（Dropdown）插件",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-dropdown-plugin.html",
+    "body": "Bootstrap 下拉菜单 这一章讲解了下拉菜单，但是没有涉及到交互部分，本章将具体讲解下拉菜单的交互。使用下拉菜单（Dropdown）插件，您可以向任何组件（比如导航栏、标签页、胶囊式导航菜单、按钮等）添加下拉菜单。\n如果您想要单独引用该插件的功能，那么您需要引用 dropdown.js。或者，正如 Bootstrap 插件概览 一章中所提到，您可以引用 bootstrap.js 或压缩版的 bootstrap.min.js。\n用法\n您可以切换下拉菜单（Dropdown）插件的隐藏内容：\n通过 data 属性：向链接或按钮添加 data-toggle=\"dropdown\" 来切换下拉菜单，如下所示：\n\n<div class=\"dropdown\">\n <a data-toggle=\"dropdown\" href=\"#\">下拉菜单（Dropdown）触发器</a>\n <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dLabel\">\n ...\n </ul>\n</div>\n如果您需要保持链接完整（在浏览器不启用 JavaScript 时有用），请使用 data-target 属性代替 href=\"#\"：\n<div class=\"dropdown\">\n <a id=\"dLabel\" role=\"button\" data-toggle=\"dropdown\" data-target=\"#\" href=\"/page.html\">\n 下拉菜单（Dropdown） <span class=\"caret\"></span>\n </a>\n\n\n <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dLabel\">\n ...\n </ul>\n</div>\n通过 JavaScript：通过 JavaScript 调用下拉菜单切换，请使用下面的方法：\n\n$('.dropdown-toggle').dropdown()\n实例\n在导航栏内\n下面的实例演示了在导航栏内的下拉菜单的用法：\n实例",
+    "examples": [
+     "<nav class=\"navbar navbar-default\" role=\"navigation\">\n<div class=\"container-fluid\">\n<div class=\"navbar-header\">\n<a class=\"navbar-brand\" href=\"#\">菜鸟教程</a>\n</div>\n<div>\n<ul class=\"nav navbar-nav\">\n<li class=\"active\"><a href=\"#\">iOS</a></li>\n<li><a href=\"#\">SVN</a></li>\n<li class=\"dropdown\">\n<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                    Java \n                    <b class=\"caret\"></b>\n</a>\n<ul class=\"dropdown-menu\">\n<li><a href=\"#\">jmeter</a></li>\n<li><a href=\"#\">EJB</a></li>\n<li><a href=\"#\">Jasper Report</a></li>\n<li class=\"divider\"></li>\n<li><a href=\"#\">分离的链接</a></li>\n<li class=\"divider\"></li>\n<li><a href=\"#\">另一个分离的链接</a></li>\n</ul>\n</li>\n</ul>\n</div>\n</div>\n</nav>"
+    ]
+   },
+   {
+    "title": "Bootstrap 下拉菜单（Dropdowns）",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-dropdowns.html",
+    "body": "本章将重点介绍 Bootstrap 下拉菜单。下拉菜单是可切换的，是以列表格式显示链接的上下文菜单。这可以通过与 下拉菜单（Dropdown） JavaScript 插件 的互动来实现。\n如需使用下拉菜单，只需要在 class .dropdown 内加上下拉菜单即可。下面的实例演示了基本的下拉菜单：\n实例",
+    "examples": [
+     "<div class=\"dropdown\">\n<button type=\"button\" class=\"btn dropdown-toggle\" id=\"dropdownMenu1\" data-toggle=\"dropdown\">主题\n        <span class=\"caret\"></span>\n</button>\n<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dropdownMenu1\">\n<li role=\"presentation\">\n<a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Java</a>\n</li>\n<li role=\"presentation\">\n<a role=\"menuitem\" tabindex=\"-1\" href=\"#\">数据挖掘</a>\n</li>\n<li role=\"presentation\">\n<a role=\"menuitem\" tabindex=\"-1\" href=\"#\">数据通信/网络</a>\n</li>\n<li role=\"presentation\" class=\"divider\"></li>\n<li role=\"presentation\">\n<a role=\"menuitem\" tabindex=\"-1\" href=\"#\">分离的链接</a>\n</li>\n</ul>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 环境安装",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-environment-setup.html",
+    "body": "Bootstrap 安装是非常容易的。本章将讲解如何下载并安装 Bootstrap，讨论 Bootstrap 文件结构，并通过一个实例演示它的用法。\n下载 Bootstrap\n您可以从 http://getbootstrap.com/ 上下载 Bootstrap 的最新版本。当您点击这个链接时，您将看到如下所示的网页：\n您会看到两个按钮：\nDownload Bootstrap：下载 Bootstrap。点击该按钮，您可以下载 Bootstrap CSS、JavaScript 和字体的预编译的压缩版本。不包含文档和最初的源代码文件。\nDownload Source：下载源代码。点击该按钮，您可以直接从 from 上得到最新的 Bootstrap LESS 和 JavaScript 源代码。\n如果您使用的是未编译的源代码，您需要编译 LESS 文件来生成可重用的 CSS 文件。对于编译 LESS 文件，Bootstrap 官方只支持 Recess，这是 Twitter 的基于 less.js 的 CSS 提示。\n为了更好的了解和更方便的使用，我们将在本教程中使用 Bootstrap 的预编译版本。\n由于文件是被编译过和压缩过的，在独立的功能开发中，您不必每次都包含这些独立的文件。\n本教程编写时，使用的是最新版（Bootstrap 3）。\n文件结构\n预编译的 Bootstrap\n当您下载了 Bootstrap 的已编译的版本，解压缩 ZIP 文件，您将看到下面的文件/目录结构：\n如上图所示，可以看到已编译的 CSS 和 JS（bootstrap.*），以及已编译压缩的 CSS 和 JS（bootstrap.min.*）。同时也包含了 Glyphicons 的字体，这是一个可选的 Bootstrap 主题。\nBootstrap 源代码\n如果您下载了 Bootstrap 源代码，那么文件结构将如下所示：\nless/、js/ 和 fonts/ 下的文件分别是 Bootstrap CSS、JS 和图标字体的源代码。\ndist/ 文件夹包含了上面预编译下载部分中所列的文件和文件夹。\ndocs-assets/、examples/ 和所有的 *.html 文件是 Bootstrap 文档。\nHTML 模板\n一个使用了 Bootstrap 的基本的 HTML 模板如下所示：\n实例",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<title>Bootstrap 模板</title>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<!-- 引入 Bootstrap -->\n<link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" rel=\"stylesheet\">\n<!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->\n<!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->\n<!--[if lt IE 9]>\n         <script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"></script>\n         <script src=\"https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js\"></script>\n      <![endif]-->\n</head>\n<body>\n<h1>Hello, world!</h1>\n<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->\n<script src=\"https://code.jquery.com/jquery.js\"></script>\n<!-- 包括所有已编译的插件 -->\n<script src=\"js/bootstrap.min.js\"></script>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "Bootstrap 表单",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-forms.html",
+    "body": "在本章中，我们将学习如何使用 Bootstrap 创建表单。Bootstrap 通过一些简单的 HTML 标签和扩展的类即可创建出不同样式的表单。\n表单布局\nBootstrap 提供了下列类型的表单布局：\n垂直表单（默认）\n内联表单\n水平表单\n垂直或基本表单\n基本的表单结构是 Bootstrap 自带的，个别的表单控件自动接收一些全局样式。下面列出了创建基本表单的步骤：\n向父 <form> 元素添加 role=\"form\"。\n把标签和控件放在一个带有 class .form-group 的 <div> 中。这是获取最佳间距所必需的。\n向所有的文本元素 <input>、<textarea> 和 <select> 添加 class =\"form-control\" 。\n实例",
+    "examples": [
+     "<form role=\"form\">\n<div class=\"form-group\">\n<label for=\"name\">名称</label>\n<input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"请输入名称\">\n</div>\n<div class=\"form-group\">\n<label for=\"inputfile\">文件输入</label>\n<input type=\"file\" id=\"inputfile\">\n<p class=\"help-block\">这里是块级帮助文本的实例。</p>\n</div>\n<div class=\"checkbox\">\n<label>\n<input type=\"checkbox\">请打勾\n    </label>\n</div>\n<button type=\"submit\" class=\"btn btn-default\">提交</button>\n</form>"
+    ]
+   },
+   {
+    "title": "Bootstrap 字体图标(Glyphicons)",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-glyphicons.html",
+    "body": "本章将讲解字体图标(Glyphicons)，并通过一些实例了解它的使用。Bootstrap 捆绑了 200 多种字体格式的字形。首先让我们先来理解一下什么是字体图标。\n什么是字体图标？\n字体图标是在 Web 项目中使用的图标字体。虽然，Glyphicons Halflings 需要商业许可，但是您可以通过基于项目的 Bootstrap 来免费使用这些图标。\n为了表示对图标作者的感谢，希望您在使用时加上 GLYPHICONS 网站的链接。\n获取字体图标\n我们已经在 环境安装 章节下载了 Bootstrap 3.x 版本，并理解了它的目录结构。在 fonts 文件夹内可以找到字体图标，它包含了下列这些文件：\nglyphicons-halflings-regular.eot\nglyphicons-halflings-regular.svg\nglyphicons-halflings-regular.ttf\nglyphicons-halflings-regular.woff\n相关的 CSS 规则写在 dist 文件夹内的 css 文件夹内的 bootstrap.css 和 bootstrap-min.css 文件上。\n字体图标列表\n点击这里，查看可用的字体图标列表。\nCSS 规则解释\n下面的 CSS 规则构成 glyphicon class。",
+    "examples": [
+     "@font-face {\nfont-family: 'Glyphicons Halflings';\n  src: url('../fonts/glyphicons-halflings-regular.eot');\n  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');\n}\n.glyphicon {\nposition: relative;\n  top: 1px;\n  display: inline-block;\n  font-family: 'Glyphicons Halflings';\n  -webkit-font-smoothing: antialiased;\n  font-style: normal;\n  font-weight: normal;\n  line-height: 1;\n  -moz-osx-font-smoothing: grayscale;\n}"
+    ]
+   },
+   {
+    "title": "Bootstrap 网格系统",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-grid-system.html",
+    "body": "本章节我们将讲解 Bootstrap 的网格系统（Grid System）。\nBootstrap 提供了一套响应式、移动设备优先的流式网格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多12列。",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap 辅助类",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-helper-classes.html",
+    "body": "本章将讨论 Bootstrap 中的一些可能会派上用场的辅助类。\n文本\n以下不同的类展示了不同的文本颜色。如果文本是个链接鼠标移动到文本上会变暗：\n类\n描述\n实例\n.text-muted\n\"text-muted\" 类的文本样式\n尝试一下\n.text-primary\n\"text-primary\" 类的文本样式\n尝试一下\n.text-success\n\"text-success\" 类的文本样式\n尝试一下\n.text-info\n\"text-info\" 类的文本样式\n尝试一下\n.text-warning\n\"text-warning\" 类的文本样式\n尝试一下\n.text-danger\n\"text-danger\" 类的文本样式\n尝试一下\n背景\n以下不同的类展示了不同的背景颜色。 如果文本是个链接鼠标移动到文本上会变暗：\n类\n描述\n实例\n.bg-primary\n表格单元格使用了 \"bg-primary\" 类\n尝试一下\n.bg-success\n表格单元格使用了 \"bg-success\" 类\n尝试一下\n.bg-info\n表格单元格使用了 \"bg-info\" 类\n尝试一下\n.bg-warning\n表格单元格使用了 \"bg-warning\" 类\n尝试一下\n.bg-danger\n表格单元格使用了 \"bg-danger\" 类\n尝试一下\n其他\n类\n描述\n实例\n.pull-left\n元素浮动到左边\n尝试一下\n.pull-right\n元素浮动到右边\n尝试一下\n.center-block\n设置元素为 display:block 并居中显示\n尝试一下\n.clearfix\n清除浮动\n尝试一下\n.show\n强制元素显示\n尝试一下\n.hidden\n强制元素隐藏\n尝试一下\n.sr-only\n除了屏幕阅读器外，其他设备上隐藏元素\n尝试一下\n.sr-only-focusable\n与 .sr-only 类结合使用，在元素获取焦点时显示(如：键盘操作的用户)\n尝试一下\n.text-hide\n将页面元素所包含的文本内容替换为背景图\n尝试一下\n.close\n显示关闭按钮\n尝试一下\n.caret\n显示下拉式功能\n尝试一下\n更多实例\n关闭图标\n使用通用的关闭图标来关闭模态框和警告框。使用 class close 得到关闭图标。\n实例",
+    "examples": [
+     "<p>关闭图标实例\n  <button type=\"button\" class=\"close\" aria-hidden=\"true\">\n&times;\n</button>\n</p>"
+    ]
+   },
+   {
+    "title": "Bootstrap HTML编码规范",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-html-codeguide.html",
+    "body": "语法\n用两个空格来代替制表符（tab） -- 这是唯一能保证在所有环境下获得一致展现的方法。\n嵌套元素应当缩进一次（即两个空格）。\n对于属性的定义，确保全部使用双引号，绝不要使用单引号。\n不要在自闭合（self-closing）元素的尾部添加斜线 -- HTML5 规范中明确说明这是可选的。\n不要省略可选的结束标签（closing tag）（例如，</li> 或 </body>）。\n实例：\n<!DOCTYPE html>\n<html>\n <head>\n <title>Page title</title>\n </head>\n <body>\n <img src=\"images/company-logo.png\" alt=\"Company\">\n <h1 class=\"hello-world\">Hello, world!</h1>\n </body>\n</html>\nHTML5 doctype\n为每个 HTML 页面的第一行添加标准模式（standard mode）的声明，这样能够确保在每个浏览器中拥有一致的展现。\n实例：\n<!DOCTYPE html>\n<html>\n <head>\n </head>\n</html>\n语言属性\n根据 HTML5 规范：\n强烈建议为 html 根元素指定 lang 属性，从而为文档设置正确的语言。这将有助于语音合成工具确定其所应该采用的发音，有助于翻译工具确定其翻译时所应遵守的规则等等。\n这里列出了语言代码表。\n<html lang=\"zh\">\n <!-- ... -->\n</html>\nIE 兼容模式\nIE 支持通过特定的 <meta> 标签来确定绘制当前页面所应该采用的 IE 版本。除非有强烈的特殊需求，否则最好是设置为 edge mode，从而通知 IE 采用其所支持的最新的模式。\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n字符编码\n通过明确声明字符编码，能够确保浏览器快速并容易的判断页面内容的渲染方式。这样做的好处是，可以避免在 HTML 中使用字符实体标记（character entity），从而全部与文档编码一致（一般采用 UTF-8 编码）。\n<head>\n <meta charset=\"UTF-8\">\n</head>\n引入 CSS 和 JavaScript 文件\n根据 HTML5 规范，在引入 CSS 和 JavaScript 文件时一般不需要指定 type 属性，因为 text/css 和 text/javascript 分别是它们的默认值。\nHTML5 spec links\nUsing link\nUsing style\nUsing script\n<!-- External CSS -->\n<link rel=\"stylesheet\" href=\"code-guide.css\">\n\n<!-- In-document CSS -->\n<style>\n /* ... */\n</style>\n\n<!-- JavaScript -->\n<script src=\"code-guide.js\"></script>\n实用为王\n尽量遵循 HTML 标准和语义，但是不要以牺牲实用性为代价。任何时候都要尽量使用最少的标签并保持最小的复杂度。\n属性顺序\nHTML 属性应当按照以下给出的顺序依次排列，确保代码的易读性。\nclass\nid, name\ndata-*\nsrc, for, type, href\ntitle, alt\naria-*, role\nclass 用于标识高度可复用组件，因此应该排在首位。id 用于标识具体组件，应当谨慎使用（例如，页面内的书签），因此排在第二位。\n<a class=\"...\" id=\"...\" data-modal=\"toggle\" href=\"#\">\n Example link\n</a>\n\n<input class=\"form-control\" type=\"text\">\n\n<img src=\"...\" alt=\"...\">\n布尔（boolean）型属性\n布尔型属性可以在声明时不赋值。XHTML 规范要求为其赋值，但是 HTML5 规范不需要。\n更多信息请参考 WhatWG section on boolean attributes：\n元素的布尔型属性如果有值，就是 true，如果没有值，就是 false。\n如果一定要为其赋值的话，请参考 WhatWG 规范：\n如果属性存在，其值必须是空字符串或 [...] 属性的规范名称，并且不要在首尾添加空白符。\n简单来说，就是不用赋值。\n<input type=\"text\" disabled>\n\n<input type=\"checkbox\" value=\"1\" checked>\n\n<select>\n <option value=\"1\" selected>1</option>\n</select>\n减少标签的数量\n编写 HTML 代码时，尽量避免多余的父元素。很多时候，这需要迭代和重构来实现。请看下面的案例：\n<!-- Not so great -->\n<span class=\"avatar\">\n <img src=\"...\">\n</span>\n\n<!-- Better -->\n<img class=\"avatar\" src=\"...\">\nJavaScript 生成的标签\n通过 JavaScript 生成的标签让内容变得不易查找、编辑，并且降低性能。能避免时尽量避免。",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap 图片",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-images.html",
+    "body": "在本章中，我们将学习 Bootstrap 对图片的支持。Bootstrap 提供了三个可对图片应用简单样式的 class：\n.img-rounded：添加 border-radius:6px 来获得图片圆角。\n.img-circle：添加 border-radius:50% 来让整个图片变成圆形。\n.img-thumbnail：添加一些内边距（padding）和一个灰色的边框。\n请看下面的实例演示：\n实例",
+    "examples": [
+     "<img src=\"/wp-content/uploads/2014/06/download.png\" class=\"img-rounded\">\n<img src=\"/wp-content/uploads/2014/06/download.png\" class=\"img-circle\">\n<img src=\"/wp-content/uploads/2014/06/download.png\" class=\"img-thumbnail\">"
+    ]
+   },
+   {
+    "title": "Bootstrap 输入框组",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-input-groups.html",
+    "body": "本章将讲解 Bootstrap 支持的另一个特性，输入框组。输入框组扩展自 表单控件。使用输入框组，您可以很容易地向基于文本的输入框添加作为前缀和后缀的文本或按钮。\n通过向输入域添加前缀和后缀的内容，您可以向用户输入添加公共的元素。例如，您可以添加美元符号，或者在 Twitter 用户名前添加 @，或者应用程序接口所需要的其他公共的元素。\n向 .form-control 添加前缀或后缀元素的步骤如下：\n把前缀或后缀元素放在一个带有 class .input-group 的 <div> 中。\n接着，在相同的 <div> 内，在 class 为 .input-group-addon 的 <span> 内放置额外的内容。\n把该 <span> 放置在 <input> 元素的前面或者后面。\n为了保持跨浏览器的兼容性，请避免使用 <select> 元素，因为它们在 WebKit 浏览器中不能完全渲染出效果。也不要直接向表单组应用输入框组的 class，输入框组是一个孤立的组件。",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap 简介",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-intro.html",
+    "body": "什么是 Bootstrap？\nBootstrap 是一个用于快速开发 Web 应用程序和网站的前端框架。Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的。\n历史\nBootstrap 是由 Twitter 的 Mark Otto 和 Jacob Thornton 开发的。Bootstrap 是 2011 年八月在 GitHub 上发布的开源产品。\n为什么使用 Bootstrap？\n移动设备优先：自 Bootstrap 3 起，框架包含了贯穿于整个库的移动设备优先的样式。\n浏览器支持：所有的主流浏览器都支持 Bootstrap。\n容易上手：只要您具备 HTML 和 CSS 的基础知识，您就可以开始学习 Bootstrap。\n响应式设计：Bootstrap 的响应式 CSS 能够自适应于台式机、平板电脑和手机。更多有关响应式设计的内容详见 Bootstrap 响应式设计。\n它为开发人员创建接口提供了一个简洁统一的解决方案。\n它包含了功能强大的内置组件，易于定制。\n它还提供了基于 Web 的定制。\n它是开源的。\nBootstrap 包的内容\n基本结构：Bootstrap 提供了一个带有网格系统、链接样式、背景的基本结构。这将在 Bootstrap 基本结构 部分详细讲解。\nCSS：Bootstrap 自带以下特性：全局的 CSS 设置、定义基本的 HTML 元素样式、可扩展的 class，以及一个先进的网格系统。这将在 Bootstrap CSS 部分详细讲解。\n组件：Bootstrap 包含了十几个可重用的组件，用于创建图像、下拉菜单、导航、警告框、弹出框等等。这将在 布局组件 部分详细讲解。\nJavaScript 插件：Bootstrap 包含了十几个自定义的 jQuery 插件。您可以直接包含所有的插件，也可以逐个包含这些插件。这将在 Bootstrap 插件 部分详细讲解。\n定制：您可以定制 Bootstrap 的组件、LESS 变量和 jQuery 插件来得到您自己的版本。\n在线实例\n本站的 Bootstrap 教程包含了上百个实例。\n你可以使用我们的在线编辑器在线编辑代码，并点击运行按钮查看结果。\nBootstrap 实例",
+    "examples": [
+     "<div class=\"container\">\n<div class=\"jumbotron\">\n<h1>我的第一个 Bootstrap 页面</h1>\n<p>重置窗口大小，查看响应式效果！</p>\n</div>\n<div class=\"row\">\n<div class=\"col-sm-4\">\n<h3>Column 1</h3>\n<p>学的不仅是技术，更是梦想！</p>\n<p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>\n</div>\n<div class=\"col-sm-4\">\n<h3>Column 2</h3>\n<p>学的不仅是技术，更是梦想！</p>\n<p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>\n</div>\n<div class=\"col-sm-4\">\n<h3>Column 3</h3>\n<p>学的不仅是技术，更是梦想！</p>\n<p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>\n</div>\n</div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 超大屏幕（Jumbotron）",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-jumbotron.html",
+    "body": "本章将讲解 Bootstrap 支持的另一个特性，超大屏幕（Jumbotron）。顾名思义该组件可以增加标题的大小，并为登陆页面内容添加更多的外边距（margin）。使用超大屏幕（Jumbotron）的步骤如下：\n创建一个带有 class .jumbotron. 的容器 <div>。\n除了更大的 <h1>，字体粗细 font-weight 被减为 200。\n下面的实例演示了这点：\n实例",
+    "examples": [
+     "<div class=\"container\">\n<div class=\"jumbotron\">\n<h1>欢迎登陆页面！</h1>\n<p>这是一个超大屏幕（Jumbotron）的实例。</p>\n<p><a class=\"btn btn-primary btn-lg\" role=\"button\">\n        学习更多</a>\n</p>\n</div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 标签",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-labels.html",
+    "body": "本章将讲解 Bootstrap 标签。标签可用于计数、提示或页面上其他的标记显示。使用 class .label 来显示标签，如下面的实例所示：\n实例",
+    "examples": [
+     "<h1>Example Heading <span class=\"label label-default\">Label</span></h1>\n<h2>Example Heading <span class=\"label label-default\">Label</span></h2>\n<h3>Example Heading <span class=\"label label-default\">Label</span></h3>\n<h4>Example Heading <span class=\"label label-default\">Label</span></h4>"
+    ]
+   },
+   {
+    "title": "Bootstrap 列表组",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-list-group.html",
+    "body": "本章我们将讲解列表组。列表组件用于以列表形式呈现复杂的和自定义的内容。创建一个基本的列表组的步骤如下：\n向元素 <ul> 添加 class .list-group。\n向 <li> 添加 class .list-group-item。\n下面的实例演示了这点：\n实例",
+    "examples": [
+     "<ul class=\"list-group\">\n<li class=\"list-group-item\">免费域名注册</li>\n<li class=\"list-group-item\">免费 Window 空间托管</li>\n<li class=\"list-group-item\">图像的数量</li>\n<li class=\"list-group-item\">24*7 支持</li>\n<li class=\"list-group-item\">每年更新成本</li>\n</ul>"
+    ]
+   },
+   {
+    "title": "Bootstrap 创建一个网页",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-make-a-website.html",
+    "body": "接下来我们通过 Bootstrap3 来创建一个简单的响应式网页。\n在学习之前我们可以先看下效果：https://www.runoob.com/try/demo_source/bootstrap3-makewebsite.htm\nHTML 代码",
+    "examples": [
+     "<div class=\"jumbotron text-center\" style=\"margin-bottom:0\">\n<h1>我的第一个 Bootstrap 页面</h1>\n<p>重置浏览器窗口大小查看效果！</p>\n</div>\n<nav class=\"navbar navbar-inverse\">\n<div class=\"container-fluid\">\n<div class=\"navbar-header\">\n<button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n<span class=\"icon-bar\"></span>\n<span class=\"icon-bar\"></span>\n<span class=\"icon-bar\"></span>\n</button>\n<a class=\"navbar-brand\" href=\"#\">网站名</a>\n</div>\n<div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n<ul class=\"nav navbar-nav\">\n<li class=\"active\"><a href=\"#\">主页</a></li>\n<li><a href=\"#\">页面 2</a></li>\n<li><a href=\"#\">页面 3</a></li>\n</ul>\n</div>\n</div>\n</nav>\n<div class=\"container\">\n<div class=\"row\">\n<div class=\"col-sm-4\">\n<h2>关于我</h2>\n<h5>我的照片:</h5>\n<div class=\"fakeimg\">这边插入图像</div>\n<p>关于我的介绍..</p>\n<h3>链接</h3>\n<p>描述文本。</p>\n<ul class=\"nav nav-pills nav-stacked\">\n<li class=\"active\"><a href=\"#\">链接 1</a></li>\n<li><a href=\"#\">链接 2</a></li>\n<li><a href=\"#\">链接 3</a></li>\n</ul>\n<hr class=\"hidden-sm hidden-md hidden-lg\">\n</div>\n<div class=\"col-sm-8\">\n<h2>标题</h2>\n<h5>副标题</h5>\n<div class=\"fakeimg\">图像</div>\n<p>一些文本..</p>\n<p>菜鸟教程，学的不仅是技术，更是梦想！！！菜鸟教程，学的不仅是技术，更是梦想！！！菜鸟教程，学的不仅是技术，更是梦想！！！</p>\n<br>\n<h2>标题</h2>\n<h5>副标题</h5>\n<div class=\"fakeimg\">图像</div>\n<p>一些文本..</p>\n<p>菜鸟教程，学的不仅是技术，更是梦想！！！菜鸟教程，学的不仅是技术，更是梦想！！！菜鸟教程，学的不仅是技术，更是梦想！！！</p>\n</div>\n</div>\n</div>\n<div class=\"jumbotron text-center\" style=\"margin-bottom:0\">\n<p>底部内容</p>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 多媒体对象（Media Object）",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-media-object.html",
+    "body": "本章我们将讲解 Bootstrap 中的多媒体对象（Media Object），如：图像、视频、音频等。\n\n多媒体对象的样式可用于创建各种类型的组件（比如：博客评论），我们可以在组件中使用图文混排，图像可以左对齐或者右对齐。媒体对象可以用更少的代码来实现媒体对象与文字的混排。\n接下来我们先来看个实例：\n实例",
+    "examples": [
+     "<!-- 左对齐 -->\n<div class=\"media\">\n<div class=\"media-left\">\n<img src=\"img_avatar1.png\" class=\"media-object\" style=\"width:60px\">\n</div>\n<div class=\"media-body\">\n<h4 class=\"media-heading\">左对齐</h4>\n<p>这是一些示例文本...</p>\n</div>\n</div>\n<!-- 右对齐 -->\n<div class=\"media\">\n<div class=\"media-body\">\n<h4 class=\"media-heading\">左对齐</h4>\n<p>这是一些示例文本...</p>\n</div>\n<div class=\"media-right\">\n<img src=\"img_avatar1.png\" class=\"media-object\" style=\"width:60px\">\n</div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 模态框（Modal）插件",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-modal-plugin.html",
+    "body": "模态框（Modal）是覆盖在父窗体上的子窗体。通常，目的是显示来自一个单独的源的内容，可以在不离开父窗体的情况下有一些互动。子窗体可提供信息、交互等。\n如果您想要单独引用该插件的功能，那么您需要引用 modal.js。或者，正如 Bootstrap 插件概览 一章中所提到，您可以引用 bootstrap.js 或压缩版的 bootstrap.min.js。\n用法\n您可以切换模态框（Modal）插件的隐藏内容：\n通过 data 属性：在控制器元素（比如按钮或者链接）上设置属性 data-toggle=\"modal\"，同时设置 data-target=\"#identifier\" 或 href=\"#identifier\" 来指定要切换的特定的模态框（带有 id=\"identifier\"）。\n通过 JavaScript：使用这种技术，您可以通过简单的一行 JavaScript 来调用带有 id=\"identifier\" 的模态框：\n\n$('#identifier').modal(options)\n实例\n一个静态的模态窗口实例，如下面的实例所示：\n实例",
+    "examples": [
+     "<h2>创建模态框（Modal）</h2>\n<!-- 按钮触发模态框 -->\n<button class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#myModal\">开始演示模态框</button>\n<!-- 模态框（Modal） -->\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n<div class=\"modal-dialog\">\n<div class=\"modal-content\">\n<div class=\"modal-header\">\n<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n<h4 class=\"modal-title\" id=\"myModalLabel\">模态框（Modal）标题</h4>\n</div>\n<div class=\"modal-body\">在这里添加一些文本</div>\n<div class=\"modal-footer\">\n<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">关闭</button>\n<button type=\"button\" class=\"btn btn-primary\">提交更改</button>\n</div>\n</div><!-- /.modal-content -->\n</div><!-- /.modal -->\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 导航栏",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-navbar.html",
+    "body": "导航栏是一个很好的功能，是 Bootstrap 网站的一个突出特点。导航栏在您的应用或网站中作为导航页头的响应式基础组件。导航栏在移动设备的视图中是折叠的，随着可用视口宽度的增加，导航栏也会水平展开。在 Bootstrap 导航栏的核心中，导航栏包括了站点名称和基本的导航定义样式。",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap 导航元素",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-navigation-elements.html",
+    "body": "本章我们将讲解 Bootstrap 提供的用于定义导航元素的一些选项。它们使用相同的标记和基类 .nav。Bootstrap 也提供了一个用于共享标记和状态的帮助器类。改变修饰的 class，可以在不同的样式间进行切换。\n表格导航或标签\n创建一个标签式的导航菜单：\n以一个带有 class .nav 的无序列表开始。\n添加 class .nav-tabs。\n下面的实例演示了这点：\n实例",
+    "examples": [
+     "<p>标签式的导航菜单</p>\n<ul class=\"nav nav-tabs\">\n<li class=\"active\"><a href=\"#\">Home</a></li>\n<li><a href=\"#\">SVN</a></li>\n<li><a href=\"#\">iOS</a></li>\n<li><a href=\"#\">VB.Net</a></li>\n<li><a href=\"#\">Java</a></li>\n<li><a href=\"#\">PHP</a></li>\n</ul>"
+    ]
+   },
+   {
+    "title": "Bootstrap 页面标题（Page Header）",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-page-header.html",
+    "body": "页面标题（Page Header）是个不错的功能，它会在网页标题四周添加适当的间距。当一个网页中有多个标题且每个标题之间需要添加一定的间距时，页面标题这个功能就显得特别有用。如需使用页面标题（Page Header），请把您的标题放置在带有 class .page-header 的 <div> 中：\n实例",
+    "examples": [
+     "<div class=\"page-header\">\n<h1>页面标题实例\n        <small>子标题</small>\n</h1>\n</div>\n<p>这是一个示例文本。这是一个示例文本。这是一个示例文本。这是一个示例文本。这是一个示例文本。</p>"
+    ]
+   },
+   {
+    "title": "Bootstrap 分页",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-pagination.html",
+    "body": "本章将讲解 Bootstrap 支持的分页特性。分页（Pagination），是一种无序列表，Bootstrap 像处理其他界面元素一样处理分页。\n分页（Pagination）\n下表列出了 Bootstrap 提供的处理分页的 class。\nClass\n描述\n示例代码\n.pagination\n添加该 class 来在页面上显示分页。\n<ul class=\"pagination\">\n <li><a href=\"#\">&laquo;</a></li>\n <li><a href=\"#\">1</a></li>\n .......\n</ul>\n.disabled, .active\n您可以自定义链接，通过使用 .disabled 来定义不可点击的链接，通过使用 .active 来指示当前的页面。\n<ul class=\"pagination\">\n <li class=\"disabled\"><a href=\"#\">&laquo;</a></li>\n <li class=\"active\"><a href=\"#\">1<span class=\"sr-only\">(current)</span></a></li>\n .......\n</ul>\n.pagination-lg, .pagination-sm\n使用这些 class 来获取不同大小的项。\n<ul class=\"pagination pagination-lg\">...</ul>\n<ul class=\"pagination\">...</ul>\n<ul class=\"pagination pagination-sm\">...</ul>\n默认的分页\n下面的实例演示了上表中所讨论的 class .pagination 的用法：\n实例",
+    "examples": [
+     "<ul class=\"pagination\">\n<li><a href=\"#\">&laquo;</a></li>\n<li><a href=\"#\">1</a></li>\n<li><a href=\"#\">2</a></li>\n<li><a href=\"#\">3</a></li>\n<li><a href=\"#\">4</a></li>\n<li><a href=\"#\">5</a></li>\n<li><a href=\"#\">&raquo;</a></li>\n</ul>"
+    ]
+   },
+   {
+    "title": "Bootstrap 面板（Panels）",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-panels.html",
+    "body": "本章将讲解 Bootstrap 面板（Panels）。面板组件用于把 DOM 组件插入到一个盒子中。创建一个基本的面板，只需要向 <div> 元素添加 class .panel 和 class .panel-default 即可，如下面的实例所示：\n实例",
+    "examples": [
+     "<div class=\"panel panel-default\">\n<div class=\"panel-body\">\n        这是一个基本的面板\n    </div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 插件概览",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-plugins-overview.html",
+    "body": "在前面 布局组件 章节中所讨论到的组件仅仅是个开始。Bootstrap 自带 12 种 jQuery 插件，扩展了功能，可以给站点添加更多的互动。即使您不是一名高级的 JavaScript 开发人员，您也可以着手学习 Bootstrap 的 JavaScript 插件。利用 Bootstrap 数据 API（Bootstrap Data API），大部分的插件可以在不编写任何代码的情况下被触发。\n站点引用 Bootstrap 插件的方式有两种：\n单独引用：使用 Bootstrap 的个别的 *.js 文件。一些插件和 CSS 组件依赖于其他插件。如果您单独引用插件，请先确保弄清这些插件之间的依赖关系。\n编译（同时）引用：使用 bootstrap.js 或压缩版的 bootstrap.min.js。不要尝试同时引用这两个文件，因为 bootstrap.js 和 bootstrap.min.js 都包含了所有的插件。\n所有的插件依赖于 jQuery。所以必须在插件文件之前引用 jQuery。请访问 bower.json 查看 Bootstrap 当前支持的 jQuery 版本。",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap 弹出框（Popover）插件",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-popover-plugin.html",
+    "body": "弹出框（Popover）与工具提示（Tooltip）类似，提供了一个扩展的视图。如需激活弹出框，用户只需把鼠标悬停在元素上即可。弹出框的内容完全可使用 Bootstrap 数据 API（Bootstrap Data API）来填充。该方法依赖于工具提示（tooltip）。\n如果您想要单独引用该插件的功能，那么您需要引用 popover.js，它依赖于 工具提示（Tooltip）插件。或者，正如 Bootstrap 插件概览 一章中所提到，您可以引用 bootstrap.js 或压缩版的 bootstrap.min.js。\n用法\n弹出框（Popover）插件根据需求生成内容和标记，默认情况下是把弹出框（popover）放在它们的触发元素后面。您可以有以下两种方式添加弹出框（popover）：\n通过 data 属性：如需添加一个弹出框（popover），只需向一个锚/按钮标签添加 data-toggle=\"popover\" 即可。锚的 title 即为弹出框（popover）的文本。默认情况下，插件把弹出框（popover）设置在顶部。\n\n<a href=\"#\" data-toggle=\"popover\" title=\"Example popover\">\n    请悬停在我的上面\n</a>\n通过 JavaScript：通过 JavaScript 启用弹出框（popover）：\n\n$('#identifier').popover(options)\n弹出框（Popover）插件不像之前所讨论的下拉菜单及其他插件那样，它不是纯 CSS 插件。如需使用该插件，您必须使用 jquery 激活它（读取 javascript）。使用下面的脚本来启用页面中的所有的弹出框（popover）：\n$(function () { $(\"[data-toggle='popover']\").popover(); });\n实例\n下面的实例演示了通过 data 属性使用弹出框（Popover）插件的用法。\n实例\n$(function(){\n $(\"[data-toggle='popover']\").popover();\n});",
+    "examples": [
+     "<div class=\"container\" style=\"padding: 100px 50px 10px;\" >\n<button type=\"button\" class=\"btn btn-default\" title=\"Popover title\"\ndata-container=\"body\" data-toggle=\"popover\" data-placement=\"left\"\ndata-content=\"左侧的 Popover 中的一些内容\">\n        左侧的 Popover\n    </button>\n<button type=\"button\" class=\"btn btn-primary\" title=\"Popover title\"\ndata-container=\"body\" data-toggle=\"popover\" data-placement=\"top\"\ndata-content=\"顶部的 Popover 中的一些内容\">\n        顶部的 Popover\n    </button>\n<button type=\"button\" class=\"btn btn-success\" title=\"Popover title\"\ndata-container=\"body\" data-toggle=\"popover\" data-placement=\"bottom\"\ndata-content=\"底部的 Popover 中的一些内容\">\n        底部的 Popover\n    </button>\n<button type=\"button\" class=\"btn btn-warning\" title=\"Popover title\"\ndata-container=\"body\" data-toggle=\"popover\" data-placement=\"right\"\ndata-content=\"右侧的 Popover 中的一些内容\">\n        右侧的 Popover\n    </button>\n</div>\n<script>"
+    ]
+   },
+   {
+    "title": "Bootstrap 进度条",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-progress-bars.html",
+    "body": "本章将讲解 Bootstrap 进度条。在本教程中，您将看到如何使用 Bootstrap 创建加载、重定向或动作状态的进度条。\nBootstrap 进度条使用 CSS3 过渡和动画来获得该效果。Internet Explorer 9 及之前的版本和旧版的 Firefox 不支持该特性，Opera 12 不支持动画。",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap 响应式实用工具",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-responsive-utilities.html",
+    "body": "Bootstrap 提供了一些辅助类，以便更快地实现对移动设备友好的开发。这些可以通过媒体查询结合大型、小型和中型设备，实现内容对设备的显示和隐藏。\n需要谨慎使用这些工具，避免在同一个站点创建完全不同的版本。响应式实用工具目前只适用于块和表切换。\n超小屏幕\n 手机 (<768px)\n小屏幕\n 平板 (≥768px)\n中等屏幕\n 桌面 (≥992px)\n大屏幕\n 桌面 (≥1200px)\n.visible-xs-*\n可见\n隐藏\n隐藏\n隐藏\n.visible-sm-*\n隐藏\n可见\n隐藏\n隐藏\n.visible-md-*\n隐藏\n隐藏\n可见\n隐藏\n.visible-lg-*\n隐藏\n隐藏\n隐藏\n可见\n.hidden-xs\n隐藏\n可见\n可见\n可见\n.hidden-sm\n可见\n隐藏\n可见\n可见\n.hidden-md\n可见\n可见\n隐藏\n可见\n.hidden-lg\n可见\n可见\n可见\n隐藏",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap 滚动监听（Scrollspy）插件",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-scrollspy-plugin.html",
+    "body": "滚动监听（Scrollspy）插件，即自动更新导航插件，会根据滚动条的位置自动更新对应的导航目标。其基本的实现是随着您的滚动，基于滚动条的位置向导航栏添加 .active class。\n如果您想要单独引用该插件的功能，那么您需要引用 scrollspy.js。或者，正如 Bootstrap 插件概览 一章中所提到，您可以引用 bootstrap.js 或压缩版的 bootstrap.min.js。\n用法\n您可以向顶部导航添加滚动监听行为：\n通过 data 属性：向您想要监听的元素（通常是 body）添加 data-spy=\"scroll\"。然后添加带有 Bootstrap .nav 组件的父元素的 ID 或 class 的属性 data-target。为了它能正常工作，您必须确保页面主体中有匹配您所要监听链接的 ID 的元素存在。\n\n<body data-spy=\"scroll\" data-target=\".navbar-example\">\n...\n<div class=\"navbar-example\">\n    <ul class=\"nav nav-tabs\">\n        ...\n    </ul>\n</div>\n...\n</body>\n通过 JavaScript：您可以通过 JavaScript 调用滚动监听，选取要监听的元素，然后调用 .scrollspy() 函数：\n\n$('body').scrollspy({ target: '.navbar-example' })\n实例\n下面的实例演示了通过 data 属性使用滚动监听（Scrollspy）插件：\n实例",
+    "examples": [
+     "<nav id=\"navbar-example\" class=\"navbar navbar-default navbar-static\" role=\"navigation\">\n<div class=\"container-fluid\">\n<div class=\"navbar-header\">\n<button class=\"navbar-toggle\" type=\"button\" data-toggle=\"collapse\"\ndata-target=\".bs-js-navbar-scrollspy\">\n<span class=\"sr-only\">切换导航</span>\n<span class=\"icon-bar\"></span>\n<span class=\"icon-bar\"></span>\n<span class=\"icon-bar\"></span>\n</button>\n<a class=\"navbar-brand\" href=\"#\">教程名称</a>\n</div>\n<div class=\"collapse navbar-collapse bs-js-navbar-scrollspy\">\n<ul class=\"nav navbar-nav\">\n<li><a href=\"#ios\">iOS</a></li>\n<li><a href=\"#svn\">SVN</a></li>\n<li class=\"dropdown\">\n<a href=\"#\" id=\"navbarDrop1\" class=\"dropdown-toggle\"\ndata-toggle=\"dropdown\">Java\n                    <b class=\"caret\"></b>\n</a>\n<ul class=\"dropdown-menu\" role=\"menu\"\naria-labelledby=\"navbarDrop1\">\n<li><a href=\"#jmeter\" tabindex=\"-1\">jmeter</a></li>\n<li><a href=\"#ejb\" tabindex=\"-1\">ejb</a></li>\n<li class=\"divider\"></li>\n<li><a href=\"#spring\" tabindex=\"-1\">spring</a></li>\n</ul>\n</li>\n</ul>\n</div>\n</div>\n</nav>\n<div data-spy=\"scroll\" data-target=\"#navbar-example\" data-offset=\"0\"\nstyle=\"height:200px;overflow:auto; position: relative;\">\n<h4 id=\"ios\">iOS</h4>\n<p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple\n        TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。\n    </p>\n<h4 id=\"svn\">SVN</h4>\n<p>Apache Subversion，通常缩写为 SVN，是一款开源的版本控制系统软件。Subversion 由 CollabNet 公司在 2000 年创建。但是现在它已经发展为 Apache Software Foundation 的一个项目，因此拥有丰富的开发人员和用户社区。\n    </p>\n<h4 id=\"jmeter\">jMeter</h4>\n<p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。\n    </p>\n<h4 id=\"ejb\">EJB</h4>\n<p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。\n    </p>\n<h4 id=\"spring\">Spring</h4>\n<p>Spring 框架是一个开源的 Java 平台，为快速开发功能强大的 Java 应用程序提供了完备的基础设施支持。\n    </p>\n<p>Spring 框架最初是由 Rod Johnson 编写的，在 2003 年 6 月首次发布于 Apache 2.0 许可证下。\n    </p>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 标签页（Tab）插件",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-tab-plugin.html",
+    "body": "标签页（Tab）在 Bootstrap 导航元素 一章中介绍过。通过结合一些 data 属性，您可以轻松地创建一个标签页界面。通过这个插件您可以把内容放置在标签页或者是胶囊式标签页甚至是下拉菜单标签页中。\n如果您想要单独引用该插件的功能，那么您需要引用 tab.js。或者，正如 Bootstrap 插件概览 一章中所提到，您可以引用 bootstrap.js 或压缩版的 bootstrap.min.js。\n用法\n您可以通过以下两种方式启用标签页：\n通过 data 属性：您需要添加 data-toggle=\"tab\" 或 data-toggle=\"pill\" 到锚文本链接中。\n 添加 nav 和 nav-tabs 类到 ul 中，将会应用 Bootstrap 标签样式，添加 nav 和 nav-pills 类到 ul 中，将会应用 Bootstrap 胶囊式样式。\n<ul class=\"nav nav-tabs\">\n    <li><a href=\"#identifier\" data-toggle=\"tab\">Home</a></li>\n    ...\n</ul>\n通过 JavaScript：您可以使用 Javascript 来启用标签页，如下所示：\n\n$('#myTab a').click(function (e) {\n e.preventDefault()\n $(this).tab('show')\n})\n下面的实例演示了以不同的方式来激活各个标签页：\n// 通过名称选取标签页\n$('#myTab a[href=\"#profile\"]').tab('show')\n\n// 选取第一个标签页\n$('#myTab a:first').tab('show')\n\n// 选取最后一个标签页\n$('#myTab a:last').tab('show')\n\n// 选取第三个标签页（从 0 开始索引）\n$('#myTab li:eq(2) a').tab('show')\n淡入淡出效果\n如果需要为标签页设置淡入淡出效果，请添加 .fade 到每个 .tab-pane 后面。第一个标签页必须添加 .in 类，以便淡入显示初始内容，如下面实例所示：\n<div class=\"tab-content\">\n    <div class=\"tab-pane fade in active\" id=\"home\">...</div>\n    <div class=\"tab-pane fade\" id=\"svn\">...</div>\n    <div class=\"tab-pane fade\" id=\"ios\">...</div>\n    <div class=\"tab-pane fade\" id=\"java\">...</div>\n</div>\n实例\n下面的实例演示了使用 data 属性的标签页（Tab）插件及其淡入淡出的效果：\n实例",
+    "examples": [
+     "<ul id=\"myTab\" class=\"nav nav-tabs\">\n<li class=\"active\">\n<a href=\"#home\" data-toggle=\"tab\">\n            菜鸟教程\n        </a>\n</li>\n<li><a href=\"#ios\" data-toggle=\"tab\">iOS</a></li>\n<li class=\"dropdown\">\n<a href=\"#\" id=\"myTabDrop1\" class=\"dropdown-toggle\"\ndata-toggle=\"dropdown\">Java\n            <b class=\"caret\"></b>\n</a>\n<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"myTabDrop1\">\n<li><a href=\"#jmeter\" tabindex=\"-1\" data-toggle=\"tab\">jmeter</a></li>\n<li><a href=\"#ejb\" tabindex=\"-1\" data-toggle=\"tab\">ejb</a></li>\n</ul>\n</li>\n</ul>\n<div id=\"myTabContent\" class=\"tab-content\">\n<div class=\"tab-pane fade in active\" id=\"home\">\n<p>菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>\n</div>\n<div class=\"tab-pane fade\" id=\"ios\">\n<p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple\n            TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>\n</div>\n<div class=\"tab-pane fade\" id=\"jmeter\">\n<p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>\n</div>\n<div class=\"tab-pane fade\" id=\"ejb\">\n<p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。\n        </p>\n</div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 表格",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-tables.html",
+    "body": "Bootstrap 提供了一个清晰的创建表格的布局。下表列出了 Bootstrap 支持的一些表格元素：\n标签\n描述\n<table>\n为表格添加基础样式。\n<thead>\n表格标题行的容器元素（<tr>），用来标识表格列。\n<tbody>\n表格主体中的表格行的容器元素（<tr>）。\n<tr>\n一组出现在单行上的表格单元格的容器元素（<td> 或 <th>）。\n<td>\n默认的表格单元格。\n<th>\n特殊的表格单元格，用来标识列或行（取决于范围和位置）。必须在 <thead> 内使用。\n<caption>\n关于表格存储内容的描述或总结。",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap 缩略图",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-thumbnails.html",
+    "body": "本章将讲解 Bootstrap 缩略图。大多数站点都需要在网格中布局图像、视频、文本等。Bootstrap 通过缩略图为此提供了一种简便的方式。使用 Bootstrap 创建缩略图的步骤如下：\n在图像周围添加带有 class .thumbnail 的 <a> 标签。\n这会添加四个像素的内边距（padding）和一个灰色的边框。\n当鼠标悬停在图像上时，会动画显示出图像的轮廓。\n下面的实例演示了默认的缩略图：\n实例",
+    "examples": [
+     "<div class=\"row\">\n<div class=\"col-sm-6 col-md-3\">\n<a href=\"#\" class=\"thumbnail\">\n<img src=\"/wp-content/uploads/2014/06/kittens.jpg\"\nalt=\"通用的占位符缩略图\">\n</a>\n</div>\n<div class=\"col-sm-6 col-md-3\">\n<a href=\"#\" class=\"thumbnail\">\n<img src=\"/wp-content/uploads/2014/06/kittens.jpg\"\nalt=\"通用的占位符缩略图\">\n</a>\n</div>\n<div class=\"col-sm-6 col-md-3\">\n<a href=\"#\" class=\"thumbnail\">\n<img src=\"/wp-content/uploads/2014/06/kittens.jpg\"\nalt=\"通用的占位符缩略图\">\n</a>\n</div>\n<div class=\"col-sm-6 col-md-3\">\n<a href=\"#\" class=\"thumbnail\">\n<img src=\"/wp-content/uploads/2014/06/kittens.jpg\"\nalt=\"通用的占位符缩略图\">\n</a>\n</div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap 提示工具（Tooltip）插件",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-tooltip-plugin.html",
+    "body": "当您想要描述一个链接的时候，提示工具（Tooltip）就显得非常有用。提示工具（Tooltip）插件是受 Jason Frame 写的 jQuery.tipsy 的启发。提示工具（Tooltip）插件做了很多改进，例如不需要依赖图像，而是改用 CSS 实现动画效果，用 data 属性存储标题信息。\n如果您想要单独引用该插件的功能，那么您需要引用 tooltip.js。或者，正如 Bootstrap 插件概览 一章中所提到，您可以引用 bootstrap.js 或压缩版的 bootstrap.min.js。\n用法\n提示工具（Tooltip）插件根据需求生成内容和标记，默认情况下是把提示工具（tooltip）放在它们的触发元素后面。您可以有以下两种方式添加提示工具（tooltip）：\n通过 data 属性：如需添加一个提示工具（tooltip），只需向一个锚标签添加 data-toggle=\"tooltip\" 即可。锚的 title 即为提示工具（tooltip）的文本。默认情况下，插件把提示工具（tooltip）设置在顶部。\n\n<a href=\"#\" data-toggle=\"tooltip\" title=\"Example tooltip\">请悬停在我的上面</a>\n通过 JavaScript：通过 JavaScript 触发提示工具（tooltip）：\n\n$('#identifier').tooltip(options)\n提示工具（Tooltip）插件不像之前所讨论的下拉菜单及其他插件那样，它不是纯 CSS 插件。如需使用该插件，您必须使用 jquery 激活它（读取 javascript）。使用下面的脚本来启用页面中的所有的提示工具（tooltip）：\n\n$(function () { $(\"[data-toggle='tooltip']\").tooltip(); });\n实例\n下面的实例演示了通过 data 属性使用提示工具（Tooltip）插件的用法。\n实例\n<script>\n $(function(){ $(\"[data-toggle='tooltip']\").tooltip(); });\n</script>",
+    "examples": [
+     "<h4>提示工具（Tooltip）插件 - 锚</h4>\n这是一个 <a href=\"#\" class=\"tooltip-test\" data-toggle=\"tooltip\"\ntitle=\"默认的 Tooltip\">\n    默认的 Tooltip\n</a>.\n这是一个 <a href=\"#\" class=\"tooltip-test\" data-toggle=\"tooltip\"\ndata-placement=\"left\" title=\"左侧的 Tooltip\">\n    左侧的 Tooltip\n</a>.\n这是一个 <a href=\"#\" data-toggle=\"tooltip\" data-placement=\"top\"\ntitle=\"顶部的 Tooltip\">\n    顶部的 Tooltip\n</a>.\n这是一个 <a href=\"#\" data-toggle=\"tooltip\" data-placement=\"bottom\"\ntitle=\"底部的 Tooltip\">\n    底部的 Tooltip\n</a>.\n这是一个 <a href=\"#\" data-toggle=\"tooltip\" data-placement=\"right\"\ntitle=\"右侧的 Tooltip\">\n    右侧的 Tooltip\n</a>\n<br>\n<h4>提示工具（Tooltip）插件 - 按钮</h4>\n<button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\"\ntitle=\"默认的 Tooltip\">\n    默认的 Tooltip\n</button>\n<button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\"\ndata-placement=\"left\" title=\"左侧的 Tooltip\">\n    左侧的 Tooltip\n</button>\n<button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\"\ndata-placement=\"top\" title=\"顶部的 Tooltip\">\n    顶部的 Tooltip\n</button>\n<button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\"\ndata-placement=\"bottom\" title=\"底部的 Tooltip\">\n    底部的 Tooltip\n</button>\n<button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\"\ndata-placement=\"right\" title=\"右侧的 Tooltip\">\n    右侧的 Tooltip\n</button>"
+    ]
+   },
+   {
+    "title": "Bootstrap 过渡效果（Transition）插件",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-transition-plugin.html",
+    "body": "过渡效果（Transition）插件提供了简单的过渡效果。\n如果您想要单独引用该插件的功能，那么除了其他的 JS 文件，您还需要引用 transition.js。或者，正如 Bootstrap 插件概览 一章中所提到，您可以引用 bootstrap.js 或压缩版的 bootstrap.min.js。\nTransition.js 是 transitionEnd 事件和 CSS 过渡效果模拟器的基本帮助器类。它被其他插件用来检查 CSS 过渡效果支持，并用来获取过渡效果。\n使用案例\n过渡效果（Transition）插件的使用案例：\n具有幻灯片或淡入效果的模态对话框。具体实例参见 Bootstrap 模态框（Modal）插件。\n具有淡出效果的标签页。具体实例参见 Bootstrap 标签页（Tab）插件。\n具有淡出效果的警告框。 具体实例参见 Bootstrap 警告框（Alert）插件。\n具有幻灯片效果的轮播板。具体实例参见 Bootstrap 轮播（Carousel）插件。",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap 教程",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-tutorial.html",
+    "body": "Bootstrap，来自 Twitter，是目前最受欢迎的前端框架。Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的，它简洁灵活，使得 Web 开发更加快捷。\n本教程将向您讲解 Bootstrap 框架的基础，通过学习这些内容，您将可以轻松地创建 Web 项目。教程被分为 Bootstrap 基本结构、Bootstrap CSS、Bootstrap 布局组件和 Bootstrap 插件几个部分。每个部分都包含了与该主题相关的简单有用的实例。\n现在开始学习 Bootstrap！\nBootstrap 可视化布局系统！",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap 排版",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-typography.html",
+    "body": "Bootstrap 使用 Helvetica Neue、 Helvetica、 Arial 和 sans-serif 作为其默认的字体栈。\n使用 Bootstrap 的排版特性，您可以创建标题、段落、列表及其他内联元素。\n标题\nBootstrap 中定义了所有的 HTML 标题（h1 到 h6）的样式。请看下面的实例：\n实例",
+    "examples": [
+     "<h1>我是标题1 h1</h1>\n<h2>我是标题2 h2</h2>\n<h3>我是标题3 h3</h3>\n<h4>我是标题4 h4</h4>\n<h5>我是标题5 h5</h5>\n<h6>我是标题6 h6</h6>"
+    ]
+   },
+   {
+    "title": "Bootstrap UI 编辑器",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-ui-editor.html",
+    "body": "以下是 15 款最好的 Bootstrap 编辑器或者是在线编辑工具。\n1. Bootstrap Magic\n这是一个 Bootstrap 主题生成器，使用最新的 Bootstrap 3 版本和 Angular JS 版本，提供一个鲜活的用户修改预览。它包括了各种各样的导入，一个颜色选择器和智能的预先输入。更神奇的是，Bootstrap 会根据用户的每个选择来重新建立框架，方便用户的下载和使用。\n2. BootSwatchr\nBootSwatchr 是由 Drew Strickiand 独立开发和维护的，是唯一支持从右到左语言显示的 Bootstrap 自定义构建工具，这也是它的特色之一。BootSwatchr 是个可视化的工具，可以从底层开始创建 Bootstrap 主题。\n3. Bootstrap Live Editor\nBootstrap Live Editor 是个所见即所得的构建 Bootstrap 的编辑器。在 Bootstrap 准备好的内容和代码片段的基础上提供一个又好又优雅的方法来编辑和美化 html，也因此它是个明智的选择。除此之外，它还包括高级的选项比如按钮配置，自定义标签和为用户做最明智最有益的选择。\n4. Fancy Boot\nFancyboot 是个非常有用的 Bootstrap 自定义工具，允许用户编辑 Bootstrap 的配置，自动预览他们的修改结果。通过滑动菜单可以选择需要使用的插件和组件。当用户做好了相应的修改，可以下载一个包含用户所使用的 jQuery 插件的编译好的和简化后的 CSS 文件。\n5. Style Bootstrap\nStyle Bootstrap 是个非常棒的内置浏览器的 GUI 实用工具，帮助用户自定义 Twitter Bootstrap 外观。它非常容易进行自定义操作。从 body 风格，字体排版，按钮，导航，格式，通知提示和其他用户很容易根据自己的意愿自定义的元素。除了强大的自定义功能，它还可以很容易生成可下载的 CSS 文件\n。\n6. Lavish\nLavish 是个帮助用户从一个图像中定制自己喜欢的 Bootstrap 配色方案。用户可以从图像中选择各种颜色用在 body 背景，链接，头部，菜单，标签，文本，下拉菜单等等元素上。一旦你确定了 Bootstrap 配色方案，就可以很方便的下载相应的 Boostrap.css 文件。\n7. Bootstrap ThemeRoller\nBootstrap ThemeRoller 是个直观的 web 应用程序， 提供一个可视化的界面让用户按照自己的风格创建属于自己的 Bootstrap 主题。有了这个工具，用户可以自定义颜色，大小，字体，格式，表，按钮，警告信息，导航条，菜单等等元素。\n这个应用还会帮用户创建的每种风格都生成唯一的一个 URL ，这样就可以保存用户所有的设置。更不可思议的是，当用户离开的时候，用户可以停止或者恢复自己定制的页面。\n8. LayoutIt!\nLayoutIt！拥有拖拽接口的功能，能简单迅速的构建一个 Bootstrap 前端代码。LayoutIt！ 兼容任何的编程语言，允许用户下载 HTML ，在这里自由的进行编码设计。\n9. Pingendo\nPingendo 是个可视化的桌面应用程序，允许用户给予流行的 Twitter Bootstrap 框架创建响应式 web 页面原型。Pingendo 还提供大量的现成的布局，拖拽元素的位置，调整大小和自定义的功能。用户可以自行优化他们的页面，插入他们自己的内容。\n10. Kickstrap\nKickstrap 是个 Bootstrap UI 编辑器，使用 Firebase 作为一个后台服务。它无缝的接合了 Bootstrap 和顶级的 web 技术。更厉害的是，它可以运行一个已验证的，不需要本地后台支持，数据库驱动的 web 应用。\n\n11. Bootply\nBootply 是一款很棒的 Bootstrap UI 编辑工具，尽可能简单的让用户编辑 Bootstrap 友好的 CSS ，HTML 和 Javascript 。同时也是一个可拖拽的可视化编辑器，用来设计，创建原型和测试 Bootstrap 框架。Bootply 有个代码存储库，里面包括了 Bootstrap 代码片段，示例和模板。除了以上这些，更吸引人的是它有个非常活跃的 Bootply 社区，用户可以很方便的发现，分享和展示相关的代码和片段。\n\n12. X-editable\nX-Editable 是一个扩展库，允许用户创建可编辑的元素，比如页面弹出和内联模式。她提供本地的 Bootstrap，jQuery UI 或者是纯 jQuery 编辑功能。此 Bootstrap UI 编辑器拥有许多很强大的功能，包括客户端，服务端验证，支持键盘，live 事件，可定制的容器空间等等。总而言之，它提供非常快速的开发功能，易于删除字段，一个用来更新数据的简简单后台脚本。\n\n13. Jetstrap\n不要错误的以为 Jetstrap 只是个简单的实体模型工具，它是 100% 基于 web 接口的 Twitter Bootstrap 构建工具。用户不需要下载任何类型的软件就可以使用 Jetstrap。用户只需要登录，然后构建自己的项目，就可以随时随地进行访问了。构建功能主要是提供给开发者和设计者的，用户很容易就可以通过 Jetstrap 生成漂亮的网站，而且运行速度非常快\n\n14. DivShot\nDivShot 是个快速的，可视化的前端开发文本编辑器，跟 mockup 工具一样的简单整洁。包括各种框架需要的各种定制的组件库，这是它提供的最好的工具之一。除此之外还包括了一个主题转换器，允许用户修改主题。试验版本是免费的，过了试验期就需要自己付费维持原来的服务了。\n\n15. PaintStrap\nPaintStrap 使用 Adobe kuler/COLOURlovers 颜色组合来生成漂亮的 Twitter Bootstrap 主题。这个工具特别容易安装，同时很容易下载 CSS 文件并且也很容易替换成另一个标准的文件。",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap v2 教程",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-v2-tutorial.html",
+    "body": "Bootstrap，来自 Twitter，是基于 HTML、CSS、JAVASCRIPT 的简介灵活的流行前段框架及交互组件集。\n现在开始学习 Bootstrap！",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap Well",
+    "url": "https://www.runoob.com/bootstrap/bootstrap-wells.html",
+    "body": "Well 是一种会引起内容凹陷显示或插图效果的容器 <div>。为了创建 Well，只需要简单地把内容放在带有 class .well 的 <div> 中即可。下面的实例演示了一个默认的 Well：\n实例",
+    "examples": [
+     "<div class=\"well\">您好，我在 Well 中！</div>"
+    ]
+   }
+  ]
+ }
+}

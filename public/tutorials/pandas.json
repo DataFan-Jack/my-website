@@ -1,0 +1,430 @@
+{
+ "tutorial": {
+  "name": "Pandas",
+  "category": "人工智能",
+  "desc": "Pandas 是 Python 语言的一个扩展程序库，用于数据分析。",
+  "url": "https://www.runoob.com/pandas/",
+  "chapters": [
+   {
+    "title": "Pandas 与 Matplotlib / Seaborn 进阶可视化",
+    "url": "https://www.runoob.com/pandas/panda-matplotlib-seaborn.html",
+    "body": "Pandas 内置了基本的绘图功能，结合 Matplotlib 和 Seaborn 可以创建更丰富的可视化图表。\nPandas 内置绘图\n折线图\n实例",
+    "examples": [
+     "import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# 设置中文显示（需要系统中安装中文字体）\n# plt.rcParams['font.sans-serif'] = ['SimHei']\n# plt.rcParams['axes.unicode_minus'] = False\n\n# 创建时间序列数据\ndates = pd.date_range(\"2024-01-01\", periods=30, freq=\"D\")\ndf = pd.DataFrame({\n    \"日期\": dates,\n    \"销售额\": 100 + np.random.randn(30).cumsum(),\n    \"访客数\": 50 + np.random.randn(30).cumsum() * 10\n})\ndf = df.set_index(\"日期\")\n\nprint(\"数据：\")\nprint(df.head())\nprint(\"\\n绘图数据准备完成，请使用 plt.show() 显示图表\")"
+    ]
+   },
+   {
+    "title": "Pandas 高级功能",
+    "url": "https://www.runoob.com/pandas/pandas-advanced.html",
+    "body": "Pandas 提供了非常强大的数据操作功能，适用于复杂的数据清洗、分析、聚合和时间序列处理等任务。掌握 Pandas 的高级功能，可以大大提高数据处理和分析的效率。\n一、数据合并与连接\nPandas 提供了多个方法来合并和连接不同的 DataFrame，例如 merge()、concat() 和 join()。这些方法常用于处理多个数据集和复杂的合并任务。\n1. merge() — 数据库风格的连接\nmerge() 方法允许根据某些列对两个 DataFrame 进行合并，类似 SQL 中的 JOIN 操作。支持内连接、外连接、左连接和右连接。\n参数\n说明\nleft\n左侧 DataFrame\nright\n右侧 DataFrame\nhow\n合并方式，支持 'inner', 'outer', 'left', 'right'\non\n连接的列名（如果两侧列名不同，可使用 left_on 和 right_on）\nleft_on\n左侧 DataFrame 的连接列\nright_on\n右侧 DataFrame 的连接列\nsuffixes\n添加后缀，以区分重复的列名\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 示例数据\nleft = pd.DataFrame({'ID': [1, 2, 3], 'Name': ['Alice', 'Bob', 'Charlie']})\nright = pd.DataFrame({'ID': [1, 2, 4], 'Age': [24, 27, 22]})\n\n# 使用 merge 进行内连接\nresult = pd.merge(left, right, on='ID', how='inner')\nprint(result)"
+    ]
+   },
+   {
+    "title": "Pandas apply / map / applymap",
+    "url": "https://www.runoob.com/pandas/pandas-apply.html",
+    "body": "apply、map 和 applymap 是 Pandas 中用于数据转换的三大函数，它们可以对 DataFrame 或 Series 进行灵活的逐元素或批量操作。\nSeries.map\nmap 是 Series 的方法，用于对 Series 中的每个元素进行转换。\n基本用法\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建 Series\ns = pd.Series([1, 2, 3, 4, 5])\n\nprint(\"原始数据：\")\nprint(s)\nprint()\n\n# 使用函数\nprint(\"每个元素 * 2：\")\nprint(s.map(lambda x: x * 2))\nprint()\n\n# 使用字典映射\nmapping = {1: \"A\", 2: \"B\", 3: \"C\", 4: \"D\", 5: \"E\"}\nprint(\"使用字典映射：\")\nprint(s.map(mapping))\nprint()\n\n# 使用 Series 映射\nmapping_series = pd.Series([\"A\", \"B\", \"C\", \"D\", \"E\"], index=[1, 2, 3, 4, 5])\nprint(\"使用 Series 映射：\")\nprint(s.map(mapping_series))"
+    ]
+   },
+   {
+    "title": "Pandas 数组/标量/数据类型参考手册",
+    "url": "https://www.runoob.com/pandas/pandas-arrays-scalars-data-types-ref.html",
+    "body": "对于大多数数据类型，Pandas 使用 NumPy 数组作为具体的存储对象，这些对象被包含在 Index（索引）、Series（序列）或 DataFrame（数据框）中。\n对于某些数据类型，Pandas 扩展了 NumPy 的类型系统。这些类型的字符串别名可以在 dtypes 中找到。\nPandas 数组\n类/方法\n描述\npd.array(data, dtype)\n创建一个 Pandas 数组（ExtensionArray）。\npd.Series.array\n返回 Series 的底层数组（ExtensionArray）。\npd.arrays.IntegerArray\n用于存储整数数据的数组（支持缺失值）。\npd.arrays.BooleanArray\n用于存储布尔数据的数组（支持缺失值）。\npd.arrays.StringArray\n用于存储字符串数据的数组（支持缺失值）。\npd.arrays.IntervalArray\n用于存储区间数据的数组。\npd.arrays.DatetimeArray\n用于存储日期时间数据的数组。\npd.arrays.TimedeltaArray\n用于存储时间差数据的数组。\npd.arrays.PeriodArray\n用于存储周期数据的数组。\npd.arrays.SparseArray\n用于存储稀疏数据的数组。\nPandas 标量\n类/方法\n描述\npd.NA\n表示缺失值的标量（类似于 NaN）。\npd.Timestamp\n表示时间戳的标量。\npd.Timedelta\n表示时间差的标量。\npd.Period\n表示周期的标量。\npd.Interval\n表示区间的标量。\npd.Categorical\n表示分类数据的标量。\nPandas 数据类型\n类/方法\n描述\npd.StringDtype()\n字符串数据类型（支持缺失值）。\npd.BooleanDtype()\n布尔数据类型（支持缺失值）。\npd.Int8Dtype()\n8 位整数数据类型（支持缺失值）。\npd.Int16Dtype()\n16 位整数数据类型（支持缺失值）。\npd.Int32Dtype()\n32 位整数数据类型（支持缺失值）。\npd.Int64Dtype()\n64 位整数数据类型（支持缺失值）。\npd.Float32Dtype()\n32 位浮点数数据类型（支持缺失值）。\npd.Float64Dtype()\n64 位浮点数数据类型（支持缺失值）。\npd.CategoricalDtype()\n分类数据类型。\npd.DatetimeTZDtype()\n带时区的日期时间数据类型。\npd.PeriodDtype()\n周期数据类型。\npd.IntervalDtype()\n区间数据类型。\npd.SparseDtype()\n稀疏数据类型。\n常用方法\n数组方法\n方法\n描述\narray.take(indices)\n根据索引从数组中提取元素。\narray.copy()\n复制数组。\narray.isna()\n检查数组中的缺失值。\narray.fillna(value)\n用指定值填充缺失值。\narray.unique()\n返回数组中的唯一值。\narray.value_counts()\n返回数组中每个值的频率。\n标量方法\n方法\n描述\ntimestamp.to_pydatetime()\n将 Timestamp 转换为 Python 的 datetime 对象。\ntimedelta.total_seconds()\n将 Timedelta 转换为总秒数。\nperiod.start_time\n返回 Period 的起始时间。\nperiod.end_time\n返回 Period 的结束时间。\ninterval.left\n返回 Interval 的左边界。\ninterval.right\n返回 Interval 的右边界。\n数据类型方法\n方法\n描述\ndtype.name\n返回数据类型的名称。\ndtype.kind\n返回数据类型的种类（如 i 表示整数，f 表示浮点数）。\ndtype.construct_array_type()\n返回与数据类型关联的数组类。\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建 Pandas 数组\narr = pd.array([1, 2, None], dtype=pd.Int64Dtype())\nprint(arr)\n\n# 使用 Pandas 标量\nts = pd.Timestamp('2023-01-01')\nprint(ts.year)  # 输出年份\n\n# 使用 Pandas 数据类型\ndtype = pd.StringDtype()\nprint(dtype.name)  # 输出数据类型名称"
+    ]
+   },
+   {
+    "title": "Pandas 类别类型（Categorical）",
+    "url": "https://www.runoob.com/pandas/pandas-categorical.html",
+    "body": "Categorical 是 Pandas 中用于处理有限类别值的数据类型，特别适合处理枚举类型的数据，如性别、学历、等级等。类别类型可以显著减少内存占用并提升计算性能。\n创建 Categorical 数据\n从 Series 创建\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建类别数据\ns = pd.Series([\"男\", \"女\", \"男\", \"女\", \"男\"], dtype=\"category\")\nprint(\"基本类别数据：\")\nprint(s)\nprint(f\"类型: {s.dtype}\")\nprint()\n\n# 指定类别顺序\ns2 = pd.Series(\n    [\"低\", \"中\", \"高\", \"中\", \"低\"],\n    dtype=pd.CategoricalDtype(categories=[\"低\", \"中\", \"高\"], ordered=True)\n)\nprint(\"有序类别：\")\nprint(s2)\nprint(f\"类别顺序: {s2.dtype.categories.tolist()}\")"
+    ]
+   },
+   {
+    "title": "Pandas 处理大文件（chunksize）",
+    "url": "https://www.runoob.com/pandas/pandas-chunksize.html",
+    "body": "处理大型数据文件时，内存可能不足以一次性加载所有数据。Pandas 提供了分块读取功能，可以分批处理数据。\n分块读取 CSV\nchunksize 参数\n实例",
+    "examples": [
+     "import pandas as pd\nimport io\n\n# 模拟大文件内容（实际使用时替换为文件路径）\ndata = \"\"\"id,value\n1,100\n2,200\n3,300\n4,400\n5,500\n6,600\n7,700\n8,800\n9,900\n10,1000\n\"\"\"\n\n# 使用 chunksize 分块读取\nchunks = pd.read_csv(io.StringIO(data), chunksize=3)\n\nprint(\"分块处理：\")\nfor i, chunk in enumerate(chunks):\n    print(f\"\\n块 {i+1}:\")\n    print(chunk)"
+    ]
+   },
+   {
+    "title": "Pandas 数据清洗",
+    "url": "https://www.runoob.com/pandas/pandas-cleaning.html",
+    "body": "数据清洗是对一些没有用的数据进行处理的过程。\n很多数据集存在数据缺失、数据格式错误、错误数据或重复数据的情况，如果要使数据分析更加准确，就需要对这些没有用的数据进行处理。\n数据清洗与预处理的常见步骤：\n缺失值处理：识别并填补缺失值，或删除含缺失值的行/列。\n重复数据处理：检查并删除重复数据，确保每条数据唯一。\n异常值处理：识别并处理异常值，如极端值、错误值。\n数据格式转换：转换数据类型或进行单位转换，如日期格式转换。\n标准化与归一化：对数值型数据进行标准化（如 Z-score）或归一化（如 Min-Max）。\n类别数据编码：将类别变量转换为数值形式，常见方法包括 One-Hot 编码和标签编码。\n文本处理：对文本数据进行清洗，如去除停用词、词干化、分词等。\n数据抽样：从数据集中抽取样本，或通过过采样/欠采样处理类别不平衡。\n特征工程：创建新特征、删除不相关特征、选择重要特征等。\n在这个教程中，我们将利用 Pandas包来进行数据清洗。\n本文使用到的测试数据 property-data.csv 如下：\n上表包含了四种空数据：\nn/a\nNA\n—\nna\nPandas 清洗空值\n如果我们要删除包含空字段的行，可以使用 dropna() 方法，语法格式如下：\nDataFrame.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)\n参数说明：\naxis：默认为 0，表示逢空值剔除整行，如果设置参数 axis＝1 表示逢空值去掉整列。\nhow：默认为 'any' 如果一行（或一列）里任何一个数据有出现 NA 就去掉整行，如果设置 how='all' 一行（或列）都是 NA 才去掉这整行。\nthresh：设置需要多少非空值的数据才可以保留下来的。\nsubset：设置想要检查的列。如果是多个列，可以使用列名的 list 作为参数。\ninplace：如果设置 True，将计算得到的值直接覆盖之前的值并返回 None，修改的是源数据。\n我们可以通过 isnull() 判断各个单元格是否为空。\n实例",
+    "examples": [
+     "import pandas as pd\n\ndf = pd.read_csv('property-data.csv')\n\nprint (df['NUM_BEDROOMS'])\nprint (df['NUM_BEDROOMS'].isnull())"
+    ]
+   },
+   {
+    "title": "Pandas 数据拼接（concat / append）",
+    "url": "https://www.runoob.com/pandas/pandas-concat.html",
+    "body": "数据拼接是将多个 DataFrame 或 Series 按行或按列拼接在一起。pd.concat 是主要的拼接函数，append 是简化版本（已废弃，更推荐使用 concat）。\nconcat 基本用法\npd.concat() 可以沿着轴方向拼接多个 DataFrame 或 Series。\n行方向拼接（上下拼接）\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建两个 DataFrame\ndf1 = pd.DataFrame({\n    \"姓名\": [\"张三\", \"李四\"],\n    \"年龄\": [25, 30]\n})\n\ndf2 = pd.DataFrame({\n    \"姓名\": [\"王五\", \"赵六\"],\n    \"年龄\": [28, 35]\n})\n\nprint(\"DataFrame 1：\")\nprint(df1)\nprint()\n\nprint(\"DataFrame 2：\")\nprint(df2)\nprint()\n\n# 上下拼接\nresult = pd.concat([df1, df2], ignore_index=True)\nprint(\"拼接结果：\")\nprint(result)"
+    ]
+   },
+   {
+    "title": "Pandas 相关性分析",
+    "url": "https://www.runoob.com/pandas/pandas-correlations.html",
+    "body": "相关性分析是数据分析中常见且重要的一步，它帮助我们理解数据中不同变量之间的关系。\n在 Pandas 中，数据相关性分析是通过计算不同变量之间的相关系数来了解它们之间的关系。\n在 Pandas 中，数据相关性是一项重要的分析任务，它帮助我们理解数据中各个变量之间的关系。\nPandas 提供了多种方法来计算和分析数据的相关性，常见的相关性方法包括皮尔逊相关系数（Pearson）、斯皮尔曼等级相关系数（Spearman）以及肯德尔秩相关系数（Kendall）。\n以下相关性方法可以帮助我们揭示变量之间的线性关系、非线性关系或单调关系：\n皮尔逊相关系数：衡量变量之间的线性关系，适用于数值型变量。\n斯皮尔曼等级相关系数：衡量变量之间的单调关系，适用于数值型和顺序型变量。\n肯德尔秩相关系数：衡量变量之间的秩次关系，适用于小样本数据。\n相关性矩阵：用来查看各个变量之间的相关性。\n热图：一种有效的可视化方式，可以帮助我们直观地查看变量之间的相关性。\n什么是相关性？\n相关性表示两个或多个变量之间的关系强度和方向。根据相关性的数值，可以判断变量之间的关系。\n正相关：当一个变量增加时，另一个变量也增加。例如，身高和体重之间可能存在正相关关系。\n负相关：当一个变量增加时，另一个变量减少。例如，气温和取暖的使用量之间可能存在负相关关系。\n无相关性：两个变量之间没有明确的关系。\n相关性的数值范围通常在 -1 到 1 之间：\n1：完全正相关\n-1：完全负相关\n0：没有线性相关性\n接近 1 或 -1：表示强相关\n接近 0：表示弱相关\nPandas 中计算相关性的方法\nPandas 提供了 DataFrame.corr() 和 DataFrame.cov() 方法来计算相关性和协方差。\nPandas 使用 corr() 方法计算数据集中每列之间的关系。\ndf.corr(method='pearson', min_periods=1)\n参数说明：\nmethod (可选): 字符串类型，用于指定计算相关系数的方法。默认是 'pearson'，还可以选择 'kendall'（Kendall Tau 相关系数）或 'spearman'（Spearman 秩相关系数）。\nmin_periods (可选): 表示计算相关系数时所需的最小观测值数量。默认值是 1，即只要有至少一个非空值，就会进行计算。如果指定了 min_periods，并且在某些列中的非空值数量小于该值，则相应列的相关系数将被设为 NaN。\ndf.corr() 方法返回一个相关系数矩阵，矩阵的行和列对应数据框的列名，矩阵的元素是对应列之间的相关系数。\n常见的相关性系数包括 Pearson 相关系数和 Spearman 秩相关系数：\nPearson 相关系数\nPearson 即皮尔逊相关系数，用于衡量了两个变量之间的线性关系强度和方向，它的取值范围在 -1 到 1 之间，其中 -1 表示完全负相关，1 表示完全正相关，0 表示无线性相关。\n皮尔逊相关系数用于衡量两个变量之间的线性关系，计算公式为：\nPandas 可以使用 corr() 方法计算数据框中各列之间的 Pearson 相关系数。\nPearson 相关系数\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 示例数据\ndata = {\n    'Height': [150, 160, 170, 180, 190],\n    'Weight': [45, 55, 65, 75, 85],\n    'Age': [20, 25, 30, 35, 40]\n}\n\ndf = pd.DataFrame(data)\n\n# 计算皮尔逊相关系数\ncorrelation = df.corr(method='pearson')\nprint(correlation)"
+    ]
+   },
+   {
+    "title": "Pandas CSV 文件",
+    "url": "https://www.runoob.com/pandas/pandas-csv-file.html",
+    "body": "CSV（Comma-Separated Values，逗号分隔值，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。\nCSV 是一种通用的、相对简单的文件格式，被用户、商业和科学广泛应用。\nPandas 可以很方便的处理 CSV 文件，常用方法有：\n方法名称\n功能描述\n常用参数\npd.read_csv()\n从 CSV 文件读取数据并加载为 DataFrame\nfilepath_or_buffer (路径或文件对象)，sep (分隔符)，header (行标题)，names (自定义列名)，dtype (数据类型)，index_col (索引列)\nDataFrame.to_csv()\n将 DataFrame 写入到 CSV 文件\npath_or_buffer (目标路径或文件对象)，sep (分隔符)，index (是否写入索引)，columns (指定列)，header (是否写入列名)，mode (写入模式)\n本文以 nba.csv 为例，你可以下载 nba.csv 或打开 nba.csv 查看。\npd.read_csv() - 读取 CSV 文件\nread_csv() 是从 CSV 文件中读取数据的主要方法，将数据加载为一个 DataFrame。\nimport pandas as pd\n\n# 读取 CSV 文件，并自定义列名和分隔符\ndf = pd.read_csv('data.csv', sep=';', header=0, names=['A', 'B', 'C'], dtype={'A': int, 'B': float})\nprint(df)\nread_csv 常用参数:\n参数\n说明\n默认值\nfilepath_or_buffer\nCSV 文件的路径或文件对象（支持 URL、文件路径、文件对象等）\n必需参数\nsep\n定义字段分隔符，默认是逗号（,），可以改为其他字符，如制表符（\\t）\n','\nheader\n指定行号作为列标题，默认为 0（表示第一行），或者设置为 None 没有标题\n0\nnames\n自定义列名，传入列名列表\nNone\nindex_col\n用作行索引的列的列号或列名\nNone\nusecols\n读取指定的列，可以是列的名称或列的索引\nNone\ndtype\n强制将列转换为指定的数据类型\nNone\nskiprows\n跳过文件开头的指定行数，或者传入一个行号的列表\nNone\nnrows\n读取前 N 行数据\nNone\nna_values\n指定哪些值应视为缺失值（NaN）\nNone\nskipfooter\n跳过文件结尾的指定行数\n0\nencoding\n文件的编码格式（如 utf-8，latin1 等）\nNone\n读取 nba.csv 文件数据：\n实例",
+    "examples": [
+     "import pandas as pd\n\ndf = pd.read_csv('nba.csv')\n\nprint(df.to_string())"
+    ]
+   },
+   {
+    "title": "Pandas 数据分箱（cut / qcut）",
+    "url": "https://www.runoob.com/pandas/pandas-cut.html",
+    "body": "数据分箱（也称为分桶）是将连续变量离散化的过程，常用于数据预处理、特征工程和数据分析。\ncut 等宽分箱\ncut 将数据划分为等宽的区间。\n实例",
+    "examples": [
+     "import pandas as pd\nimport numpy as np\n\n# 创建年龄数据\nages = pd.Series([5, 15, 25, 35, 45, 55, 65, 75, 85])\n\nprint(\"原始数据：\")\nprint(ages.tolist())\nprint()\n\n# 等宽分箱（5个区间）\nbins = [0, 20, 40, 60, 80, 100]\nlabels = [\"儿童\", \"青年\", \"中年\", \"中老年\", \"老年\"]\n\nage_bins = pd.cut(ages, bins=bins, labels=labels)\nprint(\"等宽分箱结果：\")\nprint(age_bins)\nprint()\n\n# 包含右边界\nage_bins2 = pd.cut(ages, bins=4)\nprint(\"自动等宽分箱：\")\nprint(age_bins2)"
+    ]
+   },
+   {
+    "title": "Pandas 数据导出",
+    "url": "https://www.runoob.com/pandas/pandas-data-export.html",
+    "body": "Pandas 提供了丰富的导出功能，可以将 DataFrame 导出为各种常见格式，包括 CSV、Excel、SQL 数据库、JSON 等。本节详细介绍各种导出方式的使用方法和注意事项。\n导出为 CSV\nCSV 是最通用的数据交换格式，导出会受环境默认编码影响，需要注意中文编码问题。\n基本导出\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 准备测试数据\ndf = pd.DataFrame({\n    \"姓名\": [\"张三\", \"李四\", \"王五\", \"赵六\"],\n    \"年龄\": [25, 30, 28, 35],\n    \"城市\": [\"北京\", \"上海\", \"广州\", \"深圳\"],\n    \"薪资\": [12000, 15000, 11000, 18000]\n})\n\n# 最基本的导出（包含索引）\ndf.to_csv(\"output.csv\")\n\n# 不包含索引\ndf.to_csv(\"output.csv\", index=False)"
+    ]
+   },
+   {
+    "title": "Pandas 数据读写",
+    "url": "https://www.runoob.com/pandas/pandas-data-io.html",
+    "body": "Pandas 提供了丰富的函数来读取和写入各种数据格式。除了常用的 CSV 和 Excel，还支持 SQL 数据库、HTML 表格、Parquet 等格式。本节将介绍这些补充的 I/O 功能，帮助你在不同场景下灵活处理数据导入导出。\n核心 I/O 函数概览\nPandas 的 I/O 功能非常强大，支持多种数据格式的读写操作。以下是常用的读取和写入函数：\n读取函数\n写入函数\n支持格式\n典型场景\npd.read_csv()\nto_csv()\nCSV、TSV\n日志文件、表格数据\npd.read_excel()\nto_excel()\nExcel（.xlsx, .xls）\n业务报表、财务数据\npd.read_sql()\nto_sql()\nSQL 数据库\n企业数据库交互\npd.read_html()\n-\nHTML 表格\n网页数据抓取\npd.read_parquet()\nto_parquet()\nApache Parquet\n大数据分析、存储\npd.read_feather()\nto_feather()\nFeather 格式\n快速读写、内存数据\npd.read_json()\nto_json()\nJSON\nAPI 数据、Web 服务\npd.read_pickle()\nto_pickle()\nPython pickle\n序列化 Python 对象\n不同格式有不同的适用场景。CSV 是通用格式但文件较大；Parquet 是列式存储，适合大数据分析；Excel 适合人工查看但不适合大数据量。\nCSV 与文本文件\nCSV（Comma-Separated Values）是最通用的数据交换格式，Pandas 对它的支持也最完善。\n常见读取参数\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 最基本的读取\ndf = pd.read_csv(\"data.csv\")\n\n# 指定分隔符（CSV 默认是逗号，TSV 是制表符）\ndf_tsv = pd.read_csv(\"data.tsv\", sep=\"\\t\")\n\n# 指定编码（处理中文文件常用）\ndf_utf8 = pd.read_csv(\"data.csv\", encoding=\"utf-8\")\ndf_gbk = pd.read_csv(\"data.csv\", encoding=\"gbk\")\n\n# 跳过行（跳过表头后的行或注释行）\ndf = pd.read_csv(\"data.csv\", skiprows=3)  # 跳过前3行\ndf = pd.read_csv(\"data.csv\", skiprows=[2, 4])  # 跳过第2、4行\n\n# 使用表头行（默认第一行）\ndf = pd.read_csv(\"data.csv\", header=0)  # 第0行作为表头\ndf = pd.read_csv(\"data.csv\", header=None)  # 不使用表头，自动生成 0,1,2...\n\n# 指定列名\ndf = pd.read_csv(\"data.csv\", names=[\"ID\", \"姓名\", \"年龄\", \"城市\"])\n\n# 指定索引列\ndf = pd.read_csv(\"data.csv\", index_col=0)  # 第0列作为索引\ndf = pd.read_csv(\"data.csv\", index_col=[\"姓名\"])  # 多列作为复合索引"
+    ]
+   },
+   {
+    "title": "Pandas DataFrame API 手册",
+    "url": "https://www.runoob.com/pandas/pandas-dataframe-api-reference.html",
+    "body": "DataFrame 是一个二维标签化数据结构，你可以将其想象为一个 Excel 电子表格或者 SQL 表，或者是一个字典类型的集合。\n以下是 Pandas DataFrame 的常用 API 手册：\nDataFrame 构造函数\n方法\n描述\npd.DataFrame(data, index, columns, dtype, copy)\n创建一个 DataFrame 对象，支持自定义数据、索引、列名和数据类型。\nDataFrame 属性\n属性\n描述\nDataFrame.values\n返回 DataFrame 的数据部分（numpy 数组）。\nDataFrame.index\n返回 DataFrame 的行索引。\nDataFrame.columns\n返回 DataFrame 的列名。\nDataFrame.dtypes\n返回每列的数据类型。\nDataFrame.shape\n返回 DataFrame 的形状（元组形式）。\nDataFrame.size\n返回 DataFrame 中元素的总数。\nDataFrame.empty\n检查 DataFrame 是否为空。\nDataFrame.ndim\n返回 DataFrame 的维度数（始终为 2）。\nDataFrame.T\n返回 DataFrame 的转置。\nDataFrame.axes\n返回行索引和列名的列表。\nDataFrame.memory_usage()\n返回每列的内存使用情况。\nDataFrame 方法\n数据查看\n方法\n描述\nDataFrame.head(n=5)\n返回前 n 行数据。\nDataFrame.tail(n=5)\n返回后 n 行数据。\nDataFrame.describe()\n返回 DataFrame 的统计摘要（如计数、均值、标准差等）。\nDataFrame.info()\n打印 DataFrame 的简要信息（如列名、数据类型、非空值数量等）。\n缺失值处理\n方法\n描述\nDataFrame.isnull()\n检查每个元素是否为缺失值（NaN）。\nDataFrame.notnull()\n检查每个元素是否不为缺失值。\nDataFrame.dropna()\n删除包含缺失值的行或列。\nDataFrame.fillna(value)\n用指定值填充缺失值。\n数据操作\n方法\n描述\nDataFrame.drop()\n删除指定的行或列。\nDataFrame.rename()\n重命名行索引或列名。\nDataFrame.set_index()\n将指定列设置为索引。\nDataFrame.reset_index()\n重置索引。\nDataFrame.sort_values()\n按值排序。\nDataFrame.sort_index()\n按索引排序。\nDataFrame.replace()\n替换 DataFrame 中的值。\nDataFrame.append()\n追加另一个 DataFrame。\nDataFrame.join()\n根据索引或列连接另一个 DataFrame。\nDataFrame.merge()\n根据指定列合并另一个 DataFrame。\nDataFrame.concat()\n沿指定轴连接多个 DataFrame。\nDataFrame.update()\n用另一个 DataFrame 的值更新当前 DataFrame。\nDataFrame.pivot()\n创建透视表。\nDataFrame.melt()\n将宽格式数据转换为长格式数据。\n数据选择\n方法\n描述\nDataFrame.loc[]\n通过标签选择数据。\nDataFrame.iloc[]\n通过位置选择数据。\nDataFrame.at[]\n通过标签选择单个值。\nDataFrame.iat[]\n通过位置选择单个值。\nDataFrame.filter()\n根据列名选择数据。\nDataFrame.get()\n获取指定列的值。\nDataFrame.query()\n根据条件查询数据。\n数据转换\n方法\n描述\nDataFrame.astype()\n将 DataFrame 转换为指定数据类型。\nDataFrame.apply()\n对 DataFrame 的行或列应用函数。\nDataFrame.applymap()\n对 DataFrame 的每个元素应用函数。\nDataFrame.map()\n对 Series 中的每个元素应用函数。\nDataFrame.to_dict()\n将 DataFrame 转换为字典。\nDataFrame.to_numpy()\n将 DataFrame 转换为 numpy 数组。\nDataFrame.to_csv()\n将 DataFrame 保存为 CSV 文件。\nDataFrame.to_excel()\n将 DataFrame 保存为 Excel 文件。\n统计计算\n方法\n描述\nDataFrame.sum()\n返回每列的和。\nDataFrame.mean()\n返回每列的平均值。\nDataFrame.median()\n返回每列的中位数。\nDataFrame.min()\n返回每列的最小值。\nDataFrame.max()\n返回每列的最大值。\nDataFrame.std()\n返回每列的标准差。\nDataFrame.var()\n返回每列的方差。\nDataFrame.count()\n返回每列的非缺失值数量。\nDataFrame.corr()\n返回列之间的相关系数矩阵。\nDataFrame.cov()\n返回列之间的协方差矩阵。\nDataFrame.mode()\n返回每列的众数。\nDataFrame.quantile()\n返回每列的分位数。\n时间序列操作\n方法\n描述\nDataFrame.dt\n访问日期时间属性（仅适用于 datetime 类型的列）。\nDataFrame.resample()\n对时间序列数据进行重采样。\nDataFrame.shift()\n将数据按时间轴移动。\n字符串操作\n方法\n描述\nDataFrame.str\n访问字符串方法（仅适用于字符串类型的列）。\nDataFrame.str.lower()\n将字符串转换为小写。\nDataFrame.str.upper()\n将字符串转换为大写。\nDataFrame.str.contains()\n检查字符串是否包含指定模式。\n实例\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建 DataFrame\ndf = pd.DataFrame({\n    'A': [1, 2, 3],\n    'B': [4, 5, 6]\n}, index=['a', 'b', 'c'])\n\n# 查看数据\nprint(df.head(2))  # 输出前 2 行\n\n# 缺失值处理\ndf_with_nan = pd.DataFrame({\n    'A': [1, None, 3],\n    'B': [4, 5, None]\n})\nprint(df_with_nan.fillna(0))  # 用 0 填充缺失值\n\n# 统计计算\nprint(df.mean())  # 输出每列的平均值"
+    ]
+   },
+   {
+    "title": "Pandas 数据结构 - DataFrame",
+    "url": "https://www.runoob.com/pandas/pandas-dataframe.html",
+    "body": "DataFrame 是 Pandas 中的另一个核心数据结构，类似于一个二维的表格或数据库中的数据表。\nDataFrame 是一个表格型的数据结构，它含有一组有序的列，每列可以是不同的值类型（数值、字符串、布尔型值）。\nDataFrame 既有行索引也有列索引，它可以被看做由 Series 组成的字典（共同用一个索引）。\nDataFrame 提供了各种功能来进行数据访问、筛选、分割、合并、重塑、聚合以及转换等操作。\nDataFrame 是一个非常灵活且强大的数据结构，广泛用于数据分析、清洗、转换、可视化等任务。\nDataFrame 特点：\n二维结构：DataFrame 是一个二维表格，可以被看作是一个 Excel 电子表格或 SQL 表，具有行和列。可以将其视为多个 Series 对象组成的字典。\n列的数据类型： 不同的列可以包含不同的数据类型，例如整数、浮点数、字符串或 Python 对象等。\n索引：DataFrame 可以拥有行索引和列索引，类似于 Excel 中的行号和列标。\n大小可变：可以添加和删除列，类似于 Python 中的字典。\n自动对齐：在进行算术运算或数据对齐操作时，DataFrame 会自动对齐索引。\n处理缺失数据：DataFrame 可以包含缺失数据，Pandas 使用 NaN（Not a Number）来表示。\n数据操作：支持数据切片、索引、子集分割等操作。\n时间序列支持：DataFrame 对时间序列数据有特别的支持，可以轻松地进行时间数据的切片、索引和操作。\n丰富的数据访问功能：通过 .loc、.iloc 和 .query() 方法，可以灵活地访问和筛选数据。\n灵活的数据处理功能：包括数据合并、重塑、透视、分组和聚合等。\n数据可视化：虽然 DataFrame 本身不是可视化工具，但它可以与 Matplotlib 或 Seaborn 等可视化库结合使用，进行数据可视化。\n高效的数据输入输出：可以方便地读取和写入数据，支持多种格式，如 CSV、Excel、SQL 数据库和 HDF5 格式。\n描述性统计：提供了一系列方法来计算描述性统计数据，如 .describe()、.mean()、.sum() 等。\n灵活的数据对齐和集成：可以轻松地与其他 DataFrame 或 Series 对象进行合并、连接或更新操作。\n转换功能：可以对数据集中的值进行转换，例如使用 .apply() 方法应用自定义函数。\n滚动窗口和时间序列分析：支持对数据集进行滚动窗口统计和时间序列分析。\nDataFrame 构造方法如下：\npandas.DataFrame(data=None, index=None, columns=None, dtype=None, copy=False)\n参数说明：\ndata：DataFrame 的数据部分，可以是字典、二维数组、Series、DataFrame 或其他可转换为 DataFrame 的对象。如果不提供此参数，则创建一个空的 DataFrame。\nindex：DataFrame 的行索引，用于标识每行数据。可以是列表、数组、索引对象等。如果不提供此参数，则创建一个默认的整数索引。\ncolumns：DataFrame 的列索引，用于标识每列数据。可以是列表、数组、索引对象等。如果不提供此参数，则创建一个默认的整数索引。\ndtype：指定 DataFrame 的数据类型。可以是 NumPy 的数据类型，例如 np.int64、np.float64 等。如果不提供此参数，则根据数据自动推断数据类型。\ncopy：是否复制数据。默认为 False，表示不复制数据。如果设置为 True，则复制输入的数据。\nPandas DataFrame 是一个二维的数组结构，类似二维数组。\n实例 - 使用列表创建",
+    "examples": [
+     "import pandas as pd\n\ndata = [['Google', 10], ['Runoob', 12], ['Wiki', 13]]\n\n# 创建DataFrame\ndf = pd.DataFrame(data, columns=['Site', 'Age'])\n\n# 使用astype方法设置每列的数据类型\ndf['Site'] = df['Site'].astype(str)\ndf['Age'] = df['Age'].astype(float)\n\nprint(df)"
+    ]
+   },
+   {
+    "title": "pandas-dateoffset-object",
+    "url": "https://www.runoob.com/pandas/pandas-dateoffset-object.html",
+    "body": "Pandas 的 DateOffset 对象是用于处理日期和时间数据时进行时间偏移的一种工具。\n以下是 DateOffset 的一些关键特性和用法：\n基本概念\nDateOffset 对象类似于 Timedelta，但它遵循日历中的日期时间规则，而不是直接进行时间性质的算术计算，这意味着 DateOffset 会考虑到实际的日历天数，例如在处理跨月或跨年的日期时，它会正确地计算天数差异，而 Timedelta 则是简单地加上指定的天数，不考虑月份和年份的变化。\n使用方法\nDateOffset 可以通过算数运算符（如 +）或 apply 方法来执行日期偏移操作。\n例如，你可以这样使用 DateOffset 来增加月份或小时：\n实例",
+    "examples": [
+     "ts = pd.Timestamp('2017-01-01 09:10:11')\nts + DateOffset(months=3)  # 增加三个月\nts + DateOffset(hours=2)   # 增加两小时"
+    ]
+   },
+   {
+    "title": "Pandas 日期与时间",
+    "url": "https://www.runoob.com/pandas/pandas-datetime.html",
+    "body": "Pandas 提供了强大的日期时间处理能力，可以方便地将字符串转换为日期类型，并进行各种日期相关的计算和分析。\n创建日期时间\ndate_range 函数\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建日期范围\ndates = pd.date_range(\"2024-01-01\", periods=10, freq=\"D\")\nprint(\"按天：\")\nprint(dates)\nprint()\n\n# 按月\ndates_month = pd.date_range(\"2024-01-01\", periods=12, freq=\"M\")\nprint(\"按月：\")\nprint(dates_month)\nprint()\n\n# 按小时\ndates_hour = pd.date_range(\"2024-01-01 00:00\", periods=24, freq=\"H\")\nprint(\"按小时（前5条）：\")\nprint(dates_hour[:5])"
+    ]
+   },
+   {
+    "title": "Pandas 描述性统计",
+    "url": "https://www.runoob.com/pandas/pandas-describe.html",
+    "body": "描述性统计用于总结和描述数据的基本特征。Pandas 提供了丰富的统计函数，可以快速获取数据的整体分布情况。\n基本统计函数\n实例",
+    "examples": [
+     "import pandas as pd\nimport numpy as np\n\n# 创建示例数据\ndf = pd.DataFrame({\n    \"年龄\": [25, 30, 28, 35, 22, 40, 38, 45, 29, 31],\n    \"薪资\": [12000, 15000, 11000, 18000, 9000, 20000, 17000, 22000, 12500, 14000],\n    \"绩效\": [85, 92, 78, 88, 65, 95, 82, 90, 75, 89]\n})\n\nprint(\"=== 数据概览 ===\")\nprint(f\"数据形状: {df.shape}\")\nprint(f\"\\n基础统计：\")\nprint(df.describe())"
+    ]
+   },
+   {
+    "title": "Pandas 数据类型（dtype 与类型转换）",
+    "url": "https://www.runoob.com/pandas/pandas-dtype.html",
+    "body": "Pandas 提供了丰富的数据类型系统，正确理解和使用数据类型是高效数据分析的基础。本节详细介绍 Pandas 的数据类型体系、类型推断和类型转换方法。\nPandas 数据类型概览\ndtype\n说明\nPython 类型\n示例\nint64\n64位整数\nint\n1, 2, 100\nfloat64\n64位浮点数\nfloat\n1.5, 3.14\nobject\n字符串或混合类型\nstr\n\"hello\"\nbool\n布尔值\nbool\nTrue, False\ndatetime64[ns]\n日期时间\ndatetime\n2024-01-01\ntimedelta64[ns]\n时间差\ntimedelta\n1 days\ncategory\n类别类型\n-\n有限集合\n实例",
+    "examples": [
+     "import pandas as pd\nimport numpy as np\n\n# 创建各种数据类型的 DataFrame\ndf = pd.DataFrame({\n    \"整数\": [1, 2, 3],\n    \"浮点数\": [1.5, 2.5, 3.5],\n    \"字符串\": [\"a\", \"b\", \"c\"],\n    \"布尔值\": [True, False, True],\n    \"日期\": pd.date_range(\"2024-01-01\", periods=3)\n})\n\nprint(\"各列数据类型：\")\nprint(df.dtypes)"
+    ]
+   },
+   {
+    "title": "Pandas 重复数据处理",
+    "url": "https://www.runoob.com/pandas/pandas-duplicate.html",
+    "body": "重复数据是数据分析中常见的问题，会影响统计结果的准确性。Pandas 提供了检测和处理重复数据的完整功能。\n检测重复数据\nduplicated 方法\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建包含重复行的 DataFrame\ndf = pd.DataFrame({\n    \"姓名\": [\"张三\", \"李四\", \"王五\", \"张三\", \"李四\", \"赵六\"],\n    \"年龄\": [25, 30, 28, 25, 30, 35],\n    \"城市\": [\"北京\", \"上海\", \"广州\", \"北京\", \"深圳\", \"北京\"]\n})\n\nprint(\"原始数据：\")\nprint(df)\nprint()\n\n# 检测重复行（默认从第一条开始标记，keep='first'）\nprint(\"检测重复行：\")\nprint(df.duplicated())\nprint()\n\n# 统计重复行数量\nprint(f\"重复行数量: {df.duplicated().sum()}\")\nprint()\n\n# 检测特定列的重复\nprint(\"按'姓名'列检测重复：\")\nprint(df.duplicated(subset=[\"姓名\"]))"
+    ]
+   },
+   {
+    "title": "Pandas 电商数据分析实战",
+    "url": "https://www.runoob.com/pandas/pandas-ecommerce.html",
+    "body": "本节通过一个完整的电商数据分析案例，综合运用 Pandas 的各种功能进行数据分析。\n案例概述\n分析电商平台的订单数据，包括销售趋势、产品表现、客户分析等维度。\n数据准备\n实例",
+    "examples": [
+     "import pandas as pd\nimport numpy as np\n\n# 模拟电商订单数据\nnp.random.seed(42)\nn_orders = 1000\n\norders = pd.DataFrame({\n    \"订单ID\": range(1, n_orders + 1),\n    \"客户ID\": np.random.randint(100, 200, n_orders),\n    \"商品ID\": np.random.randint(1, 20, n_orders),\n    \"下单日期\": pd.date_range(\"2024-01-01\", periods=n_orders, freq=\"30min\"),\n    \"数量\": np.random.randint(1, 5, n_orders),\n    \"单价\": np.random.uniform(10, 500, n_orders).round(2)\n})\n\n# 计算订单金额\norders[\"订单金额\"] = (orders[\"数量\"] * orders[\"单价\"]).round(2)\n\nprint(\"订单数据概览：\")\nprint(orders.head(10))\nprint(f\"\\n数据量: {len(orders)} 条\")"
+    ]
+   },
+   {
+    "title": "Pandas Excel 文件操作",
+    "url": "https://www.runoob.com/pandas/pandas-excel.html",
+    "body": "Pandas 提供了丰富的 Excel 文件操作功能，帮助我们方便地读取和写入 .xls 和 .xlsx 文件，支持多表单、索引、列选择等复杂操作，是数据分析中必备的工具。\n操作\n方法\n说明\n读取 Excel 文件\npd.read_excel()\n读取 Excel 文件，返回 DataFrame\n将 DataFrame 写入 Excel\nDataFrame.to_excel()\n将 DataFrame 写入 Excel 文件\n加载 Excel 文件\npd.ExcelFile()\n加载 Excel 文件并访问多个表单\n使用 ExcelWriter 写多个表单\npd.ExcelWriter()\n写入多个 DataFrame 到同一 Excel 文件的不同表单\npd.read_excel() - 读取 Excel 文件\npd.read_excel() 方法用于从 Excel 文件中读取数据并加载为 DataFrame。它支持读取 .xls 和 .xlsx 格式的文件。\n语法格式如下：\npandas.read_excel(io, sheet_name=0, *, header=0, names=None, index_col=None, usecols=None, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, parse_dates=False, date_parser=<no_default>, date_format=None, thousands=None, decimal='.', comment=None, skipfooter=0, storage_options=None, dtype_backend=<no_default>, engine_kwargs=None)\n参数说明：\nio：这是必需的参数，指定了要读取的 Excel 文件的路径或文件对象。\nsheet_name=0：指定要读取的工作表名称或索引。默认为0，即第一个工作表。\nheader=0：指定用作列名的行。默认为0，即第一行。\nnames=None：用于指定列名的列表。如果提供，将覆盖文件中的列名。\nindex_col=None：指定用作行索引的列。可以是列的名称或数字。\nusecols=None：指定要读取的列。可以是列名的列表或列索引的列表。\ndtype=None：指定列的数据类型。可以是字典格式，键为列名，值为数据类型。\nengine=None：指定解析引擎。默认为None，pandas 会自动选择。\nconverters=None：用于转换数据的函数字典。\ntrue_values=None：指定应该被视为布尔值True的值。\nfalse_values=None：指定应该被视为布尔值False的值。\nskiprows=None：指定要跳过的行数或要跳过的行的列表。\nnrows=None：指定要读取的行数。\nna_values=None：指定应该被视为缺失值的值。\nkeep_default_na=True：指定是否要将默认的缺失值（例如NaN）解析为NA。\nna_filter=True：指定是否要将数据转换为NA。\nverbose=False：指定是否要输出详细的进度信息。\nparse_dates=False：指定是否要解析日期。\ndate_parser=<no_default>：用于解析日期的函数。\ndate_format=None：指定日期的格式。\nthousands=None：指定千位分隔符。\ndecimal='.'：指定小数点字符。\ncomment=None：指定注释字符。\nskipfooter=0：指定要跳过的文件末尾的行数。\nstorage_options=None：用于云存储的参数字典。\ndtype_backend=<no_default>：指定数据类型后端。\nengine_kwargs=None：传递给引擎的额外参数字典。\n本文以 runoob_pandas_data.xlsx 为例，你可以下载 runoob_pandas_data.xlsx 来测试。\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 读取 data.xlsx 文件\ndf = pd.read_excel('runoob_pandas_data.xlsx')\n\n# 打印读取的 DataFrame\nprint(df)"
+    ]
+   },
+   {
+    "title": "Pandas 过滤与条件查询",
+    "url": "https://www.runoob.com/pandas/pandas-filter.html",
+    "body": "数据过滤是数据分析中最常用的操作之一。Pandas 提供了丰富的条件查询功能，可以根据各种条件筛选数据。本节详细介绍各种数据过滤方法。\n基础条件过滤\n单一条件过滤\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建示例数据\ndf = pd.DataFrame({\n    \"姓名\": [\"张三\", \"李四\", \"王五\", \"赵六\", \"钱七\"],\n    \"年龄\": [25, 30, 28, 35, 22],\n    \"城市\": [\"北京\", \"上海\", \"广州\", \"北京\", \"深圳\"],\n    \"薪资\": [12000, 15000, 11000, 18000, 9000],\n    \"部门\": [\"技术\", \"销售\", \"技术\", \"运营\", \"技术\"]\n})\n\nprint(\"原始数据：\")\nprint(df)\nprint()\n\n# 等于过滤\nprint(\"城市等于北京：\")\nprint(df[df[\"城市\"] == \"北京\"])\nprint()\n\n# 不等于过滤\nprint(\"城市不等于北京：\")\nprint(df[df[\"城市\"] != \"北京\"])\nprint()\n\n# 大于小于\nprint(\"薪资大于12000：\")\nprint(df[df[\"薪资\"] > 12000])\nprint()\n\n# 字符串条件\nprint(\"姓名包含'三'：\")\nprint(df[df[\"姓名\"].str.contains(\"三\")])"
+    ]
+   },
+   {
+    "title": "Pandas 常用函数",
+    "url": "https://www.runoob.com/pandas/pandas-functions.html",
+    "body": "以下列出了 Pandas 常用的一些函数及使用实例：\n读取数据\n函数\n说明\npd.read_csv(filename)\n读取 CSV 文件；\npd.read_excel(filename)\n读取 Excel 文件；\npd.read_sql(query, connection_object)\n从 SQL 数据库读取数据；\npd.read_json(json_string)\n从 JSON 字符串中读取数据；\npd.read_html(url)\n从 HTML 页面中读取数据。\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 从 CSV 文件中读取数据\ndf = pd.read_csv('data.csv')\n\n# 从 Excel 文件中读取数据\ndf = pd.read_excel('data.xlsx')\n\n# 从 SQL 数据库中读取数据\nimport sqlite3\nconn = sqlite3.connect('database.db')\ndf = pd.read_sql('SELECT * FROM table_name', conn)\n\n# 从 JSON 字符串中读取数据\njson_string = '{\"name\": \"John\", \"age\": 30, \"city\": \"New York\"}'\ndf = pd.read_json(json_string)\n\n# 从 HTML 页面中读取数据\nurl = 'https://www.runoob.com'\ndfs = pd.read_html(url)\ndf = dfs[0] # 选择第一个数据框"
+    ]
+   },
+   {
+    "title": "Pandas 分组操作（groupby）",
+    "url": "https://www.runoob.com/pandas/pandas-groupby.html",
+    "body": "groupby 是 Pandas 最强大的功能之一，允许按照一个或多个列对数据进行分组，然后对每个分组进行聚合、转换或过滤操作。\ngroupby 基本用法\n单列分组\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建示例数据\ndf = pd.DataFrame({\n    \"部门\": [\"技术\", \"销售\", \"技术\", \"运营\", \"销售\", \"技术\"],\n    \"姓名\": [\"张三\", \"李四\", \"王五\", \"赵六\", \"钱七\", \"孙八\"],\n    \"薪资\": [12000, 15000, 11000, 18000, 14000, 13000]\n})\n\nprint(\"原始数据：\")\nprint(df)\nprint()\n\n# 按部门分组\ngrouped = df.groupby(\"部门\")\nprint(f\"分组对象: {type(grouped)}\")\nprint(f\"分组数量: {len(grouped)}\")\nprint()\n\n# 查看分组\nprint(\"各分组数据：\")\nfor name, group in grouped:\n    print(f\"\\n部门: {name}\")\n    print(group)"
+    ]
+   },
+   {
+    "title": "Pandas 读取 HTML 表格",
+    "url": "https://www.runoob.com/pandas/pandas-html-tables.html",
+    "body": "Pandas 的 pd.read_html() 函数可以自动解析网页中的 HTML 表格数据，将其转换为 DataFrame。这在抓取网页数据、分析股价、获取金融信息等场景下非常有用。\n基本用法\nread_html() 函数会查找并读取网页中所有的 HTML 表格元素，返回一个 DataFrame 列表。\n读取单个表格\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 读取网页上的所有表格\n# 注意：需要 lxml 和 beautifulsoup4 库支持\n# pip install lxml beautifulsoup4\n\n# 从 URL 读取\ntables = pd.read_html(\"https://example.com/table.html\")\n\n# 查看找到的表格数量\nprint(f\"找到 {len(tables)} 个表格\")\n\n# 获取第一个表格\ndf = tables[0]\nprint(df.head())"
+    ]
+   },
+   {
+    "title": "Pandas Index 对象",
+    "url": "https://www.runoob.com/pandas/pandas-index-object.html",
+    "body": "Pandas 的 Index 对象是用于标识轴标签的基类，它提供了丰富的功能来表示和管理数据的索引。\n以下是 Index 对象的一些关键特性和用途：\n唯一标识：Index 对象为数据提供唯一的标识符，这对于数据的选择和操作至关重要。\n标签基础：与基于位置的索引（如 Python 列表的索引）不同，Index 允许基于标签的索引，这使得数据操作更加直观和灵活。\n数据类型支持：Index 可以容纳多种类型的数据，包括整数、浮点数、字符串、日期时间等。\nPandas 提供了几种不同的 Index 类型，用于不同的场景：\nRangeIndex：一个内存节省型的整数值索引对象，类似于 Python 的 range 对象。\nIndex：最基本的索引类型，可以包含任何类型的数据。\nMultiIndex：一个多级索引，允许你拥有多个索引级别，类似于数据框架中的多个列。\nDatetimeIndex：一个针对日期时间数据优化的索引，提供了日期时间相关的功能。\nPeriodIndex：基于时间段的索引，例如年、季度等。\nTimedeltaIndex：基于时间差（Δt）的索引。\nIndex 构造函数\n类/方法\n描述\npd.Index(data, dtype, name)\n创建一个 Index 对象，支持自定义数据、数据类型和名称。\nIndex 属性\n属性\n描述\nIndex.values\n返回 Index 的数据部分（numpy 数组）。\nIndex.dtype\n返回 Index 的数据类型。\nIndex.name\n返回或设置 Index 的名称。\nIndex.shape\n返回 Index 的形状（元组形式）。\nIndex.size\n返回 Index 中元素的数量。\nIndex.nlevels\n返回 Index 的层级数（对于 MultiIndex）。\nIndex.is_unique\n检查 Index 中的值是否唯一。\nIndex.is_monotonic\n检查 Index 是否单调递增。\nIndex.is_monotonic_decreasing\n检查 Index 是否单调递减。\nIndex.has_duplicates\n检查 Index 是否有重复值。\nIndex.empty\n检查 Index 是否为空。\nIndex 方法\n数据操作\n方法\n描述\nIndex.append(other)\n将另一个 Index 追加到当前 Index。\nIndex.drop(labels)\n删除指定的标签。\nIndex.insert(loc, item)\n在指定位置插入元素。\nIndex.unique()\n返回 Index 中的唯一值。\nIndex.drop_duplicates()\n删除重复值。\nIndex.sort_values()\n按值排序。\nIndex.sort_values(ascending=False)\n按值降序排序。\nIndex.tolist()\n将 Index 转换为列表。\nIndex.to_numpy()\n将 Index 转换为 numpy 数组。\nIndex.to_frame()\n将 Index 转换为 DataFrame。\nIndex.astype(dtype)\n将 Index 转换为指定数据类型。\nIndex.map(func)\n对 Index 中的每个元素应用函数。\nIndex.where(cond, other)\n根据条件替换值。\nIndex.mask(cond, other)\n根据条件替换值（与 where 相反）。\n索引操作\n方法\n描述\nIndex.get_loc(key)\n返回指定标签的位置。\nIndex.get_indexer(target)\n返回目标 Index 在当前 Index 中的位置。\nIndex.slice_locs(start, end)\n返回指定范围的切片位置。\nIndex.intersection(other)\n返回两个 Index 的交集。\nIndex.union(other)\n返回两个 Index 的并集。\nIndex.difference(other)\n返回两个 Index 的差集。\nIndex.symmetric_difference(other)\n返回两个 Index 的对称差集。\nIndex.isin(values)\n检查 Index 中的值是否在指定列表中。\nIndex.reindex(target)\n根据目标 Index 重新索引。\nIndex.reindex_like(other)\n根据另一个 Index 重新索引。\n统计计算\n方法\n描述\nIndex.min()\n返回 Index 中的最小值。\nIndex.max()\n返回 Index 中的最大值。\nIndex.argmin()\n返回最小值的索引位置。\nIndex.argmax()\n返回最大值的索引位置。\nIndex.value_counts()\n返回 Index 中每个值的频率。\nMultiIndex 方法\n方法\n描述\npd.MultiIndex.from_arrays()\n从数组创建 MultiIndex。\npd.MultiIndex.from_tuples()\n从元组创建 MultiIndex。\npd.MultiIndex.from_product()\n从笛卡尔积创建 MultiIndex。\nMultiIndex.levels\n返回 MultiIndex 的层级。\nMultiIndex.codes\n返回 MultiIndex 的编码。\nMultiIndex.swaplevel(i, j)\n交换两个层级的位置。\nMultiIndex.droplevel(level)\n删除指定层级。\nMultiIndex.set_levels(levels)\n设置 MultiIndex 的层级。\nMultiIndex.set_codes(codes)\n设置 MultiIndex 的编码。\n实例\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建 Index\nidx = pd.Index([1, 2, 3], name='MyIndex')\n\n# 查看属性\nprint(idx.values)  # 输出数据部分\nprint(idx.name)    # 输出名称\n\n# 数据操作\nidx_new = idx.append(pd.Index([4, 5]))\nprint(idx_new)  # 输出追加后的 Index\n\n# 索引操作\nprint(idx.get_loc(2))  # 输出标签 2 的位置\n\n# MultiIndex 操作\narrays = [[1, 1, 2, 2], ['A', 'B', 'A', 'B']]\nmulti_idx = pd.MultiIndex.from_arrays(arrays, names=('Num', 'Letter'))\nprint(multi_idx)"
+    ]
+   },
+   {
+    "title": "Pandas Index（索引）",
+    "url": "https://www.runoob.com/pandas/pandas-index.html",
+    "body": "Index（索引）是 Pandas 数据结构的核心组成部分，它决定了数据的组织和访问方式。Pandas 支持多种类型的索引，从简单的 RangeIndex 到复杂的多层索引（MultiIndex），本节将详细介绍各种索引类型的使用方法。\nIndex 的基本概念\nIndex 类似于数据库的主键或 Excel 的行号，用于唯一标识每行数据。DataFrame 有行索引（index）和列索引（columns）两部分。\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建简单的 DataFrame（默认使用 RangeIndex）\ndf = pd.DataFrame({\n    \"姓名\": [\"张三\", \"李四\", \"王五\"],\n    \"年龄\": [25, 30, 28],\n    \"城市\": [\"北京\", \"上海\", \"广州\"]\n})\n\nprint(\"DataFrame 信息：\")\nprint(f\"行索引: {df.index.tolist()}\")\nprint(f\"列索引: {df.columns.tolist()}\")\nprint(\"\\n数据：\")\nprint(df)"
+    ]
+   },
+   {
+    "title": "Pandas 安装",
+    "url": "https://www.runoob.com/pandas/pandas-install.html",
+    "body": "安装 pandas 需要基础环境是 Python，Pandas 是一个基于 Python 的库，因此你需要先安装 Python，然后再通过 Python 的包管理工具 pip 安装 Pandas。\n使用 pip 安装 pandas:\npip install pandas\n安装成功后，我们就可以导入 pandas 包使用：\nimport pandas\n实例 - 查看 pandas 版本",
+    "examples": [
+     ">>> import pandas\n>>> pandas.__version__  # 查看版本\n'1.1.5'"
+    ]
+   },
+   {
+    "title": "Pandas 简介",
+    "url": "https://www.runoob.com/pandas/pandas-intro.html",
+    "body": "Pandas 是一个开源的数据分析和数据处理库，它是基于 Python 编程语言的。\nPandas 提供了易于使用的数据结构和数据分析工具，特别适用于处理结构化数据，如表格型数据（类似于Excel表格）。\nPandas 是数据科学和分析领域中常用的工具之一，它使得用户能够轻松地从各种数据源中导入数据，并对数据进行高效的操作和分析。\nPandas 主要引入了两种新的数据结构：Series 和 DataFrame。\nSeries： 类似于一维数组或列表，是由一组数据以及与之相关的数据标签（索引）构成。Series 可以看作是 DataFrame 中的一列，也可以是单独存在的一维数据结构。\nDataFrame： 类似于一个二维表格，它是 Pandas 中最重要的数据结构。DataFrame 可以看作是由多个 Series 按列排列构成的表格，它既有行索引也有列索引，因此可以方便地进行行列选择、过滤、合并等操作。\nDataFrame 可视为由多个 Series 组成的数据结构：\n下面这张图展示了两个 Series 对象相加得到一个 DataFrame 对象：\nDataFrame 由 Index、Key、Value 组成：\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建两个Series对象\nseries_apples = pd.Series([1, 3, 7, 4])\nseries_bananas = pd.Series([2, 6, 3, 5])\n\n# 将两个Series对象相加，得到DataFrame，并指定列名\ndf = pd.DataFrame({ 'Apples': series_apples, 'Bananas': series_bananas })\n\n# 显示DataFrame\nprint(df)"
+    ]
+   },
+   {
+    "title": "Pandas Input/Output (输入输出) API 手册",
+    "url": "https://www.runoob.com/pandas/pandas-io-api-reference.html",
+    "body": "Pandas 是一个强大的 Python 数据分析库，它提供了大量的数据操作工具，包括数据的输入和输出（I/O）。\n以下是 Pandas Input/Output (输入输出) 常用的 API：\n读取数据\n方法\n描述\npd.read_csv(filepath, sep, header, index_col)\n从 CSV 文件读取数据。\npd.read_excel(io, sheet_name)\n从 Excel 文件读取数据。\npd.read_json(path_or_buf)\n从 JSON 文件读取数据。\npd.read_html(io)\n从 HTML 文件中读取表格数据。\npd.read_sql(sql, con)\n从 SQL 数据库读取数据。\npd.read_clipboard()\n从剪贴板读取数据。\npd.read_parquet(path)\n从 Parquet 文件读取数据。\npd.read_feather(path)\n从 Feather 文件读取数据。\npd.read_hdf(path, key)\n从 HDF5 文件读取数据。\npd.read_pickle(path)\n从 Pickle 文件读取数据。\npd.read_sas(filepath)\n从 SAS 文件读取数据。\npd.read_spss(filepath)\n从 SPSS 文件读取数据。\npd.read_sql_table(table_name, con)\n从 SQL 数据库的表中读取数据。\npd.read_sql_query(sql, con)\n执行 SQL 查询并读取结果。\npd.read_gbq(query)\n从 Google BigQuery 读取数据。\n写入数据\n方法\n描述\nDataFrame.to_csv(path, sep, index)\n将 DataFrame 写入 CSV 文件。\nDataFrame.to_excel(path, sheet_name)\n将 DataFrame 写入 Excel 文件。\nDataFrame.to_json(path)\n将 DataFrame 写入 JSON 文件。\nDataFrame.to_html(path)\n将 DataFrame 写入 HTML 文件。\nDataFrame.to_sql(name, con)\n将 DataFrame 写入 SQL 数据库。\nDataFrame.to_clipboard()\n将 DataFrame 复制到剪贴板。\nDataFrame.to_parquet(path)\n将 DataFrame 写入 Parquet 文件。\nDataFrame.to_feather(path)\n将 DataFrame 写入 Feather 文件。\nDataFrame.to_hdf(path, key)\n将 DataFrame 写入 HDF5 文件。\nDataFrame.to_pickle(path)\n将 DataFrame 写入 Pickle 文件。\nDataFrame.to_markdown(path)\n将 DataFrame 写入 Markdown 文件。\nDataFrame.to_string()\n将 DataFrame 转换为字符串。\nDataFrame.to_latex(path)\n将 DataFrame 写入 LaTeX 文件。\nDataFrame.to_records()\n将 DataFrame 转换为 numpy 记录数组。\nDataFrame.to_dict()\n将 DataFrame 转换为字典。\nDataFrame.to_numpy()\n将 DataFrame 转换为 numpy 数组。\n实例\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 读取 CSV 文件\ndf = pd.read_csv('data.csv')\n\n# 读取 Excel 文件\ndf_excel = pd.read_excel('data.xlsx', sheet_name='Sheet1')\n\n# 读取 JSON 文件\ndf_json = pd.read_json('data.json')\n\n# 写入 CSV 文件\ndf.to_csv('output.csv', index=False)\n\n# 写入 Excel 文件\ndf.to_excel('output.xlsx', sheet_name='Sheet1')\n\n# 写入 JSON 文件\ndf.to_json('output.json')"
+    ]
+   },
+   {
+    "title": "Pandas JSON",
+    "url": "https://www.runoob.com/pandas/pandas-json.html",
+    "body": "JSON（JavaScript Object Notation，JavaScript 对象表示法），是存储和交换文本信息的语法，类似 XML。\nJSON 比 XML 更小、更快，更易解析，更多 JSON 内容可以参考 JSON 教程。\nPandas 提供了强大的方法来处理 JSON 格式的数据，支持从 JSON 文件或字符串中读取数据并将其转换为 DataFrame，以及将 DataFrame 转换回 JSON 格式。\n操作\n方法\n说明\n从 JSON 文件/字符串读取数据\npd.read_json()\n从 JSON 数据中读取并加载为 DataFrame\n将 DataFrame 转换为 JSON\nDataFrame.to_json()\n将 DataFrame 转换为 JSON 格式的数据，可以指定结构化方式\n支持 JSON 结构化方式\norient 参数\n支持多种结构化方式，如 split、records、columns\nPandas 可以很方便的处理 JSON 数据，本文以 sites.json 为例，内容如下：\n实例",
+    "examples": [
+     "[\n{\n\"id\": \"A001\",\n   \"name\": \"菜鸟教程\",\n   \"url\": \"www.runoob.com\",\n   \"likes\": 61\n},\n   {\n\"id\": \"A002\",\n   \"name\": \"Google\",\n   \"url\": \"www.google.com\",\n   \"likes\": 124\n},\n   {\n\"id\": \"A003\",\n   \"name\": \"淘宝\",\n   \"url\": \"www.taobao.com\",\n   \"likes\": 45\n}\n]"
+    ]
+   },
+   {
+    "title": "Pandas 数据选取（loc / iloc / at）",
+    "url": "https://www.runoob.com/pandas/pandas-loc-iloc.html",
+    "body": "数据选取是 Pandas 最常用的操作之一。理解 loc、iloc、at 的区别和应用场景，可以让你更高效地处理数据。\nloc 与 iloc 的区别\n特性\nloc\niloc\n索引方式\n标签索引（label-based）\n位置索引（integer-based）\n切片\n包含结束位置\n不包含结束位置\n单个值\n返回标量\n返回标量\n推荐场景\n有明确索引标签时\n按位置选择时\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建示例 DataFrame\ndf = pd.DataFrame({\n    \"姓名\": [\"张三\", \"李四\", \"王五\", \"赵六\", \"钱七\"],\n    \"年龄\": [25, 30, 28, 35, 22],\n    \"城市\": [\"北京\", \"上海\", \"广州\", \"深圳\", \"杭州\"]\n}, index=[1, 3, 5, 7, 9])  # 注意：索引不是连续的\n\nprint(\"DataFrame：\")\nprint(df)\nprint()\n\n# loc: 使用标签索引（包含结束位置）\nprint(\"df.loc[1:5]（标签切片，包含5）：\")\nprint(df.loc[1:5])\nprint()\n\n# iloc: 使用位置索引（不包含结束位置）\nprint(\"df.iloc[0:2]（位置切片，不包含2）：\")\nprint(df.iloc[0:2])"
+    ]
+   },
+   {
+    "title": "Pandas 数据可视化",
+    "url": "https://www.runoob.com/pandas/pandas-matplotlib.html",
+    "body": "数据可视化是数据分析中的重要环节，它帮助我们更好地理解和解释数据的模式、趋势和关系。\n通过图形、图表等形式，数据可视化将复杂的数字和统计信息转化为易于理解的图像，从而便于做出决策。\nPandas 提供了与 Matplotlib 和 Seaborn 等可视化库的集成，使得数据的可视化变得简单而高效。\n在 Pandas 中，数据可视化功能主要通过 DataFrame.plot() 和 Series.plot() 方法实现，这些方法实际上是对 Matplotlib 库的封装，简化了图表的绘制过程。\n图表类型\n描述\n方法\n折线图\n展示数据随时间或其他连续变量的变化趋势\ndf.plot(kind='line')\n柱状图\n比较不同类别的数据\ndf.plot(kind='bar')\n水平柱状图\n比较不同类别的数据，但柱子水平排列\ndf.plot(kind='barh')\n直方图\n显示数据的分布\ndf.plot(kind='hist')\n散点图\n展示两个数值型变量之间的关系\ndf.plot(kind='scatter', x='col1', y='col2')\n箱线图\n显示数据分布，包括中位数、四分位数等\ndf.plot(kind='box')\n密度图\n展示数据的密度分布\ndf.plot(kind='kde')\n饼图\n显示不同部分在整体中的占比\ndf.plot(kind='pie')\n区域图\n展示数据的累计数值\ndf.plot(kind='area')\nPandas 数据可视化的基本功能和方法可以满足大多数日常数据可视化的需求，但若要实现更复杂的可视化，可以结合 Matplotlib 和 Seaborn 使用，进行更精细的图表定制。\n一、Pandas 数据可视化概述\nPandas 提供的 plot() 方法可以轻松地绘制不同类型的图表，包括折线图、柱状图、直方图、散点图等。plot() 方法有很多参数，可以定制图表的样式、颜色、标签等。\n1. 基本的 plot() 方法\n参数\n说明\nkind\n图表类型，支持 'line', 'bar', 'barh', 'hist', 'box', 'kde', 'density', 'area', 'pie' 等类型\nx\n设置 x 轴的数据列\ny\n设置 y 轴的数据列\ntitle\n图表的标题\nxlabel\nx 轴的标签\nylabel\ny 轴的标签\ncolor\n设置图表的颜色\nfigsize\n设置图表的大小（宽, 高）\nlegend\n是否显示图例\n2. 常用图表类型\n图表类型\n描述\n常用用法\n折线图\n用于显示随时间变化的数据趋势\ndf.plot(kind='line')\n柱状图\n用于显示类别之间的比较数据\ndf.plot(kind='bar')\n水平柱状图\n与柱状图类似，但柱子是水平的\ndf.plot(kind='barh')\n直方图\n用于显示数据的分布（频率分布）\ndf.plot(kind='hist')\n散点图\n用于显示两个数值变量之间的关系\ndf.plot(kind='scatter', x='col1', y='col2')\n箱线图\n用于显示数据的分布、异常值及四分位数\ndf.plot(kind='box')\n密度图\n用于显示数据的密度分布\ndf.plot(kind='kde')\n饼图\n用于显示各部分占总体的比例\ndf.plot(kind='pie')\n区域图\n用于显示累计数值的图表（类似于折线图，但填充了颜色）\ndf.plot(kind='area')\n二、数据可视化示例\n1. 折线图 (Line Plot)\n折线图通常用于展示数据随时间的变化趋势。\n实例",
+    "examples": [
+     "import pandas as pd\nimport matplotlib.pyplot as plt\n\n# 示例数据\ndata = {'Year': [2015, 2016, 2017, 2018, 2019, 2020],\n        'Sales': [100, 150, 200, 250, 300, 350]}\ndf = pd.DataFrame(data)\n\n# 绘制折线图\ndf.plot(kind='line', x='Year', y='Sales', title='Sales Over Years', xlabel='Year', ylabel='Sales', figsize=(10, 6))\nplt.show()"
+    ]
+   },
+   {
+    "title": "Pandas 数据合并（merge / join）",
+    "url": "https://www.runoob.com/pandas/pandas-merge.html",
+    "body": "Pandas 提供了强大的数据合并功能，可以像 SQL 一样根据键将两个或多个 DataFrame 连接在一起。merge 和 join 是最常用的两种方法。\nmerge 基本用法\npd.merge() 函数用于将两个 DataFrame 按列进行合并，类似于 SQL 的 JOIN 操作。\n简单合并\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建两个 DataFrame\ndf1 = pd.DataFrame({\n    \"学号\": [\"S001\", \"S002\", \"S003\"],\n    \"姓名\": [\"张三\", \"李四\", \"王五\"]\n})\n\ndf2 = pd.DataFrame({\n    \"学号\": [\"S001\", \"S002\", \"S003\"],\n    \"数学\": [85, 92, 78]\n})\n\nprint(\"DataFrame 1：\")\nprint(df1)\nprint()\n\nprint(\"DataFrame 2：\")\nprint(df2)\nprint()\n\n# 合并\nresult = pd.merge(df1, df2, on=\"学号\")\nprint(\"合并结果：\")\nprint(result)"
+    ]
+   },
+   {
+    "title": "Pandas 缺失值处理",
+    "url": "https://www.runoob.com/pandas/pandas-missing-data.html",
+    "body": "真实数据中往往存在缺失值（NaN），Pandas 提供了丰富的函数来处理缺失数据。本节详细介绍 fillna、dropna、interpolate 等方法的使用。\n缺失值的表示\nPandas 中使用 NaN（Not a Number）表示缺失值，它来源于 NumPy 库。\n实例",
+    "examples": [
+     "import pandas as pd\nimport numpy as np\n\n# 创建包含缺失值的数据\ns = pd.Series([1, 2, np.nan, 4, 5])\nprint(\"包含 NaN 的 Series：\")\nprint(s)\nprint(f\"是否有缺失值: {s.isna().any()}\")\nprint()\n\n# DataFrame 中的缺失值\ndf = pd.DataFrame({\n    \"A\": [1, 2, np.nan, 4],\n    \"B\": [np.nan, 2, 3, 4],\n    \"C\": [1, 2, 3, np.nan]\n})\n\nprint(\"包含缺失值的 DataFrame：\")\nprint(df)\nprint()\n\n# 检测缺失值\nprint(\"缺失值位置：\")\nprint(df.isna())\nprint()\n\n# 统计每列缺失值数量\nprint(\"每列缺失值数量：\")\nprint(df.isna().sum())"
+    ]
+   },
+   {
+    "title": "Pandas 多层索引（MultiIndex）",
+    "url": "https://www.runoob.com/pandas/pandas-multiindex.html",
+    "body": "多层索引（MultiIndex）是 Pandas 中强大的索引功能，允许在行或列上创建多级层次结构。这在处理高维数据、分组统计和面板数据时特别有用。\n创建 MultiIndex\n从列表创建\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 方法1：使用数组创建\narrays = [\n    [\"A\", \"A\", \"B\", \"B\", \"C\", \"C\"],\n    [1, 2, 1, 2, 1, 2]\n]\n\n# 使用 pd.MultiIndex.from_arrays\nindex = pd.MultiIndex.from_arrays(arrays, names=[\"类别\", \"编号\"])\nprint(\"从数组创建：\")\nprint(index)\nprint()\n\n# 方法2：使用元组列表\ntuples = [\n    (\"A\", 1), (\"A\", 2), (\"B\", 1), (\"B\", 2), (\"C\", 1), (\"C\", 2)\n]\nindex = pd.MultiIndex.from_tuples(tuples, names=[\"类别\", \"编号\"])\nprint(\"从元组创建：\")\nprint(index)\nprint()\n\n# 方法3：使用 product\nindex = pd.MultiIndex.from_product(\n    [[\"A\", \"B\", \"C\"], [1, 2, 3]],\n    names=[\"类别\", \"编号\"]\n)\nprint(\"从 product 创建：\")\nprint(index)"
+    ]
+   },
+   {
+    "title": "Pandas 与 NumPy 结合使用",
+    "url": "https://www.runoob.com/pandas/pandas-numpy.html",
+    "body": "Pandas 基于 NumPy 构建，两者紧密集成。理解它们的交互可以更高效地进行数据处理和科学计算。\n相互转换\nDataFrame/Series 与 NumPy 互转\n实例",
+    "examples": [
+     "import pandas as pd\nimport numpy as np\n\n# DataFrame 转 NumPy 数组\ndf = pd.DataFrame({\n    \"A\": [1, 2, 3],\n    \"B\": [4, 5, 6]\n})\n\narr = df.to_numpy()\nprint(\"DataFrame 转数组：\")\nprint(arr)\nprint(f\"类型: {type(arr)}\")\nprint()\n\n# Series 转数组\ns = pd.Series([1, 2, 3])\narr = s.values  # 或 s.to_numpy()\nprint(\"Series 转数组：\")\nprint(arr)\nprint()\n\n# NumPy 转 DataFrame\narr = np.array([[1, 2], [3, 4], [5, 6]])\ndf = pd.DataFrame(arr, columns=[\"A\", \"B\"])\nprint(\"数组转 DataFrame：\")\nprint(df)"
+    ]
+   },
+   {
+    "title": "Pandas 性能优化",
+    "url": "https://www.runoob.com/pandas/pandas-optimization.html",
+    "body": "Pandas 是一个非常强大的数据分析工具，但当数据集变得庞大时，常常会遇到性能瓶颈。\n为了提高 Pandas 在处理大规模数据时的效率，了解并应用一些性能优化技巧是非常必要的。\nPandas 性能优化涉及多个方面，包括数据类型优化、避免不必要的循环、使用向量化操作、优化索引以及分块加载大数据集等方法。\n下面我们将详细介绍 Pandas 性能优化的几种方法。\n使用适当的数据类型\nPandas 中的数据类型（dtype）直接影响内存使用和计算速度。合理选择数据类型可以显著减少内存占用和加速计算。\n1. 使用适当的数值类型\nPandas 默认的数值类型是 int64 和 float64，但对于大部分数据，这可能会浪费内存。可以使用更小的类型，如 int8, int16, float32 等。\n方法\n说明\nastype()\n用于转换列的数据类型\ndowncast\n将数据类型降级，例如将 int64 降级为 int32 或 int16\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 示例数据\ndf = pd.DataFrame({'A': [100, 200, 300, 400], 'B': [1000, 2000, 3000, 4000]})\n\n# 将列数据类型转换为较小的数据类型\ndf['A'] = df['A'].astype('int16')\ndf['B'] = df['B'].astype('int32')\n\nprint(df.dtypes)"
+    ]
+   },
+   {
+    "title": "Pandas 读取 Parquet / Feather 文件",
+    "url": "https://www.runoob.com/pandas/pandas-parquet-feather.html",
+    "body": "Parquet 和 Feather 是两种高效的列式数据存储格式，专为大数据分析和快速读写场景设计。相比 CSV，它们具有更好的压缩比和查询性能。\n为什么使用 Parquet 和 Feather\n列式存储格式的主要优势：\n特性\nCSV\nParquet\nFeather\n存储格式\n行式\n列式\n列式\n读取速度\n慢\n很快\n极快\n写入速度\n中\n快\n极快\n压缩率\n低\n高\n中\n跨语言支持\n通用\nJava/Python/R\nPython/R\nParquet 是 Apache 基金会的项目，被广泛用于大数据生态（Hadoop、Spark、DuckDB 等）。Feather 是 Arrow 项目的原生实现，专注于极致的读写速度。\nParquet 文件操作\n安装依赖\npip install pyarrow fastparquet\nPyArrow 和 FastParquet 都是 Parquet 的 Python 实现，PyArrow 是默认选项，FastParquet 在某些场景下更快。\n读取 Parquet 文件\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 读取 Parquet 文件（默认使用 pyarrow）\ndf = pd.read_parquet(\"data.parquet\")\n\n# 指定使用特定的引擎\ndf = pd.read_parquet(\"data.parquet\", engine=\"pyarrow\")\ndf = pd.read_parquet(\"data.parquet\", engine=\"fastparquet\")\n\n# 读取远程 Parquet 文件\ndf = pd.read_parquet(\"s3://bucket/data.parquet\")\n\n# 读取文件的某些列（列裁剪，提升性能）\ndf = pd.read_parquet(\"data.parquet\", columns=[\"name\", \"age\", \"city\"])\nprint(df.head())"
+    ]
+   },
+   {
+    "title": "Pandas 数据重塑（pivot / melt / stack / unstack）",
+    "url": "https://www.runoob.com/pandas/pandas-pivot.html",
+    "body": "数据重塑是数据分析中的常见操作，用于改变数据的布局结构。Pandas 提供了 pivot、melt、stack、unstack 等函数来实现长格式和宽格式之间的转换。\npivot 透视表\npivot 将长格式数据转换为宽格式，类似于 Excel 的透视表功能。\n基本用法\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建长格式数据\ndf = pd.DataFrame({\n    \"日期\": [\"2024-01-01\", \"2024-01-01\", \"2024-01-02\", \"2024-01-02\"],\n    \"产品\": [\"A\", \"B\", \"A\", \"B\"],\n    \"销量\": [100, 150, 120, 90]\n})\n\nprint(\"长格式数据：\")\nprint(df)\nprint()\n\n# 转换为宽格式\npivot_df = df.pivot(index=\"日期\", columns=\"产品\", values=\"销量\")\nprint(\"宽格式数据：\")\nprint(pivot_df)"
+    ]
+   },
+   {
+    "title": "Pandas 测验",
+    "url": "https://www.runoob.com/pandas/pandas-quiz.html",
+    "body": "",
+    "examples": []
+   },
+   {
+    "title": "Pandas 窗口函数（rolling / expanding / ewm）",
+    "url": "https://www.runoob.com/pandas/pandas-rolling.html",
+    "body": "窗口函数用于对时间序列或有序数据进行滑动窗口计算，是金融分析、信号处理等领域的重要工具。\nrolling 滚动窗口\n基本用法\n实例",
+    "examples": [
+     "import pandas as pd\nimport numpy as np\n\n# 创建时间序列数据\nnp.random.seed(42)\ndates = pd.date_range(\"2024-01-01\", periods=20, freq=\"D\")\nts = pd.Series(np.random.randint(100, 200, 20), index=dates)\n\nprint(\"原始数据（前10条）：\")\nprint(ts.head(10))\nprint()\n\n# 7天滚动平均\nma7 = ts.rolling(window=7).mean()\nprint(\"7天滚动平均（前10条）：\")\nprint(ma7.head(10))\nprint()\n\n# 滚动求和\nrolling_sum = ts.rolling(window=5).sum()\nprint(\"5天滚动求和：\")\nprint(rolling_sum.head(10))"
+    ]
+   },
+   {
+    "title": "Pandas 抽样与随机数据",
+    "url": "https://www.runoob.com/pandas/pandas-sample.html",
+    "body": "Pandas 提供了丰富的随机抽样功能，可以从数据集中按要求随机选取样本，也支持生成随机数据。\n随机抽样\nsample 方法\n实例",
+    "examples": [
+     "import pandas as pd\nimport numpy as np\n\n# 创建大数据集\ndf = pd.DataFrame({\n    \"ID\": range(1, 1001),\n    \"值\": np.random.randn(1000)\n})\n\n# 随机抽取5行\nprint(\"随机抽取5行：\")\nprint(df.sample(5))\nprint()\n\n# 抽取30%的数据\nprint(\"随机抽取30%：\")\nprint(df.sample(frac=0.3))\nprint()\n\n# 可重复抽样\nprint(\"可重复抽样5行：\")\nprint(df.sample(5, replace=True))"
+    ]
+   },
+   {
+    "title": "Pandas Series API 手册",
+    "url": "https://www.runoob.com/pandas/pandas-series-api-reference.html",
+    "body": "Series 是一种一维数组，能够存储任何数据类型（整数、字符串、浮点数、Python 对象等），并且每个元素都有一个标签，称为索引。\n以下是 Pandas Series 的常用 API 手册：\nSeries 构造函数\n方法\n描述\npd.Series(data, index, dtype, name, copy)\n创建一个 Series 对象，支持自定义数据、索引、数据类型和名称。\nSeries 属性\n属性\n描述\nSeries.values\n返回 Series 的数据部分（numpy 数组）。\nSeries.index\n返回 Series 的索引。\nSeries.dtype\n返回 Series 的数据类型。\nSeries.shape\n返回 Series 的形状（元组形式）。\nSeries.size\n返回 Series 中元素的数量。\nSeries.name\n返回或设置 Series 的名称。\nSeries.empty\n检查 Series 是否为空。\nSeries.nbytes\n返回 Series 占用的字节数。\nSeries.ndim\n返回 Series 的维度数（始终为 1）。\nSeries.hasnans\n检查 Series 是否包含缺失值（NaN）。\nSeries.array\n返回 Series 的底层数据（Pandas 数组）。\nSeries 方法\n数据查看\n方法\n描述\nSeries.head(n=5)\n返回前 n 行数据。\nSeries.tail(n=5)\n返回后 n 行数据。\nSeries.describe()\n返回 Series 的统计摘要（如计数、均值、标准差等）。\n缺失值处理\n方法\n描述\nSeries.isnull()\n检查每个元素是否为缺失值（NaN）。\nSeries.notnull()\n检查每个元素是否不为缺失值。\nSeries.dropna()\n删除所有缺失值。\nSeries.fillna(value)\n用指定值填充缺失值。\n唯一值处理\n方法\n描述\nSeries.unique()\n返回 Series 中的唯一值。\nSeries.nunique()\n返回 Series 中唯一值的数量。\nSeries.value_counts()\n返回 Series 中每个值的频率。\n排序\n方法\n描述\nSeries.sort_values(ascending=True)\n按值排序。\nSeries.sort_index(ascending=True)\n按索引排序。\n索引操作\n方法\n描述\nSeries.reset_index(drop=False)\n重置索引。\nSeries.drop(labels)\n删除指定索引的元素。\nSeries.get(key, default=None)\n获取指定索引的值，如果不存在则返回默认值。\nSeries.set_axis(labels)\n设置新的索引。\n数据转换\n方法\n描述\nSeries.map(arg)\n根据传入的函数或字典映射 Series 中的值。\nSeries.apply(func)\n对 Series 中的每个元素应用函数。\nSeries.astype(dtype)\n将 Series 转换为指定数据类型。\nSeries.to_dict()\n将 Series 转换为字典。\nSeries.to_frame()\n将 Series 转换为 DataFrame。\nSeries.to_numpy()\n将 Series 转换为 numpy 数组。\n数据操作\n方法\n描述\nSeries.copy()\n复制 Series。\nSeries.append(to_append, ignore_index)\n追加另一个 Series。\nSeries.replace(to_replace, value)\n替换 Series 中的值。\nSeries.update(other)\n用另一个 Series 的值更新当前 Series。\nSeries.clip(lower, upper)\n将 Series 中的值限制在指定范围内。\nSeries.isin(values)\n检查 Series 中的值是否在指定列表中。\nSeries.between(left, right)\n检查 Series 中的值是否在指定范围内。\n统计计算\n方法\n描述\nSeries.sum()\n返回 Series 中所有值的和。\nSeries.mean()\n返回 Series 中所有值的平均值。\nSeries.median()\n返回 Series 中所有值的中位数。\nSeries.min()\n返回 Series 中的最小值。\nSeries.max()\n返回 Series 中的最大值。\nSeries.std()\n返回 Series 中所有值的标准差。\nSeries.var()\n返回 Series 中所有值的方差。\nSeries.count()\n返回 Series 中非缺失值的数量。\nSeries.mode()\n返回 Series 中的众数。\nSeries.quantile(q)\n返回 Series 中指定分位数的值。\n时间序列操作\n方法\n描述\nSeries.dt\n访问日期时间属性（仅适用于 datetime 类型的 Series）。\nSeries.dt.year\n返回年份。\nSeries.dt.month\n返回月份。\nSeries.dt.day\n返回日期。\n字符串操作\n方法\n描述\nSeries.str\n访问字符串方法（仅适用于字符串类型的 Series）。\nSeries.str.lower()\n将字符串转换为小写。\nSeries.str.upper()\n将字符串转换为大写。\nSeries.str.contains(pattern)\n检查字符串是否包含指定模式。\n实例\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建 Series\ns = pd.Series([10, 20, 30, 40], index=['a', 'b', 'c', 'd'], name='MySeries')\n\n# 查看数据\nprint(s.head(2))  # 输出前 2 行\n\n# 缺失值处理\ns_with_nan = pd.Series([10, None, 30])\nprint(s_with_nan.fillna(0))  # 用 0 填充缺失值\n\n# 唯一值处理\nprint(s.nunique())  # 输出唯一值的数量\n\n# 排序\nprint(s.sort_values(ascending=False))  # 按值降序排序\n\n# 统计计算\nprint(s.mean())  # 输出平均值"
+    ]
+   },
+   {
+    "title": "Pandas 数据结构 - Series",
+    "url": "https://www.runoob.com/pandas/pandas-series.html",
+    "body": "Series 是 Pandas 中的一个核心数据结构，类似于一个一维的数组，具有数据和索引。\nSeries 可以存储任何数据类型（整数、浮点数、字符串等），并通过标签（索引）来访问元素。\nSeries 的数据结构是非常有用的，因为它可以处理各种数据类型，同时保持了高效的数据操作能力，比如可以通过标签来快速访问和操作数据。\nSeries 特点：\n一维数组：Series 中的每个元素都有一个对应的索引值。\n索引： 每个数据元素都可以通过标签（索引）来访问，默认情况下索引是从 0 开始的整数，但你也可以自定义索引。\n数据类型：Series 可以容纳不同数据类型的元素，包括整数、浮点数、字符串、Python 对象等。\n大小不变性：Series 的大小在创建后是不变的，但可以通过某些操作（如 append 或 delete）来改变。\n操作：Series 支持各种操作，如数学运算、统计分析、字符串处理等。\n缺失数据：Series 可以包含缺失数据，Pandas 使用NaN（Not a Number）来表示缺失或无值。\n自动对齐：当对多个 Series 进行运算时，Pandas 会自动根据索引对齐数据，这使得数据处理更加高效。\n我们可以使用 Pandas 库来创建一个 Series 对象，并且可以为其指定索引（Index）、名称（Name）以及值（Values）：\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建一个Series对象，指定名称为'A'，值分别为1, 2, 3, 4\n# 默认索引为0, 1, 2, 3\nseries = pd.Series([1, 2, 3, 4], name='A')\n\n# 显示Series对象\nprint(series)\n\n# 如果你想要显式地设置索引，可以这样做：\ncustom_index = [1, 2, 3, 4]  # 自定义索引\nseries_with_index = pd.Series([1, 2, 3, 4], index=custom_index, name='A')\n\n# 显示带有自定义索引的Series对象\nprint(series_with_index)"
+    ]
+   },
+   {
+    "title": "Pandas 数据排序与聚合",
+    "url": "https://www.runoob.com/pandas/pandas-sorting.html",
+    "body": "数据排序与聚合是数据分析中非常常见且重要的操作，特别是在大数据集中的数据分析时。\n排序帮助我们按特定标准对数据进行排列，而聚合则让我们对数据进行汇总，计算出各种统计量。\nPandas 提供了强大的排序和聚合功能，能够帮助分析人员高效地处理数据。\n操作\n方法\n说明\n常用函数/方法\n排序\nsort_values(by, ascending)\n根据某列的值进行排序，ascending 控制升降序\ndf.sort_values(by='column')\n排序\nsort_index(axis)\n根据行或列的索引进行排序\ndf.sort_index(axis=0)\n分组聚合\ngroupby(by)\n按照某列进行分组后，应用聚合函数\ndf.groupby('column')\n聚合函数\nagg()\n聚合函数，如 sum()、mean()、count() 等\ndf.groupby('column').agg({'value': 'sum'})\n多重聚合\nagg([func1, func2])\n对同一列应用多个聚合函数\ndf.groupby('column').agg({'value': ['mean', 'sum']})\n分组后排序\napply(lambda x: x.sort_values(...))\n在分组后进行排序\ndf.groupby('column').apply(lambda x: x.sort_values(...))\n透视表\npivot_table()\n创建透视表，根据行、列进行数据汇总\n一、数据排序（Sorting）\n排序是指将数据按某个列的值进行升序或降序排列。Pandas 提供了两种主要的方法来进行排序：sort_values() 和 sort_index()。\n排序方法\nsort_values()：根据列的值进行排序。\nsort_index()：根据行或列的索引进行排序。\n实例\n操作\n方法\n说明\n示例\n按值排序\ndf.sort_values(by, ascending)\n按照指定的列（by）排序，ascending 控制升序或降序，默认为升序\ndf.sort_values(by='Age', ascending=False)\n按索引排序\ndf.sort_index(axis)\n按照行或列的索引排序，axis 控制按行或列排序\ndf.sort_index(axis=0)\nsort_values() 示例:\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 示例数据\ndata = {'Name': ['Alice', 'Bob', 'Charlie', 'David'],\n        'Age': [25, 30, 35, 40],\n        'Salary': [50000, 60000, 70000, 80000]}\n\ndf = pd.DataFrame(data)\n\n# 按照 \"Age\" 列的值进行降序排序\ndf_sorted = df.sort_values(by='Age', ascending=False)\nprint(df_sorted)"
+    ]
+   },
+   {
+    "title": "Pandas 读取 SQL 数据库",
+    "url": "https://www.runoob.com/pandas/pandas-sql.html",
+    "body": "Pandas 提供了一组直接与 SQL 数据库交互的函数，可以将查询结果直接读取为 DataFrame，也可以将 DataFrame 写回数据库。这使得数据分析师无需手动处理数据库连接和结果解析，大幅简化了数据库与 Python 的交互流程。\n核心函数概览\n函数\n用途\n返回类型\npd.read_sql()\n执行 SQL 查询或读取整张表（兼容两种场景的通用函数）\nDataFrame\npd.read_sql_query()\n执行 SQL 查询语句，适合复杂查询\nDataFrame\npd.read_sql_table()\n直接读取整张表，仅支持 SQLAlchemy 连接\nDataFrame\nDataFrame.to_sql()\n将 DataFrame 写入数据库表\nNone / int\n实际工作中推荐使用 pd.read_sql()，它会根据传入参数自动判断是执行查询还是读取整表，兼容性最好。pd.read_sql_table() 仅支持 SQLAlchemy 引擎连接，不支持原生 sqlite3 等 DB-API 连接。\n建立数据库连接\nPandas 本身不直接连接数据库，需要借助第三方库建立连接后传入。主流方式有两种：SQLAlchemy 引擎（推荐）和 DB-API 原生连接（轻量简单）。\n方式一：SQLAlchemy（推荐）\nSQLAlchemy 是 Python 最主流的数据库工具包，支持所有主流数据库，且与 Pandas 兼容性最好：\npip install sqlalchemy\n实例",
+    "examples": [
+     "from sqlalchemy import create_engine\n\n# SQLAlchemy 连接字符串格式：数据库类型+驱动://用户名:密码@主机:端口/数据库名\n# SQLite（文件数据库，无需用户名密码）\nengine = create_engine(\"sqlite:///mydata.db\")\n\n# MySQL\nengine = create_engine(\"mysql+pymysql://root:password@localhost:3306/mydb\")\n\n# PostgreSQL\nengine = create_engine(\"postgresql+psycopg2://user:password@localhost:5432/mydb\")\n\n# SQL Server\nengine = create_engine(\"mssql+pyodbc://user:password@server/mydb?driver=ODBC+Driver+17+for+SQL+Server\")\n\n# 验证连接是否成功\nwith engine.connect() as conn:\n    print(\"连接成功\")"
+    ]
+   },
+   {
+    "title": "Pandas 股票数据分析",
+    "url": "https://www.runoob.com/pandas/pandas-stock.html",
+    "body": "在股票数据分析中，pandas 是一个非常强大的工具，可以帮助我们处理和分析股票市场的数据。\n在本章节我们使用 yfinance（雅虎财经库）下载历史股票数据，并进行各种分析，包括数据清洗、可视化、技术指标计算等。\nyfinance 是一个 Python 库，可以轻松地从雅虎财经（Yahoo Finance）获取股票、基金、加密货币等资产的历史和实时数据。\n通过 pandas，我们可以将这些数据存储为 DataFrame 并进行后续的分析。\n数据清洗：处理缺失值、删除不必要的列等。\n数据可视化：绘制股票的时间序列图、移动平均线、RSI 等。\n技术指标计算：如移动平均线（SMA）、相对强弱指数（RSI）等。\n日收益率与累计收益率分析：帮助评估股票的短期和长期表现。\n波动率分析：衡量股票的价格波动性。\n更多财经库及量化分析可以参考：Python 量化交易\n安装 yfinance\n首先，我们需要安装 yfinance 库，方法如下：\npip install yfinance --upgrade --no-cache-dir\n安装 yfinance 时，pandas 通常会作为依赖项被自动安装。这意味着在使用 yfinance 时，你可以直接利用 pandas 提供的数据结构和功能来处理和分析数据。\n导入所需的库：\nimport yfinance as yf\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n获取股票数据\n使用 yfinance 库，我们可以轻松下载股票数据。\n我们通常使用 yf.download() 函数从雅虎财经获取某个股票的历史数据。\n茅台的股票代码为 600519.SS，其中 .SS 是上海证券交易所的后缀。\n使用 yfinance 获取股票数据：\n实例",
+    "examples": [
+     "import yfinance as yf\n\n# 获取茅台（600519.SS）的股票数据，日期范围从 2020-01-01 到 2021-01-01\nstock_data = yf.download('600519.SS', start='2020-01-01', end='2021-01-01')\n\n# 查看数据的前几行\nprint(stock_data.head())"
+    ]
+   },
+   {
+    "title": "Pandas 字符串操作",
+    "url": "https://www.runoob.com/pandas/pandas-string.html",
+    "body": "Pandas 提供了强大的字符串处理功能，通过 .str 访问器可以像操作 Python 字符串一样处理 Series 中的每个元素。\nstr 访问器概述\n当 Series 的数据类型是 object 时，可以使用 .str 访问器进行字符串操作。\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 创建包含字符串的 Series\ns = pd.Series([\"hello\", \"world\", \"pandas\", \"Python\"])\n\nprint(\"原始 Series：\")\nprint(s)\nprint()\n\n# 转换为小写\nprint(\"转小写：\")\nprint(s.str.lower())\nprint()\n\n# 转换为大写\nprint(\"转大写：\")\nprint(s.str.upper())\nprint()\n\n# 首字母大写\nprint(\"首字母大写：\")\nprint(s.str.capitalize())"
+    ]
+   },
+   {
+    "title": "Pandas 时间序列分析",
+    "url": "https://www.runoob.com/pandas/pandas-timeseries.html",
+    "body": "时间序列分析是数据分析的重要组成部分，Pandas 提供了丰富的功能来处理和分析时间序列数据，包括重采样、滚动计算、移动平均等。\n时间序列基本操作\n创建时间序列\n实例",
+    "examples": [
+     "import pandas as pd\nimport numpy as np\n\n# 创建时间序列数据\nnp.random.seed(42)\ndates = pd.date_range(\"2024-01-01\", periods=100, freq=\"D\")\n\nts = pd.Series(\n    np.random.randn(100).cumsum() + 100,\n    index=dates\n)\n\nprint(\"时间序列数据（前10条）：\")\nprint(ts.head(10))\nprint()\n\n# 查看信息\nprint(f\"索引类型: {type(ts.index)}\")\nprint(f\"开始时间: {ts.index.min()}\")\nprint(f\"结束时间: {ts.index.max()}\")\nprint(f\"时间跨度: {ts.index.max() - ts.index.min()}\")"
+    ]
+   },
+   {
+    "title": "Pandas 教程",
+    "url": "https://www.runoob.com/pandas/pandas-tutorial.html",
+    "body": "Pandas 是 Python 语言的一个扩展程序库，用于数据分析。\nPandas 名字衍生自术语 \"panel data\"（面板数据）和 \"Python data analysis\"（Python 数据分析）。\nPandas 是一个开放源码、BSD 许可的库，提供高性能、易于使用的数据结构和数据分析工具。\nPandas 一个强大的分析结构化数据的工具集，基础是 Numpy（提供高性能的矩阵运算）。",
+    "examples": []
+   },
+   {
+    "title": "Pandas 用户行为分析实战",
+    "url": "https://www.runoob.com/pandas/pandas-user-behavior.html",
+    "body": "用户行为分析是产品优化的重要依据。本案例展示如何分析用户的访问、留存、转化等行为数据。\n数据准备\n模拟用户行为数据\n实例",
+    "examples": [
+     "import pandas as pd\nimport numpy as np\n\nnp.random.seed(42)\nn_users = 500\nn_events = 5000\n\n# 用户基础信息\nusers = pd.DataFrame({\n    \"用户ID\": range(1, n_users + 1),\n    \"注册日期\": pd.date_range(\"2024-01-01\", periods=n_users, freq=\"D\")[:n_users],\n    \"渠道\": np.random.choice([\"自然搜索\", \"广告\", \"推荐\", \"社交\"], n_users),\n    \"设备\": np.random.choice([\"PC\", \"Mobile\", \"Tablet\"], n_users, p=[0.3, 0.6, 0.1])\n})\n\n# 用户行为事件\nevents = pd.DataFrame({\n    \"事件ID\": range(1, n_events + 1),\n    \"用户ID\": np.random.randint(1, n_users + 1, n_events),\n    \"事件类型\": np.random.choice(\n        [\"浏览\", \"点击\", \"收藏\", \"加购\", \"下单\", \"评论\"],\n        n_events,\n        p=[0.4, 0.25, 0.1, 0.1, 0.1, 0.05]\n    ),\n    \"事件时间\": pd.date_range(\"2024-01-15\", periods=n_events, freq=\"10min\")\n})\n\n# 合并数据\nevents = events.merge(users[[\"用户ID\", \"渠道\", \"设备\"]], on=\"用户ID\")\n\nprint(\"用户数据：\")\nprint(users.head())\nprint(f\"\\n用户数: {len(users)}\")\nprint(\"\\n事件数据：\")\nprint(events.head())\nprint(f\"\\n事件数: {len(events)}\")"
+    ]
+   }
+  ]
+ }
+}

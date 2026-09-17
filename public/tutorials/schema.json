@@ -1,0 +1,160 @@
+{
+ "tutorial": {
+  "name": "XML Schema",
+  "category": "后端开发",
+  "desc": "XML Schema 描述了 XML文档的结构。",
+  "url": "https://www.runoob.com/schema/",
+  "chapters": [
+   {
+    "title": "XSD <any> 元素",
+    "url": "https://www.runoob.com/schema/schema-complex-any.html",
+    "body": "<any> 元素使我们有能力通过未被 schema 规定的元素来拓展 XML 文档！\n<any> 元素\n<any> 元素使我们有能力通过未被 schema 规定的元素来拓展 XML 文档！\n下面这个例子是从名为 \"family.xsd\" 的 XML schema 中引用的片段。它展示了一个针对 \"person\" 元素的声明。通过使用 <any> 元素，我们可以通过任何元素（在 <lastname> 之后）扩展 \"person\" 的内容：\n<xs:element name=\"person\">\n  \n <xs:complexType>\n    \n <xs:sequence>\n      \n <xs:element name=\"firstname\" type=\"xs:string\"/>\n      \n <xs:element name=\"lastname\" type=\"xs:string\"/>\n      \n <xs:any minOccurs=\"0\"/>\n    \n </xs:sequence>\n  \n </xs:complexType>\n</xs:element>",
+    "examples": []
+   },
+   {
+    "title": "XSD <anyAttribute> 元素",
+    "url": "https://www.runoob.com/schema/schema-complex-anyattribute.html",
+    "body": "<anyAttribute> 元素使我们有能力通过未被 schema 规定的属性来扩展 XML 文档！\n<anyAttribute> 元素使我们有能力通过未被 schema 规定的属性来扩展 XML 文档！\n下面的例子是来自名为 \"family.xsd\" 的 XML schema 的一个片段。它为我们展示了针对 \"person\" 元素的一个声明。通过使用 <anyAttribute> 元素，我们就可以向 \"person\" 元素添加任意数量的属性：\n<xs:element name=\"person\">\n  \n <xs:complexType>\n    \n <xs:sequence>\n      \n <xs:element name=\"firstname\" type=\"xs:string\"/>\n      \n <xs:element name=\"lastname\" type=\"xs:string\"/>\n    \n </xs:sequence>\n    \n <xs:anyAttribute/>\n  \n </xs:complexType>\n</xs:element>",
+    "examples": []
+   },
+   {
+    "title": "XSD 仅含元素",
+    "url": "https://www.runoob.com/schema/schema-complex-elements.html",
+    "body": "\"仅含元素\"的复合类型元素是只能包含其他元素的元素。\n复合类型仅包含元素\nXML 元素，\"person\"，仅包含其他的元素：\n<person>\n \n<firstname>John</firstname>\n \n<lastname>Smith</lastname>\n</person>",
+    "examples": []
+   },
+   {
+    "title": "XSD 空元素",
+    "url": "https://www.runoob.com/schema/schema-complex-empty.html",
+    "body": "空的复合元素不能包含内容，只能含有属性。\n复合空元素：\n一个空的 XML 元素：\n<product prodid=\"1345\" />",
+    "examples": []
+   },
+   {
+    "title": "XSD 指示器",
+    "url": "https://www.runoob.com/schema/schema-complex-indicators.html",
+    "body": "通过指示器，我们可以控制在文档中使用元素的方式。\n指示器\n有七种指示器：\nOrder 指示器：\nAll\nChoice\nSequence\nOccurrence 指示器：\nmaxOccurs\nminOccurs\nGroup 指示器：\nGroup name\nattributeGroup name\nOrder 指示器\nOrder 指示器用于定义元素的顺序。\nAll 指示器\n<all> 指示器规定子元素可以按照任意顺序出现，且每个子元素必须只出现一次：\n<xs:element name=\"person\">\n  \n <xs:complexType>\n    \n <xs:all>\n      \n <xs:element name=\"firstname\" type=\"xs:string\"/>\n      \n <xs:element name=\"lastname\" type=\"xs:string\"/>\n    \n </xs:all>\n  \n </xs:complexType>\n</xs:element>",
+    "examples": []
+   },
+   {
+    "title": "XSD 混合内容",
+    "url": "https://www.runoob.com/schema/schema-complex-mixed.html",
+    "body": "混合的复合类型可包含属性、元素以及文本。\n带有混合内容的复合类型\nXML 元素，\"letter\"，含有文本以及其他元素：\n<letter>\n \nDear Mr.<name>John Smith</name>.\n \nYour order <orderid>1032</orderid>\n \nwill be shipped on <shipdate>2001-07-13</shipdate>.\n</letter>",
+    "examples": []
+   },
+   {
+    "title": "XSD 元素替换(Element Substitution)",
+    "url": "https://www.runoob.com/schema/schema-complex-subst.html",
+    "body": "通过 XML Schema，一个元素可对另一个元素进行替换。\n元素替换\n让我们举例说明：我们的用户来自英国和挪威。我们希望有能力让用户选择在 XML 文档中使用挪威语的元素名称还是英语的元素名称。\n为了解决这个问题，我们可以在 XML schema 中定义一个 substitutionGroup。首先，我们声明主元素，然后我们会声明次元素，这些次元素可声明它们能够替换主元素。\n<xs:element name=\"name\" type=\"xs:string\"/>\n<xs:element name=\"navn\" substitutionGroup=\"name\"/>",
+    "examples": []
+   },
+   {
+    "title": "XSD 仅含文本",
+    "url": "https://www.runoob.com/schema/schema-complex-text.html",
+    "body": "仅含文本的复合元素可包含文本和属性。\n仅含文本的复合元素\n此类型仅包含简易的内容（文本和属性），因此我们要向此内容添加 simpleContent 元素。当使用简易内容时，我们就必须在 simpleContent 元素内定义扩展或限定，就像这样：\n<xs:element name=\"somename\">\n  \n <xs:complexType>\n    \n <xs:simpleContent>\n      \n <xs:extension base=\"basetype\">\n        \n ....\n        \n ....\n      \n </xs:extension>\n    \n </xs:simpleContent>\n  \n </xs:complexType>\n</xs:element>\n或者：\n<xs:element name=\"somename\">\n  \n <xs:complexType>\n    \n <xs:simpleContent>\n      \n <xs:restriction base=\"basetype\">\n        \n ....\n        \n ....\n      \n </xs:restriction>\n    \n </xs:simpleContent>\n  \n </xs:complexType>\n</xs:element>",
+    "examples": []
+   },
+   {
+    "title": "XSD 复合元素",
+    "url": "https://www.runoob.com/schema/schema-complex.html",
+    "body": "复合元素包含了其他的元素及/或属性。\n什么是复合元素？\n复合元素指包含其他元素及/或属性的 XML 元素。\n有四种类型的复合元素：\n空元素\n包含其他元素的元素\n仅包含文本的元素\n包含元素和文本的元素\n注意： 上述元素均可包含属性！\n复合元素的例子\n复合元素，\"product\"，是空的：\n<product pid=\"1345\"/>",
+    "examples": []
+   },
+   {
+    "title": "XSD 日期和时间数据类型",
+    "url": "https://www.runoob.com/schema/schema-dtypes-date.html",
+    "body": "日期及时间数据类型用于包含日期和时间的值。\n日期数据类型（Date Data Type）\n日期数据类型用于定义日期。\n日期使用此格式进行定义：\"YYYY-MM-DD\"，其中：\nYYYY 表示年份\nMM 表示月份\nDD 表示天数\n注意：所有的成分都是必需的\n下面是一个有关 schema 中日期声明的例子：\n<xs:element name=\"start\" type=\"xs:date\"/>",
+    "examples": []
+   },
+   {
+    "title": "XSD 杂项 数据类型",
+    "url": "https://www.runoob.com/schema/schema-dtypes-misc.html",
+    "body": "其他杂项数据类型包括布尔、base64Binary、十六进制、浮点、双精度、anyURI、anyURI 以及 NOTATION。\n布尔数据类型（Boolean Data Type）\n布尔数据性用于规定 true 或 false 值。\n下面是一个关于某个 scheme 中逻辑声明的例子：\n<xs:attribute name=\"disabled\" type=\"xs:boolean\"/>",
+    "examples": []
+   },
+   {
+    "title": "XSD 数值数据类型",
+    "url": "https://www.runoob.com/schema/schema-dtypes-numeric.html",
+    "body": "十进制数据类型\n十进制数据类型用于规定一个数值。\n下面是一个关于某个 scheme 中十进制数声明的例子。\n<xs:element name=\"prize\" type=\"xs:decimal\"/>",
+    "examples": []
+   },
+   {
+    "title": "XSD 字符串 数据类型",
+    "url": "https://www.runoob.com/schema/schema-dtypes-string.html",
+    "body": "字符串数据类型用于可包含字符串的值。\n字符串数据类型（String Data Type）\n字符串数据类型可包含字符、换行、回车以及制表符。\n下面是一个关于某个 scheme 中字符串声明的例子：\n<xs:element name=\"customer\" type=\"xs:string\"/>",
+    "examples": []
+   },
+   {
+    "title": "XML 编辑器",
+    "url": "https://www.runoob.com/schema/schema-editor.html",
+    "body": "使用专业的XML编辑器你可以更好的编写XML文档。\nXML 是基于文本的\nXML 指可扩展标记语言\n你可以使用简单的XML编辑器如记事本来创建或者编辑XML文件。\n然而，当你开始使用XML，你很快就会发现它使用专业的XML编辑器可以更好的\n编辑XML文件。\n为什么不使用记事本?\n许多开发人员使用记事本来编辑 XML 和 HTML 文档，这是因为最常用的操作系统都带有记事本，而且它很容易使用。从个人来讲，我经常使用记事本来快速地编辑某些简单的 HTML、CSS 以及 XML 文件。\n但是，如果您使用记事本对 XML 进行编辑，可能很快会发现不少问题。\n不能确定您编辑的文档类型，所以也就无法辅助您的工作。\n为什么使用 XML 编辑器?\n当今，XML 是非常重要的技术，并且开发项目正在使用这些基于 XML 的技术：\n用 XML Schema 定义 XML 的结构和数据类型\n用 XSLT 来转换 XML 数据\n用 SOAP 来交换应用程序之间的 XML 数据\n用 WSDL 来描述网络服务\n用 RDF 来描述网络资源\n用 XPath 和 XQuery 来访问 XML 数据\n用 SMIL 来定义图形\n为了能够编写出无错的 XML 文档，您需要一款智能的 XML 编辑器！\nXML 编辑器\n专业的 XML 编辑器会帮助您编写无错的 XML 文档，根据某种 DTD 或者 schema 来验证 XML，以及强制您创建合法的 XML 结构。\nXML 编辑器应该具有如下能力：\n为开始标签自动添加结束标签\n强制您编写合法的 XML\n根据 DTD 来验证 XML\n根据 Schema 来验证 XML\n对您的 XML 语法进行代码的颜色化显示",
+    "examples": []
+   },
+   {
+    "title": "XML Schema 参考手册XSD 元素XSD 限定/Facets",
+    "url": "https://www.runoob.com/schema/schema-elements-ref.html",
+    "body": "元素\n解释\nall\n规定子元素能够以任意顺序出现，每个子元素可出现零次或一次。\nannotation\nannotation 元素是一个顶层元素，规定 schema 的注释。\nany\n使创作者可以通过未被 schema 规定的元素来扩展 XML 文档。\nanyAttribute\n使创作者可以通过未被 schema 规定的属性来扩展 XML 文档。\nappInfo\n规定 annotation 元素中应用程序要使用的信息。\nattribute\n定义一个属性。\nattributeGroup\n定义在复杂类型定义中使用的属性组。\nchoice\n仅允许在 <choice> 声明中包含一个元素出现在包含元素中。\ncomplexContent\n定义对复杂类型（包含混合内容或仅包含元素）的扩展或限制。\ncomplexType\n定义复杂类型。\ndocumentation\n定义 schema 中的文本注释。\nelement\n定义元素。\nextension\n扩展已有的 simpleType 或 complexType 元素。\nfield\n规定 XPath 表达式，该表达式规定用于定义标识约束的值。\ngroup\n定义在复杂类型定义中使用的元素组。\nimport\n向一个文档添加带有不同目标命名空间的多个 schema。\ninclude\n向一个文档添加带有相同目标命名空间的多个 schema。\nkey\n指定属性或元素值（或一组值）必须是指定范围内的键。\nkeyref\n规定属性或元素值（或一组值）对应指定的 key 或 unique 元素的值。\nlist\n把简单类型定义为指定数据类型的值的一个列表。\nnotation\n描述 XML 文档中非 XML 数据的格式。\nredefine\n重新定义从外部架构文件中获取的简单和复杂类型、组和属性组。\nrestriction\n定义对 simpleType、simpleContent 或 complexContent 的约束。\nschema\n定义 schema 的根元素。\nselector\n指定 XPath 表达式，该表达式为标识约束选择一组元素。\nsequence\n要求子元素必须按顺序出现。每个子元素可出现 0 到任意次数。\nsimpleContent\n包含对 complexType 元素的扩展或限制且不包含任何元素。\nsimpleType\n定义一个简单类型，规定约束以及关于属性或仅含文本的元素的值的信息。\nunion\n定义多个 simpleType 定义的集合。\nunique\n指定属性或元素值（或者属性或元素值的组合）在指定范围内必须是唯一的。\n参阅 XSD 限定 / Facets\n限定\n描述\nenumeration\n定义可接受值的一个列表\nfractionDigits\n定义所允许的最大的小数位数。必须大于等于0。\nlength\n定义所允许的字符或者列表项目的精确数目。必须大于或等于0。\nmaxExclusive\n定义数值的上限。所允许的值必须小于此值。\nmaxInclusive\n定义数值的上限。所允许的值必须小于或等于此值。\nmaxLength\n定义所允许的字符或者列表项目的最大数目。必须大于或等于0。\nminExclusive\n定义数值的下限。所允许的值必需大于此值。\nminInclusive\n定义数值的下限。所允许的值必需大于或等于此值。\nminLength\n定义所允许的字符或者列表项目的最小数目。必须大于或等于0。\npattern\n定义可接受的字符的精确序列。\ntotalDigits\n定义所允许的阿拉伯数字的精确位数。必须大于0。\nwhiteSpace\n定义空白字符（换行、回车、空格以及制表符）的处理方式。",
+    "examples": []
+   },
+   {
+    "title": "XSD 实例",
+    "url": "https://www.runoob.com/schema/schema-example.html",
+    "body": "本节会为您演示如何编写一个 XML Schema。您还将学习到编写 schema 的不同方法。\nXML 文档\n让我们看看这个名为 \"shiporder.xml\" 的 XML 文档：\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<shiporder orderid=\"889923\"\nxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\nxsi:noNamespaceSchemaLocation=\"shiporder.xsd\">\n  \n <orderperson>John Smith</orderperson>\n  \n <shipto>\n    \n <name>Ola Nordmann</name>\n    \n <address>Langgt 23</address>\n    \n <city>4000 Stavanger</city>\n    \n <country>Norway</country>\n  \n </shipto>\n  \n <item>\n    \n <title>Empire Burlesque</title>\n    \n <note>Special Edition</note>\n    \n <quantity>1</quantity>\n    \n <price>10.90</price>\n  \n </item>\n  \n <item>\n    \n <title>Hide your heart</title>\n    \n <quantity>1</quantity>\n    \n <price>9.90</price>\n  \n </item>\n</shiporder>",
+    "examples": []
+   },
+   {
+    "title": "XSD 限定 / Facets",
+    "url": "https://www.runoob.com/schema/schema-facets.html",
+    "body": "限定（restriction）用于为 XML 元素或者属性定义可接受的值。对 XML 元素的限定被称为 facet。\n对值的限定\n下面的例子定义了带有一个限定且名为 \"age\" 的元素。age 的值不能低于 0 或者高于 120：\n<xs:element name=\"age\"> \n<xs:simpleType>\n    \n <xs:restriction base=\"xs:integer\">\n      \n <xs:minInclusive value=\"0\"/>\n      \n <xs:maxInclusive value=\"120\"/>\n    \n </xs:restriction>\n \n</xs:simpleType>\n</xs:element>",
+    "examples": []
+   },
+   {
+    "title": "XSD 如何使用?",
+    "url": "https://www.runoob.com/schema/schema-howto.html",
+    "body": "XML 文档可对 DTD 或 XML Schema 进行引用。\n一个简单的 XML 文档：\n请看这个名为 \"note.xml\" 的 XML 文档：\n<?xml version=\"1.0\"?>\n<note>\n \n<to>Tove</to>\n \n<from>Jani</from>\n \n<heading>Reminder</heading>\n \n<body>Don't forget me this weekend!</body>\n</note>",
+    "examples": []
+   },
+   {
+    "title": "XML Schema 简介",
+    "url": "https://www.runoob.com/schema/schema-intro.html",
+    "body": "XML Schema 是基于 XML 的 DTD 替代者。\nXML Schema 可描述 XML 文档的结构。\nXML Schema 语言也可作为 XSD（XML Schema Definition）来引用。\n您应当具备的基础知识\n在继续学习之前，您需要对下面的知识有基本的了解：\nHTML / XHTML\nXML 以及 XML 命名空间\n对 DTD 的基本了解\n如果您希望首先学习这些项目，请在 首页 访问这些教程。\n什么是 XML Schema？\nXML Schema 的作用是定义 XML 文档的合法构建模块，类似 DTD。\nXML Schema:\n定义可出现在文档中的元素\n定义可出现在文档中的属性\n定义哪个元素是子元素\n定义子元素的次序\n定义子元素的数目\n定义元素是否为空，或者是否可包含文本\n定义元素和属性的数据类型\n定义元素和属性的默认值以及固定值\nXML Schema 是 DTD 的继任者\n我们认为 XML Schema 很快会在大部分网络应用程序中取代 DTD。\n理由如下：\nXML Schema 可针对未来的需求进行扩展\nXML Schema 更完善，功能更强大\nXML Schema 基于 XML 编写\nXML Schema 支持数据类型\nXML Schema 支持命名空间\nXML Schema 是 W3C 标准\nXML Schema 在 2001 年 5 月 2 日成为 W3C 标准。\n您可以在我们的《W3C 教程》中获得更多有关 XML Schema 标准的信息。",
+    "examples": []
+   },
+   {
+    "title": "XSD - <schema> 元素",
+    "url": "https://www.runoob.com/schema/schema-schema.html",
+    "body": "<schema> 元素是每一个 XML Schema 的根元素。\n<schema> 元素\n<schema> 元素是每一个 XML Schema 的根元素：\n<?xml version=\"1.0\"?>\n<xs:schema>...\n...\n</xs:schema>",
+    "examples": []
+   },
+   {
+    "title": "XSD 属性",
+    "url": "https://www.runoob.com/schema/schema-simple-attributes.html",
+    "body": "所有的属性均作为简易类型来声明。\n什么是属性？\n简易元素无法拥有属性。假如某个元素拥有属性，它就会被当作某种复合类型。但是属性本身总是作为简易类型被声明的。\n如何声明属性？\n定义属性的语法是\n<xs:attribute name=\"xxx\" type=\"yyy\"/>",
+    "examples": []
+   },
+   {
+    "title": "XSD 简易元素",
+    "url": "https://www.runoob.com/schema/schema-simple.html",
+    "body": "XML Schema 可定义 XML 文件的元素。\n简易元素指那些只包含文本的元素。它不会包含任何其他的元素或属性。\n什么是简易元素？\n简易元素指那些仅包含文本的元素。它不会包含任何其他的元素或属性。\n不过，\"仅包含文本\"这个限定却很容易造成误解。文本有很多类型。它可以是 XML Schema 定义中包括的类型中的一种（布尔、字符串、数据等等），或者它也可以是您自行定义的定制类型。\n您也可向数据类型添加限定（即 facets），以此来限制它的内容，或者您可以要求数据匹配某种特定的模式。\n定义简易元素\n定义简易元素的语法：\n<xs:element name=\"xxx\" type=\"yyy\"/>",
+    "examples": []
+   },
+   {
+    "title": "您已经学习了 XML Schema，下一步学习什么呢？",
+    "url": "https://www.runoob.com/schema/schema-summary.html",
+    "body": "XML Schema 概要\n本教程已经向您讲解了如何描述 XML 文档的结构。\n您已经学习了如何使用 XML Schema 来定义 XML 文档的合法元素，就像 DTD。我们认为，XML Schema 作为 DTD 的替代者，会很快被应用于大多数 Web 应用程序中。\n您还学习到，XML Schema 是很完善的。与 DTD 不同，XML Schema 支持数据类型（data type）和命名空间（namespace）。\n请参阅我们的 XML Schema 参考手册，获得更多有关 XML Schema 的信息。\n您已经学习了 XML Schema，下一步学习什么呢？\n下一步应该学习 WSDL。\nWSDL 是一种基于 schema 的语言，用来描述 Web service 以及如何如何访问它们。\nWSDL 可描述 Web service，连同用于 Web service 的消息格式和协议细节。\n如果您希望学习更多有关 WSDL 的知识，请访问我们的 WSDL 教程。",
+    "examples": []
+   },
+   {
+    "title": "XML Schema 教程",
+    "url": "https://www.runoob.com/schema/schema-tutorial.html",
+    "body": "XML Schema 描述了 XML文档的结构。\n在此教程中，你将学习如何在应用程序中读取和创建 XML Schema 语言，XML Schema 为何比 DTD 更加强大，以及如何在您的应用程序中使用 XML Schema。\n现在开始学习 XML Schema!",
+    "examples": []
+   },
+   {
+    "title": "为什么使用 XML Schemas?",
+    "url": "https://www.runoob.com/schema/schema-why.html",
+    "body": "XML Schema 比 DTD 更强大。\nXML Schema 支持数据类型\nXML Schema 最重要的能力之一就是对数据类型的支持。\n通过对数据类型的支持：\n可更容易地描述允许的文档内容\n可更容易地验证数据的正确性\n可更容易地与来自数据库的数据一并工作\n可更容易地定义数据约束（data facets）\n可更容易地定义数据模型（或称数据格式）\n可更容易地在不同的数据类型间转换数据\n编者注：数据约束，或称 facets，是 XML Schema 原型中的一个术语，中文可译为\"面\"，用来约束数据类型的容许值。\nXML Schema 使用 XML 语法\n另一个关于 XML Schema 的重要特性是，它们由 XML 编写。\n由 XML 编写 XML Schema 有很多好处：\n不必学习新的语言\n可使用 XML 编辑器来编辑 Schema 文件\n可使用 XML 解析器来解析 Schema 文件\n可通过 XML DOM 来处理 Schema\n可通过 XSLT 来转换 Schema\nXML Schema 可保护数据通信\n当数据从发送方被发送到接受方时，其要点是双方应有关于内容的相同的\"期望值\"。\n通过 XML Schema，发送方可以用一种接受方能够明白的方式来描述数据。\n一种数据，比如 \"03-11-2004\"，在某些国家被解释为11月3日，而在另一些国家为当作3月11日。\n但是一个带有数据类型的 XML 元素，比如：<date type=\"date\">2004-03-11</date>，可确保对内容一致的理解，这是因为 XML 的数据类型 \"date\" 要求的格式是 \"YYYY-MM-DD\"。\nXML Schema 可扩展\nXML Schema 是可扩展的，因为它们由 XML 编写。\n通过可扩展的 Schema 定义，您可以：\n在其他 Schema 中重复使用您的 Schema\n创建由标准类型衍生而来的您自己的数据类型\n在相同的文档中引用多重的 Schema\n形式良好是不够的\n我们把符合 XML 语法的文档称为形式良好的 XML 文档，比如：\n它必须以 XML 声明开头\n它必须拥有唯一的根元素\n开始标签必须与结束标签相匹配\n元素对大小写敏感\n所有的元素都必须关闭\n所有的元素都必须正确地嵌套\n必须对特殊字符使用实体\n即使文档的形式良好，仍然不能保证它们不会包含错误，并且这些错误可能会产生严重的后果。\n请考虑下面的情况：您订购的了 5 打激光打印机，而不是 5 台。通过 XML Schema，大部分这样的错误会被您的验证软件捕获到。",
+    "examples": []
+   }
+  ]
+ }
+}

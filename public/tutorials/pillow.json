@@ -1,0 +1,230 @@
+{
+ "tutorial": {
+  "name": "Pillow",
+  "category": "人工智能",
+  "desc": "Pillow 是 Python 中处理图像的主要库。",
+  "url": "https://www.runoob.com/pillow/",
+  "chapters": [
+   {
+    "title": "ImageSequence 模块",
+    "url": "https://www.runoob.com/pillow/imagesequence-module.html",
+    "body": "ImageSequence 是 Python Pillow 库（PIL 的一个分支）中的一个模块，专门用于处理多帧图像（如 GIF、TIFF 等格式）。\nImageSequence 模块允许你以迭代的方式访问图像序列中的每一帧，非常适合处理动画图像或包含多个页面的图像文件。\nImageSequence 的主要用途\n处理动画 GIF：逐帧读取和操作 GIF 动画\n处理多页 TIFF：访问 TIFF 文件中的各个页面\n图像序列处理：批量处理包含多个图像的单个文件\n帧提取和分析：从动画图像中提取特定帧进行分析或修改\nImageSequence 模块的核心方法\n以下是 ImageSequence 模块中最常用的方法及其功能说明：\n方法/属性\n描述\n返回值\n示例\nImageSequence.Iterator(image)\n创建一个迭代器对象，用于遍历图像序列\n迭代器对象\nfor frame in ImageSequence.Iterator(img):\nImageSequence.all_frames(image)\n返回包含所有帧的列表\n列表\nframes = list(ImageSequence.all_frames(img))\nseek(frame)\n跳转到指定帧（部分图像格式支持）\nNone\nimg.seek(5) # 跳转到第6帧\ntell()\n返回当前帧的索引位置\n整数\ncurrent_frame = img.tell()\nn_frames\n返回图像中的总帧数\n整数\ntotal_frames = img.n_frames\n使用示例\n1. 基本用法：遍历 GIF 动画的所有帧\n实例",
+    "examples": [
+     "from PIL import Image, ImageSequence\n\n# 打开GIF文件\nwith Image.open('animation.gif') as img:\n    # 遍历每一帧\n    for i, frame in enumerate(ImageSequence.Iterator(img)):\n        # 处理每一帧\n        frame.save(f'frame_{i}.png')  # 保存为单独的PNG文件"
+    ]
+   },
+   {
+    "title": "Pillow 高级图像处理",
+    "url": "https://www.runoob.com/pillow/pillow-advanced.html",
+    "body": "图像滤镜与增强\n内置滤镜应用 (filter())\nPillow 提供了多种内置滤镜，使用 ImageFilter 模块：\n实例",
+    "examples": [
+     "from PIL import Image, ImageFilter\n\n# 打开图像\nimage = Image.open(\"input.jpg\")\n\n# 应用模糊滤镜\nblurred = image.filter(ImageFilter.BLUR)\nblurred.save(\"blurred.jpg\")\n\n# 应用轮廓滤镜\ncontour = image.filter(ImageFilter.CONTOUR)\ncontour.save(\"contour.jpg\")\n\n# 应用浮雕滤镜\nemboss = image.filter(ImageFilter.EMBOSS)\nemboss.save(\"emboss.jpg\")\n\n# 查找边缘\nedges = image.filter(ImageFilter.FIND_EDGES)\nedges.save(\"edges.jpg\")\n\n# 锐化滤镜\nsharpen = image.filter(ImageFilter.SHARPEN)\nsharpen.save(\"sharpen.jpg\")\n\n# 平滑滤镜\nsmooth = image.filter(ImageFilter.SMOOTH)\nsmooth.save(\"smooth.jpg\")\n\n# 细节增强\ndetail = image.filter(ImageFilter.DETAIL)\ndetail.save(\"detail.jpg\")"
+    ]
+   },
+   {
+    "title": "Pillow 图像基本操作",
+    "url": "https://www.runoob.com/pillow/pillow-basic.html",
+    "body": "在安装 Pillow 库后，我们需要导入必要的模块：\n# 导入模块\nfrom PIL import Image, ImageFilter, ImageEnhance, ImageDraw, ImageFont\nimport os\n测试图片（下载到本地测试）：\n实例\n以下一个完整的实例，展示了以下操作：\n打开和显示图像基本信息格式、大小、模式等\n调整图像大小将图像调整为指定尺寸\n裁剪图像从原图中提取特定区域\n旋转图像旋转45度并保留完整图像\n翻转图像水平和垂直翻转\n转换颜色模式将彩色图像转换为灰度图\n应用滤镜模糊、边缘增强、轮廓等效果\n调整图像属性亮度、对比度和锐度调整\n添加文本在图像上绘制文字\n合并图像简单的图像拼接\n保存为不同格式和质量PNG、BMP和不同质量的JPEG\n实例",
+    "examples": [
+     "\"\"\"\nPython Pillow 图像基本操作教程\n使用的测试图片: tiger.jpeg\n\"\"\"\n\nfrom PIL import Image, ImageFilter, ImageEnhance, ImageDraw, ImageFont\nimport os\n\ndef main():\n    # 确保我们的工作目录中有输出文件夹\n    output_dir = \"output\"\n    if not os.path.exists(output_dir):\n        os.makedirs(output_dir)\n    \n    # 1. 打开图像\n    print(\"1. 打开图像\")\n    try:\n        img = Image.open(\"tiger.jpeg\")\n        print(f\"成功打开图像 - 格式: {img.format}, 大小: {img.size}, 模式: {img.mode}\")\n    except Exception as e:\n        print(f\"无法打开图像: {e}\")\n        return\n    \n    # 2. 显示图像基本信息\n    print(\"\\n2. 图像基本信息\")\n    print(f\"图像格式: {img.format}\")\n    print(f\"图像大小 (宽x高): {img.size}\")\n    print(f\"图像模式: {img.mode}\")\n    \n    # 3. 调整图像大小\n    print(\"\\n3. 调整图像大小\")\n    resized_img = img.resize((400, 300))\n    resized_img.save(f\"{output_dir}/resized_tiger.jpg\")\n    print(\"已保存调整大小后的图像\")\n    \n    # 4. 裁剪图像\n    print(\"\\n4. 裁剪图像\")\n    # 裁剪区域 (左, 上, 右, 下)\n    width, height = img.size\n    crop_area = (width//4, height//4, 3*width//4, 3*height//4)  # 裁剪中间区域\n    cropped_img = img.crop(crop_area)\n    cropped_img.save(f\"{output_dir}/cropped_tiger.jpg\")\n    print(f\"已裁剪图像区域 {crop_area} 并保存\")\n    \n    # 5. 旋转图像\n    print(\"\\n5. 旋转图像\")\n    rotated_img = img.rotate(45, expand=True)  # 旋转45度，expand=True 保留整个图像\n    rotated_img.save(f\"{output_dir}/rotated_tiger.jpg\")\n    print(\"已保存旋转后的图像\")\n    \n    # 6. 翻转图像\n    print(\"\\n6. 翻转图像\")\n    # 水平翻转\n    h_flipped = img.transpose(Image.FLIP_LEFT_RIGHT)\n    h_flipped.save(f\"{output_dir}/horizontal_flip_tiger.jpg\")\n    # 垂直翻转\n    v_flipped = img.transpose(Image.FLIP_TOP_BOTTOM)\n    v_flipped.save(f\"{output_dir}/vertical_flip_tiger.jpg\")\n    print(\"已保存水平和垂直翻转的图像\")\n    \n    # 7. 转换颜色模式\n    print(\"\\n7. 转换颜色模式\")\n    grayscale_img = img.convert('L')  # 转换为灰度图\n    grayscale_img.save(f\"{output_dir}/grayscale_tiger.jpg\")\n    print(\"已保存灰度图像\")\n    \n    # 8. 应用滤镜\n    print(\"\\n8. 应用滤镜\")\n    # 模糊滤镜\n    blurred_img = img.filter(ImageFilter.BLUR)\n    blurred_img.save(f\"{output_dir}/blurred_tiger.jpg\")\n    # 边缘增强\n    edge_img = img.filter(ImageFilter.EDGE_ENHANCE)\n    edge_img.save(f\"{output_dir}/edge_enhanced_tiger.jpg\")\n    # 轮廓滤镜\n    contour_img = img.filter(ImageFilter.CONTOUR)\n    contour_img.save(f\"{output_dir}/contour_tiger.jpg\")\n    print(\"已保存应用不同滤镜的图像\")\n    \n    # 9. 调整亮度、对比度和锐度\n    print(\"\\n9. 调整图像属性\")\n    # 增加亮度\n    brightness = ImageEnhance.Brightness(img)\n    bright_img = brightness.enhance(1.5)  # 亮度增加50%\n    bright_img.save(f\"{output_dir}/brighter_tiger.jpg\")\n    \n    # 增加对比度\n    contrast = ImageEnhance.Contrast(img)\n    contrast_img = contrast.enhance(1.5)  # 对比度增加50%\n    contrast_img.save(f\"{output_dir}/contrast_tiger.jpg\")\n    \n    # 增加锐度\n    sharpness = ImageEnhance.Sharpness(img)\n    sharp_img = sharpness.enhance(2.0)  # 锐度增加100%\n    sharp_img.save(f\"{output_dir}/sharper_tiger.jpg\")\n    print(\"已保存亮度、对比度和锐度调整后的图像\")\n    \n    # 10. 添加文字\n    print(\"\\n10. 添加文字\")\n    # 创建一个副本用于绘制\n    text_img = img.copy()\n    draw = ImageDraw.Draw(text_img)\n    # 尝试使用系统字体，如果失败则使用默认\n    try:\n        # 对于不同操作系统，可能需要不同的字体路径\n        # Windows字体路径示例\n        font = ImageFont.truetype(\"arial.ttf\", 36)\n    except IOError:\n        font = ImageFont.load_default()\n    \n    # 在图像上添加文字\n    draw.text((10, 10), \"Tiger\", fill=(255, 255, 255), font=font)\n    text_img.save(f\"{output_dir}/text_tiger.jpg\")\n    print(\"已保存添加文字的图像\")\n    \n    # 11. 合并图像（简单拼接）\n    print(\"\\n11. 合并图像\")\n    # 创建一个新图像，宽度是原图的两倍，高度相同\n    merged_img = Image.new('RGB', (width*2, height))\n    # 将原图放在左边\n    merged_img.paste(img, (0, 0))\n    # 将灰度图放在右边\n    merged_img.paste(grayscale_img.convert('RGB'), (width, 0))\n    merged_img.save(f\"{output_dir}/merged_tiger.jpg\")\n    print(\"已保存合并后的图像\")\n    \n    # 12. 保存为不同格式\n    print(\"\\n12. 保存为不同格式\")\n    img.save(f\"{output_dir}/tiger.png\")  # PNG格式\n    img.save(f\"{output_dir}/tiger.bmp\")  # BMP格式\n    \n    # 保存为JPEG，设置质量\n    img.save(f\"{output_dir}/tiger_high_quality.jpg\", quality=95)  # 高质量\n    img.save(f\"{output_dir}/tiger_low_quality.jpg\", quality=10)   # 低质量\n    print(\"已保存为不同格式和质量的图像\")\n    \n    print(\"\\n所有操作完成！处理后的图像保存在 'output' 文件夹中。\")\n\nif __name__ == \"__main__\":\n    main()"
+    ]
+   },
+   {
+    "title": "Pillow 绘图中文乱码",
+    "url": "https://www.runoob.com/pillow/pillow-chinese.html",
+    "body": "在图像上添加文字是图像处理中常见的需求，比如为图片添加水印、创建海报等。Pillow 提供了 ImageDraw 模块来实现这一功能。\n基本步骤\n在图像上添加文字的基本步骤如下：\n打开或创建图像\n创建 ImageDraw 对象\n指定字体\n使用 text() 方法添加文字\n保存图像\n实例\n实例",
+    "examples": [
+     "from PIL import Image, ImageDraw, ImageFont\n\n# 1. 创建一个新的图像\nimage = Image.new('RGB', (400, 200), color=(255, 255, 255))\n\n# 2. 创建 ImageDraw 对象\ndraw = ImageDraw.Draw(image)\n\n# 3. 指定字体（这里使用默认字体）\n# 注意：默认字体可能不支持中文\nfont = ImageFont.load_default()\n\n# 4. 添加文字\ndraw.text((10, 10), \"Hello, Pillow!\", fill=\"black\", font=font)\n\n# 5. 保存图像\nimage.save('output.png')"
+    ]
+   },
+   {
+    "title": "Pillow ExifTags 模块",
+    "url": "https://www.runoob.com/pillow/pillow-exiftags-module.html",
+    "body": "ExifTags 是 Python Pillow 图像处理库中的一个子模块，专门用于处理图像中的 EXIF（Exchangeable Image File Format）元数据。\nEXIF 数据是嵌入在图像文件中的额外信息，通常包含拍摄设备、拍摄参数（如光圈、快门速度）、GPS 位置等信息。\n导入 ExifTags：\nfrom PIL import Image, ExifTags\n为什么需要 ExifTags 模块\n读取图像元数据：了解图像的拍摄信息和属性\n图像处理：基于 EXIF 数据进行图像处理（如自动旋转）\n数据分析：批量分析照片的拍摄参数\n隐私保护：查看或删除敏感的位置信息\nExifTags 模块主要方法\n下表列出了 ExifTags 模块中最常用的方法和属性：\n方法/属性\n描述\n返回值类型\n示例\nTAGS\n包含所有标准 EXIF 标签ID到名称的映射字典\ndict\n{256: 'ImageWidth', 257: 'ImageLength'}\nGPSTAGS\n包含所有GPS相关EXIF标签ID到名称的映射字典\ndict\n{0: 'GPSVersionID', 1: 'GPSLatitudeRef'}\nget(tag_id)\n根据标签ID获取标签名称\nstr\nExifTags.get(36867) → 'DateTimeOriginal'\ngetid(tag_name)\n根据标签名称获取标签ID\nint\nExifTags.getid('DateTimeOriginal') → 36867\n使用示例\n1. 查看所有 EXIF 标签\n实例",
+    "examples": [
+     "from PIL import Image, ExifTags\n\n# 打印所有标准EXIF标签\nfor tag_id in ExifTags.TAGS:\n    tag_name = ExifTags.TAGS[tag_id]\n    print(f\"ID: {tag_id}, Name: {tag_name}\")"
+    ]
+   },
+   {
+    "title": "Pillow 入门实例",
+    "url": "https://www.runoob.com/pillow/pillow-first-step.html",
+    "body": "使用 Pillow，可以通过以下方式导入 Pillow 的主要模块：\nfrom PIL import Image, ImageFilter, ImageDraw, ImageFont\nPillow 保持了与 PIL 的 API 兼容性，这意味着大多数为 PIL 编写的代码可以直接与 Pillow 一起使用，只需将导入语句从 import PIL 更改为 from PIL import ...。\n基础图像操作\n加载并显示图像\n测试图片（下载到本地测试）：\n实例",
+    "examples": [
+     "from PIL import Image\n\n# 打开图像（支持 JPEG、PNG、GIF 等）\nimg = Image.open(\"tiger.jpeg\")  \n\n# 显示图像（系统默认图片查看器）\nimg.show()  \n\n# 获取图像信息\nprint(\"格式:\", img.format)  # JPEG/PNG\nprint(\"尺寸:\", img.size)    # (宽, 高)\nprint(\"模式:\", img.mode)   # RGB/L/CMYK"
+    ]
+   },
+   {
+    "title": "Pillow Image 模块",
+    "url": "https://www.runoob.com/pillow/pillow-image-module.html",
+    "body": "Image 是 Pillow 库的核心模块，提供图像处理的基础功能。\n以下是 Image 模块中最常用的方法及其功能描述：\n方法\n描述\n示例\nImage.open(fp, mode='r')\n打开并识别图像文件\nimg = Image.open('image.jpg')\nImage.new(mode, size, color=0)\n创建新图像\nnew_img = Image.new('RGB', (500, 500), 'blue')\nImage.save(fp, format=None, **params)\n保存图像\nimg.save('output.png')\nImage.show(title=None, command=None)\n显示图像\nimg.show()\nImage.resize(size, resample=None, box=None)\n调整图像大小\nimg.resize((200, 200))\nImage.rotate(angle, resample=0, expand=0)\n旋转图像\nimg.rotate(45)\nImage.crop(box=None)\n裁剪图像\nimg.crop((100, 100, 400, 400))\nImage.paste(im, box=None, mask=None)\n粘贴图像\nimg.paste(logo, (50, 50))\nImage.convert(mode, matrix=None, dither=None)\n转换图像模式\nimg.convert('L')\nImage.filter(filter)\n应用滤镜\nimg.filter(ImageFilter.BLUR)\nImage.copy()\n复制图像\ncopy = img.copy()\nImage.thumbnail(size)\n创建缩略图\nimg.thumbnail((100, 100))\nImage.getpixel(xy)\n获取像素值\npixel = img.getpixel((50, 50))\nImage.putpixel(xy, value)\n设置像素值\nimg.putpixel((50, 50), (255, 0, 0))\nImage.split()\n分离通道\nr, g, b = img.split()\nImage.merge(mode, bands)\n合并通道\nImage.merge('RGB', (r, g, b))\n3. 常用属性\n除了方法外，Image 对象还有一些重要属性：\n属性\n描述\n示例\nformat\n图像格式\nprint(img.format)\nsize\n图像尺寸 (宽, 高)\nprint(img.size)\nwidth\n图像宽度\nprint(img.width)\nheight\n图像高度\nprint(img.height)\nmode\n图像模式\nprint(img.mode)\ninfo\n图像相关信息字典\nprint(img.info)\n实际应用示例\n基本图像操作\n实例",
+    "examples": [
+     "from PIL import Image\n\n# 打开图像\nimg = Image.open('example.jpg')\n\n# 显示图像信息\nprint(f\"格式: {img.format}, 大小: {img.size}, 模式: {img.mode}\")\n\n# 调整大小并保存\nresized_img = img.resize((300, 300))\nresized_img.save('resized_example.jpg')\n\n# 转换为灰度图\ngray_img = img.convert('L')\ngray_img.save('gray_example.jpg')"
+    ]
+   },
+   {
+    "title": "Pillow ImageChops 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imagechops-modules.html",
+    "body": "ImageChops 是 Python PIL (Python Imaging Library) 的一个子模块，专门用于图像通道操作(\"Channel Operations\"的缩写)。\nImageChops 模块提供了一系列方法，可以对图像进行数学和逻辑运算，常用于图像合成、特效处理等场景。\n模块特点\n所有方法都接受两个图像作为参数，并对它们的对应像素进行操作\n返回一个新的图像对象\n大多数方法要求输入图像具有相同的大小和模式\n特别适合用于图像合成、混合和特效处理\nImageChops 常用方法\n以下是 ImageChops 模块中最常用的方法及其功能说明：\n方法名称\n功能描述\n数学表达式\nadd(image1, image2, scale=1.0, offset=0)\n将两幅图像相加\nout = ((image1 + image2) / scale + offset)\nsubtract(image1, image2, scale=1.0, offset=0)\n将两幅图像相减\nout = ((image1 - image2) / scale + offset)\nlighter(image1, image2)\n比较两幅图像，取每个像素的较亮值\nout = max(image1, image2)\ndarker(image1, image2)\n比较两幅图像，取每个像素的较暗值\nout = min(image1, image2)\nmultiply(image1, image2)\n将两幅图像相乘\nout = image1 * image2 / 255\nscreen(image1, image2)\n将两幅图像进行屏幕叠加\nout = 255 - (255 - image1) * (255 - image2) / 255\noverlay(image1, image2)\n将两幅图像进行叠加\n根据像素值选择 multiply 或 screen 操作\ndifference(image1, image2)\n返回两幅图像的绝对差值\nout = abs(image1 - image2)\ninvert(image)\n反转图像（负片效果）\nout = 255 - image\nlogical_and(image1, image2)\n对两幅图像进行逻辑与操作\nout = image1 & image2\nlogical_or(image1, image2)\n对两幅图像进行逻辑或操作\nout = image1 | image2\nlogical_xor(image1, image2)\n对两幅图像进行逻辑异或操作\nout = image1 ^ image2\nblend(image1, image2, alpha)\n使用固定透明度混合两幅图像\nout = image1 * (1.0 - alpha) + image2 * alpha\ncomposite(image1, image2, mask)\n使用遮罩图像合成两幅图像\n根据 mask 选择 image1 或 image2 的像素\noffset(image, xoffset, yoffset=None)\n偏移图像\n将图像在 x 和 y 方向上移动指定像素\n使用示例\n基本使用\n实例",
+    "examples": [
+     "from PIL import Image, ImageChops\n\n# 打开两幅图像\nimage1 = Image.open(\"image1.jpg\")\nimage2 = Image.open(\"image2.jpg\")\n\n# 确保两幅图像大小相同\nif image1.size == image2.size:\n    # 将两幅图像相加\n    added_image = ImageChops.add(image1, image2)\n    added_image.save(\"added.jpg\")\n    \n    # 获取两幅图像的差异\n    diff_image = ImageChops.difference(image1, image2)\n    diff_image.save(\"difference.jpg\")"
+    ]
+   },
+   {
+    "title": "Pillow ImageColor 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imagecolor-module.html",
+    "body": "ImageColor 是 Python Pillow 图像处理库中的一个子模块，专门用于处理颜色相关的操作。\nImageColor 提供了一系列方法将颜色字符串转换为 RGB 或 RGBA 格式的元组，支持多种颜色表示格式。\nImageColor 模块虽然小巧，但在图像处理中扮演着重要角色，特别是在需要动态指定颜色的场景中。\n可以通过以下方式导入 ImageColor 模块：\nfrom PIL import ImageColor\nImageColor 模块核心方法\n下表列出了 ImageColor 模块的主要方法及其功能说明：\n方法名称\n参数\n返回值\n功能描述\ngetrgb(color)\ncolor: 颜色字符串\nRGB 元组 (r, g, b)\n将颜色字符串转换为 RGB 元组\ngetcolor(color, mode)\ncolor: 颜色字符串mode: 目标颜色模式\n颜色值元组\n将颜色字符串转换为指定颜色模式的值\ncolormap\n无\n字典\n返回 Pillow 支持的颜色映射表\n方法详细说明与示例\ngetrgb() 方法\ngetrgb() 方法是最常用的方法，它将各种格式的颜色字符串转换为标准的 RGB 元组。\n支持的格式包括:\n十六进制颜色码: \"#RRGGBB\" 或 \"#RGB\"\nRGB 函数表示: \"rgb(255, 0, 0)\"\nHSL 函数表示: \"hsl(0, 100%, 50%)\"\n颜色名称: \"red\", \"blue\" 等\n示例代码:\n实例",
+    "examples": [
+     "from PIL import ImageColor\n\n# 十六进制颜色\nprint(ImageColor.getrgb(\"#ff0000\"))  # 输出: (255, 0, 0)\nprint(ImageColor.getrgb(\"#f00\"))    # 输出: (255, 0, 0)\n\n# RGB 函数\nprint(ImageColor.getrgb(\"rgb(255, 0, 0)\"))  # 输出: (255, 0, 0)\n\n# 颜色名称\nprint(ImageColor.getrgb(\"red\"))    # 输出: (255, 0, 0)\nprint(ImageColor.getrgb(\"blue\"))   # 输出: (0, 0, 255)"
+    ]
+   },
+   {
+    "title": "Pillow ImageDraw 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imagedraw-module.html",
+    "body": "ImageDraw 是 Python 图像处理库 Pillow（PIL 的分支）中的一个模块，用于在图像上绘制各种图形和文本。\nImageDraw 提供了丰富的绘图功能，包括线条、矩形、圆形、多边形、文本等，适用于图像标注、生成图表或简单的图形设计。\nImageDraw 模块的主要特点包括：\n支持在现有图像上绘制\n可以创建全新的空白画布\n提供多种绘图原语（点、线、矩形、椭圆等）\n支持文本绘制和字体设置\n允许自定义绘图颜色和样式\nImageDraw 的基本使用\n创建 Draw 对象\n在使用 ImageDraw 之前，需要先创建一个 ImageDraw.Draw 对象，传入一个 Image 对象作为绘图的基础。\n实例",
+    "examples": [
+     "from PIL import Image, ImageDraw\n\n# 创建一个空白图像（白色背景）\nimage = Image.new(\"RGB\", (400, 300), \"white\")\n\n# 创建 Draw 对象\ndraw = ImageDraw.Draw(image)"
+    ]
+   },
+   {
+    "title": "Pillow ImageEnhance 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imageenhance-module.html",
+    "body": "ImageEnhance 是 Python Pillow 库中的一个重要模块，专门用于图像增强处理。\nImageEnhance 提供了一系列简单而强大的工具，可以让你轻松调整图像的亮度、对比度、色彩饱和度和锐度等属性。\nImageEnhance 模块建立在 Pillow 的核心图像处理功能之上，为常见的图像增强操作提供了高级接口。\n导入 ImageEnhance 模块：\nfrom PIL import Image, ImageEnhance\n核心方法详解\nImageEnhance 模块提供了四种主要的图像增强类，每个类都有相似的使用方法。下面是这些类的详细说明：\n方法总览表\n类名\n功能描述\n核心方法\n参数范围建议\nImageEnhance.Color(image)\n调整图像色彩饱和度\nenhance(factor)\n0.0-1.0 降低饱和度，1.0 原图，>1.0 增加饱和度\nImageEnhance.Contrast(image)\n调整图像对比度\nenhance(factor)\n0.0-1.0 降低对比度，1.0 原图，>1.0 增加对比度\nImageEnhance.Brightness(image)\n调整图像亮度\nenhance(factor)\n0.0-1.0 变暗，1.0 原图，>1.0 变亮\nImageEnhance.Sharpness(image)\n调整图像锐度\nenhance(factor)\n0.0-1.0 模糊，1.0 原图，>1.0 锐化\n用方法说明\n所有 ImageEnhance 类的核心方法都是 enhance(factor)，其中：\nfactor 是一个浮点数，表示增强的强度\n当 factor = 1.0 时，返回原始图像\n当 factor < 1.0 时，效果是减弱相应属性\n当 factor > 1.0 时，效果是增强相应属性\n使用示例\n基本使用流程\n实例",
+    "examples": [
+     "from PIL import Image, ImageEnhance\n\n# 打开图像文件\nimage = Image.open(\"example.jpg\")\n\n# 创建增强器对象\nenhancer = ImageEnhance.Contrast(image)\n\n# 应用增强效果\nenhanced_image = enhancer.enhance(1.5)  # 增加50%对比度\n\n# 保存结果\nenhanced_image.save(\"enhanced_example.jpg\")"
+    ]
+   },
+   {
+    "title": "Python Pillow ImageFilter 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imagefilter-module.html",
+    "body": "ImageFilter 模块是 Pillow 库中的一个子模块，它包含了一组预定义的图像滤镜，可以用于图像增强、边缘检测、模糊、锐化等操作。这些滤镜可以直接应用于图像对象，无需复杂的算法实现。\nImageFilter 模块常用方法\n下表列出了 ImageFilter 模块中最常用的滤镜方法及其功能描述：\n方法名称\n功能描述\n示例效果\nBLUR\n应用简单的模糊效果\n轻微模糊图像\nCONTOUR\n轮廓滤镜，突出显示图像边缘\n类似素描效果\nDETAIL\n细节增强滤镜\n增强图像细节\nEDGE_ENHANCE\n边缘增强滤镜\n强化边缘对比度\nEDGE_ENHANCE_MORE\n更强的边缘增强\n更明显的边缘强化\nEMBOSS\n浮雕效果滤镜\n3D 浮雕效果\nFIND_EDGES\n边缘检测滤镜\n只显示图像边缘\nSHARPEN\n锐化滤镜\n增强图像清晰度\nSMOOTH\n平滑滤镜\n轻微平滑图像\nSMOOTH_MORE\n更强的平滑滤镜\n更明显的平滑效果\nGaussianBlur(radius=2)\n高斯模糊，可调半径\n可控制模糊程度\nUnsharpMask(radius=2, percent=150, threshold=3)\n反锐化掩模\n专业锐化效果\nMedianFilter(size=3)\n中值滤波，去除噪点\n有效减少噪点\nMinFilter(size=3)\n最小值滤波\n暗化图像\nMaxFilter(size=3)\n最大值滤波\n亮化图像\nModeFilter(size=3)\n模式滤波\n类似水彩效果\n基本使用方法\n导入模块\n实例",
+    "examples": [
+     "from PIL import Image, ImageFilter"
+    ]
+   },
+   {
+    "title": "Pillow ImageFont 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imagefont-module.html",
+    "body": "ImageFont 模块则是 Pillow 中专门用于处理字体和文本渲染的核心组件。\nImageFont 模块允许开发者在图像上添加各种风格的文本内容，是进行图像标注、生成验证码、创建水印等功能的必备工具。\n核心功能\nImageFont 模块主要提供以下功能：\n加载 TrueType 和 OpenType 字体文件\n创建字体对象并设置字体大小\n计算文本在图像中的尺寸和布局\n与 ImageDraw 模块配合实现文本渲染\n主要方法详解\n以下是 ImageFont 模块中最常用的方法及其说明：\n方法名称\n参数说明\n返回值\n功能描述\ntruetype(font=None, size=10, index=0, encoding='', layout_engine=None)\nfont: 字体文件路径size: 字体大小(像素)index: 字体索引encoding: 编码方式layout_engine: 布局引擎\nImageFont 对象\n加载 TrueType 或 OpenType 字体文件\nload(filename)\nfilename: 字体文件路径\nImageFont 对象\n加载位图字体(PIL 专用格式)\nload_path(filename)\nfilename: 字体文件路径\nImageFont 对象\n从指定路径加载字体文件\ngetsize(text, direction=None, features=None, language=None)\ntext: 要测量的文本direction: 文本方向features: OpenType 特性language: 语言代码\n(width, height) 元组\n获取文本渲染后的尺寸\ngetmask(text, mode='', direction=None, features=None, language=None)\n同上\nImage 对象\n获取文本的位图掩码\ngetbbox(text, direction=None, features=None, language=None)\n同上\n(left, top, right, bottom) 元组\n获取文本的边界框\n基本使用示例\n加载字体并绘制文本\n实例",
+    "examples": [
+     "from PIL import Image, ImageDraw, ImageFont\n\n# 创建一个空白图像\nimage = Image.new('RGB', (400, 200), color='white')\n\n# 加载字体\nfont = ImageFont.truetype('arial.ttf', size=40)\n\n# 创建绘图对象\ndraw = ImageDraw.Draw(image)\n\n# 绘制文本\ndraw.text((50, 80), 'Hello Pillow!', font=font, fill='black')\n\n# 保存图像\nimage.save('text_image.png')"
+    ]
+   },
+   {
+    "title": "Pillow ImageGrab 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imagegrab-module.html",
+    "body": "ImageGrab 允许用户捕获屏幕或指定区域的图像，并将其保存为图像文件或进行进一步处理。\nImageGrab 模块适用于自动化测试、屏幕录制辅助、图像识别等场景。\n导入方法：\nfrom PIL import ImageGrab\nImageGrab 核心方法\n下表列出了 ImageGrab 模块的主要方法及其说明：\n方法\n描述\n参数\n返回值\nImageGrab.grab()\n捕获整个屏幕或指定区域的图像\nbbox（可选）：指定截图区域的元组 (x1, y1, x2, y2)，默认全屏\nPIL.Image 对象\nImageGrab.grabclipboard()\n从系统剪贴板获取图像\n无\nPIL.Image 对象（如果剪贴板有图像），否则 None\nImageGrab.grab_to_file()\n捕获屏幕并直接保存到文件（已弃用，建议使用 grab().save()）\nfilename：保存的文件路径\n无\n方法详细说明\nImageGrab.grab()\n功能：捕获屏幕或指定区域的图像。\n参数：\nbbox（可选）：一个四元组 (x1, y1, x2, y2)，定义截图区域。默认捕获整个屏幕。\n示例代码：\n实例",
+    "examples": [
+     "from PIL import ImageGrab\n\n# 捕获整个屏幕\nscreenshot = ImageGrab.grab()\nscreenshot.save(\"full_screen.png\")\n\n# 捕获指定区域（左上角 (100, 100) 到右下角 (500, 500)）\npartial_screenshot = ImageGrab.grab(bbox=(100, 100, 500, 500))\npartial_screenshot.save(\"partial_screen.png\")"
+    ]
+   },
+   {
+    "title": "Pillow ImageMorph 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imagemorph-module.html",
+    "body": "ImageMorph 是 Python Pillow 图像处理库中的一个专业模块，主要用于图像形态学操作。形态学操作是基于图像形状的一系列操作，通常用于二值图像处理，在图像分析、模式识别等领域有广泛应用。\n核心概念\n1. 形态学基本操作\nImageMorph 模块主要实现以下两种基本形态学操作：\n膨胀 (Dilation): 扩大图像中的亮区域\n腐蚀 (Erosion): 缩小图像中的亮区域\n这两种基础操作可以组合成更复杂的形态学操作，如开运算、闭运算等。\n2. 结构元素 (Structuring Element)\n形态学操作的核心是结构元素，它决定了操作的邻域形状和大小。Pillow 提供了几种预定义的结构元素：\n'4:...' - 4 连通结构元素\n'8:...' - 8 连通结构元素\n'C:...' - 圆形结构元素\nImageMorph 主要方法\n下表详细说明了 ImageMorph 模块的主要方法及其功能：\n方法名称\n参数\n返回值\n功能描述\nImageMorph.LutBuilder(patterns=None, op_name=None)\npatterns: 模式列表op_name: 操作名称\nLutBuilder 对象\n创建查找表构建器，用于自定义形态学操作\napply(image)\nimage: 要处理的 PIL 图像\n处理后的图像\n对输入图像应用形态学操作\nget_on_pixels(image)\nimage: 输入的 PIL 图像\n坐标列表\n获取图像中所有前景像素(值为1)的坐标\nmatch(image)\nimage: 输入的 PIL 图像\n匹配结果\n检查图像是否匹配当前形态学操作的模式\nsave(filename)\nfilename: 保存文件名\n无\n将当前的形态学操作保存到文件\nload(filename)\nfilename: 加载文件名\n无\n从文件加载形态学操作\n实际应用示例\n1. 基本形态学操作\n实例",
+    "examples": [
+     "from PIL import Image, ImageMorph\n\n# 创建形态学操作对象\nmorph_op = ImageMorph.MorphOp(op_name='dilation4')\n\n# 加载二值图像\nimage = Image.open('binary_image.png').convert('1')\n\n# 应用形态学操作\nresult = morph_op.apply(image)\nresult.show()"
+    ]
+   },
+   {
+    "title": "Pillow ImageOps 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imageops-module.html",
+    "body": "ImageOps 是 Python Pillow 图像处理库中的一个实用模块，它提供了一系列预定义的图像处理操作。这些操作通常是对 PIL.Image 模块功能的封装和简化，让开发者能够用更简洁的代码实现常见的图像处理需求。\nImageOps 模块的主要特点\n简化操作：将复杂的图像处理流程封装为单个函数调用\n标准化处理：提供标准化的图像处理方式\n实用功能：包含多种实用的图像处理功能\n与 PIL.Image 互补：补充了 PIL.Image 模块的功能\nImageOps 模块常用方法\n以下是 ImageOps 模块中最常用的方法及其功能说明：\n图像调整方法\n方法名称\n参数\n返回值\n功能描述\nautocontrast(image, cutoff=0, ignore=None)\nimage: 输入图像cutoff: 裁剪百分比(0-100)ignore: 忽略的背景色\n新图像对象\n自动调整图像对比度，使图像中最暗的像素变为黑色，最亮的像素变为白色\ncolorize(image, black, white)\nimage: 灰度图像black: 黑色替换颜色white: 白色替换颜色\n新图像对象\n将灰度图像着色，指定黑色和白色分别映射为何种颜色\nequalize(image, mask=None)\nimage: 输入图像mask: 可选掩码\n新图像对象\n对图像进行直方图均衡化处理，增强对比度\nmirror(image)\nimage: 输入图像\n新图像对象\n水平翻转图像(镜像效果)\n图像变换方法\n方法名称\n参数\n返回值\n功能描述\nexpand(image, border, fill=0)\nimage: 输入图像border: 边框宽度fill: 填充颜色\n新图像对象\n为图像添加边框\nfit(image, size, method=0, bleed=0.0, centering=(0.5, 0.5))\nimage: 输入图像size: 目标尺寸method: 缩放方法bleed: 裁剪比例centering: 中心点\n新图像对象\n将图像调整到指定大小，保持宽高比\nflip(image)\nimage: 输入图像\n新图像对象\n垂直翻转图像\nscale(image, factor, resample=3)\nimage: 输入图像factor: 缩放因子resample: 重采样方法\n新图像对象\n按比例缩放图像\n图像特效方法\n方法名称\n参数\n返回值\n功能描述\nposterize(image, bits)\nimage: 输入图像bits: 保留的位数(1-8)\n新图像对象\n减少图像中每个颜色通道的位数，产生海报化效果\nsolarize(image, threshold=128)\nimage: 输入图像threshold: 阈值(0-255)\n新图像对象\n反转所有高于阈值的像素值，产生曝光过度效果\ninvert(image)\nimage: 输入图像\n新图像对象\n反转图像颜色(负片效果)\n使用示例\n基本使用示例\n实例",
+    "examples": [
+     "from PIL import Image, ImageOps\n\n# 打开图像文件\nimage = Image.open(\"example.jpg\")\n\n# 自动调整对比度\nadjusted_image = ImageOps.autocontrast(image)\n\n# 保存处理后的图像\nadjusted_image.save(\"adjusted_example.jpg\")"
+    ]
+   },
+   {
+    "title": "Pillow ImagePalette 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imagepalette-module.html",
+    "body": "ImagePalette 是 Python Pillow 库中的一个模块，主要用于处理图像的调色板（Palette）。调色板是一组预定义的颜色集合，常用于索引图像（如 GIF 格式）中，以优化存储和显示效率。\ncode>ImagePalette 模块则专注于调色板的创建、修改和应用。\n导入语法：\nfrom PIL import Image\nImagePalette 的主要方法\n下表列出了 ImagePalette 模块的核心方法及其功能说明：\n方法\n功能说明\n参数说明\n返回值\nImagePalette(mode='RGB', palette=None)\n创建一个新的调色板对象\nmode：颜色模式（如 'RGB'、'RGBA'）palette：可选，初始调色板数据（字节序列）\nImagePalette 对象\ngetcolor(color)\n获取调色板中指定颜色的索引\ncolor：颜色值（如 (255, 0, 0) 表示红色）\n返回颜色的索引（int），若不存在则返回 None\ngetdata()\n获取调色板的原始字节数据\n无\n返回调色板的字节数据（bytes）\ntobytes()\n将调色板转换为字节序列\n无\n返回调色板的字节数据（bytes）\ntostring()\n（已弃用）同 tobytes()\n无\n返回调色板的字节数据（bytes）\n使用示例\n创建调色板\n实例",
+    "examples": [
+     "from PIL import ImagePalette\n\n# 创建一个 RGB 模式的调色板\npalette = ImagePalette(mode='RGB')\n\n# 添加颜色到调色板\npalette.getcolor((255, 0, 0))  # 添加红色\npalette.getcolor((0, 255, 0))  # 添加绿色\npalette.getcolor((0, 0, 255))  # 添加蓝色\n\n# 获取调色板数据\nprint(palette.getdata())  # 输出调色板的字节数据"
+    ]
+   },
+   {
+    "title": "Pillow ImagePath 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imagepath-module.html",
+    "body": "ImagePath 模块是 Python Pillow 图像处理库中的一个子模块，主要用于处理图像路径和坐标点相关的操作。它为开发者提供了便捷的方法来创建、操作和转换图像中的路径数据。\nImagePath 模块特别适用于需要处理矢量图形或路径数据的应用场景，比如：\n图像标注\n图形绘制\n路径转换\n坐标点计算\nImagePath 模块主要方法\n下表详细列出了 ImagePath 模块中的主要方法及其功能描述：\n方法名称\n参数\n返回值\n功能描述\nImagePath.Path(coords)\ncoords: 坐标序列(列表或元组)\nPath 对象\n创建一个新的路径对象\ngetbbox()\n无\n4元组 (x0, y0, x1, y1)\n返回路径的边界框\ntolist()\n无\n列表\n将路径转换为坐标点列表\ncompact(distance=2)\ndistance: 压缩距离阈值\n无\n压缩路径，移除相近的点\ntransform(matrix)\nmatrix: 变换矩阵\n无\n对路径应用仿射变换\nmap(function)\nfunction: 映射函数\n无\n对路径中的每个点应用函数\nImagePath 使用示例\n创建和操作路径\n实例",
+    "examples": [
+     "from PIL import ImagePath\n\n# 创建路径对象\npoints = [10, 10, 100, 10, 100, 100, 10, 100]\npath = ImagePath.Path(points)\n\n# 获取路径边界框\nbbox = path.getbbox()\nprint(f\"边界框: {bbox}\")  # 输出: (10, 10, 100, 100)\n\n# 转换为列表\npoint_list = path.tolist()\nprint(f\"路径点列表: {point_list}\")"
+    ]
+   },
+   {
+    "title": "Pillow ImageQt 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imageqt-module.html",
+    "body": "ImageQt 是 Python 图像处理库 Pillow 中的一个重要模块，它提供了将 Pillow 图像对象转换为 Qt 兼容格式的功能。这个模块在需要将 Pillow 处理的图像显示在 Qt 应用程序中时特别有用。\nImageQt 模块的主要作用是在 Pillow 和 Qt 之间建立桥梁，让开发者能够轻松地在 Qt 界面中显示和操作由 Pillow 处理的图像。\n导入 ImageQt 模块的方式：\nfrom PIL import ImageQt\n核心方法详解\nImageQt 模块提供了几个关键方法，下面是它们的详细说明：\n主要方法\n方法\n描述\n参数\n返回值\nImageQt.ImageQt(image)\n将 Pillow 图像转换为 Qt 图像对象\nimage: PIL.Image 对象\nQImage 或 QPixmap 对象\nImageQt.toqimage(image)\n将 Pillow 图像转换为 QImage 对象\nimage: PIL.Image 对象\nQImage 对象\nImageQt.fromqimage(qimage)\n将 QImage 对象转换回 Pillow 图像\nqimage: QImage 对象\nPIL.Image 对象\n辅助方法\n方法\n描述\n参数\n返回值\nImageQt.rgb(r, g, b, a=255)\n创建 RGBA 颜色值\nr,g,b,a: 0-255 的整数值\n32 位 RGBA 值\nImageQt.fromqpixmap(qpixmap)\n将 QPixmap 对象转换回 Pillow 图像\nqpixmap: QPixmap 对象\nPIL.Image 对象\n使用示例\n基本转换示例\n实例",
+    "examples": [
+     "from PIL import Image\nfrom PIL.ImageQt import ImageQt\nfrom PyQt5.QtWidgets import QApplication, QLabel\n\n# 加载图像\nimg = Image.open(\"example.jpg\")\n\n# 转换为 Qt 图像\nqimage = ImageQt(img)\n\n# 在 Qt 中显示\napp = QApplication([])\nlabel = QLabel()\nlabel.setPixmap(qimage)\nlabel.show()\napp.exec_()"
+    ]
+   },
+   {
+    "title": "Pillow ImageShow 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imageshow-module.html",
+    "body": "Pillow 是 Python 中一个强大的图像处理库，而 ImageShow 模块是 Pillow 库中的一个子模块，专门用于在本地环境中显示图像。这个模块提供了简单易用的接口，让开发者能够快速查看和验证图像处理的结果。\nImageShow 模块的主要特点：\n跨平台支持（Windows/macOS/Linux）\n自动检测系统可用的图像查看器\n支持多种显示后端\n简单直观的 API 设计\n导入模块的方式：\nfrom PIL import Image, ImageShow\n核心方法详解\n主要方法列表\n下表列出了 ImageShow 模块中的主要方法及其功能描述：\n方法名称\n参数\n返回值\n功能描述\nshow(image, title=None, **options)\nimage: 要显示的图像对象title: 窗口标题(可选)**options: 其他选项\n无\n显示给定的图像\nregister(viewer, order=1)\nviewer: 查看器类order: 优先级\n无\n注册一个新的图像查看器\nget_viewers()\n无\n列表\n返回所有已注册的查看器\nunregister(viewer)\nviewer: 要注销的查看器\n无\n注销指定的图像查看器\n方法使用示例\n基本图像显示\n实例",
+    "examples": [
+     "from PIL import Image, ImageShow\n\n# 打开图像文件\nimg = Image.open(\"example.jpg\")\n\n# 显示图像\nImageShow.show(img, title=\"示例图片\")"
+    ]
+   },
+   {
+    "title": "Pillow ImageStat 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imagestat-module.html",
+    "body": "ImageStat 专门用于计算图像的统计信息。\nImageStat 是 Pillow 库（PIL 的分支）的一部分，提供了对图像像素数据进行统计分析的功能。\n这个模块的主要作用是：\n计算图像或图像区域的统计特征\n获取像素值的平均值、中位数、标准差等统计量\n支持单通道和多通道图像的分析\n导入方法：\nfrom PIL import Image, ImageStat\nImageStat 模块的主要方法\n下表列出了 ImageStat 模块中最常用的方法及其功能描述：\n方法名称\n参数\n返回值\n功能描述\nImageStat.Stat(image)\nimage: Image 对象\nStat 实例\n创建图像统计对象，计算图像的基本统计信息\nmean\n无\n元组（各通道平均值）\n返回图像各通道像素值的平均值\nmedian\n无\n元组（各通道中位数）\n返回图像各通道像素值的中位数\nrms\n无\n元组（各通道RMS值）\n返回图像各通道像素值的均方根\nvar\n无\n元组（各通道方差）\n返回图像各通道像素值的方差\nstddev\n无\n元组（各通道标准差）\n返回图像各通道像素值的标准差\nextrema\n无\n元组（各通道极值）\n返回图像各通道的最小和最大像素值\ncount\n无\n元组（各通道像素数）\n返回图像各通道的像素计数\nsum\n无\n元组（各通道总和）\n返回图像各通道像素值的总和\nsum2\n无\n元组（各通道平方和）\n返回图像各通道像素值的平方和\n使用示例\n基本用法\n实例",
+    "examples": [
+     "from PIL import Image, ImageStat\n\n# 打开图像文件\nimage = Image.open(\"example.jpg\")\n\n# 创建统计对象\nstats = ImageStat.Stat(image)\n\n# 获取统计信息\nprint(\"平均值:\", stats.mean)\nprint(\"中位数:\", stats.median)\nprint(\"标准差:\", stats.stddev)"
+    ]
+   },
+   {
+    "title": "Pillow ImageTk 模块",
+    "url": "https://www.runoob.com/pillow/pillow-imagetk-module.html",
+    "body": "ImageTk 是 Python 图像处理库 Pillow（PIL 的分支）中的一个子模块，主要用于在 Tkinter GUI 程序中显示和处理图像。\nImageTk 提供了 PhotoImage 类的替代方案，支持更多图像格式（如 JPEG、PNG），并允许直接操作图像数据。\n导入方法：\nfrom PIL import Image, ImageTk\nImageTk 核心方法\n下表列出了 ImageTk 模块的主要方法及其功能说明：\n方法\n参数\n返回值\n功能描述\nImageTk.PhotoImage()\nimage（PIL.Image 对象）size（可选，调整大小）format（可选，指定格式）\nPhotoImage 对象\n将 PIL.Image 对象转换为 Tkinter 兼容的图像对象\nImageTk.BitmapImage()\nfile（位图文件路径）background（背景色）foreground（前景色）\nBitmapImage 对象\n加载位图（.xbm 格式）并转换为 Tkinter 图像对象\nImageTk.getimage()\nphotoimage（Tkinter.PhotoImage 对象）\nPIL.Image 对象\n将 Tkinter 的 PhotoImage 对象转回 PIL.Image 对象\n基础用法示例\n显示图片\n实例",
+    "examples": [
+     "from PIL import Image, ImageTk\nimport tkinter as tk\n\nroot = tk.Tk()\n\n# 加载图片并转换为 Tkinter 格式\nimage = Image.open(\"example.jpg\")\nphoto = ImageTk.PhotoImage(image)\n\n# 在 Label 中显示\nlabel = tk.Label(root, image=photo)\nlabel.pack()\n\nroot.mainloop()"
+    ]
+   },
+   {
+    "title": "Pillow 安装",
+    "url": "https://www.runoob.com/pillow/pillow-install.html",
+    "body": "在安装 Pillow 之前，请确保：\nPython 3.7 或更高版本（推荐最新版本）\npip 包管理器（通常随 Python 一起安装）\n根据平台不同，可能需要一些额外的系统库和开发工具\nPython 版本\nPillow 需要 Python 3.7 或更高版本。\n您可以通过以下命令检查 Python 版本：\npython --version\n# 或\npython3 --version\npip 工具\npip 是 Python 的包管理工具，通常随 Python 一起安装。\n检查 pip 是否可用：\npip --version\n# 或\npip3 --version\n如果未安装 pip，可以参考 官方 pip 安装指南 进行安装。\n安装 Pillow\n基本安装方法\n最简单的方法是使用 pip 安装：\npip install pillow\n或者针对 Python 3 明确指定：\npip3 install pillow\n如果您使用 Anaconda Python 发行版：\nconda install -c anaconda pillow\n指定版本安装\n如果需要安装特定版本的 Pillow：\npip install pillow==9.0.0\n在虚拟环境中安装\n建议在虚拟环境中安装 Pillow，以避免依赖冲突：\n# 创建虚拟环境\npython -m venv pillow_env\n\n# 激活虚拟环境\n# Windows:\npillow_env\\Scripts\\activate\n\n# 安装 Pillow\npip install Pillow\n从源代码安装\n对于高级用户，可以从源代码安装：\n下载源代码：\ngit clone https://github.com/python-pillow/Pillow.git\ncd Pillow\n安装依赖：\npip install -r requirements.txt\n编译安装：\npython setup.py install\n验证安装\n安装完成后，可以通过以下方式验证 Pillow 是否成功安装：\n方法 1：Python 交互式环境\n实例",
+    "examples": [
+     "import PIL\nprint(PIL.__version__)"
+    ]
+   },
+   {
+    "title": "Pillow 简介",
+    "url": "https://www.runoob.com/pillow/pillow-intro.html",
+    "body": "Pillow 是 Python 编程语言中的一个强大图像处理库，它是 Python Imaging Library (PIL) 的一个友好分支（fork）。\nPillow 为 Python 提供了广泛的图像处理功能，使开发者能够轻松地打开、操作和保存多种格式的图像文件。\nPillow 提供了广泛的图像处理功能，包括但不限于：\n图像编辑和处理：调整大小、裁剪、旋转、翻转等基本操作\n图像增强：调整亮度、对比度、锐化、模糊等\n网站和应用开发：处理用户上传的图像，生成缩略图等\n计算机视觉：作为图像预处理工具\n批量图像处理：自动化处理大量图像文件\n图像格式转换：在不同图像格式之间转换\n图像分析：提取图像统计数据和信息\n水印和图像合成：添加文本、logo或合并多个图像\n数据可视化：生成图表和视觉表示\n艺术创作和滤镜效果：应用各种视觉效果\nPillow 因其简单易用的 API 和强大的功能，成为 Python 生态系统中处理图像任务的首选库之一。\nPillow 的核心特点\n1. 多种图像格式支持\nPillow 支持多种常见和专业的图像格式：\n常见格式：JPEG, PNG, GIF, BMP, TIFF\n特殊格式：PPM, WEBP, PCX, ICO, PSD\n科学和专业格式：FITS, HDR, SGI\n2. 全面的图像处理功能\n几何变换：调整大小、裁剪、旋转、翻转、变形等\n颜色操作：转换模式（如 RGB、CMYK、灰度等）、颜色平衡调整\n滤镜和效果：模糊、锐化、边缘增强、轮廓检测等\n像素级访问和修改：直接操作图像的像素数据\n通道操作：分离和合并颜色通道\n3. 图像增强功能\n亮度调整\n对比度调整\n锐度调整\n色彩平衡\n饱和度调整\n4. 图像绘制功能\n通过 ImageDraw 模块提供绘图功能：\n绘制线条、矩形、椭圆、多边形等形状\n绘制文本，支持不同字体和字号\n创建空白画布并进行绘制\n5. 与其他库的集成\nPillow 可以与其他 Python 库无缝协作：\n与 NumPy 集成，支持数组操作\n与 Matplotlib 配合用于数据可视化\n可以作为 OpenCV 和其他计算机视觉库的补充\n6. 跨平台兼容性\n支持 Windows、macOS、Linux 等主要操作系统\n适配多种 Python 版本\n7. 优化的性能\nC 加速的核心功能，提供高效处理\n内存优化，适合处理大型图像文件\nPillow 与原始 PIL 的比较\nPillow 与 PIL 的关系\n特性\nPIL\nPillow\n活跃度\n停止维护\n活跃开发中\n最后版本\n1.1.7 (2009)\n持续更新\nPython 3 支持\n不支持\n完全支持\n安装方式\n复杂，需编译\n简单（pip install）\n文档\n有限，老旧\n全面，现代\n社区支持\n几乎没有\n活跃的社区\n安全性\n存在安全问题\n定期安全更新\n新特性\n停滞\n持续增加\nPIL (Python Imaging Library) 是 Python 最早的图像处理库，但已停止更新（最后版本 1.1.7）。\nPillow 是 PIL 的一个 兼容分支，修复了 PIL 的许多问题，并增加了对新 Python 版本的支持。\nPillow 的 API 与 PIL 几乎相同，所以大多数 PIL 代码可以直接在 Pillow 上运行。\n安装 Pillow 后，仍然使用 import PIL 或 from PIL import ... 来导入模块。\nPillow 的主要模块\nImage: 核心模块，提供图像类和基本操作\nImageChops: 进行通道操作和图像合成\nImageColor: 颜色处理和转换\nImageDraw: 在图像上绘制图形和文本\nImageEnhance: 图像增强操作\nImageFile: 处理图像文件\nImageFilter: 提供预定义的图像滤镜\nImageFont: 加载和渲染字体\nImageGrab: 屏幕抓取功能（仅限 Windows 和 macOS）\nImageMath: 像素级数学运算\nImageMorph: 形态学操作\nImageOps: 提供常用图像处理操作\nImagePalette: 处理调色板图像\nImagePath: 矢量图形功能\nImageQt: 与 PyQt/PySide 的集成\nImageSequence: 处理图像序列，如 GIF 动画\nImageStat: 统计图像数据\nImageTk: 与 Tkinter GUI 的集成\nImageWin: 与 Windows 系统的集成\nPillow 的优势和局限性\n优势\n易于使用：API 设计直观，易于上手\n功能全面：满足大多数图像处理需求\n文档完善：提供详细的文档和示例\n活跃的社区：持续维护和更新\n兼容性好：支持多种平台和 Python 版本\n轻量级：相比专业图像处理软件，资源占用少\n局限性\n性能：对于大规模图像处理任务，可能不如专用的 C++/C 库快速\n高级功能：某些高级图像处理功能相对有限，需结合其他库（如 OpenCV）使用\n视频处理：不提供视频处理功能\n3D 图像：不支持 3D 图像处理\n机器学习集成：没有内置的机器学习功能，需要与其他库（如 TensorFlow、PyTorch）集成\nPillow 的发展\nPillow 历史\n1995年：Fredrik Lundh 开始开发原始的 Python Imaging Library (PIL)\n2009年：原始 PIL 库的最后一个版本 1.1.7 发布，之后停止更新\n2010年：由于原始 PIL 开发停滞，社区开始寻找替代方案\n2011年：Alex Clark 和其他贡献者创建了 Pillow 作为 PIL 的一个分支，以继续维护和开发\n2012年：Pillow 1.0 发布\n2014年：Pillow 2.0 发布，停止支持 Python 2.5\n2015年：原始 PIL 的创建者 Fredrik Lundh 正式支持 Pillow 作为 PIL 的继任者\n2016年：Pillow 3.0 发布，增加了对 Python 3.5 的支持\n2020年：Pillow 7.0 发布，放弃对 Python 2.7 的支持\n2021年：Pillow 8.0 发布，增强了安全性和性能\n2022-2023年：Pillow 9.0 和 10.0 相继发布，增加了更多特性和优化\nPillow 的未来发展\n性能优化：持续改进处理速度和内存使用\n新格式支持：增加对新图像格式的支持\n安全增强：加强对恶意图像的防护\nAPI 改进：简化和改进 API 设计\n与新兴技术集成：更好地支持机器学习和 AI 应用场景",
+    "examples": []
+   },
+   {
+    "title": "Pillow 常用模块与方法",
+    "url": "https://www.runoob.com/pillow/pillow-module-method.html",
+    "body": "Pillow 提供了丰富的功能，包括图像打开、编辑、保存、格式转换等。\n本文将介绍 Pillow 的常用模块及方法，并提供简单的代码示例。\n常用模块\n模块名称\n功能类别\n核心功能\n常用方法/属性\n典型应用场景\nImage\n核心模块\n基础图像操作\nopen(), save(), resize(), crop(), rotate(), convert()\n图像加载/保存/尺寸调整/格式转换\nImageDraw\n绘图模块\n矢量图形绘制\nDraw(), line(), rectangle(), text(), ellipse()\n添加水印/绘制图形/标注图像\nImageFont\n字体支持\n文字渲染\ntruetype(), load_default(), getsize()\n自定义文字样式/计算文字区域\nImageFilter\n图像特效\n滤镜处理\nBLUR, SHARPEN, EMBOSS, GaussianBlur()\n图片模糊/锐化/艺术效果\nImageEnhance\n图像优化\n质量增强\nBrightness(), Contrast(), Color(), Sharpness()\n亮度/对比度/饱和度调整\nImageOps\n高级操作\n自动化处理\ngrayscale(), flip(), mirror(), invert()\n图像反相/镜像/强制灰度化\nImageChops\n通道运算\n数学运算\nadd(), subtract(), multiply(), difference()\n图像合成/差异检测/蒙版处理\nImageColor\n颜色系统\n颜色转换\ngetrgb(), getcolor(), colormap\nHEX/RGB/HSL颜色转换\nImageGrab\n屏幕捕获\n截图功能\ngrab(), grabclipboard()\n屏幕截图/剪贴板图像获取\nImageStat\n数据分析\n像素统计\nStat(), extrema(), mean(), rms()\n图像色彩分析/亮度检测\nImagePalette\n调色板\n索引色管理\nnew(), getcolor(), tobytes()\n8位色图像处理/GIF优化\nImagePath\n路径处理\n矢量路径\nPath(), getbbox(), compact()\n复杂形状绘制（需配合ImageDraw）\nImageSequence\n动态图像\n帧处理\nIterator(), all_frames()\nGIF动画分解/多帧TIFF处理\nImageMorph\n形态学\n图像变形\nMorphOp(), apply(), get_on_pixels()\n图案膨胀/腐蚀/结构分析\nImageShow\n图像预览\n快速显示\nshow(), register_viewer()\n调试时快速查看图像\nImageTk\nGUI集成\nTkinter支持\nPhotoImage(), BitmapImage()\n在Tkinter界面显示图像\nImageQt\nGUI集成\nQt支持\nImageQt(), toqimage()\nPyQt/PySide图像显示\nExifTags\n元数据\nEXIF读取\nTAGS, GPSTAGS\n读取相机参数/GPS信息\nPSDraw\n打印输出\nPostScript\nPSDraw(), begin_document()\n生成打印用矢量文件\nTiffTags\n元数据\nTIFF标签\nTIFFTAGS\n处理TIFF格式元数据\n模块工作过程\n高级处理组合：\n特效制作：ImageFilter + ImageEnhance\n图像分析：ImageStat + ImageChops\nGUI开发：ImageTk/ImageQt + ImageDraw\n专业领域支持：\n科学图像：TIFFTags + ImageSequence\n打印出版：PSDraw + ImageColor\n计算机视觉：ImageMorph + ImageOps\n常用方法\nPIL.Image 模块常用方法\n方法\n描述\n示例\nImage.open()\n打开图像文件\nimg = Image.open(\"example.jpg\")\nImage.save()\n保存图像文件\nimg.save(\"output.png\")\nImage.show()\n显示图像\nimg.show()\nImage.resize()\n调整图像尺寸\nnew_img = img.resize((200, 200))\nImage.rotate()\n旋转图像\nrotated_img = img.rotate(45)\nImage.crop()\n裁剪图像\ncropped_img = img.crop((50, 50, 200, 200))\n示例代码：\n实例",
+    "examples": [
+     "from PIL import Image\n\n# 打开图像\nimg = Image.open(\"example.jpg\")\n\n# 调整大小并保存\nresized_img = img.resize((300, 300))\nresized_img.save(\"resized_example.jpg\")\n\n# 旋转 90 度并显示\nrotated_img = img.rotate(90)\nrotated_img.show()"
+    ]
+   },
+   {
+    "title": "Pillow PSDraw 模块",
+    "url": "https://www.runoob.com/pillow/pillow-psdraw-module.html",
+    "body": "PSDraw 是 Python Pillow 库中的一个模块，专门用于生成 PostScript 格式的绘图文件。\nPostScript 是一种页面描述语言和编程语言，广泛用于桌面出版和打印领域。\nPSDraw 模块允许你：\n创建矢量图形\n绘制基本形状（线条、矩形、圆形等）\n添加文本内容\n控制页面布局和格式\n导入方法：\nfrom PIL import PSDraw\nPSDraw 模块的主要方法\n以下是 PSDraw 模块中常用的方法及其功能说明：\n方法\n描述\n参数\n返回值\nPSDraw.begin_document()\n开始一个新的 PostScript 文档\n无\n无\nPSDraw.end_document()\n结束当前 PostScript 文档\n无\n无\nPSDraw.setfont(font, size)\n设置文本字体和大小\nfont: 字体名称size: 字体大小(磅)\n无\nPSDraw.text(position, text)\n在指定位置绘制文本\nposition: (x,y)坐标text: 要绘制的文本\n无\nPSDraw.line(from_pos, to_pos)\n绘制一条直线\nfrom_pos: 起点坐标to_pos: 终点坐标\n无\nPSDraw.rectangle(box)\n绘制一个矩形\nbox: (x0,y0,x1,y1)坐标\n无\nPSDraw.setink(color)\n设置绘图颜色\ncolor: 颜色值(RGB元组或颜色名称)\n无\nPSDraw.setfill(onoff)\n设置是否填充形状\nonoff: 布尔值(True/False)\n无\n基本使用示例\n创建简单的 PostScript 文档\n实例",
+    "examples": [
+     "from PIL import PSDraw\n\n# 创建PSDraw对象\nps = PSDraw.PSDraw()  # 默认输出到标准输出\n\n# 开始文档\nps.begin_document()\n\n# 设置字体\nps.setfont(\"Helvetica\", 12)\n\n# 绘制文本\nps.text((100, 100), \"Hello, PostScript!\")\n\n# 绘制一条线\nps.line((100, 120), (200, 120))\n\n# 绘制一个矩形\nps.rectangle((100, 150, 200, 200))\n\n# 结束文档\nps.end_document()"
+    ]
+   },
+   {
+    "title": "Pillow TiffTags 模块",
+    "url": "https://www.runoob.com/pillow/pillow-tifftags-module.html",
+    "body": "TiffTags 是 Python Pillow（PIL）图像处理库中的一个子模块，专门用于处理 TIFF（Tagged Image File Format）图像文件中的标签（Tags）信息。\nTIFF 是一种灵活的位图图像格式，支持多种压缩方式和色彩空间，广泛应用于专业图像处理领域。\n在 TIFF 文件中，图像的各种属性和元数据都存储在标签中，TiffTags 模块提供了访问和操作这些标签的功能。\n导入方法：\nfrom PIL.TiffTags import TAGS_V2\n主要功能\nTiffTags 模块主要提供以下功能：\n定义标准的 TIFF 标签及其属性\n提供标签名称与 ID 之间的映射\n描述标签的数据类型和值范围\n支持自定义标签的处理\n核心方法详解\nTiffTags 模块的主要方法\n以下是 TiffTags 模块中最常用的方法及其说明：\n方法/属性\n描述\n返回值类型\n示例\nTiffTags.TAGS_V2\n包含所有标准 TIFF 标签的字典，键为标签 ID，值为标签信息\ndict\n{256: (256, 'ImageWidth', 4, 1, None), ...}\nTiffTags.TAGS\n旧版 TIFF 标签字典（兼容性保留）\ndict\n同 TAGS_V2\nTiffTags.LOOKUP\n标签名称到 ID 的映射字典\ndict\n{'ImageWidth': 256, ...}\nTiffTags.IFD\nIFD（图像文件目录）标签集合\ndict\n包含 IFD 相关标签\nTiffTags.CUSTOM_TAGS\n用于存储自定义标签的字典\ndict\n用户自定义\n标签信息结构\n每个 TIFF 标签的信息是一个包含 5 个元素的元组：\n标签 ID（整数）\n标签名称（字符串）\n数据类型（整数，对应 TIFF 规范）\n值的长度（整数）\n默认值或特殊说明（可选）\n数据类型对应表\n类型代码\n数据类型\n描述\n1\nBYTE\n8 位无符号整数\n2\nASCII\n7 位 ASCII 字符\n3\nSHORT\n16 位无符号整数\n4\nLONG\n32 位无符号整数\n5\nRATIONAL\n两个 LONG，表示分数\n6\nSBYTE\n8 位有符号整数\n7\nUNDEFINED\n8 位未定义数据\n8\nSSHORT\n16 位有符号整数\n9\nSLONG\n32 位有符号整数\n10\nSRATIONAL\n两个 SLONG，表示有符号分数\n11\nFLOAT\n32 位 IEEE 浮点数\n12\nDOUBLE\n64 位 IEEE 浮点数\n实际应用示例\n示例 1：查看所有 TIFF 标签\n实例",
+    "examples": [
+     "from PIL.TiffTags import TAGS_V2\n\n# 打印所有标准TIFF标签\nfor tag_id, tag_info in TAGS_V2.items():\n    print(f\"ID: {tag_id}, Name: {tag_info[1]}, Type: {tag_info[2]}\")"
+    ]
+   },
+   {
+    "title": "Pillow 教程",
+    "url": "https://www.runoob.com/pillow/pillow-tutorial.html",
+    "body": "Pillow 是 Python 中处理图像的主要库。\nPillow 是 Python Imaging Library (PIL) 的一个友好分支。\n由于原始的 PIL 已经不再维护，Pillow 接替了它的角色并继续活跃开发。\nPillow 提供了广泛的文件格式支持、高效的内部表示以及强大的图像处理功能。",
+    "examples": []
+   }
+  ]
+ }
+}

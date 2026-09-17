@@ -1,0 +1,218 @@
+{
+ "tutorial": {
+  "name": "ASP",
+  "category": "后端开发",
+  "desc": "ASP（Active Server Pages 动态服务器页面）是一种生成动态交",
+  "url": "https://www.runoob.com/asp/",
+  "chapters": [
+   {
+    "title": "ASP ADO",
+    "url": "https://www.runoob.com/asp/asp-ado.html",
+    "body": "ADO 用于从网页访问数据库。\n从 ASP 页面访问数据库\n从 ASP 页面内部访问数据库的通常方式是：\n创建至数据库的 ADO 连接\n打开数据库连接\n创建 ADO 记录集\n打开记录集\n从数据集中提取您需要的数据\n关闭数据集\n关闭连接\nADO 是什么？\nADO 是一项微软公司的技术\nADO 代表 ActiveX Data Objects\nADO 是一个微软的 Active-X 组件\nADO 会随着微软 IIS 自动安装\nADO 是一个访问数据库中数据的编程接口\n如果您想学习更多关于 ADO 的知识，请阅读我们的 ADO 教程。",
+    "examples": []
+   },
+   {
+    "title": "ASP AdRotator 组件",
+    "url": "https://www.runoob.com/asp/asp-adrotator.html",
+    "body": "ASP AdRotator 组件\n每当用户进入网站或刷新页面时，ASP AdRotator 组件就会创建一个 AdRotator 对象来显示一幅不同的图像。有关图像的信息是包含在一个文本文件中。\n注释：AdRotator 在 Internet Information Server 7 (IIS7) 中不起作用。\n语法\n<%\nset adrotator=server.createobject(\"MSWC.AdRotator\")\nadrotator.GetAdvertisement(\"textfile.txt\")\n%>",
+    "examples": []
+   },
+   {
+    "title": "ASP - AJAX 与 ASP",
+    "url": "https://www.runoob.com/asp/asp-ajax-asp.html",
+    "body": "AJAX 被用于创建交互性更强的应用程序。\nAJAX ASP 实例\n下面的实例将演示当用户在输入框中键入字符时，网页如何与 Web 服务器进行通信：\n实例\nStart typing a name in the input field below:\nSuggestions:",
+    "examples": []
+   },
+   {
+    "title": "AJAX 数据库实例",
+    "url": "https://www.runoob.com/asp/asp-ajax-database.html",
+    "body": "AJAX 可用来与数据库进行交互式通信。\nAJAX 数据库实例\n下面的实例将演示网页如何通过 AJAX 从数据库读取信息：\n实例\nCustomer info will be listed here...",
+    "examples": []
+   },
+   {
+    "title": "AJAX 简介",
+    "url": "https://www.runoob.com/asp/asp-ajax-intro.html",
+    "body": "AJAX 是一种在不重载整个页面的情况下对网页的某些部分进行更新的技术。\nAJAX 是什么？\nAJAX = Asynchronous JavaScript and XML.\nAJAX 是一种用于创建快速动态网页的技术。\nAJAX 通过在后台与服务器进行少量数据交换，使网页实现异步更新。这意味着可以在不重载整个页面的情况下，对网页的某些部分进行更新。\n传统的网页（不使用 AJAX）如果需要更新内容，必须重载整个页面。\n有很多使用 AJAX 的应用程序案例：Google Maps、Gmail、Youtube 和 Facebook。\nAJAX 如何工作\nAJAX 基于因特网标准\nAJAX 基于因特网标准，并使用以下技术组合：\nXMLHttpRequest 对象（与服务器异步交互数据）\nJavaScript/DOM（显示/取回信息）\nCSS（设置数据的样式）\nXML（常用作数据传输的格式）\nAJAX 应用程序与浏览器和平台无关的！\n谷歌搜索建议（Google Suggest）\n随着谷歌搜索建议功能在 2005 的发布，AJAX 开始流行起来。\n谷歌搜索建议（Google Suggest） \n使用 AJAX 创造出动态性极强的 web 界面：当您在谷歌的搜索框中键入内容时，JavaScript 会把字符发送到服务器，服务器则会返回建议列表。\n今天就开始使用 AJAX\n在我们的 ASP 教程中，我们将演示 AJAX 如何在不重载整个页面的情况下对网页的某些部分进行更新。服务器脚本我们将采用 ASP 来编写。\n如果您想要学习更多关于 AJAX 的知识，请访问我们的 AJAX 教程。",
+    "examples": []
+   },
+   {
+    "title": "ASP Application 对象",
+    "url": "https://www.runoob.com/asp/asp-applications.html",
+    "body": "在一起协同工作以完成某项任务的一组 ASP 文件称为一个应用程序。\nApplication 对象\nWeb 上的一个应用程序可以是一组 ASP 文件。这些 ASP 文件一起协同工作来完成某项任务。ASP 中的 Application 对象用于把这些文件捆绑在一起。\nApplication 对象用于存储和访问来自任何页面的变量，类似于 Session 对象。不同之处在于，所有的用户分享一个 Application 对象，而 Session 对象和用户的关系是一一对应的。\nApplication 对象存有会被应用程序中的许多页面使用的信息（比如数据库连接信息）。可以从任何的页面访问这些信息。同时您也可以在一个地方改变这些信息，随后这些改变会自动反映在所有的页面上。\n存储和取回 Application 变量\nApplication 变量可被应用程序中的任何页面访问和改变。\n您可以在 \"Global.asa\" 中创建 Application 变量，如下所示：\n<script language=\"vbscript\" runat=\"server\">\nSub Application_OnStart\napplication(\"vartime\")=\"\"\napplication(\"users\")=1\nEnd Sub\n</script>",
+    "examples": []
+   },
+   {
+    "title": "ASP Browser Capabilities 组件",
+    "url": "https://www.runoob.com/asp/asp-browser.html",
+    "body": "ASP Browser Capabilities 组件\nASP Browser Capabilities 组件会创建一个 BrowserType 对象，这个对象可测定访客浏览器的类型、性能和版本号。\n当浏览器连接到服务器时，就会向服务器发送一个 HTTP User Agent 报头。这个报头包含关于浏览器的信息。\nBrowserType 对象会把报头中的信息与服务器上名为 \"Browscap.ini\" 的文件中的信息作比较。\n如果报头中的浏览器类型和版本号与 \"Browsercap.ini\" 文件中信息匹配，那么我们就可以使用 BrowserType 对象列出这个匹配的浏览器的相关属性。如果上述情况不匹配，这个对象会把每个属性设置为 \"UNKNOWN\"。\n语法\n<%\nSet MyBrow=Server.CreateObject(\"MSWC.BrowserType\")\n%>",
+    "examples": []
+   },
+   {
+    "title": "ASP Content Linking 组件",
+    "url": "https://www.runoob.com/asp/asp-contentlinking.html",
+    "body": "尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "ASP Content Rotator 组件 (ASP 3.0)",
+    "url": "https://www.runoob.com/asp/asp-contentrotator.html",
+    "body": "ASP Content Rotator 组件\nASP Content Rotator 组件创建一个 ContentRotator 对象，每当访客进入网站或刷新页面时，该对象就会显示一段不同的内容字符串。\n有关内容字符串的信息是包含在一个名为内容目录文件（Content Schedule File）的文本文件中。\n内容字符串可包含 HTML 标签，这样您就可以显示 HTML 可呈现的任何类型的内容：文本、图像、颜色或者超链接。\n语法\n<%\nSet cr=Server.CreateObject(\"MSWC.ContentRotator\")\n%>",
+    "examples": []
+   },
+   {
+    "title": "ASP Cookies",
+    "url": "https://www.runoob.com/asp/asp-cookies.html",
+    "body": "cookie 常用于识别用户。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "ASP 实例",
+    "url": "https://www.runoob.com/asp/asp-examples.html",
+    "body": "基础\n用ASP写文本\n向文本添加HTML\n变量\n声明变量\n声明数组\n循环生成HTML标题\n使用Vbscript制作基于时间的问候语\n使用JavaScript制作基于时间的问候语\nDate/Time 函数(VBScript)\n日期和时间\n获得天的名字\n获得月的名字\n获得今天的月和天\n3000年倒计时\n从今天起计算N天后\n格式化日期和时间\n这是一个日期吗？\n其他函数(VBScript)\n大写或小写的字符串\n字符串去掉前后空格\n如何转化一个字符串？\n四舍五入\n一个随机数\n从一个字符串返回特定的字符\n替换字符串的特定字符\n从字符串中返回指定数目的字符\n程序\n调用使用VBScript的子程序\n调用使用JavaScript的子程序\n调用使用VBScript和JavaScript的子程序\n表单\n使用method=\"get\"的表单\n使用method=\"post\"的表单\n使用单选按钮的表单\nCookie\nWelcome cookie\nResponse 对象\n使用ASP写文本\n在ASP中使用HTML标签格式化文本\n将用户重定向至不同的URL\n显示随机的链接\n控制缓存\n清空缓存\n在处理过程中终止脚本并返回结果\n设置在页面失效前把页面在浏览器中缓存多少分钟\n设置页面缓存在浏览器中的失效日期或时间\n检查用户是否仍然与服务器相连\n设置内容类型\n设置字符集\nRequest 对象\n链接url传参数\n一个QueryString集合的简单应用\n从表单获取信息\n从表单获取更多信息\n表单集合的简单应用\n如何使用来自表单的信息\n从表单获取更多信息\n带单选按钮的表单\n带复选框的表单\n如何获得访问者的浏览器类型，IP地址或更多\n获取所有要求的servervariables\nWelcome cookie\n用户发送的字节总数\nSession 对象\n返回SessionID\nsession 的超时\nServer 对象\n此文件最后被修改的时间是？\n打开并读取某个文本文件\n自制的点击计数器\nFileSystem 对象\n指定的文件存在吗？\n指定的文件夹存在吗？\n指定的驱动器存在吗？\n取得某个指定驱动器的名称\n取得某个指定路径的父文件夹的名称\n取得文件扩展名\n取得文件或文件夹的基名称\nTextStream 对象\n读文本文件\n读文本文件中的一个部分\n读文本文件中的一行\n读取文本文件的所有行\n略过文本文件的一部分\n略过文本文件的一行\n返回行数\n取得列数\nDrive 对象\n取得指定驱动器的可用空间数\n取得指定驱动器的剩余空间容量\n取得指定驱动器的总容量\n取得指定驱动器的驱动器字母\n取得指定驱动器的驱动器类型\n取得指定驱动器的文件系统信息\n驱动器是否已就绪？\n取得指定驱动器的路径\n取得指定驱动器的根文件夹\n取得指定驱动器的序列号\nFile 对象\n文件何时被创建\n此文件何时被修改\n此文件何时被访问过\n返回指定文件的属性\nDictionary 对象\n指定的键存在吗？\n返回一个所有项目的数组\n返回一个所有键的数组\n返回某个项目的值\n设置一个键\n返回键/项目对的数目\nAdRotator 组件\n简单的AdRotator实例\nBrowser Capabilities 组件\n每一个访问网站的浏览器的类型、性能以及版本号\nContentRotator 组件\nContent Rotator 组件\nContent Linking 组件\nContent Linking 组件\nContent Linking 组件2",
+    "examples": []
+   },
+   {
+    "title": "ASP Global.asa 文件",
+    "url": "https://www.runoob.com/asp/asp-globalasa.html",
+    "body": "Global.asa 文件\nGlobal.asa 文件是一个可选的文件，它可包含被 ASP 应用程序中每个页面访问的对象、变量和方法的声明。\n所有合法的浏览器脚本（JavaScript、VBScript、JScript、PerlScript 等等）都能在 Global.asa 中使用。\nGlobal.asa 文件只能包含下列内容：\nApplication 事件\nSession 事件\n<object> 声明\nTypeLibrary 声明\n#include 指令\n注释：Global.asa 文件必须存放在 ASP 应用程序的根目录中，而且每个应用程序只能有一个 Global.asa 文件。\nGlobal.asa 中的事件\n在 Global.asa 中，您可以告诉 application 和 session 对象当 application/session 开始时做什么，当 application/session 结束时做什么。完成这项任务的代码被放置在事件句柄中。Global.asa 文件能包含四种类型的事件：\nApplication_OnStart - 此事件会在第一个用户调用 ASP 应用程序的第一个页面时发生。此事件会在 Web 服务器重启或者 Global.asa 文件被编辑之后发生。\"Session_OnStart\" 事件会在此事件发生之后立即发生。\nSession_OnStart - 此事件会在每当新用户请求他（她）在 ASP 应用程序中的第一个页面时发生。\nSession_OnEnd - 此事件会在每当用户结束 session 时发生。在规定的时间（默认的时间为 20 分钟）内如果用户没有请求任何页面，用户 session 就会结束。\nApplication_OnEnd - 此事件会在最后一个用户结束其 session 之后发生。典型的情况是，此事件会在 Web 服务器停止时发生。这个子程序用于在应用程序停止后清除设置，比如删除记录或者向文本文件中写入信息。\n一个 Global.asa 文件可能如下所示：\n<script language=\"vbscript\" runat=\"server\">\nsub Application_OnStart\n 'some code\nend sub\nsub Application_OnEnd\n 'some code\nend sub\nsub Session_OnStart\n 'some code\nend sub\nsub Session_OnEnd\n 'some code\nend sub\n</script>",
+    "examples": []
+   },
+   {
+    "title": "ASP 引用文件",
+    "url": "https://www.runoob.com/asp/asp-incfiles.html",
+    "body": "#include 指令\n通过使用 #include 指令，您可以在服务器执行 ASP 文件之前，把另一个 ASP 文件的内容插入到这个 ASP 文件中。\n#include 指令用于创建函数、页眉、页脚或者其他多个页面上需要重复使用的元素等。\n如何使用 #include 指令\n这里有一个名为 \"mypage.asp\" 的文件：\n<!DOCTYPE html><html>\n<body> \n<h3>Words of Wisdom:</h3>\n<p><!--#include file=\"wisdom.inc\"--></p>\n<h3>The time is:</h3>\n<p><!--#include file=\"time.inc\"--></p>\n</body>\n</html>",
+    "examples": []
+   },
+   {
+    "title": "ASP 表单和用户输入",
+    "url": "https://www.runoob.com/asp/asp-inputforms.html",
+    "body": "Request.QueryString 和 Request.Form 命令用于从表单取回信息，比如用户的输入。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "在自己的 PC 上运行 ASP",
+    "url": "https://www.runoob.com/asp/asp-install.html",
+    "body": "您可以在自己的 PC 上运行 ASP 。\n把自己的 Windows PC 作为 Web 服务器\n如果您安装了 IIS 或 PWS，就可以把自己的 PC 配置为一台 Web 服务器。\nIIS 或 PWS 可以把您的计算机转变为 Web 服务器。\n微软的 IIS 和 PWS 是免费的 Web 服务器组件。\nIIS - Internet Information Server（Internet 信息服务）\nIIS 是一个基于因特网的服务的集合，由微软开发，在微软 Windows 平台上使用。\nWindows 2000、XP、Vista 以及 Windows 7 均提供 IIS。Windows NT 也可用 IIS。\nIIS 很容易安装，是开发和测试 web 应用程序的理想工具。\nPWS - Personal Web Server\nPWS 用于更老的 Windows 系统，比如 Windows 95、98 以及 NT。\nPWS 很容易安装，可用于开发和测试包含 ASP 的 Web 应用程序。\n我们不推荐使用 PWS，除非是用于培训。它已经过时，并存在安全问题。\nWindows Web 服务器版本\nWindows 7（所有版本）自带 IIS 7.5\nWindows Vista 商业，企业和旗舰版自带 IIS 7\nWindows Vista 高级家庭版自带 IIS 7\nWindows Vista 家庭版不支持 PWS 或 IIS\nWindows XP 专业版自带 IIS 5.1\nWindows XP 家庭版不支持 IIS 或 PWS\nWindows 2000 专业版自带 IIS 5.0\nWindows NT 专业版自带 IIS 3，同时还支持 IIS 4\nWindows NT 工作站支持 PWS 和 IIS 3\nWindows ME 不支持 PWS 或 IIS\nWindows 98 自带 PWS\nWindows 95 支持 PWS\n如何在 Windows 7 和 Windows Vista 上安装 IIS\n请根据以下几个步骤来安装 IIS：\n从开始菜单打开控制面板\n双击\"程序和功能\"\n点击\"打开或关闭 Windows 功能\"\n选择\"Internet 信息服务(IIS)\"的复选框，然后点击确定\n在您安装完成 IIS 之后，请确保安装所有补丁包（运行 Windows 更新）。\n如何在 Windows XP 和 Windows 2000 上安装 IIS\n请根据以下几个步骤来安装 IIS：\n在开始菜单上，点击设置，并选择控制面板\n双击\"添加/删除程序\"\n点击\"添加/删除 Windows 组件\"\n点击\"Internet 信息服务(IIS)\"\n点击\"详细信息\"\n选择\"万维网服务\"复选框，点击确定\n在 Windows 组件中，单击\"下一步\"安装IIS\n在您安装完成 IIS 之后，请确保安装所有补丁包（运行 Windows 更新）。\n测试您的安装\n在您安装完 IIS 或 PWS 之后，按照下面的步骤测试是否安装成功：\n在您的硬盘中查找名为 Inetpub 的文件夹\n打开 Inetpub 文件夹，找到名为 wwwroot 的文件夹\n在 wwwroot下创建一个新文件夹，比如 \"MyWeb\"\n使用文本编辑器编写几行 ASP 代码，将这个文件取名为 \"test1.asp\" 保存在 \"MyWeb\" 文件夹中\n确保您的 Web 服务器正在运行，使用下面的方法确认它的运行状态：进入控制面板，然后是管理工具，然后双击\"IIS 管理器\"图标。\n打开您的浏览器，在地址栏键入 \"http://localhost/MyWeb/test1.asp\"，就可以看到您的第一个 ASP 页面了。\n注释：在您的开始菜单或者任务栏中查找 IIS (或 PWS) 符号。程序提供了开启和停止 Web 服务器，启用和禁用 ASP，以及其他更多的功能。\n如何在 Windows 95、Windows 98 和 Windows NT 上安装 PWS\nWindows 98：打开您的 Windows CD 上的 Add-ons 文件夹，找到 PWS 文件夹并运行其中的 setup.exe 文件来安装 PWS。\nWindows 95 或 Windows NT：从微软的站点下载 \"Windows NT 4.0 Option Pack\" 来安装 PWS。\n根据前面的描述测试您的安装。\n如何在 Windows Server 2003 上安装 IIS\n当您启动 Windows Server 2003 后，您会看到服务器管理向导\n如果向导没有显示，请打开管理工具，然后选择配置您的服务器向导\n在向导中，点击 Add or Remove a Role，点击下一步\n选择自定义配置，点击下一步\n选择应用程序服务器角色，点击下一步\n选择启用 ASP.NET，点击下一步\n现在，向导会请求 Server 2003 CD。插入 CD 后继续运行向导直到完成，然后点击完成按钮\n向导现在应该显示\"应用程序服务器角色已安装\"\n点击管理此应用程序服务器打开应用程序服务器管理控制台(MMC)\n展开 Internet 信息服务(IIS)管理器，然后展开您的服务器，然后是站点文件夹\n您会看到默认的网站，并且它的状态应该是运行中\nIIS 正在运行中！\n在 Internet 信息服务(IIS)管理器中点击 Web 服务扩展文件夹\n这里，您将看到 Active Server Pages 是被禁止的（这是 IIS 6 的默认配置）\n选中 Active Server Pages，并且点击允许按钮\n这样 ASP 就被激活了！",
+    "examples": []
+   },
+   {
+    "title": "ASP 简介",
+    "url": "https://www.runoob.com/asp/asp-intro.html",
+    "body": "ASP 文件可包含文本、HTML 标签和脚本。ASP 文件中的脚本可在服务器上执行。\n您应当具备的基础知识\n在继续学习之前，您需要对以下知识有基本的了解：\nHTML / XHTML\n脚本语言，比如 JavaScript 或者 VBScript\n如果您希望首先学习这些项目，请在我们的 首页 访问这些教程。\nASP 是什么？\nASP 代表 Active Server Pages （动态服务器页面）\nASP 是一项微软公司的技术\nASP 是在 IIS 中运行的程序\nIIS 代表 Internet Information Services （Internet 信息服务）\nIIS 是 Windows 2000 的免费组件\nIIS 同时也是 Windows NT 4.0 Option Pack 的组成部分\n此可选包可从微软站点 下载\nPWS 的体积更小 - 不过拥有 IIS 的完整功能\nPWS 可在您的 Windows 95/98 CD 中找到\nASP 兼容性\n运行 IIS，需要 Windows NT 4.0 或更高的版本\n运行 PWS，需要 Windows 95 或更高的版本\nChiliASP 是一种在非 Windows 操作系统上运行 ASP 的技术\nInstantASP 是另一种在非 Windows 操作系统上运行 ASP 的技术\nASP 文件是什么？\nASP 文件与 HTML 文件类似\nASP 文件可包含文本、HTML、XML 和脚本\nASP 文件中的脚本可在服务器上执行\nASP 文件的文件扩展名是 \".asp\"\nASP 和 HTML 有何不同？\n当浏览器请求某个 HTML 文件时，服务器会返回这个文件\n当浏览器请求某个 ASP 文件时，IIS 将这个请求传递给 ASP 引擎。ASP 引擎会逐行地读取这个 ASP 文件，并执行文件中的脚本。最后，ASP 文件将以纯 HTML 的形式返回到浏览器。\nASP 能为您做什么？\n动态地编辑、改变或者添加网页的任何内容\n对由用户从 HTML 表单提交的查询或者数据作出响应\n访问数据或者数据库，并向浏览器返回结果\n为不同的用户定制网页，提高这些页面的可用性\n用 ASP 替代 CGI 和 Perl 的优势在于它的简易性和速度\n提供安全性保障 - •由于 ASP 代码不能从浏览器查看\n优秀的 ASP 编程可最小化网络流量\n注释：由于 ASP 脚本在服务器上运行，浏览器无需支持脚本就可以显示 ASP 文件！",
+    "examples": []
+   },
+   {
+    "title": "ASP 子程序",
+    "url": "https://www.runoob.com/asp/asp-procedures.html",
+    "body": "在 ASP 中，您可通过 VBScript 调用 JavaScript 子程序，反之亦然。\n子程序\nASP 源代码可包含子程序和函数：\n实例\n演示实例 »",
+    "examples": [
+     "<!DOCTYPE html><html>\n<head>\n<%\nsub vbproc(num1,num2)\nresponse.write(num1*num2)\nend sub\n%>\n</head>\n<body>\n<p>Result: <%call vbproc(3,4)%></p>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "ASP 快速参考",
+    "url": "https://www.runoob.com/asp/asp-quickref.html",
+    "body": "来自菜鸟教程的 ASP 快速参考。打印出来，放入口袋，以备随时使用。\n基础语法\nASP 脚本由 <% 和 %> 包围。向浏览器写输出：\n<html>\n<body>\n<%\nresponse.write(\"Hello World!\")\n%>\n</body>\n</html>\nASP 中的默认语言是 VBScript。如需使用其他脚本语言，请在 ASP 页面顶部插入一段语言说明：\n<%@ language=\"javascript\" %>\n<html>\n<body>\n<%\n....\n%>\n表单和用户输入\nRequest.QueryString 用于收集 method=\"get\" 的表单中的值。使用 GET 方法从表单传送的信息对所有的用户都是可见的（出现在浏览器的地址栏），并且对所发送信息的量也有限制。\nRequest.Form 用于收集使用 method=\"post\" 的表单中的值。使用 POST 方法从表单传送的信息对用户是不可见的，并且对所发送信息的量没有限制。\nASP Cookies\ncookie 常用用于识别用户。cookie 是一种服务器留在用户计算机上的小文件。每当同一台计算机通过浏览器请求页面时，这台计算机将会发送 cookie。\nResponse.Cookies 命令用于创建 cookie：\n<%\nResponse.Cookies(\"firstname\")=\"Alex\"\nResponse.Cookies(\"firstname\").Expires=\"May 10,2002\"\n%>\n注释：Response.Cookies 命令必须出现在 <html> 标签之前！\n\"Request.Cookies\" 命令用于取回 cookie 值：\n<%\nfname=Request.Cookies(\"firstname\")\nresponse.write(\"Firstname=\" & fname)\n%>\n引用文件\n通过使用 #include 指令，您可以在服务器执行 ASP 文件之前，把另一个 ASP 文件的内容插入到这个 ASP 文件中。#include 指令用于创建函数、页眉、页脚或者其他多个页面上需要重复使用的元素等。\n语法：\n<!--#include virtual=\"somefile.inc\"-->\n或者\n<!--#include file =\"somefile.inc\"-->\n请使用关键词 virtual 来指示以虚拟目录开始的路径。如果一个名为 \"header.inc\" 的文件位于虚拟目录 /html 中，下面这行代码会插入 \"header.inc\" 文件中的内容：\n<!-- #include virtual =\"/html/header.inc\" -->\n请使用关键词 file 来指示一个相对路径。相对路径是以含有引用文件的目录开始的。如果您在 html 目录中有一个文件，且 \"header.inc\" 文件位于 html 头部，下面这行代码将在您的文件中插入 \"header.inc\" 文件中的内容：\n<!-- #include file =\"headersheader.inc\" -->\n请使用带有语法 (..) 的关键词 file 来引用更高层级目录中的文件。\nGlobal.asa\nGlobal.asa 文件是一个可选的文件，它可包含被 ASP 应用程序中每个页面访问的对象、变量和方法的声明。\n注释：Global.asa 文件必须存放在 ASP 应用程序的根目录中，而且每个应用程序只能有一个 Global.asa 文件。\nGlobal.asa 文件只能包含下列内容：\nApplication 事件\nSession 事件\n<object> 声明\nTypeLibrary 声明\n#include 指令\nApplication 和 Session 事件\n在 Global.asa 中，您可以告诉 application 和 session 对象当 application/session 开始时做什么，当 application/session 结束时做什么。完成这项任务的代码被放置在事件句柄中。注释：由于我们无法在 Global.asa 文件中使用 ASP 的脚本分隔符 (<% 和 %>) 插入脚本，我们需要把子例程放置在 HTML 的 <script> 标签内部：\n<script language=\"vbscript\" runat=\"server\">\n sub Application_OnStart\n ' some code\n end sub\n sub Application_OnEnd\n ' some code\n end sub\n sub Session_OnStart\n ' some code\n end sub\n sub Session_OnEnd\n ' some code\n end sub\n </script>\n<object> 声明\n可通过使用 <object> 标签在 Global.asa 文件中创建带有 session 或者 application 作用域的对象。注释：<object> 标签应位于 <script> 标签外部！\n语法：\n<object runat=\"server\" scope=\"scope\" id=\"id\"\n {progid=\"progID\"|classid=\"classID\"}>\n .......\n </object>\nTypeLibrary 声明\nTypeLibrary（类型库）是一个容器，其中装有对应于 COM 对象的 DLL 文件。通过在 Global.asa 文件中包含对 TypeLibrary 的调用，可以访问 COM 对象的常量，同时 ASP 代码也能更好地报告错误。如果您的 Web 应用程序依赖于已在类型库中声明的数据类型的 COM 对象，您可以在 Global.asa 中对类型库进行声明。\n语法：\n<!--METADATA TYPE=\"TypeLib\"\n file=\"filename\"\n uuid=\"typelibraryuuid\"\n version=\"versionnumber\"\n lcid=\"localeid\"\n -->\nSession 对象\nSession 对象用于存储关于用户会话（session）的信息，或者更改用户会话（session）设置。存储于 Session 对象中的变量存储单一用户的信息，并且对于应用程序中的所有页面都是可用的。\n集合\nContents - 包含所有通过脚本命令追加到 session 的条目。\nStaticObjects - 包含了所有使用 HTML 的 <object> 标签追加到 session 的对象。\nContents.Remove(item/index) - 从 Contents 集合删除一个项目。\nContents.RemoveAll() - 从 Contents 集合删除全部项目。\n属性\nCodePage - 规定显示动态内容时使用的字符集。\nLCID - 设置用于显示动态内容的区域标识符。\nSessionID - 返回 session id\nTimeout - 设置或返回 session 的超时时间。\n方法\nAbandon - 撤销 session 对象中的所有对象。\nApplication 对象\n在一起协同工作以完成某项任务的一组 ASP 文件称为一个应用程序。Application 对象用于把这些文件捆绑在一起。所有的用户分享一个 Application 对象。Application 对象存有会被应用程序中的许多页面使用的信息（比如数据库连接信息）。\n集合\nContents - 包含所有通过脚本命令追加到应用程序中的项目。\nStaticObjects - 包含所有使用 HTML 的 <object> 标签追加到应用程序中的对象。\nContents.Remove - 从 Contents 集合中删除一个项目。\nContents.RemoveAll - 从 Contents 集合中删除所有的项目。\n方法\nLock - 防止用户修改 Application 对象中的属性。\nUnlock - 允许用户修改 Application 对象中的属性。\nResponse 对象\nResponse 对象用于从服务器向用户发送输出的结果。\n集合\nCookies(name) - 设置 cookie 的值。如果 cookie 不存在，则创建 cookie ，并设置指定的值。\n属性\nBuffer - 规定是否缓冲输出。当输出设置缓冲时，服务器会阻止向浏览器的响应，直到所有的服务器脚本均被处理，或者直到脚本调用了 Flush 或 End 方法。如果要设置此属性，它应当位于 ASP 文件中的 <html> 标签之前。\nCacheControl - 设置代理服务器是否可以缓存由 ASP 产生的输出。如果设置为 Public，则代理服务器会缓存页面。\nCharset(charset_name) - 将字符集的名称（比如 \"ISO8859-1\"）追加到 Response 对象中的内容类型报头。\nContentType - 设置 Response 对象的 HTTP 内容类型（比如 \"text/html\", \"image/gif\", \"image/jpeg\", \"text/plain\"）。默认是 \"text/html\"。\nExpires - 设置页面在失效前的浏览器缓存时间（分钟）。\nExpiresAbsolute - 设置浏览器上页面缓存失效的日期和时间。\nIsClientConnected - 指示客户端是否已从服务器断开。\nPics(pics_label) - 向 response 报头的 PICS 标签追加值。\nStatus - 规定由服务器返回的状态行的值。\n方法\nAddHeader(name, value) - 向 HTTP 响应添加新的 HTTP 报头和值。\nAppendToLog string - 向服务器记录项目（server log entry）的末端添加字符串。\nBinaryWrite(data_to_write) - 在没有任何字符转换的情况下直接向输出写数据。\nClear - 清除已缓冲的输出。使用该方法来处理错误。如果 Response.Buffer 未设置为 true，该方法将产生 run-time 错误。\nEnd - 停止处理脚本，并返回当前的结果。\nFlush - 立即发送已缓冲的输出。如果 Response.Buffer 未设置为 true，该方法将产生 run-time 错误。\nRedirect(url) - 把用户重定向到另一个 URL。\nWrite(data_to_write) - 向用户写文本。\nRequest 对象\n当浏览器向服务器请求页面时，这个行为就被称为一个 request（请求）。Request 对象用于从用户那里获取信息。\n集合\nClientCertificate - 包含了存储在客户证书中的所有的字段值。\nCookies(name) - 包含了 HTTP 请求中发送的所有的 cookie 值。\nForm(element_name) - 包含了使用 post 方法由表单发送的所有的表单（输入）值。\nQueryString(variable_name) - 包含了 HTTP 查询字符串中所有的变量值。\nServerVariables(server_variable) - 包含了所有的服务器变量值。\n属性\nTotalBytes - 返回在请求正文中客户端发送的字节总数。\n方法\nBinaryRead - 取回作为 post 请求的一部分而从客户端发送至服务器的数据。\nServer 对象\nServer 对象用于访问服务器上的属性和方法。\n属性\nScriptTimeout - 设置或返回在一段脚本终止前它所能运行时间（秒）的最大值。\n方法\nCreateObject(type_of_object) - 创建对象的实例。\nExecute(path) - 从 ASP 文件内部执行另一个 ASP 文件。在被调用的 ASP 文件执行完毕后，控制权返回原先的 ASP 文件。\nGetLastError() - 返回可描述已发生错误状态的 ASPError 对象。\nHTMLEncode(string) - 对字符串应用 HTML 编码。\nMapPath(path) - 把相对或虚拟路径映射为物理路径。\nTransfer(path) - 把所有状态信息发送到另一个文件以备处理。在传送之后，程序的控制权不会返回原先的 ASP 文件。\nURLEncode(string) - 对字符串应用 URL 编码规则。",
+    "examples": []
+   },
+   {
+    "title": "ASP Dictionary 对象",
+    "url": "https://www.runoob.com/asp/asp-ref-dictionary.html",
+    "body": "Dictionary 对象用于在名称/值对中存储信息。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "ASP Drive 对象",
+    "url": "https://www.runoob.com/asp/asp-ref-drive.html",
+    "body": "Drive 对象用于返回关于本地磁盘驱动器或者网络共享驱动器的信息。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "ASP ASPError 对象",
+    "url": "https://www.runoob.com/asp/asp-ref-error.html",
+    "body": "ASPError 对象用于显示在 ASP 文件的脚本中发生的错误信息。\nASPError 对象\nASPError 对象在 ASP 3.0 中生效，且在 IIS5 及更高版本中可用。\nASPError 对象用于显示在 ASP 文件的脚本中发生的任何错误的详细信息。\n注释：当 Server.GetLastError 被调用时，ASPError 对象就会被创建，因此只能通过使用 Server.GetLastError 方法来访问错误信息。\nASPError 对象的属性描述如下（所有属性都是可读的）：\n属性\n属性\n描述\nASPCode\n返回由 IIS 生成的错误代码。\nASPDescription\n返回错误的详细信息（如果错误和 ASP 相关）。\nCategory\n返回错误来源。(错误是由 ASP、脚本语言还是对象引起的？）\nColumn\n返回在出错文件中的列位置。\nDescription\n返回关于错误的简短描述。\nFile\n返回出错 ASP 文件的名称。\nLine\n返回错误所在的行数。\nNumber\n返回关于错误的标准 COM 错误代码。\nSource\n返回错误所在行的实际的源代码。",
+    "examples": []
+   },
+   {
+    "title": "ASP File 对象",
+    "url": "https://www.runoob.com/asp/asp-ref-file.html",
+    "body": "File 对象用于返回关于指定文件的信息。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "ASP FileSystemObject 对象",
+    "url": "https://www.runoob.com/asp/asp-ref-filesystem.html",
+    "body": "FileSystemObject 对象用于访问服务器上的文件系统。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "ASP Folder 对象",
+    "url": "https://www.runoob.com/asp/asp-ref-folder.html",
+    "body": "Folder 对象用于返回关于指定文件夹的信息。\nFolder 对象\nFolder 对象用于返回关于指定文件夹的信息。\n如需操作 Folder 对象的相关属性和方法，您需要通过 FileSystemObject 对象来创建 Folder 对象的实例。首先，创建一个 FileSystemObject 对象，然后通过 FileSystemObject 对象的 GetFolder 方法来实例化这个 Folder 对象。\n下面的代码使用 FileSystemObject 对象的 GetFolder 方法来实例化 Folder 对象，并使用 DateCreated 属性来返回指定文件夹的创建日期：\n<%\nDim fs,fo\nSet fs=Server.CreateObject(\"Scripting.FileSystemObject\")\nSet fo=fs.GetFolder(\"c:\\test\")\nResponse.Write(\"Folder created: \" & fo.DateCreated)\nset fo=nothing\nset fs=nothing\n%>\n输出：\nFolder created: 10/22/2008 10:01:19 AM",
+    "examples": []
+   },
+   {
+    "title": "ASP Request 对象",
+    "url": "https://www.runoob.com/asp/asp-ref-request.html",
+    "body": "Request 对象用于从访客那里获取信息。\nQueryString 集合实例",
+    "examples": []
+   },
+   {
+    "title": "ASP Response 对象",
+    "url": "https://www.runoob.com/asp/asp-ref-response.html",
+    "body": "ASP Response 对象用于从服务器向用户发送输出的结果。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "ASP Server 对象",
+    "url": "https://www.runoob.com/asp/asp-ref-server.html",
+    "body": "Server 对象用于访问有关服务器的属性和方法。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "ASP Session 对象",
+    "url": "https://www.runoob.com/asp/asp-ref-session.html",
+    "body": "Session 对象用于存储关于用户会话（session）的信息，或者更改用户会话（session）的设置。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "ASP TextStream 对象",
+    "url": "https://www.runoob.com/asp/asp-ref-textstream.html",
+    "body": "TextStream 对象用于访问文本文件的内容。\n尝试一下 - 实例",
+    "examples": []
+   },
+   {
+    "title": "ASP 使用 CDOSYS 发送电子邮件",
+    "url": "https://www.runoob.com/asp/asp-send-email.html",
+    "body": "CDOSYS 是 ASP 中的内建组件。此组件用于通过 ASP 发送电子邮件。\n使用 CDOSYS 发送电子邮件\nCDO (Collaboration Data Objects) 是一项微软的技术，设计目的是用来简化通讯应用程序的创建。\nCDOSYS 是 ASP 中的内建组件。我们将向您演示如何通过 ASP 使用该组件来发送电子邮件。\nCDONTs 怎么样？\n微软已经在 Windows 2000、Windows XP 和 Windows 2003 中淘汰了 CDONTs。如果您已经在您的 ASP 应用程序中使用 CDONTs，那么您需要更新代码，并使用新的 CDO 技术。\n使用 CDOSYS 的实例\n发送文本电子邮件：\n<%\nSet myMail=CreateObject(\"CDO.Message\")\nmyMail.Subject=\"Sending email with CDO\"\nmyMail.From=\"mymail@mydomain.com\"\nmyMail.To=\"someone@somedomain.com\"\nmyMail.TextBody=\"This is a message.\"\nmyMail.Send\nset myMail=nothing\n%>",
+    "examples": []
+   },
+   {
+    "title": "您已经学习了 ASP，下一步呢？",
+    "url": "https://www.runoob.com/asp/asp-summary.html",
+    "body": "ASP 总结\n本教程已经为您讲解了如何为您的网站添加服务器端脚本，使得您网站的动态性和交互性更强。\n您已经学习了如何动态地编辑、改变或者添加网页内容，对来自 HTML 表单提交的数据进行响应，访问数据或数据库并向浏览器返回结果，为不同的用户定制页面从而使这些页面的可用性更强。\n如需了解更多关于 ASP 的信息，请查阅我们的 \nASP 实例。\n现在您已经学习了 ASP，下一步学习什么呢？\n下一步应该学习的内容是 SQL 和 ADO。\nSQL\nSQL 是用于访问和处理数据库系统的标准的计算机语言。\nSQL 语句用于取回和更新数据库中的数据。SQL 与数据库程序协同工作，比如 MS Access、DB2、Informix、MS SQL Server、Oracle、Sybase 以及其他数据库系统。\n如果您想要学习更多关于 SQL 的知识，请访问我们的 SQL 教程。\nADO\nADO 是从网站访问数据库中数据的编程接口。\nADO 使用 SQL 来查询数据库中的数据。\n如果您想要学习更多关于 ADO 的知识，请访问我们的 ADO 教程。",
+    "examples": []
+   },
+   {
+    "title": "ASP 基本语法规则",
+    "url": "https://www.runoob.com/asp/asp-syntax.html",
+    "body": "在我们的 ASP 教程中，每个实例都提供隐藏的 ASP 源代码。这样会使您更容易理解它们的工作原理。\n向浏览器写输出\nASP 文件通常包含 HTML 标签，就像 HTML 文件。然而，ASP 文件也能包含服务器脚本，这些脚本被分隔符 <% 和 %> 包围起来。\n服务器脚本在服务器上执行，可包含你所选用的脚本语言的合法的表达式、语句、程序或者运算符。\nresponse.write 命令\nresponse.write 命令用来向浏览器写输出。下面的实例向浏览器传送了一段文本：\"Hello World\"：\n实例\n演示实例 »",
+    "examples": [
+     "<!DOCTYPE html><html>\n<body><%\nresponse.write(\"Hello World!\")\n%>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "ASP 教程",
+    "url": "https://www.runoob.com/asp/asp-tutorial.html",
+    "body": "ASP（Active Server Pages 动态服务器页面）是一种生成动态交互性网页的强有力工具。\n在我们的 ASP 教程中，您将学到 ASP 的相关知识，以及如何在服务器上执行脚本。\n现在开始学习 ASP！",
+    "examples": []
+   },
+   {
+    "title": "ASP 变量",
+    "url": "https://www.runoob.com/asp/asp-variables.html",
+    "body": "变量用于存储信息。\n尝试一下 - 实例",
+    "examples": []
+   }
+  ]
+ }
+}

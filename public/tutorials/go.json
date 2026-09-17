@@ -1,0 +1,262 @@
+{
+ "tutorial": {
+  "name": "Go 语言教程",
+  "category": "后端开发",
+  "desc": "Go 是一个开源的编程语言，它能让构造简单、可靠且高效的软件变得容易。",
+  "url": "https://www.runoob.com/go/",
+  "chapters": [
+   {
+    "title": "Go 语言数组",
+    "url": "https://www.runoob.com/go/go-arrays.html",
+    "body": "Go 语言提供了数组类型的数据结构。\n数组是具有相同唯一类型的一组已编号且长度固定的数据项序列，这种类型可以是任意的原始类型例如整型、字符串或者自定义类型。\n相对于去声明 number0, number1, ..., number99 的变量，使用数组形式 numbers[0], numbers[1] ..., numbers[99] 更加方便且易于扩展。\n数组元素可以通过索引（位置）来读取（或者修改），索引从 0 开始，第一个元素索引为 0，第二个索引为 1，以此类推。\n声明数组\nGo 语言数组声明需要指定元素类型及元素个数，语法格式如下：\nvar arrayName [size]dataType\n其中，arrayName 是数组的名称，size 是数组的大小，dataType 是数组中元素的数据类型。\n以下定义了数组 balance 长度为 10 类型为 float32：\nvar balance [10]float32\n初始化数组\n以下演示了数组初始化：\n以下实例声明一个名为 numbers 的整数数组，其大小为 5，在声明时，数组中的每个元素都会根据其数据类型进行默认初始化，对于整数类型，初始值为 0。\nvar numbers [5]int\n还可以使用初始化列表来初始化数组的元素：\nvar numbers = [5]int{1, 2, 3, 4, 5}\n以上代码声明一个大小为 5 的整数数组，并将其中的元素分别初始化为 1、2、3、4 和 5。\n另外，还可以使用 := 简短声明语法来声明和初始化数组：\nnumbers := [5]int{1, 2, 3, 4, 5}\n以上代码创建一个名为 numbers 的整数数组，并将其大小设置为 5，并初始化元素的值。\n注意：在 Go 语言中，数组的大小是类型的一部分，因此不同大小的数组是不兼容的，也就是说 [5]int 和 [10]int 是不同的类型。\n以下定义了数组 balance 长度为 5 类型为 float32，并初始化数组的元素：\nvar balance = [5]float32{1000.0, 2.0, 3.4, 7.0, 50.0}\n我们也可以通过字面量在声明数组的同时快速初始化数组：\nbalance := [5]float32{1000.0, 2.0, 3.4, 7.0, 50.0}\n如果数组长度不确定，可以使用 ... 代替数组的长度，编译器会根据元素个数自行推断数组的长度：\nvar balance = [...]float32{1000.0, 2.0, 3.4, 7.0, 50.0}\n或\nbalance := [...]float32{1000.0, 2.0, 3.4, 7.0, 50.0}\n如果设置了数组的长度，我们还可以通过指定下标来初始化元素：\n// 将索引为 1 和 3 的元素初始化\nbalance := [5]float32{1:2.0,3:7.0}\n初始化数组中 {} 中的元素个数不能大于 [] 中的数字。\n如果忽略 [] 中的数字不设置数组大小，Go 语言会根据元素的个数来设置数组的大小：\nbalance[4] = 50.0\n以上实例读取了第五个元素。数组元素可以通过索引（位置）来读取（或者修改），索引从 0 开始，第一个元素索引为 0，第二个索引为 1，以此类推。\n访问数组元素\n数组元素可以通过索引（位置）来读取。格式为数组名后加中括号，中括号中为索引的值。例如：\nvar salary float32 = balance[9]\n以上实例读取了数组 balance 第 10 个元素的值。\n以下演示了数组完整操作（声明、赋值、访问）的实例：\n实例 1",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\nfunc main() {\n   var n [10]int /* n 是一个长度为 10 的数组 */\n   var i,j int\n\n   /* 为数组 n 初始化元素 */         \n   for i = 0; i < 10; i++ {\n      n[i] = i + 100 /* 设置元素为 i + 100 */\n   }\n\n   /* 输出每个数组元素的值 */\n   for j = 0; j < 10; j++ {\n      fmt.Printf(\"Element[%d] = %d\\n\", j, n[j] )\n   }\n}"
+    ]
+   },
+   {
+    "title": "Go 语言基础语法",
+    "url": "https://www.runoob.com/go/go-basic-syntax.html",
+    "body": "上一章节我们已经了解了 Go 语言的基本组成结构，本章节我们将学习 Go 语言的基础语法。\nGo 标记\nGo 程序可以由多个标记组成，可以是关键字，标识符，常量，字符串，符号。如以下 GO 语句由 6 个标记组成：\nfmt.Println(\"Hello, World!\")\n6 个标记是(每行一个)：\n1. fmt\n2. .\n3. Println\n4. (\n5. \"Hello, World!\"\n6. )\n行分隔符\n在 Go 程序中，一行代表一个语句结束。每个语句不需要像 C 家族中的其它语言一样以分号 ; 结尾，因为这些工作都将由 Go 编译器自动完成。\n如果你打算将多个语句写在同一行，它们则必须使用 ; 人为区分，但在实际开发中我们并不鼓励这种做法。\n以下为两个语句：",
+    "examples": [
+     "fmt.Println(\"Hello, World!\")\nfmt.Println(\"菜鸟教程：runoob.com\")"
+    ]
+   },
+   {
+    "title": "Go 并发",
+    "url": "https://www.runoob.com/go/go-concurrent.html",
+    "body": "并发是指程序同时执行多个任务的能力。\nGo 语言支持并发，通过 goroutines 和 channels 提供了一种简洁且高效的方式来实现并发。\nGoroutines：\nGo 中的并发执行单位，类似于轻量级的线程。\nGoroutine 的调度由 Go 运行时管理，用户无需手动分配线程。\n使用 go 关键字启动 Goroutine。\nGoroutine 是非阻塞的，可以高效地运行成千上万个 Goroutine。\nChannel：\nGo 中用于在 Goroutine 之间通信的机制。\n支持同步和数据共享，避免了显式的锁机制。\n使用 chan 关键字创建，通过 <- 操作符发送和接收数据。\nScheduler（调度器）：\nGo 的调度器基于 GMP 模型，调度器会将 Goroutine 分配到系统线程中执行，并通过 M 和 P 的配合高效管理并发。\nG：Goroutine。\nM：系统线程（Machine）。\nP：逻辑处理器（Processor）。\nGoroutine\ngoroutine 是轻量级线程，goroutine 的调度是由 Golang 运行时进行管理的。\ngoroutine 语法格式：\ngo 函数名( 参数列表 )\n例如：\ngo f(x, y, z)\n开启一个新的 goroutine:\nf(x, y, z)\nGo 允许使用 go 语句开启一个新的运行期线程， 即 goroutine，以一个不同的、新创建的 goroutine 来执行一个函数。 同一个程序中的所有 goroutine 共享同一个地址空间。\n实例",
+    "examples": [
+     "package main\n\nimport (\n        \"fmt\"\n        \"time\"\n)\n\nfunc sayHello() {\n        for i := 0; i < 5; i++ {\n                fmt.Println(\"Hello\")\n                time.Sleep(100 * time.Millisecond)\n        }\n}\n\nfunc main() {\n        go sayHello() // 启动 Goroutine\n        for i := 0; i < 5; i++ {\n                fmt.Println(\"Main\")\n                time.Sleep(100 * time.Millisecond)\n        }\n}"
+    ]
+   },
+   {
+    "title": "Go 语言常量",
+    "url": "https://www.runoob.com/go/go-constants.html",
+    "body": "常量是一个简单值的标识符，在程序运行时，不会被修改的量。常量中的数据类型只可以是布尔型、数字型（整数型、浮点型和复数）和字符串型。\n单词释义： const 是 constant（常量）的缩写，表示程序中不可变的值。\n基本语法与参数\n常量的定义格式：\nconst identifier [type] = value\n语法说明\nidentifier：常量名称，遵循 Go 标识符命名规则（字母、数字、下划线，且不能以数字开头）。\ntype（可选）：类型名，如果省略则由编译器自动推断。\nvalue：常量的值。\n定义方式\n显式类型定义：const b string = \"abc\"\n隐式类型定义：const b = \"abc\"\n批量定义：const c_name1, c_name2 = value1, value2\n实例\n示例 1：基础常量定义\n实例",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\nfunc main() {\n   const LENGTH int = 10\n   const WIDTH int = 5\n   var area int\n   const a, b, c = 1, false, \"str\" // 多重赋值\n\n   area = LENGTH * WIDTH\n   fmt.Printf(\"面积为 : %d\", area)\n   println()\n   println(a, b, c)\n}"
+    ]
+   },
+   {
+    "title": "Go 语言数据类型",
+    "url": "https://www.runoob.com/go/go-data-types.html",
+    "body": "在 Go 编程语言中，数据类型用于声明函数和变量。\n数据类型的出现是为了把数据分成所需内存大小不同的数据，编程的时候需要用大数据的时候才需要申请大内存，就可以充分利用内存。\nGo 语言按类别有以下几种数据类型：\n序号\n类型和描述\n1\n布尔型布尔型的值只可以是常量 true 或者 false。一个简单的例子：var b bool = true。\n2\n数字类型整型 int 和浮点型 float32、float64，Go 语言支持整型和浮点型数字，并且支持复数，其中位的运算采用补码。\n3\n字符串类型:字符串就是一串固定长度的字符连接起来的字符序列。Go 的字符串是由单个字节连接起来的。Go 语言的字符串的字节使用 UTF-8 编码标识 Unicode 文本。\n4\n派生类型:包括： (a) 指针类型（Pointer）\n(b) 数组类型\n(c) 结构化类型(struct)\n(d) Channel 类型\n(e) 函数类型\n(f) 切片类型\n(g) 接口类型（interface）\n(h) Map 类型\n数字类型\nGo 也有基于架构的类型，例如：int、uint 和 uintptr。\n序号\n类型和描述\n1\nuint8无符号 8 位整型 (0 到 255)\n2\nuint16无符号 16 位整型 (0 到 65535)\n3\nuint32无符号 32 位整型 (0 到 4294967295)\n4\nuint64无符号 64 位整型 (0 到 18446744073709551615)\n5\nint8有符号 8 位整型 (-128 到 127)\n6\nint16有符号 16 位整型 (-32768 到 32767)\n7\nint32有符号 32 位整型 (-2147483648 到 2147483647)\n8\nint64有符号 64 位整型 (-9223372036854775808 到 9223372036854775807)\n浮点型\n序号\n类型和描述\n1\nfloat32IEEE-754 32位浮点型数\n2\nfloat64IEEE-754 64位浮点型数\n3\ncomplex6432 位实数和虚数\n4\ncomplex12864 位实数和虚数\n其他数字类型\n以下列出了其他更多的数字类型：\n序号\n类型和描述\n1\nbyte类似 uint8\n2\nrune类似 int32\n3\nuint32 或 64 位\n4\nint与 uint 一样大小\n5\nuintptr无符号整型，用于存放一个指针",
+    "examples": []
+   },
+   {
+    "title": "Go 语言条件语句",
+    "url": "https://www.runoob.com/go/go-decision-making.html",
+    "body": "条件语句需要开发者通过指定一个或多个条件，并通过测试条件是否为 true 来决定是否执行指定语句，并在条件为 false 的情况在执行另外的语句。\n下图展示了程序语言中条件语句的结构：\nGo 语言提供了以下几种条件判断语句：\n语句\n描述\nif 语句\nif 语句 由一个布尔表达式后紧跟一个或多个语句组成。\nif...else 语句\nif 语句 后可以使用可选的 else 语句, else 语句中的表达式在布尔表达式为 false 时执行。\nif 嵌套语句\n你可以在 if 或 else if 语句中嵌入一个或多个 if 或 else if 语句。\nswitch 语句\nswitch 语句用于基于不同条件执行不同动作。\nselect 语句\nselect 语句类似于 switch 语句，但是select会随机执行一个可运行的case。如果没有case可运行，它将阻塞，直到有case可运行。\n注意：Go 没有三目运算符，所以不支持 ?: 形式的条件判断。",
+    "examples": []
+   },
+   {
+    "title": "Go 语言环境安装",
+    "url": "https://www.runoob.com/go/go-environment.html",
+    "body": "Go 语言支持以下系统：\nLinux\nFreeBSD\nMac OS X（也称为 Darwin）\nWindows\n安装包下载地址为：https://go.dev/dl/。\n如果打不开可以使用这个地址：https://golang.google.cn/dl/。\n各个系统对应的包名：\n安装包文件名\n适用系统\n处理器架构\n系统版本要求\n说明\ngo1.26.3.windows-amd64.msi\nMicrosoft Windows\nx86-64 (Intel 64-bit)\nWindows 10 或更新\nWindows 64 位系统图形化安装程序\ngo1.26.3.darwin-arm64.pkg\nApple macOS\nARM64 (Apple Silicon 64-bit)\nmacOS 12 或更新\n适用于 M 系列芯片 Mac（包括你的 Mac mini 4）的安装包\ngo1.26.3.darwin-amd64.pkg\nApple macOS\nx86-64 (Intel 64-bit)\nmacOS 12 或更新\n适用于搭载 Intel 处理器的老款 Mac\ngo1.26.3.linux-amd64.tar.gz\nLinux\nx86-64 (Intel 64-bit)\nLinux 3.2 或更新\n绝大多数 64 位 Linux 系统的压缩包\ngo1.26.3.src.tar.gz\n任意系统\n源码\n-\nGo 语言源代码包，需自行编译\nUNIX/Linux/Mac OS X, 和 FreeBSD 安装\n以下介绍了在UNIX/Linux/Mac OS X, 和 FreeBSD系统下使用源码安装方法：\n1、下载二进制包：go1.4.linux-amd64.tar.gz。\n2、将下载的二进制包解压至 /usr/local目录。\ntar -C /usr/local -xzf go1.4.linux-amd64.tar.gz\n3、将 /usr/local/go/bin 目录添加至 PATH 环境变量：\nexport PATH=$PATH:/usr/local/go/bin\n以上只能暂时添加 PATH，关闭终端下次再登录就没有了。\n我们可以编辑 ~/.bash_profile 或者 /etc/profile，并将以下命令添加该文件的末尾，这样就永久生效了：\nexport PATH=$PATH:/usr/local/go/bin\n添加后需要执行：\nsource ~/.bash_profile\n或\nsource /etc/profile\n注意：MAC 系统下你可以使用 .pkg 结尾的安装包直接双击来完成安装，安装目录在 /usr/local/go/ 下。\nWindows 系统下安装\nWindows 下可以使用 .msi 后缀(在下载列表中可以找到该文件，如go1.4.2.windows-amd64.msi)的安装包来安装。\n默认情况下 .msi 文件会安装在 c:\\Go 目录下。你可以将 c:\\Go\\bin 目录添加到 Path 环境变量中。添加后你需要重启命令窗口才能生效。\n安装测试\n创建工作目录 C:\\>Go_WorkSpace。\ntest.go 文件代码：",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\nfunc main() {\n   fmt.Println(\"Hello, World!\")\n}"
+    ]
+   },
+   {
+    "title": "Go 错误处理",
+    "url": "https://www.runoob.com/go/go-error-handling.html",
+    "body": "Go 语言通过内置的错误接口提供了非常简单的错误处理机制。\nGo 语言的错误处理采用显式返回错误的方式，而非传统的异常处理机制。这种设计使代码逻辑更清晰，便于开发者在编译时或运行时明确处理错误。\nGo 的错误处理主要围绕以下机制展开：\nerror 接口：标准的错误表示。\n显式返回值：通过函数的返回值返回错误。\n自定义错误：可以通过标准库或自定义的方式创建错误。\npanic 和 recover：处理不可恢复的严重错误。\nerror 接口\nGo 标准库定义了一个 error 接口，表示一个错误的抽象。\nerror 类型是一个接口类型，这是它的定义：\ntype error interface {\n Error() string\n}\n实现 error 接口：任何实现了 Error() 方法的类型都可以作为错误。\nError() 方法返回一个描述错误的字符串。\n使用 errors 包创建错误\n我们可以在编码中通过实现 error 接口类型来生成错误信息。\n创建一个简单错误：\n实例",
+    "examples": [
+     "package main\n\nimport (\n    \"errors\"\n    \"fmt\"\n)\n\nfunc main() {\n    err := errors.New(\"this is an error\")\n    fmt.Println(err) // 输出：this is an error\n}"
+    ]
+   },
+   {
+    "title": "Go 语言文件处理",
+    "url": "https://www.runoob.com/go/go-file-handle.html",
+    "body": "文件处理是 Go 语言中最常见的操作之一——读取配置、写入日志、数据持久化都离不开它。Go 的标准库提供了一套简洁而强大的文件 I/O 接口，覆盖从单次读写到流式处理的各种场景。\n与文件处理相关的核心包有 5 个，各有分工：\nGo 文件处理核心包os核心：创建、读写、删除、权限io通用 Reader/Writer 接口bufio缓冲读写，性能优化filepath跨平台路径处理ioutil ⚠Go 1.16 已弃用 → os / io典型使用流程os.Open()bufio.Scanner处理数据defer Close()版本提示：ioutil 包在 Go 1.16 已弃用，其功能已迁移到 os（如 os.ReadFile、os.WriteFile）和 io（如 io.ReadAll）。新代码应直接使用 os 和 io 包。\n1. 文件创建\nos.Create 创建一个新文件。如果文件已存在，会被截断（清空内容）。返回的文件对象必须关闭以释放系统资源：\n实例",
+    "examples": [
+     "package main\n\nimport (\n        \"log\"\n        \"os\"\n)\n\nfunc main() {\n        // os.Create 创建文件（已存在则清空）\n        file, err := os.Create(\"test.txt\")\n        if err != nil {\n                log.Fatal(err)\n        }\n        defer file.Close() // defer 确保函数结束时关闭文件\n\n        // 写入内容验证创建成功\n        file.WriteString(\"文件创建成功\\n\")\n        log.Println(\"文件创建成功\")\n}"
+    ]
+   },
+   {
+    "title": "Go 语言函数",
+    "url": "https://www.runoob.com/go/go-functions.html",
+    "body": "函数是基本的代码块，用于执行一个任务。\nGo 语言最少有个 main() 函数。\n你可以通过函数来划分不同功能，逻辑上每个函数执行的是指定的任务。\n函数声明告诉了编译器函数的名称，返回类型，和参数。\nGo 语言标准库提供了多种可动用的内置的函数。例如，len() 函数可以接受不同类型参数并返回该类型的长度。如果我们传入的是字符串则返回字符串的长度，如果传入的是数组，则返回数组中包含的元素个数。\n函数定义\nGo 语言函数定义格式如下：\nfunc function_name( [parameter list] ) [return_types] {\n 函数体\n}\n函数定义解析：\nfunc：函数由 func 开始声明\nfunction_name：函数名称，参数列表和返回值类型构成了函数签名。\nparameter list：参数列表，参数就像一个占位符，当函数被调用时，你可以将值传递给参数，这个值被称为实际参数。参数列表指定的是参数类型、顺序、及参数个数。参数是可选的，也就是说函数也可以不包含参数。\nreturn_types：返回类型，函数返回一列值。return_types 是该列值的数据类型。有些功能不需要返回值，这种情况下 return_types 不是必须的。\n函数体：函数定义的代码集合。\n实例\n以下实例为 max() 函数的代码，该函数传入两个整型参数 num1 和 num2，并返回这两个参数的最大值：\n实例",
+    "examples": [
+     "/* 函数返回两个数的最大值 */\nfunc max(num1, num2 int) int {\n   /* 声明局部变量 */\n   var result int\n\n   if (num1 > num2) {\n      result = num1\n   } else {\n      result = num2\n   }\n   return result \n}"
+    ]
+   },
+   {
+    "title": "Go 语言泛型",
+    "url": "https://www.runoob.com/go/go-generics.html",
+    "body": "泛型是 Go 语言在 1.18 版本中引入的重要特性，它让开发者能够编写更加灵活和可重用的代码。\n泛型主要通过以下两个核心概念来实现：\n类型参数（Type Parameters）：允许你在函数或类型定义中使用一个或多个类型作为参数。\n类型约束（Type Constraints）：指定类型参数必须满足的条件，确保在函数内部可以安全地操作这些类型。\n概念\n作用\n示例\n类型参数\n在函数或类型名后声明，表示待定的类型。\n[T any]\n类型约束\n定义类型参数必须满足的条件（如支持的操作符或方法）。\nint，float64，comparable，constraints.Ordered，any\nany\n约束类型参数为任何类型。\n[T any]\ncomparable\n约束类型参数为可比较的类型。\n[K comparable]\n泛型（Generics）允许我们编写不依赖特定数据类型的代码。\n在引入泛型之前，如果我们想要处理不同类型的数据，通常需要为每种类型编写重复的函数。\n传统方式的局限性：\n实例",
+    "examples": [
+     "// 处理 int 类型的函数\nfunc MaxInt(a, b int) int {\n    if a > b {\n        return a\n    }\n    return b\n}\n\n// 处理 float64 类型的函数\nfunc MaxFloat(a, b float64) float64 {\n    if a > b {\n        return a\n    }\n    return b\n}"
+    ]
+   },
+   {
+    "title": "Go 语言开发工具",
+    "url": "https://www.runoob.com/go/go-ide.html",
+    "body": "VSCode\nVScode 安装教程参见：https://www.runoob.com/w3cnote/vscode-tutorial.html\n然后我们打开 VSCode 的扩展（Ctrl+Shift+P）：\n搜索 go：\n点击安装，安装完成后我们就可以使用代码提示、测试、调试等功能了。\nGoLand\nGoLand 是 Jetbrains 家族的 Go 语言 IDE，有 30 天的免费试用期。\n安装也很简单访问 Goland 的下载页面，根据你当期的系统环境三大平台（Mac、Linux、Windows）下载对应的软件。\nLiteIDE\nLiteIDE 是一款开源、跨平台的轻量级 Go 语言集成开发环境（IDE）。\n支持的 操作系统\nWindows x86 (32-bit or 64-bit)\nLinux x86 (32-bit or 64-bit)\n下载地址 ：http://sourceforge.net/projects/liteide/files/\n源码地址 ：https://github.com/visualfc/liteide\nEclipse\nEclipse 也是非常常用的开发利器，以下介绍如何使用 Eclipse 来编写 Go 程序。\nEclipse 编辑 Go 的主界面\n首先下载并安装好 Eclipse\n下载 goclipse 插件\n\nhttps://github.com/GoClipse/goclipse/blob/latest/documentation/Installation.md#installation\n下载 gocode，用于 go 的代码补全提示\ngocode 的 github 地址：\nhttps://github.com/nsf/gocode\n在 Windows下要安装 git，通常用 msysgit。\n再在 cmd 下安装：\ngo get -u github.com/nsf/gocode\n也可以下载代码，直接用 go build 来编译，会生成 gocode.exe\n下载 MinGW 并按要求装好\n配置插件\n\nWindows->Reference->Go\n(1)、配置 Go 的编译器\n设置 Go 的一些基础信息\n(2)、配置 Gocode（可选，代码补全），设置 Gocode 路径为之前生成的 gocode.exe 文件\n设置 gocode 信息\n(3)、配置 GDB（可选，做调试用），设置 GDB 路径为 MingW 安装目录下的 gdb.exe 文件\n设置 GDB 信息\n测试是否成功\n新建一个 go 工程，再建立一个 hello.go。如下图：\n新建项目编辑文件\n调试如下（要在 console 中用输入命令来调试）：\n图 1.16 调试 Go 程序",
+    "examples": []
+   },
+   {
+    "title": "Go 继承",
+    "url": "https://www.runoob.com/go/go-inheritance.html",
+    "body": "在面向对象编程（OOP）中，继承是一种机制，允许一个类（子类）从另一个类（父类）继承属性和方法。通过继承，子类可以复用父类的代码，并且可以在不修改父类的情况下扩展或修改其行为。\nGo 语言并不是一种传统的面向对象编程语言，它没有类和继承的概念。\nGo 使用结构体（struct）和接口（interface）来实现类似的功能。\nGo 中的 \"继承\"\nGo 语言没有传统面向对象语言中的类(class)和继承(inheritance)概念，而是通过组合(composition)和接口(interface)来实现类似的功能。\n1. 组合（Composition）\n组合是 Go 中实现代码复用的主要方式。通过将一个结构体嵌入到另一个结构体中，子结构体可以\"继承\"父结构体的字段和方法。\n实例",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\n// 父结构体\ntype Animal struct {\n    Name string\n}\n\n// 父结构体的方法\nfunc (a *Animal) Speak() {\n    fmt.Println(a.Name, \"says hello!\")\n}\n\n// 子结构体\ntype Dog struct {\n    Animal // 嵌入 Animal 结构体\n    Breed  string\n}\n\nfunc main() {\n    dog := Dog{\n        Animal: Animal{Name: \"Buddy\"},\n        Breed:  \"Golden Retriever\",\n    }\n\n    dog.Speak() // 调用父结构体的方法\n    fmt.Println(\"Breed:\", dog.Breed)\n}"
+    ]
+   },
+   {
+    "title": "Go 语言接口",
+    "url": "https://www.runoob.com/go/go-interfaces.html",
+    "body": "接口（interface）是 Go 语言中的一种类型，用于定义行为的集合，它通过描述类型必须实现的方法，规定了类型的行为契约。\nGo 语言提供了另外一种数据类型即接口，它把所有的具有共性的方法定义在一起，任何其他类型只要实现了这些方法就是实现了这个接口。\nGo 的接口设计简单却功能强大，是实现多态和解耦的重要工具。\n接口可以让我们将不同的类型绑定到一组公共的方法上，从而实现多态和灵活的设计。\n接口的特点\n隐式实现：\nGo 中没有关键字显式声明某个类型实现了某个接口。\n只要一个类型实现了接口要求的所有方法，该类型就自动被认为实现了该接口。\n接口类型变量：\n接口变量可以存储实现该接口的任意值。\n接口变量实际上包含了两个部分：动态类型：存储实际的值类型。\n动态值：存储具体的值。\n零值接口：\n接口的零值是 nil。\n一个未初始化的接口变量其值为 nil，且不包含任何动态类型或值。\n空接口：\n定义为 interface{}，可以表示任何类型。\n接口的常见用法\n多态：不同类型实现同一接口，实现多态行为。\n解耦：通过接口定义依赖关系，降低模块之间的耦合。\n泛化：使用空接口 interface{} 表示任意类型。\n接口定义和实现\n接口定义使用关键字 interface，其中包含方法声明。\n实例",
+    "examples": [
+     "/* 定义接口 */\ntype interface_name interface {\n   method_name1 [return_type]\n   method_name2 [return_type]\n   method_name3 [return_type]\n   ...\n   method_namen [return_type]\n}\n\n/* 定义结构体 */\ntype struct_name struct {\n   /* variables */\n}\n\n/* 实现接口方法 */\nfunc (struct_name_variable struct_name) method_name1() [return_type] {\n   /* 方法实现 */\n}\n...\nfunc (struct_name_variable struct_name) method_namen() [return_type] {\n   /* 方法实现*/\n}"
+    ]
+   },
+   {
+    "title": "Go 简介",
+    "url": "https://www.runoob.com/go/go-intro.html",
+    "body": "Go（又称 Golang）是 Google 开发的一种开源编程语言，设计目标是让开发者能够高效地构建简单、可靠且高性能的软件。\nGo 语言诞生于 2007 年，由 Google 的三位资深工程师——Robert Griesemer、Rob Pike 和 Ken Thompson 联合设计，并于 2009 年正式开源发布。\nGo 的设计初衷是解决 Google 内部面临的大规模软件开发痛点：C++ 编译太慢、Java 运行时太臃肿、脚本语言性能不足。三位设计者希望创造一门兼具编译型语言的性能和动态语言的开发效率的编程语言。\nGo 语言吉祥物是一只名为 Gopher 的土拨鼠，象征着 Go 社区的务实与活力。\nGo 语言的关键设计目标可以归纳为以下几点：\n设计目标\n说明\n编译速度\n大型项目的编译应在几秒内完成，而非几分钟\n并发支持\n语言级别原生支持并发编程，无需第三方库\n简洁性\n语法最少化，没有类和继承，减少认知负担\n内存安全\n自动垃圾回收（GC），避免手动内存管理的风险\n静态类型\n编译期类型检查，减少运行时错误\n跨平台\n一套代码可编译为 Windows、Linux、macOS 等多平台可执行文件\nGo 诞生要解决的三个核心问题\n问题\n传统语言的困境\nGo 的解决方式\n编译速度慢\n大型 C++ 项目编译动辄数分钟乃至数小时\n依赖管理设计极简，编译速度极快，通常秒级完成\n并发编程复杂\n线程、锁、回调的组合让并发代码难以编写和维护\n内置 goroutine 和 channel，并发如同写顺序代码\n代码难以维护\nC++ 特性过多、Java 过度设计，大型团队协作困难\n极简语法，强制格式化，一种问题只有一种写法\nGo 的核心设计哲学\nGo 的官方口号是 Simple, Fast, Reliable，这三个词概括了它全部的设计取舍。\nGo 刻意保持语言规范的精简。整个语言规范只有约 60 页，关键字仅有 25 个（相比之下 C++ 有 80+ 个关键字），这意味着一个有经验的开发者在一两天内就能掌握语法全貌，之后将精力集中在业务逻辑上。\nGo 语言的发展历史\nGo 语言的发展历程并非一蹴而就，下面梳理了从立项到如今的关键时间节点。\n时间\n版本/事件\n说明\n2007 年\n项目立项\nRob Pike、Ken Thompson、Robert Griesemer 开始设计 Go 语言\n2009 年 11 月\nGo 首次开源\n以 BSD 协议在 GitHub 上公开发布\n2012 年 3 月\nGo 1.0\n首个稳定版本发布，承诺向后兼容\n2015 年 8 月\nGo 1.5\n编译器用 Go 自举（此前用 C 编写），移除 C 依赖\n2018 年 8 月\nGo 1.11\n引入 Go Modules，初步解决依赖管理问题\n2020 年 2 月\nGo 1.14\nGo Modules 成为官方推荐的依赖管理方案\n2022 年 3 月\nGo 1.18\n引入泛型（Generics），这是 Go 发布以来最大的语言特性变更\n2024 年 2 月\nGo 1.22\nfor 循环变量语义优化，增强路由模式匹配\n2025 年 8 月\nGo 1.24\n持续改进运行时性能、工具链体验与标准库\nGo 1.0 发布时，核心团队做出了一个重大承诺：后续所有 1.x 版本的 Go 均保持向后兼容。这意味着十年前编写的 Go 代码，在今天的最新编译器中依然可以直接编译运行。\nGo 语言的核心特性\nGo 的设计哲学决定了它的特性集合——精简而强大。以下逐一拆解 Go 最核心的语言特性。\n原生并发：Goroutine 与 Channel\n并发是 Go 语言最引人注目的特性。Goroutine 是一种比操作系统线程轻量得多的执行单元——每个 Goroutine 的初始栈大小仅为约 2 KB，而操作系统线程通常在 1 MB 以上。\n你可以在一台普通机器上同时运行数十万个 Goroutine，这是传统线程模型无法做到的。\nChannel（通道）是 Goroutine 之间的通信管道，遵循 Go 的并发哲学：\n不要通过共享内存来通信，而要通过通信来共享内存。（Don't communicate by sharing memory; share memory by communicating.）\n一个简单的 Goroutine 与 Channel 示例：\n实例",
+    "examples": [
+     "package main\n\nimport (\n    \"fmt\"\n    \"time\"\n)\n\n// worker 模拟一个工作协程，从通道接收任务并处理\nfunc worker(id int, jobs <-chan int, results chan<- int) {\n    for j := range jobs {\n        fmt.Printf(\"worker %d 开始处理任务 %d\\n\", id, j)\n        time.Sleep(time.Second) // 模拟耗时操作\n        results <- j * 2        // 将处理结果发送到 results 通道\n        fmt.Printf(\"worker %d 完成任务 %d\\n\", id, j)\n    }\n}\n\nfunc main() {\n    const numJobs = 5\n    jobs := make(chan int, numJobs)    // 创建带缓冲的任务通道\n    results := make(chan int, numJobs) // 创建带缓冲的结果通道\n\n    // 启动 3 个 worker goroutine\n    for w := 1; w <= 3; w++ {\n        go worker(w, jobs, results)\n    }\n\n    // 发送 5 个任务到 jobs 通道\n    for j := 1; j <= numJobs; j++ {\n        jobs <- j\n    }\n    close(jobs) // 关闭通道，通知 worker 不会再有新任务\n\n    // 收集所有处理结果\n    for a := 1; a <= numJobs; a++ {\n        fmt.Printf(\"结果: %d\\n\", <-results)\n    }\n}"
+    ]
+   },
+   {
+    "title": "Go 语言循环语句",
+    "url": "https://www.runoob.com/go/go-loops.html",
+    "body": "在不少实际问题中有许多具有规律性的重复操作，因此在程序中就需要重复执行某些语句。\n以下为大多编程语言循环程序的流程图：\nGo 语言提供了以下几种类型循环处理语句：\n循环类型\n描述\nfor 循环\n重复执行语句块\n循环嵌套\n在 for 循环中嵌套一个或多个 for 循环\n循环控制语句\n循环控制语句可以控制循环体内语句的执行过程。\nGO 语言支持以下几种循环控制语句：\n控制语句\n描述\nbreak 语句\n经常用于中断当前 for 循环或跳出 switch 语句\ncontinue 语句\n跳过当前循环的剩余语句，然后继续进行下一轮循环。\ngoto 语句\n将控制转移到被标记的语句。\n无限循环\n如果循环中条件语句永远不为 false 则会进行无限循环，我们可以通过 for 循环语句中只设置一个条件表达式来执行无限循环：\n实例",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\nfunc main() {\n    for true  {\n        fmt.Printf(\"这是无限循环。\\n\");\n    }\n}"
+    ]
+   },
+   {
+    "title": "Go 语言Map(集合)",
+    "url": "https://www.runoob.com/go/go-map.html",
+    "body": "Map 是一种无序的键值对的集合。\nMap 最重要的一点是通过 key 来快速检索数据，key 类似于索引，指向数据的值。\nMap 是一种集合，所以我们可以像迭代数组和切片那样迭代它。不过，Map 是无序的，遍历 Map 时返回的键值对的顺序是不确定的。\n在获取 Map 的值时，如果键不存在，返回该类型的零值，例如 int 类型的零值是 0，string 类型的零值是 \"\"。\nMap 是引用类型，如果将一个 Map 传递给一个函数或赋值给另一个变量，它们都指向同一个底层数据结构，因此对 Map 的修改会影响到所有引用它的变量。\n定义 Map\n可以使用内建函数 make 或使用 map 关键字来定义 Map:\n/* 使用 make 函数 */\nmap_variable := make(map[KeyType]ValueType, initialCapacity)\n其中 KeyType 是键的类型，ValueType 是值的类型，initialCapacity 是可选的参数，用于指定 Map 的初始容量。Map 的容量是指 Map 中可以保存的键值对的数量，当 Map 中的键值对数量达到容量时，Map 会自动扩容。如果不指定 initialCapacity，Go 语言会根据实际情况选择一个合适的值。\n实例",
+    "examples": [
+     "// 创建一个空的 Map\nm := make(map[string]int)\n\n// 创建一个初始容量为 10 的 Map\nm := make(map[string]int, 10)"
+    ]
+   },
+   {
+    "title": "Go Modules",
+    "url": "https://www.runoob.com/go/go-modules.html",
+    "body": "Go Modules 是 Go 语言的官方依赖管理工具，自 Go 1.11 版本开始引入，在 Go 1.16 版本成为默认的依赖管理模式。\nGo Modules 解决了 Go 语言长期以来在依赖管理方面的痛点，为开发者提供了版本控制、依赖隔离和可重复构建等核心功能。\nGo Modules 是一组相关 Go 包的集合，它们被版本化并作为一个独立的单元进行管理。每个模块都有一个明确的版本标识，允许开发者在项目中精确指定所需依赖的版本。\n核心概念解析\n模块（Module）：包含 go.mod 文件的目录树，该文件定义了模块的路径、Go 版本要求和依赖关系。\n版本（Version）：遵循语义化版本控制（Semantic Versioning）的标识符，格式为 vMAJOR.MINOR.PATCH。\n依赖图（Dependency Graph）：模块及其所有传递依赖的层次结构，Go 工具会自动解析和维护。\n为什么需要 Go Modules？\n传统 GOPATH 的问题\n在 Go Modules 出现之前，Go 使用 GOPATH 模式，存在以下局限性：\n工作空间限制：所有项目必须放在 GOPATH 目录下\n版本管理困难：无法精确控制依赖版本\n依赖冲突：多个项目可能使用同一依赖的不同版本\n可重复构建挑战：难以确保不同环境下的构建一致性\nGo Modules 的优势\n传统 GOPATH vs Go Modules 对比：\n特性\nGOPATH 模式\nGo Modules\n项目位置限制\n必须放在 GOPATH 下\n任意位置均可\n版本控制\n有限支持\n完整的语义化版本控制\n依赖隔离\n全局共享\n项目级隔离\n可重复构建\n困难\n自动保障\n离线工作\n不支持\n支持本地缓存\n核心文件解析\ngo.mod 文件\ngo.mod 是模块的定义文件，包含以下主要部分：\n实例",
+    "examples": [
+     "module example.com/mymodule  // 模块路径\n\ngo 1.21                     // Go 版本要求\n\nrequire (\n    github.com/gin-gonic/gin v1.9.1\n    golang.org/x/text v0.12.0\n)\n\nreplace golang.org/x/text => ../local/text  // 本地替换\n\nexclude github.com/old/module v1.0.0        // 排除特定版本"
+    ]
+   },
+   {
+    "title": "Go 语言运算符",
+    "url": "https://www.runoob.com/go/go-operators.html",
+    "body": "运算符用于在程序运行时执行数学或逻辑运算。\nGo 语言内置的运算符有：\n算术运算符\n关系运算符\n逻辑运算符\n位运算符\n赋值运算符\n其他运算符\n接下来让我们来详细看看各个运算符的介绍。\n算术运算符\n下表列出了所有Go语言的算术运算符。假定 A 值为 10，B 值为 20。\n运算符\n描述\n实例\n+\n相加\nA + B 输出结果 30\n-\n相减\nA - B 输出结果 -10\n*\n相乘\nA * B 输出结果 200\n/\n相除\nB / A 输出结果 2\n%\n求余\nB % A 输出结果 0\n++\n自增\nA++ 输出结果 11\n--\n自减\nA-- 输出结果 9\n以下实例演示了各个算术运算符的用法：\n实例",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\nfunc main() {\n\n   var a int = 21\n   var b int = 10\n   var c int\n\n   c = a + b\n   fmt.Printf(\"第一行 - c 的值为 %d\\n\", c )\n   c = a - b\n   fmt.Printf(\"第二行 - c 的值为 %d\\n\", c )\n   c = a * b\n   fmt.Printf(\"第三行 - c 的值为 %d\\n\", c )\n   c = a / b\n   fmt.Printf(\"第四行 - c 的值为 %d\\n\", c )\n   c = a % b\n   fmt.Printf(\"第五行 - c 的值为 %d\\n\", c )\n   a++\n   fmt.Printf(\"第六行 - a 的值为 %d\\n\", a )\n   a=21   // 为了方便测试，a 这里重新赋值为 21\n   a--\n   fmt.Printf(\"第七行 - a 的值为 %d\\n\", a )\n}"
+    ]
+   },
+   {
+    "title": "Go 语言指针",
+    "url": "https://www.runoob.com/go/go-pointers.html",
+    "body": "Go 语言中指针是很容易学习的，Go 语言中使用指针可以更简单的执行一些任务。\n接下来让我们来一步步学习 Go 语言指针。\n我们都知道，变量是一种使用方便的占位符，用于引用计算机内存地址。\nGo 语言的取地址符是 &，放到一个变量前使用就会返回相应变量的内存地址。\n以下实例演示了变量在内存中地址：\n实例",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\nfunc main() {\n   var a int = 10   \n\n   fmt.Printf(\"变量的地址: %x\\n\", &a  )\n}"
+    ]
+   },
+   {
+    "title": "Go 语言结构",
+    "url": "https://www.runoob.com/go/go-program-structure.html",
+    "body": "在我们开始学习 Go 编程语言的基础构建模块前，让我们先来了解 Go 语言最简单程序的结构。\nGo Hello World 实例\nGo 语言的基础组成有以下几个部分：\n包声明\n引入包\n函数\n变量\n语句 & 表达式\n注释\n接下来让我们来看下简单的代码，该代码输出了\"Hello World!\":\n实例",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\nfunc main() {\n   /* 这是我的第一个简单的程序 */\n   fmt.Println(\"Hello, World!\")\n}"
+    ]
+   },
+   {
+    "title": "Go 语言测验",
+    "url": "https://www.runoob.com/go/go-quiz.html",
+    "body": "",
+    "examples": []
+   },
+   {
+    "title": "Go 语言范围(Range)",
+    "url": "https://www.runoob.com/go/go-range.html",
+    "body": "Go 语言中 range 关键字用于 for 循环中迭代数组(array)、切片(slice)、通道(channel)或集合(map)的元素。在数组和切片中它返回元素的索引和索引对应的值，在集合中返回 key-value 对。\nfor 循环的 range 格式可以对 slice、map、数组、字符串等进行迭代循环。格式如下：\nfor key, value := range oldMap {\n newMap[key] = value\n}\n以上代码中的 key 和 value 是可以省略。\n如果只想读取 key，格式如下：\nfor key := range oldMap\n或者这样：\nfor key, _ := range oldMap\n如果只想读取 value，格式如下：\nfor _, value := range oldMap\n实例\n数组和切片\n遍历简单的切片，2**%d 的结果为 2 对应的次方数：\n实例",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\n// 声明一个包含 2 的幂次方的切片\nvar pow = []int{1, 2, 4, 8, 16, 32, 64, 128}\n\nfunc main() {\n   // 遍历 pow 切片，i 是索引，v 是值\n   for i, v := range pow {\n      // 打印 2 的 i 次方等于 v\n      fmt.Printf(\"2**%d = %d\\n\", i, v)\n   }\n}"
+    ]
+   },
+   {
+    "title": "Go 语言递归函数",
+    "url": "https://www.runoob.com/go/go-recursion.html",
+    "body": "递归是一种函数直接或间接调用自身的编程技术。\n递归函数通常包含两个部分：\n基准条件（Base Case）：这是递归的终止条件，防止函数无限调用自身。\n递归条件（Recursive Case）：这是函数调用自身的部分，用于将问题分解为更小的子问题。\n在 Go 语言中，递归的使用与其他语言类似，但需要注意 Go 的一些特性。\n语法格式如下：",
+    "examples": [
+     "func recursion() {\n   recursion() /* 函数调用自身 */\n}\n\nfunc main() {\n   recursion()\n}"
+    ]
+   },
+   {
+    "title": "Go 语言正则表达式",
+    "url": "https://www.runoob.com/go/go-regex.html",
+    "body": "正则表达式（Regular Expression，简称 regex 或 regexp）是一种用于匹配字符串的强大工具。\n正则表达式通过定义一种模式（pattern），可以快速搜索、替换或提取符合该模式的字符串，详细可以参见正则表达式教程。\n在 Go 语言中，正则表达式通过 regexp 包来实现。\nGo 语言中的 regexp 包\nGo 语言的标准库提供了 regexp 包，用于处理正则表达式。以下是 regexp 包中常用的函数和方法：\nCompile 和 MustCompile用于编译正则表达式。Compile 返回一个 *Regexp 对象和一个错误，而 MustCompile 在编译失败时会直接 panic。\nMatchString检查字符串是否匹配正则表达式。\nFindString 和 FindAllString用于查找匹配的字符串。FindString 返回第一个匹配项，FindAllString 返回所有匹配项。\nReplaceAllString用于替换匹配的字符串。\nSplit根据正则表达式分割字符串。\n正则表达式的基本语法\n以下是一些常用的正则表达式语法：\n.：匹配任意单个字符（除了换行符）。\n*：匹配前面的字符 0 次或多次。\n+：匹配前面的字符 1 次或多次。\n?：匹配前面的字符 0 次或 1 次。\n\\d：匹配数字字符（等价于 [0-9]）。\n\\w：匹配字母、数字或下划线（等价于 [a-zA-Z0-9_]）。\n\\s：匹配空白字符（包括空格、制表符、换行符等）。\n[]：匹配括号内的任意一个字符（例如 [abc] 匹配 a、b 或 c）。\n^：匹配字符串的开头。\n$：匹配字符串的结尾。\n示例代码\n以下是一些使用 Go 语言正则表达式的示例：\n示例 1：检查字符串是否匹配正则表达式\n实例",
+    "examples": [
+     "package main\n\nimport (\n    \"fmt\"\n    \"regexp\"\n)\n\nfunc main() {\n    pattern := `^[a-zA-Z0-9]+$`\n    regex := regexp.MustCompile(pattern)\n\n    str := \"Hello123\"\n    if regex.MatchString(str) {\n        fmt.Println(\"字符串匹配正则表达式\")\n    } else {\n        fmt.Println(\"字符串不匹配正则表达式\")\n    }\n}"
+    ]
+   },
+   {
+    "title": "Go 语言变量作用域",
+    "url": "https://www.runoob.com/go/go-scope-rules.html",
+    "body": "作用域为已声明标识符所表示的常量、类型、变量、函数或包在源代码中的作用范围。\nGo 语言中变量可以在三个地方声明：\n函数内定义的变量称为局部变量\n函数外定义的变量称为全局变量\n函数定义中的变量称为形式参数\n接下来让我们具体了解局部变量、全局变量和形式参数。\n局部变量\n在函数体内声明的变量称之为局部变量，它们的作用域只在函数体内，参数和返回值变量也是局部变量。\n以下实例中 main() 函数使用了局部变量 a, b, c：\n实例",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\nfunc main() {\n   /* 声明局部变量 */\n   var a, b, c int \n\n   /* 初始化参数 */\n   a = 10\n   b = 20\n   c = a + b\n\n   fmt.Printf (\"结果： a = %d, b = %d and c = %d\\n\", a, b, c)\n}"
+    ]
+   },
+   {
+    "title": "Go 语言切片(Slice)",
+    "url": "https://www.runoob.com/go/go-slice.html",
+    "body": "Go 语言切片是对数组的抽象。\nGo 数组的长度不可改变，在特定场景中这样的集合就不太适用，Go 中提供了一种灵活，功能强悍的内置类型切片(\"动态数组\")，与数组相比切片的长度是不固定的，可以追加元素，在追加时可能使切片的容量增大。\n定义切片\n你可以声明一个未指定大小的数组来定义切片：\nvar identifier []type\n切片不需要说明长度。\n或使用 make() 函数来创建切片:\nvar slice1 []type = make([]type, len)\n\n也可以简写为\n\nslice1 := make([]type, len)\n也可以指定容量，其中 capacity 为可选参数。\nmake([]T, length, capacity)\n这里 len 是数组的长度并且也是切片的初始长度。\n切片初始化\ns :=[] int {1,2,3 }\n直接初始化切片，[] 表示是切片类型，{1,2,3} 初始化值依次是 1,2,3，其 cap=len=3。\ns := arr[:]\n初始化切片 s，是数组 arr 的引用。\ns := arr[startIndex:endIndex]\n将 arr 中从下标 startIndex 到 endIndex-1 下的元素创建为一个新的切片。\ns := arr[startIndex:]\n默认 endIndex 时将表示一直到arr的最后一个元素。\ns := arr[:endIndex]\n默认 startIndex 时将表示从 arr 的第一个元素开始。\ns1 := s[startIndex:endIndex]\n通过切片 s 初始化切片 s1。\ns :=make([]int,len,cap)\n通过内置函数 make() 初始化切片s，[]int 标识为其元素类型为 int 的切片。\nlen() 和 cap() 函数\n切片是可索引的，并且可以由 len() 方法获取长度。\n切片提供了计算容量的方法 cap() 可以测量切片最长可以达到多少。\n以下为具体实例：\n实例",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\nfunc main() {\n   var numbers = make([]int,3,5)\n\n   printSlice(numbers)\n}\n\nfunc printSlice(x []int){\n   fmt.Printf(\"len=%d cap=%d slice=%v\\n\",len(x),cap(x),x)\n}"
+    ]
+   },
+   {
+    "title": "Go 语言结构体",
+    "url": "https://www.runoob.com/go/go-structures.html",
+    "body": "Go 语言中数组可以存储同一类型的数据，但在结构体中我们可以为不同项定义不同的数据类型。\n结构体是由一系列具有相同类型或不同类型的数据构成的数据集合。\n结构体表示一项记录，比如保存图书馆的书籍记录，每本书有以下属性：\nTitle ：标题\nAuthor ： 作者\nSubject：学科\nID：书籍ID\n定义结构体\n结构体定义需要使用 type 和 struct 语句。struct 语句定义一个新的数据类型，结构体中有一个或多个成员。type 语句设定了结构体的名称。结构体的格式如下：\ntype struct_variable_type struct {\n member definition\n member definition\n ...\n member definition\n}\n一旦定义了结构体类型，它就能用于变量的声明，语法格式如下：\nvariable_name := structure_variable_type {value1, value2...valuen}\n或\nvariable_name := structure_variable_type { key1: value1, key2: value2..., keyn: valuen}\n实例如下：\n实例",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\ntype Books struct {\n   title string\n   author string\n   subject string\n   book_id int\n}\n\n\nfunc main() {\n\n    // 创建一个新的结构体\n    fmt.Println(Books{\"Go 语言\", \"www.runoob.com\", \"Go 语言教程\", 6495407})\n\n    // 也可以使用 key => value 格式\n    fmt.Println(Books{title: \"Go 语言\", author: \"www.runoob.com\", subject: \"Go 语言教程\", book_id: 6495407})\n\n    // 忽略的字段为 0 或 空\n   fmt.Println(Books{title: \"Go 语言\", author: \"www.runoob.com\"})\n}"
+    ]
+   },
+   {
+    "title": "Go 语言教程",
+    "url": "https://www.runoob.com/go/go-tutorial.html",
+    "body": "Go 是一个开源的编程语言，它能让构造简单、可靠且高效的软件变得容易。\nGo是从2007年末由Robert Griesemer, Rob Pike, Ken Thompson主持开发，后来还加入了Ian Lance Taylor, Russ Cox等人，并最终于2009年11月开源，在2012年早些时候发布了Go 1稳定版本。现在Go的开发已经是完全开放的，并且拥有一个活跃的社区。",
+    "examples": []
+   },
+   {
+    "title": "Go 类型断言",
+    "url": "https://www.runoob.com/go/go-type-assertion.html",
+    "body": "在 Go 语言中，类型断言（Type Assertion）是一种用于检查接口值的实际类型的机制。\n类型断言是 Go 语言中处理接口类型的重要工具，它允许我们从接口值中提取出具体的类型，并对其进行操作。\n类型断言通常用于处理接口类型的变量，因为接口变量可以存储任何实现了该接口的具体类型的值。\n基本语法\n类型断言的基本语法如下：\nvalue, ok := interfaceValue.(Type)\ninterfaceValue 是一个接口类型的变量。\nType 是你想要断言的类型。\nvalue 是断言成功后的具体类型的值。\nok 是一个布尔值，表示断言是否成功。\n如果断言成功，value 将是 interfaceValue 的实际值，ok 为 true；如果断言失败，value 将是 Type 的零值，ok 为 false。\n实例",
+    "examples": [
+     "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var i interface{} = \"Hello, Go!\"\n\n    // 尝试将 i 断言为 string 类型\n    s, ok := i.(string)\n    if ok {\n        fmt.Println(\"断言成功:\", s)\n    } else {\n        fmt.Println(\"断言失败\")\n    }\n\n    // 尝试将 i 断言为 int 类型\n    n, ok := i.(int)\n    if ok {\n        fmt.Println(\"断言成功:\", n)\n    } else {\n        fmt.Println(\"断言失败\")\n    }\n}"
+    ]
+   },
+   {
+    "title": "Go 语言类型转换",
+    "url": "https://www.runoob.com/go/go-type-casting.html",
+    "body": "类型转换用于将一种数据类型的变量转换为另外一种类型的变量。\nGo 语言类型转换基本格式如下：\ntype_name(expression)\ntype_name 为类型，expression 为表达式。\n数值类型转换\n将整型转换为浮点型：",
+    "examples": [
+     "var a int = 10\nvar b float64 = float64(a)"
+    ]
+   },
+   {
+    "title": "Go 语言变量",
+    "url": "https://www.runoob.com/go/go-variables.html",
+    "body": "变量来源于数学，是计算机语言中能储存计算结果或能表示值抽象概念。\n变量可以通过变量名访问。\nGo 语言变量名由字母、数字、下划线组成，其中首个字符不能为数字。\n声明变量的一般形式是使用 var 关键字：\nvar identifier type\n可以一次声明多个变量：\nvar identifier1, identifier2 type\n实例",
+    "examples": [
+     "package main\nimport \"fmt\"\nfunc main() {\n    var a string = \"Runoob\"\n    fmt.Println(a)\n\n    var b, c int = 1, 2\n    fmt.Println(b, c)\n}"
+    ]
+   },
+   {
+    "title": "使用 VSCode 开发 Go",
+    "url": "https://www.runoob.com/go/go-vscode.html",
+    "body": "Visual Studio Code（简称 VS Code）是一个由微软开发的免费、开源的代码编辑器，支持多种编程语言，并提供了代码高亮、智能代码补全、代码重构、调试等功能。\n借助 Visual Studio Code 的 Go 官方扩展插件，你可以获得智能提示、代码跳转、符号检索、单元测试、程序调试等一系列助力 Go 项目开发的实用能力。\n如果你还不了解 VS Code 或者还未安装，可以参考：VSCode 教程。\n安装 Go 插件\n打开 VS Code 扩展市场，搜索：Go Extension for VS Code。\n编辑器内容，点击左侧的扩展，然后搜索 Go，然后安装官方插件：\n安装完成后，我们就可以开始编写 Go 的代码，可以输入 fmt. 试试智能提示功能：\n智能提示(IntelliSense)\n智能提示由 Go 官方团队维护的 gopls 语言服务提供，可通过 gopls 配置项自定义运行规则。\n1. 语义高亮\nVS Code默认基于TextMate语法做代码高亮，如需效果更好的语义级高亮，在配置中开启ui.semanticTokens：\n\"gopls\": { \"ui.semanticTokens\": true }\n2. 代码自动补全\n编辑Go源码时，插件实时弹出代码补全候选，支持当前包、已导入包、尚未导入包的成员联想；输入包名+.即可唤起对应包内方法/常量提示。\n快捷键：Ctrl+空格(⌃Space) 手动唤起补全弹窗\n3. 悬浮文档提示\n鼠标悬浮在变量、函数、结构体上，弹窗展示注释文档、函数签名等详情。\n4. 函数参数提示\n键入函数左括号(时自动弹出形参签名，输入实参时下划线跟随切换当前填写参数；\n快捷键：Shift+Cmd+空格(⇧⌘Space) 光标在括号内时手动触发参数提示\n代码导航\n编辑器右键菜单内置全套代码导航功能：\nF12 跳转定义：进入类型/变量源码定义处\n跳转类型定义：定位变量底层的类型源码\nAlt+F12(⌥F12) 预览定义：弹窗预览源码，不切换文件\nShift+F12(⇧F12) 查找引用：列出当前符号所有被引用位置\nShift+Alt+H(⇧⌥H) 调用层级：查看函数的调用方与被调用方链路\nCmd+F12(⌘F12) 查看实现：接口查看所有实现类、实体类查看实现的全部接口\n打开命令面板Shift+Cmd+P(⇧⌘P)，通过符号检索快速跳转：\nShift+Cmd+O(⇧⌘O)：当前文件内检索符号\nCmd+T(⌘T)：全工作区全局检索符号\n使用指令 Go: Toggle Test File，快速在业务代码与对应测试文件来回切换。\n代码格式化\n快捷键：Shift+Alt+F(⇧⌥F) 一键格式化当前文件\n也可通过命令面板/右键菜单执行「格式化文档」\n格式化配置\n关闭保存自动格式化\n\"[go]\": {\n \"editor.formatOnSave\": false\n}\n指定Go插件为Go文件默认格式化工具\n\"[go]\": {\n \"editor.defaultFormatter\": \"golang.go\"\n}\n启用gofumpt严格格式化风格（比原生gofmt规范更严苛）\n\"gopls\": {\n \"formatting.gofumpt\": true\n}\n格式化底层依赖gopls实现\n单元测试\nVS Code侧边栏测试面板 + 代码上方CodeLens快捷按钮，支持函数/文件/包/整个项目的单元测试、基准测试、性能采样。命令面板输入 Go: test 可查看全部测试指令，常用：\nGo: Test Function At Cursor：运行光标所在函数测试\nGo: Test File：运行当前文件全部测试用例\nGo: Test Package：运行当前代码包全部测试\nGo: Test All Packages in Workspace：全项目批量测试\n前3条指令可基于gotests自动生成测试用例骨架；插件支持配置：\ngo.testOnSave：保存代码自动执行测试\ngo.coverOnSave：保存自动生成测试覆盖率\ngo.testFlags：自定义go test运行参数\n调试Debug\nGo插件依托Delve调试器实现Go代码调试，独有能力：\n本地调试 + 远程服务调试\n使用Delve表达式语法在调试面板查看自定义数据\n在调试控制台执行dlv原生指令，动态修改调试配置、查看变量\n配置hideSystemGoroutines隐藏/展示系统协程\n右键代码打开汇编视图Disassembly View\n实验性功能：函数调用调试、core文件分析、Mozilla rr反向调试\n更多相关工具",
+    "examples": []
+   }
+  ]
+ }
+}

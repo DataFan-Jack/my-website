@@ -1,0 +1,452 @@
+{
+ "tutorial": {
+  "name": "Vue3",
+  "category": "前端开发",
+  "desc": "Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进",
+  "url": "https://www.runoob.com/vue3/",
+  "chapters": [
+   {
+    "title": "响应式数据",
+    "url": "https://www.runoob.com/vue3/03-vue3-ref-reactive.html",
+    "body": "响应式是 Vue3 最核心的概念。\n本章你将理解什么是响应式，学会用 ref 和 reactive 管理数据，并实现分类筛选功能。\n什么是响应式？\n响应式的意思是：当数据变化时，页面自动更新。\n传统的 JS 写法是这样的：修改了变量，还得手动去更新 DOM。\n而 Vue3 的响应式系统会自动追踪数据变化，并通知视图刷新——你只需要关心数据，不用操心 DOM。\n实例",
+    "examples": [
+     "<script setup>\nimport { ref } from 'vue'\n\n// ref 包裹的变量是响应式的\nconst count = ref(0)\n\n// 修改 count 后，模板中的 {{ count }} 会自动更新\nfunction increment() {\n  count.value++  // 注意：在 JS 中需要 .value 访问\n}\n</script>\n\n<template>\n  <p>点击次数：{{ count }}</p>\n  <!-- 模板中自动解包，不需要 .value -->\n  <button @click=\"increment\">+1</button>\n</template>"
+    ]
+   },
+   {
+    "title": "Vite 教程",
+    "url": "https://www.runoob.com/vue3/vite-tutorial.html",
+    "body": "Vite 是一个现代化的前端构建工具，旨在通过利用现代浏览器的原生 ES 模块支持，提供快速的开发体验。\nVite 由两部分组成：\n开发服务器： 基于原生 ES 模块，提供超快的热更新。\n构建命令： 使用 Rollup 打包代码，生成适用于生产环境的优化静态资源。\nVite 需要 Node.js 版本 18+ 或 20+。然而，有些模板需要依赖更高的 Node 版本才能正常运行，当你的包管理器发出警告时，请注意升级你的 Node 版本。\n传统构建工具的痛点\n在 Vite 出现之前，前端开发通常使用 Webpack 等构建工具，这些工具虽然功能强大，但也存在一些痛点：\n启动速度慢： 项目越大，启动时间越长，影响开发效率。\n热更新慢： 每次修改代码后，都需要重新构建整个项目，导致热更新速度慢。\n配置复杂： Webpack 等工具配置复杂，学习成本高。\nVite 的出现解决了传统构建工具的痛点，具有以下优势：\n极速启动： 利用浏览器原生 ES 模块支持，无需打包，启动速度极快。\n快速热更新： 仅更新修改的模块，保持应用状态，提升开发效率。\n丰富的功能： 支持 TypeScript、JSX、CSS 等，开箱即用。\n高度可扩展： 通过插件系统，轻松集成其他工具和框架。\nVite 的工作原理\nVite 的工作原理可以分为开发模式和生产模式：\n开发模式：\nVite 启动一个开发服务器，利用浏览器原生支持 ES 模块的特性，直接加载源代码。\n当代码发生变化时，Vite 只会更新修改的模块，并通知浏览器进行热更新，保持应用状态。\n生产模式：\nVite 使用 Rollup 打包代码，生成优化后的静态资源文件。\n这些文件可以部署到任何静态文件服务器上。\nVite 适用场景\nVite 适用于各种项目，尤其适合：\n单页应用 (SPA)： 如 Vue、React 项目。\n静态网站： 快速构建博客、文档等。\n库开发： 利用 Vite 的构建功能，高效开发和打包库。\n创建 Vite 项目\nVite 提供了多种方式来创建新项目，最简单的方式是使用命令行工具。\n打开终端或命令行工具，运行以下命令来创建一个新的 Vite 项目：\nnpm create vite@latest\n按照提示输入项目名称并选择模板。\nVite 提供了多种模板，包括：\nvanilla: 纯 JavaScript 项目\nvue: Vue.js 项目\nreact: React 项目\npreact: Preact 项目\nlit: Lit 项目\nsvelte: Svelte 项目\n选择模板后，Vite 会自动创建项目目录并安装依赖，本章节我们选择了 Vue 框架。\n如果暂时不懂的怎么选择，一路回车也行，窗口输出的信息类似如下：\n使用 Vite 创建的项目通常包含以下文件和文件夹：\nnode_modules: 存放项目依赖的文件夹。\npublic: 存放静态资源的文件夹，例如图片、字体等。\nsrc: 存放项目源代码的文件夹。\nmain.js: 项目入口文件。\nApp.vue: Vue 项目根组件。\nindex.html: 项目首页。\npackage.json: 项目配置文件，包含项目信息、依赖和脚本命令。\nvite.config.js: Vite 配置文件，用于配置 Vite 的各种选项。\n启动开发服务器\n进入项目目录：\ncd runoob-vite-test\n安装依赖：\nnpm install\n运行以下命令启动开发服务器：\n\nnpm run dev\n执行后，出现如下信息：\nVITE v6.2.0 ready in 684 ms\n\n ➜ Local: http://localhost:5173/\n ➜ Network: use --host to expose\n ➜ Vue DevTools: Open http://localhost:5173/__devtools__/ as a separate window\n ➜ Vue DevTools: Press Option(⌥)+Shift(⇧)+D in App to toggle the Vue DevTools\n ➜ press h + enter to show help\nVite 会启动一个本地开发服务器，并打印出访问地址，例如 http://localhost:5173，端口可以在 vite.config.js 中配置修改。\n打开浏览器访问该地址，即可看到你的 Vite 项目。\n修改代码并查看效果\n打开 src/App.vue 文件，修改代码并保存文件。\n你会发现浏览器会自动刷新，并显示修改后的效果。\nVite 启动流程\npackage.json 中定义：\n\"scripts\": {\n \"dev\": \"vite\"\n}\n执行 npm run dev 命令后，npm 会查找本地 node_modules/.bin/vite 可执行文件，调用这个文件，启动开发服务器。\nVite 的启动过程核心步骤：\n读取配置\n默认读取根目录下的 vite.config.js 或 vite.config.ts。\n配置包括 root、alias、插件、端口等。\n解析依赖\n扫描 src/main.js（或 src/main.ts）作为入口文件。\n对 ES 模块进行依赖分析。\n对导入路径（如 @/components/Hello.vue）进行别名解析。\n启动开发服务器\n创建一个 HTTP 服务器，默认端口 5173。\n提供热更新（HMR, Hot Module Replacement）能力。\n将 Vue 文件、JS/TS、CSS 等通过内置的 Vite 插件转换成浏览器可识别的代码。\n文件调用顺序（以典型 Vue3 项目为例）\nnpm run dev\n ↓\nvite 命令执行\n ↓\n读取 vite.config.js\n ↓\n扫描入口文件 src/main.js / src/main.ts\n ↓\nmain.js 导入 App.vue 和 router/store 等\n ↓\nApp.vue -> template + script + style 分别由 Vite Vue 插件处理\n ↓\n浏览器请求资源时，Vite 进行按需编译和模块缓存\n ↓\n页面呈现，支持 HMR 热更新\n关键点\n入口文件：main.js 或 main.ts，Vue 应用的起点。\n模块解析：Vite 使用 esbuild 快速处理 JS/TS，并处理 Vue 单文件组件。\n别名解析：@ 对应 src/，在 vite.config.js 中通过 resolve.alias 配置。\n热更新：修改 .vue 文件或 JS/TS 文件时，Vite 会局部更新模块而不刷新整个页面。\nVite 常用功能\nVite 提供了丰富的功能，可以帮助你更高效地开发前端应用。\n1. 使用 CSS 预处理器\nVite 支持使用 Sass、Less、Stylus 等 CSS 预处理器。\n要使用这些预处理器，你需要先安装相应的依赖：\nSass:\nnpm install -D sass\nLess:\nnpm install -D less\nStylus:\nnpm install -D stylus\n安装完成后，你就可以在项目中使用相应的 CSS 预处理器了。\n例如，在 Vue 项目中，你可以使用 <style lang=\"scss\"> 来编写 Sass 代码。\n2. 使用 TypeScript\nVite 支持使用 TypeScript 编写代码。\n要使用 TypeScript，你需要先安装 TypeScript：\nnpm install -D typescript\n安装完成后，你可以将 .js 文件重命名为 .ts 文件，并使用 TypeScript 语法编写代码。\nVite 会自动编译 TypeScript 代码。\n3. 使用静态资源\nVite 支持使用图片、字体等静态资源。\n我们可以将这些资源放在 public 目录下，或者使用 import 语句导入资源。\n如何使用使用 public 目录？\n将图片 logo.png 放在 public 目录下，然后在代码中使用 /logo.png 引用图片。\n4. 使用 import 语句\n实例",
+    "examples": [
+     "import logo from './assets/logo.png'\n\nconst img = document.createElement('img')\nimg.src = logo\ndocument.body.appendChild(img)"
+    ]
+   },
+   {
+    "title": "Vue3 计算属性",
+    "url": "https://www.runoob.com/vue3/vu3-computed.html",
+    "body": "计算属性用于根据其他数据的变化动态计算衍生出来的属性值，而且具有缓存机制，只有相关依赖发生变化时才会重新计算。\n计算属性关键词: computed。\n计算属性在处理一些复杂逻辑时是很有用的。\n可以看下以下反转字符串的例子：\n实例 1",
+    "examples": [
+     "<div id=\"app\">\n  {{ message.split('').reverse().join('') }}\n</div>"
+    ]
+   },
+   {
+    "title": "Vue 组件实例",
+    "url": "https://www.runoob.com/vue3/vue-component-instance.html",
+    "body": "在 Vue.js 中，组件实例是 Vue 应用中最基本的构建块之一。每个组件实例都是一个 Vue 组件，它具有自己的模板、数据、方法和生命周期钩子，可以独立地管理自己的状态和行为。以下是关于 Vue 组件实例的详细介绍：\nVue 组件实例的创建\n在 Vue.js 中，创建一个组件实例通常通过 createApp 方法和组件选项对象来实现。\n组件选项对象可以包含如下属性：\ndata: 数据对象，用于存储组件的响应式数据。\nprops: 属性数组或对象，用于接收父组件传递的数据。\ncomputed: 计算属性对象，根据响应式依赖进行动态计算。\nmethods: 方法对象，包含组件内部的函数和操作。\nwatch: 监听器对象，用于监听数据变化并做出响应。\ntemplate: 字符串，定义组件的模板结构。\nrender: 函数，用于渲染组件的虚拟 DOM。\nsetup: 函数，用于设置组件的初始状态、数据、计算属性和监听器等（Vue 3 中）。\n以下是一个简单的 Vue 组件实例的示例：\n实例",
+    "examples": [
+     "import { createApp } from 'vue';\n\nconst app = createApp({\n  data() {\n    return {\n      message: 'Hello, Vue!'\n    };\n  },\n  methods: {\n    greet() {\n      alert(this.message);\n    }\n  },\n  template: `\n    <div>\n      <p>{{ message }}</p>\n      <button @click=\"greet\">Greet</button>\n    </div>\n  `\n});\n\napp.mount('#app');"
+    ]
+   },
+   {
+    "title": "Vue 实例选项",
+    "url": "https://www.runoob.com/vue3/vue-ref-options.html",
+    "body": "Vue 中的选项是使用 Options API 时在 Vue 实例上可用的不同选项。\nVue 实例的一些常见选项：\nel - 指定 Vue 实例挂载的 DOM 元素。如果不提供，则 Vue 实例不会自动挂载。\ndata - 定义了 Vue 实例的数据对象。Vue 实例的模板和计算属性、方法、观察者等都可以访问这些数据。\ncomputed - 包含计算属性，这些属性的值是基于它们的依赖进行缓存的，只有当依赖发生变化时，计算属性才会重新计算。\nmethods - 定义了 Vue 实例的方法，可以在模板中通过事件监听器调用。\nwatch - 包含一个或多个观察者，用于观察和响应 Vue 实例中数据的变化。\nprops - 定义了组件可以接收的外部数据。\ncomponents - 允许在 Vue 实例中注册自定义组件。\ndirectives - 允许注册全局自定义指令。\nfilters - 定义了过滤器，可以在模板中使用，用于文本的格式化。\nmodel - 指定组件使用的自定义 v-model 属性和事件。\nprovide/inject - 提供依赖注入的能力，允许跨组件传递数据。\nlifecycle hooks - 包括 onMounted, onUpdated, onUnmounted 等生命周期钩子，用于在 Vue 实例的不同阶段执行代码。\ntemplate - 定义了 Vue 实例的 HTML 模板。\nrender function - 允许使用 JavaScript 函数来渲染组件，提供了更高级的自定义能力。\nerrorCaptured - 用于全局捕获 Vue 实例的错误。\nemits - 定义了组件可以触发的事件。\nsetup - Vue 3 的 Composition API 中的入口函数，用于组织组件的逻辑。\nel\n挂载点，用于指定 Vue 实例挂载的 DOM 元素：\n实例",
+    "examples": [
+     "const app = Vue.createApp({\n  // options\n});\napp.mount('#app');"
+    ]
+   },
+   {
+    "title": "Vue3 Ajax(axios)",
+    "url": "https://www.runoob.com/vue3/vue3-ajax-axios.html",
+    "body": "Vue 版本推荐使用 axios 来完成 ajax 请求。\nAxios 是一个基于 Promise 的 HTTP 库，可以用在浏览器和 node.js 中。\nGithub开源地址： https://github.com/axios/axios\n安装方法\n使用 cdn:\n<script src=\"https://unpkg.com/axios/dist/axios.min.js\"></script>\n或\n<script src=\"https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/axios/0.26.0/axios.min.js\" type=\"application/javascript\"></script>\n使用 npm:\n$ npm install axios\n使用 bower:\n$ bower install axios\n使用 yarn:\n$ yarn add axios\n使用方法\n从 Axios 模块中导入默认导出的 axios 对象：\nimport axios from 'axios';\n1、发起 GET 请求\n为给定 ID 的用户发起请求：\n实例",
+    "examples": [
+     "axios.get('/user?ID=12345')\n  .then(function (response) {\n    // 成功处理\n    console.log(response);\n  })\n  .catch(function (error) {\n    // 错误处理\n    console.log(error);\n  })\n  .finally(function () {\n    // 总是执行\n  });"
+    ]
+   },
+   {
+    "title": "拆分组件",
+    "url": "https://www.runoob.com/vue3/vue3-blog-components-props-emit.html",
+    "body": "组件化是 Vue 最核心的设计思想。\n本章你将学会如何把页面拆成可复用的小组件，并通过 props 和 emit 实现组件间通信。\n为什么要拆组件？\n随着功能增加，一个文件会变得越来越长，几百行代码塞在一个 .vue 文件里，难以维护。\n拆组件的目的：每个组件只做一件事，组合起来完成复杂功能。\n什么粒度合适？\n一个好的经验法则是：当一个代码块有自己的数据、自己的行为、可以在别处复用，它就应该成为一个独立组件。\n页面区域\n是否该拆成组件\n理由\n导航栏\n是\n每个页面都需要，独立功能\n文章卡片\n是\n列表里每篇都是同一个结构\n分类筛选按钮组\n是\n有自己的状态和交互\n简单包裹容器\n否\n只是为了布局，没有独立行为\n父传子：defineProps\n父组件向子组件传递数据，通过 props 实现。\n可以把它理解为「函数的参数」——父组件调用子组件时，把数据作为参数传入。\n实例",
+    "examples": [
+     "<!-- 文件路径：src/components/BlogCard.vue -->\n<script setup>\n// 声明该组件接收的 props\n// defineProps 是编译宏，无需导入即可使用\nconst props = defineProps({\n  title: String,        // 文章标题，字符串类型\n  summary: String,      // 文章摘要\n  date: String,         // 发布日期\n  category: String      // 分类标签\n})\n\n// 也可以写成数组形式（不校验类型）：\n// const props = defineProps(['title', 'summary', 'date', 'category'])\n</script>\n\n<template>\n  <div class=\"card\">\n    <span class=\"tag\">{{ category }}</span>\n    <h3>{{ title }}</h3>\n    <p>{{ summary }}</p>\n    <span class=\"date\">{{ date }}</span>\n  </div>\n</template>\n\n<style scoped>\n.card {\n  background: #fff;\n  border-radius: 12px;\n  padding: 20px;\n  box-shadow: 0 2px 12px rgba(0,0,0,0.08);\n}\n.tag {\n  display: inline-block;\n  padding: 2px 10px;\n  background: #e8f5e9;\n  color: #42b883;\n  border-radius: 12px;\n  font-size: 12px;\n}\n.card h3 { margin: 10px 0 8px; font-size: 18px; }\n.card p { color: #666; font-size: 14px; line-height: 1.6; }\n.date { font-size: 12px; color: #999; }\n</style>"
+    ]
+   },
+   {
+    "title": "Composable — 封装可复用逻辑",
+    "url": "https://www.runoob.com/vue3/vue3-blog-composable.html",
+    "body": "本章你将学会 Vue3 的最佳实践——用组合式函数（Composable）封装可复用的逻辑，让代码更干净、更易维护。\n什么是 Composable？\n随着功能增多，组件里的 JS 逻辑会越来越长。首页和详情页都需要加载文章数据，代码被复制了两份。\nComposable（组合式函数） 就是把可复用的逻辑提取到独立的 JS 函数中，哪个组件需要就在哪里调用。\n它的本质就是 一个返回响应式数据和方法的普通函数。\n为什么需要 Composable？\n对比一下改前和改后的代码结构：\n没有 Composable（之前）\n有 Composable（之后）\n每个组件自己写 fetch 逻辑\n一个 usePosts() 到处复用\n数据加载和 UI 逻辑混在一起\n数据逻辑独立，组件只关心 UI\n改一个逻辑要改多个文件\n改一处，所有组件同步更新\n组件代码随业务增长迅速膨胀\n组件代码职责单一，体积可控\n如果用过 Vue2 的 Mixins，Composable 可以理解为更清晰、更安全的替代品——它没有命名冲突、数据来源透明。\n命名规范与约定\n规范\n说明\n示例\n以 use 开头\n一眼就知道这是 Composable\nusePosts、useDarkMode\n放在 composables/ 目录\n方便查找和维护\nsrc/composables/usePosts.js\n返回响应式数据\n返回 ref 或 reactive，调用方保持响应\nreturn { articles, isLoading }\n一个函数只做一件事\n单一职责，方便组合\nusePosts 只管数据，useDarkMode 只管主题\nusePosts — 封装文章数据逻辑\n这个 Composable 负责：加载数据 + 分类筛选 + 搜索过滤。\n实例",
+    "examples": [
+     "// 文件路径：src/composables/usePosts.js\nimport { ref, computed, onMounted } from 'vue'\n\nexport function usePosts() {\n  const articles = ref([])           // 所有文章数据\n  const isLoading = ref(true)        // 加载状态\n  const error = ref(null)            // 错误信息\n  const activeCategory = ref('全部') // 当前选中的分类\n  const keyword = ref('')            // 搜索关键词\n\n  // 提取所有分类（去重）\n  const categories = computed(() => {\n    const cats = articles.value.map(a => a.category)\n    return ['全部', ...new Set(cats)]\n  })\n\n  // 过滤后的文章：先按分类，再按关键词\n  const filteredArticles = computed(() => {\n    let result = articles.value\n\n    // 按分类过滤\n    if (activeCategory.value !== '全部') {\n      result = result.filter(a => a.category === activeCategory.value)\n    }\n\n    // 按关键词过滤（匹配标题或摘要）\n    if (keyword.value.trim()) {\n      const kw = keyword.value.trim().toLowerCase()\n      result = result.filter(a =>\n        a.title.toLowerCase().includes(kw) ||\n        a.summary.toLowerCase().includes(kw)\n      )\n    }\n\n    return result\n  })\n\n  // 根据 ID 查找单篇文章\n  function getArticleById(id) {\n    return articles.value.find(a => a.id === id)\n  }\n\n  // 切换分类\n  function setCategory(cat) {\n    activeCategory.value = cat\n  }\n\n  // 加载数据\n  async function fetchPosts() {\n    isLoading.value = true\n    error.value = null\n    try {\n      const res = await fetch('/posts.json')\n      if (!res.ok) throw new Error(`HTTP ${res.status}`)\n      articles.value = await res.json()\n    } catch (err) {\n      error.value = err.message\n    } finally {\n      isLoading.value = false\n    }\n  }\n\n  // 组件挂载时自动加载\n  onMounted(() => {\n    fetchPosts()\n  })\n\n  // 返回给组件使用的数据和方法\n  return {\n    articles,\n    isLoading,\n    error,\n    activeCategory,\n    keyword,\n    categories,\n    filteredArticles,\n    getArticleById,\n    setCategory,\n    fetchPosts\n  }\n}"
+    ]
+   },
+   {
+    "title": "打包上线 — 部署到 Vercel",
+    "url": "https://www.runoob.com/vue3/vue3-blog-deploy-vercel.html",
+    "body": "本章你将学会如何把本地开发完成的博客项目打包，并免费部署到互联网上，获得一个公开的访问链接。\n构建生产包\n开发时运行 npm run dev，Vite 会在本地启动开发服务器，支持热更新。\n但部署时需要的是优化过的小体积文件——这就是生产构建。\n$ npm run build\n执行后，项目根目录下会生成一个 dist/ 文件夹：\ndist/\n├── index.html # 入口 HTML（资源引用已被替换为构建后的路径）\n├── assets/\n│ ├── index-Df3aBc9x.js # 打包后的 JS（代码已压缩、tree-shaking）\n│ ├── index-Gh7jKl2m.css # 打包后的 CSS（已提取、压缩）\n│ └── ... # 其他资源\n├── posts.json # public 目录的文件原样复制\n└── favicon.ico # 其他静态资源\n注意几个关键变化：\n文件名带有 hash（如 Df3aBc9x），内容变了 hash 就变，用于浏览器缓存控制\n代码已被 压缩和 Tree-shaking（移除未使用的代码）\nJS 和 CSS 被拆分到独立的文件\npublic/ 目录的内容原样复制到根目录\n要预览构建结果，可以运行 npx vite preview，它会在本地用生产模式启动服务，模拟线上环境。\n将项目推送到 GitHub\n部署平台（如 Vercel）通常从 Git 仓库拉取代码并自动构建，所以需要先把项目上传到 GitHub。\n第一步：创建 GitHub 仓库\n在 GitHub 网站右上角点击 + 号 → New repository，填写：\nRepository name：blog-app\n设为 Public（免费部署）\n不勾选 Initialize this repository with a README（因为本地已有项目文件）\n第二步：在本地初始化 Git 并推送\n$ cd blog-app\n$ git init\n$ git add .\n$ git commit -m \"初始化博客项目\"\n$ git branch -M main\n$ git remote add origin https://github.com/你的用户名/blog-app.git\n$ git push -u origin main\n推送成功后，刷新 GitHub 页面，能看到所有项目文件。\n推送前确认 .gitignore 文件已包含 node_modules 和 dist。node_modules 不应上传（它能通过 npm install 恢复），dist 应由构建平台自动生成。\n在 Vercel 中部署\nVercel 是目前最流行的前端部署平台，对 Vue/Vite 项目支持零配置。\n部署步骤\n访问 vercel.com，用 GitHub 账号注册/登录\n点击 \"New Project\" → Import Git Repository → 选择 blog-app 仓库\nVercel 会自动识别项目是 Vite（Vue），无需任何配置\n点击 \"Deploy\"，等待几十秒，构建完成\n部署成功后，你会得到一个链接，如：https://blog-app.vercel.app\n配置项\n值\n说明\nFramework Preset\nVite\n自动检测\nBuild Command\nnpm run build\n自动检测\nOutput Directory\ndist\n自动检测\nRoot Directory\n./\n默认项目根目录\n自动部署\n此后每当你在本地修改代码并推送到 GitHub（git push），Vercel 会自动：\n检测到仓库有新提交\n拉取最新代码，执行 npm install\n执行 npm run build 构建\n部署到生产环境\n整个过程无需任何操作，推送即上线。\n自定义域名（可选）\nVercel 提供 .vercel.app 的免费子域名，你也可以绑定自己的域名。\n在 Vercel 项目 Dashboard → Settings → Domains\n输入你的域名（如 blog.runoob.com）\n按提示在 DNS 服务商处添加 CNAME 记录指向 cname.vercel-dns.com\n等待 DNS 生效（通常几分钟到几小时），Vercel 会自动申请 SSL 证书\n下一步学习方向\n你已经掌握了 Vue3 的核心技能，下面是根据不同目标的进阶路线：\n学习方向\n适合谁\n推荐起点\nTypeScript + Vue3\n想写更严谨的大型项目\n给项目加 TS 类型定义，从 props 和 store 开始\nNuxt.js\n需要 SEO 或服务端渲染\n基于 Vue3 的全栈框架，文件即路由，自动 SSR\nVueUse\n想用现成的 Composables\nVue 官方推荐的组合式函数集合，含 200+ 工具函数\n组件库\n快速搭建管理后台\nElement Plus、Naive UI、Ant Design Vue",
+    "examples": []
+   },
+   {
+    "title": "生命周期与数据请求",
+    "url": "https://www.runoob.com/vue3/vue3-blog-lifecycle-fetch.html",
+    "body": "本章你将学会 Vue3 的生命周期钩子，并在合适的时机用 fetch 从 JSON 文件加载博客数据。\n什么是生命周期？\n每个 Vue 组件从创建到销毁，会经历一系列阶段，这些阶段称为「生命周期」。\nVue 在每个阶段提供对应的 钩子函数，让你在特定的时间点执行代码。\n比如：你想在组件加载完成后去请求数据，就需要用到 onMounted 这个钩子。\nVue3 生命周期钩子总览\n钩子函数\n执行时机\n常用场景\nsetup()\n组件初始化，最早执行\n定义响应式数据、计算属性\nonBeforeMount\n组件挂载到 DOM 之前\n较少使用\nonMounted\n组件挂载到 DOM 之后\n发起网络请求、初始化第三方库、获取 DOM 引用\nonBeforeUpdate\n数据变化、DOM 更新之前\n较少使用\nonUpdated\n数据变化、DOM 更新之后\nDOM 更新后的操作\nonBeforeUnmount\n组件销毁之前\n清除定时器、取消订阅、移除事件监听\nonUnmounted\n组件销毁之后\n清理工作确认\n对于博客项目，我们最常用的是 onMounted——在页面加载后去获取文章数据。\n生命周期钩子必须写在 <script setup> 中，且不能放在异步函数或条件语句内部。Vue 通过调用顺序来判断它们属于哪个组件。\nonMounted 的基本使用\n实例",
+    "examples": [
+     "<script setup>\nimport { ref, onMounted } from 'vue'\n\nconst message = ref('加载中...')\n\n// onMounted 在组件挂载到页面后执行\nonMounted(() => {\n  // 此时 DOM 已经渲染完成，可以安全地操作 DOM 或发请求\n  console.log('组件已挂载，可以开始加载数据了')\n  message.value = '数据加载完成！'\n})\n</script>\n\n<template>\n  <p>{{ message }}</p>\n</template>"
+    ]
+   },
+   {
+    "title": "Pinia — 全局状态管理",
+    "url": "https://www.runoob.com/vue3/vue3-blog-pinia-favorites.html",
+    "body": "本章你将学会用 Pinia 管理跨组件、跨页面的共享数据，并实现「收藏文章」功能。\n为什么需要全局状态管理？\n到目前为止，数据在组件之间通过 props 和 emit 传递。\n这对于父子关系简单的场景够用，但遇到以下情况就变得吃力：\n收藏状态需要在首页和详情页之间同步\n用户登录状态需要所有页面共享\n购物车数据需要在导航栏、商品页、结算页之间传递\nprops 逐层传递 的痛点：如果 A 组件的数据要传到 D 组件，需要经过 B、C 两层中转，而这些中间组件自己并不需要这些数据。\nPinia 是 Vue3 官方推荐的状态管理库，它提供了一个全局的「数据中心」，任何组件都可以直接读取和修改，不需要层层传递。\n安装与注册 Pinia\n如果在创建项目时已选择 Pinia，跳过安装步骤。\n否则：\n$ npm install pinia\n在 main.js 中注册：\n实例",
+    "examples": [
+     "// 文件路径：src/main.js\nimport { createApp } from 'vue'\nimport { createPinia } from 'pinia'\nimport App from './App.vue'\nimport router from './router'\n\nconst app = createApp(App)\n\n// 创建 Pinia 实例并注册\nconst pinia = createPinia()\napp.use(pinia)\napp.use(router)\napp.mount('#app')"
+    ]
+   },
+   {
+    "title": "Vue3 博客项目",
+    "url": "https://www.runoob.com/vue3/vue3-blog-project.html",
+    "body": "本章带你从零开始，用 Vite 创建一个 Vue3 博客项目，并理解项目里每个文件的作用。\n环境准备\n在开始之前，需要确保电脑上已经安装了 Node.js。\nNode.js 是 JavaScript 的运行时环境，它让我们可以在浏览器之外运行 JS 代码。\nVue3 的开发工具链（Vite、npm）都依赖 Node.js。\n检查 Node.js 是否已安装\n打开终端（Windows 用 CMD 或 PowerShell，Mac 用终端），输入以下命令：\n$ node -v\nv20.10.0\n如果显示版本号（建议 v16 以上），说明已安装。\n如果没有，去 nodejs.org 下载 LTS 版本安装即可。\n安装 Node.js 时会自动附带 npm（Node 包管理器）。\n验证命令：\nnpm -v\n创建 Vue3 项目\nVue 官方推荐使用 create-vue 脚手架工具来初始化项目。\n在终端中进入你想存放项目的目录，执行：\nnpm create vue@latest blog-app\n执行后会出现一系列选项，按以下方式选择：\n选项\n选择\n说明\nAdd TypeScript?\nNo\n初学者先用纯 JS\nAdd JSX Support?\nNo\n模板语法更直观\nAdd Vue Router?\nYes\n后面会用到路由\nAdd Pinia?\nYes\n状态管理，后续会用\nAdd Vitest?\nNo\n暂不需要测试\nAdd ESLint?\nNo\n初学者暂时不用\n选择完成后，按提示依次执行：\n$ cd blog-app\n$ npm install\n$ npm run dev\n此时浏览器会自动打开 http://localhost:5173，看到 Vue 的默认欢迎页面，说明项目启动成功。\nnpm install 会根据 package.json 下载所有依赖包到 node_modules 目录，这一步需要联网，首次执行可能需要几分钟。\n项目目录结构详解\n打开 blog-app 文件夹，你会看到以下结构：\nblog-app/\n├── index.html # 入口 HTML 文件\n├── package.json # 项目配置与依赖列表\n├── vite.config.js # Vite 构建工具配置\n├── public/ # 不经过编译的静态资源\n├── src/\n│ ├── main.js # JS 入口，创建并挂载 Vue 应用\n│ ├── App.vue # 根组件，所有页面的外壳\n│ ├── assets/ # 需要编译的静态资源（CSS、图片）\n│ ├── components/ # 可复用的 Vue 组件\n│ ├── views/ # 页面级组件（路由对应的页面）\n│ ├── router/ # 路由配置\n│ └── stores/ # Pinia 状态管理\n核心文件作用\nindex.html — 浏览器访问的入口文件。\nVite 会自动将 src/main.js 注入到这个文件中，你不需要手动引入任何 JS。\nsrc/main.js — Vue 应用的启动文件。\n它负责创建 Vue 应用实例、注册插件（路由、状态管理）、并将应用挂载到 HTML 页面上。\nsrc/App.vue — 根组件。\n它是所有页面的最外层容器，通常包含导航栏、页脚和路由出口。\n单文件组件（SFC）\nVue 中每个 .vue 文件称为一个「单文件组件」（Single File Component）。\n它把同一个组件的模板、逻辑和样式封装在一起，一个文件就是一个独立的功能单元。\nSFC 三段式结构\n实例",
+    "examples": [
+     "<script setup>\n// 第三部分：逻辑 — 在这里写 JS\nconst message = 'Hello Vue3!'\n</script>\n\n<template>\n  <!-- 第一部分：模板 — 在这里写 HTML -->\n  <h1>{{ message }}</h1>\n</template>\n\n<style scoped>\n/* 第二部分：样式 — 在这里写 CSS */\nh1 {\n  color: #42b883;\n}\n</style>"
+    ]
+   },
+   {
+    "title": "模板语法渲染",
+    "url": "https://www.runoob.com/vue3/vue3-blog-template-syntax.html",
+    "body": "本章你将学会用 Vue 的模板语法把 JS 数据渲染成 HTML，让博客首页展示文章卡片列表。\n插值表达式 {{ }}\n插值表达式是 Vue 中最基础的数据绑定方式。\n它把 JS 变量的值「插入」到 HTML 中，语法是双层花括号包裹变量名。\n实例",
+    "examples": [
+     "<script setup>\nconst blogTitle = 'RUNOOB 前端笔记'\nconst author = '小明'\n</script>\n\n<template>\n  <h1>{{ blogTitle }}</h1>\n  <p>作者：{{ author }}</p>\n  <p>当前时间：{{ new Date().toLocaleDateString() }}</p>\n</template>"
+    ]
+   },
+   {
+    "title": "路由跳转",
+    "url": "https://www.runoob.com/vue3/vue3-blog-vue-router.html",
+    "body": "本章你将学会用 Vue Router 实现前后端分离的页面跳转，包括动态路由参数。\n为什么要用路由？\n传统的多页面网站，点击链接会向服务器请求新的 HTML 文件，页面整个刷新，有白屏闪烁。\nVue Router 实现的是 前端路由：URL 变化时不向服务器发请求，而是由 JS 动态切换显示的组件。\n这样做的好处：无刷新切换页面，体验像原生 APP 一样流畅。\nVue Router 核心概念\n概念\n作用\n对应代码\n路由表\n定义 URL 路径与组件的映射关系\nroutes 数组\n路由出口\n匹配到的组件显示的位置\n<RouterView />\n导航链接\n点击跳转到指定路由\n<RouterLink to=\"...\">\n动态路由\nURL 中包含变量（如文章 ID）\n/post/:id\n安装与配置\n如果你在创建项目时已选择 Router，可以跳过安装步骤。\n如果没选，终端执行：\n$ npm install vue-router@4\n创建路由配置文件\n实例",
+    "examples": [
+     "// 文件路径：src/router/index.js\nimport { createRouter, createWebHistory } from 'vue-router'\nimport HomeView from '../views/HomeView.vue'\n\n// 路由表：每条记录映射一个路径到一个组件\nconst routes = [\n  {\n    path: '/',                // URL 路径\n    name: 'home',             // 路由名称（可选，编程式导航时用）\n    component: HomeView       // 对应的页面组件\n  },\n  {\n    // 动态路由：:id 是占位符，匹配任意值\n    // /post/1、/post/2、/post/hello 都会匹配到这条\n    path: '/post/:id',\n    name: 'post',\n    // 懒加载：访问时才加载，打包时会拆分出独立的 JS 文件\n    component: () => import('../views/PostView.vue')\n  }\n]\n\n// 创建路由实例\nconst router = createRouter({\n  history: createWebHistory(),  // 使用 HTML5 History 模式（URL 看起来像普通路径）\n  routes                         // 注册路由表\n})\n\nexport default router"
+    ]
+   },
+   {
+    "title": "watch 与搜索功能",
+    "url": "https://www.runoob.com/vue3/vue3-blog-watch-search.html",
+    "body": "本章你将学会用 watch 和 watchEffect 监听数据变化，并实现博客搜索框的实时过滤功能。\n什么场景需要 watch？\n大多数情况下，Vue 的响应式绑定已经足够：数据变了，模板自动更新。\n但有些场景需要你在数据变化时主动执行一段逻辑，比如：\n搜索框输入后，过滤文章列表\n用户切换分类时，更新页面标题\n数据变化后，存到 localStorage\n表单字段变化时，做表单校验\n这时就需要 watch 和 watchEffect。\nwatch — 精确监听\nwatch 监听指定的数据源，当数据变化时执行回调函数。\n你可以拿到 新值 和 旧值，做对比处理。\n实例",
+    "examples": [
+     "<script setup>\nimport { ref, watch } from 'vue'\n\nconst keyword = ref('')\n\n// watch(被监听的数据源, 回调函数)\nwatch(keyword, (newVal, oldVal) => {\n  console.log(`搜索关键词从 \"${oldVal}\" 变成了 \"${newVal}\"`)\n  // 在这里执行过滤逻辑\n})\n</script>\n\n<template>\n  <input v-model=\"keyword\" placeholder=\"搜索文章...\">\n  <p>当前搜索：{{ keyword }}</p>\n</template>"
+    ]
+   },
+   {
+    "title": "Vue3 项目打包",
+    "url": "https://www.runoob.com/vue3/vue3-build.html",
+    "body": "当你准备将应用发布到生产环境时，就需要打包 Vue 项目。\n打包 Vue 项目使用以下命令：\nnpm run build\n执行以上命令，输出结果如下：\n执行完成后，会在 Vue 项目下会生成一个 dist 目录，该目录一般包含 index.html 文件及 static 目录，static 目录包含了静态文件 js、css 以及图片目录 images（如果有图片的话）。\n如果直接双击打开 index.html，在浏览器中页面可能是空白了，要正常显示则需要修改下 index.html 文件中 js、css 文件路径。\n例如我们打开 dist/index.html 文件看到 css 和 js 文件路径是绝对路径：\n<link href=/static/css/app.33da80d69744798940b135da93bc7b98.css rel=stylesheet>\n<script type=text/javascript src=/static/js/app.717bb358ddc19e181140.js></script>\n...\n我们把 js、css 文件路径修改为相对路径：\n<link href=static/css/app.33da80d69744798940b135da93bc7b98.css rel=stylesheet>\n<script type=text/javascript src=static/js/app.717bb358ddc19e181140.js></script>\n...\n这样直接双击 dist/index.html 文件就可以在浏览器中看到效果了。",
+    "examples": []
+   },
+   {
+    "title": "Vue3 内置属性",
+    "url": "https://www.runoob.com/vue3/vue3-builtin-attributes.html",
+    "body": "在 Vue.js 中，is、key 和 ref 是三个常用的内置属性，用法如下。\n属性\n核心作用\n用法/示例\nis\n解决 HTML 标签语法限制，动态指定渲染的组件/原生标签\n<标签 is=\"组件名\"><component :is=\"变量\">\n<ul><li is=\"my-component\"></li></ul>\nkey\n给 Vue 虚拟DOM唯一标识，提升列表渲染效率，保证组件状态正确\n<标签 key=\"唯一值\"><标签 :key=\"item.id\">\n\n<div v-for=\"item in list\" :key=\"item.id\">{{item}}</div>\nref\n获取DOM元素或组件实例，用于直接操作原生DOM/调用子组件方法\n模板：ref=\"名称\"脚本：this.$refs.名称\n<input ref=\"inputRef\">\nthis.$refs.inputRef.focus()\nis 属性\n在 Vue.js 中，is 属性通常用于动态组件的实现，特别是当你希望在运行时动态地切换不同的组件时非常有用。\n类型: String 或 Object\n作用: is 属性用于动态地指定当前 <component> 组件应该渲染哪一个子组件。通常结合 <component> 元素和动态组件的特性一起使用，允许你在运行时基于数据来切换不同的组件。\n实例",
+    "examples": [
+     "<template>\n  <div>\n    <component :is=\"currentComponent\"></component>\n    <button @click=\"toggleComponent\">Toggle Component</button>\n  </div>\n</template>\n\n<script>\nimport FirstComponent from './FirstComponent.vue';\nimport SecondComponent from './SecondComponent.vue';\n\nexport default {\n  data() {\n    return {\n      currentComponent: 'FirstComponent'\n    };\n  },\n  components: {\n    FirstComponent,\n    SecondComponent\n  },\n  methods: {\n    toggleComponent() {\n      this.currentComponent = this.currentComponent === 'FirstComponent' ? 'SecondComponent' : 'FirstComponent';\n    }\n  }\n};\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 内置组件",
+    "url": "https://www.runoob.com/vue3/vue3-builtin-components.html",
+    "body": "在 Vue.js 中，有一些内置的全局组件和内置组件，它们提供了一些常用的功能和布局支持，可以帮助开发者快速构建应用界面。\n以下是一些常见的 Vue 内置组件和它们的作用：\n1. component\n<component> 是一个抽象的组件，用于动态地渲染不同的组件或元素。\n通过绑定 is 属性可以实现动态组件的切换和渲染。\n<component :is=\"currentComponent\"></component>\n2. transition 和 transition-group\n<transition> 和 <transition-group> 提供了在 Vue.js 中实现过渡和动画效果的功能。\n通过定义过渡的 CSS 类名，可以控制元素在进入或离开 DOM 时的动画效果。\n<transition name=\"fade\">\n <div v-if=\"show\">Hello!</div>\n</transition>\n<transition-group name=\"list\" tag=\"ul\">\n <li v-for=\"item in items\" :key=\"item.id\">{{ item.text }}</li>\n</transition-group>\n3. keep-alive\n<keep-alive> 是一个抽象组件，用于保持组件状态或避免多次渲染。\n当组件被 <keep-alive> 包裹时，其状态将会被缓存，而不是每次切换时重新渲染。\n<keep-alive>\n <component :is=\"currentComponent\"></component>\n</keep-alive>\n4. slot\n<slot> 是 Vue.js 中用于插入内容的插槽组件。它允许父组件将子组件的内容传递到特定的插槽位置，使得组件更加灵活和可复用。\n<child-component>\n <template #header>\n <h2>Header Content</h2>\n </template>\n <template #default>\n <p>Default Content</p>\n </template>\n</child-component>\n5. teleport\n<teleport> 允许你将 DOM 元素渲染到应用的任何地方，而不受当前 DOM 结构的限制。这在需要在应用中动态移动元素时非常有用，例如在模态框中渲染弹出内容。\n<teleport to=\"body\">\n <modal-dialog v-if=\"showModal\">\n <!-- modal content -->\n </modal-dialog>\n</teleport>\n6. Suspense\n<Suspense> 是 Vue.js 3.x 中新增的组件，用于处理异步组件的加载和状态。它可以在异步组件加载完成之前显示占位内容，并处理加载状态和错误。\n<Suspense>\n <template #default>\n <AsyncComponent />\n </template>\n <template #fallback>\n <div>Loading...</div>\n </template>\n</Suspense>",
+    "examples": []
+   },
+   {
+    "title": "Vue3 样式绑定",
+    "url": "https://www.runoob.com/vue3/vue3-class-bind.html",
+    "body": "Vue.js class\nclass 与 style 是 HTML 元素的属性，用于设置元素的样式，我们可以用 v-bind 来设置样式属性。\nv-bind 在处理 class 和 style 时， 表达式除了可以使用字符串之外，还可以是对象或数组。\nv-bind:class 可以简写为 :class。\nclass 属性绑定\n我们可以为 v-bind:class 设置一个对象，从而动态的切换 class:\n实例 1\n实例中将 isActive 设置为 true 显示了一个绿色的 div 块，如果设置为 false 则不显示：",
+    "examples": [
+     "<div :class=\"{ 'active': isActive }\"></div>"
+    ]
+   },
+   {
+    "title": "Vue3 组件",
+    "url": "https://www.runoob.com/vue3/vue3-components.html",
+    "body": "每个 Vue 组件都是一个独立的 Vue 实例，具有自己的模板、数据、方法和生命周期钩子，使得组件可以自包含地定义和管理自己的功能和样式。\n组件（Component）是 Vue.js 最强大的功能之一。\n组件可以扩展 HTML 元素，封装可重用的代码，可以帮助你将用户界面拆分成独立和可复用的部分。\n每个 Vue 组件都是一个独立的 Vue 实例，具有自己的模板、数据、方法和生命周期钩子，使得组件可以自包含地定义和管理自己的功能和样式。\nVue 组件的特性和优势\n复用性: 组件可以在不同的地方多次使用，提高代码的复用性和可维护性。\n封装性: 每个组件都是独立的作用域，可以封装自己的状态和逻辑，避免全局污染。\n组合性: 可以通过组合多个小组件构建复杂的界面。\n响应式: 组件的数据响应式地绑定到视图，数据更新时自动更新视图。\n模块化: 支持模块化开发，可以使用现代前端工具链进行构建和管理。\n组件系统让我们可以用独立可复用的小组件来构建大型应用，几乎任意类型的应用的界面都可以抽象为一个组件树：\n每个 Vue 应用都是通过用 createApp 函数创建的，传递给 createApp 的选项用于配置根组件。当我们挂载应用时，该组件被用作渲染的起点。\n一个应用需要被挂载到一个 DOM 元素中。\n以下实例我们将 Vue 应用挂载到 <div id=\"app\"></div>，应该传入 #app：\nconst RootComponent = { /* 选项 */ }\nconst app = Vue.createApp(RootComponent)\nconst vm = app.mount('#app')\n注册一个全局组件语法格式如下：\nconst app = Vue.createApp({...})\n\napp.component('my-component-name', {\n /* ... */\n})\nmy-component-name 为组件名，/* ... */ 部分为配置选项。注册后，我们可以使用以下方式来调用组件：\n<my-component-name></my-component-name>\n一个简单的 Vue 组件的实例：\n全局组件实例\n注册一个简单的全局组件 runoob，并使用它：",
+    "examples": [
+     "<div id=\"app\">\n<runoob></runoob>\n</div>\n<script>\n// 创建一个Vue 应用\nconst app = Vue.createApp({})\n \n// 定义一个名为 runoob的新全局组件\napp.component('runoob', {\n    template: '<h1>自定义组件!</h1>'\n})\n \napp.mount('#app')\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 组合式 API",
+    "url": "https://www.runoob.com/vue3/vue3-composition-api.html",
+    "body": "Vue3 组合式 API（Composition API） 主要用于在大型组件中提高代码逻辑的可复用性。\n传统的组件随着业务复杂度越来越高，代码量会不断的加大，整个代码逻辑都不易阅读和理解。\nVue3 使用组合式 API 的地方为 setup。\n在 setup 中，我们可以按逻辑关注点对部分代码进行分组，然后提取逻辑片段并与其他组件共享代码。因此，组合式 API（Composition API） 允许我们编写更有条理的代码。\n对比以下两端代码：\n1、传统组件\n2、组合式 API\nsetup 组件\nsetup() 函数在组件创建 created() 之前执行。\nsetup() 函数接收两个参数 props 和 context。\n第一个参数 props，它是响应式的，当传入新的 prop 时，它将被更新。\n第二个参数 context 是一个普通的 JavaScript 对象，它是一个上下文对象，暴露了其它可能在 setup 中有用的值。\n注意：在 setup 中你应该避免使用 this，因为它不会找到组件实例。setup 的调用发生在 data property、computed property 或 methods 被解析之前，所以它们无法在 setup 中被获取。\n以下实例使用组合 API 定义一个计数器：\n实例（src/APP.vue）",
+    "examples": [
+     "<template>\n    <div>\n        <p>计数器实例: {{ count }}</p>\n        <input @click=\"myFn\" type=\"button\" value=\"点我加 1\">\n    </div>\n</template>\n\n<script> \nimport {ref, onMounted} from 'vue';\n\nexport default {\n    setup(){\n        //定义初始值为0的变量，要使用ref方法赋值，直接赋值的话变量改变不会更新 UI\n        let count = ref(0);\n\n        // 定义点击事件 myFn\n        function myFn(){\n            console.log(count);\n            count.value += 1;\n        }\n       \n       // 组件被挂载时，我们用 onMounted 钩子记录一些消息\n        onMounted(() => console.log('component mounted!'));\n\n        // 外部使用组合API中定义的变量或方法，在模板中可用。\n        return {count,myFn} // 返回的函数与方法的行为相同\n    }\n}\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 创建项目",
+    "url": "https://www.runoob.com/vue3/vue3-create-project.html",
+    "body": "在上一章节 Vue3 安装 我们使用了 npm init 命令创建过一个项目，本章节我们主要介绍 npm create 命令创建项目以及使用 vue ui 命令打开图形化的安装界面。\nVue 开发推荐的 IDE 配置是 Visual Studio Code + Vue - Official 扩展：\n其他的 IDE 支持如下：\nSublime Text 通过 LSP-Volar 支持。\nvim / Neovim 通过 coc-volar 支持。\nemacs 通过 lsp-mode 支持。\nnpm create 命令\n使用 npm create 命令来创建 Vue 项目，通常是通过 Vite（Vue 官方推荐的构建工具）来创建 Vue 应用。\n在 Vite 中，npm create 是用来执行脚手架工具（如 vite@latest）来快速生成一个新的项目模板。\nVite 详细内容可以参考：Vite 教程。\nnpm create 命令创建项目语法格式如下：\nnpm create vite@latest <project-name> --template vue\n说明：\nnpm create ：用于执行项目模板的命令，它会创建一个新的项目，并从给定的模板中初始化。\nvite@latest ：vite 是创建 Vue 3 项目的工具，@latest 是指定使用最新版的 Vite，确保你创建的项目是基于最新版本的 Vite。如果没有 @latest，npm 会尝试使用当前安装的版本。\n<project-name>：新创建项目的文件夹名称。命令会创建一个文件夹，并将模板代码放入其中。例如，运行 npm create vite@latest my-vue-app --template vue 会在当前目录下创建一个名为 my-vue-app 的文件夹，并将 Vue 项目的模板文件放入其中。\n--template vue：--template vue 指定了要使用的模板类型。Vite 支持多种模板，vue 是专门为 Vue 3 提供的模板。还有其他模板，如 vanilla、react、svelte 等。\n接下来我们创建 runoob-vue3-app 项目：\nnpm create vite@latest\n执行以上命令会让你先输入项目名，并选择一个框架：\n> Project name: … runoob-vue3-app\n? Select a framework: › - Use arrow-keys. Return to submit.\n❯ Vanilla\n Vue\n React\n Preact\n Lit\n Svelte\n Solid\n Qwik\n Angular\n Others\nVite 支持多个模板，常见的有：\nvue: Vue 3 项目（默认使用 Vue 3）\nvanilla: 无框架的基本模板\nreact: React 项目\nsvelte: Svelte 项目\npreact: Preact 项目\n还可以根据具体需求选择其他模板。\n可以使用方向键来选择，我们选择 Vue，然后出现选项变体界面，我们可以选择 JavaScript 快速开始：\n> Project name: … runoob-vue3-app\n> Select a framework: › Vue\n> Select a variant: › JavaScript\n\nScaffolding project in /Users/runoob/runoob-test/runoob-vue3-app...\n\nDone. Now run:\n\n cd runoob-vue3-app\n npm install\n npm run dev\n安装完成后，我们进入项目目录：\ncd runoob-vue3-app\n整个目录结构如下图：\n安装依赖，并启动应用：\nnpm install\nnpm run dev\n然后打开 http://localhost:5173/，就可以看到应用界面了：\n另外我们可以在 vite.config.js 文件中设置自己的端口，比如以下设置端口后为 3000：\n实例",
+    "examples": [
+     "import { defineConfig } from 'vite'\nimport vue from '@vitejs/plugin-vue'\n\n// https://vite.dev/config/\nexport default defineConfig({\n  plugins: [vue()],\n\n  server: {\n    port: 3000, // 自己规定的端口号\n  },\n})"
+    ]
+   },
+   {
+    "title": "Vue3 自定义指令",
+    "url": "https://www.runoob.com/vue3/vue3-custom-directive.html",
+    "body": "除了默认设置的核心指令( v-model 和 v-show ), Vue 也允许注册自定义指令。\n下面我们注册一个全局指令 v-focus, 该指令的功能是在页面加载时，元素获得焦点：\n实例",
+    "examples": [
+     "<div id=\"app\">\n<p>页面载入时，input 元素自动获取焦点：</p>\n<input v-focus>\n</div>\n<script>\nconst app = Vue.createApp({})\n// 注册一个全局自定义指令 `v-focus`\napp.directive('focus', {\n  // 当被绑定的元素挂载到 DOM 中时……\n  mounted(el) {\n    // 聚焦元素\n    el.focus()\n  }\n})\napp.mount('#app')\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 声明式渲染",
+    "url": "https://www.runoob.com/vue3/vue3-declarative-rendering.html",
+    "body": "声明式渲染（Declarative Rendering）是指通过数据驱动视图的更新，而不是直接操作 DOM。\n声明式渲染让开发者可以更专注于业务逻辑，而不需要关心如何更新视图和 DOM。\nVue3 的声明式渲染是一种基于模板的渲染方式，它允许开发者通过简洁的模板语法来描述页面的结构和数据绑定关系，而不需要直接操作 DOM。\nVue3 的声明式渲染通过使用模板、指令（如 v-if、v-for、v-bind 等）以及响应式数据来简化 UI 更新过程。\nVue 的声明式渲染让你只需要声明 UI 应该如何呈现，Vue 会根据数据的变化自动更新视图，当你改变数据时，视图会自动响应。\nVue3 使用模板语法（类似 HTML）来描述 UI，模板中的表达式（如 {{ message }}）会绑定到组件的数据模型。\n1、数据绑定\n数据绑定是声明式渲染的核心。\n通过绑定数据，Vue 可以自动更新 DOM 元素的内容，避免了传统的手动 DOM 操作。\n插值表达式\n插值表达式是通过双花括号 {{ }} 来将组件的数据插入到 HTML 模板中。\n实例",
+    "examples": [
+     "<template>\n  <div>\n    <h1>{{ message }}</h1>\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      message: 'Hello, Vue 3!'\n    };\n  }\n};\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 指令",
+    "url": "https://www.runoob.com/vue3/vue3-directives.html",
+    "body": "Vue 指令（Directives）是 Vue.js 的一项核心功能，它们可以在 HTML 模板中以 v- 开头的特殊属性形式使用，用于将响应式数据绑定到 DOM 元素上或在 DOM 元素上进行一些操作。\nVue 指令是带有前缀 v- 的特殊 HTML 属性，它赋予 HTML 标签额外的功能。\n与传统的 JavaScript 方法相比，使用 Vue 创建响应式页面要容易得多，并且需要的代码更少。\n以下是几个常用的 Vue 指令：\n指令\n描述\nv-bind\n用于将 Vue 实例的数据绑定到 HTML 元素的属性上。\nv-if\n用于根据表达式的值来条件性地渲染元素或组件。\nv-show\nv-show 是 Vue.js 提供的一种指令，用于根据表达式的值来条件性地显示或隐藏元素。\nv-for\n用于根据数组或对象的属性值来循环渲染元素或组件。\nv-on\n用于在 HTML 元素上绑定事件监听器，使其能够触发 Vue 实例中的方法或函数。\nv-model\n用于在表单控件和 Vue 实例的数据之间创建双向数据绑定。\n除了这些常用的指令，Vue 还提供了一些其他的指令，如 v-text、v-html 等，以及自定义指令，让开发者能够更加灵活地操作 DOM 元素。\n实例\n以下是一些使用 Vue 指令的示例：\n使用 v-model 指令实现表单数据双向绑定：\n实例\n尝试一下 »",
+    "examples": [
+     "<div id=\"app\" class=\"demo\">\n    <input type=\"text\" v-model=\"message\">\n    <p>{{ message }}</p>\n</div>\n\n<script>\nconst HelloVueApp = {\n  data() {\n    return {\n      message: 'Hello Vue!!'\n    }\n  }\n}\n\nVue.createApp(HelloVueApp).mount('#app')\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 目录结构",
+    "url": "https://www.runoob.com/vue3/vue3-directory-structure.html",
+    "body": "上一章节中我们使用了 npm 安装项目(Vue-cli 和 Vite)，我们在 IDE（Vscode、Atom 等） 中打开该目录，结构如下所示：\n命令行工具 vue-cli（runoob-vue3-test）：\nVite（runoob-vue3-test2）\n一个标准的 Vue 3 项目，通常可以拆成三层：\n项目根目录：构建工具与工程配置\npublic 目录：不参与构建的静态资源\nsrc 目录：几乎所有业务代码都在这里，平时开发基本在这个目录里面。\n典型的 Vue 项目结构：\nvue-project/\n├── public/ # 静态资源，直接复制到构建输出目录\n│ └── favicon.ico # 网站图标\n├── src/\n│ ├── assets/ # 静态资源（如图片、字体、CSS）\n│ │ └── logo.png\n│ ├── components/ # 可复用的通用组件\n│ │ └── CommonHeader.vue\n│ ├── composables/ # 可复用的 Composition API 逻辑（可选）\n│ │ └── useFetch.js\n│ ├── router/ # 路由配置\n│ │ └── index.js\n│ ├── stores/ # Pinia 状态管理（或 store/ 用于 Vuex）\n│ │ └── index.js\n│ ├── utils/ # 工具函数（如请求封装、格式化）\n│ │ └── request.js\n│ ├── views/ # 页面级组件（对应路由页面）\n│ │ ├── HomeView.vue\n│ │ └── AboutView.vue\n│ ├── App.vue # 根组件\n│ └── main.js # 入口文件（创建 Vue 应用）\n├── index.html # HTML 入口模板\n├── vite.config.js # Vite 配置文件\n├── package.json # 项目依赖与脚本\n├── .gitignore # Git 忽略文件\n├── .env # 环境变量（开发）\n├── .env.production # 环境变量（生产）\n└── README.md # 项目说明\n目录解析\n路径\n描述\npublic/\n存放不会被构建工具处理的静态资源，直接复制到 dist 目录，常用于 favicon、robots.txt 等\npublic/favicon.ico\n网站图标（favicon）\nsrc/\n项目源代码主目录，所有开发代码放在这里\nsrc/assets/\n存放图片、字体、全局 CSS 等静态资源，会被 Vite 处理（支持导入）\nsrc/components/\n存放可复用的通用组件（如按钮、卡片、布局组件）\nsrc/composables/\n存放可复用的 Composition API 逻辑函数（Vue 3 推荐的代码复用方式）\nsrc/router/\nVue Router 配置目录，通常包含 index.js 定义路由表\nsrc/stores/\nPinia 状态管理目录（Vue 3 官方推荐），存放各个 store 模块\nsrc/utils/\n存放工具函数，如 axios 封装、时间格式化、常量等\nsrc/views/\n存放页面级组件，通常与路由一一对应（路由页面）\nsrc/App.vue\nVue 应用的根组件，包含 <router-view> 等入口渲染点\nsrc/main.js\n项目入口文件，创建 Vue 应用实例、挂载插件（router、pinia 等）并挂载到 #app\nindex.html\nHTML 模板文件，包含 <div></div> 挂载点\nvite.config.js\nVite 构建工具配置文件，可自定义插件、别名、代理等\npackage.json\n项目依赖、脚本命令（如 dev、build、preview）\n.gitignore\nGit 忽略文件，通常忽略 node_modules、dist、.env 等\n.env / .env.production\n环境变量文件，用于不同环境配置 API 地址等（Vite 以 VITE_ 开头变量）\nREADME.md\n项目说明文档\n随着项目变大，还可能需要添加这些文件夹：\nsrc/layouts/：不同页面布局（如 AdminLayout.vue、GuestLayout.vue）。\nsrc/plugins/：自定义 Vue 插件（如全局组件自动注册）。\nsrc/directives/：自定义指令（如 v-loading）。\nsrc/types/：全局 TypeScript 类型声明。\ntests/ 或 tests/：单元/E2E 测试（Vitest + Vue Test Utils）。\nsrc/api/：分离 API 接口调用模块（比 utils/request 更细粒度）。\n接下来，我们以 runoob-vue3-test2 为例，打开目录下的 src/APP.vue 文件，代码如下（解释在注释中）：\nsrc/APP.vue 文件代码",
+    "examples": [
+     "<!-- 展示模板 -->\n<template>\n  <img alt=\"Vue logo\" src=\"./assets/logo.png\" />\n  <HelloWorld msg=\"Hello Vue 3.0 + Vite\" />\n</template>\n<!-- Vue 代码 -->\n<script>\n/* 从 src/components/HelloWorld.vue 中引入 HelloWorld 组件 */\nimport HelloWorld from './components/HelloWorld.vue'\n\nexport default {\n  name: 'App',\n  components: {\n    HelloWorld\n  }\n}\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 事件处理",
+    "url": "https://www.runoob.com/vue3/vue3-events.html",
+    "body": "我们可以使用 v-on 指令来监听 DOM 事件，从而执行 JavaScript 代码。\nv-on 指令可以缩写为 @ 符号。\n语法格式：\nv-on:click=\"methodName\"\n或\n@click=\"methodName\"\nv-on",
+    "examples": [
+     "<div id=\"app\">\n<button @click=\"counter += 1\">增加 1</button>\n<p>这个按钮被点击了 {{ counter }} 次。</p>\n</div>\n<script>\nconst app = {\n  data() {\n    return {\n      counter: 0\n    }\n  }\n}\n \nVue.createApp(app).mount('#app')\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 表单",
+    "url": "https://www.runoob.com/vue3/vue3-forms.html",
+    "body": "这节我们为大家介绍 Vue 表单上的应用。\n我们可以用 v-model 指令在表单 <input>、<textarea> 及 <select> 等元素上创建双向数据绑定。\nv-model 会根据控件类型自动选取正确的方法来更新元素。\nv-model 会忽略所有表单元素的 value、checked、selected 属性的初始值，使用的是 data 选项中声明初始值。\nv-model 在内部为不同的输入元素使用不同的属性并抛出不同的事件：\ntext 和 textarea 元素使用 value 属性和 input 事件；\ncheckbox 和 radio 使用 checked 属性和 change 事件；\nselect 字段将 value 作为属性并将 change 作为事件。\n输入框\n实例中演示了 input 和 textarea 元素中使用 v-model 实现双向数据绑定：",
+    "examples": [
+     "<div id=\"app\">\n<p>input 元素：</p>\n<input v-model=\"message\" placeholder=\"编辑我……\">\n<p>input 表单消息是: {{ message }}</p>\n<p>textarea 元素：</p>\n<textarea v-model=\"message2\" placeholder=\"多行文本输入……\"></textarea>\n<p>textarea 表单消息是:</p>\n<p style=\"white-space: pre\">{{ message2 }}</p>\n</div>\n<script>\nconst app = {\n  data() {\n    return {\n      message: '',\n      message2: '菜鸟教程\\r\\nhttps://www.runoob.com'\n    }\n  }\n}\n \nVue.createApp(app).mount('#app')\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 全局 API",
+    "url": "https://www.runoob.com/vue3/vue3-global-api.html",
+    "body": "Vue3 全局 API 如下：\n序号\nAPI & 描述\n实例\n1\ncreateApp() 创建 Vue 应用实例，通常用于客户端渲染。\nconst app = createApp(App)\n2\ncreateSSRApp() 创建用于服务端渲染（SSR）的 Vue 应用实例。\nconst app = createSSRApp(App)\n3\napp.mount() 将 Vue 应用实例挂载到指定的 DOM 元素上。\napp.mount('#app')\n4\napp.unmount() 卸载 Vue 应用实例。\napp.unmount()\n5\napp.onUnmount() 注册卸载时的回调函数。\napp.onUnmount(() => { console.log('App is being unmounted') })\n6\napp.component() 注册全局组件，使组件在任何地方都可以使用。\napp.component('MyComponent', MyComponent)\n7\napp.directive() 注册全局指令，允许创建自定义指令。\napp.directive('focus', { mounted(el) { el.focus() } })\n8\napp.use() 安装插件，插件可以为应用提供额外功能。\napp.use(SomePlugin)\n9\napp.mixin() 注册全局混入，向所有组件提供共享数据或方法。\napp.mixin({ methods: { globalMethod() { ... } } })\n10\napp.provide() 向整个应用提供依赖，跨组件共享数据。\napp.provide('key', 'some value')\n11\napp.runWithContext() 在 Vue 应用上下文中运行一个函数，允许访问上下文数据。\napp.runWithContext(() => { console.log('Running inside app context') })\n12\napp.version 获取 Vue 当前的版本号。\nconsole.log(app.version)\n13\napp.config 获取和设置应用实例的全局配置。\napp.config.globalProperties.$myProperty = 'value'\n14\napp.config.errorHandler 设置全局错误处理函数，在应用中出现未捕获的错误时触发。\napp.config.errorHandler = (err, vm, info) => { console.error(err) }\n15\napp.config.warnHandler 设置全局警告处理函数，处理应用中的警告信息。\napp.config.warnHandler = (msg, vm, trace) => { console.warn(msg) }\n16\napp.config.performance 启用性能监控，提供渲染性能数据。\napp.config.performance = true\n17\napp.config.compilerOptions 配置模板编译器的选项，控制模板的编译行为。\napp.config.compilerOptions.delimiters = ['[[', ']]']\n18\napp.config.globalProperties 设置全局属性，应用中所有组件都可以访问。\napp.config.globalProperties.$myGlobalProperty = 'value'\n19\napp.config.optionMergeStrategies 定义组件选项合并策略，控制如何合并组件的选项。\napp.config.optionMergeStrategies.methods = (parent, child) => { return { ...parent, ...child } }\n20\napp.config.idPrefix 设置 Vue 实例 ID 的前缀，默认为 \"vue-\"。\n`app.config.idPrefix = 'myApp-'\n21\napp.config.throwUnhandledErrorInProduction 控制生产环境下是否抛出未处理的错误。\napp.config.throwUnhandledErrorInProduction = false\n22\nversion 获取 Vue 当前的版本号。\nconsole.log(Vue.version)\n23\nnextTick() 在 DOM 更新完成后执行延迟回调，用于处理异步 DOM 更新。\nnextTick(() => { console.log('DOM updated') })\n24\ndefineComponent() 用于定义组件，提供类型推导和更简洁的语法。\nexport default defineComponent({ name: 'MyComponent' })\n25\ndefineAsyncComponent() 定义异步组件，组件会在需要时进行懒加载。\nconst AsyncComponent = defineAsyncComponent(() => import('./AsyncComponent.vue'))\n应用实例 API\n1. createApp()\n功能: 创建一个 Vue 应用实例。\n用法: createApp(rootComponent, rootProps)\n参数:\nrootComponent: 根组件。\nrootProps (可选): 传递给根组件的 props。\n实例",
+    "examples": [
+     "import { createApp } from 'vue';\nimport App from './App.vue';\n\nconst app = createApp(App);"
+    ]
+   },
+   {
+    "title": "Vue3 安装",
+    "url": "https://www.runoob.com/vue3/vue3-install.html",
+    "body": "1、独立版本\n我们可以在 Vue.js 的官网上直接下载最新版本, 并用 <script> 标签引入。\n下载 Vue.js\n2、使用 CDN 方法\n以下推荐国外比较稳定的两个 CDN，国内还没发现哪一家比较好，目前还是建议下载到本地。\ncdnjs : https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.5/vue.global.js\nStaticfile CDN（国内） : https://cdn.staticfile.net/vue/3.0.5/vue.global.js\nunpkg：https://unpkg.com/vue@3/dist/vue.global.js, 会保持和 npm 发布的最新的版本一致。\nStaticfile CDN（国内）",
+    "examples": [
+     "<div id=\"app\">\n<p>{{ message }}</p>\n</div>"
+    ]
+   },
+   {
+    "title": "Vue3 起步",
+    "url": "https://www.runoob.com/vue3/vue3-intro.html",
+    "body": "Vue.js 是一个渐进式 JavaScript 框架，主要用于构建用户界面。\n刚开始学习 Vue，我们不推荐使用 vue-cli 命令行工具来创建项目，更简单的方式是直接在页面引入 vue.global.js 文件来测试学习。\nVue3 中的应用是通过使用 createApp 函数来创建的，语法格式如下：\nconst app = Vue.createApp({ /* 根组件选项 */ })\n传递给 createApp 的选项用于配置根组件。\n应用实例必须在调用了 .mount() 方法后才会渲染出来，.mount()方法接收一个\"容器\"参数，可以是一个实际的 DOM 元素或是一个 CSS 选择器字符串：\n<div id=\"app\"></div>\napp.mount('#app')\n一个简单的实例：\nVue.createApp(HelloVueApp).mount('#hello-vue')\ncreateApp 的参数是根组件（HelloVueApp），在挂载应用时，该组件是渲染的起点。\n一个应用需要被挂载到一个 DOM 元素中，以上代码使用 mount('#hello-vue') 将 Vue 应用 HelloVueApp 挂载到 <div id=\"hello-vue\"></div> 中。\n接下来我们从 Hello Vue!! 的代码开始学起。\nVue 3.0 实例",
+    "examples": [
+     "<div id=\"hello-vue\" class=\"demo\">\n  {{ message }}\n</div>\n​\n<script>\nconst HelloVueApp = {\n  data() {\n    return {\n      message: 'Hello Vue!!'\n    }\n  }\n}\n​\nVue.createApp(HelloVueApp).mount('#hello-vue')\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 简介",
+    "url": "https://www.runoob.com/vue3/vue3-introduction.html",
+    "body": "Vue3 是一个用于构建用户界面的渐进式框架。\n渐进式意味着你可以根据项目需要，只引入 Vue 的一部分能力：从一个简单的页面交互增强，到构建完整的单页应用（SPA），乃至服务端渲染（SSR）应用，Vue3 都能胜任。\nVue3 是由尤雨溪（Evan You）主导开发的渐进式 JavaScript 前端框架，于 2020 年 9 月 18 日正式发布，代号 One Piece（海贼王）。\n相比 Vue2，Vue3 对核心架构进行了全面重写：响应式系统从 Object.defineProperty 升级为 Proxy，引入组合式 API（Composition API），并在性能、TypeScript 支持、包体积等方面全面提升。\nVue3 的官方定位是：一个易于上手，同时具备足够能力支撑复杂项目的框架。它既不像 Angular 那样强制要求特定架构，也不像 React 那样需要大量手动优化，而是在易用性与能力之间找到了平衡点。\nVue3 与 Vue2 的本质区别\nVue3 不是 Vue2 的修补升级，而是一次彻底的重写。\n对比项\nVue2\nVue3\n响应式原理\nObject.defineProperty，无法监听新增属性和数组索引变化\nProxy，完整代理对象所有操作，无上述限制\n代码组织方式\n选项式 API（Options API）：data、methods、computed 分离\n组合式 API（Composition API）：按逻辑关注点聚合代码\nTypeScript 支持\n后期适配，类型推断有限\n核心代码用 TypeScript 重写，TS 是一等公民\n包体积\n运行时约 20KB（gzip）\n支持 Tree-shaking，按需打包，最小仅 13.5KB\n性能\n基准线\n初次渲染快约 55%，更新渲染快约 133%，内存占用减少约 54%\n组件模板根节点\n必须有且只有一个根元素\n支持多根节点（Fragment）\n全局 API\n挂载在 Vue 构造函数上，多实例共享状态\n通过 createApp 创建独立实例，隔离更彻底\n核心特性\nVue3 的改进涵盖响应式系统、API 设计、编译器和新内置组件四个维度。\n组合式 API（Composition API）\n组合式 API 是 Vue3 最重要的设计变化，它解决了 Vue2 中 Options API 的根本痛点：相关逻辑分散在不同选项中，复用困难。\n在 Options API 中，一个\"用户搜索\"功能的数据可能散落在 data、methods、computed、watch 四个选项里；而 Composition API 允许你把同一功能的所有逻辑写在一起，然后提取为可复用的函数（Composable）。\n实例：Options API vs Composition API",
+    "examples": [
+     "<!-- Options API 写法（Vue2 / Vue3 均支持） -->\n<script>\nexport default {\n  data() {\n    return {\n      count: 0,          // 计数器数据\n      username: 'runoob' // 用户名数据\n    }\n  },\n  computed: {\n    doubled() {          // count 的两倍\n      return this.count * 2\n    }\n  },\n  methods: {\n    increment() {        // 增加计数\n      this.count++\n    }\n  }\n}\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 混入",
+    "url": "https://www.runoob.com/vue3/vue3-mixins.html",
+    "body": "混入 (mixins)定义了一部分可复用的方法或者计算属性。混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被混入该组件本身的选项。\n来看一个简单的实例：\n实例",
+    "examples": [
+     "// 定义混入对象\nconst myMixin = {\ncreated() {\nthis.hello()\n},\n  methods: {\nhello() {\nconsole.log('欢迎来到混入实例-RUNOOB!')\n}\n}\n}\n// 定义一个应用，使用混入\nconst app = Vue.createApp({\nmixins: [myMixin]\n})\napp.mount('#app') // => \"欢迎来到混入实例-RUNOOB!\""
+    ]
+   },
+   {
+    "title": "Vue3 选项式 API",
+    "url": "https://www.runoob.com/vue3/vue3-options-api.html",
+    "body": "以下 API 广泛用于 Vue 的选项式 API 中，用于管理状态、生命周期、插槽、依赖注入等功能。\n1. 状态选项\n序号\nAPI & 描述\n实例\n1\ndata 组件的数据选项，用于定义组件的状态。\ndata() { return { count: 0 }; }\n2\nprops 组件的 props 选项，定义父组件传递给子组件的数据。\nprops: { msg: String }\n3\ncomputed 计算属性，用于定义基于组件状态（data、props）的派生值。\ncomputed: { doubledCount() { return this.count * 2; } }\n4\nmethods 组件的方法选项，用于定义组件的业务逻辑。\nmethods: { increment() { this.count += 1; } }\n5\nwatch 监听组件的响应式数据变化，并执行回调。\nwatch: { count(newVal) { console.log(newVal); } }\n6\nemits 定义组件可以触发的自定义事件。\nemits: ['update']\n7\nexpose 显式暴露给父组件访问的属性或方法。\nexpose() { return { method } }\n2. 渲染选项\n序号\nAPI & 描述\n实例\n1\ntemplate 定义组件的 HTML 模板。\n<template><button @click=\"increment\">{{ count }}</button></template>\n2\nrender 使用渲染函数替代模板。\nrender(h) { return h('button', { on: { click: this.increment } }, this.count) }\n3\ncompilerOptions 配置模板编译器的选项。\ncompilerOptions: { delimiters: ['{{', '}}'] }\n4\nslots 定义组件的插槽。\n<slot></slot>\n3. 生命周期选项\n序号\nAPI & 描述\n实例\n1\nbeforeCreate 在组件实例化之前被调用。\nbeforeCreate() { console.log('Before Create') }\n2\ncreated 组件实例已创建后调用，数据已设置。\ncreated() { console.log('Created') }\n3\nbeforeMount 在挂载到 DOM 前调用，模板已编译。\nbeforeMount() { console.log('Before Mount') }\n4\nmounted 在组件挂载到 DOM 后调用。\nmounted() { console.log('Mounted') }\n5\nbeforeUpdate 数据变化后、组件重新渲染前调用。\nbeforeUpdate() { console.log('Before Update') }\n6\nupdated 组件更新完成后调用。\nupdated() { console.log('Updated') }\n7\nbeforeUnmount 组件卸载之前调用。\nbeforeUnmount() { console.log('Before Unmount') }\n8\nunmounted 组件卸载后调用。\nunmounted() { console.log('Unmounted') }\n9\nerrorCaptured 捕获子组件错误时调用。\nerrorCaptured(err, vm, info) { console.error(err) }\n10\nrenderTracked 在响应式数据发生变化并且重新渲染时调用。\nrenderTracked(event) { console.log('Render Tracked') }\n11\nrenderTriggered 在响应式数据触发重新渲染时调用。\nrenderTriggered(event) { console.log('Render Triggered') }\n12\nactivated 组件被激活时调用（仅用于 keep-alive 组件）。\nactivated() { console.log('Activated') }\n13\ndeactivated 组件被停用时调用（仅用于 keep-alive 组件）。\ndeactivated() { console.log('Deactivated') }\n14\nserverPrefetch 服务器端渲染时获取数据的钩子。\nserverPrefetch() { return fetchData() }\n4. 组合选项\n序号\nAPI & 描述\n实例\n1\nprovide 提供依赖给后代组件。\nprovide('key', 'value')\n2\ninject 从祖先组件中注入依赖。\ninject('key')\n3\nmixins 引入外部混入（Mixin），以便复用逻辑。\nmixins: [myMixin]\n4\nextends 组件扩展另一个组件的选项。\nextends: MyComponent\n5. 其他杂项\n序号\nAPI & 描述\n实例\n1\nname 组件的名称，通常用于调试。\nname: 'MyComponent'\n2\ninheritAttrs 控制是否将父级组件的属性（attrs）自动继承到根元素。\ninheritAttrs: false\n3\ncomponents 注册局部组件，使其可以在当前组件中使用。\ncomponents: { LocalComponent }\n4\ndirectives 注册局部指令，使其可以在当前组件中使用。\ndirectives: { focus: FocusDirective }\n6. 组件实例\n序号\nAPI & 描述\n实例\n1\n$data 获取组件的数据对象。\nthis.$data.count\n2\n$props 获取组件的 props 对象。\nthis.$props.msg\n3\n$el 获取组件挂载的 DOM 元素。\nthis.$el\n4\n$options 获取组件的配置选项。\nthis.$options.name\n5\n$parent 获取父组件的实例。\nthis.$parent\n6\n$root 获取根组件的实例。\nthis.$root\n7\n$slots 获取组件的插槽内容。\nthis.$slots.default\n8\n$refs 获取组件的引用对象。\nthis.$refs.input\n9\n$attrs 获取所有未绑定到组件 props 的属性。\nthis.$attrs\n10\n$watch() 监视组件实例的响应式数据或计算属性。\nthis.$watch('count', (newCount) => { console.log(newCount) })\n11\n$emit() 触发一个自定义事件。\nthis.$emit('update', newVal)\n12\n$forceUpdate() 强制 Vue 重新渲染组件。\nthis.$forceUpdate()\n13\n$nextTick() 在下次 DOM 更新循环结束之后执行回调。\nthis.$nextTick(() => { console.log('DOM updated') })",
+    "examples": []
+   },
+   {
+    "title": "Pinia 入门教程",
+    "url": "https://www.runoob.com/vue3/vue3-pinia.html",
+    "body": "在 Vue3 中，状态管理是一个绕不开的话题。\nPinia 是 Vue.js 的轻量级状态管理库，它让你能够在组件之间共享和管理状态，我们可以把 Pinia 想象成一个全局的数据仓库，所有组件都可以从这里获取数据或者更新数据。\n本章节我们要介绍的是 Vue3 官方推荐的状态管理库 —— Pinia，相比 Vuex，Pinia 提供了更简洁、更符合 Vue3 组合式 API 思维的状态管理方案。\n下图对比了两者的结构差异：\nVuex 采用单仓库加多级模块的树状结构，层级固定，依赖 mutations，整体更重。\nPinia 则由多个独立 store 组成，扁平、轻量、不分模块，无命名空间负担。\nPinia 核心特点：\n支持 Vue2 和 Vue3\n极简的 API 设计\n完整的 TypeScript 支持\n支持组合式 API\n模块化设计，无需嵌套模块\nPinia 的扁平结构让组件可以直接连到任意 store，各取所需，不经过树状模块，也不走命名空间路径，状态流动简单直接，耦合度低。\n安装与配置\n用 Vite 创建项目：\nnpm create vite@latest vue-pinia-demo --template vue\ncd vue-pinia-demo\nnpm install\n安装 Pinia\n首先，在你的 Vue3 项目中安装 Pinia：\nnpm install pinia\n# 或者\nyarn add pinia\nPinia 有三部分：\nstate：存数据\ngetters：算派生数据\nactions：执行逻辑、修改 state\n配置 Pinia\n在 src/main.js 或 src/main.ts 中配置 Pinia：\n实例",
+    "examples": [
+     "// main.js\nimport { createApp } from 'vue'\nimport { createPinia } from 'pinia'\nimport App from './App.vue'\n\n// 创建 Pinia 实例\nconst pinia = createPinia()\n// 创建 Vue 应用\nconst app = createApp(App)\n\n// 使用 Pinia\napp.use(pinia)\napp.mount('#app')"
+    ]
+   },
+   {
+    "title": "Vue3 项目说明",
+    "url": "https://www.runoob.com/vue3/vue3-project-intro.html",
+    "body": "Vue 3 项目由多个文件和文件夹组成，每个部分都有其特定的作用。\n以下是对 Vue 3 项目代码的基本解析，帮助你理解项目的结构和各个部分的功能。\nVue 3 项目由多个文件和文件夹组成，核心文件包括 index.html、main.js 和 App.vue。\nVue 组件是应用的基本构建块，使用单文件组件（.vue 文件）定义。\nVue Router 用于管理路由，Vuex 用于状态管理。\n项目结构\n一个 Vue 3 项目通常包含以下文件和文件夹：\nmy-vue-app/\n├── node_modules/ # 项目依赖的第三方库\n├── public/ # 静态资源文件夹\n│ ├── index.html # 应用的 HTML 模板\n│ └── ... # 其他静态资源（如图片、字体等）\n├── src/ # 项目源代码\n│ ├── assets/ # 静态资源（如图片、字体等）\n│ ├── components/ # 可复用的 Vue 组件\n│ ├── views/ # 页面级组件\n│ ├── App.vue # 根组件\n│ ├── main.js # 项目入口文件\n│ ├── router.js # 路由配置\n│ ├── store.js # Vuex 状态管理配置\n│ └── ... # 其他配置和资源\n├── package.json # 项目配置和依赖管理\n├── package-lock.json # 依赖的精确版本锁定文件\n└── README.md # 项目说明文档\n核心文件解析\npublic/index.html\npublic/index.html 是 Vue 应用的 HTML 模板文件。\nVue 会将应用挂载到 <div id=\"app\"></div> 中。\n实例",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Vue App</title>\n  </head>\n  <body>\n    <div id=\"app\"></div>\n  </body>\n</html>"
+    ]
+   },
+   {
+    "title": "Vue3 测验",
+    "url": "https://www.runoob.com/vue3/vue3-quiz.html",
+    "body": "",
+    "examples": []
+   },
+   {
+    "title": "Vue3 内置指令",
+    "url": "https://www.runoob.com/vue3/vue3-ref-directives.html",
+    "body": "Vue.js 内置了多个指令（Directives），用于在模板中添加特定的响应式行为或操作 DOM。\n以下是 Vue.js 中常用的内置指令：\n指令\n用法示例\n说明\nv-text\n<p v-text=\"message\"></p>\n更新元素的 textContent，类似于插值 {{ }}，但是是单向绑定。\nv-html\n<div v-html=\"htmlContent\"></div>\n更新元素的 innerHTML，用于输出 HTML。\nv-model\n<input v-model=\"value\">\n在表单控件元素上创建双向数据绑定，将输入字段与数据属性同步。\nv-show\n<div v-show=\"isVisible\"></div>\n根据表达式的真假切换元素的显示与隐藏，使用 CSS 的 display 属性。\nv-if\n<p v-if=\"isVisible\">Visible</p>\n根据表达式的真假条件性地渲染元素，当条件为假时元素将从 DOM 中移除。\nv-else\n<p v-if=\"isVisible\">Visible</p><p v-else>Not Visible</p>\nv-if 的补充指令，用于显示条件为假时的备用内容。\nv-else-if\n<template v-if=\"type === 'A'\"><p>Type A</p></template><template v-else-if=\"type === 'B'\"><p>Type B</p></template>\n连续使用于 v-if 和 v-else 之后，用于多条件判断。\nv-for\n<li v-for=\"(item, index) in items\" :key=\"index\">{{ item }}</li>\n遍历数组或对象的每个元素，生成相应数量的元素。\nv-on\n<button v-on:click=\"handleClick\">Click me</button>\n绑定事件监听器，用于监听 DOM 事件，可以简写为 @。\nv-bind\n<img v-bind:src=\"imageSrc\">\n动态绑定 HTML 属性，可以简写为 :。\nv-slot\n<template v-slot:header><h2>Header</h2></template>\n用于具名插槽的语法，提供插入子组件内容的位置。\nv-pre\n<div v-pre>{{ message }}</div>\n跳过这个元素和它的所有子元素的编译过程，用于显示原始 Mustache 标签。\nv-cloak\n[v-cloak] { display: none; }\n在 Vue 实例编译完成前隐藏模板内容，避免显示未编译的 Mustache 标签。\nv-once\n<p v-once>{{ message }}</p>\n只渲染元素和组件一次，不会随后续数据变化而更新。\nv-memo\n<div v-memo=\"[valueA, valueB]\">\n ...\n</div>\n缓存一个模板的子树。\n当组件重新渲染，如果 valueA 和 valueB 都保持不变，这个 <div> 及其子项的所有更新都将被跳过。实际上，甚至虚拟 DOM 的 vnode 创建也将被跳过，因为缓存的子树副本可以被重新使用。\nv-text\n用法: <p v-text=\"message\"></p>\n说明: 更新元素的 textContent，类似于插值 {{ }}，但是是单向绑定。可以用于设置元素的纯文本内容。\n实例",
+    "examples": [
+     "<p v-text=\"message\"></p>"
+    ]
+   },
+   {
+    "title": "Vue3 生命周期钩子",
+    "url": "https://www.runoob.com/vue3/vue3-ref-lifecycle-hooks.html",
+    "body": "Vue.js 中的生命周期钩子函数是指在组件实例的创建、更新、销毁等过程中，Vue 自动调用的一系列方法。在这些步骤中，组件会触发一系列称为\"生命周期钩子\"的函数，允许开发者在特定时机执行自定义代码。\n生命周期钩子的注册与使用\nmounted 钩子：此钩子在组件完成初始渲染并生成 DOM 节点后触发。例如：\nexport default {\n mounted() {\n console.log(`组件已挂载。`);\n }\n}\n其他常用钩子：除了 mounted，还有 updated 和 unmounted 等钩子，它们在实例的不同生命周期阶段被调用。\n生命周期钩子的注意事项\nthis 上下文：所有生命周期钩子函数中的 this 自动指向调用它的组件实例。\n避免使用箭头函数：定义生命周期钩子时，不要使用箭头函数，因为这会导致无法通过 this 获取组件实例。\n通过合理使用生命周期钩子，开发者可以在组件的不同阶段执行特定的逻辑，增强组件的灵活性和功能。\n下面是实例生命周期的图表:\n以下是 Vue.js 生命周期钩子函数\n钩子名称\n触发时机\nbeforeCreate\n实例初始化之后，数据观测和事件配置之前调用。\ncreated\n实例创建完成后立即调用，此时实例已经完成数据观测、属性和方法的运算、watch/event 事件回调。\nbeforeMount\n在挂载开始之前被调用：相关的 render 函数首次被调用。\nmounted\nel 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。\nbeforeUpdate\n数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前。\nupdated\n由于数据更改导致的虚拟 DOM 重新渲染和打补丁之后调用。\nbeforeUnmount\n实例卸载之前调用。\nunmounted\n实例被卸载之后调用。\n以下是详细介绍 Vue 组件的生命周期钩子：\nVue.js 中的生命周期钩子函数是指在组件实例的创建、更新、销毁等过程中，Vue 自动调用的一系列方法。通过这些钩子函数，可以在组件的不同生命周期阶段执行特定的操作。以下是详细介绍 Vue 组件的生命周期钩子：\n1. beforeCreate\n说明: 实例初始化之后，数据观测和事件配置之前调用。\n用法: 可以在这个阶段初始化一些未被 Vue 代理的数据。\n实例:\n实例",
+    "examples": [
+     "beforeCreate() {\n  console.log('beforeCreate: 实例刚刚被创建');\n}"
+    ]
+   },
+   {
+    "title": "Vue3 路由(Vue Router)",
+    "url": "https://www.runoob.com/vue3/vue3-routing.html",
+    "body": "本章节我们将为大家介绍 Vue 路由。\nVue 路由允许我们通过不同的 URL 访问不同的内容。\n通过 Vue 可以实现多视图的单页 Web 应用（single page web application，SPA）。\nVue.js 路由需要载入 vue-router 库\n中文文档地址：vue-router 文档。\nVue Router 负责将 URL 路径与应用中的组件进行映射，当用户在应用中浏览时，URL 会更新，但页面不会重新加载，从而提供流畅的用户体验。\n上图展示了一个两层级的嵌套路由结构：\n顶层 (App.vue 的 <router-view>) 负责渲染独立布局（如 Login.vue）或主框架布局（Layout.vue）。\n主框架布局 (Layout.vue) 内部包含第二个 <router-view>，用于渲染功能页面的子组件（如 Dashboard.vue、User.vue），从而实现页头、侧边栏和页脚的持久化显示。\n未匹配的路径最终会导向独立的 page404.vue。\n核心组成部分\n组成部分\n描述\n选项式 API 访问\n组合式 API 访问\nrouter 实例\n整个路由系统的实例，用于全局导航、添加路由等。\nthis.$router\nuseRouter()\nroute 对象\n当前激活的路由状态对象，包含当前 URL、参数、查询等信息。\nthis.$route\nuseRoute()\n<router-link>\n用于在应用中进行导航的组件，会被渲染成一个 <a> 标签，但可以阻止默认的页面刷新。\n-\n-\n<router-view>\n路由匹配到的组件将渲染在这个位置。\n-\n-\n安装\nnpm 安装\nnpm install vue-router\nnpm（国内镜像）\n推荐使用淘宝镜像：\nnpm install -g cnpm --registry=https://registry.npmmirror.com\ncnpm install vue-router@4\n直接下载 / CDN\nhttps://unpkg.com/vue-router@4\n基本应用\n1、创建路由表\n// src/router/index.js\nimport { createRouter, createWebHistory } from 'vue-router'\nimport Home from '../views/Home.vue'\nimport About from '../views/About.vue'\n\nconst routes = [\n { path: '/', component: Home },\n { path: '/about', component: About }\n]\n\nexport default createRouter({\n history: createWebHistory(),\n routes\n})\n2、在应用中挂载\n// main.js\nimport { createApp } from 'vue'\nimport App from './App.vue'\nimport router from './router'\n\ncreateApp(App).use(router).mount('#app')\n3、页面出口\n<router-view></router-view>\n4、跳转\n<router-link to=\"/about\">About</router-link>\n5、动态路由\n{ path: '/user/:id', component: User }\n访问 /user/10，$route.params.id === '10'。\n6、懒加载\nconst About = () => import('../views/About.vue')\n7、导航守卫（鉴权）\nrouter.beforeEach((to, from, next) => {\n next()\n})\n8、重定向\n{ path: '/old', redirect: '/' }\n9、404\n{ path: '/:pathMatch(.*)*', component: NotFound }\n简单实例\nVue.js + vue-router 可以很简单的实现单页应用。\n<router-link> 是一个组件，该组件用于设置一个导航链接，切换不同 HTML 内容。\nto 属性为目标地址， 即要显示的内容。\n以下实例中我们将 vue-router 加进来，然后配置组件和路由映射，再告诉 vue-router 在哪里渲染它们。代码如下所示：\nHTML 代码",
+    "examples": [
+     "<div id=\"app\">\n<h1>Hello App!</h1>\n<p>\n<!--使用 router-link 组件进行导航 -->\n<!--通过传递 `to` 来指定链接 -->\n<!--`<router-link>` 将呈现一个带有正确 `href` 属性的 `<a>` 标签-->\n<router-link to=\"/\">Go to Home</router-link>\n<router-link to=\"/about\">Go to About</router-link>\n</p>\n<!-- 路由出口 -->\n<!-- 路由匹配到的组件将渲染在这里 -->\n<router-view></router-view>\n</div>"
+    ]
+   },
+   {
+    "title": "Vue3 创建单文件组件(SFC)",
+    "url": "https://www.runoob.com/vue3/vue3-sfc.html",
+    "body": "Vue 的单文件组件 (即 *.vue 文件，英文 Single-File Component，简称 SFC) 是一种特殊的文件格式，使我们能够将一个 Vue 组件的模板、逻辑与样式封装在单个文件中。\n在 Vue3 中，你可以使用 .vue 文件来创建单文件组件(Single File Components, SFCs)，这个文件包含了组件的模板、JavaScript 代码以及 CSS 样式。\n现在我们将删除通过 npm init vue@latest 命令创建的实例项目中的所有内容（参考 Vue3 安装），以便在 Vue 中创建自己的简单网页。\n在我们开始编写代码之前，删除 <template>、<script&gt 和 <style&gt 标签内的所有内容，以及任何像 setup 或 scoped 这样的属性。\n您的 App.vue 文件现在应该如下所示：\nApp.vue 文件：",
+    "examples": [
+     "<script></script>\n\n<template></template>\n\n<style></style>"
+    ]
+   },
+   {
+    "title": "Vue3 基础语法",
+    "url": "https://www.runoob.com/vue3/vue3-syntax.html",
+    "body": "Vue.js 是一个渐进式 JavaScript 框架，主要用于构建用户界面。\nVue.js 基于组件化和响应式数据的理念，提供了一种简单高效的方式来构建用户界面。\nVue 单文件组件\nVue 单文件组件（Single File Component，简称 SFC）是 Vue.js 框架的文件格式，它允许开发者将 HTML、JavaScript 和 CSS 代码放在一个文件中，通常以 .vue 为文件后缀。\n单文件组件是一种可复用的代码组织形式，它将从属于同一个组件的 HTML、CSS 和 JavaScript 封装在使用 .vue 后缀的文件中。\n以下是一些常见的 Vue.js 基础语法和概念，包括模板语法、指令、事件处理、计算属性和组件等，在后面章节还会详细说明。\n1. 创建 Vue 实例\n创建 Vue 实例是开始使用 Vue.js 的第一步，通常你会在一个 HTML 文件中创建一个 Vue 实例并将其挂载到一个 DOM 元素上。\n实例\n尝试一下 »",
+    "examples": [
+     "<div id=\"hello-vue\" class=\"demo\">\n  {{ message }}\n</div>\n\n<script>\nconst HelloVueApp = {\n  data() {\n    return {\n      message: 'Hello Vue!!'\n    }\n  }\n}\n\nVue.createApp(HelloVueApp).mount('#hello-vue')\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 Tailwind CSS",
+    "url": "https://www.runoob.com/vue3/vue3-tailwindcss.html",
+    "body": "在 Vue 项目中使用 Tailwind CSS 是一个很流行的选择，因为它提供了一种实用工具优先的方法来编写 CSS，使得你可以直接在类名中应用样式，这种方法使得样式编写更加简洁和直观。\nTailwind CSS 教程：https://www.runoob.com/tailwindcss/tailwindcss-tutorial.html\nTailwind CSS 官网：https://tailwindcss.com/\nGithub 地址：https://github.com/tailwindlabs/tailwindcss\nTailwind CSS 是一个功能强大的 CSS 框架，它通过实用工具优先的方法使得样式编写更加简洁和模块化。与传统的基于类的 CSS 框架不同，Tailwind 提供了一组低级实用工具类，这些类可以直接在 HTML 元素上使用，以便快速、灵活地构建自定义设计。\n以下是一个使用 Vue 3 和 Tailwind CSS 的完整入门示例，展示了如何将 Tailwind CSS 与 Vue 3 集成并使用其功能来构建响应式界面。\n安装 Vue 3 和 Tailwind CSS\n首先，确保你已经安装了 Vue 3 和 Tailwind CSS。\n安装 Vue 3 在终端中执行 npm create vue@latest 命令创建一个新的 Vue 3 项目：\nnpm create vue@latest\n在输出窗口中，输入项目名称，然后一路回车即可：\n执行以上命令需要设置一些初始化的选项，使用方向键选择即可。\n进入初始化的目录 vue-tailwind-app，安装依赖：\ncd vue-tailwind-app\nnpm install\n安装 Tailwind CSS 安装 Tailwind CSS 和相关依赖：\nnpm install -D tailwindcss@latest postcss@latest autoprefixer@latest\nnpx tailwindcss init -p\n创建完成，目录结构如下：\n配置 Tailwind CSS 打开 tailwind.config.js 文件并修改为：\n实例",
+    "examples": [
+     "/** @type {import('tailwindcss').Config} */\nexport default {\n  content: [\n    \"./index.html\",\n    \"./src/**/*.{vue,js,ts,jsx,tsx}\",\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}"
+    ]
+   },
+   {
+    "title": "环境搭建",
+    "url": "https://www.runoob.com/vue3/vue3-taskhub-config.html",
+    "body": "我们将使用 Vite 快速构建项目 TaskHub，Vite 内容参考：Vite 教程。\n1. 创建项目\n打开终端，执行以下命令创建 Vite + Vue3 项目（选择 Script Setup 语法）：\n# npm 命令\nnpm create vite@latest task-hub -- --template vue\n\n# yarn 命令\nyarn create vite task-hub --template vue\n\n# pnpm 命令（推荐，速度更快）\npnpm create vite task-hub -- --template vue\n执行成功后，输出如下：\n启动成功后，访问终端提示的本地地址（默认 http://localhost:5173/），即可看到 Vue3 初始页面。\n2. 项目目录\n我们可以进入目录：\ncd task-hub\n如果安装了 VS Code，可以使用 VS Code 的 code 命令打开目录，VS Code 内容参考：VS Code 教程。\ncode .\n启动后目录结构如下：\n其他相关命令：\n# 安装依赖\nnpm install\n\n# 启动\nnpm run dev\n# 清理默认代码\n2. 清理默认代码\n删除 src/components/HelloWorld.vue。\n清空 src/style.css。\n修改 src/App.vue，代码如下：\n实例",
+    "examples": [
+     "<script setup>\n// JS 逻辑\n</script>\n\n<template>\n  <div>\n    <h1>TaskHub</h1>\n  </div>\n</template>"
+    ]
+   },
+   {
+    "title": "逻辑复用与性能优化",
+    "url": "https://www.runoob.com/vue3/vue3-taskhub-optimization.html",
+    "body": "在完成路由与登录逻辑后，随着项目规模扩大，我们会发现有些逻辑（如存取本地数据、弹出通知）在多个页面反复出现。同时，如果任务列表达到上千条，页面可能会出现卡顿。\n这一阶段，我们将通过 Composition API 的深度应用 来解决代码复用和性能瓶颈问题。\n逻辑复用：自定义 Composables (Hooks)\nComposables 是 Vue 3 的精髓，它允许我们将逻辑（State + Actions）抽离成独立函数。\nuseLocalStorage：数据持久化逻辑抽离\n不再在每个 Store 或组件里手写 localStorage.getItem。\n实例",
+    "examples": [
+     "// src/composables/useLocalStorage.js\nimport { ref, watch } from 'vue';\n\nexport function useLocalStorage(key, defaultValue = null) {\n  // 1. 初始化数据\n  const storedValue = localStorage.getItem(key);\n  const data = ref(storedValue ? JSON.parse(storedValue) : defaultValue);\n\n  // 2. 监听变化并自动同步\n  watch(data, (newValue) => {\n    localStorage.setItem(key, JSON.stringify(newValue));\n  }, { deep: true });\n\n  return data;\n}"
+    ]
+   },
+   {
+    "title": "项目部署",
+    "url": "https://www.runoob.com/vue3/vue3-taskhub-production.html",
+    "body": "经过前几个章节的打磨，我们创建的 TaskHub 项目功能已经非常完善了，现在我们要跨出最后一步：将它从本地开发环境推向生产服务器。\n在企业级落地中，我们需要确保代码在不同环境（测试、生产）能自动切换配置，并且加载速度极快。\n环境变量管理：一套代码，多处运行\n在真实开发中，API 地址或一些配置在开发环境和线上环境是不一样的。\nVite 默认支持 .env 文件。\n在项目根目录下创建两个文件：\n.env.development (本地开发)\nVITE_API_BASE_URL=http://localhost:3000/api\nVITE_APP_TITLE=TaskHub (Dev)\n.env.production (线上生产)\nVITE_API_BASE_URL=https://api.taskhub.com\nVITE_APP_TITLE=TaskHub\n说明：\nVite 要求变量必须以 VITE_ 开头才能被暴露给客户端代码。\n在代码中通过 import.meta.env.VITE_API_BASE_URL 访问。\n打包优化：极致的加载速度\n当项目引入了 Vue Router, Pinia 等库后，打包出的 index.js 会变得很大。我们需要通过\"分包\"和\"压缩\"来优化。\n分包策略 (Manual Chunks)\n修改 vite.config.js，将第三方库打包成独立的 JS 文件，利用浏览器缓存。\n实例",
+    "examples": [
+     "// vite.config.js\nexport default defineConfig({\n  build: {\n    rollupOptions: {\n      output: {\n        manualChunks: {\n          // 将 vue 相关库打包在一起\n          'vue-vendor': ['vue', 'vue-router', 'pinia'],\n          // 其他第三方库（如以后引入的 axios 或 echarts）\n          // 'utils-vendor': ['axios'],\n        }\n      }\n    }\n  }\n})"
+    ]
+   },
+   {
+    "title": "路由系统",
+    "url": "https://www.runoob.com/vue3/vue3-taskhub-router.html",
+    "body": "上一章节我们的任务管理逻辑已经通过 Pinia 实现了持久化，现在我们需要为应用注入灵魂——路由系统。\n在企业级开发中，路由不只是切换页面，更承担了安全性（权限控制）和用户体验（动态标题）的重任。\n安装与基础配置\n首先安装 Vue Router：\nnpm install vue-router\n在 src 目录下创建 router 目录，并创建 router/index.js 文件。\n我们将定义两个页面：工作台 (Dashboard) 和 登录页 (Login)。\n实例",
+    "examples": [
+     "import { createRouter, createWebHistory } from 'vue-router'\n\nconst routes = [\n  {\n    path: '/login',\n    name: 'Login',\n    component: () => import('@/views/Login.vue'),\n    meta: { title: '登录 - TaskHub', requiresAuth: false }\n  },\n  {\n    path: '/',\n    name: 'Dashboard',\n    component: () => import('@/views/Dashboard.vue'),\n    // 路由元信息 meta：用来存放自定义数据\n    meta: { \n      title: '我的工作台', \n      requiresAuth: true,\n      breadcrumb: '首页'\n    }\n  }\n]\n\nconst router = createRouter({\n  history: createWebHistory(),\n  routes\n})\n\nexport default router"
+    ]
+   },
+   {
+    "title": "组件拆分",
+    "url": "https://www.runoob.com/vue3/vue3-taskhub-split.html",
+    "body": "现在的 App.vue 功能已经完备，但所有代码都塞在一起了。\n下一步我们将进行组件拆分，你会学到：\n如何在 Tailwind v4 环境下编写高度复用的 子组件。\n如何使用 defineProps 和 defineEmits 在 JS 组件间传递数据。\n现在在 src/components 目录下新建以下四个文件：\nTaskHeader.vue（纯展示）\nTaskInput.vue（输入逻辑）\nTaskFilter.vue（状态切换）\nTaskItem.vue（单条任务）\nTaskHeader.vue —— 静态展示组件\n这个组件不需要任何 JS 逻辑，只需展示 UI。\n在 Tailwind v4 中，我们继续使用新的渐变语法。\n实例",
+    "examples": [
+     "<template>\n  <header class=\"bg-linear-to-br from-blue-600 to-indigo-700 p-8 text-white\">\n    <h1 class=\"text-3xl font-black tracking-tight\">TaskHub</h1>\n    <p class=\"text-blue-100/80 text-sm\">Vue 3 + Tailwind v4 实战</p>\n  </header>\n</template>"
+    ]
+   },
+   {
+    "title": "状态管理与数据持久化",
+    "url": "https://www.runoob.com/vue3/vue3-taskhub-states.html",
+    "body": "上一章节已经完成了组件化，我们现在面临最后一个实战痛点：页面刷新，数据全丢。\n为了解决这个问题，我们将引入 Vue 官方推荐的状态管理库 Pinia，并结合 Tailwind v4 的样式能力，实现数据的持久化存储。\nPinia 状态管理与数据持久化\nPinia 是 Vue.js 的轻量级状态管理库，它让你能够在组件之间共享和管理状态，我们可以把 Pinia 想象成一个全局的数据仓库，所有组件都可以从这里获取数据或者更新数据。\nPinia 相关内容参考：Pinia 入门教程。\n为什么要用 Pinia？\n在之前的代码中，数据都在 App.vue 里。如果项目变大（比如增加统计页面、用户中心），在组件间传递数据会变成套娃式的噩梦（Props Hell）。\nPinia 提供了一个全局的数据仓库。\n任何组件都可以直接从仓库取数据，或者触发仓库的方法。\n安装与初始化：\nnpm install pinia\nnpm install @vue/devtools-kit -D\n在 src/main.js 中注册：\n实例",
+    "examples": [
+     "import { createApp } from 'vue'\nimport { createPinia } from 'pinia'\nimport App from './App.vue'\nimport './style.css'\n\nconst app = createApp(App)\napp.use(createPinia()) // 插件注册\napp.mount('#app')"
+    ]
+   },
+   {
+    "title": "核心业务开发",
+    "url": "https://www.runoob.com/vue3/vue3-taskhub-task.html",
+    "body": "接下来我们将在 App.vue 中构建核心任务管理逻辑。\n整个逻辑如下：\n数据流向：输入框输入内容 -> v-model 更新 newTaskTitle。\n动作触发：按回车 -> 执行 addTask -> tasks 数组增加一项。\n视图更新：tasks 改变 -> 触发 filteredTasks 自动重新计算 -> Vue 重新渲染 li 列表。\n状态流转：点击过滤器按钮 -> 修改 currentFilter 值 -> 再次触发 filteredTasks 计算 -> 页面展示不同类别的任务。\n基础布局与响应式数据\n在 src/App.vue 中编写：\n实例",
+    "examples": [
+     "<script setup>\nimport { ref, computed } from 'vue';\n\n// 1. 任务数据模型\nconst tasks = ref([\n  { id: '1', title: '体验 Tailwind v4 新特性', isCompleted: false },\n  { id: '2', title: '掌握 Composition API', isCompleted: true }\n]);\n\nconst newTaskTitle = ref('');\nconst currentFilter = ref('all');\n\n// 2. 核心方法\nconst addTask = () => {\n  const title = newTaskTitle.value.trim();\n  if (!title) return;\n  \n  tasks.value.unshift({\n    id: crypto.randomUUID(),\n    title,\n    isCompleted: false\n  });\n  newTaskTitle.value = '';\n};\n\nconst removeTask = (id) => {\n  tasks.value = tasks.value.filter(t => t.id !== id);\n};\n\nconst toggleTask = (id) => {\n  const task = tasks.value.find(t => t.id === id);\n  if (task) task.isCompleted = !task.isCompleted;\n};\n\n// 3. 计算属性处理过滤\nconst filteredTasks = computed(() => {\n  if (currentFilter.value === 'active') return tasks.value.filter(t => !t.isCompleted);\n  if (currentFilter.value === 'completed') return tasks.value.filter(t => t.isCompleted);\n  return tasks.value;\n});\n</script>\n\n<template>\n  <div class=\"min-h-screen py-12 px-4\">\n    <div class=\"max-w-md mx-auto bg-white rounded-3xl shadow-xl shadow-slate-200 border border-slate-100 overflow-hidden\">\n      \n      <header class=\"bg-linear-to-br from-blue-600 to-indigo-700 p-8 text-white\">\n        <h1 class=\"text-3xl font-black tracking-tight\">TaskHub</h1>\n        <p class=\"text-blue-100/80 text-sm\">Vue 3 + Tailwind v4 实战</p>\n      </header>\n\n      <main class=\"p-6\">\n        <div class=\"flex gap-2 mb-8\">\n          <input \n            v-model=\"newTaskTitle\"\n            @keyup.enter=\"addTask\"\n            placeholder=\"今天要完成什么？\"\n            class=\"flex-1 bg-slate-50 border-none rounded-2xl px-4 py-3 focus:ring-2 focus:ring-brand/50 outline-none transition-all\"\n          />\n          <button @click=\"addTask\" class=\"bg-brand text-white px-6 rounded-2xl font-bold hover:scale-105 active:scale-95 transition-all\">\n            +\n          </button>\n        </div>\n\n        <div class=\"flex p-1 bg-slate-100 rounded-xl mb-6\">\n          <button \n            v-for=\"f in ['all', 'active', 'completed']\" \n            :key=\"f\"\n            @click=\"currentFilter = f\"\n            :class=\"[\n              'flex-1 py-1.5 text-xs font-bold rounded-lg transition-all capitalize',\n              currentFilter === f ? 'bg-white text-brand shadow-sm' : 'text-slate-500'\n            ]\"\n          >\n            {{ f }}\n          </button>\n        </div>\n\n        <ul class=\"space-y-3\">\n          <TransitionGroup name=\"list\">\n            <li \n              v-for=\"task in filteredTasks\" \n              :key=\"task.id\"\n              class=\"group flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-transparent hover:border-slate-200 hover:bg-white transition-all\"\n            >\n              <div class=\"flex items-center gap-3\">\n                <input \n                  type=\"checkbox\" \n                  :checked=\"task.isCompleted\" \n                  @change=\"toggleTask(task.id)\"\n                  class=\"w-5 h-5 accent-brand cursor-pointer\"\n                />\n                <span :class=\"['text-slate-700 font-medium', task.isCompleted ? 'line-through text-slate-400 opacity-50' : '']\">\n                  {{ task.title }}\n                </span>\n              </div>\n              <button @click=\"removeTask(task.id)\" class=\"opacity-0 group-hover:opacity-100 text-slate-300 hover:text-red-500 transition-all p-1\">\n                ✕\n              </button>\n            </li>\n          </TransitionGroup>\n        </ul>\n\n        <div v-if=\"filteredTasks.length === 0\" class=\"text-center py-12 text-slate-400 text-sm\">\n          暂无相关任务...\n        </div>\n      </main>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n/* 列表过渡动画 */\n.list-enter-active, .list-leave-active { transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28); }\n.list-enter-from, .list-leave-to { opacity: 0; transform: translateX(30px); }\n</style>"
+    ]
+   },
+   {
+    "title": "Vue3 任务管理系统",
+    "url": "https://www.runoob.com/vue3/vue3-taskhub.html",
+    "body": "接下来我们通过创建一个 Vue3 任务管理系统来巩固之前学习到的知识点。\n核心功能：任务看板、分类筛选、数据持久化、深色模式切换、响应式设计。\n技术栈：Vue 3 (Script Setup) + Vite + Pinia + Vue Router + Element Plus + Tailwind CSS。\n教程内容\n任务管理系统包含的知识点：\n学习点\n实战意义\nComposition API\n摆脱 Options API 的碎片化，逻辑按功能组织。\nPinia\n替代 Vuex，更简单的 API 和更好的 TypeScript 支持。\nComposables\n掌握 Vue 3 最核心的\"逻辑提取\"思想。\nTailwind CSS 4.1 版本\n现代前端最流行的样式解决方案，快速实现精美 UI。\n源码包下载\n第一阶段：项目架构与环境准备\nVite 深度配置：配置路径别名 @、自动导入插件 unplugin-auto-import。\n项目规范化：集成 ESLint + Prettier + Husky，建立团队开发规范。\n样式方案：引入 Tailwind CSS 实现原子化 CSS 开发，提升 UI 开发效率。\n第二阶段：组合式 API 的深度实践\n响应式原理应用：对比 ref 与 reactive 的实战场景（何时该用哪一个？）。\n计算属性与监听器：利用 computed 实现任务列表的实时过滤，利用 watchEffect 处理异步同步。\n生命周期钩子：在 onMounted 中初始化数据，在 onUnmounted 中清理定时器或监听事件。\n第三阶段：组件化开发进阶\n组件通信：掌握 defineProps、defineEmits 以及 defineExpose。\n依赖注入：使用 provide 和 inject 解决深层组件嵌套传参问题。\n插槽 (Slots)：利用具名插槽和作用域插槽构建高复用的\"模态框\"和\"列表项\"组件。\n异步组件：使用 defineAsyncComponent 实现路由懒加载和性能优化。\n第四阶段：状态管理与路由系统\nPinia 实战：\n构建 UserStore 和 TaskStore。\n实现持久化插件（将任务保存至 LocalStorage）。\n理解 Store To Refs 的解构陷阱。\nVue Router 进阶：\n动态路由配置与权限守卫（Login Guard）。\n路由元信息 meta 的应用（标题切换、面包屑导航）。\n第五阶段：逻辑复用与性能优化\n自定义 Composables：抽离公共逻辑（如 useLocalStorage、useNotification），实现真正的代码复用。\n性能调优：\n理解 shallowRef 与 markRaw 处理大数据量渲染。\n使用 v-once 和 v-memo 指令优化长列表。\n第六阶段：项目部署与工程化落地\n环境变量管理：区分 .env.development 与 .env.production。\n打包优化：分包策略 (Manual Chunks) 与 Gzip 压缩配置。\n自动化部署：通过 GitHub Actions 或 Docker 实现简单的持续集成。",
+    "examples": []
+   },
+   {
+    "title": "Vue3 模板语法",
+    "url": "https://www.runoob.com/vue3/vue3-template-syntax.html",
+    "body": "Vue 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。\nVue 的核心是一个允许你采用简洁的模板语法来声明式的将数据渲染进 DOM 的系统。\n结合响应系统，在应用状态改变时， Vue 能够智能地计算出重新渲染组件的最小代价并应用到 DOM 操作上。\n实例",
+    "examples": [
+     "<template>\n  <div>\n    <!-- 插值 -->\n    <p>{{ message }}</p>\n    \n    <!-- v-bind -->\n    <a :href=\"url\">Link</a>\n    \n    <!-- v-on -->\n    <button @click=\"handleClick\">Click me</button>\n    \n    <!-- v-for -->\n    <ul>\n      <li v-for=\"item in items\" :key=\"item.id\">{{ item.name }}</li>\n    </ul>\n  </div>\n</template>"
+    ]
+   },
+   {
+    "title": "Vue3 教程",
+    "url": "https://www.runoob.com/vue3/vue3-tutorial.html",
+    "body": "Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。\nVue 只关注视图层， 采用自底向上增量开发的设计。\nVue 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。\nVue 学习起来非常简单，本教程基于 Vue3 以上版本测试。",
+    "examples": []
+   },
+   {
+    "title": "vue3-v-for",
+    "url": "https://www.runoob.com/vue3/vue3-v-for.html",
+    "body": "Vue.js 循环语句\n在 Vue 中，循环语句主要通过 v-for 指令来实现，用于遍历数组或对象，生成对应数量的元素。\n在元素上使用 v-for 指令，根据源数据的数组或对象进行循环渲染元素。\n遍历数组：\nv-for=\"(item, index) in items\"\n遍历对象：\nv-for=\"(value, key, index) in object\"\nkey 的作用: 使用 v-for 渲染列表时，必须为每个项提供一个唯一的 key 属性，以便 Vue 能够识别每个项的唯一性，从而进行高效的 DOM 更新。\n嵌套循环: 可以嵌套使用多个 v-for 来渲染多维数组或对象结构。\nv-for 可以绑定数据到数组来渲染一个列表：\nv-for 实例\n尝试一下 »",
+    "examples": [
+     "<div id=\"app\">\n  <ol>\n    <li v-for=\"site in sites\">\n      {{ site.text }}\n    </li>\n  </ol>\n</div>\n<script>\nconst app = {\n  data() {\n    return {\n      sites: [\n        { text: 'Google' },\n        { text: 'Runoob' },\n        { text: 'Taobao' }\n      ]\n    }\n  }\n}\n\nVue.createApp(app).mount('#app')\n</script>"
+    ]
+   },
+   {
+    "title": "Vue3 条件语句",
+    "url": "https://www.runoob.com/vue3/vue3-v-if.html",
+    "body": "在 Vue 3 中，你可以在模板中使用多种条件语句来控制组件的渲染。\n主要的条件语句有 v-if、v-else-if、v-else 和 v-show，以下是它们的用法及区别：\nv-if：元素在条件为 false 时不会被渲染到 DOM 中，适用于条件变化不频繁的情况。\nv-show：元素总是渲染到 DOM 中，适用于条件变化频繁的情况，切换显示隐藏性能更好。\nv-else-if 和 v-else：用于处理多个条件分支，配合 v-if 使用。\n条件判断\nv-if\n根据表达式的真假条件性地渲染元素。如果表达式为真，则渲染该元素；如果为假，则不渲染（不会在 DOM 中生成该元素）。\n条件判断使用 v-if 指令，指令的表达式返回 true 时才会显示：\nv-if 指令\n在元素中使用 v-if 指令：",
+    "examples": [
+     "<div id=\"app\">\n<p v-if=\"seen\">现在你看到我了</p>\n</div>\n<script>\nconst app = {\n  data() {\n    return {\n      seen: true /* 改为false，信息就无法显示 */\n    }\n  }\n}\n \nVue.createApp(app).mount('#app')\n</script>"
+    ]
+   },
+   {
+    "title": "使用 VSCode 开发 Vue",
+    "url": "https://www.runoob.com/vue3/vue3-vscode.html",
+    "body": "Visual Studio Code（简称 VS Code）是一个由微软开发的免费、开源的代码编辑器，支持多种编程语言，并提供了代码高亮、智能代码补全、代码重构、调试等功能。\nVisual Studio Code 内置支持 Vue.js 的核心构建块：HTML、CSS 和 JavaScript。\nVS Code 内置终端，可以直接在编辑器中运行命令行工具，如 npm、yarn 等，方便项目构建和管理。\n如果你希望拥有更丰富的 Vue.js 开发环境，可以安装 Volar 和 Volar for TypeScript 扩展，这些扩展提供了 Vue.js 的智能提示\n如果你还不了解 VS Code 或者还未安装，可以参考：VSCode 教程。\n创建 Vue 项目\n打开终端或命令提示符，输入以下命令：\nnpm create vue@latest\n系统会提示输入项目名称，我这边输入 runoob-vue3-app：\nVue.js - The Progressive JavaScript Framework\n\n? 请输入项目名称： › runoob-vue3-app\n之后会有一些选项，可以根据自己的需求选择，或者一路回车：\nVue.js - The Progressive JavaScript Framework\n\n> 请输入项目名称： … runoob-vue3-app\n> 是否使用 TypeScript 语法？ … 否 / 是\n> 是否启用 JSX 支持？ … 否 / 是\n> 是否引入 Vue Router 进行单页面应用开发？ … 否 / 是\n> 是否引入 Pinia 用于状态管理？ … 否 / 是\n> 是否引入 Vitest 用于单元测试？ … 否 / 是\n> 是否要引入一款端到端（End to End）测试工具？ › 不需要\n> 是否引入 ESLint 用于代码质量检测？ › 否\n\n正在初始化项目 /Users/tianqixin/runoob-vue3-app...\n\n项目初始化完成，可执行以下命令：\n\n cd runoob-vue3-app\n npm install\n npm run dev\n项目创建完成后，进入项目文件夹并安装依赖：\ncd runoob-vue3-app\nnpm install\n安装依赖可能也需要几分钟。\n输入以下命令快速启动你的 Vue 应用：\nnpm run dev\n在浏览器中打开 http://localhost:5173，显示如下：\n按下 Ctrl+C 可以停止 vue-cli-service 服务器。\n在 VS Code 中打开 Vue 项目\n从终端或命令提示符中进入我们创建的 Vue 项目文件夹 runoob-vue3-app，然后使用 code 命令让项目在 VS Code 中打开：\ncd runoob-vue3-app\ncode .\nVS Code 将启动并在文件资源管理器中显示你的 Vue 项目，显示如下：\n接下来展开 src 文件夹，选择 App.vue 文件，状态栏右下角也会提示安装 Vue - Official 扩展来支持 .vue 文件：\n选择安装它即可。\n安装完成后，.vue 文件被识别为 Vue.js 文件类型，并支持以下语言特性：\n语法高亮\n括号匹配\n悬停描述\n智能提示 (IntelliSense)\n在 App.vue 中输入代码时，你会看到 HTML、CSS 和 Vue.js 特有语法（如 v-bind、v-for）的智能提示。\n在脚本部分，还可以看到 Vue.js 相关的 JavaScript 特性提示，比如 computed 属性。\n跳转到定义、查看定义\n通过安装的 Volar 扩展，VS Code 支持 Vue.js 语言服务。\n放置光标在 App 上，右键选择 Peek Definition 查看定义信息，或者按下快捷键 ⌥F12。\n你会看到一个弹出的窗口展示 App 的定义信息。\n按下 Esc 按键关闭查看窗口。\n修改并运行 \"Hello World\"\n在 App.vue 中，将 HelloWorld 组件的 msg 自定义属性文本替换为 \"Hello World!\"：\n实例",
+    "examples": [
+     "<template>\n  <header>\n    <img alt=\"Vue logo\" class=\"logo\" src=\"./assets/logo.svg\" width=\"125\" height=\"125\" />\n\n    <div class=\"wrapper\">\n      <HelloWorld msg=\"Hello World!\" />\n    </div>\n  </header>\n\n  <main>\n    <TheWelcome />\n  </main>\n</template>"
+    ]
+   },
+   {
+    "title": "Vue3 监听属性",
+    "url": "https://www.runoob.com/vue3/vue3-watch.html",
+    "body": "本章节，我们将为大家介绍 Vue3 监听属性 watch，我们可以通过 watch 来响应数据的变化。\nwatch 的作用是用于监测响应式属性的变化，并在属性发生改变时执行特定的操作，它是 Vue 中的一种响应式机制，允许你在数据发生变化时做出相应的响应，执行自定义的逻辑。\nwatch 使得在响应式属性变化时能够有更多的控制权和灵活性，让你的组件能够更好地响应数据的变化并执行相应的逻辑。\n以下实例通过使用 watch 实现计数器：\n实例\n尝试一下 »",
+    "examples": [
+     "<div id = \"app\">\n    <p style = \"font-size:25px;\">计数器: {{ counter }}</p>\n    <button @click = \"counter++\" style = \"font-size:25px;\">点我</button>\n</div>\n    \n<script>\nconst app = {\n  data() {\n    return {\n      counter: 1\n    }\n  }\n}\nvm = Vue.createApp(app).mount('#app')\nvm.$watch('counter', function(nval, oval) {\n    alert('计数器值的变化 :' + oval + ' 变为 ' + nval + '!');\n});\n</script>"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,188 @@
+{
+ "tutorial": {
+  "name": "Lua",
+  "category": "后端开发",
+  "desc": "Lua 是一种轻量小巧的脚本语言，用标准C语言编写并以源代码形式开放， 其设计目",
+  "url": "https://www.runoob.com/lua/",
+  "chapters": [
+   {
+    "title": "Lua 数组",
+    "url": "https://www.runoob.com/lua/lua-arrays.html",
+    "body": "数组，就是相同数据类型的元素按一定顺序排列的集合，可以是一维数组和多维数组。\n在 Lua 中，数组不是一种特定的数据类型，而是一种用来存储一组值的数据结构。\n实际上，Lua 中并没有专门的数组类型，而是使用一种被称为 \"table\" 的数据结构来实现数组的功能。\nLua 数组的索引键值可以使用整数表示，数组的大小不是固定的。\n在 Lua 索引值是以 1 为起始，但你也可以指定 0 开始。\n一维数组\n一维数组是最简单的数组，其逻辑结构是线性表。\n使用索引访问数组元素：\n实例",
+    "examples": [
+     "-- 创建一个数组\nlocal myArray = {10, 20, 30, 40, 50}\n\n-- 访问数组元素\nprint(myArray[1])  -- 输出 10\nprint(myArray[3])  -- 输出 30"
+    ]
+   },
+   {
+    "title": "Lua 基本语法",
+    "url": "https://www.runoob.com/lua/lua-basic-syntax.html",
+    "body": "Lua 学习起来非常简单，我们可以创建第一个 Lua 程序！\nLua 代码文件的后缀名为 .lua。\n第一个 Lua 程序\n交互式编程\nLua 提供了交互式编程模式。我们可以在命令行中输入程序并立即查看效果。\nLua 交互式编程模式可以通过命令 lua -i 或 lua 来启用：\n$ lua -i \n$ Lua 5.3.0 Copyright (C) 1994-2015 Lua.org, PUC-Rio\n>\n在命令行中，输入以下命令:\n> print(\"Hello World！\")\n接着我们按下回车键，输出结果如下：",
+    "examples": [
+     "> print(\"Hello World！\")\nHello World！\n>"
+    ]
+   },
+   {
+    "title": "Lua 协同程序(coroutine)",
+    "url": "https://www.runoob.com/lua/lua-coroutine.html",
+    "body": "什么是协同(coroutine)？\nLua 协同程序(coroutine)与线程比较类似：拥有独立的堆栈，独立的局部变量，独立的指令指针，同时又与其它协同程序共享全局变量和其它大部分东西。\n协同程序可以理解为一种特殊的线程，可以暂停和恢复其执行，从而允许非抢占式的多任务处理。\n协同是非常强大的功能，但是用起来也很复杂。\n基本语法\n协同程序由 coroutine 模块提供支持。2>\n使用协同程序，你可以在函数中使用 coroutine.create 创建一个新的协同程序对象，并使用 coroutine.resume 启动它的执行。协同程序可以通过调用 coroutine.yield 来主动暂停自己的执行，并将控制权交还给调用者。\n方法\n描述\ncoroutine.create()\n创建 coroutine，返回 coroutine， 参数是一个函数，当和 resume 配合使用的时候就唤醒函数调用\ncoroutine.resume()\n重启 coroutine，和 create 配合使用\ncoroutine.yield()\n挂起 coroutine，将 coroutine 设置为挂起状态，这个和 resume 配合使用能有很多有用的效果\ncoroutine.status()\n查看 coroutine 的状态\n\n注：coroutine 的状态有三种：dead，suspended，running，具体什么时候有这样的状态请参考下面的程序\ncoroutine.wrap（）\n创建 coroutine，返回一个函数，一旦你调用这个函数，就进入 coroutine，和 create 功能重复\ncoroutine.running()\n返回正在跑的 coroutine，一个 coroutine 就是一个线程，当使用running的时候，就是返回一个 coroutine 的线程号\n以下实例演示了如何使用 Lua 协同程序：\n实例",
+    "examples": [
+     "function foo()\n    print(\"协同程序 foo 开始执行\")\n    local value = coroutine.yield(\"暂停 foo 的执行\")\n    print(\"协同程序 foo 恢复执行，传入的值为: \" .. tostring(value))\n    print(\"协同程序 foo 结束执行\")\nend\n\n-- 创建协同程序\nlocal co = coroutine.create(foo)\n\n-- 启动协同程序\nlocal status, result = coroutine.resume(co)\nprint(result) -- 输出: 暂停 foo 的执行\n\n-- 恢复协同程序的执行，并传入一个值\nstatus, result = coroutine.resume(co, 42)\nprint(result) -- 输出: 协同程序 foo 恢复执行，传入的值为: 42"
+    ]
+   },
+   {
+    "title": "Lua 数据类型",
+    "url": "https://www.runoob.com/lua/lua-data-types.html",
+    "body": "Lua 是动态类型语言，变量不要类型定义,只需要为变量赋值。\n值可以存储在变量中，作为参数传递或结果返回。\nLua 中有 8 个基本类型分别为：nil、boolean、number、string、userdata、function、thread 和 table。\n数据类型\n描述\nnil\n这个最简单，只有值nil属于该类，表示一个无效值（在条件表达式中相当于false）。\nboolean\n包含两个值：false和true。\nnumber\n表示双精度类型的实浮点数\nstring\n字符串由一对双引号或单引号来表示\nfunction\n由 C 或 Lua 编写的函数\nuserdata\n表示任意存储在变量中的C数据结构\nthread\n表示执行的独立线路，用于执行协同程序\ntable\nLua 中的表（table）其实是一个\"关联数组\"（associative arrays），数组的索引可以是数字、字符串或表类型。在 Lua 里，table 的创建是通过\"构造表达式\"来完成，最简单构造表达式是{}，用来创建一个空表。\n我们可以使用 type 函数测试给定变量或者值的类型：\n实例",
+    "examples": [
+     "print(type(\"Hello world\"))      --> string\nprint(type(10.4*3))             --> number\nprint(type(print))              --> function\nprint(type(type))               --> function\nprint(type(true))               --> boolean\nprint(type(nil))                --> nil\nprint(type(type(X)))            --> string"
+    ]
+   },
+   {
+    "title": "Lua 数据库访问",
+    "url": "https://www.runoob.com/lua/lua-database-access.html",
+    "body": "本文主要为大家介绍 Lua 数据库的操作库：LuaSQL。他是开源的，支持的数据库有：ODBC, ADO, Oracle, MySQL, SQLite 和 PostgreSQL。\n本文为大家介绍MySQL的数据库连接。\nLuaSQL 可以使用 LuaRocks 来安装可以根据需要安装你需要的数据库驱动。\nLuaRocks 安装方法：",
+    "examples": [
+     "$ wget http://luarocks.org/releases/luarocks-2.2.1.tar.gz\n$ tar zxpf luarocks-2.2.1.tar.gz\n$ cd luarocks-2.2.1\n$ ./configure; sudo make bootstrap\n$ sudo luarocks install luasocket\n$ lua\nLua 5.3.0 Copyright (C) 1994-2015 Lua.org, PUC-Rio\n> require \"socket\""
+    ]
+   },
+   {
+    "title": "Lua 调试(Debug)",
+    "url": "https://www.runoob.com/lua/lua-debug.html",
+    "body": "Lua 提供了 debug 库用于提供创建我们自定义调试器的功能。Lua 本身并未有内置的调试器，但很多开发者共享了他们的 Lua 调试器代码。\nLua 中 debug 库包含以下函数：\n序号\n方法 & 用途\n1.\ndebug(): 进入一个用户交互模式，运行用户输入的每个字符串。 使用简单的命令以及其它调试设置，用户可以检阅全局变量和局部变量， 改变变量的值，计算一些表达式，等等。 输入一行仅包含 cont 的字符串将结束这个函数， 这样调用者就可以继续向下运行。\n2.\ngetfenv(object): 返回对象的环境变量。\n3.\ngethook(optional thread): 返回三个表示线程钩子设置的值： 当前钩子函数，当前钩子掩码，当前钩子计数\n4.\ngetinfo ([thread,] f [, what]): 返回关于一个函数信息的表。 你可以直接提供该函数， 也可以用一个数字 f 表示该函数。 数字 f 表示运行在指定线程的调用栈对应层次上的函数： 0 层表示当前函数（getinfo 自身）； 1 层表示调用 getinfo 的函数 （除非是尾调用，这种情况不计入栈）；等等。 如果 f 是一个比活动函数数量还大的数字， getinfo 返回 nil。\n5.\ndebug.getlocal ([thread,] f, local): 此函数返回在栈的 f 层处函数的索引为 local 的局部变量 的名字和值。 这个函数不仅用于访问显式定义的局部变量，也包括形参、临时变量等。\n6.\ngetmetatable(value): 把给定索引指向的值的元表压入堆栈。如果索引无效，或是这个值没有元表，函数将返回 0 并且不会向栈上压任何东西。\n7.\ngetregistry(): \n返回注册表表，这是一个预定义出来的表， 可以用来保存任何 C 代码想保存的 Lua 值。\n8.\ngetupvalue (f, up)此函数返回函数 f 的第 up 个上值的名字和值。 如果该函数没有那个上值，返回 nil 。\n\n以 '(' （开括号）打头的变量名表示没有名字的变量 （去除了调试信息的代码块）。\n10.\nsethook ([thread,] hook, mask [, count]):将一个函数作为钩子函数设入。 字符串 mask 以及数字 count 决定了钩子将在何时调用。 掩码是由下列字符组合成的字符串，每个字符有其含义：\n'c': 每当 Lua 调用一个函数时，调用钩子；\n'r': 每当 Lua 从一个函数内返回时，调用钩子；\n'l': 每当 Lua 进入新的一行时，调用钩子。\n11.\nsetlocal ([thread,] level, local, value): 这个函数将 value 赋给 栈上第 level 层函数的第 local 个局部变量。 如果没有那个变量，函数返回 nil 。 如果 level 越界，抛出一个错误。\n12.\nsetmetatable (value, table): 将 value 的元表设为 table （可以是 nil）。 返回 value。\n13.\nsetupvalue (f, up, value): 这个函数将 value 设为函数 f 的第 up 个上值。 如果函数没有那个上值，返回 nil 否则，返回该上值的名字。\n14.\ntraceback ([thread,] [message [, level]]):如果 message 有，且不是字符串或 nil， 函数不做任何处理直接返回 message。 否则，它返回调用栈的栈回溯信息。 字符串可选项 message 被添加在栈回溯信息的开头。 数字可选项 level 指明从栈的哪一层开始回溯 （默认为 1 ，即调用 traceback 的那里）。\n上表列出了我们常用的调试函数，接下来我们可以看些简单的例子：\n实例",
+    "examples": [
+     "function myfunction ()\nprint(debug.traceback(\"Stack trace\"))\nprint(debug.getinfo(1))\nprint(\"Stack trace end\")\n        return 10\nend\nmyfunction ()\nprint(debug.getinfo(1))"
+    ]
+   },
+   {
+    "title": "Lua 流程控制",
+    "url": "https://www.runoob.com/lua/lua-decision-making.html",
+    "body": "Lua 编程语言流程控制语句通过程序设定一个或多个条件语句来设定。在条件为 true 时执行指定程序代码，在条件为 false 时执行其他指定代码。\n以下是典型的流程控制流程图：\n控制结构的条件表达式结果可以是任何值，Lua认为false和nil为假，true和非nil为真。\n要注意的是Lua中 0 为 true：\n实例",
+    "examples": [
+     "--[ 0 为 true ]\nif(0)\nthen\n    print(\"0 为 true\")\nend"
+    ]
+   },
+   {
+    "title": "Lua 编辑器",
+    "url": "https://www.runoob.com/lua/lua-editor.html",
+    "body": "可以使用专业的编辑器来编辑 Lua，为大家推荐几款常用的编辑器：\nVS Code：https://code.visualstudio.com/\n阿里 Qoder：https://qoder.com/\n字节 Trae：https://www.trae.cn/\n你可以从以上软件的官网中下载对应的软件，按步骤安装即可。\n接下来我们将为大家演示如何使用 Qoder 工具来编写 Lua 代码。\nQoder 是基于 VSCode 开源框架打造的 AI 编程平台，本章节我们将介绍使用 Qoder 开发 Lua。\nQoder（/ˈkoʊdər/）是一款面向真实软件开发的 Agentic 编码平台,通过增强上下文工程与智能体无缝结合，全面理解你的代码库，并以系统化方式推进开发任务。\nQoder 提供代码智能生成、智能问答、多文件修改、编程智能体等能力，思考更深入、编码更高效、构建更出色，为开发者带来高效、流畅的编码体验。\nQoder 个人版目前向所有用户提供免费试用。\n1、注册并安装 Qoder\n首先访问 https://qoder.com/ 注册 Qoder 账号，注册完成后点击右上角的下载按钮，根据你的电脑系统，下载安装程序。\n下载后，双击文件开始安装，然后，双击 Qoder IDE 图标启动 Qoder。\n相关链接：\nQoder 官网：https://qoder.com/\nQoder 文档：https://docs.qoder.com/zh/quick-start\nQoder 命令行工具：https://docs.qoder.com/zh/cli/quick-start\n2、登录 Qoder\n在 Qoder IDE 右上角，点击用户图标，或使用键盘快捷键（⌘ ⇧ ,（macOS）或 Ctrl Shift ,（Windows）），然后选择 登录。\n如果还没账号，可以在打开的网页中点击底部的立即注册链接注册个账号，或使用 Google 或 GitHub 账号直接注册。\n登录成功后，就会返回 Qoder IDE 后，然后我们可以自由使用所有功能。\n整个界面上看，Qoder 操作上跟 VS Code 基本也没区别，本身 Qoder 是基于 VSCode 打造的，所以熟悉 VS Code 的用起来也轻车熟路。\n点击右侧扩展按钮，安装 Lua 扩展：\n创建 Lua 项目\n创建项目目录：\nmkdir lua-runoob-test\n\n进行项目目录：\ncd lua-runoob-test\n使用 qoder 命令启动该 lua 项目：\nqoder .\nQoder 就会打开该项目，我们创建文件 main.lua，输入以下代码：\nprint(\"Hello Lua\")\n\nlocal function add(a,b)\n return a+b\nend\n\nprint(add(3,5))\n运行程序：\nlua main.lua\n输出：\nHello Lua",
+    "examples": []
+   },
+   {
+    "title": "Lua 环境安装",
+    "url": "https://www.runoob.com/lua/lua-environment.html",
+    "body": "Linux 系统上安装\nLinux & Mac 上安装 Lua 安装非常简单，只需要下载源码包并在终端解压编译即可，本文使用了 5.4.7 版本进行安装：\n源码安装\n下载源码安装：\ncurl -L -R -O https://www.lua.org/ftp/lua-5.4.7.tar.gz\ntar zxf lua-5.4.7.tar.gz\ncd lua-5.4.7\nmake all test\nmake install\n使用包管理器安装\nDebian/Ubuntu 系统:\nsudo apt update\nsudo apt install lua5.3\nCentOS/RHEL 系统:\nsudo yum install epel-release\nsudo yum install lua\nMac OS X 系统上安装\n源码安装\n下载源码安装：\ncurl -L -R -O https://www.lua.org/ftp/lua-5.4.7.tar.gz\ntar zxf lua-5.4.7.tar.gz\ncd lua-5.4.7\nmake all test\nmake install\nHomebrew\n使用 Homebrew 安装：\nbrew install lua\n测试\n接下来我们创建一个 HelloWorld.lua 文件，代码如下:\nprint(\"Hello World!\")\n执行以下命令:\n$ lua HelloWorld.lua\n输出结果为：\nHello World!\nWindow 系统上安装 Lua\nwindow 下你可以使用一个叫 \"SciTE\" 的 IDE环 境来执行 lua 程序，下载地址为：\nGithub 下载地址：https://github.com/rjpcomputing/luaforwindows/releases\nGoogle Code下载地址 :\n https://code.google.com/p/luaforwindows/downloads/list\n双击安装后即可在该环境下编写 Lua 程序并运行。",
+    "examples": []
+   },
+   {
+    "title": "Lua 错误处理",
+    "url": "https://www.runoob.com/lua/lua-error-handling.html",
+    "body": "程序运行中错误处理是必要的，在我们进行文件操作，数据转移及web service 调用过程中都会出现不可预期的错误。如果不注重错误信息的处理，就会造成信息泄露，程序无法运行等情况。\n任何程序语言中，都需要错误处理。错误类型有：\n语法错误\n运行错误\n语法错误\n语法错误通常是由于对程序的组件（如运算符、表达式）使用不当引起的。一个简单的实例如下：\n-- test.lua 文件\na == 2\n以上代码执行结果为：\nlua: test.lua:2: syntax error near '=='\n正如你所看到的，以上出现了语法错误，一个 \"=\" 号跟两个 \"=\" 号是有区别的。一个 \"=\" 是赋值表达式两个 \"=\" 是比较运算。\n另外一个实例:\n实例",
+    "examples": [
+     "for a= 1,10\n   print(a)\nend"
+    ]
+   },
+   {
+    "title": "Lua 文件 I/O",
+    "url": "https://www.runoob.com/lua/lua-file-io.html",
+    "body": "Lua I/O 库用于读取和处理文件。分为简单模式（和C一样）、完全模式。\n简单模式（simple model）拥有一个当前输入文件和一个当前输出文件，并且提供针对这些文件相关的操作。\n完全模式（complete model） 使用外部的文件句柄来实现。它以一种面对对象的形式，将所有的文件操作定义为文件句柄的方法\n简单模式在做一些简单的文件操作时较为合适。但是在进行一些高级的文件操作的时候，简单模式就显得力不从心。例如同时读取多个文件这样的操作，使用完全模式则较为合适。\n打开文件操作语句如下：\nfile = io.open (filename [, mode])\nmode 的值有：\n模式\n描述\nr\n以只读方式打开文件，该文件必须存在。\nw\n打开只写文件，若文件存在则文件长度清为0，即该文件内容会消失。若文件不存在则建立该文件。\na\n以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。（EOF符保留）\nr+\n以可读写方式打开文件，该文件必须存在。\nw+\n打开可读写文件，若文件存在则文件长度清为零，即该文件内容会消失。若文件不存在则建立该文件。\na+\n与a类似，但此文件可读可写\nb\n二进制模式，如果文件是二进制文件，可以加上b\n+\n号表示对文件既可以读也可以写\n简单模式\n简单模式使用标准的 I/O 或使用一个当前输入文件和一个当前输出文件。\n以下为 file.lua 文件代码，操作的文件为test.lua(如果没有你需要创建该文件)，代码如下：\n实例",
+    "examples": [
+     "-- 以只读方式打开文件\nfile = io.open(\"test.lua\", \"r\")\n\n-- 设置默认输入文件为 test.lua\nio.input(file)\n\n-- 输出文件第一行\nprint(io.read())\n\n-- 关闭打开的文件\nio.close(file)\n\n-- 以附加的方式打开只写文件\nfile = io.open(\"test.lua\", \"a\")\n\n-- 设置默认输出文件为 test.lua\nio.output(file)\n\n-- 在文件最后一行添加 Lua 注释\nio.write(\"--  test.lua 文件末尾注释\")\n\n-- 关闭打开的文件\nio.close(file)"
+    ]
+   },
+   {
+    "title": "Lua 函数",
+    "url": "https://www.runoob.com/lua/lua-functions.html",
+    "body": "在Lua中，函数是对语句和表达式进行抽象的主要方法。既可以用来处理一些特殊的工作，也可以用来计算一些值。\nLua 提供了许多的内建函数，你可以很方便的在程序中调用它们，如print()函数可以将传入的参数打印在控制台上。\nLua 函数主要有两种用途：\n1.完成指定的任务，这种情况下函数作为调用语句使用；\n2.计算并返回值，这种情况下函数作为赋值语句的表达式使用。\n函数定义\nLua 编程语言函数定义格式如下：\noptional_function_scope function function_name( argument1, argument2, argument3..., argumentn)\n    function_body\n    return result_params_comma_separated\nend\n解析：\noptional_function_scope: 该参数是可选的指定函数是全局函数还是局部函数，未设置该参数默认为全局函数，如果你需要设置函数为局部函数需要使用关键字 local。\nfunction_name: 指定函数名称。\nargument1, argument2, argument3..., argumentn: 函数参数，多个参数以逗号隔开，函数也可以不带参数。\nfunction_body: 函数体，函数中需要执行的代码语句块。\nresult_params_comma_separated: 函数返回值，Lua语言函数可以返回多个值，每个值以逗号隔开。\n实例\n以下实例定义了函数 max()，参数为 num1, num2，用于比较两值的大小，并返回最大值：\n实例",
+    "examples": [
+     "--[[ 函数返回两个值的最大值 --]]\nfunction max(num1, num2)\n\n   if (num1 > num2) then\n      result = num1;\n   else\n      result = num2;\n   end\n\n   return result; \nend\n-- 调用函数\nprint(\"两值比较最大值为 \",max(10,4))\nprint(\"两值比较最大值为 \",max(5,6))"
+    ]
+   },
+   {
+    "title": "Lua 垃圾回收",
+    "url": "https://www.runoob.com/lua/lua-garbage-collection.html",
+    "body": "Lua 采用了自动内存管理。 这意味着你不用操心新创建的对象需要的内存如何分配出来， 也不用考虑在对象不再被使用后怎样释放它们所占用的内存。\nLua 运行了一个垃圾收集器来收集所有死对象 （即在 Lua 中不可能再访问到的对象）来完成自动内存管理的工作。 Lua 中所有用到的内存，如：字符串、表、用户数据、函数、线程、 内部结构等，都服从自动管理。\nLua 实现了一个增量标记-扫描收集器。 它使用这两个数字来控制垃圾收集循环： 垃圾收集器间歇率和垃圾收集器步进倍率。 这两个数字都使用百分数为单位 （例如：值 100 在内部表示 1 ）。\n垃圾收集器间歇率控制着收集器需要在开启新的循环前要等待多久。 增大这个值会减少收集器的积极性。 当这个值比 100 小的时候，收集器在开启新的循环前不会有等待。 设置这个值为 200 就会让收集器等到总内存使用量达到 之前的两倍时才开始新的循环。\n垃圾收集器步进倍率控制着收集器运作速度相对于内存分配速度的倍率。 增大这个值不仅会让收集器更加积极，还会增加每个增量步骤的长度。 不要把这个值设得小于 100 ， 那样的话收集器就工作的太慢了以至于永远都干不完一个循环。 默认值是 200 ，这表示收集器以内存分配的\"两倍\"速工作。\n如果你把步进倍率设为一个非常大的数字 （比你的程序可能用到的字节数还大 10% ）， 收集器的行为就像一个 stop-the-world 收集器。 接着你若把间歇率设为 200 ， 收集器的行为就和过去的 Lua 版本一样了： 每次 Lua 使用的内存翻倍时，就做一次完整的收集。\n垃圾回收器函数\nLua 提供了以下函数collectgarbage ([opt [, arg]])用来控制自动内存管理:\ncollectgarbage(\"collect\"): 做一次完整的垃圾收集循环。通过参数 opt 它提供了一组不同的功能：\ncollectgarbage(\"count\"): 以 K 字节数为单位返回 Lua 使用的总内存数。 这个值有小数部分，所以只需要乘上 1024 就能得到 Lua 使用的准确字节数（除非溢出）。\ncollectgarbage(\"restart\"): 重启垃圾收集器的自动运行。\ncollectgarbage(\"setpause\"): 将 arg 设为收集器的 间歇率。 返回 间歇率 的前一个值。\ncollectgarbage(\"setstepmul\"): 返回 步进倍率 的前一个值。\ncollectgarbage(\"step\"): 单步运行垃圾收集器。 步长\"大小\"由 arg 控制。 传入 0 时，收集器步进（不可分割的）一步。 传入非 0 值， 收集器收集相当于 Lua 分配这些多（K 字节）内存的工作。 如果收集器结束一个循环将返回 true 。\ncollectgarbage(\"stop\"): 停止垃圾收集器的运行。 在调用重启前，收集器只会因显式的调用运行。\n以下演示了一个简单的垃圾回收实例:\n实例",
+    "examples": [
+     "mytable = {\"apple\", \"orange\", \"banana\"}\n\nprint(collectgarbage(\"count\"))\n\nmytable = nil\n\nprint(collectgarbage(\"count\"))\n\nprint(collectgarbage(\"collect\"))\n\nprint(collectgarbage(\"count\"))"
+    ]
+   },
+   {
+    "title": "Lua 迭代器",
+    "url": "https://www.runoob.com/lua/lua-iterators.html",
+    "body": "迭代器（iterator）是一种对象，它能够用来遍历标准模板库容器中的部分或全部元素，每个迭代器对象代表容器中的确定的地址。\n在 Lua 中迭代器是一种支持指针类型的结构，它可以遍历集合的每一个元素。\n泛型 for 迭代器\n泛型 for 在自己内部保存迭代函数，实际上它保存三个值：迭代函数、状态常量、控制变量。\n泛型 for 迭代器提供了集合的 key/value 对，语法格式如下：\nfor k, v in pairs(t) do\n print(k, v)\nend\n上面代码中，k, v为变量列表；pairs(t)为表达式列表。\n查看以下实例:\n实例",
+    "examples": [
+     "array = {\"Google\", \"Runoob\"}\n\nfor key,value in ipairs(array) \ndo\n   print(key, value)\nend"
+    ]
+   },
+   {
+    "title": "Lua 循环",
+    "url": "https://www.runoob.com/lua/lua-loops.html",
+    "body": "很多情况下我们需要做一些有规律性的重复操作，因此在程序中就需要重复执行某些语句。\n一组被重复执行的语句称之为循环体，能否继续重复，决定循环的终止条件。\n循环结构是在一定条件下反复执行某段程序的流程结构，被反复执行的程序被称为循环体。\n循环语句是由循环体及循环的终止条件两部分组成的。\nLua 语言提供了以下几种循环处理方式：\n循环类型\n描述\nwhile 循环\n在条件为 true 时，让程序重复地执行某些语句。执行语句前会先检查条件是否为 true。\nfor 循环\n重复执行指定语句，重复次数可在 for 语句中控制。\nrepeat...until\n重复执行循环，直到 指定的条件为真时为止\n循环嵌套\n可以在循环内嵌套一个或多个循环语句（while do ... end;for ... do ... end;repeat ... until;）\n循环控制语句\n循环控制语句用于控制程序的流程， 以实现程序的各种结构方式。\nLua 支持以下循环控制语句：\n控制语句\n描述\nbreak 语句\n退出当前循环或语句，并开始脚本执行紧接着的语句。\ngoto 语句\n将程序的控制点转移到一个标签处。\n无限循环\n在循环体中如果条件永远为 true 循环语句就会永远执行下去，以下以 while 循环为例：\n实例",
+    "examples": [
+     "while( true )\ndo\n   print(\"循环将永远执行下去\")\nend"
+    ]
+   },
+   {
+    "title": "Lua 元表(Metatable)",
+    "url": "https://www.runoob.com/lua/lua-metatables.html",
+    "body": "在 Lua table 中我们可以访问对应的 key 来得到 value 值，但是却无法对两个 table 进行操作(比如相加)。\n因此 Lua 提供了元表(Metatable)，允许我们改变 table 的行为，每个行为关联了对应的元方法。\n例如，使用元表我们可以定义 Lua 如何计算两个 table 的相加操作 a+b。\n当 Lua 试图对两个表进行相加时，先检查两者之一是否有元表，之后检查是否有一个叫 __add 的字段，若找到，则调用对应的值。 __add 等即时字段，其对应的值（往往是一个函数或是 table）就是\"元方法\"。\n有两个很重要的函数来处理元表：\nsetmetatable(table,metatable): 对指定 table 设置元表(metatable)，如果元表(metatable)中存在 __metatable 键值，setmetatable 会失败。\ngetmetatable(table): 返回对象的元表(metatable)。\n以下实例演示了如何对指定的表设置元表：",
+    "examples": [
+     "mytable = {}                          -- 普通表 \nmymetatable = {}                      -- 元表\nsetmetatable(mytable,mymetatable)     -- 把 mymetatable 设为 mytable 的元表"
+    ]
+   },
+   {
+    "title": "Lua 运算符",
+    "url": "https://www.runoob.com/lua/lua-miscellaneous-operator.html",
+    "body": "运算符是一个特殊的符号，用于告诉解释器执行特定的数学或逻辑运算。Lua提供了以下几种运算符类型：\n算术运算符\n关系运算符\n逻辑运算符\n其他运算符\n算术运算符\n下表列出了 Lua 语言中的常用算术运算符，设定 A 的值为10，B 的值为 20：\n操作符\n描述\n实例\n+\n加法\nA + B 输出结果 30\n-\n减法\nA - B 输出结果 -10\n*\n乘法\nA * B 输出结果 200\n/\n除法\nB / A 输出结果 2\n%\n取余\nB % A 输出结果 0\n^\n乘幂\nA^2 输出结果 100\n-\n负号\n-A 输出结果 -10\n//\n整除运算符(>=lua5.3)\n5//2 输出结果 2\n实例\n我们可以通过以下实例来更加透彻的理解算术运算符的应用：\n实例",
+    "examples": [
+     "a = 21\nb = 10\nc = a + b\nprint(\"Line 1 - c 的值为 \", c )\nc = a - b\nprint(\"Line 2 - c 的值为 \", c )\nc = a * b\nprint(\"Line 3 - c 的值为 \", c )\nc = a / b\nprint(\"Line 4 - c 的值为 \", c )\nc = a % b\nprint(\"Line 5 - c 的值为 \", c )\nc = a^2\nprint(\"Line 6 - c 的值为 \", c )\nc = -a\nprint(\"Line 7 - c 的值为 \", c )"
+    ]
+   },
+   {
+    "title": "Lua 模块与包",
+    "url": "https://www.runoob.com/lua/lua-modules-packages.html",
+    "body": "模块类似于一个封装库，从 Lua 5.1 开始，Lua 加入了标准的模块管理机制，可以把一些公用的代码放在一个文件里，以 API 接口的形式在其他地方调用，有利于代码的重用和降低代码耦合度。\nLua 的模块是由变量、函数等已知元素组成的 table，因此创建一个模块很简单，就是创建一个 table，然后把需要导出的常量、函数放入其中，最后返回这个 table 就行。以下为创建自定义模块 module.lua，文件代码格式如下：",
+    "examples": [
+     "-- 文件名为 module.lua\n-- 定义一个名为 module 的模块\nmodule = {}\n \n-- 定义一个常量\nmodule.constant = \"这是一个常量\"\n \n-- 定义一个函数\nfunction module.func1()\n    io.write(\"这是一个公有函数！\\n\")\nend\n \nlocal function func2()\n    print(\"这是一个私有函数！\")\nend\n \nfunction module.func3()\n    func2()\nend\n \nreturn module"
+    ]
+   },
+   {
+    "title": "Lua 面向对象",
+    "url": "https://www.runoob.com/lua/lua-object-oriented.html",
+    "body": "面向对象编程（Object Oriented Programming，OOP）是一种非常流行的计算机编程架构，通过创建和操作对象来设计应用程序。\n以下几种编程语言都支持面向对象编程：\nC++\nJava\nObjective-C\nSmalltalk\nC#\nRuby\nLua 是一种轻量级的脚本语言，虽然它不像 Java 或 C++ 那样内置强大的面向对象（OO）特性，但它非常灵活，可以通过一些技巧实现面向对象编程。\n面向对象特征\n封装：将数据和方法捆绑在一起，隐藏实现细节，只暴露必要的接口，提高安全性和可维护性。\n继承：通过派生新类复用和扩展现有代码，减少重复编码，提高开发效率和可扩展性。\n多态：同一操作作用于不同对象时表现不同，支持统一接口调用，增强灵活性和扩展性。\n抽象：简化复杂问题，定义核心类和接口，隐藏不必要的细节，便于管理复杂性。\nLua 中面向对象\n我们知道，对象由属性和方法组成。\nLua 中的类可以通过 table + function 模拟出来。\n至于继承，可以通过 metetable 模拟出来（不推荐用，只模拟最基本的对象大部分实现够用了）。\n在 Lua 中，最基本的结构是 table，我们可以使用表（table）来创建对象。\nClassName = {} -- 创建一个表作为类\n通过 new 方法（或其他名称）创建对象，并初始化对象的属性。\nfunction ClassName:new(...)\n local obj = {} -- 创建一个新的空表作为对象\n setmetatable(obj, self) -- 设置元表，使对象继承类的方法\n self.__index = self -- 设置索引元方法\n -- 初始化对象的属性\n obj:init(...) -- 可选：调用初始化函数\n return obj\nend\n表（table）是 Lua 中最基本的复合数据类型，可以用来表示对象的属性。\nLua 中的 function 可以用来表示方法：\nfunction ClassName:sayHello()\n print(\"Hello, my name is \" .. self.name)\nend\n使用 new 方法来创建对象，并通过对象调用类的方法。\nlocal obj = ClassName:new(\"Alice\") -- 创建对象\nobj:sayHello() -- 调用对象的方法\n在 Lua 中，表（table）可以视为对象的一种变体。和对象一样，表具有状态（成员变量），并且可以代表独立的实体。\n表不仅具有数据成员，还可以包含与对象方法类似的成员函数：\n实例",
+    "examples": [
+     "-- 定义 Person 类\nPerson = {name = \"\", age = 0}\n\n-- Person 的构造函数\nfunction Person:new(name, age)\n    local obj = {}  -- 创建一个新的表作为对象\n    setmetatable(obj, self)  -- 设置元表，使其成为 Person 的实例\n    self.__index = self  -- 设置索引元方法，指向 Person\n    obj.name = name\n    obj.age = age\n    return obj\nend\n\n-- 添加方法：打印个人信息\nfunction Person:introduce()\n    print(\"My name is \" .. self.name .. \" and I am \" .. self.age .. \" years old.\")\nend"
+    ]
+   },
+   {
+    "title": "Lua 字符串",
+    "url": "https://www.runoob.com/lua/lua-strings.html",
+    "body": "字符串或串(String)是由数字、字母、下划线组成的一串字符。\n在 Lua 中，字符串是一种基本的数据类型，用于存储文本数据。\nLua 中的字符串可以包含任意字符，包括字母、数字、符号、空格以及其他特殊字符。\nLua 语言中字符串可以使用以下三种方式来表示：\n单引号间的一串字符。\nlocal str1 = 'This is a string.'\nlocal str2 = \"This is also a string.\"\n双引号间的一串字符。\nlocal str = \"Hello, \"\nstr = str .. \"World!\" -- 创建一个新的字符串并将其赋值给str\nprint(str) -- 输出 \"Hello, World!\"\n[[ 与 ]] 间的一串字符。\nlocal multilineString = [[\nThis is a multiline string.\nIt can contain multiple lines of text.\nNo need for escape characters.\n]]\n\nprint(multilineString)\n以上三种方式的字符串实例如下：\n实例",
+    "examples": [
+     "string1 = \"Lua\"\nprint(\"\\\"字符串 1 是\\\"\",string1)\nstring2 = 'runoob.com'\nprint(\"字符串 2 是\",string2)\n\nstring3 = [[\"Lua 教程\"]]\nprint(\"字符串 3 是\",string3)"
+    ]
+   },
+   {
+    "title": "Lua table(表)",
+    "url": "https://www.runoob.com/lua/lua-tables.html",
+    "body": "table 是 Lua 的一种数据结构用来帮助我们创建不同的数据类型，如：数组、字典等。\nLua table 使用关联型数组，你可以用任意类型的值来作数组的索引，但这个值不能是 nil。\nLua table 是不固定大小的，你可以根据自己需要进行扩容。\nLua也是通过table来解决模块（module）、包（package）和对象（Object）的。\n例如string.format表示使用\"format\"来索引table string。\ntable(表)的构造\n构造器是创建和初始化表的表达式。表是Lua特有的功能强大的东西。最简单的构造函数是{}，用来创建一个空表。可以直接初始化数组:",
+    "examples": [
+     "-- 初始化表\nmytable = {}\n\n-- 指定值\nmytable[1]= \"Lua\"\n\n-- 移除引用\nmytable = nil\n-- lua 垃圾回收会释放内存"
+    ]
+   },
+   {
+    "title": "Lua 教程",
+    "url": "https://www.runoob.com/lua/lua-tutorial.html",
+    "body": "Lua 是一种轻量小巧的脚本语言，用标准C语言编写并以源代码形式开放， 其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。\nLua 是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组于 1993 年开发的，该小组成员有：Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo。",
+    "examples": []
+   },
+   {
+    "title": "Lua 变量",
+    "url": "https://www.runoob.com/lua/lua-variables.html",
+    "body": "变量在使用前，需要在代码中进行声明，即创建该变量。\n编译程序执行代码之前编译器需要知道如何给语句变量开辟存储区，用于存储变量的值。\nLua 变量有三种类型：全局变量、局部变量、表中的域。\nLua 中的变量全是全局变量，哪怕是语句块或是函数里，除非用 local 显式声明为局部变量。\n局部变量的作用域为从声明位置开始到所在语句块结束。\n变量的默认值均为 nil。\n实例",
+    "examples": [
+     "-- test.lua 文件脚本\na = 5               -- 全局变量\nlocal b = 5         -- 局部变量\n\nfunction joke()\n    c = 5           -- 全局变量\n    local d = 6     -- 局部变量\nend\n\njoke()\nprint(c,d)          --> 5 nil\n\ndo \n    local a = 6     -- 局部变量\n    b = 6           -- 对局部变量重新赋值\n    print(a,b);     --> 6 6\nend\n\nprint(a,b)      --> 5 6"
+    ]
+   }
+  ]
+ }
+}

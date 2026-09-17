@@ -1,0 +1,234 @@
+{
+ "tutorial": {
+  "name": "Perl",
+  "category": "后端开发",
+  "desc": "Perl 是 Practical Extraction and Report L",
+  "url": "https://www.runoob.com/perl/",
+  "chapters": [
+   {
+    "title": "Perl 数组",
+    "url": "https://www.runoob.com/perl/perl-arrays.html",
+    "body": "Perl 数组一个是存储标量值的列表变量，变量可以是不同类型。\n数组变量以 @ 开头。访问数组元素使用 $ + 变量名称 + [索引值] 格式来读取，实例如下：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n@hits = (25, 30, 40);             \n@names = (\"google\", \"runoob\", \"taobao\");\n \nprint \"\\$hits[0] = $hits[0]\\n\";\nprint \"\\$hits[1] = $hits[1]\\n\";\nprint \"\\$hits[2] = $hits[2]\\n\";\nprint \"\\$names[0] = $names[0]\\n\";\nprint \"\\$names[1] = $names[1]\\n\";\nprint \"\\$names[2] = $names[2]\\n\";"
+    ]
+   },
+   {
+    "title": "Perl CGI编程",
+    "url": "https://www.runoob.com/perl/perl-cgi-programming.html",
+    "body": "什么是CGI\nCGI 目前由NCSA维护，NCSA定义CGI如下：\nCGI(Common Gateway Interface),通用网关接口,它是一段程序,运行在服务器上如：HTTP服务器，提供同客户端HTML页面的接口。\n网页浏览\n为了更好的了解CGI是如何工作的，我们可以从在网页上点击一个链接或URL的流程：\n1、使用你的浏览器访问URL并连接到HTTP web 服务器。\n2、Web服务器接收到请求信息后会解析URL，并查找访问的文件在服务器上是否存在，如果存在返回文件的内容，否则返回错误信息。\n3、浏览器从服务器上接收信息，并显示接收的文件或者错误信息。\nCGI程序可以是Python脚本，PERL脚本，SHELL脚本，C或者C++程序等。\nCGI架构图\nWeb服务器支持及配置\n在你进行CGI编程前，确保您的Web服务器支持CGI及已经配置了CGI的处理程序。\nApache 支持CGI 配置：\n设置好CGI目录：\nScriptAlias /cgi-bin/ /var/www/cgi-bin/\n所有的HTTP服务器执行CGI程序都保存在一个预先配置的目录。这个目录被称为CGI目录，并按照惯例，它被命名为/var/www/cgi-bin目录。\nCGI文件的扩展名为.cgi，Perl 也可以使用.pl扩展名。\n默认情况下，Linux服务器配置运行的cgi-bin目录中为/var/www。\n如果你想指定其他运行CGI脚本的目录，可以修改httpd.conf配置文件，如下所示：\n<Directory \"/var/www/cgi-bin\">\n AllowOverride None\n Options +ExecCGI\n Order allow,deny\n Allow from all\n</Directory>\n在 AddHandler 中添加 .pl 后缀，这样我们就可以访问 .pl 结尾的 Perl 脚本文件：\nAddHandler cgi-script .cgi .pl .py\n第一个 CGI 程序\n以下我们创建一个 test.cgi 文件，代码如下所示：\ntest.cgi 代码",
+    "examples": [
+     "#!/usr/bin/perl\nprint \"Content-type:text/html\\r\\n\\r\\n\";\nprint '<html>';\nprint '<head>';\nprint '<meta charset=\"utf-8\">';\nprint '<title>菜鸟教程(runoob.com)</title>';\nprint '</head>';\nprint '<body>';\nprint '<h2>Hello Word! </h2>';\nprint '<p>来自菜鸟教程第一个 CGI 程序。</p>';\nprint '</body>';\nprint '</html>';\n \n1;"
+    ]
+   },
+   {
+    "title": "Perl 条件语句",
+    "url": "https://www.runoob.com/perl/perl-conditions.html",
+    "body": "Perl 条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。\n可以通过下图来简单了解条件语句的执行过程:\n注意，数字 0, 字符串 '0' 、 \"\" , 空 list() , 和 undef 为 false ，其他值均为 true。 true 前面使用 ! 或 not则返回 false 。\nPerl 提供了下列条件语句：\n语句\n描述\nif 语句\n一个 if 语句 由一个布尔表达式后跟一个或多个语句组成。\nif...else 语句\n一个 if 语句 后可跟一个可选的 else 语句，else 语句在布尔表达式为假时执行。\nif...elsif...else 语句\n您可以在一个 if 语句后可跟一个可选的 elsif 语句，然后再跟另一个 else 语句。\nunless 语句\n一个 unless 语句 由一个布尔表达式后跟一个或多个语句组成。\nunless...else 语句。\n一个 unless 语句 后可跟一个可选的 else 语句。\nunless...elsif..else statement\n一个 unless 语句 后可跟一个可选的 elsif 语句，然后再跟另一个 else 语句。\nswitch 语句\n在最新版本的 Perl 中，我们可以使用 switch 语句。它根据不同的值执行对应的代码块。\n三元运算符 ? :\n我们可以使用 条件运算 ? : 来简化 if...else 语句的操作。通常格式为：\nExp1 ? Exp2 : Exp3;\n如果 Exp1 表达式为 true ，则返回 Exp2 表达式计算结果，否则返回 Exp3。\n实例如下所示：\n实例",
+    "examples": [
+     "#!/usr/local/bin/perl\n$name = \"菜鸟教程\";\n$favorite = 10;     # 喜欢数\n$status = ($favorite > 60 )? \"热门网站\" : \"不是热门网站\";\n \nprint \"$name - $status\\n\";"
+    ]
+   },
+   {
+    "title": "Perl 数据类型",
+    "url": "https://www.runoob.com/perl/perl-data-types.html",
+    "body": "Perl 是一种弱类型语言，所以变量不需要指定类型，Perl 解释器会根据上下文自动选择匹配类型。\nPerl 有三个基本的数据类型：标量、数组、哈希。以下是这三种数据类型的说明：\n序号\n类型和描述\n1\n标量标量是 Perl 语言中最简单的一种数据类型。这种数据类型的变量可以是数字，字符串，浮点数，不作严格的区分。在使用时在变量的名字前面加上一个 $，表示是标量。例如：\n$myfirst=123;　 #数字123　\n\n$mysecond=\"123\"; #字符串123\n2\n数组数组变量以字符 @ 开头，索引从 0 开始，如：@arr=(1,2,3)\n@arr=(1,2,3)\n3\n哈希哈希是一个无序的 key/value 对集合。可以使用键作为下标获取值。哈希变量以字符 % 开头。\n%h=('a'=>1,'b'=>2);\n数字字面量\n一、整型\nPerl 实际上把整数存在你的计算机中的浮点寄存器中，所以实际上被当作浮点数看待。\n在多数计算机中，浮点寄存器可以存贮约 16 位数字，长于此的被丢弃。整数实为浮点数的特例。\n整型变量及运算：\n$x = 12345;\nif (1217 + 116 == 1333) {\n    # 执行代码语句块\n}\n8 进制和 16 进制数：8 进制以 0 开始，16 进制以 0x 开始。例如：\n$var1 = 047; # 等于十进制的39\n$var2 = 0x1f; # 等于十进制的31\n二、浮点数\n浮点数数据如：11.4 、 -0.3 、.3 、 3. 、 54.1e+02 、 5.41e03。\n浮点寄存器通常不能精确地存贮浮点数，从而产生误差，在运算和比较中要特别注意。指数的范围通常为 -309 到 +308。\n实例",
+    "examples": [
+     "#!/usr/bin/perl \n$value = 9.01e+21 + 0.01 - 9.01e+21;\nprint (\"第一个值为：\", $value, \"\\n\");\n$value = 9.01e+21 - 9.01e+21 + 0.01;\nprint (\"第二个值为:\", $value, \"\\n\");"
+    ]
+   },
+   {
+    "title": "Perl 数据库连接",
+    "url": "https://www.runoob.com/perl/perl-database-access.html",
+    "body": "本章节我们将为大家介绍 Perl 数据库的连接。\nPerl 5 中我们可以使用 DBI 模块来连接数据库。\nDBI 英文全称：Database Independent Interface，中文称为数据库独立接口。\nDBI 作为 Perl 语言中和数据库进行通讯的标准接口，它定义了一系列的方法，变量和常量，提供一个和具体数据库平台无关的数据库持久层。\nDBI 结构\nDBI 和具体数据库平台无关，我们可以将其应用在Oracle, MySQL 或 Informix, 等数据库中。\n图表中 DBI 获取所有 API（Application Programming Interface：应用程序接口） 发送过来的 SQL 数据，然后分发到对应的驱动上执行，最后再获取数据返回。\n变量名约定\n以下设置了比较常用的变量名命名方法：\n$dsn 驱动程序对象的句柄\n$dbh 一个数据库对象的句柄\n$sth 一个语句或者一个查询对象的句柄\n$h 通用的句柄 ($dbh, $sth, 或 $drh)，依赖于上下文\n$rc 操作代码返回的布什值（true 或 false）\n$rv 操作代码返回的整数值\n@ary 查询返回的一行值的数组（列表）\n$rows 操作代码返回的行数值\n$fh 文件句柄\nundef NULL 值表示未定义\n\\%attr 引用属性的哈希值并传到方法上\n数据库连接\n接下来我们以 MySQL 数据库为例演示 Perl 是如何对数据库进行操作的。\n这里我们在 MySQL 数据库创建 RUNOOB 数据库，数据表为 Websites，表结构及数据如下图所示：\n下载该数据表：https://static.jyshare.com/download/websites_perl.sql\n接下来我们使用以下代码来连接数据库：\n实例",
+    "examples": [
+     "#!/usr/bin/perl -w\nuse strict;\nuse DBI;\n \nmy $host = \"localhost\";         # 主机地址\nmy $driver = \"mysql\";           # 接口类型 默认为 localhost\nmy $database = \"RUNOOB\";        # 数据库\n# 驱动程序对象的句柄\nmy $dsn = \"DBI:$driver:database=$database:$host\";  \nmy $userid = \"root\";            # 数据库用户名\nmy $password = \"123456\";        # 数据库密码\n# 连接数据库\nmy $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;\nmy $sth = $dbh->prepare(\"SELECT * FROM Websites\");   # 预处理 SQL  语句\n$sth->execute();    # 执行 SQL 操作\n# 注释这部分使用的是绑定值操作\n# $alexa = 20;\n# my $sth = $dbh->prepare(\"SELECT name, url\n#                        FROM Websites\n#                        WHERE alexa > ?\");\n# $sth->execute( $alexa ) or die $DBI::errstr;\n# 循环输出所有数据\nwhile ( my @row = $sth->fetchrow_array() )\n{\nprint join('\\t', @row).\"\\n\";\n}\n$sth->finish();\n$dbh->disconnect();"
+    ]
+   },
+   {
+    "title": "Perl 时间日期",
+    "url": "https://www.runoob.com/perl/perl-date-time.html",
+    "body": "本章节我们为大家介绍 Perl 语言对时间日期的处理。\nPerl中处理时间的函数有如下几种：\n1、time() 函数：返回从1970年1月1日起累计的秒数\n2、localtime() 函数：获取本地时区时间\n3、gmtime() 函数： 获取格林威治时间\n当前时间和日期\n接下来让我们看下 localtime() 函数，该函数在没有参数的情况下返回当前的时间和日期。\n以下 9 个符号代表不同的时间日期参数：\nsec, # 秒， 0 到 61\nmin, # 分钟， 0 到 59\nhour, # 小时， 0 到 24\nmday, # 天， 1 到 31\nmon, # 月， 0 到 11\nyear, # 年，从 1900 开始\nwday, # 星期几，0-6,0表示周日\nyday, # 一年中的第几天,0-364,365\nisdst # 如果夏令时有效，则为真\n实例演示如下：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n@months = qw( 一月 二月 三月 四月 五月 六月 七月 八月 九月 十月 十一月 十二月 );\n@days = qw(星期天 星期一 星期二 星期三 星期四 星期五 星期六);\n \n($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();\nprint \"$mday $months[$mon] $days[$wday]\\n\";"
+    ]
+   },
+   {
+    "title": "Perl 目录操作",
+    "url": "https://www.runoob.com/perl/perl-directories.html",
+    "body": "以下列出了一些操作目录的标准函数：\nopendir DIRHANDLE, EXPR # 打开目录\nreaddir DIRHANDLE # 读取目录\nrewinddir DIRHANDLE # 定位指针到开头\ntelldir DIRHANDLE # 返回目录的当前位置\nseekdir DIRHANDLE, POS # 定位指定到目录的 POS 位置\nclosedir DIRHANDLE # 关闭目录\n显示所有的文件\n显示目录下的所有文件，以下实例使用了 glob 操作符，演示如下：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n# 显示 /tmp 目录下的所有文件\n$dir = \"/tmp/*\";\nmy @files = glob( $dir );\n \nforeach (@files ){\nprint $_ . \"\\n\";\n}\n# 显示 /tmp 目录下所有以 .c 结尾的文件\n$dir = \"/tmp/*.c\";\n@files = glob( $dir );\n \nforeach (@files ){\nprint $_ . \"\\n\";\n}\n# 显示所有隐藏文件\n$dir = \"/tmp/.*\";\n@files = glob( $dir );\nforeach (@files ){\nprint $_ . \"\\n\";\n}\n# 显示 /tmp 和 /home 目录下的所有文件\n$dir = \"/tmp/* /home/*\";\n@files = glob( $dir );\n \nforeach (@files ){\nprint $_ . \"\\n\";\n}"
+    ]
+   },
+   {
+    "title": "Perl POD 文档",
+    "url": "https://www.runoob.com/perl/perl-embedded-documentation.html",
+    "body": "Perl 中可以在模块或脚本中嵌入 POD（Plain Old Documentation） 文档。\nPOD 是一种简单而易用的标记型语言（置标语言）。\nPOD 文档使用规则：\nPOD 文档以 =head1 开始， =cut 结束， =head1 前与 =cut 后添加一空行。\nPerl 会忽略 POD 中的文档。实例如下：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\nprint \"Hello, World\\n\";\n \n=head1 Hello, World 实例\n这是一个 Perl 的简单实例。\n=cut\nprint \"Hello, Runoob\\n\";"
+    ]
+   },
+   {
+    "title": "Perl 环境安装",
+    "url": "https://www.runoob.com/perl/perl-environment.html",
+    "body": "在我们开始学习 Perl 语言前，我们需要先安装 Perl 的执行环境。\nPerl 可以在以下平台下运行：\nUnix (Solaris, Linux, FreeBSD, AIX, HP/UX, SunOS, IRIX etc.)\nWin 9x/NT/2000/\nWinCE\nMacintosh (PPC, 68K)\nSolaris (x86, SPARC)\nOpenVMS\nAlpha (7.2 and later)\nSymbian\nDebian GNU/kFreeBSD\nMirOS BSD\n等等...\n很多系统平台上已经默认安装了 perl，我们可以通过以下命令来查看是否已安装：\n$ perl -v\n\nThis is perl 5, version 18, subversion 2 (v5.18.2) built for darwin-thread-multi-2level\n(with 2 registered patches, see perl -V for more detail)\n\nCopyright 1987-2013, Larry Wall\n……\n如果输出以上信息说明已安装，如果还未安装，可以看接下来的安装指导。\n安装 Perl\n我们可以在 Perl 的官网下载对应平台的安装包:https://www.perl.org/get.html\nUnix 和 Linux 安装 Perl\nUnix/Linux 系统上 Perl 安装步骤如下：\n通过浏览器打开 http://www.perl.org/get.html。\n下载适用于 Unix/Linux 的源码包。\n下载 perl-5.x.y.tar.gz 文件后执行以下操作。\n$ tar -xzf perl-5.x.y.tar.gz\n$ cd perl-5.x.y\n$ ./Configure -de\n$ make\n$ make test\n$ make install\n接下来我们如果 perl -v 命令查看是否安装成功。\n安装成功后，Perl 的安装路径为 /usr/local/bin ，库安装在 /usr/local/lib/perlXX, XX 为版本号。\nWindow 安装 Perl\nPerl 在 Window 平台上有 ActiveStatePerl 和 Strawberry Perl 编译器。\nActiveState Perl和 Strawberry Perl最大的区别是 Strawberry Perl 里面有多包含一些 CPAN 里的模块， 所以Strawberry Perl 下载的安装文件有 80多M, 而ActiveState Perl 只有20M 左右。\n我们这里使用了 Strawberry Perl 。\nWindow 系统上 Perl 安装步骤如下：\nStrawberry 安装包链接： http://strawberryperl.com。\n下载对应你系统的版本： 32bit 或 64bit 。\n下载后双击打开，按安装向导一步步安装即可。\nMac OS 安装 Perl\nMac OS 系统一般默认已经安装了 Perl，如果未安装则执行以下步骤：\n通过浏览器打开 http://www.perl.org/get.html。\n下载适用于 Mac OS 的源码包。\n下载 perl-5.x.y.tar.gz 文件后执行以下操作。\n$ tar -xzf perl-5.x.y.tar.gz\n$ cd perl-5.x.y\n$ ./Configure -de\n$ make\n$ make test\n$ make install\n执行成功后 Perl 的安装路径为 /usr/local/bin ，库安装在 /usr/local/lib/perlXX, XX 为版本号。\n运行 Perl\nPerl 有不同的执行方式。\n1、交互式\n我们可以在命令行中直接执行 perl 代码，语法格式如下：\n$perl -e <perl code> # Unix/Linux\n\n或 \n\nC:>perl -e <perl code> # Windows/DOS\n命令行参数如下所示：\n选项\n描述\n-d[:debugger]\n在调试模式下运行程序\n-Idirectory\n指定 @INC/#include 目录\n-T\n允许污染检测\n-t\n允许污染警告\n-U\n允许不安全操作\n-w\n允许很多有用的警告\n-W\n允许所有警告\n-X\n禁用使用警告\n-e program\n执行 perl 代码\nfile\n执行 perl 脚本文件\n2、脚本执行\n我们可以将 perl 代码放在脚本文件中，通过以下命令来执行文件代码：\n$perl script.pl # Unix/Linux\n\n或 \n\nC:>perl script.pl # Windows/DOS\n集成开发环境(IDE:Integrated Development Environment)\n我们也可以在一些图形用户界面(GUI) 环境上执行 perl 脚本。以下推荐两款常用的 Perl 集成开发环境：\nPadre：Padre 是一个为 Perl 语言开发者提供的集成开发环境，提供了语法高亮和代码重构功能。\nEPIC : EPIC 是 Perl Eclipse IDE 的插件，如果你熟悉 Eclipse，你可以使用它。\n安装步骤：Help-->Eclipse Marketplace-->输入EPIC--> 选择安装并更新即可。",
+    "examples": []
+   },
+   {
+    "title": "Perl 错误处理",
+    "url": "https://www.runoob.com/perl/perl-error-handling.html",
+    "body": "程序运行过程中，总会碰到各式各样的错误，比如打开一个不存在的文件。\n程序运行过程中如果出现错误就会停止，我们就需要使用一些检测方法来避免错误，从而防止程序退出。\nPerl 提供了多中处理错误发方法，接下来我们一一介绍。\nif 语句\nif 语句 可以判断语句的返回值，实例如下：\nif(open(DATA, $file)){\n ...\n}else{\n die \"Error: 无法打开文件 - $!\";\n}\n程序中变量 $! 返回了错误信息。 我们也可以将以上代码简化为如下代码：\nopen(DATA, $file) || die \"Error: 无法打开文件 - $!\";\nunless 函数\nunless 函数与 if 相反，只有在表达式返回 false 时才会执行，如下所示：\nunless(chdir(\"/etc\")){\n die \"Error: 无法打开目录 - $!\";\n}\nunless 语句在你要设置错误提醒时是非常有用的。我么也可以将以上代码简写为：\ndie \"Error: 无法打开目录!: $!\" unless(chdir(\"/etc\"));\n以上错误信息只有在目录切换错误的情况下才会输出。\n三元运算符\n以下是一个三元运算符的简单实例:\nprint(exists($hash{value}) ? '存在' : '不存在',\"\\n\");\n以上实例我们使用了三元运算符来判断哈希的值是否存在。\n实例中包含了一个表达式两个值，格式为：表达式 ? 值一 : 值二。\nwarn 函数\nwarn 函数用于触发一个警告信息，不会有其他操作，输出到 STDERR(标准输出文件)，通常用于给用户提示：\nchdir('/etc') or warn \"无法切换目录\";\ndie 函数\ndie 函数类似于 warn, 但它会执行退出。一般用作错误信息的输出：\nchdir('/etc') or die \"无法切换目录\";\nCarp 模块\n在 Perl 脚本中，报告错误的常用方法是使用 warn() 或 die() 函数来报告或产生错误。而对于 Carp 模块，它可以对产生的消息提供额外级别的控制，尤其是在模块内部。\n标准 Carp 模块提供了 warn() 和 die() 函数的替代方法，它们在提供错误定位方面提供更多信息，而且更加友好。当在模块中使用时，错误消息中包含模块名称和行号。\ncarp 函数\ncarp函数可以输出程序的跟踪信息，类似于 warn 函数，通常会将该信息发送到 STDERR：\npackage T;\n\nrequire Exporter;\n@ISA = qw/Exporter/;\n@EXPORT = qw/function/;\nuse Carp;\n\nsub function {\n carp \"Error in module!\";\n}\n1;\n在脚本调用以下程序:\nuse T;\nfunction();\n执行以上程序，输出结果为：\nError in module! at test.pl line 4\ncluck 函数\ncluck() 与 warn() 类似，提供了从产生错误处的栈回溯追踪。\npackage T;\n\nrequire Exporter;\n@ISA = qw/Exporter/;\n@EXPORT = qw/function/;\nuse Carp qw(cluck);\n\nsub function {\n cluck \"Error in module!\";\n}\n1;\n在脚本调用以下程序:\nuse T;\nfunction();\n执行以上程序，输出结果为：\nError in module! at T.pm line 9\n    T::function() called at test.pl line 4\ncroak 函数\ncroak() 与 die() 一样，可以结束脚本。\npackage T;\n\nrequire Exporter;\n@ISA = qw/Exporter/;\n@EXPORT = qw/function/;\nuse Carp;\n\nsub function {\n croak \"Error in module!\";\n}\n1;\n在脚本调用以下程序:\nuse T;\nfunction();\n执行以上程序，输出结果为：\nError in module! at test.pl line 4\nconfess 函数\nconfess() 与 die() 类似，但提供了从产生错误处的栈回溯追踪。\npackage T;\n\nrequire Exporter;\n@ISA = qw/Exporter/;\n@EXPORT = qw/function/;\nuse Carp;\n\nsub function {\n confess \"Error in module!\";\n}\n1;\n在脚本调用以下程序:\nuse T;\nfunction();\n执行以上程序，输出结果为：\nError in module! at T.pm line 9\n    T::function() called at test.pl line 4",
+    "examples": []
+   },
+   {
+    "title": "Perl 文件操作",
+    "url": "https://www.runoob.com/perl/perl-files.html",
+    "body": "Perl 使用一种叫做文件句柄类型的变量来操作文件。\n从文件读取或者写入数据需要使用文件句柄。\n文件句柄(file handle)是一个 I/O 连接的名称。\nPerl 提供了三种文件句柄: STDIN，STDOUT，STDERR， 分别代表标准输入、标准输出和标准出错输出。\nPerl 中打开文件可以使用以下方式：\nopen FILEHANDLE, EXPR\nopen FILEHANDLE\n\nsysopen FILEHANDLE, FILENAME, MODE, PERMS\nsysopen FILEHANDLE, FILENAME, MODE\n参数说明:\nFILEHANDLE：文件句柄，用于存放一个文件唯一标识符。\nEXPR：文件名及文件访问类型组成的表达式。\nMODE：文件访问类型。\nPERMS：访问权限位(permission bits)。\nopen 函数\n以下代码我们使用 open 函数以只读的方式 < 打开文件 file.txt：\nopen(DATA, \"<file.txt\");\n< 表示只读方式。\n代码中的 DATA 为文件句柄用于读取文件，以下实例将打开文件并将文件内容输出：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\nopen(DATA, \"<file.txt\") or die \"file.txt 文件无法打开, $!\";\n \nwhile(<DATA>){\nprint \"$_\";\n}"
+    ]
+   },
+   {
+    "title": "Perl 格式化输出",
+    "url": "https://www.runoob.com/perl/perl-formats.html",
+    "body": "Perl 是一个非常强大的文本数据处理语言。\nPerl 中可以使用 format 来定义一个模板，然后使用 write 按指定模板输出数据。\nPerl 格式化定义语法格式如下：\nformat FormatName =\nfieldline\nvalue_one, value_two, value_three\nfieldline\nvalue_one, value_two\n.\n参数解析：\nFormatName ：格式化名称。\nfieldline ：一个格式行，用来定义一个输出行的格式,类似 @,^,<,>,| 这样的字符。\nvalue_one,value_two…… ：数据行，用来向前面的格式行中插入值,都是perl的变量。\n. ：结束符号。\n以下是一个简单是格式化实例：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n$text = \"google runoob taobao\";\nformat STDOUT =\nfirst: ^<<<<<  # 左边对齐，字符长度为6\n$text\nsecond: ^<<<<< # 左边对齐，字符长度为6\n$text\nthird: ^<<<< # 左边对齐，字符长度为5，taobao 最后一个 o 被截断\n$text  \n.\nwrite"
+    ]
+   },
+   {
+    "title": "Perl 哈希",
+    "url": "https://www.runoob.com/perl/perl-hashes.html",
+    "body": "哈希是 key/value 对的集合。\nPerl中哈希变量以百分号 (%) 标记开始。\n访问哈希元素格式：${key}。\n以下是一个简单的哈希实例：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n%data = ('google', 'google.com', 'runoob', 'runoob.com', 'taobao', 'taobao.com');\n \nprint \"\\$data{'google'} = $data{'google'}\\n\";\nprint \"\\$data{'runoob'} = $data{'runoob'}\\n\";\nprint \"\\$data{'taobao'} = $data{'taobao'}\\n\";"
+    ]
+   },
+   {
+    "title": "Perl 简介",
+    "url": "https://www.runoob.com/perl/perl-intro.html",
+    "body": "Perl，一种功能丰富的计算机程序语言，运行在超过100种计算机平台上，适用广泛，从大型机到便携设备，从快速原型创建到大规模可扩展开发。\nPerl 语言的应用范围很广，除CGI以外，Perl被用于图形编程、系统管理、网络编程、金融、生物以及其他领域。由于其灵活性，Perl被称为脚本语言中的瑞士军刀。\n什么是 Perl？\nPerl是由Larry Wall设计的，并由他不断更新和维护的编程语言。\nPerl具有高级语言（如C）的强大能力和灵活性。事实上，你将看到，它的许多特性是从C语言中借用来的。\nPerl与脚本语言一样，Perl不需要编译器和链接器来运行代码，你要做的只是写出程序并告诉Perl来运行而已。这意味着Perl对于小的编程问题的快速解决方案和为大型事件创建原型来测试潜在的解决方案是十分理想的。\nPerl提供脚本语言（如sed和awk）的所有功能，还具有它们所不具备的很多功能。Perl还支持sed到Perl及awk到Perl的翻译器。\n简而言之，Perl像C一样强大，像awk、sed等脚本描述语言一样方便。\nPerl 优点\n相比C、Pascal这样的\"高级\"语言而言，Perl语言直接提供泛型变量、动态数组、Hash表等更加便捷的编程元素。\nPerl具有动态语言的强大灵活的特性，并且还从C/C++、Basic、Pascal等语言中分别借鉴了语法规则，从而提供了许多冗余语法。\n在统一变量类型和掩盖运算细节方面，Perl做得比其他高级语言(如：Python）更为出色。\n由于从其他语言大量借鉴了语法，使得从其他编程语言转到Perl语言的程序员可以迅速上手写程序并完成任务，这使得Perl语言是一门容易用的语言。\nPerl 是可扩展的，我们可以通过CPAN（\"the Comprehensive Perl Archive Network\"全面的 Perl 存档网络）中心仓库找到很多我们需要的模块。\nPerl 的 mod_perl 的模块允许 Apache web 服务器使用 Perl 解释器。\nPerl 缺点\n也正是因为Perl的灵活性和\"过度\"的冗余语法，也因此获得了仅写（write-only）的\"美誉\"，因为Perl程序可以写得很随意（例如，变量不经声明就可以直接使用），但是可能少写一些字母就会得到意想不到的结果（而不报错），许多Perl程序的代码令人难以阅读，实现相同功能的程序代码长度可以相差十倍百倍，这就令程序的维护者（甚至是编写者）难以维护。\n同样的，因为Perl这样随意的特点，可能会导致一些Perl程序员遗忘语法，以至于不得不经常查看Perl手册。\n建议的解决方法是在程序里使用use strict;以及use warnings;，并统一代码风格，使用库，而不是自己使用\"硬编码\"。Perl同样可以将代码书写得像Python或Ruby等语言一样优雅。\n很多时候，perl.exe进程会占用很多的内存空间，虽然只是一时，但是感觉不好。",
+    "examples": []
+   },
+   {
+    "title": "Perl 循环",
+    "url": "https://www.runoob.com/perl/perl-loops.html",
+    "body": "有的时候，我们可能需要多次执行同一块代码。一般情况下，语句是按顺序执行的：函数中的第一个语句先执行，接着是第二个语句，依此类推。\n编程语言提供了更为复杂执行路径的多种控制结构。\n循环语句允许我们多次执行一个语句或语句组，下面是大多数编程语言中循环语句的流程图：\n注意，数字 0, 字符串 '0' 、 \"\" , 空 list () , 和 undef 为 false ，其他值均为 true。 true 前面使用 ! 或 not则返回 false 。\nPerl 语言提供了以下几种循环类型:\n循环类型\n描述\nwhile 循环\n当给定条件为 true 时，重复执行语句或语句组。循环主体执行之前会先测试条件。\nuntil 循环\n重复执行语句或语句组，直到给定的条件为 true。 循环主体执行之前会先测试条件。\nfor 循环\n多次执行一个语句序列，简化管理循环变量的代码。\nforeach 循环\nforeach 循环用于迭代一个列表或集合变量的值。\ndo...while 循环\n除了它是在循环主体结尾测试条件外，其他与 while 语句类似。\n嵌套循环\n您可以在 while、for 或 do..while 循环内使用一个或多个循环。\n循环控制语句\n循环控制语句改变了代码的执行顺序，通过它你可以实现代码的跳转。\nPerl 提供了下列的循环控制语句:\n控制语句\n描述\nnext 语句\n停止执行从next语句的下一语句开始到循环体结束标识符之间的语句，转去执行continue语句块，然后再返回到循环体的起始处开始执行下一次循环。\nlast 语句\n退出循环语句块，从而结束循环\ncontinue 语句\ncontinue 语句块通常在条件语句再次判断前执行。\nredo 语句\nredo 语句直接转到循环体的第一行开始重复执行本次循环，redo语句之后的语句不再执行，continue语句块也不再执行；\ngoto 语句\nPerl 有三种 goto 形式：got LABLE，goto EXPR，和 goto &NAME。\n无限循环\n如果条件永远不为 false，则循环将变成无限循环。\nfor 循环在传统意义上可用于实现无限循环。\n由于构成循环的三个表达式中任何一个都不是必需的，您可以将某些条件表达式留空来构成一个无限循环。\n实例",
+    "examples": [
+     "#!/usr/bin/perl\nfor( ; ; )\n{\nprintf \"循环会无限执行。\\n\";\n}"
+    ]
+   },
+   {
+    "title": "Perl 面向对象",
+    "url": "https://www.runoob.com/perl/perl-object-oriented.html",
+    "body": "Perl 中有两种不同地面向对象编程的实现：\n一是基于匿名哈希表的方式，每个对象实例的实质就是一个指向匿名哈希表的引用。在这个匿名哈希表中，存储了所有的实例属性。\n二是基于数组的方式，在定义一个类的时候，我们将为每一个实例属性创建一个数组，而每一个对象实例的实质就是一个指向这些数组中某一行索引的引用。在这些数组中，存储着所有的实例属性。\n面向对象基础概念\n面向对象有很多基础概念，这里我们接收三个：对象、类和方法。\n对象：对象是对类中数据项的引用。.\n类：类是个Perl包，其中含提供对象方法的类。\n方法：方法是个Perl子程序，类名是其第一个参数。\nPerl 提供了 bless() 函数，bless 是用来构造对象的， 通过 bless 把一个引用和这个类名相关联，返回这个引用就构造出一个对象。\n类的定义\n一个类只是一个简单的包。\n可以把一个包当作一个类用，并且把包里的函数当作类的方法来用。\nPerl 的包提供了独立的命名空间，所以不同包的方法与变量名不会冲突。\nPerl 类的文件后缀为 .pm。\n接下来我们创建一个 Person 类：\npackage Person;\n类的代码范围到脚本文件的最后一行，或者到下一个 package 关键字前。\n创建和使用对象\n创建一个类的实例 (对象) 我们需要定义一个构造函数，大多数程序使用类名作为构造函数，Perl 中可以使用任何名字。\n你可以使用多种 Perl 的变量作为 Perl 的对象。大多数情况下我们会使用引用数组或哈希。\n接下来我们为 Person 类创建一个构造函数，使用了 Perl 的哈希引用。\n在创建对象时，你需要提供一个构造函数，它是一个子程序，返回对象的引用。\n实例如下：\n实例",
+    "examples": [
+     "package Person;\nsub new\n{\nmy $class = shift;\n    my $self = {\n_firstName => shift,\n        _lastName  => shift,\n        _ssn       => shift,\n    };\n    # 输出用户信息\nprint \"名字：$self->{_firstName}\\n\";\n    print \"姓氏：$self->{_lastName}\\n\";\n    print \"编号：$self->{_ssn}\\n\";\n    bless $self, $class;\n    return $self;\n}"
+    ]
+   },
+   {
+    "title": "Perl 运算符",
+    "url": "https://www.runoob.com/perl/perl-operators.html",
+    "body": "运算符是一种告诉编译器执行特定的数学或逻辑操作的符号，如: 3+2=5。\nPerl 语言内置了丰富的运算符，我们来看下常用的几种：\n算术运算符\n比较运算符\n逻辑运算符\n赋值运算符\n位运算符\n引号运算符\n其他运算符\n运算符优先级\n算术运算符\n表格实例中我们设置变量 $a 为 10， $b 为 20。\n运算符\n描述\n实例\n+\n加法运算\n$a + $b 结果为 30\n-\n减法运算\n$a - $b 结果为 -10\n*\n乘法运算\n$a * $b 结果为 200\n/\n除法运算\n$b / $a 结果为 2\n%\n求余运算，整除后的余数\n$b % $a 结果为 0\n**\n乘幂\n$a**$b 结果为 10 的 20 次方\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n$a = 10;\n$b = 20;\n \nprint \"\\$a = $a , \\$b = $b\\n\";\n \n$c = $a + $b;\nprint '$a + $b = ' . $c . \"\\n\";\n \n$c = $a - $b;\nprint '$a - $b = ' . $c . \"\\n\";\n \n$c = $a * $b;\nprint '$a * $b = ' . $c . \"\\n\";\n \n$c = $a / $b;\nprint '$a / $b = ' . $c . \"\\n\";\n \n$c = $a % $b;\nprint '$a % $b = ' . $c. \"\\n\";\n \n$a = 2;\n$b = 4;\n$c = $a ** $b;\nprint '$a ** $b = ' . $c . \"\\n\";"
+    ]
+   },
+   {
+    "title": "Perl 包和模块",
+    "url": "https://www.runoob.com/perl/perl-packages-modules.html",
+    "body": "Perl 中每个包有一个单独的符号表，定义语法为：\npackage mypack;\n此语句定义一个名为 mypack 的包，在此后定义的所有变量和子程序的名字都存贮在该包关联的符号表中，直到遇到另一个 package 语句为止。\n每个符号表有其自己的一组变量、子程序名，各组名字是不相关的，因此可以在不同的包中使用相同的变量名，而代表的是不同的变量。\n从一个包中访问另外一个包的变量，可通过\" 包名 + 双冒号( :: ) + 变量名 \" 的方式指定。\n存贮变量和子程序的名字的默认符号表是与名为 main的包相关联的。如果在程序里定义了其它的包，当你想切换回去使用默认的符号表，可以重新指定main包：\n\npackage main;\n这样，接下来的程序就好象从没定义过包一样，变量和子程序的名字象通常那样存贮。\n以下实例中文件有 main 和 Foo 包。 特殊变量 __PACKAGE__ 用于输出包名：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n#  main 包\n$i = 1; \nprint \"包名 : \" , __PACKAGE__ , \" $i\\n\"; \n \npackage Foo;\n#  Foo 包\n$i = 10; \nprint \"包名 : \" , __PACKAGE__ , \" $i\\n\"; \n \npackage main;\n# 重新指定 main 包\n$i = 100; \nprint \"包名 : \" , __PACKAGE__ , \" $i\\n\"; \nprint \"包名: \" , __PACKAGE__ ,  \" $Foo::i\\n\"; \n \n1;"
+    ]
+   },
+   {
+    "title": "Perl 进程管理",
+    "url": "https://www.runoob.com/perl/perl-process-management.html",
+    "body": "Perl 中你可以以不同的方法来创建进程。\n本教程将讨论一些进程的管理方法。\n你可以使用特殊变量 $$ 或 $PROCESS_ID 来获取进程 ID。\n%ENV 哈希存放了父进程，也就是shell中的环境变量，在Perl中可以修改这些变量。\nexit() 通常用于退出子进程，主进程在子进程全部退出后再退出。\n所有打开的句柄会在子程序中被 dup() 函数复制, 所有关闭进程所有句柄不会影响其他进程 。\n反引号运算符\n使用反引号运算符可以很容易的执行 Unix 命令。你可以在反引号中插入一些简单的命令。命令执行后将返回结果：\n#!/usr/bin/perl\n\n@files = `ls -l`;\n\nforeach $file (@files){\n print $file;\n}\n\n1;\n执行以上程序，输出结果如下：\ndrwxr-xr-x 3 root root 4096 Sep 14 06:46 9-14\ndrwxr-xr-x 4 root root 4096 Sep 13 07:54 android\n-rw-r--r-- 1 root root 574 Sep 17 15:16 index.htm\ndrwxr-xr-x 3 544 401 4096 Jul 6 16:49 MIME-Lite-3.01\n-rw-r--r-- 1 root root 71 Sep 17 15:16 test.pl\n……\nsystem() 函数\n你也可以使用 system() 函数执行 Unix 命令, 执行该命令将直接输出结果。默认情况下会送到目前Perl的STDOUT指向的地方，一般是屏幕。你也可以使用重定向运算符 > 输出到指定文件：\n执行以上程序，输出结果如下：\ndrwxr-xr-x 3 root root 4096 Sep 14 06:46 9-14\ndrwxr-xr-x 4 root root 4096 Sep 13 07:54 android\n-rw-r--r-- 1 root root 574 Sep 17 15:16 index.htm\ndrwxr-xr-x 3 544 401 4096 Jul 6 16:49 MIME-Lite-3.01\n-rw-r--r-- 1 root root 71 Sep 17 15:16 test.pl\n……\n你需要注意命令包含环境变量如 $PATH 或 $HOME 的输出结果，如下所示：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n$PATH = \"我是 Perl 的变量\";\n \nsystem('echo $PATH');  # $PATH 作为 shell 环境变量\nsystem(\"echo $PATH\");  # $PATH 作为 Perl 的变量\nsystem(\"echo \\$PATH\"); # 转义 $\n1;"
+    ]
+   },
+   {
+    "title": "Perl 引用",
+    "url": "https://www.runoob.com/perl/perl-references.html",
+    "body": "引用就是指针，Perl 引用是一个标量类型可以指向变量、数组、哈希表（也叫关联数组）甚至子程序，可以应用在程序的任何地方。\n创建引用\n定义变量的时候，在变量名前面加个\\，就得到了这个变量的一个引用，比如:\n$scalarref = \\$foo; # 标量变量引用\n$arrayref = \\@ARGV; # 列表的引用\n$hashref = \\%ENV; # 哈希的引用\n$coderef = \\&handler; # 子过程引用\n$globref = \\*foo; # GLOB句柄引用\n在数组中我们可以用匿名数组引用，使用 [] 定义：\n$aref= [ 1,\"foo\",undef,13 ];\n匿名数组的元素仍然可以是匿名数组，所以我们可以用这种方法构造数组的数组，可以构造任意维度的数组。\nmy $aref = [\n [1, 2, 3],\n [4, 5, 6],\n [7, 8, 9],\n]\n在哈希中我们可以用匿名哈希引用，使用 {} 定义：\n$href= { APR =>4, AUG =>8 };\n我们也可以创建一个没有子程序名的匿名子程序引用:\n$coderef = sub { print \"Runoob!\\n\" };\n取消引用\n取消引用可以根据不同的类型使用 $, @ 或 % 来取消，实例如下：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n$var = 10;\n \n# $r 引用 $var 标量\n$r = \\$var;\n \n# 输出本地存储的 $r 的变量值\nprint \"$var 为 : \", $$r, \"\\n\";\n \n@var = (1, 2, 3);\n# $r 引用  @var 数组\n$r = \\@var;\n# 输出本地存储的 $r 的变量值\nprint \"@var 为: \",  @$r, \"\\n\";\n \n%var = ('key1' => 10, 'key2' => 20);\n# $r 引用  %var 哈希\n$r = \\%var;\n# 输出本地存储的 $r 的变量值\nprint \"\\%var 为 : \", %$r, \"\\n\";"
+    ]
+   },
+   {
+    "title": "Perl 正则表达式",
+    "url": "https://www.runoob.com/perl/perl-regular-expressions.html",
+    "body": "正则表达式(regular expression)描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。\nPerl语言的正则表达式功能非常强大，基本上是常用语言中最强大的，很多语言设计正则式支持的时候都参考Perl的正则表达式。\nPerl的正则表达式的三种形式，分别是匹配，替换和转化:\n匹配：m//（还可以简写为//，略去m）\n替换：s///\n转化：tr///\n这三种形式一般都和 =~ 或 !~ 搭配使用， =~ 表示相匹配，!~ 表示不匹配。\n匹配操作符\n匹配操作符 m// 用于匹配一个字符串语句或者一个正则表达式，例如，要匹配 标量 $bar 中的 \"run\",代码如下所示：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n$bar = \"I am runoob site. welcome to runoob site.\";\nif ($bar =~ /run/){\nprint \"第一次匹配\\n\";\n}else{\nprint \"第一次不匹配\\n\";\n}\n$bar = \"run\";\nif ($bar =~ /run/){\nprint \"第二次匹配\\n\";\n}else{\nprint \"第二次不匹配\\n\";\n}"
+    ]
+   },
+   {
+    "title": "Perl 标量",
+    "url": "https://www.runoob.com/perl/perl-scalars.html",
+    "body": "标量是一个简单的数据单元。\n标量可以是一个整数，浮点数，字符，字符串，段落或者一个完整的网页。\n以下实例演示了标量的简单应用：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n$age = 20;             # 整数赋值\n$name = \"Runoob\";   # 字符串\n$salary = 130.50;     # 浮点数\nprint \"Age = $age\\n\";\nprint \"Name = $name\\n\";\nprint \"Salary = $salary\\n\";"
+    ]
+   },
+   {
+    "title": "Perl 发送邮件",
+    "url": "https://www.runoob.com/perl/perl-sending-email.html",
+    "body": "如果你的程序在 Linux/Unix 系统上运行，你就可以在 Perl 中使用 sendmail 工具来发送邮件。\n以下是一个简单的脚本实例用于发送邮件：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n# 接收邮箱，这里我设置为我的 QQ 邮箱，你需要修改它为你自己的邮箱\n$to = '429240967@qq.com';\n#发送者邮箱\n$from = 'test@runoob.com';\n#标题\n$subject = '菜鸟教程 Perl 发送邮件测试';\n$message = '这是一封使用 Perl 发送的邮件。';\n \nopen(MAIL, \"|/usr/sbin/sendmail -t\");\n \n# 邮件头部\nprint MAIL \"To: $to\\n\";\nprint MAIL \"From: $from\\n\";\nprint MAIL \"Subject: $subject\\n\\n\";\n# 邮箱信息\nprint MAIL $message;\n \nclose(MAIL);\nprint \"邮件发送成功\\n\";"
+    ]
+   },
+   {
+    "title": "Perl Socket 编程",
+    "url": "https://www.runoob.com/perl/perl-socket-programming.html",
+    "body": "Socket又称\"套接字\"，应用程序通常通过\"套接字\"向网络发出请求或者应答网络请求，使主机间或者一台计算机上的进程间可以通讯。\n本章节我们为大家接收 Perl 语言中如何使用 Socket 服务。\n创建服务端\n使用 socket 函数来创建 socket服务。\n使用 bind 函数绑定端口。\n使用 listen 函数监听端口。\n使用 accept 函数接收客户端请求。\n创建客户端\n使用 socket 函数来创建 socket 服务。\n使用 connect 函数连接到 socket 服务端。\n以下图表演示了客户端与服务端之间的通信流程：\n服务端 socket 函数\nsocket 函数\nPerl 中，我们用 socket（）函数来创建套接字，语法格式如下：\nsocket( SOCKET, DOMAIN, TYPE, PROTOCOL );\n参数解析：\nDOMAIN 创建的套接字指定协议集。 例如：\nAF_INET 表示IPv4网络协议\nAF_INET6 表示IPv6\nAF_UNIX 表示本地套接字（使用一个文件）\nTYPE 套接字类型可以根据是面向连接的还是非连接分为SOCK_STREAM或SOCK_DGRAM\nPROTOCOL 应该是 (getprotobyname('tcp'))[2]。指定实际使用的传输协议。\n所以 socket 函数调用方式如下：\nuse Socket # 定义了 PF_INET 和 SOCK_STREAM\n\nsocket(SOCKET,PF_INET,SOCK_STREAM,(getprotobyname('tcp'))[2]);\nbind() 函数\n使用 bind() 为套接字分配一个地址：\nbind( SOCKET, ADDRESS );\nSOCKET 一个socket的描述符。 ADDRESS 是 socket 地址 ( TCP/IP ) 包含了三个元素:\n地址簇 (TCP/IP, 是 AF_INET, 在你系统上可能是 2)\n端口号 (例如 21)\n网络地址 (例如 10.12.12.168)\n使用socket()创建套接字后，只赋予其所使用的协议，并未分配地址。在接受其它主机的连接前，必须先调用bind()为套接字分配一个地址。\n简单实例如下：\nuse Socket # 定义了 PF_INET 和 SOCK_STREAM\n\n$port = 12345; # 监听的端口\n$server_ip_address = \"10.12.12.168\";\nbind( SOCKET, pack_sockaddr_in($port, inet_aton($server_ip_address)))\n or die \"无法绑定端口! \\n\";\nor die 在绑定地址失败后执行。\n通过设置 setsockopt() 可选项 SO_REUSEADDR 设置端口可立即重复使用。\npack_sockaddr_in() 函数将地址转换为二进制格式。\nlisten() 函数\n当socket和一个地址绑定之后，listen()函数会开始监听可能的连接请求。然而，这只能在有可靠数据流保证的时候使用：\nlisten( SOCKET, QUEUESIZE );\nSOCKET : 一个socket的描述符。\nQUEUESIZE : 是 一个决定监听队列大小的整数，当有一个连接请求到来，就会进入此监听队列；当一个连接请求被accept()接受，则从监听队列中移出；当队列满后，新的连接请求会返回错误。\n一旦连接被接受，返回0表示成功，错误返回-1。\naccept() 函数\naccept() 函数接受请求的socket连接。如果成功则返回压缩形式的网络地址，否则返回FALSE：\naccept( NEW_SOCKET, SOCKET );\nNEW_SOCKET : 一个socket的描述符。\nSOCKET : 一个socket的描述符。\naccept() 通常应用在无限循环当中：\nwhile(1) {\n accept( NEW_SOCKET, SOCKT );\n .......\n}\n以上实例可以实时监听客户端的请求。\n客户端函数\nconnect() 函数\nconnect()系统调用为一个套接字设置连接，参数有文件描述符和主机地址。\nconnect( SOCKET, ADDRESS );\n以下创建一个连接到服务端 socket 的实例：\n$port = 21; # ftp 端口\n$server_ip_address = \"10.12.12.168\";\nconnect( SOCKET, pack_sockaddr_in($port, inet_aton($server_ip_address)))\n or die \"无法绑定端口! \\n\";\n完整实例\n接下来我们通过一个完整实例来了解下所有 socket 函数的应用：\n服务端 server.pl 代码：\n实例",
+    "examples": [
+     "#!/usr/bin/perl -w\n# Filename : server.pl\nuse strict;\nuse Socket;\n \n# 使用端口 7890 作为默认值\nmy $port = shift || 7890;\nmy $proto = getprotobyname('tcp');\nmy $server = \"localhost\";  # 设置本地地址\n# 创建 socket, 端口可重复使用，创建多个连接\nsocket(SOCKET, PF_INET, SOCK_STREAM, $proto)\nor die \"无法打开 socket $!\\n\";\nsetsockopt(SOCKET, SOL_SOCKET, SO_REUSEADDR, 1)\nor die \"无法设置 SO_REUSEADDR $!\\n\";\n \n# 绑定端口并监听\nbind( SOCKET, pack_sockaddr_in($port, inet_aton($server)))\nor die \"无法绑定端口 $port! \\n\";\n \nlisten(SOCKET, 5) or die \"listen: $!\";\nprint \"访问启动：$port\\n\";\n \n# 接收请求\nmy $client_addr;\nwhile ($client_addr = accept(NEW_SOCKET, SOCKET)) {\n# send them a message, close connection\nmy $name = gethostbyaddr($client_addr, AF_INET );\n   print NEW_SOCKET \"我是来自服务端的信息\";\n   print \"Connection recieved from $name\\n\";\n   close NEW_SOCKET;\n}"
+    ]
+   },
+   {
+    "title": "Perl 特殊变量",
+    "url": "https://www.runoob.com/perl/perl-special-variables.html",
+    "body": "Perl 语言中定义了一些特殊的变量，通常以 $, @, 或 % 作为前缀，例如：$_。\n很多特殊的变量有一个很长的英文名，操作系统变量 $! 可以写为 $OS_ERROR。\n如果你想使用英文名的特殊变量需要在程序头部添加 use English;。这样就可以使用具有描述性的英文特殊变量。\n最常用的特殊变量为 $_，该变量包含了默认输入和模式匹配内容。实例如下：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\nforeach ('Google','Runoob','Taobao') {\nprint $_;\n    print \"\\n\";\n}"
+    ]
+   },
+   {
+    "title": "Perl 子程序(函数)",
+    "url": "https://www.runoob.com/perl/perl-subroutines.html",
+    "body": "Perl 子程序（subroutine）也就是用户定义的函数。\nPerl 子程序即执行一个特殊任务的一段分离的代码，它可以使减少重复代码且使程序易读。\nPerl 子程序是一段封装了一系列操作或计算的代码块，它可以被反复调用，以便在程序中重复使用。\nPerl 子程序有助于模块化程序，使得代码更易于理解、维护和重用。\nPerl 子程序可以出现在程序的任何地方，语法格式如下：\nsub subroutine{\n statements;\n}\n调用子程序语法格式：\nsubroutine( 参数列表 );\n在 Perl 5.0 以下版本调用子程序方法如下：\n&subroutine( 参数列表 );\n在新版本上，虽然也支持该调用方法，但不推荐使用。\n接下来我们来看一个简单是实例：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n# 函数定义\nsub Hello{\nprint \"Hello, World!\\n\";\n}\n# 函数调用\nHello();"
+    ]
+   },
+   {
+    "title": "Perl 基础语法",
+    "url": "https://www.runoob.com/perl/perl-syntax.html",
+    "body": "Perl 借用了C、sed、awk、shell脚本以及很多其他编程语言的特性，语法与这些语言有些类似，也有自己的特点。\nPerl 程序由声明与语句组成，程序自上而下执行，包含了循环，条件控制，每个语句以分号 ; 结束。\nPerl 语言没有严格的格式规范，你可以根据自己喜欢的风格来缩进。\n第一个 perl 程序\n交互式编程\n你可以在命令行中使用 -e 选项来输入语句来执行代码，实例如下：\n$ perl -e 'print \"Hello World\\n\"'\n输入以上命令，回车后，输出结果为：\nHello World\n脚本式编程\n我们将以下代码放到 hello.pl 文件中：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n# 输出 \"Hello, World\"\nprint \"Hello, world\\n\";"
+    ]
+   },
+   {
+    "title": "Perl 教程",
+    "url": "https://www.runoob.com/perl/perl-tutorial.html",
+    "body": "Perl 是 Practical Extraction and Report Language 的缩写，可翻译为 \"实用报表提取语言\"。\nPerl 是高级、通用、直译式、动态的程序语言。\nPerl 最初的设计者为拉里·沃尔（Larry Wall），于1987年12月18日发表。\nPerl 借用了C、sed、awk、shell脚本以及很多其他编程语言的特性。\nPerl 最重要的特性是Perl内部集成了正则表达式的功能，以及巨大的第三方代码库CPAN。",
+    "examples": []
+   },
+   {
+    "title": "Perl 变量",
+    "url": "https://www.runoob.com/perl/perl-variables.html",
+    "body": "变量是存储在内存中的数据，创建一个变量即会在内存上开辟一个空间。\n解释器会根据变量的类型来决定其在内存中的存储空间，因此你可以为变量分配不同的数据类型，如整型、浮点型、字符串等。\n上一章节中我们已经为大家介绍了Perl的三个基本的数据类型：标量、数组、哈希。\n标量 $ 开始， 如$a $b 是两个标量。\n数组 @ 开始 ， 如 @a @b 是两个数组。\n哈希 % 开始 ， %a %b 是两个哈希。\nPerl 为每个变量类型设置了独立的命令空间，所以不同类型的变量可以使用相同的名称，你不用担心会发生冲突。例如 $foo 和 @foo 是两个不同的变量。\n创建变量\n变量不需要显式声明类型，在变量赋值后，解释器会自动分配匹配的类型空间。\n变量使用等号(=)来赋值。\n我们可以在程序中使用 use strict 语句让所有变量需要强制声明类型。\n等号左边为变量，右边为值，实例如下：\n$age = 25; # 整型\n$name = \"runoob\"; # 字符串\n$salary = 1445.50; # 浮点数\n以上代码中 25, \"runoob\" 和 1445.50 分别赋值给 $age, $name 和 $salary 变量。\n接下来我们会看到数组和哈希的使用。\n标量变量\n标量是一个单一的数据单元。\n数据可以是整数，浮点数，字符，字符串，段落等。简单的说它可以是任何东西。以下是标量的简单应用：\n实例",
+    "examples": [
+     "#!/usr/bin/perl\n$age = 25;             # 整型\n$name = \"runoob\";      # 字符串\n$salary = 1445.50;     # 浮点数\nprint \"Age = $age\\n\";\nprint \"Name = $name\\n\";\nprint \"Salary = $salary\\n\";"
+    ]
+   }
+  ]
+ }
+}

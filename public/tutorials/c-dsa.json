@@ -1,0 +1,140 @@
+{
+ "tutorial": {
+  "name": "C 语言数据结构与算法",
+  "category": "编程语言",
+  "desc": "数据结构与算法（Data Structures and Algorithms，简",
+  "url": "https://www.runoob.com/c-dsa/",
+  "chapters": [
+   {
+    "title": "数据结构 - 数组",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-array.html",
+    "body": "数组（Array）是最基础、也是最常用的数据结构之一。\n数组是一组类型相同、在内存中连续存放的元素集合。\n数组的定义与内存布局\n在 C 语言中，数组声明后会在内存中分配一块连续的空间，每个元素可以通过下标直接访问。\n上图展示了一个包含 5 个 int 元素的数组在内存中的布局。假设起始地址为 0x1000，每个 int 占 4 字节，则：\narr[0] 位于地址 0x1000\narr[1] 位于地址 0x1004（0x1000 + 4）\narr[i] 位于地址 0x1000 + i × 4\n正是由于这种连续存储的特性，数组可以通过 起始地址 + 偏移量 的方式在 O(1) 时间内访问任意元素。\n一维数组\n实例",
+    "examples": [
+     "#include <stdio.h>\n\nint main() {\n    /* 声明并初始化一个一维数组 */\n    int arr[5] = {10, 20, 30, 40, 50};\n\n    /* 遍历访问每个元素 */\n    printf(\"数组元素: \");\n    for (int i = 0; i < 5; i++) {\n        printf(\"%d \", arr[i]);\n    }\n    printf(\"\\n\");  /* 输出: 数组元素: 10 20 30 40 50 */\n\n    /* 通过索引直接访问，时间复杂度 O(1) */\n    printf(\"arr[2] = %d\\n\", arr[2]);  /* 输出: 30 */\n\n    return 0;\n}"
+    ]
+   },
+   {
+    "title": "数据结构基本概念",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-basic-concepts-html.html",
+    "body": "在正式学习各种数据结构之前，需要先掌握数据结构的分类方式、抽象数据类型的概念，并回顾 C 语言中与数据结构密切相关的核心知识点。\n数据结构的分类\n数据结构可以从两个维度进行分类：逻辑结构和存储方式。理解这两种分类方式，有助于在面对具体问题时快速判断应该选择哪一类数据结构。\n上图展示了数据结构的完整分类体系，下面逐一说明。\n按逻辑结构分类\n逻辑结构描述的是数据元素之间的抽象关系，不涉及数据在内存中的实际存储方式。\n类型\n元素关系\n典型例子\n适用场景\n线性结构\n一对一的前后关系\n数组、链表、栈、队列\n数据有明显先后顺序，如待办事项列表、浏览历史\n树形结构\n一对多的层级关系\n二叉树、BST、堆\n数据有层级归属，如文件系统目录、组织架构\n图形结构\n多对多的网状关系\n有向图、无向图、带权图\n数据间关系复杂，如社交网络、地图导航\n按存储方式分类\n存储方式描述的是数据在内存中的实际组织方式。\n类型\n特点\n典型例子\n权衡\n顺序存储\n元素在连续的内存空间中依次存放\n数组、用数组实现的栈/队列\n访问快 (O(1))，但插入删除慢，大小固定\n链式存储\n元素可以分散存放，通过指针连接\n链表、树、图（邻接表）\n插入删除快，但不支持随机访问，额外指针开销\n索引存储\n建立附加的索引表来定位数据\n哈希表（通过哈希函数索引）\n查找极快，但需要额外空间存储索引结构\n同一种逻辑结构可以用不同的存储方式来实现。例如，栈（逻辑上是线性结构）既可以用数组（顺序存储）实现，也可以用链表（链式存储）实现。选择哪种实现方式取决于具体应用场景对访问速度、增删效率和内存占用的不同要求。\n抽象数据类型（ADT）\n抽象数据类型（Abstract Data Type，简称 ADT）是数据结构学习中的一个核心概念。\n它是指一组数据以及定义在这组数据上的一组操作的抽象描述，只关心\"做什么\"，不关心\"怎么做\"。\n以\"栈\"为例来理解 ADT：\nADT 层面（做什么）\n实现层面（怎么做）\n定义操作：push（入栈）、pop（出栈）、peek（查看栈顶）\n用数组实现：维护一个数组 + top 指针\n定义行为：后进先出 (LIFO)\n用链表实现：以链表头作为栈顶\n规定约束：只能从一端操作\n两种实现都满足 ADT 定义，但性能特性不同\n这种\"接口与实现分离\"的思想，是现代软件工程中模块化设计的基石。\n当你使用一个栈时，只需要知道 push、pop 等操作的用法，而不需要关心底层是用数组还是链表实现的——这正是 ADT 的价值所在。\nC 语言基础知识回顾\n在学习数据结构之前，需要熟练掌握以下三个 C 语言核心知识点，它们几乎贯穿本教程所有章节。\n指针（Pointer）\n指针是 C 语言中最重要也最灵活的特性之一。它存储的是另一个变量的内存地址，通过指针可以间接访问和操作目标变量。\n实例",
+    "examples": [
+     "#include <stdio.h>\n\nint main() {\n    int num = 42;        /* 普通整型变量 */\n    int *ptr = &num;   /* ptr 是指向 int 的指针，存储 num 的地址 */\n\n    printf(\"num 的值: %d\\n\", num);           /* 输出: 42 */\n    printf(\"num 的地址: %p\\n\", &num);      /* 输出: 0x16d2f2f38（示例地址） */\n    printf(\"ptr 存储的地址: %p\\n\", ptr);    /* 输出: 同上 */\n    printf(\"*ptr 解引用的值: %d\\n\", *ptr);  /* 输出: 42，* 为解引用运算符 */\n\n    *ptr = 100;  /* 通过指针修改 num 的值 */\n    printf(\"修改后 num = %d\\n\", num);        /* 输出: 100 */\n    return 0;\n}"
+    ]
+   },
+   {
+    "title": "数据结构 - 循环链表",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-circular-linked-list.html",
+    "body": "循环链表是链表结构的一种变体，其核心特点是链表的最后一个节点不再指向 NULL，而是重新指向第一个节点，从而使整个链表在逻辑上形成一个环状结构。\n循环链表的结构特点\n循环链表 — 单向循环与双向循环",
+    "examples": []
+   },
+   {
+    "title": "数据结构 - 双向链表",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-doubly-linked-list.html",
+    "body": "双向链表（Doubly Linked List）是对单链表的扩展，每个节点除了指向下一个节点之外，还额外保存一个指向前一个节点的指针，从而形成双向可达的链式结构。\n双向链表的结构与特点\n双向链表 — 节点结构与双向遍历",
+    "examples": []
+   },
+   {
+    "title": "C 语言环境搭建",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-env-setup.html",
+    "body": "在开始学习数据结构与算法之前，需要先搭建一个可以顺利编译和运行 C 程序的开发环境。\n也可以参考我们的 C 语言教程章节安装设置：https://www.runoob.com/cprogramming/c-environment-setup.html\n编译器安装\n本教程推荐使用 GCC（GNU Compiler Collection），它是跨平台、开源且广泛应用于生产环境的 C 语言编译器。\nWindows 系统\n在 Windows 上，推荐通过 MinGW-w64 或 MSYS2 来获得 GCC 编译环境。\n安装步骤：\n访问 MinGW-w64 官网 下载安装程序\n运行安装程序，选择架构为 x86_64，线程模型选 posix\n安装完成后，将 MinGW-w64 的 bin 目录（如 C:\\mingw64\\bin）添加到系统环境变量 PATH 中\n打开命令提示符（cmd），输入 gcc --version 验证安装是否成功\nC:\\Users\\runoob&gt; gcc --version\ngcc (MinGW-W64 x86_64-posix-seh) 13.2.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nmacOS 系统\n在 macOS 上，安装 Xcode 命令行工具即可获得 GCC（实际是 Clang 的封装，兼容 GCC 用法）。\n打开终端，执行以下命令：\n$ xcode-select --install\n系统会弹出安装提示，点击\"安装\"并等待完成。\n安装完成后，验证编译器是否可用：\n$ gcc --version\nApple clang version 16.0.0 (clang-1600.0.26.4)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nLinux 系统\n大多数 Linux 发行版都可以通过包管理器一键安装 GCC。\nUbuntu/Debian 系统：\n$ sudo apt update\n$ sudo apt install gcc build-essential\nFedora/CentOS 系统：\n$ sudo dnf install gcc gcc-c++\n验证安装：\n$ gcc --version\ngcc (Ubuntu 13.2.0-4ubuntu3) 13.2.0\nIDE 推荐\n以下是几款适合初学者的 C 语言集成开发环境。\nIDE\n平台\n特点\n适合人群\nVS Code\n全平台\n轻量级、插件生态丰富、配置灵活，搭配 C/C++ 插件使用\n喜欢自定义配置的学习者\nCode::Blocks\n全平台\n专为 C/C++ 设计、开箱即用、自带 MinGW（Windows 版）\n初学者、不想折腾配置\nDev-C++\nWindows\n历史悠久、界面简洁、安装即用\nWindows 入门用户\nCLion\n全平台\nJetBrains 出品、智能代码补全、调试功能强大\n有一定基础、追求效率\n本教程的代码示例不依赖特定 IDE，使用任何一款都可以正常编译运行。\n如果你不想在本地安装任何工具，也可以使用在线编译器（如 Compiler Explorer、OnlineGDB）快速验证代码。\n对于初学者，本教程推荐 VS Code + MinGW-w64（Windows）或 VS Code + Xcode 命令行工具（macOS）的组合，轻量且功能完备。\n第一个 C 程序\n搭建好环境后，立即编写并运行经典的 \"Hello, World!\" 程序，确认一切配置正确。\n创建一个新文件，命名为 hello.c，输入以下代码：\n实例",
+    "examples": [
+     "#include <stdio.h>  /* 标准输入输出头文件，提供 printf 函数 */\n\nint main() {\n    /* printf：向控制台输出字符串的函数\n       \\n：换行符，让光标移动到下一行 */\n    printf(\"Hello, World! Welcome to RUNOOB DSA Tutorial!\\n\");\n    return 0;  /* 返回 0 表示程序正常结束 */\n}"
+    ]
+   },
+   {
+    "title": "数据结构 - 图",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-graph.html",
+    "body": "图（Graph）是一种更为通用的非线性数据结构，用于表示元素之间\"多对多\"的复杂关系，由顶点和连接顶点的边构成。\n图的基本概念\n图的类型 — 无向图、有向图、带权图\n无向图\n0",
+    "examples": []
+   },
+   {
+    "title": "数据结构 - 哈希表",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-hash-table.html",
+    "body": "哈希表（Hash Table）是一种通过哈希函数将键映射到数组中特定位置，从而实现平均 O(1) 时间复杂度查找、插入和删除操作的数据结构。\n哈希函数与哈希冲突\n哈希表原理 — 哈希函数映射",
+    "examples": []
+   },
+   {
+    "title": "数据结构 - 堆",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-heap.html",
+    "body": "堆（Heap）是一种特殊的完全二叉树结构，满足堆序性质。堆只保证父子节点之间的大小关系，不要求左右子树之间存在严格的顺序。\n堆的定义与存储\n堆 (Heap) — 最大堆结构与数组存储",
+    "examples": []
+   },
+   {
+    "title": "数据结构 - 链表",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-linked-list.html",
+    "body": "链表（Linked List）是一种由若干个节点通过指针依次连接而成的线性数据结构。\n与数组不同，链表中的元素在内存中并不要求连续存放。\n链表的基本概念与节点结构\n链表的每个节点包含两部分：数据域（data）存储实际数据，指针域（next）指向下一个节点。\n上图展示了链表在内存中的实际样貌。每个节点通过 malloc 在堆上独立分配，因此它们在内存中可以不连续。节点之间通过 next 指针串联，最后一个节点的 next 指向 NULL 表示链表结束。\n在 C 语言中，链表节点通过结构体来定义：\n实例",
+    "examples": [
+     "#include <stdio.h>\n#include <stdlib.h>  /* malloc, free */\n\n/* 链表节点结构体\n   data：数据域，存储整型数据\n   next：指针域，指向下一个同类型节点 */\nstruct Node {\n    int data;\n    struct Node* next;\n};\n\n/* 创建一个新节点\n   参数 value: 节点的数据值\n   返回值：指向新节点的指针，分配失败返回 NULL */\nstruct Node* createNode(int value) {\n    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));\n    if (newNode == NULL) {\n        printf(\"内存分配失败\\n\");\n        return NULL;\n    }\n    newNode->data = value;   /* 设置数据 */\n    newNode->next = NULL;    /* 新节点的 next 初始化为 NULL */\n    return newNode;\n}"
+    ]
+   },
+   {
+    "title": "数据结构 - 表达式解析",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-parsing-expressions.html",
+    "body": "表达式解析（Parsing Expressions）是栈这一数据结构最经典的应用场景。\n表达式解析展示了如何利用栈来处理中缀、前缀和后缀表达式之间的转换以及表达式求值。\n三种表达式形式\n中缀表达式 A + B * C 转后缀表达式 — 步骤演示",
+    "examples": []
+   },
+   {
+    "title": "数据结构 - 优先队列",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-priority-queue.html",
+    "body": "优先队列（Priority Queue）是队列的一种扩展形式，与普通队列的\"先进先出\"不同，优先队列中的每个元素都被赋予一个优先级，出队操作总是取出当前队列中优先级最高的元素。\n优先队列的概念与特点\n可以将其类比为医院急诊室的分诊制度——病情越紧急的患者，即使后到，也会被优先处理。\n优先队列的核心操作与普通队列不同：\n操作\n普通队列\n优先队列\n入队 (enqueue)\n在队尾添加元素\n插入元素并附带优先级\n出队 (dequeue)\n返回队首元素（最早入队）\n返回优先级最高的元素\n三种实现方式对比\n优先队列 — 三种实现方式效率对比",
+    "examples": []
+   },
+   {
+    "title": "数据结构 - 队列",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-queue.html",
+    "body": "队列（Queue）是一种遵循先进先出（First In First Out，FIFO）原则的线性数据结构，可以类比为现实生活中排队买票的场景——最先排队的人最先获得服务。\n队列的概念与原理\n队列 (Queue) — FIFO 原理示意",
+    "examples": []
+   },
+   {
+    "title": "递归",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-recursion.html",
+    "body": "递归（Recursion）是指一个函数在其定义或执行过程中直接或间接调用自身的编程技巧，核心思想是将复杂问题分解为规模更小但结构相同的子问题。\n递归的基本概念\n递归调用栈帧变化 — 以 factorial(3) 为例",
+    "examples": []
+   },
+   {
+    "title": "参考资源",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-reference.html",
+    "body": "数据结构操作复杂度速查\n数据结构\n插入\n删除\n查找\n遍历\n数组\nO(n) 中间 / O(1) 末尾\nO(n) 中间 / O(1) 末尾\nO(1) 索引 / O(n) 值\nO(n)\n单链表\nO(1) 头部 / O(n) 尾部\nO(1) 头部 / O(n) 指定\nO(n)\nO(n)\n双向链表\nO(1)（已知位置）\nO(1)（已知位置）\nO(n)\nO(n)\n栈\nO(1)\nO(1)\n—\n—\n队列\nO(1)\nO(1)\n—\n—\n优先队列（堆）\nO(log n)\nO(log n)\n—\n—\n二叉树（BST）\nO(log n)~O(n)\nO(log n)~O(n)\nO(log n)~O(n)\nO(n)\n哈希表\nO(1) 平均\nO(1) 平均\nO(1) 平均\n—\n堆\nO(log n)\nO(log n)\nO(1) 堆顶\n—\n图\nO(1) 邻接表\nO(E)\nO(V+E) DFS/BFS\nO(V+E)\n排序算法速查\n算法\n平均复杂度\n最坏复杂度\n空间\n稳定\n一句话\n冒泡\nO(n²)\nO(n²)\nO(1)\n是\n简单但慢，适合教学\n选择\nO(n²)\nO(n²)\nO(1)\n否\n交换次数最少\n插入\nO(n²)\nO(n²)\nO(1)\n是\n小规模或基本有序时最优\n快速\nO(n log n)\nO(n²)\nO(log n)\n否\n通用首选，分区思想精妙\n归并\nO(n log n)\nO(n log n)\nO(n)\n是\n性能稳定但需额外空间\n堆排\nO(n log n)\nO(n log n)\nO(1)\n否\n原地排序，空间最优\n希尔\nO(n^1.3)\nO(n²)\nO(1)\n否\n插入排序的改进版\n大 O 复杂度排行\n复杂度\nn=10\nn=1000\nn=1000000\n评价\nO(1)\n1\n1\n1\n最优\nO(log n)\n~3\n~10\n~20\n极优\nO(n)\n10\n1000\n1000000\n可接受\nO(n log n)\n~30\n~10000\n~20000000\n尚可\nO(n²)\n100\n1000000\n10¹²\n需警惕\nO(2ⁿ)\n1024\n天文数字\n不可能\n不可用\n推荐学习资源\n类型\n名称\n说明\n经典教材\n《数据结构（C 语言版）》严蔚敏\n国内高校标准教材，体系完整\n经典教材\n《算法导论》(CLRS)\n算法领域的权威参考书，深入系统\n在线练习\nLeetCode (leetcode.com)\n海量算法题目，面试刷题首选\n在线练习\n牛客网 (nowcoder.com)\n国内面试练习平台，适合校招准备\n可视化工具\nVisualgo (visualgo.net)\n算法可视化，帮助理解执行过程\n在线编译器\nCompiler Explorer (godbolt.org)\n查看 C 代码编译后的汇编，理解底层",
+    "examples": []
+   },
+   {
+    "title": "查找",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-search-techniques.html",
+    "body": "查找（Search）是指在一组数据中定位某个特定元素是否存在及其具体位置的过程，是几乎所有程序都会涉及的基础操作。\n三种查找算法对比\n查找算法复杂度对比 — 在 n=1000 时的操作次数",
+    "examples": []
+   },
+   {
+    "title": "排序",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-sorting.html",
+    "body": "排序（Sorting）是将一组数据按照特定顺序重新排列的过程，是数据处理中最基础、也是研究最深入的算法问题之一。\n排序算法全家福\n排序算法全家福 — 时间复杂度与特征对比",
+    "examples": []
+   },
+   {
+    "title": "数据结构 - 栈",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-stack.html",
+    "body": "栈（Stack）是一种遵循后进先出（Last In First Out，LIFO）原则的线性数据结构，可以形象地理解为一摞叠放的盘子——只能从最上面放入，也只能从最上面取走。\n栈的概念与原理\n栈 (Stack) — LIFO 原理示意",
+    "examples": []
+   },
+   {
+    "title": "数据结构 - 树",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-tree.html",
+    "body": "树（Tree）是一种典型的非线性数据结构，由节点和连接节点的边构成，用于表示元素之间\"一对多\"的层级关系。\n树的基本术语\n树的术语图解",
+    "examples": []
+   },
+   {
+    "title": "C 语言数据结构与算法",
+    "url": "https://www.runoob.com/c-dsa/c-dsa-tutorial.html",
+    "body": "数据结构与算法（Data Structures and Algorithms，简称 DSA）是计算机科学的核心基础，决定了程序处理数据的效率与质量。\n数据结构关注的是数据在计算机中如何被组织和存储，例如数组、链表、树、图等。\n算法则关注如何在这些数据结构之上高效地完成特定任务，例如查找、排序、遍历等。\n二者相辅相成——选择合适的数据结构往往是设计高效算法的前提。",
+    "examples": []
+   },
+   {
+    "title": "算法基础",
+    "url": "https://www.runoob.com/c-dsa/dsa-algorithm-basics.html",
+    "body": "算法（Algorithm）是解决特定问题的一系列明确、有限的步骤。\n理解算法的基本概念和效率分析方法，是学习数据结构与算法的重要前提。\n算法的定义与特性\n在计算机科学中，算法是指令的有限序列，每条指令表示一个或多个操作。\n一个合格的算法必须具备以下五个基本特性：\n特性\n含义\n反例\n输入\n有零个或多个外部输入\n无输入也是合法的，如生成随机数\n输出\n至少产生一个结果\n没有任何输出的\"算法\"是无意义的\n确定性\n每一步骤的含义必须清晰无歧义\n\"适当增加\"这种模糊描述不可接受\n有限性\n必须在有限步骤内结束，不能无限循环\n操作系统本身不是算法，它理论上永远运行\n可行性\n每一步都能通过基本操作实现\n\"除以零\"不可行，\"一步完成排序\"也不可行\n算法的\"有限性\"与程序的\"死循环\"并不矛盾。一个程序可以因为 bug 而陷入死循环，但算法本身必须能在有限步骤内结束。区别在于：算法是\"设计意图\"层面的概念，程序是\"实际执行\"层面的概念。\n算法的表示方法\n在设计和交流算法时，常用两种表示方式。\n伪代码（Pseudocode）\n伪代码使用接近自然语言、但具有一定结构化格式的文字来描述算法逻辑。\n它不依赖具体编程语言语法，便于快速表达思路。\n例如，在一组数字中查找最大值的伪代码：\n算法：FindMax\n输入：数组 A，长度 n\n输出：A 中的最大值\n\n1. max = A[0]\n2. for i = 1 to n-1:\n3. if A[i] > max:\n4. max = A[i]\n5. return max\n流程图（Flowchart）\n流程图通过图形化的方式直观展示算法的执行流程。\n上图展示了 FindMax 算法的完整执行流程：从输入数组开始，初始化当前最大值，然后依次比较每个元素，如果找到更大的值就更新最大值，遍历完成后输出结果。\n流程图中的符号约定：\n符号形状\n含义\n圆角矩形（或椭圆）\n开始 / 结束\n矩形\n处理步骤\n菱形\n判断 / 分支\n平行四边形\n输入 / 输出\n箭头\n流程方向\n算法效率分析\n设计好算法后，还需要评估它的效率。这主要通过两个维度来衡量。\n时间复杂度\n时间复杂度描述的是：随着输入规模 n 的增大，算法执行所需的基本操作次数的增长趋势。\n注意，我们关心的是\"增长趋势\"，而不是\"精确的执行次数\"。因为对于大规模输入，常数倍数的差异远不如增长趋势的差异重要。\n空间复杂度\n空间复杂度描述的是：随着输入规模 n 的增大，算法执行过程中所需额外内存空间的增长趋势。\n这里强调\"额外\"空间，指的是除了存储输入数据本身之外，算法还需要多少辅助空间。\n时间和空间往往是一对矛盾——用空间换时间，或用时间换空间，是算法设计中常见的权衡策略。例如：哈希表用额外的存储空间换取了 O(1) 的查找时间；而原地排序算法则用稍多的计算步骤避免了额外空间的消耗。\n大 O 表示法\n大 O 表示法（Big O Notation）是衡量时间复杂度和空间复杂度最常用的数学工具。\n它描述的是算法在最坏情况下，随着输入规模 n 增大，运行时间或空间占用的增长趋势上界。\n定义：如果存在正常数 c 和 n0，使得当 n ≥ n0 时，总有 T(n) ≤ c × f(n)，则记作 T(n) = O(f(n))。\n通俗理解：大 O 表示法忽略常数因子和低阶项，只关注增长最快的项。\n例如：如果算法需要 3n² + 100n + 500 次操作，当 n 足够大时，n² 项主导增长，所以我们说它是 O(n²)。\n常见复杂度等级\n上图直观展示了各复杂度等级随输入规模 n 增长的变化趋势。\n表示法\n名称\nn=10\nn=1000\n典型算法\nO(1)\n常数阶\n1\n1\n数组按下标访问、哈希表查找\nO(log n)\n对数阶\n~3\n~10\n二分查找、平衡 BST 操作\nO(n)\n线性阶\n10\n1000\n线性查找、遍历数组\nO(n log n)\n线性对数阶\n~30\n~10000\n归并排序、快速排序（平均）\nO(n²)\n平方阶\n100\n1000000\n冒泡排序、选择排序\nO(2ⁿ)\n指数阶\n1024\n天文数字\n暴力求解子集问题\n从表中可以看出，当 n=1000 时，O(1) 仍然只需要 1 次操作，O(n) 需要 1000 次，而 O(n²) 需要 100 万次。\n在大规模数据场景下，选择合适复杂度的算法可能带来数量级的性能差异。\n在实际编程中，应尽量保证核心算法的复杂度不超过 O(n log n)。当复杂度达到 O(n²) 或更高时，需要格外关注输入规模是否可控，以及是否存在更优的替代方案。\n时间复杂度计算示例\n以下是一段简单的 C 代码及其时间复杂度分析：\n实例",
+    "examples": [
+     "#include <stdio.h>\n\n/* 函数功能：计算数组元素之和\n   时间复杂度：O(n)\n   n 为数组长度，循环执行 n 次，每次循环执行常数次操作 */\nint sumArray(int arr[], int n) {\n    int total = 0;           /* O(1) — 赋值操作，执行 1 次 */\n    for (int i = 0; i < n; i++) {  /* 循环体 */\n        total += arr[i];    /* O(1) — 加法和赋值，执行 n 次 */\n    }\n    return total;            /* O(1) — 返回操作，执行 1 次 */\n}\n/* 整体时间复杂度：O(1 + n + 1) = O(n)\n   低阶常数项被忽略 */\n\nint main() {\n    int nums[] = {5, 10, 15, 20, 25};\n    int size = sizeof(nums) / sizeof(nums[0]);\n    int result = sumArray(nums, size);\n    printf(\"数组元素之和: %d\\n\", result);  /* 输出: 数组元素之和: 75 */\n    return 0;\n}"
+    ]
+   }
+  ]
+ }
+}

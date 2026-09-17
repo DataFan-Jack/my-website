@@ -1,0 +1,94 @@
+{
+ "tutorial": {
+  "name": "Next.js",
+  "category": "前端开发",
+  "desc": "Next.js 是一个基于 React 的开源框架，用于构建快速、现代化的 We",
+  "url": "https://www.runoob.com/nextjs/",
+  "chapters": [
+   {
+    "title": "Next.js 组件与布局",
+    "url": "https://www.runoob.com/nextjs/nextjs-components-layout.html",
+    "body": "Next.js 的组件与布局功能为开发者提供了强大的工具，帮助构建模块化、可维护的 Web 应用。\n功能\n说明\n组件\n页面组件、UI 组件、功能组件，用于构建应用的各个部分。\n布局\n全局布局、嵌套布局、动态布局，用于定义页面结构和公共元素。\n特殊文件(旧版本)\n_app.js、_document.js、_error.js，用于定义全局布局和文档结构。\n在 Next.js 13 中，app 目录替代了传统的 pages 目录，用于管理路由和页面结构。app 目录引入了更灵活的布局、路由、数据获取机制，以及增强的并行渲染能力。\napp 目录结构示例:\n├── app/\n│ ├── page.js # 默认首页\n│ ├── about/\n│ │ ├── page.js # About 页\n│ └── layout.js # 根布局\n└── public/ # 静态文件目录\n组件\n组件是构建 Next.js 应用的基本单元。它们可以是页面组件、UI 组件或功能组件。\n在 Next.js 中，所有页面和布局基本上都是 React 组件。你可以像在任何 React 应用中一样创建和使用组件。\n页面组件\n页面组件是 Next.js 中路由的基础，每个页面组件对应一个路由。\n页面组件通常存放在 app 或 pages 目录下。\n实例",
+    "examples": [
+     "// pages/about.js 或 app/about/page.js\nexport default function About() {\n  return <div>About Page</div>;\n}"
+    ]
+   },
+   {
+    "title": "Next.js CSS 样式",
+    "url": "https://www.runoob.com/nextjs/nextjs-css-styles.html",
+    "body": "在 Next.js 中，样式的使用非常灵活，我们可以选择多种方式来为你的应用添加样式。\n全局样式\n全局样式是影响整个应用的 CSS 样式，它通常用于设置页面的基础样式，如字体、颜色、布局等。\nNext.js 通过 app/layout.tsx 中引入全局 CSS 文件。\n默认情况下 app 目录已经有了全局样式 globals.css 文件，如果不存在，你也可以创建一个新的 CSS 文件。\n在 styles 目录下创建globals.css 文件，然后在 app/layout.tsx 中引入。\napp/globals.css 文件代码：",
+    "examples": [
+     "/* app/globals.css */\nbody {\n  padding: 20px 20px 60px;\n  max-width: 680px;\n  font-size:64px;\n  margin: 0 auto;\n  background-color: #F5F5FB;\n  color: #333;\n}"
+    ]
+   },
+   {
+    "title": "Next.js 数据获取",
+    "url": "https://www.runoob.com/nextjs/nextjs-getdata.html",
+    "body": "Next.js 提供了多种数据获取方式，允许你在不同的渲染阶段（例如，服务器端渲染、静态生成和客户端渲染）获取和展示数据。\n客户端数据获取\n有时你希望在页面加载后从客户端获取数据，而不是在构建时或服务器端获取，你可以使用 React 的 useEffect 钩子来处理客户端数据获取。\n使用 useEffect 和 fetch\n在 React 组件中使用 useEffect 钩子和 fetch API 获取数据。\nuseEffect 会在组件挂载后执行，可以在其中发起 API 请求并更新状态。\napp/posts/page.tsx 文件代码：",
+    "examples": [
+     "// app/posts/page.tsx\n'use client';\nimport { useEffect, useState } from 'react';\n\nexport default function PostsPage() {\n  const [posts, setPosts] = useState([]);\n\n  useEffect(() => {\n    const fetchPosts = async () => {\n      const res = await fetch('https://jsonplaceholder.typicode.com/posts');\n      const data = await res.json();\n      setPosts(data);\n    };\n\n    fetchPosts();\n  }, []);\n\n  return (\n    <div>\n      <h1>RUNOOB 测试</h1>\n      <ul>\n        {posts.map(post => (\n          <li key={post.id}>{post.title}</li>\n        ))}\n      </ul>\n    </div>\n  );\n}"
+    ]
+   },
+   {
+    "title": "Next.js 图片和字体",
+    "url": "https://www.runoob.com/nextjs/nextjs-images-and-fonts.html",
+    "body": "Next.js 提供了内置的图片和字体优化功能，旨在提升应用性能和用户体验。\nNext.js 的图片和字体优化功能为开发者提供了强大的工具，帮助构建高性能、用户体验优秀的 Web 应用。\n功能\n说明\n图片优化\n使用 <Image> 组件，支持本地和远程图片，自动优化尺寸和加载性能。\n字体优化\n使用 next/font 模块，支持 Google 字体和本地字体，自动托管和优化加载。\n静态资源管理\n将静态资源放入 public 目录，通过 /filename 直接访问。\n静态资源管理\nNext.js 允许将静态资源（如图片、字体等）存放在 public 目录下。\n这些资源可以通过 /filename 直接访问。\n目录结构示例：\nmy-next-app/\n├── app/\n├── public/\n│ ├── images/\n│ │ └── logo.png\n│ └── fonts/\n│ └── my-font.woff2\n├── package.json\n└── next.config.js\npublic/images/logo.png 可以通过 /images/logo.png 访问。\n图片优化\nNext.js 提供了 <Image> 组件，用于优化图片加载。它扩展了 HTML 的 <img> 元素，提供了以下功能：\n尺寸优化：自动为不同设备提供正确尺寸的图片，支持现代图片格式（如 WebP）。\n视觉稳定性：防止图片加载时的布局偏移（Layout Shift）。\n更快加载：使用原生浏览器懒加载，仅在图片进入视口时加载。\n资源灵活性：支持按需调整图片尺寸，即使是远程图片。\n使用 <Image> 组件\n从 next/image 导入 <Image> 组件，并在组件中使用。\n实例",
+    "examples": [
+     "import Image from 'next/image';\n\nexport default function Page() {\n  return <Image src=\"/images/logo.png\" alt=\"Logo\" width={500} height={300} />;\n}"
+    ]
+   },
+   {
+    "title": "Next.js 安装",
+    "url": "https://www.runoob.com/nextjs/nextjs-install.html",
+    "body": "在开始之前，确保你已经安装了 Node.js 和 npm，你可以通过以下命令检查它们是否已经安装：\nnode -v\nnpm -v\n如果你的系统还不支持 Node.js 及 NPM 可以参考我们的 Node.js 教程。\n国内使用 npm 速度很慢，你可以使用淘宝定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:\n$ npm install -g cnpm --registry=https://registry.npmmirror.com\n$ npm config set registry https://registry.npmmirror.com\n这样就可以使用 cnpm 命令来安装模块了：\n$ cnpm install [name]\n更多信息可以查阅：http://npm.taobao.org/。\n使用 create-react-app 快速构建 Next.js 开发环境\nNext.js 提供了一个官方的脚手架工具 create-next-app，用于快速搭建项目。\ncreate-react-app 是来自于 Facebook，通过该命令我们无需配置就能快速构建 Next.js 开发环境。\ncreate-react-app 自动创建的项目是基于 Webpack + ES6 。\n执行以下命令创建项目：\nnpx create-next-app@latest my-next-app\n安装时，您将看到以下提示，一路回车即可：\nWould you like to use TypeScript? No / Yes\nWould you like to use ESLint? No / Yes\nWould you like to use Tailwind CSS? No / Yes\nWould you like your code inside a `src/` directory? No / Yes\nWould you like to use App Router? (recommended) No / Yes\nWould you like to use Turbopack for `next dev`? No / Yes\nWould you like to customize the import alias (`@/*` by default)? No / Yes\nWhat import alias would you like configured? @/*\nnpx 是一个 Node.js 工具，用于运行包中的二进制文件，而无需全局安装。\n使用 create-next-app 脚手架工具创建一个新的 Next.js 项目。\nmy-next-app 是项目的名字，你可以根据需要修改为任何名称。\n它会自动安装项目所需的依赖。\n运行该命令后，create-next-app 会自动完成以下操作：\n创建一个名为 my-next-app 的文件夹。\n初始化项目，安装必要的依赖。\n创建基本的项目结构，包括 app 文件夹、public 文件夹、package.json 文件等。\n创建完成后，进入项目目录：\ncd my-next-app\n在项目目录中，运行以下命令启动开发服务器：\nnpm run dev\n或者如果你使用 yarn：\nyarn dev\n开发服务器默认运行在 http://localhost:3000，打开浏览器，访问 http://localhost:3000，你应该会看到 Next.js 的默认欢迎页面。\n我们可以修改 app 目录下的 page.tsx 文件，修改后的代码为：\napp/page.tsx",
+    "examples": [
+     "export default function Home() {\n    return <div>Hello, World!</div>;\n}"
+    ]
+   },
+   {
+    "title": "Next.js 简介",
+    "url": "https://www.runoob.com/nextjs/nextjs-intro.html",
+    "body": "Next.js 是一个功能强大、易于使用的 React 框架，可以帮助开发者快速构建高性能、可扩展的 Web 应用程序。\nNext.js 提供了丰富的功能和特性，简化了 React 应用的开发流程，并提升了应用的性能和用户体验。\n核心优势\n开箱即用的功能: Next.js 内置了路由、数据获取、API 路由、样式解决方案、国际化等常用功能，无需额外配置即可使用。\n灵活的渲染方式: Next.js 支持 静态站点生成 (SSG)、服务端渲染 (SSR) 和 客户端渲染 (CSR)，可以根据应用场景选择合适的渲染方式，优化性能和 SEO。\n高效的开发体验: Next.js 提供了热更新、代码分割、图片优化等功能，可以显著提升开发效率。\n强大的生态系统: Next.js 拥有庞大的社区和丰富的生态系统，提供了大量的插件、工具和资源，方便开发者构建各种类型的应用。\n应用场景\n静态网站: 博客、文档网站、产品展示网站等。\n动态网站: 电商网站、社交网络、新闻网站等。\n单页应用 (SPA): 后台管理系统、仪表盘等。\n渐进式 Web 应用 (PWA): 提供类似原生应用的体验。\n核心概念\n页面 (Pages): Next.js 使用文件系统路由，每个页面对应一个文件，文件路径即为页面路由。\n数据获取 (Data Fetching): Next.js 提供了多种数据获取方式，例如 getStaticProps、getServerSideProps 和 getStaticPaths，可以在页面渲染前获取数据。\nAPI 路由 (API Routes): Next.js 允许在项目中创建 API 端点，用于处理 HTTP 请求和响应。\n样式 (Styling): Next.js 支持多种样式解决方案，例如 CSS Modules、Sass/Scss、Styled Components 等。",
+    "examples": []
+   },
+   {
+    "title": "Next.js 目录结构",
+    "url": "https://www.runoob.com/nextjs/nextjs-layouts-and-pages.html",
+    "body": "在 Next.js 中，目录结构是基于文件系统的路由机制来组织的，这意味着你的文件和文件夹结构直接决定了你应用的路由和页面布局。\napp/ 目录用于存放页面和布局文件，是 Next.js 中的核心目录。\npublic/ 用于存放公开的静态资源文件。\nstyles/ 用于存放样式文件。\nnode_modules/ 存放项目的所有依赖包。\npackage.json 是项目的配置文件，包含项目依赖和脚本命令。\nnext.config.js 用于定制 Next.js 的配置。\n根目录（Root Directory）\n根目录下通常包含一些基础配置文件和依赖项。常见的文件和文件夹如下：\nmy-next-app/\n├── app/ # 存放应用页面和布局文件\n├── public/ # 存放静态资源文件（如图片、字体）\n├── styles/ # 存放样式文件（CSS、Sass等）\n├── node_modules/ # 存放项目依赖\n├── package.json # 项目配置文件\n├── next.config.js # Next.js 配置文件（可选）\n└── .gitignore # Git 忽略文件\napp/：这个目录是 Next.js 中的新方式来组织页面和布局文件。所有的路由和页面都基于这个目录来创建。\npublic/：这个目录存放的是公开的静态文件，比如图片、字体、favicon 等。你可以直接通过 URL 访问这些文件。\nstyles/：存放你的 CSS、Sass 或其他样式文件。\napp/ 目录\napp/ 目录是 Next.js 中的核心，存放页面、布局和其他相关文件。\n以下是 app/ 目录的一些常见结构：\napp/\n├── layout.tsx # 根布局文件\n├── page.tsx # 根页面\n└── [slug]/ # 动态路由目录\n ├── page.tsx # 动态页面\n └── layout.tsx # 特定页面的布局\nlayout.tsx：在这个文件中定义了根布局或页面布局，通常用于设置全局结构（如 <html> 和 <body> 标签）。所有子页面都会被嵌套在这个布局内。\npage.tsx：每个页面组件都应该有一个 page.tsx 文件。这个文件代表该路由对应的页面内容。例如，app/page.tsx 对应的是根路径 (/) 的页面。\n动态路由：Next.js 支持动态路由，动态路由目录的名称用方括号包围，如 [slug]。这意味着你可以根据 URL 中的不同部分加载不同的页面。例如，[slug]/page.tsx 会根据 slug 参数动态渲染页面。\npublic/ 目录\n这个目录用于存放静态资源，它允许你将图片、字体、图标等资源暴露在应用中，且能通过直接访问文件路径来加载。\npublic/\n├── images/ # 存放图片文件\n├── fonts/ # 存放字体文件\n└── favicon.ico # 网站图标\n文件可以通过 /images/ 等路径直接访问。例如，public/images/logo.png 可以通过 http://localhost:3000/images/logo.png 访问。\nstyles/ 目录\n在 styles/ 目录中，你可以组织和管理你的样式文件。Next.js 支持 CSS 模块、全局样式和其他 CSS 解决方案。\nstyles/\n├── Home.module.css # CSS 模块化样式\n└── globals.css # 全局样式\nHome.module.css：这是一个 CSS 模块文件，默认情况下，Next.js 会自动为每个组件使用 CSS 模块，确保样式作用域仅限于该组件。\nglobals.css：存放全局样式，通常用于设置全局字体、颜色等。\nnode_modules/ 目录\n这个目录存放项目的所有依赖包。它由 npm 或 yarn 根据 package.json 文件中的依赖信息自动生成，不需要手动操作。\npackage.json 文件\npackage.json 是项目的核心配置文件，记录了项目的依赖、脚本和其他元数据。你可以在这里定义启动、构建和开发等命令。\n实例",
+    "examples": [
+     "{\n  \"scripts\": {\n    \"dev\": \"next dev\",\n    \"build\": \"next build\",\n    \"start\": \"next start\",\n    \"lint\": \"next lint\"\n  }\n}"
+    ]
+   },
+   {
+    "title": "Next.js 页面和路由",
+    "url": "https://www.runoob.com/nextjs/nextjs-pages-router.html",
+    "body": "Next.js 使用文件系统路由，意味着你应用中的页面是由文件系统的结构来自动决定的，每个文件和文件夹都与一个路由相对应，而不需要像传统的 React 路由那样显式地配置每个路径，这使得开发过程更加直观和简便。\n页面与路由的关系：在 Next.js 中，每个页面都是由 app/ 或 pages/ 目录中的文件自动映射到一个路由，每个文件的路径和文件名决定了该页面的 URL。\n基本页面结构：在 Next.js 中，一个 页面 是任何 app/ 或 pages/ 目录下的 .tsx 或 .js 文件，每个页面的文件都会自动成为应用的一个路由。\nNext.js 的路由系统非常灵活，支持静态页面、动态路由以及嵌套路由，使得开发者可以轻松实现复杂的应用结构。\n文件系统路由：页面和路由是通过 app/ 或 pages/ 目录中的文件结构自动映射的。\n动态路由：可以通过方括号 ([ ]) 来创建动态路由，处理 URL 中的动态参数。\n嵌套路由：可以通过子目录来创建嵌套路由，实现多级路由结构。\n路由导航：使用 next/link 组件实现页面间的导航。\nNext.js 13 引入了新的 app 目录，它与传统的 pages 目录共存，并提供了更灵活的路由和布局组织方式。\n假设项目目录结构如下：\napp/\n├── page.tsx # 对应根路径 /\n├── about/\n│ └── page.tsx # 对应 /about\n├── [slug]/\n│ └── page.tsx # 对应动态路径，如 /[slug]\npage.tsx 文件：每个页面都会有一个 page.tsx 文件，这个文件就是该路由对应的组件内容。\n动态路由：如果页面路径中有动态参数，你可以使用方括号（[ ]）来定义动态路由。例如 [slug] 表示该路径可以接受任何值来作为 slug 参数。\n默认的页面和路由\nNext.js 自动为你的 app/ 或 pages/ 文件夹中的文件创建路由。\n以下是一些常见的路由示例：\napp/page.tsx 对应 / 路径。\napp/about/page.tsx 对应 /about 路径。\napp/[slug]/page.tsx 对应 /[slug]，会匹配任何 URL 路径，如 /post/1 或 /product/xyz。\n动态路由\n动态路由允许你根据 URL 中的不同部分动态渲染页面。\n在 Next.js 中，你可以通过创建带有方括号的文件夹或文件来实现动态路由。\n例如，假设你希望根据不同的文章 ID 来渲染不同的内容，你可以这样做：\napp/\n├── [id]/\n│ └── page.tsx # 动态路由，匹配任何 `/[id]` 的路径\n[id] 是动态路由的占位符，它可以匹配任何 URL 中的 id 参数。\n获取动态路由参数\n在 Next.js 中，可以通过 useParams 钩子来访问动态路由参数。例如：\n实例",
+    "examples": [
+     "'use client';\n\nimport { useParams } from 'next/navigation';\n\nexport default function Post() {\n  const params = useParams();\n  const { id } = params;  // 获取动态路由参数 `id`\n\n  return <div>Post ID: {id}</div>;\n}"
+    ]
+   },
+   {
+    "title": "Next.js 项目说明",
+    "url": "https://www.runoob.com/nextjs/nextjs-project-intro.html",
+    "body": "Next.js 项目由多个文件和文件夹组成，每个部分都有其特定的作用。\n以下是对 Next.js 项目代码的基本解析，帮助你理解项目的结构和各个部分的功能。\n从 Next.js 13 开始，Next.js 引入了基于文件系统的 App Router（app 目录），取代了传统的 pages 目录。新的 app 目录提供了更强大的功能，如嵌套路由、布局、服务器组件等。\n项目结构\n一个使用 app 目录的 Next.js 项目通常包含以下文件和文件夹：\nmy-next-app/\n├── node_modules/ # 项目依赖的第三方库\n├── public/ # 静态资源文件夹\n│ ├── favicon.ico # 网站图标\n│ └── ... # 其他静态资源（如图片、字体等）\n├── app/ # 应用路由目录（核心）\n│ ├── layout.js # 根布局组件\n│ ├── page.js # 首页组件\n│ ├── about/ # 关于页面\n│ │ └── page.js # 关于页面组件\n│ ├── blog/ # 博客页面\n│ │ ├── page.js # 博客列表页\n│ │ └── [slug]/ # 动态路由\n│ │ └── page.js # 博客详情页\n│ └── ... # 其他页面和路由\n├── components/ # 可复用的 React 组件\n├── styles/ # 样式文件\n├── utils/ # 工具函数\n├── package.json # 项目配置和依赖管理\n├── package-lock.json # 依赖的精确版本锁定文件\n├── next.config.js # Next.js 配置文件\n└── README.md # 项目说明文档\n核心文件解析\napp/layout.js\napp/layout.js 是根布局文件，用于定义整个应用的布局结构。\napp/layout.js 包裹所有页面，可以包含全局样式、元数据等。\n实例",
+    "examples": [
+     "export default function RootLayout({ children }) {\n  return (\n    <html>\n      <body>{children}</body>\n    </html>\n  );\n}"
+    ]
+   },
+   {
+    "title": "Next.js Tailwind CSS",
+    "url": "https://www.runoob.com/nextjs/nextjs-tailwindcss.html",
+    "body": "在 Next.js 项目中使用 Tailwind CSS 是一个很流行的选择，因为它提供了一种实用工具优先的方法来编写 CSS，使得你可以直接在类名中应用样式，这种方法使得样式编写更加简洁和直观。\nTailwind CSS 教程：https://www.runoob.com/tailwindcss/tailwindcss-tutorial.html\nTailwind CSS 官网：https://tailwindcss.com/\nGithub 地址：https://github.com/tailwindlabs/tailwindcss\nTailwind CSS 是一个功能强大的 CSS 框架，它通过实用工具优先的方法使得样式编写更加简洁和模块化。与传统的基于类的 CSS 框架不同，Tailwind 提供了一组低级实用工具类，这些类可以直接在 HTML 元素上使用，以便快速、灵活地构建自定义设计。\n以下是如何在 Next.js 项目中使用 Tailwind CSS 的详细步骤。\n1. 安装 Tailwind CSS\n如果你是从零开始创建一个新的 Next.js 项目，可以使用 create-react-app，如果你已经有一个现有的 React 项目，可以跳过项目创建步骤。\n创建新的 Next.js 项目：\nnpx create-next-app@latest my-next-app\n创建的时候，就会提示是否安装 Tailwind CSS，我们可以选 Yes：\n...\nWould you like to use Tailwind CSS? No / Yes\nWould you like your code inside a `src/` directory? No / Yes\nWould you like to use App Router? (recommended) No / Yes\n...\n安装 Tailwind CSS\n页可以在你的项目目录中运行以下命令来安装 Tailwind CSS 及其所需的依赖项：\nnpm install -D tailwindcss postcss autoprefixer\nnpx tailwindcss init -p\n这将创建一个 tailwind.config.ts 文件和一个 postcss.config.mjs 文件。\n2. 配置 Tailwind CSS\n在 Tailwind 配置文件 tailwind.config.ts 中，添加将使用 Tailwind 类名的文件路径。\n一般默认情况下，都配置好了，我们无需修改：\n实例",
+    "examples": [
+     "import type { Config } from \"tailwindcss\";\n\nexport default {\n  content: [\n    \"./pages/**/*.{js,ts,jsx,tsx,mdx}\",\n    \"./components/**/*.{js,ts,jsx,tsx,mdx}\",\n    \"./app/**/*.{js,ts,jsx,tsx,mdx}\",  // 注意添加了  app  目录。\n  ],\n  theme: {\n    extend: {\n      colors: {\n        background: \"var(--background)\",\n        foreground: \"var(--foreground)\",\n      },\n    },\n  },\n  plugins: [],\n} satisfies Config;"
+    ]
+   },
+   {
+    "title": "Next.js 教程",
+    "url": "https://www.runoob.com/nextjs/nextjs-tutorial.html",
+    "body": "Next.js 是一个基于 React 的开源框架，用于构建快速、现代化的 Web 应用程序。\nNext.js 用于构建高性能的服务器端渲染（SSR）和静态生成（Static Generation）的现代 Web 应用。\nNext.js 由 Vercel 公司开发和维护，旨在简化 React 应用的开发流程，同时提供强大的性能优化和开发体验。。",
+    "examples": []
+   }
+  ]
+ }
+}

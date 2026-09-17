@@ -1,0 +1,208 @@
+{
+ "tutorial": {
+  "name": "Flutter",
+  "category": "前端开发",
+  "desc": "Flutter 是一个用于构建跨平台应用的 UI 工具包，由 Google 开发",
+  "url": "https://www.runoob.com/flutter/",
+  "chapters": [
+   {
+    "title": "Flutter 进阶",
+    "url": "https://www.runoob.com/flutter/flutter-advanced.html",
+    "body": "本节将介绍一些 Flutter 进阶概念，帮助你提升开发技能。\n渲染原理\nFlutter 使用 Skia（自 3.0 起逐步切换到 Impeller）渲染引擎直接绘制 UI，不使用原生组件。\nWidget 树与 Element 树\nWidget 树: 描述 UI 的配置信息（不可变）\nElement 树: Widget 的实例化对象（可变）\nRenderObject 树: 负责实际渲染\n理解渲染原理有助于优化 UI 性能，避免不必要的重建。\nInheritedWidget - 数据传递\nInheritedWidget 允许数据沿着 Widget 树向下传递，子 Widget 可以获取祖先的数据。\n实例：自定义 InheritedWidget",
+    "examples": [
+     "// 定义数据容器\nclass MyData extends InheritedWidget {\n  final int value;\n\n  const MyData({\n    super.key,\n    required this.value,\n    required super.child,\n  });\n\n  // 便捷方法：获取最近的 MyData\n  static MyData of(BuildContext context) {\n    return context.dependOnInheritedWidgetOfExactType<MyData>()!;\n  }\n\n  // 判断是否需要重建子 Widget\n  @override\n  bool updateShouldNotify(MyData oldWidget) {\n    return value != oldWidget.value;\n  }\n}\n\n// 使用\nclass ParentWidget extends StatelessWidget {\n  const ParentWidget({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return MyData(\n      value: 42,\n      child: const ChildWidget(),\n    );\n  }\n}\n\nclass ChildWidget extends StatelessWidget {\n  const ChildWidget({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    // 获取祖先的 MyData\n    final myData = MyData.of(context);\n    return Text('Value: ${myData.value}');\n  }\n}"
+    ]
+   },
+   {
+    "title": "Flutter 动画基础",
+    "url": "https://www.runoob.com/flutter/flutter-animation.html",
+    "body": "本节将介绍 Flutter 中的动画实现，包括隐式动画和显式动画。\n隐式动画\n隐式动画是由 Flutter 自动处理过渡效果的动画 Widget。\n实例：AnimatedContainer",
+    "examples": [
+     "class AnimatedContainerExample extends StatefulWidget {\n  const AnimatedContainerExample({super.key});\n\n  @override\n  State<AnimatedContainerExample> createState() =>\n      _AnimatedContainerExampleState();\n}\n\nclass _AnimatedContainerExampleState\n    extends State<AnimatedContainerExample> {\n  bool _isLarge = false;\n\n  @override\n  Widget build(BuildContext context) {\n    return Column(\n      children: [\n        // 点击切换尺寸\n        GestureDetector(\n          onTap: () => setState(() => _isLarge = !_isLarge),\n          child: AnimatedContainer(\n            duration: const Duration(milliseconds: 500),  // 动画时长\n            curve: Curves.easeInOut,  // 动画曲线\n            width: _isLarge ? 200 : 100,\n            height: _isLarge ? 200 : 100,\n            color: _isLarge ? Colors.blue : Colors.red,\n            child: Center(\n              child: Text(\n                _isLarge ? '大' : '小',\n                style: const TextStyle(color: Colors.white, fontSize: 24),\n              ),\n            ),\n          ),\n        ),\n        const SizedBox(height: 20),\n        ElevatedButton(\n          onPressed: () => setState(() => _isLarge = !_isLarge),\n          child: const Text('切换'),\n        ),\n      ],\n    );\n  }\n}"
+    ]
+   },
+   {
+    "title": "Flutter 最佳实践",
+    "url": "https://www.runoob.com/flutter/flutter-best-practices.html",
+    "body": "本节将介绍 Flutter 开发中的最佳实践和编码规范。\n代码规范\n命名规范\n类型\n规则\n示例\n类名\n大驼峰\nMyHomePage\n函数/变量\n小驼峰\nuserName, getData\n常量\n大驼峰 + k 前缀\nkMaxCount\n文件\n小写 + 下划线\nmy_home_page.dart\n实例：正确的命名",
+    "examples": [
+     "// 类名 - 大驼峰\nclass UserProfilePage extends StatelessWidget {}\n\n// 函数 - 小驼峰\nvoid fetchUserData() {}\n\n// 变量 - 小驼峰\nString userName = '张三';\n\n// 常量 - k 前缀\nconst int kMaxRetryCount = 3;\nconst String kAppName = '我的应用';\n\n// 枚举 - 大驼峰\nenum AppState { loading, success, error }\n\n// 文件名 - 小写下划线\n// user_profile_page.dart"
+    ]
+   },
+   {
+    "title": "Flutter 打包与发布",
+    "url": "https://www.runoob.com/flutter/flutter-build-release.html",
+    "body": "本节将介绍如何将 Flutter 应用打包发布到各个平台。\n构建准备\n在发布前，确保应用配置正确。\npubspec.yaml 配置\n实例：发布配置",
+    "examples": [
+     "# 应用信息\nname: my_app\ndescription: \"我的 Flutter 应用\"\nversion: 1.0.0+1  # 版本号（重要！）\n\n# 应用图标\nflutter:\n  uses-material-design: true\n  # 生成图标需要 flutter pub run flutter_launcher_icons"
+    ]
+   },
+   {
+    "title": "Flutter Container 与装饰",
+    "url": "https://www.runoob.com/flutter/flutter-container.html",
+    "body": "Container 是 Flutter 中最常用的通用容器 Widget，它提供了设置尺寸、背景、边框、阴影等能力。\nContainer 概述\nContainer 是一个组合 Widget，内部封装了 Padding、ColoredBox、SizedBox、DecoratedBox 等功能。\n实例：Container 基本用法",
+    "examples": [
+     "// 最简单的 Container\nContainer(\n  child: Text('Hello'),\n)\n\n// 带尺寸的 Container\nContainer(\n  width: 200,\n  height: 100,\n  child: Text('固定尺寸'),\n)\n\n// 带颜色的 Container\nContainer(\n  width: 200,\n  height: 100,\n  color: Colors.blue,\n  child: Text('蓝色背景', style: TextStyle(color: Colors.white)),\n)"
+    ]
+   },
+   {
+    "title": "第一个 Flutter 应用",
+    "url": "https://www.runoob.com/flutter/flutter-create-app.html",
+    "body": "本节将介绍如何使用 Flutter CLI 创建新的 Flutter 项目，运行应用，并理解最基础的代码结构。\n使用 Flutter CLI 创建项目\nFlutter CLI 是 Flutter 的命令行工具，用于创建、管理和构建 Flutter 项目。\n创建新项目\n在终端中运行以下命令创建一个新的 Flutter 项目：\n$ flutter create my_first_app\n其中 my_first_app 是你的项目名称。Flutter 会根据这个名称创建对应的文件夹和文件。\n项目名称必须使用小写字母和下划线，不能包含空格或特殊字符。\n命令参数\nflutter create 命令支持多种参数：\n参数\n说明\n示例\n--org\n指定组织标识符（反向域名格式）\n--org com.example\n--platforms\n指定支持的平台\n--platforms ios,android\n--empty\n使用最小模板创建项目\n--empty\n$ flutter create hello_world\nCreating project \"hello_world\"...\n .gitignore 2026-04-01 10:30:22\n .metadata 2026-04-01 10:30:22\n analysis_options.yaml 2026-04-01 10:01:15\n pubspec.yaml 2026-04-01 10:30:22\n README.md 2026-04-01 10:30:22\n lib/\n main.dart 2026-04-01 10:30:22\n test/\n widget_test.dart 2026-04-01 10:22:34\n android/\n ios/\n web/\n ...\nRunning \"flutter pub get\"... 13.2s\nRunning \"flutter analyze\"... 3.2s\n运行 Flutter 应用\n启动开发服务器\n项目创建完成后，进入项目目录并运行应用：\n$ cd hello_world\n$ flutter run\n首次运行可能会花费一些时间，因为 Flutter 需要编译 Dart 代码并启动应用。\n指定运行设备\n如果你的电脑连接了多个设备（或模拟器），可以使用 -d 参数指定运行设备：\n设备\n命令\nAndroid 模拟器\nflutter run -d android\niOS 模拟器\nflutter run -d iphone\nChrome 浏览器\nflutter run -d chrome\nWindows 桌面\nflutter run -d windows\n查看可用设备\n运行以下命令查看所有可用的运行设备：\n$ flutter devices\n输出示例：\n2 connected devices:\nChrome (web) • chrome • web-javascript • Chrome • web\nWindows (windows) • windows • windows • x64 • Windows 10.0.0\n热重载功能\nFlutter 最强大的功能之一是热重载（Hot Reload）。当你正在运行应用时：\n修改代码并保存\n在终端中按 r 键\n应用会重新加载，你能看到最新的更改\n热重载非常快，通常只需要一两秒钟。这极大地提高了开发效率，让你可以实时预览界面效果。\n热重载不会丢失应用状态，这意味着你可以在不重启应用的情况下快速迭代 UI 设计。\nmain.dart 文件解析\n每个 Flutter 项目都有一个入口文件 lib/main.dart。让我们看看默认生成的内容：\n实例：main.dart 代码",
+    "examples": [
+     "// lib/main.dart\n// Flutter 应用的入口文件\n\n// 引入 Material Design 组件库\nimport 'package:flutter/material.dart';\n\n// 应用入口函数\nvoid main() {\n  // runApp 是 Flutter 的启动函数\n  // 它接收一个 Widget 作为根 widget\n  runApp(const MyApp());\n}\n\n// 根 Widget（无状态组件）\nclass MyApp extends StatelessWidget {\n  const MyApp({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    // MaterialApp 是 Material Design 风格的根组件\n    return MaterialApp(\n      // 设置应用标题\n      title: 'Flutter Demo',\n      // 设置主题颜色\n      theme: ThemeData(\n        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),\n        // 使用 Material 3\n        useMaterial3: true,\n      ),\n      // 应用的主页面\n      home: const MyHomePage(title: 'Flutter 首页'),\n    );\n  }\n}\n\n// 有状态组件（可以有内部状态）\nclass MyHomePage extends StatefulWidget {\n  const MyHomePage({super.key, required this.title});\n\n  // 页面标题（不可变）\n  final String title;\n\n  @override\n  State<MyHomePage> createState() => _MyHomePageState();\n}\n\nclass _MyHomePageState extends State<MyHomePage> {\n  // 计数器状态\n  int _counter = 0;\n\n  // 增加计数器的方法\n  void _incrementCounter() {\n    // setState 通知 Flutter 状态已更改，需要重新构建 UI\n    setState(() {\n      _counter++;\n    });\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    // Scaffold 是 Material Design 的页面脚手架\n    return Scaffold(\n      // AppBar 是顶部应用栏\n      appBar: AppBar(\n        backgroundColor: Theme.of(context).colorScheme.inversePrimary,\n        // 显示页面标题\n        title: Text(widget.title),\n      ),\n      // 页面主体内容\n      body: Center(\n        child: Column(\n          mainAxisAlignment: MainAxisAlignment.center,\n          children: [\n            const Text('你点击了按钮多少次：'),\n            // 显示计数器值\n            Text(\n              '$_counter',\n              style: Theme.of(context).textTheme.headlineMedium,\n            ),\n          ],\n        ),\n      ),\n      // 悬浮按钮\n      floatingActionButton: FloatingActionButton(\n        onPressed: _incrementCounter,\n        tooltip: '增加',\n        child: const Icon(Icons.add),\n      ),\n    );\n  }\n}"
+    ]
+   },
+   {
+    "title": "Flutter 调试与 DevTools",
+    "url": "https://www.runoob.com/flutter/flutter-devtools.html",
+    "body": "本节将介绍 Flutter 的调试工具和常用调试技巧。\nFlutter DevTools 简介\nFlutter DevTools 是一套用于调试和分析 Flutter 应用的工具集。\n启动 DevTools\n$ flutter run\n在运行应用后，终端会显示 DevTools 的 URL，通常是 http://127.0.0.1:9100\n常用命令\n命令\n说明\nflutter doctor\n检查开发环境配置\nflutter analyze\n静态代码分析\nflutter test\n运行测试\nprint 和 debugPrint\n实例：基本调试输出",
+    "examples": [
+     "// 基础打印\nprint('Hello Debug');  // 输出到控制台\n\n// debugPrint 避免长文本截断\ndebugPrint('这是一段很长的文本，可以完整输出而不会被截断');\n\n// 条件打印\nif (debugMode) {\n  print('调试信息');\n}\n\n// 打印对象（需要 toString）\nfinal user = {'name': '张三', 'age': 25};\nprint('用户信息: $user');  // 输出: 用户信息: {name: 张三, age: 25}"
+    ]
+   },
+   {
+    "title": "Firebase 集成",
+    "url": "https://www.runoob.com/flutter/flutter-firebase.html",
+    "body": "Firebase 是 Google 提供的移动和 Web 应用开发平台，本节将介绍如何在 Flutter 中集成 Firebase。\nFirebase 概述\nFirebase 提供多种后端服务，包括认证、数据库、存储、分析等。\n服务\n说明\nFirebase Auth\n用户身份验证\nCloud Firestore\n云端 NoSQL 数据库\nRealtime Database\n实时数据库\nCloud Storage\n云端文件存储\nFirebase Analytics\n应用数据分析\nCloud Functions\n云端无服务器函数\n安装与配置\n添加依赖\ndependencies:\n firebase_core: ^2.0.0\n firebase_auth: ^4.0.0\n cloud_firestore: ^4.0.0\nFirebase 初始化\n实例：初始化 Firebase",
+    "examples": [
+     "import 'package:firebase_core/firebase_core.dart';\nimport 'package:flutter/material.dart';\n\nvoid main() async {\n  WidgetsFlutterBinding.ensureInitialized();\n\n  // 初始化 Firebase\n  await Firebase.initializeApp();\n\n  runApp(const MyApp());\n}"
+    ]
+   },
+   {
+    "title": "Flutter 表单与验证",
+    "url": "https://www.runoob.com/flutter/flutter-form-validation.html",
+    "body": "本节将介绍 Flutter 中表单的创建、验证和提交处理。\nTextFormField - 表单输入\nTextFormField 是专门用于表单的 TextField，支持内置验证功能。\n实例：基本表单",
+    "examples": [
+     "class LoginForm extends StatefulWidget {\n  const LoginForm({super.key});\n\n  @override\n  State<LoginForm> createState() => _LoginFormState();\n}\n\nclass _LoginFormState extends State<LoginForm> {\n  // 表单键（用于验证）\n  final _formKey = GlobalKey<FormState>();\n\n  // 输入控制器\n  final _usernameController = TextEditingController();\n  final _passwordController = TextEditingController();\n\n  @override\n  void dispose() {\n    _usernameController.dispose();\n    _passwordController.dispose();\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return Form(\n      key: _formKey,\n      child: Column(\n        children: [\n          // 用户名输入\n          TextFormField(\n            controller: _usernameController,\n            decoration: const InputDecoration(\n              labelText: '用户名',\n              prefixIcon: Icon(Icons.person),\n            ),\n            // 验证器\n            validator: (value) {\n              if (value == null || value.isEmpty) {\n                return '请输入用户名';\n              }\n              if (value.length < 3) {\n                return '用户名至少3个字符';\n              }\n              return null;\n            },\n          ),\n          const SizedBox(height: 16),\n          // 密码输入\n          TextFormField(\n            controller: _passwordController,\n            obscureText: true,  // 隐藏密码\n            decoration: const InputDecoration(\n              labelText: '密码',\n              prefixIcon: Icon(Icons.lock),\n            ),\n            validator: (value) {\n              if (value == null || value.isEmpty) {\n                return '请输入密码';\n              }\n              if (value.length < 6) {\n                return '密码至少6个字符';\n              }\n              return null;\n            },\n          ),\n          const SizedBox(height: 24),\n          // 提交按钮\n          ElevatedButton(\n            onPressed: _submit,\n            child: const Text('登录'),\n          ),\n        ],\n      ),\n    );\n  }\n\n  void _submit() {\n    // 验证表单\n    if (_formKey.currentState?.validate() ?? false) {\n      // 验证通过\n      print('用户名: ${_usernameController.text}');\n      print('密码: ${_passwordController.text}');\n      // 提交到服务器...\n    } else {\n      // 验证失败\n      print('表单验证失败');\n    }\n  }\n}"
+    ]
+   },
+   {
+    "title": "Flutter HTTP 请求",
+    "url": "https://www.runoob.com/flutter/flutter-http.html",
+    "body": "本节将介绍如何在 Flutter 应用中进行 HTTP 网络请求，包括 GET、POST 请求以及 JSON 数据处理。\n添加 HTTP 依赖\n在 pubspec.yaml 中添加 http 包：\ndependencies:\n http: ^1.0.0\n然后运行：\n$ flutter pub get\n发送 GET 请求\n实例：GET 请求",
+    "examples": [
+     "import 'dart:convert';\nimport 'package:http/http.dart' as http;\n\n// 简单的 GET 请求\nFuture<void> fetchData() async {\n  final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts/1'));\n\n  if (response.statusCode == 200) {\n    // 解析 JSON 数据\n    final data = jsonDecode(response.body);\n    print('标题: ${data['title']}');\n  } else {\n    print('请求失败: ${response.statusCode}');\n  }\n}\n\n// 带参数的 GET 请求\nFuture<void> searchData(String query) async {\n  final uri = Uri.parse('https://api.example.com/search')\n      .replace(queryParameters: {'q': query, 'page': '1'});\n\n  final response = await http.get(uri);\n\n  if (response.statusCode == 200) {\n    final data = jsonDecode(response.body);\n    print('结果: $data');\n  }\n}"
+    ]
+   },
+   {
+    "title": "Flutter 图片与资源",
+    "url": "https://www.runoob.com/flutter/flutter-images.html",
+    "body": "本节将介绍 Flutter 中图片加载、本地资源管理和网络图片处理。\nImage Widget - 图片显示\n实例：各种图片加载方式",
+    "examples": [
+     "// 从网络加载图片\nImage.network(\n  'https://example.com/image.png',\n  width: 200,\n  height: 200,\n  fit: BoxFit.cover,\n)\n\n// 从本地资源加载图片\nImage.asset('assets/images/logo.png')\n\n// 从本地文件加载图片\nImage.file(File('path/to/image.png'))\n\n// 带加载状态的图片\nImage.network(\n  'https://example.com/image.png',\n  loadingBuilder: (context, child, loadingProgress) {\n    if (loadingProgress == null) return child;\n    return Center(\n      child: CircularProgressIndicator(\n        value: loadingProgress.expectedTotalBytes != null\n            ? loadingProgress.cumulativeBytesLoaded /\n                loadingProgress.expectedTotalBytes!\n            : null,\n      ),\n    );\n  },\n)\n\n// 带错误处理的图片\nImage.network(\n  'https://example.com/image.png',\n  errorBuilder: (context, error, stackTrace) {\n    return const Icon(Icons.error, size: 50);\n  },\n)"
+    ]
+   },
+   {
+    "title": "Flutter 安装",
+    "url": "https://www.runoob.com/flutter/flutter-install.html",
+    "body": "在学习构建 Flutter 应用之前，需要先在本地机器上安装 Flutter SDK 及所有必需依赖项。本节将详细介绍在 Windows、macOS 和 Linux 系统上的安装步骤。\n系统要求\n在安装 Flutter 之前，请确保你的开发环境满足以下基本要求：\n要求项\nWindows\nmacOS\nLinux\n操作系统\nWindows 10 或更高版本\nmacOS 10.14 或更高版本\nUbuntu 18.04 或更高版本\n磁盘空间\n至少 2.8 GB\n至少 2.8 GB\n至少 2.8 GB\n工具\nGit for Windows\nGit (通过 Xcode)\nGit、curl、unzip\nWindows 安装步骤\n第一步：安装 Git for Windows\nGit 是版本控制工具，Flutter 需要使用它来管理代码和下载 SDK。\n访问 Git for Windows 下载页面\n下载最新版本的 Git for Windows\n运行安装程序，按照默认设置完成安装\n第二步：安装 Visual Studio Code（推荐）\nVisual Studio Code（简称 VS Code）是我们推荐的 Flutter 开发编辑器，它提供了丰富的 Flutter 扩展支持。\n访问 VS Code 官网\n下载并安装 VS Code\n安装完成后，打开 VS Code\n第三步：安装 Flutter SDK\n有两种方式可以安装 Flutter SDK：\n方式一：使用 VS Code 安装（推荐）\nVS Code 的 Flutter 扩展可以自动下载和配置 Flutter SDK。\n在 VS Code 中点击左侧扩展图标（或按 Ctrl+Shift+X）\n搜索\"Flutter\"并找到\"Dart and Flutter extensions\"扩展\n点击\"Install\"安装扩展\n安装完成后，按 Ctrl+Shift+P 打开命令面板\n输入\"Flutter: New Project\"并选择\n选择\"Download SDK\"，然后选择安装目录\n方式二：手动下载安装\n访问 Flutter 官网下载页面\n下载最新的 Flutter SDK（.zip 文件）\n将下载的文件解压到你喜欢的目录，如 C:\\flutter\n将 Flutter 的 bin 目录添加到系统环境变量 PATH 中\n手动配置环境变量",
+    "examples": [
+     "在 Windows 上配置环境变量的步骤：\n\n右键点击\"此电脑\"，选择\"属性\"\n点击\"高级系统设置\"\n点击\"环境变量\"\n在\"系统变量\"中找到 Path，点击\"编辑\"\n点击\"新建\"，添加 Flutter 的 bin 目录路径（如 C:\\flutter\\bin）\n点击确定保存"
+    ]
+   },
+   {
+    "title": "Flutter 布局基础",
+    "url": "https://www.runoob.com/flutter/flutter-layout.html",
+    "body": "布局是 Flutter UI 开发的核心概念。\n本节将介绍最常用的布局 Widget，包括 Row、Column、Stack 和 Flex 等。\n布局 Widget 概述\nFlutter 提供了丰富的布局 Widget，可以满足各种界面设计需求。\nWidget\n用途\nRow\n水平排列子 Widget\nColumn\n垂直排列子 Widget\nStack\n层叠排列子 Widget\nFlex\n灵活的线性布局（Row/Column 的基类）\nGridView\n网格布局\nListView\n列表布局\nRow - 水平布局\nRow 用于在水平方向上排列子 Widget。\n实例：Row 基本用法",
+    "examples": [
+     "// 水平排列三个图标\nRow(\n  children: [\n    Icon(Icons.home, color: Colors.blue),\n    Icon(Icons.search, color: Colors.green),\n    Icon(Icons.settings, color: Colors.grey),\n  ],\n)\n\n// 带间距的 Row\nRow(\n  mainAxisAlignment: MainAxisAlignment.spaceEvenly,  // 主轴对齐方式\n  children: [\n    Icon(Icons.home, color: Colors.blue),\n    Icon(Icons.search, color: Colors.green),\n    Icon(Icons.settings, color: Colors.grey),\n  ],\n)"
+    ]
+   },
+   {
+    "title": "Flutter ListView 与滚动",
+    "url": "https://www.runoob.com/flutter/flutter-listview.html",
+    "body": "ListView 是 Flutter 中最常用的滚动列表 Widget，用于显示可滚动的内容列表。\nListView 基本用法\n实例：ListView 基本用法",
+    "examples": [
+     "// 方式1：children 参数（适用于少量项目）\nListView(\n  children: [\n    ListTile(title: Text('第一项')),\n    ListTile(title: Text('第二项')),\n    ListTile(title: Text('第三项')),\n  ],\n)\n\n// 方式2：ListView.builder（适用于大量或无限列表）\nListView.builder(\n  itemCount: 100,\n  itemBuilder: (context, index) {\n    return ListTile(title: Text('第 ${index + 1} 项'));\n  },\n)\n\n// 方式3：ListView.separated（带分隔符）\nListView.separated(\n  itemCount: 10,\n  separatorBuilder: (context, index) => const Divider(),  // 分隔线\n  itemBuilder: (context, index) {\n    return ListTile(title: Text('第 ${index + 1} 项'));\n  },\n)"
+    ]
+   },
+   {
+    "title": "Flutter 导航与路由",
+    "url": "https://www.runoob.com/flutter/flutter-navigation.html",
+    "body": "本节将介绍 Flutter 中的导航和路由机制，包括页面跳转、参数传递和命名路由。\nNavigator 基础\nFlutter 使用 Navigator 进行页面管理，基于栈（stack）结构实现页面跳转。\n实例：基本页面跳转",
+    "examples": [
+     "// 跳转到新页面\nNavigator.of(context).push(\n  MaterialPageRoute(\n    builder: (context) => const DetailPage(),\n  ),\n);\n\n// 返回上一页\nNavigator.of(context).pop();\n\n// 带结果返回\nNavigator.of(context).pop('返回的数据');\n\n// 替换当前页面（不可返回）\nNavigator.of(context).pushReplacement(\n  MaterialPageRoute(\n    builder: (context) => const HomePage(),\n  ),\n);\n\n// 回到根页面\nNavigator.of(context).popUntil((route) => route.isFirst);"
+    ]
+   },
+   {
+    "title": "Flutter 平台特定代码",
+    "url": "https://www.runoob.com/flutter/flutter-platform-channels.html",
+    "body": "本节将介绍如何使用平台通道（Platform Channels）在 Flutter 中调用原生平台代码。\n平台通道概述\n平台通道允许 Dart 代码与原生平台（iOS/Android）进行通信。\n类型\n说明\nMethodChannel\n方法通道，用于调用平台方法\nEventChannel\n事件通道，用于流式数据\nDart 端调用\n实例：MethodChannel 用法",
+    "examples": [
+     "import 'package:flutter/services.dart';\n\n// 定义通道\nclass PlatformChannel {\n  static const MethodChannel _channel = MethodChannel('my_app/channel');\n\n  // 调用原生方法 - 获取电池电量\n  static Future<int> getBatteryLevel() async {\n    try {\n      final int batteryLevel = await _channel.invokeMethod('getBatteryLevel');\n      return batteryLevel;\n    } on PlatformException catch (e) {\n      print('获取电池电量失败: ${e.message}');\n      return -1;\n    }\n  }\n\n  // 调用原生方法 - 显示Toast\n  static Future<void> showToast(String message) async {\n    try {\n      await _channel.invokeMethod('showToast', {'message': message});\n    } on PlatformException catch (e) {\n      print('显示Toast失败: ${e.message}');\n    }\n  }\n\n  // 调用原生方法 - 获取设备信息\n  static Future<Map<String, dynamic>> getDeviceInfo() async {\n    try {\n      final result = await _channel.invokeMapMethod('getDeviceInfo');\n      return result ?? {};\n    } on PlatformException catch (e) {\n      print('获取设备信息失败: ${e.message}');\n      return {};\n    }\n  }\n}\n\n// 使用示例\nclass MyWidget extends StatelessWidget {\n  const MyWidget({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return ElevatedButton(\n      onPressed: () async {\n        final battery = await PlatformChannel.getBatteryLevel();\n        print('电池电量: $battery%');\n      },\n      child: const Text('获取电池电量'),\n    );\n  }\n}"
+    ]
+   },
+   {
+    "title": "Flutter 项目结构",
+    "url": "https://www.runoob.com/flutter/flutter-project-structure.html",
+    "body": "了解 Flutter 项目的目录结构对于高效开发至关重要。\n本节将详细介绍 Flutter 项目的各个组成部分及其作用。\n项目目录结构\n当你使用 flutter create 创建新项目后，会得到以下目录结构：\nmy_app/\n├── android/ # Android 平台相关代码\n├── ios/ # iOS 平台相关代码\n├── lib/ # Dart 代码目录（主要开发目录）\n│ └── main.dart # 应用入口文件\n├── web/ # Web 平台相关代码\n├── windows/ # Windows 桌面相关代码\n├── macos/ # macOS 桌面相关代码\n├── linux/ # Linux 桌面相关代码\n├── test/ # 测试代码目录\n├── pubspec.yaml # 项目配置文件\n├── pubspec.lock # 依赖锁定文件（自动生成）\n├── analysis_options.yaml # Dart 分析器配置\n└── README.md # 项目说明文件\n主要目录和文件说明\nlib/ 目录 - 核心代码目录\nlib/ 目录是你编写 Dart 代码的主要地方。所有应用逻辑都应该放在这里。\n文件/目录\n说明\nmain.dart\n应用的入口文件，包含 main 函数和根 Widget\n*.dart\n其他 Dart 源文件，通常按功能模块组织\nandroid/ 目录 - Android 平台\n包含 Android 原生项目文件，用于：\n配置应用名称和图标\n设置应用权限\n集成原生 SDK（如 Google Play 服务）\nios/ 目录 - iOS 平台\n包含 iOS 原生项目文件（Xcode 项目），用于：\n配置应用名称和图标\n设置 iOS 特有的配置\n集成 CocoaPods 依赖\ntest/ 目录 - 测试代码\n包含应用的测试代码，通常包括：\n单元测试\nWidget 测试\n集成测试\npubspec.yaml - 项目配置\npubspec.yaml 是 Flutter 项目的核心配置文件，定义项目名称、版本、依赖等。\n实例：pubspec.yaml 示例",
+    "examples": [
+     "# 项目名称\nname: my_app\n# 项目版本\nversion: 1.0.0+1\n\n# 项目描述\ndescription: \"我的第一个 Flutter 应用\"\n\n# 运行环境\nenvironment:\n  sdk: ^3.0.0\n\n# 项目依赖\ndependencies:\n  flutter:\n    sdk: flutter\n\n  # 添加第三方依赖\n  http: ^1.0.0\n  provider: ^6.0.0\n\n# 开发依赖（仅在开发时使用）\ndev_dependencies:\n  flutter_test:\n    sdk: flutter\n  flutter_lints: ^3.0.0\n\n# Flutter 配置\nflutter:\n  uses-material-design: true\n\n  # 配置资源文件\n  assets:\n    - images/\n    - assets/data.json"
+    ]
+   },
+   {
+    "title": "Flutter 状态管理",
+    "url": "https://www.runoob.com/flutter/flutter-state-management.html",
+    "body": "状态管理是 Flutter 开发中的核心概念。\n本节将介绍 Flutter 内置的状态管理方式，包括 setState、Provider 和 ChangeNotifier。\n什么是状态管理\n状态管理是指管理应用中数据的变化和 UI 更新的机制。当数据发生变化时，UI 需要相应更新，这就是状态管理要解决的问题。\n状态类型\n说明\n例子\n本地状态\n单个 Widget 内部的状态\n输入框文本、动画进度\n共享状态\n多个 Widget 需要共享的状态\n用户登录信息、主题\n应用状态\n整个应用都需要访问的状态\n购物车内容、用户配置\n本地状态 - setState\n对于简单的本地状态，使用 StatefulWidget 和 setState 就足够了。\n实例：计数器示例",
+    "examples": [
+     "class CounterWidget extends StatefulWidget {\n  const CounterWidget({super.key});\n\n  @override\n  State<CounterWidget> createState() => _CounterWidgetState();\n}\n\nclass _CounterWidgetState extends State<CounterWidget> {\n  // 本地状态\n  int _count = 0;\n\n  // 增加计数\n  void _increment() {\n    setState(() {\n      _count++;\n    });\n  }\n\n  // 减少计数\n  void _decrement() {\n    setState(() {\n      _count--;\n    });\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return Column(\n      mainAxisAlignment: MainAxisAlignment.center,\n      children: [\n        Text('计数: $_count', style: const TextStyle(fontSize: 32)),\n        const SizedBox(height: 20),\n        Row(\n          mainAxisAlignment: MainAxisAlignment.center,\n          children: [\n            ElevatedButton(onPressed: _decrement, child: const Text('-')),\n            const SizedBox(width: 20),\n            ElevatedButton(onPressed: _increment, child: const Text('+')),\n          ],\n        ),\n      ],\n    );\n  }\n}"
+    ]
+   },
+   {
+    "title": "Flutter StatelessWidget vs StatefulWidget 深入理解",
+    "url": "https://www.runoob.com/flutter/flutter-stateless-stateful.html",
+    "body": "理解 StatelessWidget 和 StatefulWidget 的区别是 Flutter 开发的基础。\n本节将深入分析这两种 Widget 的使用场景和内部工作机制。\n核心区别\nFlutter 中有两种主要类型的 Widget，它们的根本区别在于是否能持有可变状态。\n特性\nStatelessWidget\nStatefulWidget\n状态\n不可变（immutable）\n可变（mutable）\n重建时机\n仅在父 Widget 重建时\n状态变化时 + 父 Widget 重建\n性能\n更高（无需监听状态）\n略低（需要状态管理）\n使用场景\n静态内容\n动态交互内容\nStatelessWidget 详解\nStatelessWidget 适合用于不随时间变化的内容。一旦创建，其所有属性都是 final 的，不可修改。\n使用场景\n显示静态文本、图片、图标\n展示数据列表（数据源来自父 Widget）\n不包含用户交互的布局容器\n表单中的只读展示部分\n实例：StatelessWidget 完整示例",
+    "examples": [
+     "import 'package:flutter/material.dart';\n\n// 用户信息展示组件（无状态）\nclass UserCard extends StatelessWidget {\n  // 属性定义为 final，确保不可变\n  final String name;\n  final String email;\n  final String avatarUrl;\n\n  // const 构造函数提高性能\n  const UserCard({\n    super.key,\n    required this.name,\n    required this.email,\n    this.avatarUrl = '',\n  });\n\n  @override\n  Widget build(BuildContext context) {\n    return Card(\n      child: Padding(\n        padding: const EdgeInsets.all(16.0),\n        child: Row(\n          children: [\n            // 头像\n            CircleAvatar(\n              backgroundImage: avatarUrl.isNotEmpty\n                  ? NetworkImage(avatarUrl)\n                  : null,\n              child: avatarUrl.isEmpty\n                  ? const Icon(Icons.person)\n                  : null,\n            ),\n            const SizedBox(width: 16),\n            // 用户信息\n            Expanded(\n              child: Column(\n                crossAxisAlignment: CrossAxisAlignment.start,\n                children: [\n                  Text(\n                    name,\n                    style: const TextStyle(\n                      fontSize: 18,\n                      fontWeight: FontWeight.bold,\n                    ),\n                  ),\n                  const SizedBox(height: 4),\n                  Text(\n                    email,\n                    style: TextStyle(\n                      color: Colors.grey[600],\n                    ),\n                  ),\n                ],\n              ),\n            ),\n          ],\n        ),\n      ),\n    );\n  }\n}"
+    ]
+   },
+   {
+    "title": "Flutter 本地存储",
+    "url": "https://www.runoob.com/flutter/flutter-storage.html",
+    "body": "本节将介绍 Flutter 中的本地存储方案，包括 SharedPreferences、文件存储和 SQLite 数据库。\nSharedPreferences - 轻量级存储\nSharedPreferences 适合存储简单的键值对数据。\n添加依赖\ndependencies:\n shared_preferences: ^2.0.0\n实例：SharedPreferences 使用",
+    "examples": [
+     "import 'package:shared_preferences/shared_preferences.dart';\n\n// 保存数据\nFuture<void> saveData() async {\n  final prefs = await SharedPreferences.getInstance();\n\n  // 保存字符串\n  await prefs.setString('username', '张三');\n\n  // 保存整数\n  await prefs.setInt('age', 25);\n\n  // 保存布尔值\n  await prefs.setBool('isLoggedIn', true);\n\n  // 保存列表（JSON 字符串）\n  await prefs.setStringList('tags', ['flutter', 'dart']);\n}\n\n// 读取数据\nFuture<void> loadData() async {\n  final prefs = await SharedPreferences.getInstance();\n\n  final username = prefs.getString('username') ?? '';\n  final age = prefs.getInt('age') ?? 0;\n  final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;\n  final tags = prefs.getStringList('tags') ?? [];\n\n  print('用户名: $username');\n  print('年龄: $age');\n  print('已登录: $isLoggedIn');\n  print('标签: $tags');\n}\n\n// 删除数据\nFuture<void> deleteData() async {\n  final prefs = await SharedPreferences.getInstance();\n\n  // 删除单个\n  await prefs.remove('username');\n\n  // 删除所有\n  await prefs.clear();\n}"
+    ]
+   },
+   {
+    "title": "Flutter 测试",
+    "url": "https://www.runoob.com/flutter/flutter-test.html",
+    "body": "本节将介绍 Flutter 中的三种测试类型：单元测试、Widget 测试和集成测试。\n测试类型概述\n类型\n说明\n运行命令\n单元测试\n测试单个函数、类的方法\nflutter test\nWidget 测试\n测试单个 Widget 的 UI\nflutter test\n集成测试\n测试完整的应用流程\nflutter test integration_test/\n单元测试\n单元测试用于测试业务逻辑代码。\n实例：单元测试示例",
+    "examples": [
+     "// math_utils.dart - 待测试的代码\nclass MathUtils {\n  static int add(int a, int b) => a + b;\n  static int subtract(int a, int b) => a - b;\n  static int multiply(int a, int b) => a * b;\n  static double divide(int a, int b) {\n    if (b == 0) throw ArgumentError('不能除以零');\n    return a / b;\n  }\n\n  static int factorial(int n) {\n    if (n < 0) throw ArgumentError('负数没有阶乘');\n    if (n == 0 || n == 1) return 1;\n    return n * factorial(n - 1);\n  }\n}\n\n// math_utils_test.dart - 测试文件\nimport 'package:flutter_test/flutter_test.dart';\nimport 'package:my_app/math_utils.dart';\n\nvoid main() {\n  group('MathUtils', () {\n    test('add 两个数相加', () {\n      expect(MathUtils.add(2, 3), equals(5));\n    });\n\n    test('subtract 两个数相减', () {\n      expect(MathUtils.subtract(5, 3), equals(2));\n    });\n\n    test('multiply 两个数相乘', () {\n      expect(MathUtils.multiply(4, 5), equals(20));\n    });\n\n    test('divide 两个数相除', () {\n      expect(MathUtils.divide(10, 2), equals(5));\n    });\n\n    test('divide 除以零抛出异常', () {\n      expect(() => MathUtils.divide(10, 0), throwsArgumentError);\n    });\n\n    test('factorial 计算阶乘', () {\n      expect(MathUtils.factorial(5), equals(120));\n      expect(MathUtils.factorial(0), equals(1));\n    });\n\n    test('factorial 负数抛出异常', () {\n      expect(() => MathUtils.factorial(-1), throwsArgumentError);\n    });\n  });\n}"
+    ]
+   },
+   {
+    "title": "Flutter 主题与样式",
+    "url": "https://www.runoob.com/flutter/flutter-theming.html",
+    "body": "本节将介绍 Flutter 中的主题配置，包括 Material Design 主题、自定义主题和深色模式。\nThemeData - 应用主题\n使用 ThemeData 可以统一配置应用的主题颜色、字体、样式等。\n实例：配置应用主题",
+    "examples": [
+     "void main() {\n  runApp(\n    MaterialApp(\n      theme: ThemeData(\n        // 主色调\n        colorScheme: ColorScheme.fromSeed(\n          seedColor: Colors.blue,\n          brightness: Brightness.light,\n        ),\n        // 使用 Material 3\n        useMaterial3: true,\n        // 字体\n        fontFamily: 'Roboto',\n        // 应用栏主题\n        appBarTheme: const AppBarTheme(\n          centerTitle: true,\n          elevation: 0,\n        ),\n        // 按钮主题\n        elevatedButtonTheme: ElevatedButtonThemeData(\n          style: ElevatedButton.styleFrom(\n            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),\n          ),\n        ),\n        // 输入框主题\n        inputDecorationTheme: InputDecorationTheme(\n          border: OutlineInputBorder(\n            borderRadius: BorderRadius.circular(8),\n          ),\n          filled: true,\n        ),\n      ),\n      home: const MyHomePage(),\n    ),\n  );\n}"
+    ]
+   },
+   {
+    "title": "Flutter 教程",
+    "url": "https://www.runoob.com/flutter/flutter-tutorial.html",
+    "body": "Flutter 是一个用于构建跨平台应用的 UI 工具包，由 Google 开发维护。它允许开发者使用一套代码库同时为 iOS、Android、Web、Windows、macOS 和 Linux 构建原生编译的应用。\nFlutter 使用 Dart 编程语言，具有热重载、丰富的组件库和高性能的渲染引擎，能够帮助开发者快速构建美观、流畅的原生体验应用。",
+    "examples": []
+   },
+   {
+    "title": "Flutter 用户输入",
+    "url": "https://www.runoob.com/flutter/flutter-user-input.html",
+    "body": "本节将介绍如何在 Flutter 应用中处理用户输入，包括文本输入、按钮点击、表单处理等。\nTextField - 文本输入\nTextField 是 Flutter 中最常用的文本输入 Widget。\n实例：TextField 基本用法",
+    "examples": [
+     "// 最简单的 TextField\nTextField()\n\n// 带装饰的 TextField\nTextField(\n  decoration: const InputDecoration(\n    labelText: '用户名',  // 标签\n    hintText: '请输入用户名',  // 提示文字\n    prefixIcon: Icon(Icons.person),  // 前置图标\n  ),\n)\n\n// 带边框的 TextField\nTextField(\n  decoration: InputDecoration(\n    border: OutlineInputBorder(  // 外边框\n      borderRadius: BorderRadius.circular(8),\n    ),\n    labelText: '密码',\n  ),\n  obscureText: true,  // 隐藏输入内容（密码场景）\n)\n\n// 多行文本输入\nTextField(\n  maxLines: 3,  // 最大行数\n  decoration: const InputDecoration(\n    hintText: '请输入多行文本',\n  ),\n)"
+    ]
+   },
+   {
+    "title": "Flutter Widget 基础",
+    "url": "https://www.runoob.com/flutter/flutter-widget-basics.html",
+    "body": "Widget 是 Flutter UI 的基本构建块。\n在 Flutter 中，一切皆为 Widget，从简单的文本到复杂的页面布局都是由 Widget 组合而成的。\n什么是 Widget？\nWidget 是描述 UI 外观和行为的 Dart 类。每个 Flutter 应用本质上就是由 Widget 组成的树形结构，称为 Widget 树。\n实例：最简单的 Widget 示例",
+    "examples": [
+     "import 'package:flutter/material.dart';\n\n// 定义一个简单的 Widget\nclass HelloWidget extends StatelessWidget {\n  const HelloWidget({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    // 返回一个 Text Widget，显示 \"Hello World\"\n    return const Text('Hello World');\n  }\n}"
+    ]
+   }
+  ]
+ }
+}

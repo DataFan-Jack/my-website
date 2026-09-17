@@ -1,0 +1,52 @@
+{
+ "tutorial": {
+  "name": "XLink 和 XPointer",
+  "category": "后端开发",
+  "desc": "XLink 定义在 XML 文档中创建超级链接的标准方法。",
+  "url": "https://www.runoob.com/xlink/",
+  "chapters": [
+   {
+    "title": "XLink 实例",
+    "url": "https://www.runoob.com/xlink/xlink-example.html",
+    "body": "让我们通过研究一个实例来学习一些基础的 XLink 语法。\nXML 实例文档\n请看下面的 XML 文档，\"bookstore.xml\"，它用来呈现书籍：\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<bookstore xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n<book title=\"Harry Potter\">\n  \n <description\n  \n xlink:type=\"simple\"\n  \n xlink:href=\"http://book.com/images/HPotter.gif\"\n  \n xlink:show=\"new\">\n  \n As his fifth year at Hogwarts School of Witchcraft and\n  \n Wizardry approaches, 15-year-old Harry Potter is.......\n  \n </description>\n</book>\n<book title=\"XQuery Kick Start\">\n  \n <description\n  \n xlink:type=\"simple\"\n  \n xlink:href=\"http://book.com/images/XQuery.gif\"\n  \n xlink:show=\"new\">\n  \n XQuery Kick Start delivers a concise introduction\n  \n to the XQuery standard.......\n  \n </description>\n</book>\n</bookstore>",
+    "examples": []
+   },
+   {
+    "title": "XLink 和 XPointer 简介",
+    "url": "https://www.runoob.com/xlink/xlink-intro.html",
+    "body": "XLink 定义了一套标准的在 XML 文档中创建超级链接的方法。\nXPointer 使超级链接可以指向 XML 文档中更多具体的部分（片断）。\n您应当具备的基础知识\n学习本教程前您应当具备的基础知识:\nHTML / XHTML\nXML / XML 命名空间\nXPath\n如果您希望首先学习这些项目，请在我们对 首页 访问这些教程。首页.\n什么是 XLink？\nXLink 是 XML 链接语言（XML Linking Language）的缩写\nXLink 是用于在 XML 文档中创建超级链接的语言\nXLink 类似于 HTML 链接 - 但是更为强大\nXML 文档中的任何元素均可成为 XLink\nXLink 支持简易链接，也支持可将多重资源链接在一起的扩展链接\n通过 XLink，链接可在被链接文件外进行定义\nXLink 是 W3C 推荐标准\n什么是 XPointer？\nXPointer 是 XML 指针文件（XML Pointer Language）的缩写\nXPointer 使超级链接可以指向 XML 文档中更多具体的部分（片断）\nXPointer 使用 XPath 表达式在 XML 文档中进行定位\nXPointer 是 W3C 推荐标准\nXLink 和 XPointer 是 W3C 标准\n在2001年6月27日，XLink 被确立为 W3C 推荐标准。\nXPointer 于2003年3月25日成为 W3C 推荐标准。\n您可以在我们的《W3C 教程》中阅读更多有关 XML 标准的内容。\nXLink 和 XPointer 的浏览器支持\n浏览器只在最小限度内支持 XLink 和 XPointer。\n在 Mozilla 0.98+、Netscape 6.02+ 以及 Internet Explorer 6.0 中，均具有对 XLink 某种程度的支持。更早版本的浏览器根本不支持 XLink。",
+    "examples": []
+   },
+   {
+    "title": "XLink 参考手册",
+    "url": "https://www.runoob.com/xlink/xlink-reference.html",
+    "body": "XLink，即 XML 链接语言，是一种通过 W3C 推荐标准认证的 XML 标记语言，提供一些方法，用于在 XML 文件上创建内部和外部链接，以及与这些链接相关联的元数据。\nXLink 提供两种可在 XML 文档中使用的超链接，简单链接和扩展链接。简单链接，只连接两种资源，类似于 HTML 链接和 IMG 链接。 扩展链接，可连接任意数量的资源。\nXLink 属性参考手册\n属性\n值\n描述\nxlink:actuate\nonLoad\nonRequest\nother\nnone\n定义何时读取和显示被链接的资源。\nxlink:href\nURL\n要链接的 URL。\nxlink:show\nembed\nnew\nreplace\nother\nnone\n在何处打开链接。Replace 是默认值。\nxlink:type\nsimple\nextended\nlocator\narc\nresource\ntitle\nnone\n链接的类型。",
+    "examples": []
+   },
+   {
+    "title": "您已经学习了 XLink， 下一步呢？",
+    "url": "https://www.runoob.com/xlink/xlink-summary.html",
+    "body": "XLink 概要\n本教程已经向您讲解了在 XML 文档中创建超级链接的一种标准方法。\n您已经明白了 XML 中的链接被分为两个部分：XLink 和 XPointer。\nXLink 定义了一套在 XML 文档中创建超级链接的标准方法。XPointer 使超级链接有能力指向 XML 文档中更多具体的部分（片断）。\n如需更多有关 XLink 的知识，请浏览我们的《XLink 参考手册》。\n您已经学习了 XLink，下一步呢？\n下一步应当学习 XQuery。\nXQuery\nXQuery 和 XML 查询有关。\nXQuery 被设计用来查询任何可以 XML 形态呈现的数据，包括数据库。\n如果您希望学习更多有关 XQuery 的知识，请访问我们的《XQuery 教程》。",
+    "examples": []
+   },
+   {
+    "title": "XLink 和 XPointer 语法",
+    "url": "https://www.runoob.com/xlink/xlink-syntax.html",
+    "body": "XLink 语法\n在 HTML 中，我们知道 <a> 元素可定义超级链接。不过 XML 不是这样工作的。在 XML 文档中，您可以使用任何你需要的名称 - 因此对于浏览器来说是无法预知在 XML 文档中可调用何种超级链接元素。\n在 XML 文档中定义超级链接的方法是在元素上放置可用作超级链接的标记。\n下面是在 XML 文档中使用 XLink 来创建链接的简单实例：\n<?xml version=\"1.0\"?>\n<homepages xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n <homepage xlink:type=\"simple\"\n xlink:href=\"http://www.runoob.com\">Visit Runoob</homepage>\n <homepage xlink:type=\"simple\"\n xlink:href=\"http://www.w3.org\">Visit W3C</homepage>\n</homepages>",
+    "examples": []
+   },
+   {
+    "title": "XLink 和 XPointer 教程",
+    "url": "https://www.runoob.com/xlink/xlink-tutorial.html",
+    "body": "XLink 定义在 XML 文档中创建超级链接的标准方法。\nXPointer 允许这些超级链接指向 XML 文档中的更多具体部分（片断）。\n现在开始学习 XLink 和 XPointer!",
+    "examples": []
+   },
+   {
+    "title": "XPointer 实例",
+    "url": "https://www.runoob.com/xlink/xpointer-example.html",
+    "body": "让我们通过研究一个实例来学习一些基础的 XPointer 语法。\nXPointer 实例\n在本例中，我们会为您展示如何使用 XPointer 并结合 XLink 来指向另外一个文档的某个具体的部分。\n我们将通过研究目标 XML 文档开始（即我们要链接的那个文档）。\n目标XML文档\n目标XML文档名为 \"dogbreeds.xml\"，它列出了一些不同的狗种类：\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<dogbreeds>\n<dog breed=\"Rottweiler\" id=\"Rottweiler\">\n  \n <picture url=\"http://dog.com/rottweiler.gif\" />\n  \n <history>The Rottweiler's ancestors were probably Roman\n  \n drover dogs.....</history>\n  \n <temperament>Confident, bold, alert and imposing, the Rottweiler\n  \n is a popular choice for its ability to protect....</temperament>\n</dog>\n<dog breed=\"FCRetriever\" id=\"FCRetriever\">\n  \n <picture url=\"http://dog.com/fcretriever.gif\" />\n  \n <history>One of the earliest uses of retrieving dogs was to\n  \n help fishermen retrieve fish from the water....</history>\n  \n <temperament>The flat-coated retriever is a sweet, exuberant,\n  \n lively dog that loves to play and retrieve....</temperament>\n</dog>\n</dogbreeds>",
+    "examples": []
+   }
+  ]
+ }
+}

@@ -1,0 +1,120 @@
+{
+ "tutorial": {
+  "name": "index",
+  "category": "前端开发",
+  "desc": "",
+  "url": "https://www.runoob.com/w3cnote/",
+  "chapters": [
+   {
+    "title": "add-python-to-path-on-windows-11",
+    "url": "https://www.runoob.com/w3cnote/add-python-to-path-on-windows-11.html",
+    "body": "当你看到 'python' is not recognized as an internal or external command 这个错误时，说明 Windows 无法在 PATH 环境变量中找到 Python 的可执行文件。\n通过将正确的目录添加到 PATH，你就能在任何终端中无需完整路径即可运行 Python 和 pip。\n开始之前，请确认你具备以下条件：\n前置要求\n说明\n已安装 Python\n来自 python.org 或 Microsoft Store 的 Windows 11 系统\n管理员权限\n修改系统级变量时需要；用户级修改不需要管理员权限\n重启终端\n任何 PATH 更改后都需要重新打开一个终端会话才能生效\n有关 PATH、安装程序选项和 Python Launcher 的详细指导，请参阅 Python 官方文档中的「在 Windows 上使用 Python」章节（docs.python.org）。\n方法一：使用官方安装器添加 PATH（推荐）\npython.org 的安装程序可以直接为你设置 PATH，避免手动输入错误，并且还会一并添加 pip 所需的 Scripts 文件夹。\n同一个安装程序也可以通过 Modify 选项为已有安装补加 PATH，无需卸载重装。\n操作步骤\n步骤\n操作\n1\n从 python.org 下载并运行安装程序\n2\n在第一个界面中，勾选「Add python.exe to PATH」选项\n3\n全新安装点击「Install Now」；已安装过则选择「Modify」并启用该选项\n4\n完成安装后，关闭并重新打开命令提示符或 PowerShell\n5\n使用以下命令验证安装结果\n安装界面——务必勾选 PATH 选项：\n已安装用户选择 Modify 选项：\n验证安装是否成功：\npython --version\npip --version\nwhere python\nwhere pip\n如果你已经安装了 Python 但当时没有勾选 PATH 选项，只需重新运行安装程序，选择 Modify，然后勾选「Add python.exe to PATH」，完成安装后重新打开终端即可。\n方法二：手动添加 Python 到 PATH（用户级）\n如果你安装 Python 时没有启用 PATH 选项，或者需要在不影响系统变量的情况下仅调整当前用户的环境变量，可以手动编辑 PATH。\n操作步骤\n步骤\n操作\n说明\n1\n按 Win+R，输入 sysdm.cpl，回车\n打开系统属性窗口\n2\n切换到「高级」选项卡，点击「环境变量」\n进入环境变量编辑界面\n3\n在「用户变量」区域选中 Path，点击「编辑」\n仅修改当前用户的 PATH，不影响系统\n4\n点击「新建」，添加 Python 安装目录\n例如 C:\\Users\\用户名\\AppData\\Local\\Programs\\Python\\Python311\n5\n再次点击「新建」，添加 Scripts 子目录\n与上一步同一路径末尾加 \\Scripts\n6\n使用「上移」将新条目移到列表靠前位置\n确保优先被系统找到\n7\n依次点击各对话框的「确定」保存\n不要漏掉任何一级对话框\n8\n完全关闭所有终端窗口并重新打开\nPATH 修改在已打开的终端中不会生效\n9\n运行验证命令\n确认 python 和 pip 均可正常使用\n步骤 1——通过 sysdm.cpl 打开系统属性：\n步骤 2——环境变量窗口：\n步骤 3——编辑 Path 变量：\n步骤 4——新建 Python 安装路径条目：\n步骤 5——添加 Scripts 目录：\n步骤 6——上移条目使其优先被找到：\n步骤 7——确认保存所有对话框：\n步骤 9——验证结果：\npython --version\npip --version\nwhere python\nwhere pip\n注意事项和常见陷阱\n易错点\n正确做法\n路径末尾有反斜杠\n应使用 C:\\Path\\To\\Python311，而不是 C:\\Path\\To\\Python311\\\n路径前有多余空格\n每个条目都应该是干净的路径行，前后无空格\n旧条目指向无效文件夹\n删除或修正已不存在的路径，避免路径解析混乱\n修改后未重启终端\n完全关闭所有终端窗口后重新打开；某些情况需注销或重启\n方法三：修复 Microsoft Store 安装的「应用执行别名」\n如果你是从 Microsoft Store 安装的 Python，它依赖「应用执行别名」和 WindowsApps 目录来解析 python 命令，而非传统的 PATH 编辑。\n操作步骤\n步骤\n操作\n1\n打开 Windows 设置，搜索「管理应用执行别名」\n2\n找到 python.exe 和 python3.exe 的切换开关：打开启用别名，关闭避免与 python.org 版本冲突\n3\n确保用户 PATH 中包含 %USERPROFILE%\\AppData\\Local\\Microsoft\\WindowsApps\n4\n重新打开终端并验证\n应用执行别名设置入口：\npython.exe 和 python3.exe 别名开关：\n如果输入 python 后打开了 Microsoft Store 而不是运行 Python，说明别名指向了 Store。关闭对应版本的别名，改用 python.org 版本下载安装，或者使用下文介绍的 Python Launcher（py 命令）。\n方法四：使用 Python Launcher 代替编辑 PATH\nPython Launcher（py.exe）随 python.org 构建版本一起安装，能够根据标签自动定位已安装的 Python 版本，从而完全避免 PATH 冲突。\n这是官方推荐的多版本管理方案——无需修改 PATH，即可为每个项目固定特定的 Python 版本。\n操作步骤\n检查 Launcher 版本：\npy --version\n显式运行所需的 Python 版本：\npy -3\npy -3.11\npy -3.10 -m pip --version\n使用 Launcher 创建和使用虚拟环境：\n# 使用指定版本创建虚拟环境\npy -3.11 -m venv venv\n\n# 激活虚拟环境\nvenv\\Scripts\\activate\n\n# 在虚拟环境中确认 Python 版本\npython --version\n补充说明\n命令\n作用\npy --list\n查看所有被检测到的 Python 运行时版本\npy -3.11\n启动指定版本的 Python 交互式解释器\npy -3.11 -m pip install 包名\n为指定版本的 Python 安装第三方包\n在使用 py Launcher 的前提下，你可以完全跳过手动编辑 PATH 的步骤。Launcher 自动发现所有已安装的 Python 版本，让你按需选择——这对于同时需要 Python 3.10 和 3.12 的开发者尤其方便。\n快速验证与故障排查\n确认哪个可执行文件正在运行\nwhere python\nwhere python3\nwhere py\n验证 pip 和 Scripts\npip --version\nwhere pip\n常见问题排查\n问题\n解决方案\n输入 python 后打开 Microsoft Store\n在「应用执行别名」中关闭对应别名，或改用 py 命令启动\nPATH 修改后不生效\n完全关闭所有终端和 IDE（如 VS Code），必要时注销或重新登录\n多个 Python 版本冲突\n使用 Python Launcher（py）精确选择版本，配合虚拟环境隔离项目依赖\n总结\n一旦 PATH 设置正确——或者开始使用 Python Launcher——你就可以在任何位置运行 Python 和 pip，无需输入完整路径。\n对于多版本环境，强烈建议使用 Python Launcher 来精确选择版本，并结合虚拟环境保护各项目的依赖隔离。\n方案\n适用场景\n推荐度\n官方安装器勾选 PATH\n初次安装或重装 Python\n最高\n手动编辑用户 PATH\n已安装但遗漏 PATH 配置\n中等\n应用执行别名\nMicrosoft Store 版 Python\n低（容易与其它版本冲突）\nPython Launcher (py)\n多版本共存、项目级版本管理\n最高",
+    "examples": []
+   },
+   {
+    "title": "android-tutorial-intro",
+    "url": "https://www.runoob.com/w3cnote/android-tutorial-intro.html",
+    "body": "本教程于2015年7月开始撰写，耗时半年，总共148节，涵盖了Android基础入门的大部分知识，由于当时能力局限，虽已竭尽全力，但对于一些问题的分析难免有所纰漏，敬请读者海涵！IT技术更新换代很快，想想2015年还是Android 5.1横行，如今到了2018年都已经Android 8.0了，开发工具Android Studio也更新到了Android Studio 3.0.1。本系列的教程可能有些地方已经过时了，比如6.0以后的动态权限申请。一个人的力量是有限的，而且也有自己的工作忙，不可能去另外整一个大更新，今天写的，可能过几个月就过时了，这是IT界的常态，所以还是得自己学会主动去获取知识的能力，提供几个常备的知识获取站点吧，平时闲着没事可以自己上去获取知识：\nAndroid官网：\nhttps://developer.android.google.cn/index.html\nAndroid官网：\nhttps://developer.android.com/index.html\n当然除此之外还有很多，更多可见：\nhttps://github.com/coder-pig/Android-Storage-Box但是切记一点，你是按需学习，而不是一个收破烂的，收藏一堆链接，收藏了你就会了，其实收集得越多，你会越浮躁！\n附本系列教程的思维导图：\n完整思维导图 PDF\n假如本系列的教程为你学习Android开发带来一定的便利，不妨小额打赏下小猪，让小猪有动力写出更多更好的教程~\n非常感谢站长FK大佬提供的平台以及一直以来的支持！\n路漫漫其修远兮，吾将上下而求索，自学之路不易，与君共勉，加油~\n-- CoderPig",
+    "examples": []
+   },
+   {
+    "title": "chromedriver-intro",
+    "url": "https://www.runoob.com/w3cnote/chromedriver-intro.html",
+    "body": "ChromeDriver 是一个独立的服务器，作为 Selenium WebDriver 与 Google Chrome 浏览器之间的桥梁。\nChromeDriver 允许开发者通过编程方式控制 Chrome 浏览器，实现自动化测试和网页抓取等操作。\nChromeDriver 的工作原理\nChromeDriver 充当了 Selenium WebDriver 和 Chrome 浏览器之间的中介。当您通过 Selenium 发送命令时，ChromeDriver 会将这些命令转换为 Chrome 能够理解的协议，并将浏览器的响应返回给 Selenium。这种机制使得您可以通过代码模拟用户在浏览器中的操作。\n安装 ChromeDriver\n1. 下载 ChromeDriver\n首先，您需要下载与您使用的 Chrome 浏览器版本匹配的 ChromeDriver。您可以在 ChromeDriver 官方下载页面 找到适合您操作系统的版本。\n具体下载地址：https://googlechromelabs.github.io/chrome-for-testing/\n2. 解压下载文件\n下载完成后，将压缩文件解压到您的系统目录中。例如，在 Windows 系统下，您可以将 chromedriver.exe 文件解压到 C:\\Program Files\\ChromeDriver\\。\n3. 配置环境变量\n为了让系统能够识别 ChromeDriver，您需要将其路径添加到系统的环境变量中。以下是配置步骤：\nWindows：\n右键点击\"此电脑\"，选择\"属性\"。\n点击\"高级系统设置\"。\n在\"系统属性\"窗口中，点击\"环境变量\"。\n在\"系统变量\"部分，找到 Path 变量并点击\"编辑\"。\n点击\"新建\"，然后输入 ChromeDriver 的路径（例如 C:\\Program Files\\ChromeDriver\\）。\n点击\"确定\"保存更改。\nmacOS/Linux：\n打开终端。\n编辑 ~/.bash_profile 文件，添加以下内容：\n\nexport PATH=$PATH:/path/to/chromedriver\n保存文件并执行 source ~/.bash_profile 使更改生效。\n使用 ChromeDriver 进行自动化测试\n1. 安装 Selenium\n在使用 ChromeDriver 之前，您需要安装 Selenium 库。您可以通过以下命令安装：\npip install selenium\n2. 编写简单的测试脚本\n以下是一个使用 ChromeDriver 打开 Chrome 浏览器并访问 Google 首页的示例代码：\n实例",
+    "examples": [
+     "from selenium import webdriver\n\n# 初始化 ChromeDriver\ndriver = webdriver.Chrome()\n\n# 打开 Google 首页\ndriver.get(\"https://www.google.com\")\n\n# 打印网页标题\nprint(\"Page title: \", driver.title)\n\n# 关闭浏览器\ndriver.quit()"
+    ]
+   },
+   {
+    "title": "dify-ai-intro",
+    "url": "https://www.runoob.com/w3cnote/dify-ai-intro.html",
+    "body": "项目名: Dify -- 零门槛打造专属 AI 应用",
+    "examples": []
+   },
+   {
+    "title": "es6-tutorial",
+    "url": "https://www.runoob.com/w3cnote/es6-tutorial.html",
+    "body": "简介\nES6， 全称 ECMAScript 6.0 ，是 JavaScript 的下一个版本标准，2015.06 发版。\nES6 主要是为了解决 ES5 的先天不足，比如 JavaScript 里并没有类的概念，但是目前浏览器的 JavaScript 是 ES5 版本，大多数高版本的浏览器也支持 ES6，不过只实现了 ES6 的部分特性和功能。\n你也可以先看 ECMAScript 6 简明教程 来先快速了解。\nECMAScript 的背景\nJavaScript 是大家所了解的语言名称，但是这个语言名称是商标（ Oracle 公司注册的商标）。因此，JavaScript 的正式名称是 ECMAScript 。1996年11月，JavaScript 的创造者网景公司将 JS 提交给国际化标准组织 ECMA（European computer manufactures association，欧洲计算机制造联合会），希望这种语言能够成为国际标准，随后 ECMA 发布了规定浏览器脚本语言的标准，即 ECMAScript。这也有利于这门语言的开放和中立。\nECMAScript 的历史\nES6 是 ECMAScript 标准十余年来变动最大的一个版本，为其添加了许多新的语法特性。\n1997 年 ECMAScript 1.0 诞生。\n1998 年 6 月 ECMAScript 2.0 诞生，包含一些小的更改，用于同步独立的 ISO 国际标准。\n1999 年 12 月 ECMAScript 3.0诞生，它是一个巨大的成功，在业界得到了广泛的支持，它奠定了 JS 的基本语法，被其后版本完全继承。直到今天，我们一开始学习 JS ，其实就是在学 3.0 版的语法。\n2000 年的 ECMAScript 4.0 是当下 ES6 的前身，但由于这个版本太过激烈，对 ES 3 做了彻底升级，所以暂时被\"和谐\"了。\n2009 年 12 月，ECMAScript 5.0 版正式发布。ECMA 专家组预计 ECMAScript 的第五个版本会在 2013 年中期到 2018 年作为主流的开发标准。2011年6月，ES 5.1 版发布，并且成为 ISO 国际标准。\n2013 年，ES6 草案冻结，不再添加新的功能，新的功能将被放到 ES7 中；2015年6月， ES6 正式通过，成为国际标准。\nES6 的目标与愿景\n成为更好编写的开发语言有以下目标。\n适应更复杂的应用；实现代码库之间的共享；不断迭代维护新版本。\n本教程的内容",
+    "examples": []
+   },
+   {
+    "title": "hadoop-tutorial",
+    "url": "https://www.runoob.com/w3cnote/hadoop-tutorial.html",
+    "body": "Hadoop 是一个开源的分布式计算和存储框架，由 Apache 基金会开发和维护。\nHadoop 为庞大的计算机集群提供可靠的、可伸缩的应用层计算和存储支持，它允许使用简单的编程模型跨计算机群集分布式处理大型数据集，并且支持在单台计算机到几千台计算机之间进行扩展。\nHadoop 使用 Java 开发，所以可以在多种不同硬件平台的计算机上部署和使用。其核心部件包括分布式文件系统 (Hadoop DFS，HDFS) 和 MapReduce。\nHadoop 历史\n2003 年和 2004 年，Google 公司先后发表了两篇著名的论文 GFS 和 MapReduce。\n这两篇论文和 2006 年发表的 BigTable 成为了现在著名的\"Google 三大论文\"。\nDoug Cutting 在受到了这些理论的影响后开始了 Hadoop 的开发。\nHadoop 包含了两大核心组件。在 Google 的论文中，GFS 是一个在庞大的计算机集群中运行的分布式文件系统，在 Hadoop 中 HDFS 实现了它的功能。MapReduce 是一个分布式计算的方式，Hadoop 用同名称的 MapReduce 框架实现了它的功能。我们会在之后的 MapReduce 章节中详细介绍它。\n从 2008 年开始，Hadoop 作为 Apache 顶级项目存在。它与它的众多子项目广泛应用于包括 Yahoo、阿里巴巴、腾讯等大型网络服务企业，并被 IBM、Intel、Microsoft 等平台公司列为支持对象。\nHadoop 的作用\nHadoop 的作用非常简单，就是在多计算机集群环境中营造一个统一而稳定的存储和计算环境，并能为其他分布式应用服务提供平台支持。\n也就是说， Hadoop 在某种程度上将多台计算机组织成了一台计算机（做同一件事），那么 HDFS 就相当于这台计算机的硬盘，而 MapReduce 就是这台计算机的 CPU 控制器。",
+    "examples": []
+   },
+   {
+    "title": "index",
+    "url": "https://www.runoob.com/w3cnote/index.html",
+    "body": "",
+    "examples": []
+   },
+   {
+    "title": "linux-cron-task",
+    "url": "https://www.runoob.com/w3cnote/linux-cron-task.html",
+    "body": "基础语法常用命令高级用法实战示例技巧提示",
+    "examples": []
+   },
+   {
+    "title": "pip-certificate-httpsconnectionpool",
+    "url": "https://www.runoob.com/w3cnote/pip-certificate-httpsconnectionpool.html",
+    "body": "使用 pip 安装包，有时候会出现以下问题：\nCould not fetch URL https://pypi.org/simple/pip/: There was a problem confirming the ssl certificate: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded with url: /simple/pip/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)'))) - skipping\n这个错误信息表明在尝试访问 https://pypi.org/simple/pip/ 时，遇到了 SSL 证书验证失败的问题。\n具体来说，错误信息中提到的 SSLCertVerificationError 表示客户端无法验证服务器的 SSL 证书。\n解决方法也很简单，我们可以使用国内镜像，比如清华的 pip 镜像。\n方法 1：命令行临时指定\n在安装 Python 包时，可以通过 --index-url 参数指定清华大学的镜像源，并通过 --trusted-host 参数允许不使用 HTTPS。\n命令如下：\npip install <package_name> --index-url http://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna.tsinghua.edu.cn\n--index-url：指定镜像源的 URL。\n--trusted-host：指定信任的主机，允许不使用 HTTPS。\n例如：\npip install baidusearch --index-url http://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna.tsinghua.edu.cn\n方法 2：全局配置\n如果你希望永久设置清华大学的镜像源，并且不使用 HTTPS，可以通过修改 pip 的配置文件来实现。\n配置文件路径：\nWindows：%APPDATA%\\pip\\pip.ini\nmacOS/Linux：~/.config/pip/pip.conf\n在配置文件中添加以下内容：\n[global]\nindex-url = http://pypi.tuna.tsinghua.edu.cn/simple\ntrusted-host = pypi.tuna.tsinghua.edu.cn\n这样，每次使用 pip 时都会自动使用清华大学的镜像源，并且不会强制使用 HTTPS。",
+    "examples": []
+   },
+   {
+    "title": "python-progressbar",
+    "url": "https://www.runoob.com/w3cnote/python-progressbar.html",
+    "body": "Python 中有多种方式可以实现进度条，下面介绍几种常见的方法：\n实例",
+    "examples": [
+     "import time\nfor i in range(101): # 添加进度条图形和百分比 \n    bar = '[' + '=' * (i // 2) + ' ' * (50 - i // 2) + ']' \n    print(f\"\\r{bar} {i:3}%\", end='', flush=True) \n    time.sleep(0.05) \nprint()"
+    ]
+   },
+   {
+    "title": "rest-api-tutorial",
+    "url": "https://www.runoob.com/w3cnote/rest-api-tutorial.html",
+    "body": "REST（Representational State Transfer）是一种软件架构风格，用于设计网络应用程序的接口。\nREST API（Application Programming Interface）是基于 REST 原则构建的 Web 服务接口，它允许不同的系统通过 HTTP 协议进行通信和数据交换。\nREST API 的核心特点包括：\n无状态性（Stateless）：每个请求都包含处理该请求所需的全部信息\n资源导向（Resource-based）：所有数据被视为资源，通过 URI 标识\n统一接口（Uniform Interface）：使用标准 HTTP 方法（GET、POST、PUT、DELETE 等）\n可缓存性（Cacheable）：响应可以明确标记为可缓存或不可缓存\nREST API 的核心概念\n1. 资源（Resource）\n在 REST 中，资源是任何可以命名的信息，如用户、产品、订单等。每个资源都有一个唯一的标识符（URI）。\n2. HTTP 方法\nREST API 使用标准 HTTP 方法来定义对资源的操作：\nHTTP 方法\n描述\n幂等性\n安全性\nGET\n获取资源\n是\n是\nPOST\n创建新资源\n否\n否\nPUT\n更新整个资源\n是\n否\nPATCH\n部分更新资源\n否\n否\nDELETE\n删除资源\n是\n否\n3. 状态码\nHTTP 状态码表示请求的处理结果：\n状态码\n类别\n常见状态码\n2xx\n成功\n200 OK, 201 Created\n3xx\n重定向\n301 Moved Permanently\n4xx\n客户端错误\n400 Bad Request, 404 Not Found\n5xx\n服务器错误\n500 Internal Server Error\n4. 数据格式\nREST API 常用的数据交换格式：\nJSON（JavaScript Object Notation）\nXML（eXtensible Markup Language）\n有时也使用 YAML、CSV 等格式\nREST API 设计最佳实践\n1. URI 设计原则\n使用名词而非动词表示资源好：/users\n不好：/getUsers\n使用小写字母和连字符（-）\n避免文件扩展名\n使用复数形式表示集合\n分层次表示关系：/users/{id}/orders\n2. 版本控制\n建议在 URI 或请求头中包含 API 版本信息：\nURI 路径：/v1/users\n请求头：Accept: application/vnd.myapi.v1+json\n3. 过滤、排序和分页\n对于集合资源，提供查询参数：\n过滤：/users?role=admin\n排序：/users?sort=-created_at\n分页：/users?page=2&limit=10\n4. 安全性\n使用 HTTPS\n实施身份验证（OAuth2、JWT）\n限制请求频率\n验证输入数据\nREST API 示例\n用户管理 API 示例\n实例",
+    "examples": [
+     "# 获取用户列表\nGET /api/v1/users\nAccept: application/json\n\n# 创建新用户\nPOST /api/v1/users\nContent-Type: application/json\n\n{\n  \"name\": \"张三\",\n  \"email\": \"zhangsan@example.com\"\n}\n\n# 获取特定用户\nGET /api/v1/users/123\nAccept: application/json\n\n# 更新用户信息\nPUT /api/v1/users/123\nContent-Type: application/json\n\n{\n  \"name\": \"张三(更新)\",\n  \"email\": \"new-email@example.com\"\n}\n\n# 删除用户\nDELETE /api/v1/users/123"
+    ]
+   },
+   {
+    "title": "ten-sorting-algorithm",
+    "url": "https://www.runoob.com/w3cnote/ten-sorting-algorithm.html",
+    "body": "本系列算法整理自：https://github.com/hustcc/JS-Sorting-Algorithm\n同时也参考了维基百科做了一些补充。\n排序算法是《数据结构与算法》中最基本的算法之一。\n排序算法可以分为内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的内部排序算法有：插入排序、希尔排序、选择排序、冒泡排序、归并排序、快速排序、堆排序、基数排序等。用一张图概括：\n点击以下图片查看大图：\n关于时间复杂度\n平方阶 (O(n2)) 排序 各类简单排序：直接插入、直接选择和冒泡排序。\n线性对数阶 (O(nlog2n)) 排序 快速排序、堆排序和归并排序；\nO(n1+§)) 排序，§ 是介于 0 和 1 之间的常数。 希尔排序\n线性阶 (O(n)) 排序 基数排序，此外还有桶、箱排序。\n关于稳定性\n稳定的排序算法：冒泡排序、插入排序、归并排序和基数排序。\n不是稳定的排序算法：选择排序、快速排序、希尔排序、堆排序。\n名词解释：\nn：数据规模\nk：\"桶\"的个数\nIn-place：占用常数内存，不占用额外内存\nOut-place：占用额外内存\n稳定性：排序后 2 个相等键值的顺序和排序之前它们的顺序相同\n包含以下内容：\n1、冒泡排序\n2、选择排序\n3、插入排序\n4、希尔排序\n5、归并排序\n6、快速排序\n7、堆排序\n8、计数排序\n9、桶排序\n10、基数排序\n相关书籍\n算法导论（原书第3版）\n算法(第4版)\nlabuladong的算法小抄\n数据结构与算法分析：Java语言描述\nScratch编程入门与算法进阶",
+    "examples": []
+   },
+   {
+    "title": "terminal-tools",
+    "url": "https://www.runoob.com/w3cnote/terminal-tools.html",
+    "body": "用 Claude Code、Codex CLI、OpenCode 做开发，这些工具都跑在终端里。\n很多人装好就直接用了，用的还是 macOS 自带的 Terminal.app，或者 Windows 上的 cmd，跑起来没问题，但同时开四五个 pane，一个跑 Claude Code，一个跑 dev server，一个看日志，一个跑测试，系统默认终端应付不来，AI 输出大段内容时卡顿也很明显。\n终端是你每天打开时间最长的工具之一，值得认真挑一个～\n选之前先了解这几个关键维度：\nGPU 渲染 — Claude Code 流式输出几百行代码、日志高速滚动时，CPU 渲染会卡，GPU 渲染不会。现代终端基本标配。\n图形协议 — AI 工具越来越多地输出图片、图表、渲染后的 diff，需要终端支持 Kitty / Sixel / iTerm2 协议才能正常显示。\n配置即代码 — 配置文件可以纳入 Git 管理，换台电脑一秒还原环境，多台机器保持一致。\n内建 AI — 终端本身内置 AI 命令建议和错误解释（Warp 最深度），或者通过 gh copilot、Amazon Q、aichat 等 shell 插件接入。\n多路复用 — 同时管理多个 pane 和会话，WezTerm 内建，其他终端搭配 zellij（推荐新手）或 tmux。\n连字字体支持 — 使用 Fira Code、JetBrains Mono 等编程字体时，!= 显示为 ≠，代码可读性更好。\n按使用场景分类，共 34 款",
+    "examples": []
+   },
+   {
+    "title": "trae-tutorial",
+    "url": "https://www.runoob.com/w3cnote/trae-tutorial.html",
+    "body": "Trae（/treɪ/）是字节跳动推出的一款面向开发者的 AI 驱动的集成开发环境（IDE），类似 Cursor，支持中文，集成 Claude 和 GPT-4o 模型，目前免费。\nTrae与 AI 深度集成，提供智能问答、代码自动补全以及基于 Agent 的 AI 自动编程能力。\n访问 Trae 国内官网：\n Trae 官网",
+    "examples": []
+   },
+   {
+    "title": "verilog-tutorial",
+    "url": "https://www.runoob.com/w3cnote/verilog-tutorial.html",
+    "body": "Verilog HDL（简称 Verilog ）是一种硬件描述语言，用于数字电路的系统设计。可对算法级、门级、开关级等多种抽象设计层次进行建模。\nVerilog 继承了 C 语言的多种操作符和结构，与另一种硬件描述语言 VHDL 相比，语法不是很严格，代码更加简洁，更容易上手。\nVerilog 不仅定义了语法，还对语法结构都定义了清晰的仿真语义。因此，Verilog 编写的数字模型就能够使用 Verilog 仿真器进行验证。\n谁适合阅读本教程\n本教程主要针对 Verilog 初学者打造。\n有一定 Verilog 基础的同学也可以对进阶篇、实例篇进行学习、交流。\n阅读本教程前，你需要了解的知识\n在学习本教程之前，你需要了解数字电路的一些基本信息。\n如果你对 C 语言有一定的了解，有助于 Verilog 的快速上手。\n第一个 Verilog 设计\n4 位宽 10 进制计数器：\n实例",
+    "examples": [
+     "module counter10(\n        //端口定义\n        input                   rstn,   //复位端，低有效\n        input                   clk,    //输入时钟\n        output [3:0]    cnt,    //计数输出\n        output                  cout);  //溢出位\n\n        reg [3:0]               cnt_temp ;      //计数器寄存器\n        always@(posedge clk or negedge rstn) begin\n                if(! rstn)begin         //复位时，计时归0\n                        cnt_temp        <= 4'b0 ;\n                end\n                else if (cnt_temp==4'd9) begin  //计时10个cycle时，计时归0\n                        cnt_temp        <=4'b000;\n                end\n                else begin                                      //计时加1\n                        cnt_temp        <= cnt_temp + 1'b1 ; \n                end\n        end\n\n        assign  cout = (cnt_temp==4'd9) ;       //输出周期位\n        assign  cnt  = cnt_temp ;                       //输出实时计时器\n\nendmodule"
+    ]
+   },
+   {
+    "title": "what-is-the-tensor",
+    "url": "https://www.runoob.com/w3cnote/what-is-the-tensor.html",
+    "body": "从一个数字，到一串数字，再到一张表格——当维度继续增加，我们就得到了张量。它是 AI 世界里描述数据最通用的容器。\n0 阶",
+    "examples": []
+   },
+   {
+    "title": "zookeeper-tutorial",
+    "url": "https://www.runoob.com/w3cnote/zookeeper-tutorial.html",
+    "body": "ZooKeeper 是 Apache 软件基金会的一个软件项目，它为大型分布式计算提供开源的分布式配置服务、同步服务和命名注册。\nZooKeeper 的架构通过冗余服务实现高可用性。\nZookeeper 的设计目标是将那些复杂且容易出错的分布式一致性服务封装起来，构成一个高效可靠的原语集，并以一系列简单易用的接口提供给用户使用。\n一个典型的分布式数据一致性的解决方案，分布式应用程序可以基于它实现诸如数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master 选举、分布式锁和分布式队列等功能。\n谁适合阅读本教程？\n本教程是为专业的程序开发人员，通过本教程你可以一步一步了解 zookeeper 的应用。\nzookeeper 数据结构\nzookeeper 提供的名称空间非常类似于标准文件系统，key-value 的形式存储。名称 key 由斜线 / 分割的一系列路径元素，zookeeper 名称空间中的每个节点都是由一个路径标识。\n相关 CAP 理论\nCAP 理论指出对于一个分布式计算系统来说，不可能同时满足以下三点：\n一致性：在分布式环境中，一致性是指数据在多个副本之间是否能够保持一致的特性，等同于所有节点访问同一份最新的数据副本。在一致性的需求下，当一个系统在数据一致的状态下执行更新操作后，应该保证系统的数据仍然处于一致的状态。\n可用性：每次请求都能获取到正确的响应，但是不保证获取的数据为最新数据。\n分区容错性：分布式系统在遇到任何网络分区故障的时候，仍然需要能够保证对外提供满足一致性和可用性的服务，除非是整个网络环境都发生了故障。\n一个分布式系统最多只能同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance）这三项中的两项。\n在这三个基本需求中，最多只能同时满足其中的两项，P 是必须的，因此只能在 CP 和 AP 中选择，zookeeper 保证的是 CP，对比 spring cloud 系统中的注册中心 eruka 实现的是 AP。\nBASE 理论\nBASE 是 Basically Available(基本可用)、Soft-state(软状态) 和 Eventually Consistent(最终一致性) 三个短语的缩写。\n基本可用：在分布式系统出现故障，允许损失部分可用性（服务降级、页面降级）。\n软状态：允许分布式系统出现中间状态。而且中间状态不影响系统的可用性。这里的中间状态是指不同的 data replication（数据备份节点）之间的数据更新可以出现延时的最终一致性。\n最终一致性：data replications 经过一段时间达到一致性。\nBASE 理论是对 CAP 中的一致性和可用性进行一个权衡的结果，理论的核心思想就是：我们无法做到强一致，但每个应用都可以根据自身的业务特点，采用适当的方式来使系统达到最终一致性。\n相关资源\nzookeeper 官网：https://zookeeper.apache.org/",
+    "examples": []
+   }
+  ]
+ }
+}

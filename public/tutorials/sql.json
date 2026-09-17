@@ -1,0 +1,484 @@
+{
+ "tutorial": {
+  "name": "SQL",
+  "category": "编程语言",
+  "desc": "SQL（Structured Query Language，结构化查询语言）是一",
+  "url": "https://www.runoob.com/sql/",
+  "chapters": [
+   {
+    "title": "SQL 别名",
+    "url": "https://www.runoob.com/sql/sql-alias.html",
+    "body": "通过使用 SQL，可以为表名称或列名称指定别名。\nSQL 别名\n通过使用 SQL，可以为表名称或列名称指定别名。\n基本上，创建别名是为了让列名称的可读性更强。\n列的 SQL 别名语法\nSELECT column_name AS alias_name\nFROM table_name;\n表的 SQL 别名语法\nSELECT column_name(s)\nFROM table_name AS alias_name;\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\nmysql> SELECT * FROM Websites;\n+----+---------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+---------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 5000 | USA |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\n下面是 \"access_log\" 网站访问记录表的数据：\nmysql> SELECT * FROM access_log;\n+-----+---------+-------+------------+\n| aid | site_id | count | date |\n+-----+---------+-------+------------+\n| 1 | 1 | 45 | 2016-05-10 |\n| 2 | 3 | 100 | 2016-05-13 |\n| 3 | 1 | 230 | 2016-05-14 |\n| 4 | 2 | 10 | 2016-05-14 |\n| 5 | 5 | 205 | 2016-05-14 |\n| 6 | 4 | 13 | 2016-05-15 |\n| 7 | 3 | 220 | 2016-05-15 |\n| 8 | 5 | 545 | 2016-05-16 |\n| 9 | 3 | 201 | 2016-05-17 |\n+-----+---------+-------+------------+\n9 rows in set (0.00 sec)\n列的别名实例\n下面的 SQL 语句指定了两个别名，一个是 name 列的别名，一个是 country 列的别名。提示：如果列名称包含空格，要求使用双引号或方括号：\n实例\n执行输出结果：",
+    "examples": [
+     "SELECT name AS n, country AS c\nFROM Websites;",
+     ""
+    ]
+   },
+   {
+    "title": "SQL ALTER TABLE 语句",
+    "url": "https://www.runoob.com/sql/sql-alter.html",
+    "body": "ALTER TABLE 语句\nALTER TABLE 语句用于在已有的表中添加、删除或修改列。\nSQL ALTER TABLE 语法\n如需在表中添加列，请使用下面的语法:\nALTER TABLE table_name\nADD column_name datatype",
+    "examples": []
+   },
+   {
+    "title": "SQL AND & OR 运算符",
+    "url": "https://www.runoob.com/sql/sql-and-or.html",
+    "body": "AND & OR 运算符用于基于一个以上的条件对记录进行过滤。\nSQL AND & OR 运算符\n如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。\n如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n+----+--------------+---------------------------+-------+---------+\nAND 运算符实例\n下面的 SQL 语句从 \"Websites\" 表中选取国家为 \"CN\" 且alexa排名大于 \"50\" 的所有网站：\n实例",
+    "examples": [
+     "SELECT * FROM Websites\nWHERE country='CN'\nAND alexa > 50;"
+    ]
+   },
+   {
+    "title": "SQL AUTO INCREMENT 字段",
+    "url": "https://www.runoob.com/sql/sql-autoincrement.html",
+    "body": "Auto-increment 会在新记录插入表中时生成一个唯一的数字。\nAUTO INCREMENT 字段\n我们通常希望在每次插入新记录时，自动地创建主键字段的值。\n我们可以在表中创建一个 auto-increment 字段。\n用于 MySQL 的语法\n下面的 SQL 语句把 \"Persons\" 表中的 \"ID\" 列定义为 auto-increment 主键字段：\nCREATE TABLE Persons\n(\n ID int NOT NULL AUTO_INCREMENT,\nLastName varchar(255) NOT NULL,\nFirstName varchar(255),\nAddress varchar(255),\nCity varchar(255),\nPRIMARY KEY (ID)\n)",
+    "examples": []
+   },
+   {
+    "title": "SQL BETWEEN 操作符",
+    "url": "https://www.runoob.com/sql/sql-between.html",
+    "body": "BETWEEN 操作符选取介于两个值之间的数据范围内的值，这些值可以是数值、文本或者日期。\nSQL BETWEEN 语法\nSELECT column1, column2, ...\nFROM table_name\nWHERE column BETWEEN value1 AND value2;\n参数说明：\ncolumn1, column2, ...：要选择的字段名称，可以为多个字段。如果不指定字段名称，则会选择所有字段。\ntable_name：要查询的表名称。\ncolumn：要查询的字段名称。\nvalue1：范围的起始值。\nvalue2：范围的结束值。\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\nmysql> SELECT * FROM Websites;\n+----+---------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+---------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 5000 | USA |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\nBETWEEN 操作符实例\n下面的 SQL 语句选取 alexa 介于 1 和 20 之间的所有网站：\n实例\n执行输出结果：",
+    "examples": [
+     "SELECT * FROM WebsitesWHERE alexa BETWEEN 1 AND 20;",
+     ""
+    ]
+   },
+   {
+    "title": "SQL CHECK 约束",
+    "url": "https://www.runoob.com/sql/sql-check.html",
+    "body": "SQL CHECK 约束\nCHECK 约束用于限制列中的值的范围。\n如果对单个列定义 CHECK 约束，那么该列只允许特定的值。\n如果对一个表定义 CHECK 约束，那么此约束会基于行中其他列的值在特定的列中对值进行限制。\nCREATE TABLE 时的 SQL CHECK 约束\n下面的 SQL 在 \"Persons\" 表创建时在 \"P_Id\" 列上创建 CHECK 约束。CHECK 约束规定 \"P_Id\" 列必须只包含大于 0 的整数。\nMySQL：\nCREATE TABLE Persons\n(\nP_Id int NOT NULL,\nLastName varchar(255) NOT NULL,\nFirstName varchar(255),\nAddress varchar(255),\nCity varchar(255),\nCHECK (P_Id>0)\n)",
+    "examples": []
+   },
+   {
+    "title": "SQL 约束（Constraints）",
+    "url": "https://www.runoob.com/sql/sql-constraints.html",
+    "body": "SQL 约束（Constraints）\nSQL 约束用于规定表中的数据规则。\n如果存在违反约束的数据行为，行为会被约束终止。\n约束可以在创建表时规定（通过 CREATE TABLE 语句），或者在表创建之后规定（通过 ALTER TABLE 语句）。\nSQL CREATE TABLE + CONSTRAINT 语法\nCREATE TABLE table_name\n(\n column_name1 data_type(size) constraint_name,\n column_name2 data_type(size) constraint_name,\n column_name3 data_type(size) constraint_name,\n ....\n);\n在 SQL 中，我们有如下约束：\nNOT NULL - 指示某列不能存储 NULL 值。\nUNIQUE - 保证某列的每行必须有唯一的值。\nPRIMARY KEY - NOT NULL 和 UNIQUE 的结合。确保某列（或两个列多个列的结合）有唯一标识，有助于更容易更快速地找到表中的一个特定的记录。\nFOREIGN KEY - 保证一个表中的数据匹配另一个表中的值的参照完整性。\nCHECK - 保证列中的值符合指定的条件。\nDEFAULT - 规定没有给列赋值时的默认值。\nINDEX - 用于快速访问数据库表中的数据。\n1. NOT NULL\n确保列不能有 NULL 值。\n实例",
+    "examples": [
+     "CREATE TABLE Students (\n    StudentID INT NOT NULL,\n    LastName VARCHAR(50) NOT NULL,\n    FirstName VARCHAR(50),\n    Age INT\n);"
+    ]
+   },
+   {
+    "title": "SQL CREATE DATABASE 语句",
+    "url": "https://www.runoob.com/sql/sql-create-db.html",
+    "body": "SQL CREATE DATABASE 语句\nCREATE DATABASE 语句用于创建数据库。\nSQL CREATE DATABASE 语法\nCREATE DATABASE dbname;",
+    "examples": []
+   },
+   {
+    "title": "SQL CREATE INDEX 语句",
+    "url": "https://www.runoob.com/sql/sql-create-index.html",
+    "body": "CREATE INDEX 语句用于在表中创建索引。\n在不读取整个表的情况下，索引使数据库应用程序可以更快地查找数据。\n索引\n您可以在表中创建索引，以便更加快速高效地查询数据。\n用户无法看到索引，它们只能被用来加速搜索/查询。\n注释：更新一个包含索引的表需要比更新一个没有索引的表花费更多的时间，这是由于索引本身也需要更新。因此，理想的做法是仅仅在常常被搜索的列（以及表）上面创建索引。\nSQL CREATE INDEX 语法\n在表上创建一个简单的索引。允许使用重复的值：\nCREATE INDEX index_name\nON table_name (column_name)",
+    "examples": []
+   },
+   {
+    "title": "SQL CREATE TABLE 语句",
+    "url": "https://www.runoob.com/sql/sql-create-table.html",
+    "body": "SQL CREATE TABLE 语句\nCREATE TABLE 语句用于创建数据库中的表。\n表由行和列组成，每个表都必须有个表名。\nSQL CREATE TABLE 语法\nCREATE TABLE table_name\n(column_name1 data_type(size),column_name2 data_type(size),column_name3 data_type(size),\n....\n);",
+    "examples": []
+   },
+   {
+    "title": "SQL 通用数据类型",
+    "url": "https://www.runoob.com/sql/sql-datatypes-general.html",
+    "body": "数据类型定义列中存放的值的种类。\nSQL 通用数据类型\n数据库表中的每个列都要求有名称和数据类型。Each column in a database table is required to have a name and a data type.\nSQL 开发人员必须在创建 SQL 表时决定表中的每个列将要存储的数据的类型。数据类型是一个标签，是便于 SQL 了解每个列期望存储什么类型的数据的指南，它也标识了 SQL 如何与存储的数据进行交互。\n下面的表格列出了 SQL 中通用的数据类型：\n数据类型\n描述\nCHARACTER(n)\n字符/字符串。固定长度 n。\nVARCHAR(n) 或CHARACTER VARYING(n)\n字符/字符串。可变长度。最大长度 n。\nBINARY(n)\n二进制串。固定长度 n。\nBOOLEAN\n存储 TRUE 或 FALSE 值\nVARBINARY(n) 或BINARY VARYING(n)\n二进制串。可变长度。最大长度 n。\nINTEGER(p)\n整数值（没有小数点）。精度 p。\nSMALLINT\n整数值（没有小数点）。精度 5。\nINTEGER\n整数值（没有小数点）。精度 10。\nBIGINT\n整数值（没有小数点）。精度 19。\nDECIMAL(p,s)\n精确数值，精度 p，小数点后位数 s。例如：decimal(5,2) 是一个小数点前有 3 位数，小数点后有 2 位数的数字。\nNUMERIC(p,s)\n精确数值，精度 p，小数点后位数 s。（与 DECIMAL 相同）\nFLOAT(p)\n近似数值，尾数精度 p。一个采用以 10 为基数的指数计数法的浮点数。该类型的 size 参数由一个指定最小精度的单一数字组成。\nREAL\n近似数值，尾数精度 7。\nFLOAT\n近似数值，尾数精度 16。\nDOUBLE PRECISION\n近似数值，尾数精度 16。\nDATE\n存储年、月、日的值。\nTIME\n存储小时、分、秒的值。\nTIMESTAMP\n存储年、月、日、小时、分、秒的值。\nINTERVAL\n由一些整数字段组成，代表一段时间，取决于区间的类型。\nARRAY\n元素的固定长度的有序集合\nMULTISET\n元素的可变长度的无序集合\nXML\n存储 XML 数据\nSQL 数据类型快速参考手册\n然而，不同的数据库对数据类型定义提供不同的选择。\n下面的表格显示了各种不同的数据库平台上一些数据类型的通用名称：\n数据类型\nAccess\nSQLServer\nOracle\nMySQL\nPostgreSQL\nboolean\nYes/No\nBit\nByte\nN/A\nBoolean\ninteger\nNumber (integer)\nInt\nNumber\nIntInteger\nIntInteger\nfloat\nNumber (single)\nFloatReal\nNumber\nFloat\nNumeric\ncurrency\nCurrency\nMoney\nN/A\nN/A\nMoney\nstring (fixed)\nN/A\nChar\nChar\nChar\nChar\nstring (variable)\nText (<256)Memo (65k+)\nVarchar\nVarcharVarchar2\nVarchar\nVarchar\nbinary object\nOLE Object Memo\nBinary (fixed up to 8K)Varbinary (<8K)Image (<2GB)\nLongRaw\nBlobText\nBinaryVarbinary\n注释：在不同的数据库中，同一种数据类型可能有不同的名称。即使名称相同，尺寸和其他细节也可能不同！\n请总是检查文档！",
+    "examples": []
+   },
+   {
+    "title": "SQL 用于各种数据库的数据类型",
+    "url": "https://www.runoob.com/sql/sql-datatypes.html",
+    "body": "Microsoft Access、MySQL 和 SQL Server 所使用的数据类型和范围。\nMicrosoft Access 数据类型\n数据类型\n描述\n存储\nText\n用于文本或文本与数字的组合。最多 255 个字符。\nMemo\nMemo 用于更大数量的文本。最多存储 65,536 个字符。注释：无法对 memo 字段进行排序。不过它们是可搜索的。\nByte\n允许 0 到 255 的数字。\n1 字节\nInteger\n允许介于 -32,768 与 32,767 之间的全部数字。\n2 字节\nLong\n允许介于 -2,147,483,648 与 2,147,483,647 之间的全部数字。\n4 字节\nSingle\n单精度浮点。处理大多数小数。\n4 字节\nDouble\n双精度浮点。处理大多数小数。\n8 字节\nCurrency\n用于货币。支持 15 位的元，外加 4 位小数。提示：您可以选择使用哪个国家的货币。\n8 字节\nAutoNumber\nAutoNumber 字段自动为每条记录分配数字，通常从 1 开始。\n4 字节\nDate/Time\n用于日期和时间\n8 字节\nYes/No\n逻辑字段，可以显示为 Yes/No、True/False 或 On/Off。在代码中，使用常量 True 和 False （等价于 1 和 0）。注释：Yes/No 字段中不允许 Null 值\n1 比特\nOle Object\n可以存储图片、音频、视频或其他 BLOBs（Binary Large OBjects）。\n最多 1GB\nHyperlink\n包含指向其他文件的链接，包括网页。\nLookup Wizard\n允许您创建一个可从下拉列表中进行选择的选项列表。\n4 字节\nMySQL 数据类型\n在 MySQL 中，有三种主要的类型：Text（文本）、Number（数字）和 Date/Time（日期/时间）类型。\nText 类型：\n数据类型\n描述\nCHAR(size)\n保存固定长度的字符串（可包含字母、数字以及特殊字符）。在括号中指定字符串的长度。最多 255 个字符。\nVARCHAR(size)\n保存可变长度的字符串（可包含字母、数字以及特殊字符）。在括号中指定字符串的最大长度。最多 255 个字符。注释：如果值的长度大于 255，则被转换为 TEXT 类型。\nTINYTEXT\n存放最大长度为 255 个字符的字符串。\nTEXT\n存放最大长度为 65,535 个字符的字符串。\nBLOB\n用于 BLOBs（Binary Large OBjects）。存放最多 65,535 字节的数据。\nMEDIUMTEXT\n存放最大长度为 16,777,215 个字符的字符串。\nMEDIUMBLOB\n用于 BLOBs（Binary Large OBjects）。存放最多 16,777,215 字节的数据。\nLONGTEXT\n存放最大长度为 4,294,967,295 个字符的字符串。\nLONGBLOB\n用于 BLOBs (Binary Large OBjects)。存放最多 4,294,967,295 字节的数据。\nENUM(x,y,z,etc.)\n允许您输入可能值的列表。可以在 ENUM 列表中列出最大 65535 个值。如果列表中不存在插入的值，则插入空值。\n 注释：这些值是按照您输入的顺序排序的。\n可以按照此格式输入可能的值：\n ENUM('X','Y','Z')\nSET\n与 ENUM 类似，不同的是，SET 最多只能包含 64 个列表项且 SET 可存储一个以上的选择。\nNumber 类型：\n数据类型\n描述\nTINYINT(size)\n带符号-128到127 ，无符号0到255。\nSMALLINT(size)\n带符号范围-32768到32767，无符号0到65535, size 默认为 6。\nMEDIUMINT(size)\n带符号范围-8388608到8388607，无符号的范围是0到16777215。 size 默认为9\nINT(size)\n带符号范围-2147483648到2147483647，无符号的范围是0到4294967295。 size 默认为 11\nBIGINT(size)\n带符号的范围是-9223372036854775808到9223372036854775807，无符号的范围是0到18446744073709551615。size 默认为 20\nFLOAT(size,d)\n带有浮动小数点的小数字。在 size 参数中规定显示最大位数。在 d 参数中规定小数点右侧的最大位数。\nDOUBLE(size,d)\n带有浮动小数点的大数字。在 size 参数中规显示定最大位数。在 d 参数中规定小数点右侧的最大位数。\nDECIMAL(size,d)\n作为字符串存储的 DOUBLE 类型，允许固定的小数点。在 size 参数中规定显示最大位数。在 d 参数中规定小数点右侧的最大位数。\n注意：以上的 size 代表的并不是存储在数据库中的具体的长度，如 int(4) 并不是只能存储4个长度的数字。\n实际上int(size)所占多少存储空间并无任何关系。int(3)、int(4)、int(8) 在磁盘上都是占用 4 btyes 的存储空间。就是在显示给用户的方式有点不同外，int(M) 跟 int 数据类型是相同的。\n例如：\n1、int的值为10 （指定zerofill）\nint（9）显示结果为000000010\nint（3）显示结果为010\n就是显示的长度不一样而已 都是占用四个字节的空间\nDate 类型：\n数据类型\n描述\nDATE()\n日期。格式：YYYY-MM-DD注释：支持的范围是从 '1000-01-01' 到 '9999-12-31'\nDATETIME()\n*日期和时间的组合。格式：YYYY-MM-DD HH:MM:SS注释：支持的范围是从 '1000-01-01 00:00:00' 到 '9999-12-31 23:59:59'\nTIMESTAMP()\n*时间戳。TIMESTAMP 值使用 Unix 纪元('1970-01-01 00:00:00' UTC) 至今的秒数来存储。格式：YYYY-MM-DD HH:MM:SS注释：支持的范围是从 '1970-01-01 00:00:01' UTC 到 '2038-01-09 03:14:07' UTC\nTIME()\n时间。格式：HH:MM:SS注释：支持的范围是从 '-838:59:59' 到 '838:59:59'\nYEAR()\n2 位或 4 位格式的年。注释：4 位格式所允许的值：1901 到 2155。2 位格式所允许的值：70 到 69，表示从 1970 到 2069。\n*即便 DATETIME 和 TIMESTAMP 返回相同的格式，它们的工作方式很不同。在 INSERT 或 UPDATE 查询中，TIMESTAMP 自动把自身设置为当前的日期和时间。TIMESTAMP 也接受不同的格式，比如 YYYYMMDDHHMMSS、YYMMDDHHMMSS、YYYYMMDD 或 YYMMDD。\nSQL Server 数据类型\nString 类型：\n数据类型\n描述\n存储\nchar(n)\n固定长度的字符串。最多 8,000 个字符。\nDefined width\nvarchar(n)\n可变长度的字符串。最多 8,000 个字符。\n2 bytes + number of chars\nvarchar(max)\n可变长度的字符串。最多 1,073,741,824 个字符。\n2 bytes + number of chars\ntext\n可变长度的字符串。最多 2GB 文本数据。\n4 bytes + number of chars\nnchar\n固定长度的 Unicode 字符串。最多 4,000 个字符。\nDefined width x 2\nnvarchar\n可变长度的 Unicode 字符串。最多 4,000 个字符。\nnvarchar(max)\n可变长度的 Unicode 字符串。最多 536,870,912 个字符。\nntext\n可变长度的 Unicode 字符串。最多 2GB 文本数据。\nbit\n允许 0、1 或 NULL\nbinary(n)\n固定长度的二进制字符串。最多 8,000 字节。\nvarbinary\n可变长度的二进制字符串。最多 8,000 字节。\nvarbinary(max)\n可变长度的二进制字符串。最多 2GB。\nimage\n可变长度的二进制字符串。最多 2GB。\nNumber 类型：\n数据类型\n描述\n存储\ntinyint\n允许从 0 到 255 的所有数字。\n1 字节\nsmallint\n允许介于 -32,768 与 32,767 的所有数字。\n2 字节\nint\n允许介于 -2,147,483,648 与 2,147,483,647 的所有数字。\n4 字节\nbigint\n允许介于 -9,223,372,036,854,775,808 与 9,223,372,036,854,775,807 之间的所有数字。\n8 字节\ndecimal(p,s)\n固定精度和比例的数字。\n 允许从 -10^38 +1 到 10^38 -1 之间的数字。\np 参数指示可以存储的最大位数（小数点左侧和右侧）。p 必须是 1 到 38 之间的值。默认是 18。\ns 参数指示小数点右侧存储的最大位数。s 必须是 0 到 p 之间的值。默认是 0。\n5-17 字节\nnumeric(p,s)\n固定精度和比例的数字。\n 允许从 -10^38 +1 到 10^38 -1 之间的数字。\np 参数指示可以存储的最大位数（小数点左侧和右侧）。p 必须是 1 到 38 之间的值。默认是 18。\ns 参数指示小数点右侧存储的最大位数。s 必须是 0 到 p 之间的值。默认是 0。\n5-17 字节\nsmallmoney\n介于 -214,748.3648 与 214,748.3647 之间的货币数据。\n4 字节\nmoney\n介于 -922,337,203,685,477.5808 与 922,337,203,685,477.5807 之间的货币数据。\n8 字节\nfloat(n)\n从 -1.79E + 308 到 1.79E + 308 的浮动精度数字数据。n 参数指示该字段保存 4 字节还是 8 字节。float(24) 保存 4 字节，而 float(53) 保存 8 字节。n 的默认值是 53。\n4 或 8 字节\nreal\n从 -3.40E + 38 到 3.40E + 38 的浮动精度数字数据。\n4 字节\nDate 类型：\n数据类型\n描述\n存储\ndatetime\n从 1753 年 1 月 1 日 到 9999 年 12 月 31 日，精度为 3.33 毫秒。\n8 字节\ndatetime2\n从 1753 年 1 月 1 日 到 9999 年 12 月 31 日，精度为 100 纳秒。\n6-8 字节\nsmalldatetime\n从 1900 年 1 月 1 日 到 2079 年 6 月 6 日，精度为 1 分钟。\n4 字节\ndate\n仅存储日期。从 0001 年 1 月 1 日 到 9999 年 12 月 31 日。\n3 bytes\ntime\n仅存储时间。精度为 100 纳秒。\n3-5 字节\ndatetimeoffset\n与 datetime2 相同，外加时区偏移。\n8-10 字节\ntimestamp\n存储唯一的数字，每当创建或修改某行时，该数字会更新。timestamp 值基于内部时钟，不对应真实时间。每个表只能有一个 timestamp 变量。\n其他数据类型：\n数据类型\n描述\nsql_variant\n存储最多 8,000 字节不同数据类型的数据，除了 text、ntext 以及 timestamp。\nuniqueidentifier\n存储全局唯一标识符 (GUID)。\nxml\n存储 XML 格式化数据。最多 2GB。\ncursor\n存储对用于数据库操作的指针的引用。\ntable\n存储结果集，供稍后处理。",
+    "examples": []
+   },
+   {
+    "title": "SQL Date 函数",
+    "url": "https://www.runoob.com/sql/sql-dates.html",
+    "body": "SQL 日期（Dates）\n当我们处理日期时，最难的任务恐怕是确保所插入的日期的格式，与数据库中日期列的格式相匹配。\n只要您的数据包含的只是日期部分，运行查询就不会出问题。但是，如果涉及时间部分，情况就有点复杂了。\n在讨论日期查询的复杂性之前，我们先来看看最重要的内建日期处理函数。\nMySQL Date 函数\n下面的表格列出了 MySQL 中最重要的内建日期函数：\n函数\n描述\nNOW()\n返回当前的日期和时间\nCURDATE()\n返回当前的日期\nCURTIME()\n返回当前的时间\nDATE()\n提取日期或日期/时间表达式的日期部分\nEXTRACT()\n返回日期/时间的单独部分\nDATE_ADD()\n向日期添加指定的时间间隔\nDATE_SUB()\n从日期减去指定的时间间隔\nDATEDIFF()\n返回两个日期之间的天数\nDATE_FORMAT()\n用不同的格式显示日期/时间\nSQL Server Date 函数\n下面的表格列出了 SQL Server 中最重要的内建日期函数：\n函数\n描述\nGETDATE()\n返回当前的日期和时间\nDATEPART()\n返回日期/时间的单独部分\nDATEADD()\n在日期中添加或减去指定的时间间隔\nDATEDIFF()\n返回两个日期之间的时间\nCONVERT()\n用不同的格式显示日期/时间\nSQL Date 数据类型\nMySQL 使用下列数据类型在数据库中存储日期或日期/时间值：\nDATE - 格式：YYYY-MM-DD\nDATETIME - 格式：YYYY-MM-DD HH:MM:SS\nTIMESTAMP - 格式：YYYY-MM-DD HH:MM:SS\nYEAR - 格式：YYYY 或 YY\nSQL Server 使用下列数据类型在数据库中存储日期或日期/时间值：\nDATE - 格式：YYYY-MM-DD\nDATETIME - 格式：YYYY-MM-DD HH:MM:SS\nSMALLDATETIME - 格式：YYYY-MM-DD HH:MM:SS\nTIMESTAMP - 格式：唯一的数字\n注释：当您在数据库中创建一个新表时，需要为列选择数据类型！\n如需了解所有可用的数据类型，请访问我们完整的 数据类型参考手册。\nSQL 日期处理\n如果不涉及时间部分，那么我们可以轻松地比较两个日期！\n假设我们有如下的 \"Orders\" 表：\nOrderId\nProductName\nOrderDate\n1\nGeitost\n2008-11-11\n2\nCamembert Pierrot\n2008-11-09\n3\nMozzarella di Giovanni\n2008-11-11\n4\nMascarpone Fabioli\n2008-10-29\n现在，我们希望从上表中选取 OrderDate 为 \"2008-11-11\" 的记录。\n我们使用下面的 SELECT 语句：\nSELECT * FROM Orders WHERE OrderDate='2008-11-11'",
+    "examples": []
+   },
+   {
+    "title": "SQL DEFAULT 约束",
+    "url": "https://www.runoob.com/sql/sql-default.html",
+    "body": "DEFAULT 约束用于向列中插入默认值。\n如果没有规定其他的值，那么会将默认值添加到所有的新记录。\n语法\n1、在创建表时定义 DEFAULT 约束：\nCREATE TABLE 表名 (\n 列名 数据类型 DEFAULT 默认值\n);\n2、在现有表中添加 DEFAULT 约束：\nALTER TABLE 表名\nALTER COLUMN 列名 SET DEFAULT 默认值;\n实例\n1、创建表时定义 DEFAULT 约束\n实例",
+    "examples": [
+     "CREATE TABLE Employees (\n    EmployeeID INT PRIMARY KEY,\n    FirstName VARCHAR(50),\n    LastName VARCHAR(50),\n    HireDate DATE DEFAULT GETDATE(), -- 默认值为当前日期\n    Salary DECIMAL(10, 2) DEFAULT 0.00 -- 默认值为 0.00\n);"
+    ]
+   },
+   {
+    "title": "SQL DELETE 语句",
+    "url": "https://www.runoob.com/sql/sql-delete.html",
+    "body": "DELETE 语句用于删除表中的记录。\nSQL DELETE 语句\nDELETE 语句用于删除表中的行。\nSQL DELETE 语法\nDELETE FROM table_name\nWHERE condition;\n参数说明：\ntable_name：要删除的表名称。\ncondition：删除条件，用于指定哪些数据要删除。\n请注意 SQL DELETE 语句中的 WHERE 子句！\nWHERE 子句规定哪条记录或者哪些记录需要删除。如果您省略了 WHERE 子句，所有的记录都将被删除！\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n+----+--------------+---------------------------+-------+---------+\nSQL DELETE 实例\n假设我们要从 \"Websites\" 表中删除网站名为 \"Facebook\" 且国家为 USA 的网站。\n我们使用下面的 SQL 语句：\n实例",
+    "examples": [
+     "DELETE FROM Websites\nWHERE name='Facebook' AND country='USA';"
+    ]
+   },
+   {
+    "title": "SQL SELECT DISTINCT 语句",
+    "url": "https://www.runoob.com/sql/sql-distinct.html",
+    "body": "SELECT DISTINCT 语句用于返回唯一不同的值。\n在表中，一个列可能会包含多个重复值，有时您也许希望仅仅列出不同（distinct）的值。\nDISTINCT 关键词用于返回唯一不同的值。\nSQL SELECT DISTINCT 语法\nSELECT DISTINCT column1, column2, ...\nFROM table_name;\n参数说明：\ncolumn1, column2, ...：要选择的字段名称，可以为多个字段。如果不指定字段名称，则会选择所有字段。\ntable_name：要查询的表名称。\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n+----+--------------+---------------------------+-------+---------+\nSELECT DISTINCT 实例\n下面的 SQL 语句仅从 \"Websites\" 表的 \"country\" 列中选取唯一不同的值，也就是去掉 \"country\" 列重复值：\n实例",
+    "examples": [
+     "SELECT DISTINCT country FROM Websites;"
+    ]
+   },
+   {
+    "title": "SQL 撤销索引、撤销表以及撤销数据库",
+    "url": "https://www.runoob.com/sql/sql-drop.html",
+    "body": "通过使用 DROP 语句，可以轻松地删除索引、表和数据库。\nDROP INDEX 语句\n索引是一种优化数据库查询性能的结构，但有时候可能需要删除某个索引，例如当索引不再需要或需要替换为新的索引时。\nDROP INDEX 语句用于删除表中的索引。\n语法格式：",
+    "examples": [
+     "DROP INDEX [IF EXISTS] index_name\nON TABLE_NAME;"
+    ]
+   },
+   {
+    "title": "SQL EXISTS 运算符",
+    "url": "https://www.runoob.com/sql/sql-exists.html",
+    "body": "EXISTS 运算符\nEXISTS 运算符用于判断查询子句是否有记录，如果有一条或多条记录存在返回 True，否则返回 False。\nSQL EXISTS 语法\nSELECT column_name(s)\nFROM table_name\nWHERE EXISTS\n(SELECT column_name FROM table_name WHERE condition);\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n+----+--------------+---------------------------+-------+---------+\n下面是 \"access_log\" 网站访问记录表的数据：\nmysql> SELECT * FROM access_log;\n+-----+---------+-------+------------+\n| aid | site_id | count | date |\n+-----+---------+-------+------------+\n| 1 | 1 | 45 | 2016-05-10 |\n| 2 | 3 | 100 | 2016-05-13 |\n| 3 | 1 | 230 | 2016-05-14 |\n| 4 | 2 | 10 | 2016-05-14 |\n| 5 | 5 | 205 | 2016-05-14 |\n| 6 | 4 | 13 | 2016-05-15 |\n| 7 | 3 | 220 | 2016-05-15 |\n| 8 | 5 | 545 | 2016-05-16 |\n| 9 | 3 | 201 | 2016-05-17 |\n+-----+---------+-------+------------+\n9 rows in set (0.00 sec)\nSQL EXISTS 实例\n现在我们想要查找总访问量(count 字段)大于 200 的网站是否存在。\n我们使用下面的 SQL 语句：\n实例",
+    "examples": [
+     "SELECT Websites.name, Websites.url\nFROM Websites\nWHERE EXISTS (SELECT count FROM access_log WHERE Websites.id = access_log.site_id AND count > 200);"
+    ]
+   },
+   {
+    "title": "SQL FOREIGN KEY 约束",
+    "url": "https://www.runoob.com/sql/sql-foreignkey.html",
+    "body": "SQL FOREIGN KEY 约束\n一个表中的 FOREIGN KEY 指向另一个表中的 UNIQUE KEY(唯一约束的键)。\n让我们通过一个实例来解释外键。请看下面两个表：\n\"Persons\" 表：\nP_Id\nLastName\nFirstName\nAddress\nCity\n1\nHansen\nOla\nTimoteivn 10\nSandnes\n2\nSvendson\nTove\nBorgvn 23\nSandnes\n3\nPettersen\nKari\nStorgt 20\nStavanger\n\"Orders\" 表：\nO_Id\nOrderNo\nP_Id\n1\n77895\n3\n2\n44678\n3\n3\n22456\n2\n4\n24562\n1\n请注意，\"Orders\" 表中的 \"P_Id\" 列指向 \"Persons\" 表中的 \"P_Id\" 列。\n\"Persons\" 表中的 \"P_Id\" 列是 \"Persons\" 表中的 PRIMARY KEY。\n\"Orders\" 表中的 \"P_Id\" 列是 \"Orders\" 表中的 FOREIGN KEY。\nFOREIGN KEY 约束用于预防破坏表之间连接的行为。\nFOREIGN KEY 约束也能防止非法数据插入外键列，因为它必须是它指向的那个表中的值之一。\nCREATE TABLE 时的 SQL FOREIGN KEY 约束\n下面的 SQL 在 \"Orders\" 表创建时在 \"P_Id\" 列上创建 FOREIGN KEY 约束：\nMySQL：\nCREATE TABLE Orders\n(\nO_Id int NOT NULL,\nOrderNo int NOT NULL,\nP_Id int,\nPRIMARY KEY (O_Id),\nFOREIGN KEY (P_Id) REFERENCES Persons(P_Id)\n)",
+    "examples": []
+   },
+   {
+    "title": "SQL AVG() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-avg.html",
+    "body": "AVG() 函数\nAVG() 函数返回数值列的平均值。\nSQL AVG() 语法\nSELECT AVG(column_name) FROM table_name",
+    "examples": []
+   },
+   {
+    "title": "SQL COUNT() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-count.html",
+    "body": "COUNT() 函数返回匹配指定条件的行数。\nSQL COUNT(column_name) 语法\nCOUNT(column_name) 函数返回指定列的值的数目（NULL 不计入）：\nSELECT COUNT(column_name) FROM table_name;",
+    "examples": []
+   },
+   {
+    "title": "SQL FIRST() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-first.html",
+    "body": "FIRST() 函数\nFIRST() 函数返回指定的列中第一个记录的值。\nSQL FIRST() 语法\nSELECT FIRST(column_name) FROM table_name;",
+    "examples": []
+   },
+   {
+    "title": "SQL FORMAT() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-format.html",
+    "body": "FORMAT() 函数\nFORMAT() 函数用于对字段的显示进行格式化。\nSQL FORMAT() 语法\nSELECT FORMAT(column_name,format) FROM table_name;",
+    "examples": []
+   },
+   {
+    "title": "SQL LAST() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-last.html",
+    "body": "LAST() 函数\nLAST() 函数返回指定的列中最后一个记录的值。\nSQL LAST() 语法\nSELECT LAST(column_name) FROM table_name;",
+    "examples": []
+   },
+   {
+    "title": "SQL LCASE() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-lcase.html",
+    "body": "LCASE() 函数\nLCASE() 函数把字段的值转换为小写。\nSQL LCASE() 语法\nSELECT LCASE(column_name) FROM table_name;",
+    "examples": []
+   },
+   {
+    "title": "SQL LEN() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-len.html",
+    "body": "LEN() 函数\nLEN() 函数返回文本字段中值的长度。\nSQL LEN() 语法\nSELECT LEN(column_name) FROM table_name;\nMySQL 中函数为 LENGTH():\nSELECT LENGTH(column_name) FROM table_name;\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\nSQL LEN() 实例\n下面的 SQL 语句从 \"Websites\" 表中选取 \"name\" 和 \"url\" 列中值的长度：\n实例\n执行以上 SQL 输出结果如下：",
+    "examples": [
+     "SELECT name, LENGTH(url) as LengthOfURLFROM Websites;",
+     ""
+    ]
+   },
+   {
+    "title": "SQL MAX() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-max.html",
+    "body": "MAX() 函数\nMAX() 函数返回指定列的最大值。\nSQL MAX() 语法\nSELECT MAX(column_name) FROM table_name;",
+    "examples": []
+   },
+   {
+    "title": "SQL MID() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-mid.html",
+    "body": "MID() 函数\nMID() 函数用于从文本字段中提取字符。\nSQL MID() 语法\nSELECT MID(column_name[,start,length]) FROM table_name;",
+    "examples": []
+   },
+   {
+    "title": "SQL MIN() Function",
+    "url": "https://www.runoob.com/sql/sql-func-min.html",
+    "body": "MIN() 函数\nMIN() 函数返回指定列的最小值。\nSQL MIN() 语法\nSELECT MIN(column_name) FROM table_name;",
+    "examples": []
+   },
+   {
+    "title": "SQL NOW() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-now.html",
+    "body": "NOW() 函数\nNOW() 函数返回当前系统的日期和时间。\nSQL NOW() 语法\nSELECT NOW() FROM table_name;",
+    "examples": []
+   },
+   {
+    "title": "SQL ROUND() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-round.html",
+    "body": "ROUND() 函数\nROUND() 函数用于把数值字段舍入为指定的小数位数。\nSQL ROUND() 语法",
+    "examples": [
+     "SELECT ROUND(column_name,decimals) FROM TABLE_NAME;"
+    ]
+   },
+   {
+    "title": "SQL SUM() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-sum.html",
+    "body": "SUM() 函数\nSUM() 函数返回数值列的总数。\nSQL SUM() 语法\nSELECT SUM(column_name) FROM table_name;",
+    "examples": []
+   },
+   {
+    "title": "SQL UCASE() 函数",
+    "url": "https://www.runoob.com/sql/sql-func-ucase.html",
+    "body": "UCASE() 函数\nUCASE() 函数把字段的值转换为大写。\nSQL UCASE() 语法\nSELECT UCASE(column_name) FROM table_name;",
+    "examples": []
+   },
+   {
+    "title": "SQL 函数",
+    "url": "https://www.runoob.com/sql/sql-function.html",
+    "body": "SQL 拥有很多可用于计数和计算的内建函数。\nSQL Aggregate 函数\nSQL Aggregate 函数计算从列中取得的值，返回一个单一的值。\n有用的 Aggregate 函数：\nAVG() - 返回平均值\nCOUNT() - 返回行数\nFIRST() - 返回第一个记录的值\nLAST() - 返回最后一个记录的值\nMAX() - 返回最大值\nMIN() - 返回最小值\nSUM() - 返回总和\nSQL Scalar 函数\nSQL Scalar 函数基于输入值，返回一个单一的值。\n有用的 Scalar 函数：\nUCASE() - 将某个字段转换为大写\nLCASE() - 将某个字段转换为小写\nMID() - 从某个文本字段提取字符，MySql 中使用\nSubString(字段，1，end) - 从某个文本字段提取字符\nLEN() - 返回某个文本字段的长度\nROUND() - 对某个数值字段进行指定小数位数的四舍五入\nNOW() - 返回当前的系统日期和时间\nFORMAT() - 格式化某个字段的显示方式\n提示：在下面的章节，我们会详细讲解 Aggregate 函数和 Scalar 函数。",
+    "examples": []
+   },
+   {
+    "title": "SQL GROUP BY 语句",
+    "url": "https://www.runoob.com/sql/sql-groupby.html",
+    "body": "GROUP BY 语句可结合一些聚合函数来使用\nGROUP BY 语句\nGROUP BY 语句用于结合聚合函数，根据一个或多个列对结果集进行分组。\nSQL GROUP BY 语法\nSELECT column_name, aggregate_function(column_name)\nFROM table_name\nWHERE column_name operator value\nGROUP BY column_name;",
+    "examples": []
+   },
+   {
+    "title": "SQL HAVING 子句",
+    "url": "https://www.runoob.com/sql/sql-having.html",
+    "body": "HAVING 子句\n在 SQL 中增加 HAVING 子句原因是，WHERE 关键字无法与聚合函数一起使用。\nHAVING 子句可以让我们筛选分组后的各组数据。\nSQL HAVING 语法\nSQL HAVING 语法",
+    "examples": [
+     "SELECT column1, aggregate_function(column2)\nFROM table_name\nGROUP BY column1\nHAVING condition;"
+    ]
+   },
+   {
+    "title": "SQL 主机",
+    "url": "https://www.runoob.com/sql/sql-hosting.html",
+    "body": "SQL 主机是指运行 SQL 数据库管理系统的服务器。它负责存储、管理和处理数据库中的数据。SQL 主机可以是本地计算机、远程服务器或云服务提供商提供的虚拟服务器。\n如果您想要您的网站存储数据在数据库并从数据库显示数据，您的 Web 服务器必须能使用 SQL 语言访问数据库系统。\n如果您的 Web 服务器托管在互联网服务提供商（ISP，全称 Internet Service Provider），您必须寻找 SQL 主机计划。\n最常见的 SQL 主机数据库是 MySQL、MS SQL Server 和 MS Access。\n您可以在 Windows 和 Linux/UNIX 操作系统上运行 SQL 主机数据库。\n下面是操作系统上对应运行的数据库系统的概览：\n1、MS SQL Server\n在 Windows 和 Linux 操作系统上运行。\n2、MySQL\n在 Windows, Mac OS X 和 Linux/UNIX 操作系统上运行。\n3、MS Access（只建议用于小型网站）\n只在 Windows OS 上运行。\n如需学习有关 Web 主机的知识，请访问我们的 主机教程。\nSQL 主机的主要功能\n数据存储\nSQL 主机的主要功能之一是存储数据。它通过数据库管理系统（DBMS）来组织和管理数据，确保数据的安全性和完整性。\n数据处理\nSQL 主机能够执行各种 SQL 查询和命令，如 SELECT、INSERT、UPDATE 和 DELETE，以处理和操作数据。\n数据备份与恢复\nSQL 主机通常提供数据备份和恢复功能，以防止数据丢失或损坏。定期备份数据是确保数据安全的重要措施。\n用户管理\nSQL 主机允许管理员创建和管理用户账户，设置权限，以控制谁可以访问和操作数据库。\n如何选择 SQL 主机？\n性能需求\n根据应用程序的需求选择适当的 SQL 主机。高性能的应用程序可能需要更强大的硬件和优化的数据库配置。\n安全性\n确保 SQL 主机提供足够的安全措施，如数据加密、防火墙和访问控制，以保护数据免受未经授权的访问。\n可扩展性\n选择能够随着业务增长而扩展的 SQL 主机。云服务提供商通常提供灵活的资源扩展选项。\n成本\n考虑 SQL 主机的成本，包括硬件、软件许可和维护费用。云服务提供商通常提供按需付费的模式，可以降低初始成本。\n常见的 SQL 主机类型\n本地 SQL 主机\n本地 SQL 主机是指安装在本地计算机或服务器上的数据库管理系统。它适用于小型应用程序或需要完全控制数据库环境的情况。\n远程 SQL 主机\n远程 SQL 主机是指位于远程服务器上的数据库管理系统。它允许多个用户通过网络访问和操作数据库。\n云 SQL 主机\n云 SQL 主机是由云服务提供商（如 AWS、Google Cloud、Microsoft Azure）提供的数据库服务。它提供高可用性、可扩展性和灵活性，适用于各种规模的应用程序。\n如何连接 SQL 主机？\n使用 SQL 客户端工具\n可以使用 SQL 客户端工具（如 MySQL Workbench、SQL Server Management Studio）连接到 SQL 主机。这些工具提供图形界面，方便用户执行 SQL 查询和管理数据库。\n使用编程语言\n通过编程语言（如 Python、Java、PHP）的数据库连接库，可以编写代码连接到 SQL 主机，并执行 SQL 查询和操作。\n使用命令行\n对于熟悉命令行的用户，可以使用命令行工具（如 MySQL 命令行客户端、psql）连接到 SQL 主机，并执行 SQL 命令。",
+    "examples": []
+   },
+   {
+    "title": "SQL IN 操作符",
+    "url": "https://www.runoob.com/sql/sql-in.html",
+    "body": "IN 操作符\nIN 操作符允许您在 WHERE 子句中规定多个值。\nSQL IN 语法\nSELECT column1, column2, ...\nFROM table_name\nWHERE column IN (value1, value2, ...);\n参数说明：\ncolumn1, column2, ...：要选择的字段名称，可以为多个字段。如果不指定字段名称，则会选择所有字段。\ntable_name：要查询的表名称。\ncolumn：要查询的字段名称。\nvalue1, value2, ...：要查询的值，可以为多个值。\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\nmysql> SELECT * FROM Websites;\n+----+---------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+---------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 5000 | USA |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\nIN 操作符实例\n下面的 SQL 语句选取 name 为 \"Google\" 或 \"菜鸟教程\" 的所有网站：\n实例\n执行输出结果：",
+    "examples": [
+     "SELECT * FROM Websites\n\nWHERE name IN ('Google','菜鸟教程');",
+     ""
+    ]
+   },
+   {
+    "title": "SQL 注入",
+    "url": "https://www.runoob.com/sql/sql-injection.html",
+    "body": "SQL 注入（SQL Injection）是一种常见的网络攻击手段，攻击者通过在输入字段或请求中注入恶意的 SQL 语句，操控数据库执行意图之外的操作。\n其目标通常是：\n窃取敏感数据\n绕过身份验证\n修改、删除数据库内容\n执行系统命令等\nSQL 注入的工作原理\n输入验证不足：当Web应用程序没有正确验证用户输入时，攻击者可以在输入字段中插入SQL代码。\n拼接SQL语句：应用程序后端通常将用户输入与SQL查询拼接在一起，形成完整的数据库查询语句。\n执行恶意SQL：如果应用程序没有对输入进行适当的清理或转义，恶意SQL代码将被数据库服务器执行。\n数据泄露或破坏：攻击者可以利用SQL注入来查询、修改或删除数据库中的数据，或者执行数据库管理系统的系统命令。\n正常查询\n当用户登录网站时，通常会输入用户名和密码。\n以下是一段正常的 SQL 查询代码：\nSELECT * FROM users WHERE username = 'user1' AND password = 'password1';\n注入攻击\n如果攻击者输入：\n用户名： admin' --\n密码： anything\nSQL 查询变成：\nSELECT * FROM users WHERE username = 'admin' --' AND password = 'anything';\n其中 -- 是 SQL 的注释符号，忽略了密码条件，直接绕过了身份验证。\n常见 SQL 注入\n1、基础型 SQL 注入\n直接将恶意 SQL 代码嵌入用户输入中，并影响查询逻辑。\n输入用户名：admin' OR '1'='1\n输入密码：anything\n执行的 SQL 查询：\nSELECT * FROM users WHERE username = 'admin' OR '1'='1' AND password = 'anything';\n结果：\nOR '1'='1' 总为 true，可以绕过验证。\n2、UNION 查询注入\n通过 UNION 将攻击者构造的查询结果与合法查询结果合并，从而获取敏感数据。\n输入：\n' UNION SELECT null, username, password FROM users --\n执行的 SQL 查询：\nSELECT id, name FROM products WHERE id = '' UNION SELECT null, username, password FROM users --';\n结果：\n将 users 表的 username 和 password 数据作为结果返回。\n3、错误型 SQL 注入\n通过故意触发数据库错误，利用错误信息推测表名、列名或数据。\n输入：\n' AND 1=CONVERT(int, (SELECT @@version)) --\n执行的 SQL 查询：\nSELECT * FROM users WHERE username = '' AND 1=CONVERT(int, (SELECT @@version)) --';\n结果：\n错误信息可能暴露数据库版本或其他信息。\n4、盲注\n无法直接获取查询结果，攻击者通过判断返回页面的响应（如布尔值或时间延迟）来逐步推测数据。\n布尔型盲注，输入：\n' AND (SELECT 1 WHERE SUBSTRING((SELECT database()), 1, 1)='t') --\n执行的 SQL 查询：\nSELECT * FROM users WHERE username = '' AND (SELECT 1 WHERE SUBSTRING((SELECT database()), 1, 1)='t') --';\n结果：\n根据返回结果判断数据库名首字母是否为 t。\n时间盲注，输入：\n' AND IF(1=1, SLEEP(5), 0) --\n执行的 SQL 查询：\nSELECT * FROM users WHERE username = '' AND IF(1=1, SLEEP(5), 0) --';\n结果：\n如果条件成立，服务器会延迟 5 秒响应，从而泄露信息。\n5、堆叠查询注入\n允许多条 SQL 语句同时执行。\n输入：\n'; DROP TABLE users; --\n执行的 SQL 查询：\nSELECT * FROM users WHERE username = ''; DROP TABLE users; --';\n结果：\nusers 表被删除。\n某些数据库（如 MySQL）默认不支持多语句执行。\n6、存储过程注入\n利用存储过程的输入参数注入恶意 SQL。\n输入：\n'; EXEC xp_cmdshell('dir'); --\n执行的 SQL：\nEXEC LoginProcedure 'username', ''; EXEC xp_cmdshell('dir'); --'\n结果：\n执行系统命令（如列出目录）。\n7、Cookie 注入\n利用修改浏览器存储的 Cookie 值进行注入。\nCookie: session_id=' OR '1'='1;\n服务器在解析 Cookie 时执行了恶意 SQL。\nSQL 注入的危害\n数据泄露： 攻击者获取数据库中的用户名、密码、银行卡号等敏感信息。\n权限提升： 攻击者可能通过注入命令获得更高的访问权限。\n数据篡改： 数据库内容被修改或删除。\n服务中断： 恶意 SQL 代码可能导致数据库崩溃，影响系统可用性。\n执行系统命令： 通过数据库扩展功能，攻击者可能直接操作操作系统。\n防范措施\n1、参数化查询和预编译语句\n使用参数化查询或预编译语句，将用户输入与 SQL 语句分离，避免用户输入被直接解析为 SQL 代码。\nJava 代码：\n实例",
+    "examples": [
+     "String sql = \"SELECT * FROM users WHERE username = ? AND password = ?\";\nPreparedStatement pstmt = connection.prepareStatement(sql);\npstmt.setString(1, username);\npstmt.setString(2, password);\nResultSet rs = pstmt.executeQuery();"
+    ]
+   },
+   {
+    "title": "SQL INSERT INTO SELECT 语句",
+    "url": "https://www.runoob.com/sql/sql-insert-into-select.html",
+    "body": "通过 SQL，您可以从一个表复制信息到另一个表。\nINSERT INTO SELECT 语句从一个表复制数据，然后把数据插入到一个已存在的表中。\nSQL INSERT INTO SELECT 语句\nINSERT INTO SELECT 语句从一个表复制数据，然后把数据插入到一个已存在的表中。目标表中任何已存在的行都不会受影响。\nSQL INSERT INTO SELECT 语法\n我们可以从一个表中复制所有的列插入到另一个已存在的表中：",
+    "examples": [
+     "INSERT INTO table2\nSELECT * FROM table1;"
+    ]
+   },
+   {
+    "title": "SQL INSERT INTO 语句",
+    "url": "https://www.runoob.com/sql/sql-insert.html",
+    "body": "INSERT INTO 语句用于向表中插入新记录。\nSQL INSERT INTO 语句\nINSERT INTO 语句用于向表中插入新记录。\nSQL INSERT INTO 语法\nINSERT INTO 语句可以有两种编写形式。\n第一种形式无需指定要插入数据的列名，只需提供被插入的值即可：\nINSERT INTO table_name\nVALUES (value1,value2,value3,...);\n第二种形式需要指定列名及被插入的值：\nINSERT INTO table_name (column1,column2,column3,...)\nVALUES (value1,value2,value3,...);\n参数说明：\ntable_name：需要插入新记录的表名。\ncolumn1, column2, ...：需要插入的字段名。\nvalue1, value2, ...：需要插入的字段值。\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n+----+--------------+---------------------------+-------+---------+\nINSERT INTO 实例\n假设我们要向 \"Websites\" 表中插入一个新行。\n我们可以使用下面的 SQL 语句：\n实例",
+    "examples": [
+     "INSERT INTO Websites (name, url, alexa, country)\nVALUES ('百度','https://www.baidu.com/','4','CN');"
+    ]
+   },
+   {
+    "title": "SQL 简介",
+    "url": "https://www.runoob.com/sql/sql-intro.html",
+    "body": "SQL (Structured Query Language:结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。\nSQL 通过一系列的语句和命令来执行数据定义、数据查询、数据操作和数据控制等功能,包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。\nSQL 是什么？\nSQL 指结构化查询语言，全称是 Structured Query Language。\nSQL 让您可以访问和处理数据库，包括数据插入、查询、更新和删除。\nSQL 语言采用英语关键词，使其易读易写。\nSQL 由国际标准化组织（ISO）和美国国家标准协会（ANSI）标准化。\nSQL 提供了丰富的操作数据的功能，从简单的查询到复杂的数据库管理操作。\nSQL 能做什么？\nSQL 面向数据库执行查询\nSQL 可从数据库取回数据\nSQL 可在数据库中插入新的记录\nSQL 可更新数据库中的数据\nSQL 可从数据库删除记录\nSQL 可创建新数据库\nSQL 可在数据库中创建新表\nSQL 可在数据库中创建存储过程\nSQL 可在数据库中创建视图\nSQL 可以设置表、存储过程和视图的权限\nSQL 是一种标准 - 但是...\n虽然 SQL 是一门 ANSI（American National Standards Institute 美国国家标准化组织）标准的计算机语言，但是仍然存在着多种不同版本的 SQL 语言。\n然而，为了与 ANSI 标准相兼容，它们必须以相似的方式共同地来支持一些主要的命令（比如 SELECT、UPDATE、DELETE、INSERT、WHERE 等等）。\n注释：除了 SQL 标准之外，大部分 SQL 数据库程序都拥有它们自己的专有扩展！\n在您的网站中使用 SQL\n要创建一个显示数据库中数据的网站，您需要：\nRDBMS 数据库程序（比如 MS Access、SQL Server、MySQL）\n使用服务器端脚本语言，比如 PHP 或 ASP\n使用 SQL 来获取您想要的数据\n使用 HTML / CSS\nRDBMS\nRDBMS 指关系型数据库管理系统，全称 Relational Database Management System。\nRDBMS 是 SQL 的基础，同样也是所有现代数据库系统的基础，比如 MS SQL Server、IBM DB2、Oracle、MySQL 以及 Microsoft Access。\nRDBMS 中的数据存储在被称为表的数据库对象中。\n表是相关的数据项的集合，它由列和行组成。\nSQL 发展历史\n以下是 SQL 发展历史的关键节点：\n1970s: 起源与早期发展\n1970年：埃德加·科德（Edgar F. Codd）发表了《A Relational Model of Data for Large Shared Data Banks》论文，提出了关系数据库的概念，为 SQL 的发展奠定了理论基础。\n1973年-1974年：IBM 的研究人员 Donald D. Chamberlin 和 Raymond F. Boyce 在科德的理论基础上开发了一种名为 SEQUEL（Structured English Query Language）的语言，用于操作和管理 IBM 的 System R 关系数据库。\n1976年：SEQUEL 更名为 SQL（Structured Query Language）。\n1980s: 标准化与商业化\n1981年：IBM 推出了商用关系数据库系统 SQL/DS（Database System）和 DB2（Database 2）。\n1986年：美国国家标准协会（ANSI）发布了第一个 SQL 标准 ANSI SQL-86（SQL-87）。\n1987年：国际标准化组织（ISO）也采纳了 ANSI SQL-86 作为国际标准。\n1990s: 扩展与改进\n1992年：发布了 SQL-92（SQL2）标准，显著扩展了 SQL 语言的功能，包括对新数据类型、嵌套查询和连接的支持。\n1999年：发布了 SQL:1999（SQL3）标准，引入了对象关系数据库（ORDBMS）特性、递归查询、触发器和用户定义函数。\n2000s: 持续演进与新特性\n2003年：发布了 SQL:2003 标准，引入了 XML 相关特性和窗口函数。\n2006年：发布了 SQL:2006 标准，主要增强了对 XML 的支持。\n2008年：发布了 SQL:2008 标准，进一步改进了语法和性能优化。\n2010s: 新功能与大数据支持\n2011年：发布了 SQL:2011 标准，增加了对时间数据类型和时间旅行（temporal data）的支持。\n2016年：发布了 SQL:2016 标准，引入了 JSON 数据类型和相关操作函数，适应了 NoSQL 数据库和大数据处理需求。\n2020s: 现代化与标准更新\n2023年：最新的 SQL 标准持续改进，增加了对更现代化的数据库需求和特性的支持。\n总结\nSQL 从一种基于关系模型的查询语言发展成为现代数据库管理的核心语言，其标准在不断演进和扩展。各大数据库管理系统（如 MySQL、PostgreSQL、SQLite、SQL Server、Oracle 等）在遵循 SQL 标准的基础上，加入了自身的扩展和优化，使 SQL 成为数据操作和管理的强大工具。SQL 的发展不仅体现了技术的进步，也反映了数据管理需求的变化和增长。",
+    "examples": []
+   },
+   {
+    "title": "SQL NULL 函数",
+    "url": "https://www.runoob.com/sql/sql-isnull.html",
+    "body": "SQL ISNULL()、NVL()、IFNULL() 和 COALESCE() 函数\n请看下面的 \"Products\" 表：\nP_Id\nProductName\nUnitPrice\nUnitsInStock\nUnitsOnOrder\n1\nJarlsberg\n10.45\n16\n15\n2\nMascarpone\n32.56\n23\n3\nGorgonzola\n15.67\n9\n20\n假如 \"UnitsOnOrder\" 是可选的，而且可以包含 NULL 值。\n我们使用下面的 SELECT 语句：\nSELECT ProductName,UnitPrice*(UnitsInStock+UnitsOnOrder)\nFROM Products",
+    "examples": []
+   },
+   {
+    "title": "SQL FULL OUTER JOIN 关键字",
+    "url": "https://www.runoob.com/sql/sql-join-full.html",
+    "body": "FULL OUTER JOIN 是 SQL 中的一种连接方式，用于同时保留两个表中所有的记录，即使其中一方没有匹配项。\nFULL OUTER JOIN 结果包括两个表中满足条件的记录（交集部分）以及不满足条件的记录（并集中的非交集部分）。\n如果某条记录在一张表中存在，而在另一张表中没有匹配项，则该记录的缺失列会以 NULL 填充。\nFULL OUTER JOIN 关键字只要左表（table1）和右表（table2）其中一个表中存在匹配，则返回行。\nFULL OUTER JOIN 关键字结合了 LEFT JOIN 和 RIGHT JOIN 的结果。\nSQL FULL OUTER JOIN 语法\nSELECT column_name(s)\nFROM table1\nFULL OUTER JOIN table2\nON table1.column_name=table2.column_name;\ntable1、table2：需要进行连接的两个表。\nON table1.column_name=table2.column_name：指定连接条件，通常是两个表的共同字段。\ncolumn_name(s)\n：从两个表中选择需要的字段。\n特点\n返回两个表的并集：包含所有匹配和未匹配的记录。\n未匹配的记录填充 NULL：如果某条记录在一张表中没有匹配项，则其对应的字段以 NULL 表示。\n对等性：FULL OUTER JOIN 包含了 LEFT JOIN 和 RIGHT JOIN 的结果。\n假设有两个表：Students 和 Courses。\nStudents 表：\nStudentID\nName\n1\nAlice\n2\nBob\n3\nCharlie\nCourses 表：\nCourseID\nStudentID\nCourseName\n101\n1\nMath\n102\n2\nScience\n103\n4\nHistory\n使用 FULL OUTER JOIN 查询\nSELECT Students.StudentID, Students.Name, Courses.CourseName\nFROM Students\nFULL OUTER JOIN Courses\nON Students.StudentID = Courses.StudentID;\n查询输出结果：\nStudentID\nName\nCourseName\n1\nAlice\nMath\n2\nBob\nScience\n3\nCharlie\nNULL\n4\nNULL\nHistory\n解释：\nStudentID = 1 和 2 是交集部分，两表中都有数据。\nStudentID = 3 存在于 Students 表，但在 Courses 表中没有匹配，CourseName 列为 NULL。\nStudentID = 4 存在于 Courses 表，但在 Students 表中没有匹配，Name 列为 NULL。\n总结\nJOIN 类型\n返回内容\nINNER JOIN\n两个表的交集部分，匹配的记录\nLEFT JOIN\n左表的所有记录，以及匹配的右表记录\nRIGHT JOIN\n右表的所有记录，以及匹配的左表记录\nFULL OUTER JOIN\n两个表的并集部分，包含匹配和未匹配记录\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\n下面是 \"access_log\" 网站访问记录表的数据：\n+-----+---------+-------+------------+\n| aid | site_id | count | date |\n+-----+---------+-------+------------+\n| 1 | 1 | 45 | 2016-05-10 |\n| 2 | 3 | 100 | 2016-05-13 |\n| 3 | 1 | 230 | 2016-05-14 |\n| 4 | 2 | 10 | 2016-05-14 |\n| 5 | 5 | 205 | 2016-05-14 |\n| 6 | 4 | 13 | 2016-05-15 |\n| 7 | 3 | 220 | 2016-05-15 |\n| 8 | 5 | 545 | 2016-05-16 |\n| 9 | 3 | 201 | 2016-05-17 |\n+-----+---------+-------+------------+\n9 rows in set (0.00 sec)\nSQL FULL OUTER JOIN 实例\n下面的 SQL 语句选取所有网站访问记录。\nMySQL中不支持 FULL OUTER JOIN，你可以在 SQL Server 测试以下实例。\n实例",
+    "examples": [
+     "SELECT Websites.name, access_log.count, access_log.date\n\tFROM Websites\n\n\tFULL OUTER JOIN access_log\n\tON Websites.id=access_log.site_id\n\tORDER BY access_log.count DESC;"
+    ]
+   },
+   {
+    "title": "SQL INNER JOIN 关键字",
+    "url": "https://www.runoob.com/sql/sql-join-inner.html",
+    "body": "INNER JOIN 是 SQL 中最常用的连接方式之一，用于从多个表中根据它们之间的关系提取匹配的记录。\nINNER JOIN 关键字在表中存在至少一个匹配时返回行，返回的是两个表中满足连接条件的交集，即同时存在于两个表中的数据。\nSQL INNER JOIN 语法\nSELECT column_name(s)\nFROM table1\nINNER JOIN table2\nON table1.column_name=table2.column_name;\n或：\nSELECT column_name(s)\nFROM table1\nJOIN table2\nON table1.column_name=table2.column_name;\n参数说明：\ncolumns：要显示的列名。\ntable1：表1的名称。\ntable2：表2的名称。\ncolumn_name：表中用于连接的列名。\n注释：INNER JOIN 与 JOIN 是相同的。\n假设有两个表：Students 和 Enrollments。\nStudents 表：\nStudentID\nName\nAge\n1\nAlice\n22\n2\nBob\n23\n3\nCharlie\n24\nEnrollments 表：\nEnrollmentID\nStudentID\nCourse\n101\n1\nMath\n102\n2\nScience\n103\n4\nHistory\n使用 INNER JOIN 查询\nSELECT Students.Name, Enrollments.Course\nFROM Students\nINNER JOIN Enrollments\nON Students.StudentID = Enrollments.StudentID;\n得到结果如下：\nName\nCourse\nAlice\nMath\nBob\nScience\n解释：INNER JOIN 返回的是 Students 和 Enrollments 表中 StudentID 匹配的数据。没有匹配上的记录（如 Charlie 和 EnrollmentID 为 103 的数据）将被排除。\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\n下面是 \"access_log\" 网站访问记录表的数据：\nmysql> SELECT * FROM access_log;\n+-----+---------+-------+------------+\n| aid | site_id | count | date |\n+-----+---------+-------+------------+\n| 1 | 1 | 45 | 2016-05-10 |\n| 2 | 3 | 100 | 2016-05-13 |\n| 3 | 1 | 230 | 2016-05-14 |\n| 4 | 2 | 10 | 2016-05-14 |\n| 5 | 5 | 205 | 2016-05-14 |\n| 6 | 4 | 13 | 2016-05-15 |\n| 7 | 3 | 220 | 2016-05-15 |\n| 8 | 5 | 545 | 2016-05-16 |\n| 9 | 3 | 201 | 2016-05-17 |\n+-----+---------+-------+------------+\n9 rows in set (0.00 sec)\nSQL INNER JOIN 实例\n下面的 SQL 语句将返回所有网站的访问记录：\n实例\n执行以上 SQL 输出结果如下：",
+    "examples": [
+     "SELECT Websites.name, access_log.count, access_log.dateFROM WebsitesINNER \n\tJOIN access_log\n\n\tON Websites.id=access_log.site_idORDER BY \n\taccess_log.count;",
+     ""
+    ]
+   },
+   {
+    "title": "SQL LEFT JOIN 关键字",
+    "url": "https://www.runoob.com/sql/sql-join-left.html",
+    "body": "LEFT JOIN 是 SQL 中的一个连接关键字，用于从多个表中提取数据。\nLEFT JOIN 与 INNER JOIN 不同之处在于，LEFT JOIN 会返回左表中的所有记录，即使在右表中没有匹配的记录。\nLEFT JOIN 关键字从左表（table1）返回所有的行，即使右表（table2）中没有匹配。如果右表中没有匹配，则结果为 NULL。\nSQL LEFT JOIN 语法\nSELECT column_name(s)\nFROM table1\nLEFT JOIN table2\nON table1.column_name=table2.column_name;\n或：\nSELECT column_name(s)\nFROM table1\nLEFT OUTER JOIN table2\nON table1.column_name=table2.column_name;\n注释：在某些数据库中，LEFT JOIN 称为 LEFT OUTER JOIN。\ntable1：左表（主表），LEFT JOIN 会保留该表的所有记录。\ntable2：右表（从表），如果没有匹配的数据，用 NULL 填充对应的列。\nON table1.column_name=table2.column_name：指定连接条件，通常是两个表的共同字段。\n特点：\n返回左表中的所有记录，即使右表没有匹配的数据。\n如果右表没有匹配的记录，结果中该行右表字段为 NULL。\n假设有两个表：Customers 和 Orders。\nCustomers 表：\nCustomerID\nName\n1\nAlice\n2\nBob\n3\nCharlie\n4\nDavid\nOrders 表：\nOrderID\nCustomerID\nProduct\n101\n1\nLaptop\n102\n2\nSmartphone\n使用 LEFT JOIN 查询：\nSELECT Customers.Name, Orders.Product\nFROM Customers\nLEFT JOIN Orders\nON Customers.CustomerID = Orders.CustomerID;\n查询输出结果：\nName\nProduct\nAlice\nLaptop\nBob\nSmartphone\nCharlie\nNULL\nDavid\nNULL\n解释：LEFT JOIN 返回了 Customers 表中的所有记录。对于 Charlie 和 David，由于在 Orders 表中没有匹配的 CustomerID，它们对应的 Product 列为 NULL。\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\n下面是 \"access_log\" 网站访问记录表的数据：\nmysql> SELECT * FROM access_log;\n+-----+---------+-------+------------+\n| aid | site_id | count | date |\n+-----+---------+-------+------------+\n| 1 | 1 | 45 | 2016-05-10 |\n| 2 | 3 | 100 | 2016-05-13 |\n| 3 | 1 | 230 | 2016-05-14 |\n| 4 | 2 | 10 | 2016-05-14 |\n| 5 | 5 | 205 | 2016-05-14 |\n| 6 | 4 | 13 | 2016-05-15 |\n| 7 | 3 | 220 | 2016-05-15 |\n| 8 | 5 | 545 | 2016-05-16 |\n| 9 | 3 | 201 | 2016-05-17 |\n+-----+---------+-------+------------+\n9 rows in set (0.00 sec)\nSQL LEFT JOIN 实例\n下面的 SQL 语句将返回所有网站及他们的访问量（如果有的话）。\n以下实例中我们把 Websites 作为左表，access_log 作为右表：\n实例\n执行以上 SQL 输出结果如下：",
+    "examples": [
+     "SELECT Websites.name, access_log.count, access_log.date\n\n\tFROM Websites\n\tLEFT JOIN access_log\n\tON Websites.id=access_log.site_id\n\tORDER BY access_log.count DESC;",
+     ""
+    ]
+   },
+   {
+    "title": "SQL RIGHT JOIN 关键字",
+    "url": "https://www.runoob.com/sql/sql-join-right.html",
+    "body": "RIGHT JOIN 是 SQL 中的一个连接关键字，用于从多个表中提取数据。\n与 LEFT JOIN 类似，但其行为相反：RIGHT JOIN 会返回右表中的所有记录，即使左表中没有匹配的记录。\nRIGHT JOIN 关键字从右表（table2）返回所有的行，即使左表（table1）中没有匹配。如果左表中没有匹配，则结果为 NULL。\nSQL RIGHT JOIN 语法\nSELECT column_name(s)\nFROM table1\nRIGHT JOIN table2\nON table1.column_name=table2.column_name;\n或：\nSELECT column_name(s)\nFROM table1\nRIGHT OUTER JOIN table2\nON table1.column_name=table2.column_name;\n注释：在某些数据库中，RIGHT JOIN 称为 RIGHT OUTER JOIN。\ntable1：左表。\ntable2：右表，RIGHT JOIN 会保留该表的所有记录。\nON table1.column_name=table2.column_name：指定连接条件，通常是两个表的共同字段。\n特点\n保留右表的所有记录：即使左表中没有匹配的记录，也会在结果中包含右表的所有记录。\n左表未匹配时填充 NULL：如果左表中没有对应的记录，用 NULL 填充左表的列。\n假设有两个表：Employees 和 Departments。\nEmployees 表：\nEmployeeID\nName\nDepartmentID\n1\nAlice\n10\n2\nBob\n20\n3\nCharlie\nNULL\nDepartments 表：\nDepartmentID\nDepartmentName\n10\nHR\n20\nIT\n30\nFinance\n使用 RIGHT JOIN 查询\nSELECT Employees.Name, Departments.DepartmentName\nFROM Employees\nRIGHT JOIN Departments\nON Employees.DepartmentID = Departments.DepartmentID;\n查询输出结果：\nName\nDepartmentName\nAlice\nHR\nBob\nIT\nNULL\nFinance\n解释：RIGHT JOIN 返回了 Departments 表中的所有记录。对于 DepartmentID = 30 的记录，由于 Employees 表中没有匹配数据，其 Name 列为 NULL。\n与 LEFT JOIN 的区别\nLEFT JOIN：返回左表的所有记录，即使右表没有匹配项。\nRIGHT JOIN：返回右表的所有记录，即使左表没有匹配项。\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n操作前先在 access_log 表添加一条数据，该数据在 Websites 表没有对应的数据：\nINSERT INTO `access_log` (`aid`, `site_id`, `count`, `date`) VALUES ('10', '6', '111', '2016-03-09');\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\n下面是 \"access_log\" 网站访问记录表的数据：\nmysql> SELECT * FROM access_log;\n+-----+---------+-------+------------+\n| aid | site_id | count | date |\n+-----+---------+-------+------------+\n| 1 | 1 | 45 | 2016-05-10 |\n| 2 | 3 | 100 | 2016-05-13 |\n| 3 | 1 | 230 | 2016-05-14 |\n| 4 | 2 | 10 | 2016-05-14 |\n| 5 | 5 | 205 | 2016-05-14 |\n| 6 | 4 | 13 | 2016-05-15 |\n| 7 | 3 | 220 | 2016-05-15 |\n| 8 | 5 | 545 | 2016-05-16 |\n| 9 | 3 | 201 | 2016-05-17 |\n| 10 | 6 | 111 | 2016-03-19 |\n+-----+---------+-------+------------+\n9 rows in set (0.00 sec)\nSQL RIGHT JOIN 实例\n下面的 SQL 语句将返回网站的访问记录。\n以下实例中我们把 Websites 作为左表，access_log 作为右表：\n实例",
+    "examples": [
+     "SELECT websites.name, access_log.count, access_log.date\nFROM websites\nRIGHT JOIN access_log\nON access_log.site_id=websites.id\nORDER BY access_log.count DESC;"
+    ]
+   },
+   {
+    "title": "SQL 连接(JOIN)",
+    "url": "https://www.runoob.com/sql/sql-join.html",
+    "body": "SQL join 用于把来自两个或多个表的行结合起来。\n下图展示了 LEFT JOIN、RIGHT JOIN、INNER JOIN、OUTER JOIN 相关的 7 种用法。\n类型\n描述\nINNER JOIN\n返回两个表中满足连接条件的记录（交集）。\nLEFT JOIN\n返回左表中的所有记录，即使右表中没有匹配的记录（保留左表）。\nRIGHT JOIN\n返回右表中的所有记录，即使左表中没有匹配的记录（保留右表）。\nFULL OUTER JOIN\n返回两个表的并集，包含匹配和不匹配的记录。\nCROSS JOIN\n返回两个表的笛卡尔积，每条左表记录与每条右表记录进行组合。\nSELF JOIN\n将一个表与自身连接。\nNATURAL JOIN\n基于同名字段自动匹配连接的表。\n示例数据\n表1：Customers\nCustomerID\nName\n1\nAlice\n2\nBob\n3\nCharlie\n表2：Orders\nOrderID\nCustomerID\nProduct\n101\n1\nLaptop\n102\n2\nPhone\n103\n4\nTablet\n各连接结果对比\nJOIN 类型\n结果\nINNER JOIN\n返回两个表中匹配的记录。在给定的例子中，只有 CustomerID 为 1 和 2 的记录在两个表中都有匹配，所以只会返回这些记录。\nLEFT JOIN\n返回左表（Customers）中的所有记录，即使右表（Orders）中没有匹配的记录。对于左表中没有匹配的右表记录，结果中的右表字段将为 NULL。在例子中，CustomerID 为 3 的记录在右表中没有匹配，所以其对应的 Product 将为 NULL。\nRIGHT JOIN\n返回右表（Orders）中的所有记录，即使左表（Customers）中没有匹配的记录。对于右表中没有匹配的左表记录，结果中的左表字段将为 NULL。在例子中，OrderID 为 103 的记录在左表中没有匹配，所以其对应的 Name 将为 NULL。\nFULL OUTER JOIN\n返回两个表中的所有记录，无论它们是否匹配。如果某个表中没有匹配的记录，那么该表的字段将为 NULL。在例子中，CustomerID 为 3 和 OrderID 为 103 的记录将分别在对方的表中显示为 NULL。\nCROSS JOIN\n返回两个表的笛卡尔积，即左表中的每一行与右表中的每一行组合。在例子中，每个顾客都将与每个订单组合，产生多个结果。\nSELF JOIN\n表与其自身进行连接。这通常用于查询表中相互关联的记录，比如员工与其经理之间的关系。\nSQL JOIN\nSQL JOIN 子句用于把来自两个或多个表的行结合起来，基于这些表之间的共同字段。\n最常见的 JOIN 类型：SQL INNER JOIN（简单的 JOIN）。 \nSQL INNER JOIN 从多个表中返回满足 JOIN 条件的所有行。\n语法：\nSELECT column1, column2, ...\nFROM table1\nJOIN table2 ON condition;\n参数说明：\ncolumn1, column2, ...：要选择的字段名称，可以为多个字段。如果不指定字段名称，则会选择所有字段。\ntable1：要连接的第一个表。\ntable2：要连接的第二个表。\ncondition：连接条件，用于指定连接方式。\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\n下面是 \"access_log\" 网站访问记录表的数据：\nmysql> SELECT * FROM access_log;\n+-----+---------+-------+------------+\n| aid | site_id | count | date |\n+-----+---------+-------+------------+\n| 1 | 1 | 45 | 2016-05-10 |\n| 2 | 3 | 100 | 2016-05-13 |\n| 3 | 1 | 230 | 2016-05-14 |\n| 4 | 2 | 10 | 2016-05-14 |\n| 5 | 5 | 205 | 2016-05-14 |\n| 6 | 4 | 13 | 2016-05-15 |\n| 7 | 3 | 220 | 2016-05-15 |\n| 8 | 5 | 545 | 2016-05-16 |\n| 9 | 3 | 201 | 2016-05-17 |\n+-----+---------+-------+------------+\n9 rows in set (0.00 sec)\n请注意，\"Websites\" 表中的 \"id\" 列指向 \"access_log\" 表中的字段 \"site_id\"。上面这两个表是通过 \"site_id\" 列联系起来的。\n然后，如果我们运行下面的 SQL 语句（包含 INNER JOIN）：\n实例\n执行以上 SQL 输出结果如下：",
+    "examples": [
+     "SELECT Websites.id, Websites.name, access_log.count, access_log.dateFROM \n\tWebsitesINNER JOIN access_logON Websites.id=access_log.site_id;",
+     ""
+    ]
+   },
+   {
+    "title": "SQL LIKE 操作符",
+    "url": "https://www.runoob.com/sql/sql-like.html",
+    "body": "LIKE 操作符用于在 WHERE 子句中搜索列中的指定模式。\nLIKE 操作符是 SQL 中用于在 WHERE 子句中进行模糊查询的关键字，它允许我们根据模式匹配来选择数据，通常与 % 和 _ 通配符一起使用。\nSQL LIKE 语法\nSELECT column1, column2, ...\nFROM table_name\nWHERE column_name LIKE pattern;\n参数说明：\ncolumn1, column2, ...：要选择的字段名称，可以为多个字段。如果不指定字段名称，则会选择所有字段。\ntable_name：要查询的表名称。\ncolumn：要搜索的字段名称。\npattern：搜索模式。\n通配符\n%：匹配任意字符（包括零个字符）。\n_：匹配单个字符。\n实例\n假设我们有一个名为 Products 的表，包含以下数据：\nProductID\nProductName\nCategory\n1\niPhone 12\nElectronics\n2\nSamsung Galaxy S21\nElectronics\n3\nDell XPS 13\nElectronics\n4\nNike Air Zoom\nFootwear\n5\nAdidas Ultraboost\nFootwear\n6\nSony PlayStation 5\nElectronics\n使用 % 通配符找出所有以 \"iPhone\" 开头的产品：\nSELECT ProductName, Category\nFROM Products\nWHERE ProductName LIKE 'iPhone%';\n返回以下数据：\nProductName\nCategory\niPhone 12\nElectronics\n使用 _ 通配符找出所有产品名称第二个字符为 \"e\" 的产品：\nSELECT ProductName, Category\nFROM Products\nWHERE ProductName LIKE '_e%';\n返回以下数据：\nProductName\nCategory\nDell XPS 13\nElectronics\n结合 % 和 _ 通配符找出所有产品名称包含 \"Zoom\" 的产品：\nSELECT ProductName, Category\nFROM Products\nWHERE ProductName LIKE '%Zoom%';\n返回以下数据：\nProductName\nCategory\nNike Air Zoom\nFootwear\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\nmysql> SELECT * FROM Websites;\n+----+---------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+---------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 5000 | USA |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\nSQL LIKE 操作符实例\n下面的 SQL 语句选取 name 以字母 \"G\" 开始的所有客户：\n实例\n执行输出结果：",
+    "examples": [
+     "SELECT * FROM Websites\nWHERE name LIKE 'G%';",
+     ""
+    ]
+   },
+   {
+    "title": "SQL NOT NULL 约束",
+    "url": "https://www.runoob.com/sql/sql-notnull.html",
+    "body": "在默认的情况下，表的列接受 NULL 值。\nSQL NOT NULL 约束\nNOT NULL 约束强制列不接受 NULL 值。\nNOT NULL 约束强制字段始终包含值。这意味着，如果不向字段添加值，就无法插入新记录或者更新记录。\n下面的 SQL 强制 \"ID\" 列、 \"LastName\" 列以及 \"FirstName\" 列不接受 NULL 值：\n实例",
+    "examples": [
+     "CREATE TABLE Persons (\nID int NOT NULL,\n    LastName varchar(255) NOT NULL,\n    FirstName varchar(255) NOT NULL,\n    Age int\n);"
+    ]
+   },
+   {
+    "title": "SQL NULL 值",
+    "url": "https://www.runoob.com/sql/sql-null-values.html",
+    "body": "NULL 值代表遗漏的未知数据。\n默认地，表的列可以存放 NULL 值。\n本章讲解 IS NULL 和 IS NOT NULL 操作符。\nSQL NULL 值\n如果表中的某个列是可选的，那么我们可以在不向该列添加值的情况下插入新记录或更新已有的记录。这意味着该字段将以 NULL 值保存。\nNULL 值的处理方式与其他值不同。\nNULL 用作未知的或不适用的值的占位符。\n注释：无法比较 NULL 和 0；它们是不等价的。\nSQL 的 NULL 值处理\n请看下面的 \"Persons\" 表：\nP_Id\nLastName\nFirstName\nAddress\nCity\n1\nHansen\nOla\nSandnes\n2\nSvendson\nTove\nBorgvn 23\nSandnes\n3\nPettersen\nKari\nStavanger\n假如 \"Persons\" 表中的 \"Address\" 列是可选的。这意味着如果在 \"Address\" 列插入一条不带值的记录，\"Address\" 列会使用 NULL 值保存。\n那么我们如何测试 NULL 值呢？\n无法使用比较运算符来测试 NULL 值，比如 =、< 或 <>。\n我们必须使用 IS NULL 和 IS NOT NULL 操作符。\nSQL IS NULL\n我们如何仅仅选取在 \"Address\" 列中带有 NULL 值的记录呢？\n我们必须使用 IS NULL 操作符：\nSELECT LastName,FirstName,Address FROM Persons\nWHERE Address IS NULL",
+    "examples": []
+   },
+   {
+    "title": "SQL ORDER BY 关键字",
+    "url": "https://www.runoob.com/sql/sql-orderby.html",
+    "body": "ORDER BY 关键字用于对结果集进行排序。\nSQL ORDER BY 关键字\nORDER BY 关键字用于对结果集按照一个列或者多个列进行排序。\nORDER BY 关键字默认按照升序对记录进行排序。如果需要按照降序对记录进行排序，您可以使用 DESC 关键字。\nSQL ORDER BY 语法\nSELECT column1, column2, ...\nFROM table_name\nORDER BY column1, column2, ... ASC|DESC;\ncolumn1, column2, ...：要排序的字段名称，可以为多个字段。\nASC：表示按升序排序。\nDESC：表示按降序排序。\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n+----+--------------+---------------------------+-------+---------+\nORDER BY 实例\n下面的 SQL 语句从 \"Websites\" 表中选取所有网站，并按照 \"alexa\" 列排序：\n实例",
+    "examples": [
+     "SELECT * FROM Websites\nORDER BY alexa;"
+    ]
+   },
+   {
+    "title": "SQL PRIMARY KEY 约束",
+    "url": "https://www.runoob.com/sql/sql-primarykey.html",
+    "body": "SQL PRIMARY KEY 约束\nPRIMARY KEY 约束唯一标识数据库表中的每条记录。\nPRIMARY KEY 必须包含唯一的值，且不能包含 NULL 值。\n每个表只能有一个 PRIMARY KEY，该主键可以由单个列或多个列组成。\nCREATE TABLE 时的 SQL PRIMARY KEY 约束\n下面的 SQL 在 \"Persons\" 表创建时在 \"P_Id\" 列上创建 PRIMARY KEY 约束：\nMySQL：\nCREATE TABLE Persons\n(\n P_Id int NOT NULL,\n LastName varchar(255) NOT NULL,\n FirstName varchar(255),\n Address varchar(255),\n City varchar(255),\n PRIMARY KEY (P_Id)\n)\nSQL Server / Oracle / MS Access：\nCREATE TABLE Persons\n(\n P_Id int NOT NULL PRIMARY KEY,\n LastName varchar(255) NOT NULL,\n FirstName varchar(255),\n Address varchar(255),\n City varchar(255)\n)\n如需命名 PRIMARY KEY 约束，并定义多个列的 PRIMARY KEY 约束，请使用下面的 SQL 语法：\nMySQL / SQL Server / Oracle / MS Access：\nCREATE TABLE Persons\n(\n P_Id int NOT NULL,\n LastName varchar(255) NOT NULL,\n FirstName varchar(255),\n Address varchar(255),\n City varchar(255),\n CONSTRAINT pk_PersonID PRIMARY KEY (P_Id,LastName)\n)\n注释：在上面的实例中，只有一个主键 PRIMARY KEY（pk_PersonID）。然而，pk_PersonID 的值是由两个列（P_Id 和 \nLastName）组成的。\nALTER TABLE 时的 SQL PRIMARY KEY 约束\n当表已被创建时，如需在 \"P_Id\" 列创建 PRIMARY KEY 约束，请使用下面的 SQL：\nMySQL / SQL Server / Oracle / MS Access：\nALTER TABLE Persons\nADD PRIMARY KEY (P_Id)\n如需命名 PRIMARY KEY 约束，并定义多个列的 PRIMARY KEY 约束，请使用下面的 SQL 语法：\nMySQL / SQL Server / Oracle / MS Access：\nALTER TABLE Persons\nADD CONSTRAINT pk_PersonID PRIMARY KEY (P_Id,LastName)\n注释：如果您使用 ALTER TABLE 语句添加主键，必须把主键列声明为不包含 NULL 值（在表首次创建时）。\n撤销 PRIMARY KEY 约束\n如需撤销 PRIMARY KEY 约束，请使用下面的 SQL：\nMySQL：\nALTER TABLE Persons\nDROP PRIMARY KEY\nSQL Server / Oracle / MS Access：\nALTER TABLE Persons\nDROP CONSTRAINT pk_PersonID",
+    "examples": []
+   },
+   {
+    "title": "SQL 快速参考",
+    "url": "https://www.runoob.com/sql/sql-quickref.html",
+    "body": "SQL 语句\n语法\n说明\nAND / OR\nSELECT column_name(s)\n FROM table_name\n WHERE condition\n AND|OR condition\nAND：表示逻辑与OR：表示逻辑或\nALTER TABLE\nALTER TABLE table_name ADD column_name datatypeALTER TABLE table_name DROP COLUMN column_name\n用于修改现有表的结构，添加或删除列。\nAS (alias)\nSELECT column_name AS column_alias FROM table_nameSELECT column_name FROM table_name AS table_alias\n用于为列或表指定别名。\nBETWEEN\nSELECT column_name(s) FROM table_name WHERE column_name BETWEEN value1 AND value2\n用于筛选在指定范围内的记录。\nCREATE DATABASE\nCREATE DATABASE database_name\n用于创建新数据库。\nCREATE TABLE\nCREATE TABLE table_name (column_name1 data_type, column_name2 data_type, ...)\n用于创建新表，定义表的列和数据类型。\nCREATE INDEX\nCREATE INDEX index_name ON table_name (column_name)CREATE UNIQUE INDEX index_name ON table_name (column_name)\n用于在表的列上创建索引，以加速查询。\nCREATE VIEW\nCREATE VIEW view_name AS SELECT column_name(s) FROM table_name WHERE condition\n用于创建视图，以保存复杂查询的结果。\nDELETE\nDELETE FROM table_name WHERE some_column=some_valueDELETE FROM table_nameDELETE * FROM table_name\n用于删除表中的记录，DELETE FROM table_name 和 DELETE * FROM table_name 会删除所有记录。\nDROP DATABASE\nDROP DATABASE database_name\n用于删除数据库。\nDROP INDEX\nDROP INDEX table_name.index_name (SQL Server)DROP INDEX index_name ON table_name (MS Access)DROP INDEX index_name (DB2/Oracle)ALTER TABLE table_name DROP INDEX index_name (MySQL)\n用于删除表上的索引。\nDROP TABLE\nDROP TABLE table_name\n用于删除表及其所有数据。\nGROUP BY\nSELECT column_name, aggregate_function(column_name) FROM table_name WHERE column_name operator value GROUP BY column_name\n用于按一个或多个列对结果集进行分组。\nHAVING\nSELECT column_name, aggregate_function(column_name) FROM table_name WHERE column_name operator value GROUP BY column_name HAVING aggregate_function(column_name) operator value\n用于对分组后的结果集进行过滤。\nIN\nSELECT column_name(s) FROM table_name WHERE column_name IN (value1, value2, ...)\n用于筛选匹配集合中某一值的记录。\nINSERT INTO\nINSERT INTO table_name VALUES (value1, value2, ...)INSERT INTO table_name (column1, column2, ...) VALUES (value1, value2, ...)\n用于向表中插入新记录。\nINNER JOIN\nSELECT column_name(s) FROM table_name1 INNER JOIN table_name2 ON table_name1.column_name=table_name2.column_name\n用于返回两个表中匹配的记录。\nLEFT JOIN\nSELECT column_name(s) FROM table_name1 LEFT JOIN table_name2 ON table_name1.column_name=table_name2.column_name\n用于返回左表中的所有记录和右表中的匹配记录。\nRIGHT JOIN\nSELECT column_name(s) FROM table_name1 RIGHT JOIN table_name2 ON table_name1.column_name=table_name2.column_name\n用于返回右表中的所有记录和左表中的匹配记录。\nFULL JOIN\nSELECT column_name(s) FROM table_name1 FULL JOIN table_name2 ON table_name1.column_name=table_name2.column_name\n用于返回两个表中的所有记录，不论是否匹配。\nLIKE\nSELECT column_name(s) FROM table_name WHERE column_name LIKE pattern\n用于筛选匹配特定模式的记录。\nORDER BY\nSELECT column_name(s)\nFROM table_name\nORDER BY column_name [ASC|DESC]\n用于对结果集进行排序。ASC 表示升序排列（默认），DESC 表示降序排列。\nSELECT\nSELECT column_name(s) FROM table_name\n用于从表中选择数据。\nSELECT\nSELECT * FROM table_name\n用于选择表中的所有列。\nSELECT DISTINCT\nSELECT DISTINCT column_name(s) FROM table_name\n用于返回唯一不同的值。\nSELECT INTO\nSELECT * INTO new_table_name [IN externaldatabase] FROM old_table_nameSELECT column_name(s) INTO new_table_name [IN externaldatabase] FROM old_table_name\n用于从一个表中选择数据并插入到新表中。\nSELECT TOP\nSELECT TOP number|percent column_name(s)\nFROM table_name\nORDER BY column_name [ASC|DESC]\n从表中返回前指定数量的记录，可以指定绝对数量或百分比。\nTRUNCATE TABLE\nTRUNCATE TABLE table_name\n用于删除表中的所有数据，但不删除表结构。\nUNION\nSELECT column_name(s) FROM table_name1 UNION SELECT column_name(s) FROM table_name2\n用于合并两个或多个 SELECT 语句的结果集，不包含重复记录。\nUNION ALL\nSELECT column_name(s) FROM table_name1 UNION ALL SELECT column_name(s) FROM table_name2\n用于合并两个或多个 SELECT 语句的结果集，包含重复记录。\nUPDATE\nUPDATE table_name SET column1=value, column2=value, ... WHERE some_column=some_value\n用于修改表中的现有记录。\nWHERE\nSELECT column_name(s) FROM table_name WHERE column_name operator value\n用于过滤记录，指定查询条件。",
+    "examples": []
+   },
+   {
+    "title": "SQL 基础测试",
+    "url": "https://www.runoob.com/sql/sql-quiz2.html",
+    "body": "",
+    "examples": []
+   },
+   {
+    "title": "SQL SELECT INTO 语句",
+    "url": "https://www.runoob.com/sql/sql-select-into.html",
+    "body": "通过 SQL，您可以从一个表复制信息到另一个表。\nSELECT INTO 语句从一个表复制数据，然后把数据插入到另一个新表中。\nSQL SELECT INTO 语句\nSELECT INTO 语句从一个表复制数据，然后把数据插入到另一个新表中。\n注意：\nMySQL 数据库不支持 SELECT ... INTO 语句，但支持 INSERT INTO ... SELECT 。\n当然你可以使用以下语句来拷贝表结构及数据：\nCREATE TABLE 新表\nAS\nSELECT * FROM 旧表\nSQL SELECT INTO 语法\n假设有一个名为 employees 的表，包含以下数据：\nEmployeeID\nFirstName\nLastName\nAge\nDepartment\n1\nJohn\nDoe\n30\nSales\n2\nJane\nSmith\n25\nHR\n3\nSam\nBrown\n28\nIT\n要创建一个名为 employees_backup 的新表，并将 employees 表中的所有数据插入到新表中，可以使用以下 SQL 语句：\nSELECT *\nINTO employees_backup\nFROM employees;\n执行此语句后，新的 employees_backup 表将仅包含年龄大于 25 岁的员工的数据。\nSELECT EmployeeID, FirstName, LastName, Age, Department\nINTO employees_backup\nFROM employees\nWHERE Age > 25;\n使用注意事项\n表结构：\nSELECT INTO 会创建一个新表，并且新表的结构将基于选择的列和数据类型。\n如果新表已经存在，SELECT INTO 语句将失败。在这种情况下，可以使用 INSERT INTO ... SELECT 语句。\n数据库支持：\nSELECT INTO 语句在 SQL Server 中非常常用，但在 MySQL 和 PostgreSQL 中通常使用 CREATE TABLE ... AS SELECT 语句。\n在其他数据库中的替代方案\nMySQL 和 PostgreSQL\n在 MySQL 和 PostgreSQL 中，可以使用 CREATE TABLE ... AS SELECT 来实现类似的功能：\nCREATE TABLE employees_backup AS\nSELECT EmployeeID, FirstName, LastName, Age, Department\nFROM employees\nWHERE Age > 25;",
+    "examples": []
+   },
+   {
+    "title": "SQL SELECT 语句",
+    "url": "https://www.runoob.com/sql/sql-select.html",
+    "body": "SELECT 语句用于从数据库中选取数据。\nSQL SELECT 语句\nSELECT 语句用于从数据库中选取数据。\n结果被存储在一个结果表中，称为结果集。\nSQL SELECT 语法\nSELECT column1, column2, ...\nFROM table_name;\n与\nSELECT * FROM table_name;\n参数说明：\ncolumn1, column2, ...：要选择的字段名称，可以为多个字段。如果不指定字段名称，则会选择所有字段。\ntable_name：要查询的表名称。\n*: 通配符，表示选择表中的所有列。\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n+----+--------------+---------------------------+-------+---------+\nSELECT Column 实例\n下面的 SQL 语句从 \"Websites\" 表中选取 \"name\" 和 \"country\" 列：\n实例",
+    "examples": [
+     "SELECT name,country FROM Websites;"
+    ]
+   },
+   {
+    "title": "我们已经学习了 SQL，下一步学习什么呢？",
+    "url": "https://www.runoob.com/sql/sql-summary.html",
+    "body": "SQL 总结\n本 SQL 教程已经向您讲解了用来访问和处理数据库系统的标准计算机语言。\n我们已经学习了如何使用 SQL 在数据库中执行查询、获取数据、插入新的记录、删除记录以及更新记录。\n我们已经学习了如何通过 SQL 创建数据库、表、索引，以及如何撤销它们。\n我们已经学习了 SQL 中最重要的 Aggregate 函数。\nSQL 是一种与数据库系统协同工作的标准语言，这些数据库系统包括 MS SQL Server、IBM DB2、Oracle、MySQL 和 MS Access 等等。\n我们已经学习了 SQL，下一步学习什么呢？\n我们建议接下来学习 ADO 或 PHP MySQL。\n如果您想要学习有关 ADO 的知识，请访问我们的 ADO 教程。\n如果您想要学习有关 MySQL 的知识，请访问我们的 MySQL 教程。",
+    "examples": []
+   },
+   {
+    "title": "SQL 语法",
+    "url": "https://www.runoob.com/sql/sql-syntax.html",
+    "body": "SQL（Structured Query Language）是一种用于管理和操作关系数据库的标准语言，包括数据查询、数据插入、数据更新、数据删除、数据库结构创建和修改等功能。。\n数据库表\n一个数据库通常包含一个或多个表，每个表有一个名字标识（例如:\"Websites\"），表包含带有数据的记录（行）。\n在本教程中，我们在 MySQL 的 RUNOOB 数据库中创建了 Websites 表，用于存储网站记录。\n我们可以通过以下命令查看 \"Websites\" 表的数据：\nmysql> use RUNOOB;\nDatabase changed\n\nmysql> set names utf8;\nQuery OK, 0 rows affected (0.00 sec)\n\nmysql> SELECT * FROM Websites;\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n+----+--------------+---------------------------+-------+---------+\n5 rows in set (0.01 sec)\n解析\nuse RUNOOB; 命令用于选择数据库。\nset names utf8; 命令用于设置使用的字符集。\nSELECT * FROM Websites; 读取数据表的信息。\n上面的表包含五条记录（每一条对应一个网站信息）和5个列（id、name、url、alexa 和country）。\nSQL 语句\n您需要在数据库上执行的大部分工作都由 SQL 语句完成。\n下面的 SQL 语句从 \"Websites\" 表中选取所有记录：\n实例",
+    "examples": [
+     "SELECT * FROM Websites;"
+    ]
+   },
+   {
+    "title": "SQL SELECT TOP, LIMIT, ROWNUM 子句",
+    "url": "https://www.runoob.com/sql/sql-top.html",
+    "body": "SQL SELECT TOP 子句\nSELECT TOP 语句用于在 SQL 中限制返回的结果集中的行数，\n它通常用于只需要查询前几行数据的情况，尤其在数据集非常大时，可以显著提高查询性能。\nSELECT TOP 子句对于拥有数千条记录的大型表来说，是非常有用的。\n说明：\nSELECT TOP 在 SQL Server 和 MS Access 中使用，而在 MySQL 和 PostgreSQL 中使用 LIMIT 关键字。\nOracle 在 12c 版本之前没有直接等效的关键字，可以通过 ROWNUM 实现类似功能，但在 12c 及以上版本中引入了 FETCH FIRST。\n当使用 TOP 或 LIMIT 时，最好结合 ORDER BY 子句，以确保返回的行是特定顺序的前几行。\nSQL Server / MS Access 语法\nSELECT TOP number|percent column1, column2, ...\nFROM table_name;\nnumber|percent：指定返回的行数或百分比。\nnumber：具体的行数。\npercent：数据集的百分比。\nMySQL 语法\nSELECT column1, column2, ...\nFROM table_name\nLIMIT number;\nOracle 语法\nSELECT column1, column2, ...\nFROM table_name\nFETCH FIRST number ROWS ONLY;\nPostgreSQL 语法\nSELECT column1, column2, ...\nFROM table_name\nLIMIT number;\n实例\n假设我们有一个名为 Employees 的表，其中包含以下数据：\nEmployeeID\nEmployeeName\nSalary\n1\nJohn Smith\n50000\n2\nMaria Garcia\n60000\n3\nLiam Johnson\n70000\n4\nEmma Wilson\n80000\n5\nOliver Brown\n90000\nSQL Server 和 MS Access 返回前 3 行数据：\nSELECT TOP 3 EmployeeName, Salary\nFROM Employees;\n返回前 10% 的数据：\nSELECT TOP 10 PERCENT EmployeeName, Salary\nFROM Employees;\nMySQL 返回前 3 行数据：\nSELECT EmployeeName, Salary\nFROM Employees\nLIMIT 3;\nPostgreSQL 返回前 3 行数据：\nSELECT EmployeeName, Salary\nFROM Employees\nLIMIT 3;\nOracle 返回前 3 行数据：\nSELECT EmployeeName, Salary\nFROM Employees\nFETCH FIRST 3 ROWS ONLY;\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\nmysql> SELECT * FROM Websites;\n+----+---------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+---------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 5000 | USA |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\nMySQL SELECT LIMIT 实例\n下面的 SQL 语句从 \"Websites\" 表中选取头两条记录：\n实例",
+    "examples": [
+     "SELECT * FROM Websites LIMIT 2;"
+    ]
+   },
+   {
+    "title": "SQL 教程",
+    "url": "https://www.runoob.com/sql/sql-tutorial.html",
+    "body": "SQL（Structured Query Language，结构化查询语言）是一种用于管理和操作关系型数据库的标准化编程语言。\n在本教程中，您将学到如何使用 SQL 访问和处理数据系统中的数据，这类数据库包括：MySQL、SQL Server、Access、Oracle、Sybase、DB2 等等。\n在线测试工具：https://www.jyshare.com/front-end/7768/。",
+    "examples": []
+   },
+   {
+    "title": "SQL UNION 操作符",
+    "url": "https://www.runoob.com/sql/sql-union.html",
+    "body": "SQL UNION 操作符合并两个或多个 SELECT 语句的结果。\nUNION 操作符用于合并两个或多个 SELECT 语句的结果集。它可以从多个表中选择数据，并将结果集组合成一个结果集。使用 UNION 时，每个 SELECT 语句必须具有相同数量的列，且对应列的数据类型必须相似。\nSQL UNION 语法\nSELECT column1, column2, ...\nFROM table1\nUNION\nSELECT column1, column2, ...\nFROM table2;\nUNION 操作符默认会去除重复的记录，如果需要保留所有重复记录，可以使用 UNION ALL 操作符。\nSQL UNION ALL 语法\nSELECT column1, column2, ...\nFROM table1\nUNION ALL\nSELECT column1, column2, ...\nFROM table2;\n注释：UNION 结果集中的列名总是等于 UNION 中第一个 SELECT 语句中的列名。\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\nmysql> SELECT * FROM Websites;\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\n下面是 \"apps\" APP 的数据：\nmysql> SELECT * FROM apps;\n+----+------------+-------------------------+---------+\n| id | app_name | url | country |\n+----+------------+-------------------------+---------+\n| 1 | QQ APP | http://im.qq.com/ | CN |\n| 2 | 微博 APP | http://weibo.com/ | CN |\n| 3 | 淘宝 APP | https://www.taobao.com/ | CN |\n+----+------------+-------------------------+---------+\n3 rows in set (0.00 sec)\nSQL UNION 实例\n下面的 SQL 语句从 \"Websites\" 和 \"apps\" 表中选取所有不同的country（只有不同的值）：\n实例\n执行以上 SQL 输出结果如下：",
+    "examples": [
+     "SELECT country FROM WebsitesUNIONSELECT country FROM appsORDER BY country;",
+     ""
+    ]
+   },
+   {
+    "title": "SQL UNIQUE 约束",
+    "url": "https://www.runoob.com/sql/sql-unique.html",
+    "body": "UNIQUE 约束在 SQL 中用于确保一列或多列中的所有值都是唯一的，这意味着在约束应用的列中不能有重复的值。\nUNIQUE 类似于主键 (PRIMARY KEY) 约束，但 UNIQUE 约束允许列中的值为 NULL，而主键不允许。\nPRIMARY KEY 约束自带唯一性（UNIQUE）约束功能。\n每个表可以有多个 UNIQUE 约束，但只能定义一个 PRIMARY KEY 约束。\n使用场景\n确保唯一性：例如，确保电子邮件地址、用户名等字段在整个表中是唯一的。\n在多列上应用：可以在多列上创建 UNIQUE 约束，以确保组合值的唯一性。\nCREATE TABLE 时的 SQL UNIQUE 约束\n在创建表时，可以在特定列或多个列上定义 UNIQUE 约束，以确保这些列中的值在表内唯一。\n在 \"Persons\" 表的 P_Id 列上添加 UNIQUE 约束\nMySQL：\nCREATE TABLE Persons (\n P_Id INT NOT NULL,\n LastName VARCHAR(255) NOT NULL,\n FirstName VARCHAR(255),\n Address VARCHAR(255),\n City VARCHAR(255),\n UNIQUE (P_Id)\n);\nSQL Server / Oracle / MS Access：\nCREATE TABLE Persons (\n P_Id INT NOT NULL UNIQUE,\n LastName VARCHAR(255) NOT NULL,\n FirstName VARCHAR(255),\n Address VARCHAR(255),\n City VARCHAR(255)\n);\nUNIQUE 约束并在多列上定义\n如需为 UNIQUE 约束指定名称，并在多个列上应用，可以使用以下语法：\nMySQL / SQL Server / Oracle / MS Access：\nCREATE TABLE Persons (\n P_Id INT NOT NULL,\n LastName VARCHAR(255) NOT NULL,\n FirstName VARCHAR(255),\n Address VARCHAR(255),\n City VARCHAR(255),\n CONSTRAINT uc_PersonID UNIQUE (P_Id, LastName)\n);\n在 ALTER TABLE 时添加 UNIQUE 约束\n如果表已存在，可以使用 ALTER TABLE 语句在指定列上添加 UNIQUE 约束。\n在 \"P_Id\" 列上添加 UNIQUE 约束\nMySQL / SQL Server / Oracle / MS Access：\nALTER TABLE Persons\nADD UNIQUE (P_Id);\n命名 UNIQUE 约束并在多列上应用\n如需命名 UNIQUE 约束，并定义多个列的 UNIQUE 约束，请使用下面的 SQL 语法：\nMySQL / SQL Server / Oracle / MS Access：\nALTER TABLE Persons\nADD CONSTRAINT uc_PersonID UNIQUE (P_Id, LastName);\n删除 UNIQUE 约束\n如果需要移除一个 UNIQUE 约束，可以使用以下 SQL 语句：\nMySQL：\nALTER TABLE Persons\nDROP INDEX uc_PersonID;\nSQL Server / Oracle / MS Access：\nALTER TABLE Persons\nDROP CONSTRAINT uc_PersonID;",
+    "examples": []
+   },
+   {
+    "title": "SQL UPDATE 语句",
+    "url": "https://www.runoob.com/sql/sql-update.html",
+    "body": "UPDATE 语句用于更新表中的记录。\nSQL UPDATE 语句\nUPDATE 语句用于更新表中已存在的记录。\nSQL UPDATE 语法\nUPDATE table_name\nSET column1 = value1, column2 = value2, ...\nWHERE condition;\n参数说明：\ntable_name：要修改的表名称。\ncolumn1, column2, ...：要修改的字段名称，可以为多个字段。\nvalue1, value2, ...：要修改的值，可以为多个值。\ncondition：修改条件，用于指定哪些数据要修改。\n请注意 SQL UPDATE 语句中的 WHERE 子句！\nWHERE 子句规定哪条记录或者哪些记录需要更新。如果您省略了 WHERE 子句，所有的记录都将被更新！\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n+----+--------------+---------------------------+-------+---------+\nSQL UPDATE 实例\n假设我们要把 \"菜鸟教程\" 的 alexa 排名更新为 5000，country 改为 USA。\n我们使用下面的 SQL 语句：\n实例",
+    "examples": [
+     "UPDATE Websites\nSET alexa='5000', country='USA'\nWHERE name='菜鸟教程';"
+    ]
+   },
+   {
+    "title": "SQL 视图（Views）",
+    "url": "https://www.runoob.com/sql/sql-view.html",
+    "body": "视图是可视化的表。\n本章讲解如何创建、更新和删除视图。\nSQL CREATE VIEW 语句\n在 SQL 中，视图是基于 SQL 语句的结果集的可视化的表。\n视图包含行和列，就像一个真实的表。视图中的字段就是来自一个或多个数据库中的真实的表中的字段。\n您可以向视图添加 SQL 函数、WHERE 以及 JOIN 语句，也可以呈现数据，就像这些数据来自于某个单一的表一样。\nSQL CREATE VIEW 语法\nCREATE VIEW view_name AS\nSELECT column1, column2, ...\nFROM table_name\nWHERE condition;\n参数说明：\nCREATE VIEW: 声明你要创建一个视图。\nview_name: 指定视图的名称。\nAS: 指定关键字，表示视图的定义开始。\nSELECT column1, column2, ...: 指定视图中包含的列，可以是表中的列或计算列。\nFROM table_name: 指定视图从哪个表中获取数据。\nWHERE condition: 可选部分，用于指定筛选条件，限制视图中的行。\n注释：视图总是显示最新的数据！每当用户查询视图时，数据库引擎通过使用视图的 SQL 语句重建数据。\nSQL CREATE VIEW 实例\n假设你有一个包含员工信息的表 employees，包括以下列：employee_id、first_name、last_name、salary 和 department_id，现在，我们将创建一个视图，显示工资高于某个阈值的员工信息。\n实例如下：\n-- 创建包含高工资员工信息的视图\nCREATE VIEW high_salary_employees AS\nSELECT employee_id, first_name, last_name, salary\nFROM employees\nWHERE salary > 50000;\n在这个例子中，我们创建了一个名为 high_salary_employees 的视图，该视图包含了那些工资高于 50000 的员工的信息。\n现在，你可以像查询普通表一样使用这个视图：\n-- 查询高工资员工视图\nSELECT *\nFROM high_salary_employees;\n这将返回所有工资高于 50000 的员工的详细信息，而不需要每次都编写相同的筛选条件。\n值得注意的是，视图本质上是一个虚拟的表，它并不存储数据，而是基于基础表的查询结果生成。因此，如果基础表的数据发生变化，视图的内容也会相应地更新。\nSQL 更新视图\n在 SQL 中，你不能直接使用 UPDATE 语句来更新视图，因为视图是基于查询结果生成的虚拟表，而不是实际存储数据的表。\n更新视图的实质是通过更新视图所基于的表中的数据，然后视图会反映这些变化。\nUPDATE table_name\nSET column1 = value1, column2 = value2, ...\nWHERE condition;\n其中，table_name 是基础表的名称，column1, column2, ... 是要更新的列，value1, value2, ... 是新的值，condition 是更新的条件。\n现在，我们希望向 \"Current Product List\" 视图添加 \"Category\" 列。我们将通过下列 SQL 更新视图：\n举例来说，如果你有一个名为 high_salary_employees 的视图，显示工资高于 50000 的员工信息，而这个视图基于 employees 表的查询结果，你可以通过以下步骤来更新数据：\n-- 步骤 1: 更新 employees 表中的数据\nUPDATE employees\nSET salary = 60000\nWHERE employee_id = 1001;\n\n-- 步骤 2: 查询更新后的高工资员工视图\nSELECT *\nFROM high_salary_employees;\n这样，你更新了 employees 表中的数据，而视图 high_salary_employees 将反映出这些变化。\nSQL 撤销视图\n在 SQL 中，撤销（或删除）视图是通过使用 DROP VIEW 语句来实现的。\nDROP VIEW 语句用于从数据库中删除一个已存在的视图。语法如下：\nDROP VIEW [IF EXISTS] view_name;\n参数说明：\nDROP VIEW: 表示你要删除一个视图。\nIF EXISTS: 可选部分，用于检查视图是否存在。如果存在，则执行删除操作；如果不存在，不会发生错误。在某些数据库系统中，这是可选的。\nview_name: 指定要删除的视图的名称。\n在执行以下语句后，视图 high_salary_employees 将被从数据库中删除。\n-- 删除名为 high_salary_employees 的视图\nDROP VIEW IF EXISTS high_salary_employees;\n请注意，这并不影响基础表中的数据，只是删除了视图的定义。\n如果你需要撤销或删除某个表中的数据，应该使用 DROP TABLE 语句。\n在使用 DROP VIEW 语句时，请确保你真的想要删除该视图，因为一旦删除，将无法恢复视图的定义。",
+    "examples": []
+   },
+   {
+    "title": "SQL WHERE 子句",
+    "url": "https://www.runoob.com/sql/sql-where.html",
+    "body": "WHERE 子句用于过滤记录。\nSQL WHERE 子句\nWHERE 子句用于提取那些满足指定条件的记录。\nSQL WHERE 语法\nSELECT column1, column2, ...\nFROM table_name\nWHERE condition;\n参数说明：\ncolumn1, column2, ...：要选择的字段名称，可以为多个字段。如果不指定字段名称，则会选择所有字段。\ntable_name：要查询的表名称。\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\n+----+--------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+--------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 4689 | CN |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n+----+--------------+---------------------------+-------+---------+\nWHERE 子句实例\n下面的 SQL 语句从 \"Websites\" 表中选取国家为 \"CN\" 的所有网站：\n实例",
+    "examples": [
+     "SELECT * FROM Websites WHERE country='CN';"
+    ]
+   },
+   {
+    "title": "SQL 通配符",
+    "url": "https://www.runoob.com/sql/sql-wildcards.html",
+    "body": "通配符可用于替代字符串中的任何其他字符。\nSQL 通配符\n在 SQL 中，通配符与 SQL LIKE 操作符一起使用。\nSQL 通配符用于搜索表中的数据。\n在 SQL 中，可使用以下通配符：\n通配符\n描述\n%\n替代 0 个或多个字符\n_\n替代一个字符\n[charlist]\n字符列中的任何单一字符\n[^charlist]或[!charlist]\n不在字符列中的任何单一字符\n演示数据库\n在本教程中，我们将使用 RUNOOB 样本数据库。\n下面是选自 \"Websites\" 表的数据：\nmysql> SELECT * FROM Websites;\n+----+---------------+---------------------------+-------+---------+\n| id | name | url | alexa | country |\n+----+---------------+---------------------------+-------+---------+\n| 1 | Google | https://www.google.cm/ | 1 | USA |\n| 2 | 淘宝 | https://www.taobao.com/ | 13 | CN |\n| 3 | 菜鸟教程 | http://www.runoob.com/ | 5000 | USA |\n| 4 | 微博 | http://weibo.com/ | 20 | CN |\n| 5 | Facebook | https://www.facebook.com/ | 3 | USA |\n| 7 | stackoverflow | http://stackoverflow.com/ | 0 | IND |\n+----+---------------+---------------------------+-------+---------+\n使用 SQL % 通配符\n下面的 SQL 语句选取 url 以字母 \"https\" 开始的所有网站：\n实例\n执行输出结果：",
+    "examples": [
+     "SELECT * FROM Websites\n\tWHERE url LIKE 'https%';",
+     ""
+    ]
+   }
+  ]
+ }
+}

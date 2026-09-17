@@ -1,0 +1,94 @@
+{
+ "tutorial": {
+  "name": "AJAX",
+  "category": "前端开发",
+  "desc": "AJAX = Asynchronous JavaScript and XML（异",
+  "url": "https://www.runoob.com/ajax/",
+  "chapters": [
+   {
+    "title": "AJAX ASP/PHP 实例",
+    "url": "https://www.runoob.com/ajax/ajax-asp-php.html",
+    "body": "AJAX 用于创造动态性更强的应用程序。\nAJAX ASP/PHP 实例\n下面的例子将为您演示当用户在输入框中键入字符时，网页如何与 web 服务器进行通信：\n请在下面的输入框中键入字母（A - Z）：\n实例\n在输入框中尝试输入字母 a:\n提示信息:",
+    "examples": []
+   },
+   {
+    "title": "AJAX Database 实例",
+    "url": "https://www.runoob.com/ajax/ajax-database.html",
+    "body": "AJAX 可用来与数据库进行动态通信。\nAJAX 数据库实例\n下面的例子将演示网页如何通过 AJAX 从数据库读取信息：\n请在下面的下拉列表中选择一个客户：\n实例\n客户信息将显示在这...",
+    "examples": []
+   },
+   {
+    "title": "AJAX 实例",
+    "url": "https://www.runoob.com/ajax/ajax-example.html",
+    "body": "为了帮助您理解 AJAX 的工作原理，我们创建了一个小型的 AJAX 应用程序:\n实例\n修改内容",
+    "examples": [
+     "使用 AJAX 修改该文本内容"
+    ]
+   },
+   {
+    "title": "AJAX 简介",
+    "url": "https://www.runoob.com/ajax/ajax-intro.html",
+    "body": "AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。\nAJAX 通过在后台与服务器交换数据，并能够更新部分网页内容。\n您应当具备的基础知识\n在继续学习之前，您需要对下面的知识有基本的了解：\nHTML / XHTML\nCSS\nJavaScript / DOM\n如果您希望首先学习这些项目，请在我们的首页访问这些教程。\n什么是 AJAX ？\nAJAX = 异步 JavaScript 和 XML。\nAJAX 是一种用于创建快速动态网页的技术。\n通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。\n传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页面。\n有很多使用 AJAX 的应用程序案例：微博、淘宝、知乎等。\nAJAX 工作原理\n事件触发（如点击按钮或页面加载）。\nAJAX 请求：通过 JavaScript 创建一个 XMLHttpRequest 对象，向服务器发送请求。\n服务器处理请求：服务器（通常使用 PHP、Node.js 等）接收请求，处理并返回响应数据（JSON、XML、HTML等）。\nAJAX 响应处理：浏览器接收响应，使用 JavaScript 在页面上更新内容，而无需重新加载整个页面。\nAJAX是基于现有的Internet标准\nAJAX是基于现有的Internet标准，并且联合使用它们：\nXMLHttpRequest 对象 (异步的与服务器交换数据)\nJavaScript/DOM (信息显示/交互)\nCSS (给数据定义样式)\nXML (作为转换数据的格式)\nAJAX应用程序与浏览器和平台无关的！\nGoogle Suggest\n在 2005 年，Google 通过其 Google Suggest 使 AJAX 变得流行起来。\nGoogle Suggest 使用 AJAX 创造出动态性极强的 web 界面：当您在谷歌的搜索框输入关键字时，JavaScript 会把这些字符发送到服务器，然后服务器会返回一个搜索建议的列表。\n今天就开始使用 AJAX\nAJAX 基于已有的标准。这些标准已被大多数开发者使用多年。\n请阅读下一章，看看 AJAX 是如何工作的！",
+    "examples": []
+   },
+   {
+    "title": "AJAX JSON 实例",
+    "url": "https://www.runoob.com/ajax/ajax-json.html",
+    "body": "AJAX 可用来与 JSON 文件进行交互式通信。\nAJAX JSON 实例\n下面的例子将演示网页如何使用 AJAX 来读取来自 JSON 文件的信息：\n实例\n获取课程数据",
+    "examples": []
+   },
+   {
+    "title": "AJAX 教程",
+    "url": "https://www.runoob.com/ajax/ajax-tutorial.html",
+    "body": "AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。\nAJAX 不是新的编程语言，而是一种使用现有标准的新方法。\nAJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。\nAJAX 不需要任何浏览器插件，但需要用户允许 JavaScript 在浏览器上执行。\nXMLHttpRequest 只是实现 Ajax 的一种方式，当然也可以使用 fetch API 等现代方法。",
+    "examples": []
+   },
+   {
+    "title": "AJAX XML 实例",
+    "url": "https://www.runoob.com/ajax/ajax-xmlfile.html",
+    "body": "AJAX 可用来与 XML 文件进行交互式通信。\nAJAX XML 实例\n下面的例子将演示网页如何使用 AJAX 来读取来自 XML 文件的信息：\n实例\n获取我收藏的 CD",
+    "examples": []
+   },
+   {
+    "title": "AJAX - 创建 XMLHttpRequest 对象",
+    "url": "https://www.runoob.com/ajax/ajax-xmlhttprequest-create.html",
+    "body": "XMLHttpRequest 是 AJAX 的基础。\nXMLHttpRequest 对象\n所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）。\nXMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。\n创建 XMLHttpRequest 对象\n所有现代浏览器（IE7+、Edge、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。\n创建 XMLHttpRequest 对象的语法：\nvar xhr = new XMLHttpRequest();\n老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：\nvar xhr = new ActiveXObject(\"Microsoft.XMLHTTP\");\n为了应对所有的现代浏览器，包括 IE5 和 IE6（现在应该很少人使用了），请检查浏览器是否支持 XMLHttpRequest 对象。如果支持，则创建 XMLHttpRequest 对象。如果不支持，则创建 ActiveXObject ：\n实例",
+    "examples": [
+     "var xmlhttp;\nif (window.XMLHttpRequest) {\n//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码\nxmlhttp=new XMLHttpRequest();\n} else {\n// IE6, IE5 浏览器执行代码\nxmlhttp=new ActiveXObject(\"Microsoft.XMLHTTP\");\n}"
+    ]
+   },
+   {
+    "title": "AJAX - onreadystatechange 事件",
+    "url": "https://www.runoob.com/ajax/ajax-xmlhttprequest-onreadystatechange.html",
+    "body": "onreadystatechange 事件\n当请求被发送到服务器时，我们需要执行一些基于响应的任务。\n每当 readyState 改变时，就会触发 onreadystatechange 事件。\nreadyState 属性存有 XMLHttpRequest 的状态信息。\n下面是 XMLHttpRequest 对象的三个重要的属性：\n属性\n描述\nonreadystatechange\n存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。\nreadyState\n存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。\n0: 请求未初始化\n1: 服务器连接已建立\n2: 请求已接收\n3: 请求处理中\n4: 请求已完成，且响应已就绪\nstatus\n200: \"OK\"\n 404: 未找到页面\n在 onreadystatechange 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。\n当 readyState 等于 4 且状态为 200 时，表示响应已就绪：\n实例",
+    "examples": [
+     "xmlhttp.onreadystatechange=function()\n{\nif (xmlhttp.readyState==4 && xmlhttp.status==200)\n{\ndocument.getElementById(\"myDiv\").innerHTML=xmlhttp.responseText;\n    }\n}"
+    ]
+   },
+   {
+    "title": "AJAX - 服务器 响应",
+    "url": "https://www.runoob.com/ajax/ajax-xmlhttprequest-response.html",
+    "body": "服务器响应\n如需获得来自服务器的响应，请使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性。\n属性\n描述\nresponseText\n获得字符串形式的响应数据。\nresponseXML\n获得 XML 形式的响应数据。\nresponseText 属性\n如果来自服务器的响应并非 XML，请使用 responseText 属性。\nresponseText 属性返回字符串形式的响应，因此您可以这样使用：\n实例\n尝试一下 »",
+    "examples": [
+     "document.getElementById(\"myDiv\").innerHTML=xmlhttp.responseText;"
+    ]
+   },
+   {
+    "title": "AJAX - 向服务器发送请求",
+    "url": "https://www.runoob.com/ajax/ajax-xmlhttprequest-send.html",
+    "body": "XMLHttpRequest 对象用于和服务器交换数据。\n向服务器发送请求\n如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法：\nxmlhttp.open(\"GET\",\"ajax_info.txt\",true);\nxmlhttp.send();\n方法\n描述\nopen(method,url,async)\n规定请求的类型、URL 以及是否异步处理请求。\nmethod：请求的类型；GET 或 POST\nurl：文件在服务器上的位置\nasync：true（异步）或 false（同步）\nsend(string)\n将请求发送到服务器。\nstring：仅用于 POST 请求\nGET 还是 POST？\n与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。\n然而，在以下情况中，请使用 POST 请求：\n不愿使用缓存文件（更新服务器上的文件或数据库）\n向服务器发送大量数据（POST 没有数据量限制）\n发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠\nGET 请求\n一个简单的 GET 请求：\n实例",
+    "examples": [
+     "xmlhttp.open(\"GET\",\"/try/ajax/demo_get.php\",true);\nxmlhttp.send();"
+    ]
+   },
+   {
+    "title": "Fetch API",
+    "url": "https://www.runoob.com/ajax/fetch-api.html",
+    "body": "Fetch API 是一种现代的、功能强大的网络请求工具，它允许你通过 JavaScript 异步地请求资源，而不需要使用传统的 XMLHttpRequest 对象。\nFetch API 可以简洁地发起 HTTP 请求，并处理服务器的响应。\nFetch API 基于 Promise 设计，使得异步操作更加简洁和易于理解。\nFetch 优点：\n基于 Promises，代码更加简洁和易读。\n更好的错误处理机制：只在网络错误（如无法连接服务器）时返回 catch，而非状态码错误。\n支持多种数据格式（JSON、文本、二进制等）。\n可以处理跨域请求，通过 CORS 机制配置。\nfetch 的基本用法\nfetch 的语法相当简洁，最基本的形式是：\nfetch(url)\n .then(response => response.json()) // 解析 JSON 数据\n .then(data => console.log(data)) // 处理数据\n .catch(error => console.error('Error:', error)); // 错误处理\n参数：\nurl：要发送请求的目标 URL。\noptions（可选）：可以指定请求方法（GET、POST 等）、请求头、请求体等内容。\n返回值\n返回一个 Promise 对象，Promise 在请求成功时返回 Response 对象，在请求失败时被拒绝。\n使用 Fetch\n1、基本 GET 请求：\n实例",
+    "examples": [
+     "fetch('https://api.example.com/data')\n    .then(response => response.json())\n    .then(data => console.log(data))\n    .catch(error => console.error('Error:', error));"
+    ]
+   }
+  ]
+ }
+}

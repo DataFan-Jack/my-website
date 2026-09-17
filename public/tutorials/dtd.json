@@ -1,0 +1,72 @@
+{
+ "tutorial": {
+  "name": "DTD",
+  "category": "后端开发",
+  "desc": "DTD（文档类型定义）的作用是定义 XML 文档的合法构建模块。",
+  "url": "https://www.runoob.com/dtd/",
+  "chapters": [
+   {
+    "title": "DTD - 属性",
+    "url": "https://www.runoob.com/dtd/dtd-attributes.html",
+    "body": "在 DTD 中，属性通过 ATTLIST 声明来进行声明。\n声明属性\n属性声明使用下列语法：\n<!ATTLIST element-name attribute-name attribute-type attribute-value>\nDTD 实例:\n<!ATTLIST payment type CDATA \"check\">\nXML 实例:\n<payment type=\"check\" />",
+    "examples": []
+   },
+   {
+    "title": "DTD - XML 构建模块",
+    "url": "https://www.runoob.com/dtd/dtd-building.html",
+    "body": "XML 和 HTML文档的主要的构建模块是元素标签。\nXML 文档构建模块\n所有的 XML 文档（以及 HTML 文档）均由以下简单的构建模块构成：\n元素\n属性\n实体\nPCDATA\nCDATA\n元素\n元素是 XML 以及 HTML 文档的主要构建模块。\nHTML 元素的例子是 \"body\" 和 \"table\"。XML 元素的例子是 \"note\" 和 \"message\" 。元素可包含文本、其他元素或者是空的。空的 HTML 元素的例子是 \"hr\"、\"br\" 以及 \"img\"。\n实例:\n<body>some text</body>\n <message>some text</message>",
+    "examples": []
+   },
+   {
+    "title": "XML 元素 vs. 属性",
+    "url": "https://www.runoob.com/dtd/dtd-el_vs-attr.html",
+    "body": "在XML中，并没有规定何时使用属性，以及何时使用子元素。\n使用元素 vs. 属性\n数据可以存储在子元素或属性。\n让我们来看下这些实例:\n<person sex=\"female\">\n \n<firstname>Anna</firstname>\n \n<lastname>Smith</lastname>\n</person>",
+    "examples": []
+   },
+   {
+    "title": "DTD - 元素",
+    "url": "https://www.runoob.com/dtd/dtd-elements.html",
+    "body": "在一个 DTD 中，元素通过元素声明来进行声明。\n声明一个元素\n在 DTD 中，XML 元素通过元素声明来进行声明。元素声明使用下面的语法：\n<!ELEMENT element-name category>\n或\n<!ELEMENT element-name (element-content)>",
+    "examples": []
+   },
+   {
+    "title": "DTD - 实体",
+    "url": "https://www.runoob.com/dtd/dtd-entities.html",
+    "body": "实体是用于定义引用普通文本或特殊字符的快捷方式的变量。\n实体引用是对实体的引用。\n实体可在内部或外部进行声明。\n一个内部实体声明\n语法\n<!ENTITY entity-name \"entity-value\">",
+    "examples": []
+   },
+   {
+    "title": "DTD - 来自网络的实例",
+    "url": "https://www.runoob.com/dtd/dtd-examples.html",
+    "body": "电视节目表 DTD\n由 David Moisan 创造。拷贝自： http://www.davidmoisan.org/\n<!DOCTYPE TVSCHEDULE [\n<!ELEMENT TVSCHEDULE (CHANNEL+)>\n<!ELEMENT CHANNEL (BANNER,DAY+)>\n<!ELEMENT BANNER (#PCDATA)>\n<!ELEMENT DAY (DATE,(HOLIDAY|PROGRAMSLOT+)+)>\n<!ELEMENT HOLIDAY (#PCDATA)>\n<!ELEMENT DATE (#PCDATA)>\n<!ELEMENT PROGRAMSLOT (TIME,TITLE,DESCRIPTION?)>\n<!ELEMENT TIME (#PCDATA)>\n<!ELEMENT TITLE (#PCDATA)> \n<!ELEMENT DESCRIPTION (#PCDATA)>\n<!ATTLIST TVSCHEDULE NAME CDATA #REQUIRED>\n<!ATTLIST CHANNEL CHAN CDATA #REQUIRED>\n<!ATTLIST PROGRAMSLOT VTR CDATA #IMPLIED>\n<!ATTLIST TITLE RATING CDATA #IMPLIED>\n<!ATTLIST TITLE LANGUAGE CDATA #IMPLIED>\n]>",
+    "examples": []
+   },
+   {
+    "title": "DTD 简介",
+    "url": "https://www.runoob.com/dtd/dtd-intro.html",
+    "body": "文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构。\nDTD 可被成行地声明于 XML 文档中，也可作为一个外部引用。\n内部的 DOCTYPE 声明\n假如 DTD 被包含在您的 XML 源文件中，它应当通过下面的语法包装在一个 DOCTYPE 声明中：\n<!DOCTYPE root-element [element-declarations]>",
+    "examples": []
+   },
+   {
+    "title": "您已经学习了 DTD，下一步呢？",
+    "url": "https://www.runoob.com/dtd/dtd-summary.html",
+    "body": "DTD 总结\n本教程已经向您讲解了如何描述 XML 文档的结构。\n您学习到了如何使用 DTD 来定义一个 XML 文档的合法元素，以及如何在您的 XML 内部或者作为一个外部引用来声明 DTD。\n您已经学习了如何为 XML 文档声明合法的元素、属性、实体以及 CDATA 部分。\n您也看到了如何根据某个 DTD 来验证一个 XML 文档。\n您已经学习了 DTD，下一步学习什么内容呢？\n下一步应当学习 XML Schema。\nXML Schema 用于定义 XML 文档的合法元素，类似 DTD。我们认为 XML Schema 很快会将 DTD 取而代之，被用在大部分的网络应用程序中。\nXML Schema 是基于 XML 的 DTD 替代物。\n与 DTD 不同，XML Schema 支持数据类型和命名空间。\n如果您希望学习更多有关 XML Schema 的知识，请访问我们的《XML Schema 教程》。",
+    "examples": []
+   },
+   {
+    "title": "DTD 教程",
+    "url": "https://www.runoob.com/dtd/dtd-tutorial.html",
+    "body": "DTD（文档类型定义）的作用是定义 XML 文档的合法构建模块。\nDTD 可被成行地声明于 XML 文档中，也可作为一个外部引用。\n现在开始学习DTD!",
+    "examples": []
+   },
+   {
+    "title": "DTD 验证",
+    "url": "https://www.runoob.com/dtd/dtd-validation.html",
+    "body": "使用 Internet Explorer 可根据某个 DTD 来验证您的 XML。\n通过 XML 解析器进行验证\n当您试图打开某个 XML 文档时，XML 解析器有可能会产生错误。通过访问 parseError 对象，就可以取回引起错误的确切代码、文本甚至所在的行。\n注意： load() 方法用于文件，而 loadXML() 方法用于字符串。\n实例\n尝试一下 »",
+    "examples": [
+     "var xmlDoc = new ActiveXObject(\"Microsoft.XMLDOM\");\nxmlDoc.async=\"false\";\nxmlDoc.validateOnParse=\"true\";\nxmlDoc.load(\"note_dtd_error.xml\");\ndocument.write(\"<br />Error Code: \");\ndocument.write(xmlDoc.parseError.errorCode);\ndocument.write(\"<br />Error Reason: \");\ndocument.write(xmlDoc.parseError.reason);\ndocument.write(\"<br />Error Line: \");\ndocument.write(xmlDoc.parseError.line);"
+    ]
+   }
+  ]
+ }
+}

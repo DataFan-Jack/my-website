@@ -1,0 +1,198 @@
+{
+ "tutorial": {
+  "name": "TensorFlow",
+  "category": "人工智能",
+  "desc": "TensorFlow 是一个数学计算的工具箱，专门为机器学习任务而设计，让开发者",
+  "url": "https://www.runoob.com/tensorflow/",
+  "chapters": [
+   {
+    "title": "Keras 常用层类型",
+    "url": "https://www.runoob.com/tensorflow/keras-layer.html",
+    "body": "Keras 是一个高级神经网络 API，它提供了丰富的层类型来构建深度学习模型。\n层（Layer）是 Keras 的基本构建块，每个层接收输入数据，进行特定变换后输出结果。\n本文将详细介绍 Keras 中最常用的层类型及其使用方法。\n核心层类型\nDense 全连接层\n全连接层是最基础的神经网络层，每个输入节点都与输出节点相连。\n实例",
+    "examples": [
+     "from keras.layers import Dense\n\n# 创建一个具有64个神经元，使用ReLU激活函数的全连接层\ndense_layer = Dense(units=64, activation='relu')"
+    ]
+   },
+   {
+    "title": "Keras 第一个神经网络",
+    "url": "https://www.runoob.com/tensorflow/keras-neural-network.html",
+    "body": "Keras 是一个高级神经网络 API，用 Python 编写，能够在 TensorFlow、CNTK 或 Theano 之上运行。它的开发重点是支持快速实验，能够以最少的代码实现从想法到结果的快速转换。\nKeras 的主要特点\n用户友好：Keras 具有简单一致的接口\n模块化：神经网络的各种组件（层、优化器、初始化方案等）都是可组合的模块\n易扩展性：可以轻松添加新模块来表达新的研究想法\n支持多后端：可以无缝切换 TensorFlow、Theano 和 CNTK 作为计算后端\n安装 Keras\n在开始之前，我们需要先安装 Keras 及其后端引擎（这里我们使用 TensorFlow）：\npip install tensorflow keras\n注意：Keras 2.4.0 及以后版本已集成到 TensorFlow 中，可以直接通过 tensorflow.keras 使用\n构建第一个神经网络\n让我们从一个简单的全连接神经网络开始，解决经典的 MNIST 手写数字识别问题。\n1. 导入必要的库\n实例",
+    "examples": [
+     "import numpy as np\nfrom tensorflow import keras\nfrom tensorflow.keras import layers"
+    ]
+   },
+   {
+    "title": "TensorFlow 高级 API - Keras",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-api-keras.html",
+    "body": "Keras 是一个用 Python 编写的高级神经网络 API，它能够以 TensorFlow, CNTK 或 Theano 作为后端运行。Keras 的设计理念是用户友好、模块化和易扩展。\nKeras 的主要特点\n简单易用：提供直观一致的接口，适合快速原型设计\n模块化：神经网络层、损失函数、优化器等都是可插拔的模块\n易扩展：可以轻松添加新模块来表达新的研究想法\n支持多后端：可以无缝运行在 TensorFlow, CNTK 或 Theano 上\nKeras 核心概念\n1. 模型 (Model)\nKeras 的核心数据结构是模型，模型是组织神经网络层的方式。Keras 提供了两种主要的模型：\nSequential 模型：层的线性堆叠\nFunctional API：构建复杂模型的有向无环图\n2. 层 (Layer)\n层是 Keras 的基本构建块，每个层接收输入数据，进行某种计算后输出结果。Keras 提供了多种预定义层：\n核心层：Dense, Activation, Dropout 等\n卷积层：Conv2D, MaxPooling2D 等\n循环层：LSTM, GRU 等\n其他：Embedding, BatchNormalization 等\n3. 激活函数 (Activation Function)\n激活函数决定神经元的输出，常用的有：\nReLU (Rectified Linear Unit)\nSigmoid\nTanh\nSoftmax (多分类问题)\nKeras 基本工作流程\n1. 定义模型\n实例",
+    "examples": [
+     "from tensorflow.keras.models import Sequential\nfrom tensorflow.keras.layers import Dense\n\nmodel = Sequential([\n    Dense(64, activation='relu', input_shape=(784,)),\n    Dense(64, activation='relu'),\n    Dense(10, activation='softmax')\n])"
+    ]
+   },
+   {
+    "title": "TensorFlow 数据处理与管道",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-ata-processing-and-pipelines.html",
+    "body": "TensorFlow 数据处理管道是机器学习工作流中的关键环节，它负责高效地加载、预处理和传输数据到模型。\n与传统的直接加载数据方式相比，TensorFlow 管道提供了三大优势：\n性能优化：通过并行化和预加载减少 I/O 瓶颈\n内存效率：避免一次性加载全部数据到内存\n代码整洁：将数据处理逻辑与模型代码解耦\n核心概念\nDataset API\nTensorFlow Dataset API 是构建数据管道的核心工具，它提供了多种数据源接口和转换操作：\n实例",
+    "examples": [
+     "import tensorflow as tf\n\n# 从内存创建Dataset\ndata = tf.data.Dataset.from_tensor_slices([1, 2, 3])\n\n# 从文本文件创建\ntext_data = tf.data.TextLineDataset([\"file1.txt\", \"file2.txt\"])\n\n# 从TFRecord创建\ntfrecord_data = tf.data.TFRecordDataset(\"data.tfrecord\")"
+    ]
+   },
+   {
+    "title": "TensorFlow 模型转换与优化",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-conversion-and-optimization.html",
+    "body": "在机器学习项目开发中，模型转换与优化是部署前的重要步骤。\nTensorFlow 提供了多种工具和技术来帮助开发者将训练好的模型转换为适合不同部署环境的格式，并对其进行优化以提高性能。\n为什么需要模型转换与优化\n部署需求：训练好的模型需要适配不同平台（移动端、嵌入式设备、服务器等）\n性能提升：优化可以减少模型大小、降低延迟、提高推理速度\n资源限制：移动设备和边缘计算设备通常有严格的内存和计算资源限制\n跨平台兼容：确保模型能在不同硬件架构和操作系统上运行\n主要转换与优化技术\n技术类型\n主要工具\n适用场景\n模型格式转换\ntf.saved_model, TFLiteConverter\n跨平台部署\n量化\nTFLiteConverter\n减小模型大小，提高推理速度\n剪枝\ntfmot\n减少参数数量\n硬件加速\nTensorRT, Core ML\n特定硬件优化\n模型格式转换\nSavedModel 格式\nSavedModel 是 TensorFlow 的标准模型保存格式，包含完整的模型架构、权重和计算图。\n实例",
+    "examples": [
+     "import tensorflow as tf\n\n# 保存为 SavedModel\nmodel.save('my_model', save_format='tf')\n\n# 加载 SavedModel\nloaded_model = tf.keras.models.load_model('my_model')"
+    ]
+   },
+   {
+    "title": "TensorFlow 核心概念",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-core-concepts.html",
+    "body": "TensorFlow 的名字来源于其处理数据的核心结构 - 张量（Tensor）和计算流程（Flow）。\nTensorFlow 是一个端到端的开源机器学习平台，它的核心优势在于：\n灵活的计算图模型：支持动态图和静态图两种模式\n跨平台部署能力：可在 CPU、GPU、TPU 和移动设备上运行\n丰富的生态系统：包含 TensorFlow Lite（移动端）、TensorFlow.js（浏览器端）等子项目\n生产就绪：提供从研究到生产的完整工具链\n核心概念解析\n张量（Tensor）\n张量是 TensorFlow 中最基本的数据结构，可以理解为多维数组的泛化概念。\n从数学角度来说，张量是一个可以用来表示在一些矢量、标量和其他张量之间的线性关系的多线性函数。\n简单类比：\n标量（0维张量）：一个数字，如 5\n向量（1维张量）：一列数字，如 [1, 2, 3, 4]\n矩阵（2维张量）：数字的表格，如 [[1, 2], [3, 4]]\n3维张量：数字的立方体，如彩色图像（高×宽×颜色通道）\n更高维张量：例如视频数据（时间×高×宽×颜色通道）\n张量的关键属性\n实例",
+    "examples": [
+     "# 示例张量\nimport tensorflow as tf\n\n# 创建一个 2x3 的矩阵张量\ntensor = tf.constant([[1, 2, 3], [4, 5, 6]])\n\nprint(f\"形状 (Shape): {tensor.shape}\")        # (2, 3)\nprint(f\"数据类型 (Dtype): {tensor.dtype}\")    # int32\nprint(f\"维度 (Rank): {tf.rank(tensor)}\")      # 2 \nprint(f\"设备 (Device): {tensor.device}\")      # /job:localhost/replica:0/task:0/device:CPU:0"
+    ]
+   },
+   {
+    "title": "TensorFlow 自定义组件",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-custom-components.html",
+    "body": "TensorFlow 自定义组件是开发者根据特定需求扩展 TensorFlow 功能的方式。当内置操作无法满足需求时，你可以创建：\n自定义层(Custom Layers) - 实现新的神经网络层结构\n自定义损失函数(Loss Functions) - 设计特定任务的优化目标\n自定义评估指标(Metrics) - 定义独特的性能衡量标准\n自定义训练循环(Training Loops) - 实现特殊训练逻辑\n实例",
+    "examples": [
+     "# 简单自定义层示例\nclass SimpleDense(tf.keras.layers.Layer):\n    def __init__(self, units=32):\n        super().__init__()\n        self.units = units\n\n    def build(self, input_shape):\n        self.w = self.add_weight(shape=(input_shape[-1], self.units))\n        self.b = self.add_weight(shape=(self.units,))\n        \n    def call(self, inputs):\n        return tf.matmul(inputs, self.w) + self.b"
+    ]
+   },
+   {
+    "title": "TensorFlow tf.data API",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-data-api.html",
+    "body": "TensorFlow tf.data API 是 TensorFlow 提供的高效数据输入管道构建工具，专门用于处理大规模数据集。\ntf.data API 解决了传统数据加载方式中的性能瓶颈问题，使数据预处理和模型训练能够并行进行。\n为什么需要 tf.data API\n性能优势：比传统方法快 10-100 倍\n内存效率：支持流式处理超大数据集\n灵活性：可组合的数据转换操作\n易用性：简洁的链式调用接口\n核心概念\nDataset 对象\nDataset 是 tf.data API 的核心抽象，表示一系列元素，其中每个元素包含一个或多个张量。\n创建 Dataset 的三种主要方式\n1、从内存数据创建\n实例",
+    "examples": [
+     "dataset = tf.data.Dataset.from_tensor_slices([1, 2, 3, 4, 5])"
+    ]
+   },
+   {
+    "title": "TensorFlow 分布式训练",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-distributed-training.html",
+    "body": "TensorFlow 分布式训练是指利用多台机器或多个计算设备（如 GPU/TPU）协同工作，共同完成模型训练任务的技术。通过分布式训练，我们可以：\n加速模型训练过程\n处理超大规模数据集\n训练参数庞大的复杂模型\n核心概念\n1. 分布式策略 (Distribution Strategy)\nTensorFlow 提供了多种分布式策略：\n实例",
+    "examples": [
+     "# 常用分布式策略\nstrategy = tf.distribute.MirroredStrategy()  # 单机多卡\nstrategy = tf.distribute.MultiWorkerMirroredStrategy()  # 多机多卡\nstrategy = tf.distribute.TPUStrategy()  # TPU集群\nstrategy = tf.distribute.ParameterServerStrategy()  # 参数服务器架构"
+    ]
+   },
+   {
+    "title": "TensorFlow 生态系统",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-ecosystem.html",
+    "body": "TensorFlow 生态系统是由 Google 开发的一套围绕 TensorFlow 核心框架构建的完整机器学习工具集。它不仅包含基础的深度学习框架，还提供了一系列配套工具、库和平台，形成了一个覆盖机器学习全流程的解决方案。\nTensorFlow 核心组件\nTensorFlow Core\nTensorFlow 的核心框架，提供基础的张量计算和自动微分功能。\n实例",
+    "examples": [
+     "import tensorflow as tf\n\n# 创建一个常量张量\ntensor = tf.constant([[1, 2], [3, 4]])\nprint(tensor)"
+    ]
+   },
+   {
+    "title": "TensorFlow 实例 - 图像分类项目",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-image-classification.html",
+    "body": "图像分类是计算机视觉中最基础也最重要的任务之一。本项目将使用 TensorFlow 框架构建一个能够识别不同类别图像的深度学习模型。\n什么是图像分类\n图像分类是指让计算机自动识别图像中主要物体所属类别的技术。例如：\n识别照片中是猫还是狗\n区分不同种类的花朵\n判断医学影像中的病变类型\n技术选型\n我们将使用以下技术栈：\nTensorFlow：Google 开发的主流深度学习框架\nKeras：TensorFlow 的高级API，简化模型构建\nMatplotlib：用于可视化训练过程和结果\n环境准备\n安装必要库\npip install tensorflow matplotlib numpy\n验证安装\nimport tensorflow as tf\nprint(f\"TensorFlow 版本: {tf.__version__}\")\n数据集准备\n我们将使用经典的 CIFAR-10 数据集，它包含10个类别的6万张32x32彩色图像。\n加载数据集\n实例",
+    "examples": [
+     "from tensorflow.keras.datasets import cifar10\n\n# 加载数据\n(train_images, train_labels), (test_images, test_labels) = cifar10.load_data()\n\n# 类别名称\nclass_names = ['飞机', '汽车', '鸟', '猫', '鹿', \n               '狗', '青蛙', '马', '船', '卡车']"
+    ]
+   },
+   {
+    "title": "TensorFlow 图像数据处理",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-image-data-processing.html",
+    "body": "什么是图像数据\n图像数据是由像素组成的二维矩阵（灰度图像）或三维张量（彩色图像）。在TensorFlow中，图像通常表示为：\n灰度图像：[高度, 宽度] 或 [高度, 宽度, 1]\n彩色图像：[高度, 宽度, 3]（RGB通道）\n为什么需要图像处理\n数据标准化：统一图像尺寸和数值范围\n数据增强：通过变换增加训练样本多样性\n特征提取：突出图像中的关键信息\n预处理：为模型输入准备合适的数据格式\nTensorFlow图像处理核心 API\ntf.image 模块\nTensorFlow提供的专门用于图像处理的API集合：\n实例",
+    "examples": [
+     "import tensorflow as tf\nfrom tensorflow import image as tf_image"
+    ]
+   },
+   {
+    "title": "TensorFlow 简介",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-intro.html",
+    "body": "TensorFlow 是由 Google Brain 团队开发的开源机器学习框架，广泛应用于深度学习研究和生产环境。\n它提供了一个灵活的平台，用于构建和训练各种机器学习模型。\n核心概念\n张量(Tensor): 多维数组，是 TensorFlow 中的基本数据单位\n计算图(Computational Graph): 描述数据(Tensor)流动(Flow)的有向图\n会话(Session): 执行计算图的运行时环境\nTensorFlow 的历史和发展\n发展时间线\n2011年：Google 内部开始使用第一代机器学习系统 DistBelief\n2015年11月：TensorFlow 1.0 正式开源发布\n2017年2月：TensorFlow 1.0 稳定版发布\n2019年10月：TensorFlow 2.0 发布，引入 Eager Execution 和 Keras 集成\n至今：持续更新，目前已发布到 2.x 系列\n关键里程碑\nTensorFlow 1.x 时代：\n基于静态计算图\n需要显式创建 Session\n学习曲线较陡峭\nTensorFlow 2.x 时代：\n默认启用 Eager Execution（即时执行）\n深度集成 Keras 高级 API\n更加 Pythonic 和用户友好\n简化了模型构建和训练流程\nTensorFlow 的核心特点\n1. 灵活性与可扩展性\n多平台支持：可在 CPU、GPU、TPU 上运行\n多语言绑定：支持 Python、C++、Java、Go 等多种编程语言\n跨设备部署：从服务器到移动设备，从云端到边缘计算\n2. 强大的生态系统\nTensorFlow 生态系统\n├── TensorFlow Core（核心库）\n├── TensorFlow Lite（移动和嵌入式设备）\n├── TensorFlow.js（JavaScript 和网页）\n├── TensorFlow Serving（模型服务化）\n├── TensorFlow Extended (TFX)（生产级 ML 管道）\n├── TensorFlow Hub（预训练模型库）\n└── TensorBoard（可视化工具）\n3. 高性能计算\n自动微分：自动计算梯度，简化反向传播\n向量化运算：充分利用现代处理器的并行计算能力\n分布式训练：支持多机多卡的大规模训练\n图优化：编译时和运行时的多种优化策略\n4. 易用性（TensorFlow 2.x）\nKeras 集成：提供高级、直观的 API\nEager Execution：像写普通 Python 代码一样编写机器学习代码\n丰富的预构建组件：层、优化器、损失函数等开箱即用\nTensorFlow 的主要应用场景\n1. 深度学习和神经网络\n图像识别：物体检测、人脸识别、医学影像分析\n自然语言处理：机器翻译、情感分析、聊天机器人\n语音处理：语音识别、语音合成、音频分类\n推荐系统：个性化推荐、内容过滤\n2. 传统机器学习\n回归分析：线性回归、逻辑回归\n分类问题：支持向量机、决策树\n聚类分析：K-means、层次聚类\n降维技术：主成分分析（PCA）\n3. 强化学习\n游戏 AI：AlphaGo、游戏智能体\n自动驾驶：路径规划、决策制定\n机器人控制：动作控制、任务执行\n4. 科学计算\n数值计算：科学模拟、数学建模\n优化问题：非线性优化、约束优化\n信号处理：图像处理、音频分析\nTensorFlow 与其他框架的比较\n特性\nTensorFlow\nPyTorch\nScikit-learn\nKeras\n学习难度\n中等\n中等\n简单\n简单\n灵活性\n高\n很高\n中等\n中等\n生产部署\n优秀\n良好\n有限\n依赖后端\n社区支持\n很强\n很强\n强\n强\n主要用途\n全能型\n研究导向\n传统ML\n快速原型\n工业应用\n广泛\n增长中\n广泛\n广泛\nTensorFlow 的优势\n成熟的生产生态：从研发到部署的完整解决方案\n谷歌支持：持续的资源投入和技术更新\n大规模部署：经过谷步等大公司的实战验证\n硬件优化：对 TPU 等专用硬件的原生支持\nTensorFlow 的使用场景\n选择 TensorFlow 当你需要：\n构建生产级机器学习系统\n部署到多种平台（服务器、移动端、网页）\n大规模分布式训练\n利用谷歌云生态系统\n需要完整的 MLOps 工具链\n谁在使用 TensorFlow\n知名企业\nGoogle：搜索、广告、Gmail、Google Photos\nUber：自动驾驶、需求预测、定价算法\nAirbnb：搜索排序、价格推荐、欺诈检测\nTwitter：时间线排序、广告定向、内容推荐\nIntel：硬件优化、边缘计算解决方案\n应用领域\n医疗保健：医学影像分析、药物发现、疾病预测\n金融服务：风险评估、算法交易、欺诈检测\n零售电商：推荐系统、库存管理、价格优化\n制造业：质量检测、预测维护、供应链优化\n媒体娱乐：内容推荐、视频分析、音乐生成\n学习路径建议\n第一阶段：掌握张量操作和基本概念\n第二阶段：学习使用 Keras 构建简单模型\n第三阶段：完成实际项目（图像分类、文本分析等）\n第四阶段：深入学习高级特性和生产部署",
+    "examples": []
+   },
+   {
+    "title": "TensorFlow 模型评估与监控",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-model-evaluation-and-monitoring.html",
+    "body": "一、模型评估基础概念\n在机器学习项目中，模型评估是验证模型性能的关键步骤。它帮助我们了解模型在真实场景中的表现，并指导我们进行模型优化。\n1.1 为什么需要模型评估\n性能验证：确认模型是否达到预期效果\n模型选择：比较不同模型的优劣\n参数调优：指导超参数调整方向\n避免过拟合：检测模型是否过度适应训练数据\n1.2 评估指标类型\n指标类型\n适用场景\n常见指标\n分类指标\n分类问题\n准确率、精确率、召回率、F1分数\n回归指标\n回归问题\nMSE、MAE、R²\n聚类指标\n无监督学习\n轮廓系数、Davies-Bouldin指数\n二、TensorFlow 评估工具\nTensorFlow 提供了多种工具和方法来评估模型性能。\n2.1 内置评估指标\n实例",
+    "examples": [
+     "import tensorflow as tf\n\n# 常用分类指标\nmetrics = [\n    tf.keras.metrics.BinaryAccuracy(),\n    tf.keras.metrics.Precision(),\n    tf.keras.metrics.Recall(),\n    tf.keras.metrics.AUC()\n]\n\n# 常用回归指标\nmetrics = [\n    tf.keras.metrics.MeanSquaredError(),\n    tf.keras.metrics.MeanAbsoluteError(),\n    tf.keras.metrics.RootMeanSquaredError()\n]"
+    ]
+   },
+   {
+    "title": "TensorFlow 模型训练",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-model-training.html",
+    "body": "TensorFlow 提供了构建和训练神经网络模型的全套工具。\n模型训练是指通过数据让模型自动调整参数，从而获得预测能力的过程。\n模型训练的核心要素\n数据：训练集、验证集和测试集\n模型架构：神经网络的层结构和连接方式\n损失函数：衡量模型预测与真实值差异的指标\n优化器：调整模型参数的算法\n评估指标：衡量模型性能的标准\n训练流程\n1、数据准备\n实例",
+    "examples": [
+     "import tensorflow as tf\nfrom tensorflow.keras import datasets\n\n# 加载数据集（以MNIST为例）\n(train_images, train_labels), (test_images, test_labels) = datasets.mnist.load_data()\n\n# 数据预处理\ntrain_images = train_images.reshape((60000, 28, 28, 1)).astype('float32') / 255\ntest_images = test_images.reshape((10000, 28, 28, 1)).astype('float32') / 255\n\n# 转换为TensorFlow Dataset\ntrain_dataset = tf.data.Dataset.from_tensor_slices((train_images, train_labels))\ntrain_dataset = train_dataset.shuffle(10000).batch(64)"
+    ]
+   },
+   {
+    "title": "TensorFlow 模型调优技巧",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-model-tuning.html",
+    "body": "模型调优是机器学习工作流程中至关重要的环节，它直接影响模型的最终性能表现。在TensorFlow中，我们可以通过多种技术手段来提升模型的准确率和泛化能力。\n为什么需要模型调优\n初始模型通常不够理想：首次训练的模型往往存在欠拟合或过拟合问题\n资源利用优化：通过调优可以在相同计算资源下获得更好性能\n业务需求匹配：不同应用场景对模型有不同要求（如精度vs速度）\n1.2 调优的主要方向\n超参数调优技巧\n学习率调整\n学习率是最关键的超参数之一，直接影响模型收敛速度和最终性能。\n静态学习率设置\n实例",
+    "examples": [
+     "# 基本学习率设置示例\noptimizer = tf.keras.optimizers.Adam(learning_rate=0.001)"
+    ]
+   },
+   {
+    "title": "TensorFlow 生产环境",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-production.html",
+    "body": "TensorFlow 作为业界领先的机器学习框架，在从实验环境迁移到生产环境时需要考虑诸多因素。\n本文将全面介绍 TensorFlow 在生产环境中的关键考虑点，帮助开发者构建稳定、高效的机器学习系统。\n1. 模型优化\n1.1 模型量化\n实例",
+    "examples": [
+     "# 训练后量化示例\nimport tensorflow as tf\nconverter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\ntflite_quant_model = converter.convert()"
+    ]
+   },
+   {
+    "title": "TensorFlow 实例 - 回归问题",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-regression.html",
+    "body": "什么是回归问题\n回归问题是机器学习中的一类重要问题，其目标是预测连续值输出。与分类问题（预测离散类别）不同，回归问题预测的是实数范围内的数值。\n常见回归问题示例\n房价预测：根据房屋面积、位置等特征预测价格\n股票预测：根据历史数据预测未来股价\n温度预测：根据气象数据预测未来温度\nTensorFlow 解决回归问题的基本流程\n实战：波士顿房价预测\n1. 准备数据\n我们将使用经典的波士顿房价数据集，它包含506个样本，每个样本有13个特征：\n实例",
+    "examples": [
+     "from tensorflow.keras.datasets import boston_housing\n\n# 加载数据\n(train_data, train_targets), (test_data, test_targets) = boston_housing.load_data()\n\n# 数据标准化（重要步骤）\nmean = train_data.mean(axis=0)\ntrain_data -= mean\nstd = train_data.std(axis=0)\ntrain_data /= std\n\ntest_data -= mean\ntest_data /= std"
+    ]
+   },
+   {
+    "title": "TensorFlow 模型保存与加载",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-save-load.html",
+    "body": "在机器学习和深度学习项目中，模型的保存与加载是至关重要的环节。\nTensorFlow 提供了多种方式来保存和恢复模型，使开发者能够：\n保存训练好的模型供后续使用\n分享模型给其他开发者\n从检查点恢复训练\n部署模型到生产环境\nTensorFlow 2.x 主要支持三种模型保存格式：\nSavedModel 格式（推荐）\nHDF5 格式（.h5）\n旧版 Keras 格式\n保存整个模型\nSavedModel 格式\nSavedModel 是 TensorFlow 推荐的模型保存格式，它包含完整的模型信息：\n实例",
+    "examples": [
+     "import tensorflow as tf\n\n# 创建并训练一个简单模型\nmodel = tf.keras.Sequential([\n    tf.keras.layers.Dense(64, activation='relu'),\n    tf.keras.layers.Dense(10, activation='softmax')\n])\nmodel.compile(optimizer='adam',\n              loss='sparse_categorical_crossentropy',\n              metrics=['accuracy'])\nmodel.fit(x_train, y_train, epochs=5)\n\n# 保存为SavedModel格式\nmodel.save('my_model')  # 注意：没有文件扩展名"
+    ]
+   },
+   {
+    "title": "TensorFlow 环境搭建",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-setup.html",
+    "body": "TensorFlow 2.x 对 Python 版本有特定要求：\nTensorFlow 版本\nPython 版本支持\nTensorFlow 2.15+\nPython 3.9-3.12\nTensorFlow 2.12-2.14\nPython 3.8-3.11\nTensorFlow 2.8-2.11\nPython 3.7-3.10\n推荐使用 Python 3.9-3.11，这些版本具有最好的兼容性和稳定性。\n检查当前 Python 版本\n# 检查 Python 版本\npython --version\n# 或\npython3 --version\n\n# 检查 pip 版本\npip --version\n# 或\npip3 --version\nPython 安装选项\n选项 1：官方 Python（推荐新手）\n访问 python.org 下载安装\n安装时勾选 \"Add Python to PATH\"\n包含 pip 包管理器\n选项 2：Anaconda/Miniconda（推荐数据科学）\nAnaconda：完整的数据科学环境\nMiniconda：轻量级版本\n内置环境管理和包管理\n选项 3：系统包管理器\n# Ubuntu/Debian\nsudo apt update\nsudo apt install python3 python3-pip\n\n# macOS (使用 Homebrew)\nbrew install python3\n\n# Windows (使用 Chocolatey)\nchoco install python3\n虚拟环境设置（强烈推荐）\n为什么使用虚拟环境\n好处：\n隔离依赖：避免不同项目间的包版本冲突\n干净环境：保持系统 Python 环境整洁\n易于管理：可以轻松删除和重建环境\n可复现性：便于在不同机器上复现环境\n使用 venv 创建虚拟环境\n# 创建虚拟环境\npython -m venv tensorflow_env\n\n# 激活虚拟环境\n# Windows:\ntensorflow_env\\Scripts\\activate\n# macOS/Linux:\nsource tensorflow_env/bin/activate\n\n# 确认激活（提示符会显示环境名）\nwhich python # 应该指向虚拟环境中的 python\n\n# 升级 pip\npython -m pip install --upgrade pip\n使用 Conda 创建虚拟环境\n# 创建新环境\nconda create -n tensorflow_env python=3.10\n\n# 激活环境\nconda activate tensorflow_env\n\n# 列出所有环境\nconda env list\n\n# 在环境中安装包\nconda install pip\n虚拟环境管理\n# 查看已安装的包\npip list\n\n# 生成依赖文件\npip freeze > requirements.txt\n\n# 从文件安装依赖\npip install -r requirements.txt\n\n# 退出虚拟环境\ndeactivate # venv\nconda deactivate # conda\n\n# 删除虚拟环境\nrm -rf tensorflow_env # venv\nconda env remove -n tensorflow_env # conda\nTensorFlow 安装\nCPU 版本安装（适合学习和轻量级任务）\n# 确保在虚拟环境中\npip install tensorflow\n\n# 验证安装\npython -c \"import tensorflow as tf; print('TensorFlow version:', tf.__version__)\"\nCPU 版本特点：\n优点：安装简单，无需额外配置\n缺点：训练速度较慢，适合小规模数据\n适用场景：学习、原型开发、推理部署\nGPU 版本安装（适合大规模训练）\nGPU 加速可以显著提升训练速度，特别是对于深度学习任务。\n3.2.1 NVIDIA GPU 要求\n硬件要求：\nNVIDIA GPU（计算能力 3.5 或更高）\n8GB+ 显存（推荐）\n查看 GPU 信息：\n# Windows\nnvidia-smi\n\n# Linux\nlspci | grep -i nvidia\nCUDA 和 cuDNN 安装\nTensorFlow 2.15+ 与 CUDA 版本对应：\nTensorFlow\nCUDA\ncuDNN\n2.15+\n12.2\n8.9\n2.12-2.14\n11.8\n8.6\n安装步骤：\n下载和安装 CUDA Toolkit\n访问 NVIDIA CUDA Toolkit\n选择对应版本下载安装\n添加到系统 PATH\n下载和安装 cuDNN\n访问 NVIDIA cuDNN\n需要注册 NVIDIA 账户\n解压到 CUDA 安装目录\n验证 CUDA 安装\nnvcc --version\nnvidia-smi\n安装 TensorFlow GPU 版本\n# TensorFlow 2.10+ 统一包名\npip install tensorflow\n\n# 验证 GPU 可用性\npython -c \"\nimport tensorflow as tf\nprint('TensorFlow version:', tf.__version__)\nprint('GPU available:', tf.config.list_physical_devices('GPU'))\nprint('Built with CUDA:', tf.test.is_built_with_cuda())\n\"\n通过 Conda 安装\n# CPU 版本\nconda install tensorflow\n\n# 或从 conda-forge\nconda install -c conda-forge tensorflow\n\n# GPU 版本（自动安装 CUDA）\nconda install tensorflow-gpu\n安装特定版本\n# 安装特定版本\npip install tensorflow==2.14.0\n\n# 安装预发布版本\npip install tf-nightly\n\n# 升级到最新版本\npip install --upgrade tensorflow\n开发工具安装\nupyter Notebook/Lab\nJupyter 是数据科学和机器学习的标准开发环境：\n# 安装 Jupyter Notebook\npip install jupyter notebook\n\n# 或安装 JupyterLab（推荐）\npip install jupyterlab\n\n# 启动 Jupyter\njupyter notebook\n# 或\njupyter lab\nJupyter 扩展：\n# 安装有用的扩展\npip install jupyter_contrib_nbextensions\njupyter contrib nbextension install --user\n\n# 变量检查器\npip install nbextensions\nIDE 选择\nVisual Studio Code（推荐）：\n安装 Python 扩展\n安装 Jupyter 扩展\n智能代码补全和调试\nPyCharm：\n专业的 Python IDE\n强大的调试功能\n内置 Git 支持\nGoogle Colab（云端选项）：\n免费 GPU 使用\n预装常用库\n无需本地配置\n必要的 Python 包\n# 数据处理\npip install numpy pandas matplotlib seaborn\n\n# 科学计算\npip install scipy scikit-learn\n\n# 图像处理\npip install pillow opencv-python\n\n# 进度条和实用工具\npip install tqdm\n\n# 创建完整的要求文件\ncat > requirements.txt << EOF\ntensorflow>=2.12.0\nnumpy>=1.21.0\npandas>=1.3.0\nmatplotlib>=3.5.0\nseaborn>=0.11.0\nscikit-learn>=1.0.0\njupyter>=1.0.0\ntqdm>=4.60.0\npillow>=8.0.0\nEOF\n\n# 批量安装\npip install -r requirements.txt\n配置验证\n完整的安装验证脚本\n创建 verify_installation.py 文件：\n实例",
+    "examples": [
+     "#!/usr/bin/env python3\n\"\"\"\nTensorFlow 安装验证脚本\n\"\"\"\n\nimport sys\nprint(\"Python version:\", sys.version)\nprint(\"-\" * 50)\n\n# 检查 TensorFlow\ntry:\n    import tensorflow as tf\n    print(f\"✓ TensorFlow version: {tf.__version__}\")\n    print(f\"✓ Keras version: {tf.keras.__version__}\")\n    \n    # 检查 GPU 支持\n    physical_devices = tf.config.list_physical_devices('GPU')\n    if physical_devices:\n        print(f\"✓ GPU devices found: {len(physical_devices)}\")\n        for i, device in enumerate(physical_devices):\n            print(f\"  - GPU {i}: {device}\")\n        print(f\"✓ CUDA built: {tf.test.is_built_with_cuda()}\")\n    else:\n        print(\"&#x26a0; No GPU devices found (CPU only)\")\n    \n    # 简单计算测试\n    a = tf.constant([1, 2, 3])\n    b = tf.constant([4, 5, 6])\n    c = tf.add(a, b)\n    print(f\"✓ Basic computation test: {a.numpy()} + {b.numpy()} = {c.numpy()}\")\n    \nexcept ImportError as e:\n    print(f\"✗ TensorFlow import failed: {e}\")\n\nprint(\"-\" * 50)\n\n# 检查其他重要包\npackages = ['numpy', 'pandas', 'matplotlib', 'sklearn', 'jupyter']\nfor package in packages:\n    try:\n        module = __import__(package)\n        version = getattr(module, '__version__', 'unknown')\n        print(f\"✓ {package}: {version}\")\n    except ImportError:\n        print(f\"✗ {package}: not installed\")\n\nprint(\"-\" * 50)\n\n# 内存和设备信息\nprint(\"System Information:\")\nif tf.config.list_physical_devices('GPU'):\n    for gpu in tf.config.list_physical_devices('GPU'):\n        try:\n            tf.config.experimental.set_memory_growth(gpu, True)\n            print(f\"✓ GPU memory growth enabled for {gpu}\")\n        except:\n            print(f\"&#x26a0; Could not set memory growth for {gpu}\")\n\nprint(\"Installation verification complete!\")"
+    ]
+   },
+   {
+    "title": "TensorFlow 张量操作",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-tensor-operations.html",
+    "body": "张量是TensorFlow 中的核心数据结构，可以理解为多维数组的扩展概念。\n在机器学习中，几乎所有数据最终都会被表示为张量形式进行处理。\n张量 的基本特性\n数据类型(dtype)：每个张量都有特定的数据类型，如tf.float32、tf.int64等\n形状(shape)：表示张量每个维度的大小，如(2,3)表示2行3列的矩阵\n设备位置(device)：指示张量存储在CPU还是GPU上\n张量的维度\n0维张量：标量(scalar)，如 tf.constant(5)\n1维张量：向量(vector)，如 tf.constant([1,2,3])\n2维张量：矩阵(matrix)，如 tf.constant([[1,2],[3,4]])\n3维及以上：高阶张量，如 tf.ones((2,3,4)) 表示2个3×4的矩阵\n创建张量的常用方法\n1. 从Python列表/NumPy数组创建\n实例",
+    "examples": [
+     "import tensorflow as tf\nimport numpy as np\n\n# 从Python列表创建\ntensor_from_list = tf.constant([[1, 2], [3, 4]])\n\n# 从NumPy数组创建\nnumpy_array = np.array([[5, 6], [7, 8]])\ntensor_from_numpy = tf.constant(numpy_array)"
+    ]
+   },
+   {
+    "title": "TensorFlow 实例 - 文本分类项目",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-text-classification.html",
+    "body": "文本分类是自然语言处理(NLP)中的基础任务，指将文本文档自动分类到一个或多个预定义类别中。在实际应用中，文本分类被广泛用于：\n垃圾邮件检测\n情感分析\n新闻分类\n客服对话分类\n产品评论分类\n使用TensorFlow实现文本分类通常包含以下步骤：\n数据准备与预处理\n文本向量化\n模型构建\n模型训练\n模型评估\n模型部署\n环境准备\n在开始项目前，请确保已安装以下Python库：\n!pip install tensorflow\n!pip install numpy\n!pip install pandas\n!pip install matplotlib\n导入必要的库：\n实例",
+    "examples": [
+     "import tensorflow as tf\nfrom tensorflow.keras import layers\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt"
+    ]
+   },
+   {
+    "title": "TensorFlow 文本数据处理",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-text-data-processing.html",
+    "body": "TensorFlow 作为当前最流行的深度学习框架之一，提供了强大的文本数据处理能力。本文将详细介绍如何使用 TensorFlow 处理文本数据，包括文本预处理、向量化和模型输入等关键步骤。\n文本数据是机器学习中最常见的数据类型之一，但计算机无法直接理解原始文本，因此需要将其转换为数值形式。TensorFlow 提供了一系列工具和 API 来简化这一过程。\n文本预处理基础\n为什么需要文本预处理\n原始文本数据通常包含许多噪声和不一致性，例如：\n大小写不一致\n标点符号\n停用词（如\"的\"、\"是\"等）\n特殊字符\n拼写错误\n预处理的目标是将原始文本转换为干净、一致的格式，便于后续的特征提取和模型训练。\nTensorFlow 文本处理工具\nTensorFlow 提供了多个用于文本处理的模块：\ntf.strings：基础字符串操作\ntf.keras.layers.TextVectorization：文本向量化层\ntf.data.TextLineDataset：从文本文件创建数据集\ntensorflow_text：高级文本处理库（需单独安装）\n安装必要的库\n实例",
+    "examples": [
+     "import tensorflow as tf\nfrom tensorflow.keras.layers import TextVectorization\nimport tensorflow_text as tf_text  # 可选，用于高级处理"
+    ]
+   },
+   {
+    "title": "TensorFlow 教程",
+    "url": "https://www.runoob.com/tensorflow/tensorflow-tutorial.html",
+    "body": "TensorFlow 是一个数学计算的工具箱，专门为机器学习任务而设计，让开发者能够轻松地构建从简单线性回归到复杂神经网络的各种模型。\nTensorFlow 是由 Google 开发的开源机器学习框架，用于构建和训练各种机器学习和深度学习模型。\nTensorFlow 名字来源于其核心概念：Tensor（张量） 和 Flow（流动），表示数据以张量的形式在计算图中流动。",
+    "examples": []
+   }
+  ]
+ }
+}

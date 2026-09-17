@@ -1,0 +1,98 @@
+{
+ "tutorial": {
+  "name": "Obsidian",
+  "category": "工具与运维",
+  "desc": "Obsidian 是一款基于 Markdown 文件的个人知识库与笔记管理工具，",
+  "url": "https://www.runoob.com/obsidian/",
+  "chapters": [
+   {
+    "title": "Obsidian 双链与知识图谱",
+    "url": "https://www.runoob.com/obsidian/obsidian-bilinks-graph.html",
+    "body": "双向链接是 Obsidian 区别于传统笔记软件的核心能力，它不是简单的超链接跳转，而是一种让知识之间相互感知的机制——当你连接两个笔记时，这种关系在两端同时可见。\n内部链接：[[ ]] 语法\n在 Obsidian 中，用 [[笔记名]] 即可创建指向另一篇笔记的链接。\n输入 [[ 后，Obsidian 会自动弹出搜索框，支持模糊匹配笔记名称。\n实例",
+    "examples": [
+     "## 我的学习笔记\n\n学习 [[Python 基础]] 时，需要先理解 [[变量与数据类型]]。\n这些概念在 [[面向对象编程]] 中也会用到。\n\n可以参考 [[设计模式]] 中的工厂模式实现。"
+    ]
+   },
+   {
+    "title": "Obsidian + Claude Code",
+    "url": "https://www.runoob.com/obsidian/obsidian-claude-code.html",
+    "body": "Obsidian 是主打本地存储的 Markdown 笔记工具，文件全部保存在你自己电脑的文件夹里，安全、私密、可离线使用，加上双向链接和海量插件，它特别适合程序员用来存代码、记笔记、做长期知识沉淀。\nClaude Code 是 Anthropic 推出的 AI 编程助手，基于 Claude 大模型优化，擅长读代码、改代码、写代码、查问题。\n我们可以在 Obsidian 里安装 Claudian 插件，把 Claude Code 直接集成进来，让 AI 帮你写文档、整理笔记和项目进度、自动推送每日 AI 热点，让笔记库变成智能工作空间。\n环境安装与配置\n1、Obsidian 下载\n我们需要先去 Obsidian 官方网站 https://obsidian.md/download 下载 Obsidian，提供了各种系统版本:\n2、安装 Claude Code\n终端执行（全局安装一次就好）：\nnpm install -g @anthropic-ai/claude-code\n安装完成后，运行一次授权：\nclaude\n它会让你登录 Claude 账号，完成 OAuth 授权（只需要做一次）。\n注意：如果没有 Claude 账号，我们也可以用国内的大模型代替，参考：Claude Code API 配置。\nClaude Code 详细内容参考：https://www.runoob.com/claude-code/claude-code-tutorial.html\n3、安装 Obsidian 社区插件 Claudian\n我们可以从 GitHub Release https://github.com/YishenTu/claudian/releases/latest 下载 main.js、manifest.json 和 styles.css 这三个文件：\n在你的 Obsidian 库的插件文件夹 plugins 中（如果没有创建一个），新建一个名为 claudian 的文件夹，路径示例：\n/path/to/vault/.obsidian/plugins/claudian/\n注：/path/to/vault/ 需替换为你自己的 Obsidian 库实际路径。\n仓库管理菜单可以看到详细的路径：\n将下载好的三个文件复制到这个 claudian/plugins/ 文件夹中。\n.obsidian/\n└── plugins/\n └── claudian/\n ├── main.js # 插件的编译后 JavaScript 主文件（包含所有逻辑）\n ├── manifest.json # 插件元数据（ID、名称、版本、描述、最低 Obsidian 版本等）\n └── styles.css # 插件的 CSS 样式\n在 Obsidian 中启用该插件：设置 → 社区插件 → 开启「Claudian」插件开关。\n通过设置，可以设置为中文语言：\n第一次使用 Claudian\n打开任意笔记，左侧边栏会出现一个 机器人图标（或用命令面板 Ctrl/Cmd+P 输入 Claudian: Open Chat）:\n第一次打开会提示你选择 Claude 模型（可以设置国内的大模型），输入框打 / 会出现所有可用技能（skills）：\n测试：\n写一篇新笔记（最常用场景）text帮我写一篇关于「2026年最值得关注的5个AI编程工具」的文献笔记，格式用我 vault 里最常用的文献笔记模板，从今天更新的网页抓取信息\n接下来就开始正常干活了：\n功能与使用方法\n通过侧边栏功能区图标或命令面板打开聊天侧边栏，选中文本并使用快捷键即可进行行内编辑。\n所有操作都与你熟悉的编码代理（Claude Code、Codex、Opencode、Pi）一致 —— 与代理对话，它就能读取、写入、编辑和搜索你库中的文件。\n行内编辑 — 选中文本或定位光标后按下快捷键，可直接在笔记中编辑内容，并提供单词级别的差异预览。\n斜杠命令与技能 — 输入 / 或 $ 可调用可复用的提示词模板，或来自用户级 / 库级作用域的技能（Skills）。\n@ 提及 - 输入 @ 可提及任何你希望代理处理的对象，包括库文件、子代理、MCP 服务器或外部目录中的文件。\n规划模式 — 通过 Shift+Tab 切换。代理会先探索设计方案再执行实现，随后呈现规划内容供你确认。\n指令模式 # — 可在聊天输入框中添加精细化的自定义指令。\nMCP 服务器 — 通过模型上下文协议（Model Context Protocol，支持标准输入输出、服务器发送事件、HTTP）连接外部工具。Claude 可在应用内管理库级 MCP；Codex 则使用其独立的命令行界面（CLI）管理 MCP 配置。\n多标签页与对话 — 支持多聊天标签页、对话历史记录、对话分支、恢复对话及紧凑视图模式。",
+    "examples": []
+   },
+   {
+    "title": "obsidian-core-plugins",
+    "url": "https://www.runoob.com/obsidian/obsidian-core-plugins.html",
+    "body": "Obsidian 插件\nObsidian 的强大之处，很大程度上来自于其插件市场。\n插件允许用户根据自己的需求，将 Obsidian 从一个基础的 Markdown 编辑器，扩展成一个功能无限的瑞士军刀。\nObsidian 的插件分为两大类：核心插件和社区插件，可以在设置选择打开查看。\n1. 核心插件 (Core Plugins)\n定义： 这些是 Obsidian 软件自带的、官方维护的功能模块。它们默认安装在每个 Obsidian 实例中，但可以根据需要选择开启或关闭。\n作用： 提供软件的基础和重要功能，例如笔记之间的双向链接、关系图谱、每日笔记、模板、标签面板等。\n应用举例：每日笔记 (Daily Notes)： 快速创建并跳转到当天的笔记，非常适合做每日记录或任务追踪。\n画布 (Canvas)： 让你在一个无限大的白板上自由布局笔记、图片和网页，进行视觉化的思维组织。\n模板 (Templates)： 允许你定义重复使用的笔记结构（如读书笔记、会议记录），提高效率。\n2. 第三方插件\n定义： 这些是由全球 Obsidian 用户（开发者）创建、维护和分享的第三方功能扩展。\n特点： 数量庞大，功能五花八门，极大地丰富了 Obsidian 的生态系统。\n安全性： 在安装第三方插件之前，Obsidian 默认开启安全模式。安装插件需要手动关闭安全模式，Obsidian 会提醒用户注意安全风险（建议只安装下载量大、评分高且功能明确的插件）。\n对于新手用户，以下是一些最受欢迎、功能强大且能迅速提升体验的第三方插件：\n插件名称\n主要功能\n典型应用场景\nDataview\n将你的笔记库视为一个数据库，用代码查询并展示数据。\n自动生成任务列表、汇总所有带有特定标签的项目或书籍清单。\nExcalidraw\n在 Obsidian 中创建手绘风格的图表和思维导图。\n制作流程图、概念草图或进行手写注释。\nCalendar\n在右侧边栏显示一个日历视图。\n快速查看和跳转到过去的每日笔记，形成日程回顾。\nAdvanced Tables\n简化 Markdown 表格的创建和格式化。\n轻松对齐和编辑复杂的表格，无需手动调整空格。\nKanban\n在 Obsidian 中创建类 Trello 或 Notion 的看板视图。\n任务管理、项目进度追踪或将想法从\"待办\"拖动到\"完成\"。\nObsidian Git\n自动将你的库备份到 Git 仓库（如 GitHub）。\n实现版本控制和多设备同步，提供额外的安全保障。\n如何安装和管理插件\n1. 进入插件设置\n点击左下角的 \"设置\" (齿轮图标)\n在侧边栏找到 \"核心插件\" 和 \"第三方插件\"。\n2. 安装第三方插件的步骤\n进入 \"第三方创建\" 选项卡。\n关闭安全模式： Obsidian 会提示你进行此操作。\n点击 \"浏览\"。\n在搜索框输入插件名称（如 Dataview）。\n点击插件，然后点击 \"安装\"。\n激活插件： 安装完成后，点击 \"启用\" 按钮。插件才会开始工作。\n小提示： 插件安装后，通常会在左侧栏、右侧栏或通过命令面板 (Ctrl/Cmd + P) 来调用其功能。\nObsidian 核心插件\nObsidian 内置了十余个核心插件，默认情况下部分已启用，部分需要手动开启。\nDaily Notes：每日笔记\nDaily Notes 是日记功能的核心插件，让你每天有一篇固定笔记用于记录、规划或反思。\n启用与配置\n在设置 → 核心插件中开启「日记」。\n关键配置项：\n配置项\n建议值\n说明\n日期格式\nYYYY-MM-DD\n如 2026-05-21，天然按文件名排序\n新建日记的默认文件夹\n00-日记\n与普通笔记分离，方便管理\n模板文件位置\nTemplates/日记模板\n指定每日日记的模板\n日记模板设计\n实例",
+    "examples": [
+     "---\ntags:\n  - 日记\ncreated: {{date}}\n---\n\n# {{date}} 日记\n\n## 今日目标\n\n- [ ] 目标 1\n- [ ] 目标 2\n- [ ] 目标 3\n\n## 笔记与想法\n\n## 今日总结\n\n### 做得好\n\n### 可以改进\n\n### 明天计划"
+    ]
+   },
+   {
+    "title": "Obsidian 文件组织与管理",
+    "url": "https://www.runoob.com/obsidian/obsidian-file-organization.html",
+    "body": "当你的笔记从几十篇增长到几百篇时，组织方式会直接决定你能多快找到需要的信息。\n这一章介绍文件夹结构设计、标签系统、模板和搜索技巧——帮助你搭建一个可扩展的笔记体系。\n文件夹结构设计：两种主流流派\nObsidian 社区中关于文件夹组织主要有两种流派，各有优势。\nPARA 法\nPARA 是 Tiago Forte 提出的信息组织方法，将内容按可操作性分为四类：\n文件夹\n含义\n存放内容\nProjects\n项目\n有明确截止日期的任务系列，如「Python 课程作业」「Q2 工作报告」\nAreas\n领域\n持续维护的责任范围，如「健康」「财务」「编程技能」\nResources\n资源\n感兴趣但非活跃的主题，如「设计模式参考」「论文摘录」\nArchives\n归档\n已完成或不再活跃的内容，从其他三个文件夹移入\nPARA 的核心思路是：按行动性排序，而不是按学科分类。同一主题的不同内容可能分散在不同文件夹中——「Python」可以同时出现在 Projects（正在做的课程）和 Resources（收藏的教程）。\nZettelkasten 卡片盒笔记法\nZettelkasten 是德国社会学家卢曼的笔记方法，核心原则为：\n原子化：每篇笔记只表达一个观点或概念\n链接优先：笔记之间通过链接建立关系，而非通过文件夹层级\n用自己的话写：不是摘抄，而是理解后的重述\n在 Obsidian 中实践 Zettelkasten，文件夹结构通常非常简单，甚至只有一个文件夹存放所有原子笔记，依赖双链和标签来发现内容。\n两种流派对比\n维度\nPARA\nZettelkasten\n组织核心\n文件夹层级\n链接和标签\n适合人群\n有明确工作项目、习惯按目录找文件\n研究者、写作者、喜欢自下而上积累\n维护成本\n需要定期归档和整理文件夹\n需要持续建立笔记间的链接\n迁移难度\n较低，文件夹结构独立\n非常低，几乎不依赖特定结构\n你不必严格遵循其中某一种。很多人采用混合策略——顶层用 PARA 的四大文件夹，但允许笔记之间用 Zettelkasten 式的双链自由关联。选择让你最顺手的方式，坚持一个体系比选哪个体系更重要。\n标签系统\n标签是跨文件夹组织内容的重要手段。\n在 Obsidian 中，标签写在正文或 Front Matter 中，用 # 标签名 的格式。\n基础用法\n实例",
+    "examples": [
+     "#python #obsidian #笔记方法"
+    ]
+   },
+   {
+    "title": "Obsidian 安装",
+    "url": "https://www.runoob.com/obsidian/obsidian-install.html",
+    "body": "前往 obsidian.md 下载对应平台的安装包：\nmacOS：下载 .dmg 文件，拖入 Applications 文件夹\nWindows：下载 .exe 安装程序，按引导安装\nLinux：提供 .AppImage、.deb、.rpm 三种格式\niOS / Android：App Store / Google Play 搜索「Obsidian」\nObsidian 个人使用完全免费，无需注册账号即可使用所有核心功能。\n你可以选择对应你的操作系统（Windows/Mac/iOS/Android/Linux）的版本下载并安装。\nObsidian 下载页面：https://obsidian.md/download\nObsidian Github 地址：https://github.com/obsidianmd\n下载后就可以双击安装，选择语言等配置：\n首次启动界面\n首次打开 Obsidian 你会看到三个选项：\n创建新库 在本地新建一个 Vault\n打开已有文件夹 将现有文件夹作为 Vault\n从 Obsidian Sync 打开 （付费功能）\n然后选择快速开始直接进入页面看看布局：\n左侧栏 (文件管理器)： 管理你的文件夹和笔记列表。\n中间区域 (编辑器)： 你主要写作的地方，支持\"实时预览\"模式，即你输入 Markdown 符号时，它会立刻渲染成格式。\n右侧栏 (面板)： 默认显示反向链接（即其他哪些笔记提到了你正在看的这篇笔记）和大纲。\n命令面板 (Ctrl/Cmd + P)： 新手神器！按此快捷键，输入你想要做的操作（如\"创建新笔记\"），无需点击菜单。\n选择创建新库，为你的知识库起一个名字，选择一个存放位置。\n建议放在 ~/Documents/ 下，便于备份和 Git 管理。\n界面语言设置\nObsidian 默认显示英文界面。切换为中文的步骤：\n打开设置：Cmd/Ctrl + ,\n选择左侧 About（关于）\n找到 Language 下拉菜单\n选择「简体中文」\n点击 Relaunch（重启）\n认识三栏布局\n重启后，你会看到 Obsidian 的主界面，由三个区域组成：\n左侧边栏：文件列表、搜索、书签、标签列表\n编辑区/阅读区：这是你写笔记的地方，支持编辑/预览双模式或分屏同时查看\n右侧边栏：反向链接、大纲、标签等辅助面板\n快捷键速查\n操作\nmacOS\nWindows / Linux\n打开设置\nCmd + ,\nCtrl + ,\n快速打开文件\nCmd + O\nCtrl + O\n新建笔记\nCmd + N\nCtrl + N\n打开命令面板\nCmd + P\nCtrl + P\n切换编辑/阅读模式\nCmd + E\nCtrl + E\n打开/关闭左侧边栏\nCmd + [\nCtrl + [\n打开/关闭右侧边栏\nCmd + ]\nCtrl + ]\n推荐的初始外观配置\n进入设置 → 外观，建议做以下调整：\n主题：官方默认主题已经很好用。如果你喜欢更简洁的风格，可以在社区主题中搜索并安装 Minimal，它是目前最受欢迎的第三方主题之一。\n字体设置（开发者推荐）：\n界面字体：系统默认 或 PingFang SC（macOS）/ 微软雅黑（Windows）\n正文字体：同上，或思源宋体用于阅读\n等宽字体：JetBrains Mono 或 Fira Code（代码块使用）\n进入设置 → 编辑器，建议调整：\n行宽：建议设置为 88 或 100，与代码习惯保持一致\n实时预览（Live Preview）：默认已开启，推荐保留\n自动配对括号：开启，写 [[ 时自动补全 ]]\n显示行号：可以开启，对开发者来说更亲切",
+    "examples": []
+   },
+   {
+    "title": "Obsidian 简介",
+    "url": "https://www.runoob.com/obsidian/obsidian-intro.html",
+    "body": "Obsidian 是一款基于本地 Markdown 文件的双链笔记软件，官方将其定位为你的第二大脑（A second brain, for you, forever）。，它能帮你把零散的知识点编织成一张可生长的知识网络。\nObsidian 是一款本地优先的个人知识管理工具。\nObsidian的核心文件格式是纯文本 Markdown，所有笔记都以 .md 文件的形式存储在电脑本地文件夹中。\n与 Notion、语雀这类在线笔记工具不同，Obsidian 不需要联网，你的数据完全掌握在自己手里。\n与 Roam Research、Logseq 这类大纲型笔记相比，Obsidian 更接近传统文档编辑体验，自由书写的同时保留了强大的双向链接能力。\nObsidian 之于笔记，就像 VS Code 之于代码编辑，不是一个封闭的平台，而是一个可以无限扩展的工具，而你的所有内容都存储为纯文本文件，你永远拥有它们。\n为什么选择 Obsidian\n特性\nObsidian\nNotion\nRoam Research\n存储方式\n本地 Markdown 文件\n云端数据库\n云端数据库\n离线可用\n完全离线\n需预先加载\n需联网\n双链能力\n原生支持\n有限支持\n原生支持（大纲式）\n扩展性\n1000+ 社区插件\n少量集成\n较少插件\n价格\n个人免费\n免费增值\n付费订阅\n数据迁移\n复制文件夹即可\n需导出\n需导出\nObsidian 的核心本质只有三点：\n纯文本存储：所有笔记都是 .md 格式的 Markdown 文件，存放在你本地电脑的某个文件夹里。没有专有格式，没有数据库，用任何文本编辑器都能打开。\n双向链接：笔记之间可以相互引用，形成一张知识网络，而不是孤立的文件。\n可扩展性：拥有超过 1500 个社区插件，可以把 Obsidian 改造成任何你需要的形状。\n为什么开发者特别适合用 Obsidian\n很多工具都能「记笔记」，但 Obsidian 对开发者来说有几个独特的吸引力。\nMarkdown 是你的母语\n作为开发者，你每天都在写 README、文档、注释。\nMarkdown 本就是你工作的一部分。Obsidian 以 Markdown 为第一公民，没有学习成本。\n本地文件等于 Git 友好\n所有文件都是纯文本，这意味着：\n可以用 git init 对整个笔记库做版本控制\n可以用 grep、sed、脚本批量处理笔记\n迁移、备份、导出无任何障碍\n你的数据永远不会被某家公司的倒闭而带走\n程序员思维与 Obsidian 高度契合\n开发者习惯\nObsidian 对应功能\n函数/模块之间相互引用\n双向链接 [[]]\n为代码写注释和文档\n笔记内嵌代码块\n用 Git 追踪变更\n纯文本 + Git 版本管理\n用标签/分支管理任务\n标签系统 + 文件夹结构\n查阅 API 文档\n个人知识库 + 快速搜索\n项目 README\n项目笔记 + Canvas 白板\n与主流工具的核心差异\n在选择工具之前，你需要清楚各自的定位，避免重复建设。\nObsidian vs Notion\n对比维度\nObsidian\nNotion\n数据存储\n本地纯文本文件\nNotion 服务器（云端）\n离线可用\n完全离线\n需要网络\n数据所有权\n你完全拥有\nNotion 公司托管\n速度\n极快，毫秒级响应\n依赖网速，偶有卡顿\n协作功能\n弱（需要第三方工具）\n强（天然支持多人协作）\n自定义程度\n极高（插件生态丰富）\n中等\n适合场景\n个人知识管理、深度思考\n团队协作、项目管理\n学习曲线\n中等\n低\n结论：如果你需要和团队协作，Notion 更合适。如果你需要建立个人的、长期的知识体系，Obsidian 是更好的选择。\n两者并不互斥，很多人同时使用。\nObsidian vs Roam Research\nRoam Research 是双向链接笔记的先驱，但 Obsidian 是更实用的选择：\nRoam 是 SaaS 订阅制（每月 $15），Obsidian 个人使用完全免费\nRoam 数据存在云端，Obsidian 数据在本地\nRoam 的大纲式结构更适合思维发散，Obsidian 的文档式结构更适合沉淀整理\nObsidian vs Typora / VS Code\n这些工具也能写 Markdown，但它们缺少 Obsidian 的核心能力：\n没有双向链接：文件之间是孤立的，无法形成知识网络\n没有图谱视图：无法可视化地看到知识之间的关联\n没有插件生态：无法按需扩展功能\nTypora 是优秀的 Markdown 编辑器，VS Code 是优秀的代码编辑器，但它们都不是知识管理工具。\nObsidian 的核心理念\n在安装之前，先建立几个基本的心智模型，会让后续的学习事半功倍。\n理念一：笔记即文件\nObsidian 没有自己的数据库或私有格式。\n每一篇笔记就是你硬盘上的一个 .md 文件。\n~/Documents/MyVault/\n├── 日记/\n│ ├── 2024-01-15.md\n│ └── 2024-01-16.md\n├── 技术笔记/\n│ ├── Git 常用命令.md\n│ └── Docker 入门.md\n└── 读书笔记/\n └── 深入理解计算机系统.md\n当你在 Obsidian 中创建一篇笔记，实际上就是在某个文件夹中创建了一个 Markdown 文件。\n你可以在资源管理器中直接看到它，用 cat 命令读取它，用 Git 追踪它。\n理念二：链接比文件夹更重要\n传统的笔记软件依赖文件夹来组织内容，就像把书放进不同的抽屉。\n这种方式有一个致命的缺点：一个知识点只能属于一个抽屉。\nObsidian 的核心思想是：与其把笔记放进分类，不如把笔记连接起来。\n# Docker 入门\n\nDocker 是一种容器化技术，与 [[虚拟机]] 的关键区别在于...\n在部署时，通常配合 [[Kubernetes]] 使用...\n学习 Docker 之前建议先了解 [[Linux 基础]]...\n当你打开「Docker 入门」这篇笔记时，你会看到它链接到了「虚拟机」「Kubernetes」「Linux 基础」三篇笔记。\n同时，「Linux 基础」这篇笔记也会显示「有一篇叫 Docker 入门的笔记引用了我」。\n这就是双向链接，它模拟了人类大脑中概念之间的关联方式。\n理念三：知识图谱是果，不是因\n很多初学者看到 Obsidian 漂亮的知识图谱，误以为「搭建知识图谱」是使用 Obsidian 的目的。\n然后花大量时间设计结构，却没有真正记笔记。\n正确的理解是：图谱是你记笔记、建立链接之后自然生长出来的副产品，而不是你一开始就要精心设计的东西。\n先记笔记，先建链接，图谱自然会变得丰富。\n理念四：永远不要追求完美系统\n这是新手最容易掉入的陷阱：花太多时间设计「完美」的文件夹结构、标签体系，而不是真正地记录和思考。\n一个「足够好」且持续使用的系统，远胜于一个「完美」但从未真正落地的系统。",
+    "examples": []
+   },
+   {
+    "title": "Markdown 基础",
+    "url": "https://www.runoob.com/obsidian/obsidian-markdown-basics.html",
+    "body": "Markdown 是 Obsidian 的底层书写语言。\nMarkdown 用纯文本符号来表达格式，让你在写作时双手不用离开键盘，专注于内容而非排版。\n本章涵盖 Obsidian 日常使用中最常用的 Markdown 语法，所有示例可直接在 Obsidian 中练习。\nMarkdown 更多内容参考：https://www.runoob.com/markdown/md-tutorial.html\n标题\nMarkdown 使用 # 号表示标题，数量从 1 到 6 对应 H1 到 H6。\n在 Obsidian 中，标题有两个额外作用：大纲面板会基于标题自动生成文档目录，其他笔记可以通过 [[笔记名#标题]] 直接链接到某个标题位置。\n实例",
+    "examples": [
+     "# 一级标题\n## 二级标题\n### 三级标题\n#### 四级标题\n##### 五级标题\n###### 六级标题"
+    ]
+   },
+   {
+    "title": "Obsidian 第一个仓库",
+    "url": "https://www.runoob.com/obsidian/obsidian-start.html",
+    "body": "Vault 是 Obsidian 中最重要的概念。\nVault = 文件夹： 库其实就是你电脑上的一个普通文件夹，用来存放你所有的笔记文件。\n首次打开 Obsidian，在新建仓库位置选择\"创建\"按钮：\n。\n如果已经打开的，点击左侧最底部的 Obsidian Vault 来管理已建好的仓库，也可以重新设置仓库：\n然后给你的知识库起个名字（例如：我的第二大脑），再选择一个你容易找到的本地文件夹位置（例如：桌面或文档文件夹下的 Obsidian Vaults）\n创建后，接着就可以看到我们当前的仓库名了，比如我的 RUNOOB，我们可以对默认的\"欢迎\"文件重命名来开始写第一篇笔记：\n把文件名改为 RUNOOB-Obsidian 使用教程，然后编写以下markdown 内容：\n### 什么是 Obsidian？\n\nObsidian 本质上是一个**强大的笔记应用**，但它不仅仅是记录文字。它是一种将你的笔记、想法和知识点连接起来的工具，旨在构建一个**网状的、可搜索的、私人的知识网络**，就像你大脑中的神经元连接一样。\n\n* **本地文件存储：** Obsidian 的所有文件都以纯文本的 **Markdown** 格式存储在你的本地电脑上。这意味着：\n * **安全可控：** 你的数据完全属于你自己，不需要依赖任何云服务商。\n * **永不过时：** Markdown 是最通用的纯文本格式，即使 Obsidian 停止服务，你仍然可以用任何文本编辑器打开你的笔记。\n\n### 为什么要用 Obsidian？（核心优势）\n\n你可能用过 Word、Evernote 或 Notion，为什么还要选择 Obsidian？\n\n| 优势 | 描述 | 对你的好处 |\n| :--- | :--- | :--- |\n| **双向链接 (Bi-directional Linking)** | 使用 `[[笔记名]]` 语法，你可以将笔记像网页一样连接起来。 | 你能轻松发现知识点之间的**关联**，将零散的想法变成一个完整的知识体系。 |\n| **关系图谱 (Graph View)** | 将所有笔记和连接以可视化网络图的形式展示出来。 | 直观地看到你的知识网是如何成长的，找到未连接的“孤岛”笔记。 | \n| **纯文本与开放生态** | 基于 Markdown 和本地文件。 | 跨平台兼容性强，未来可导出性高，方便配合其他工具使用。 |\n| **高度可定制** | 拥有数千个社区插件和主题。 | 无论是学生、程序员还是作家，你都可以根据需求定制功能和外观。 |\n显示结果如下：\n注意：你的所有 Markdown 文件 (.md 后缀) 都将存储在这个文件夹里。Obsidian 只是读取和编辑这些文件的一个工具。\nVault 的目录结构\n当你创建一个 Vault 后，文件夹里会出现一个隐藏目录 .obsidian：\nMyVault/\n├── .obsidian/ ← Obsidian 的配置文件\n│ ├── plugins/ ← 安装的插件存放在这里\n│ ├── themes/ ← 主题文件\n│ ├── snippets/ ← 自定义 CSS 片段\n│ └── app.json ← 主配置文件\n├── 你的第一篇笔记.md\n└── ...\n给开发者的提示：.obsidian 文件夹推荐纳入 Git 管理。这样你的插件配置、快捷键设置、主题偏好都会被版本控制，换电脑时可以完整恢复。唯一的例外是 .obsidian/workspace.json，它记录了当前打开的标签页状态，可以加入 .gitignore。\n多 Vault 的使用场景\nObsidian 支持创建多个互相独立的 Vault：\nVault\n用途\n个人知识库\n技术学习、读书笔记、思考记录\n工作项目库\n当前公司项目，涉及保密内容时与个人库分开\n写作库\n专门用于长文写作，插件配置与知识库不同\n对于初学者，从一个 Vault 开始，不要过度设计。\n动手：创建你的第一篇笔记\n按 Cmd/Ctrl + N 新建笔记\n输入文件名，例如：关于 Obsidian 的第一条想法\n按回车确认，进入编辑区\n试着输入以下内容：\n实例",
+    "examples": [
+     "# 关于 Obsidian 的第一条想法\n\n今天开始学习 Obsidian，它是一款基于 [[Markdown]] 的笔记工具。\n\n## 我打算用它来做什么\n\n- [ ] 整理技术学习笔记\n- [ ] 记录每天的工作日志\n- [ ] 积累面试知识点\n\n## 第一个感受\n\n与之前用的工具相比，最大的不同是双向链接的概念。"
+    ]
+   },
+   {
+    "title": "Obsidian 同步、备份与进阶技巧",
+    "url": "https://www.runoob.com/obsidian/obsidian-sync-backup-tips.html",
+    "body": "笔记系统最重要的是数据安全——你花了大量时间积累的知识不能因为硬盘损坏或误操作而丢失。\n本章覆盖同步方案、备份策略、移动端使用和常见问题排查。\n官方同步：Obsidian Sync\nObsidian Sync 是官方提供的端对端加密云同步服务，是体验最好的同步方案。\n核心特性\n端对端加密：数据在上传前已在本地加密，服务商无法读取你的笔记内容\n增量同步：只同步变化的部分，速度远快于全量复制\n版本历史：保存每个文件的修改历史，可回溯到任意版本\n多设备同步：桌面端、移动端无缝同步，冲突自动合并\n价格\nObsidian Sync 是付费服务，按年订阅。\n如果你有 5 个以上的 Vault 或笔记库体积较大，Sync 是最省心的选择。\n配置步骤\n在设置 → 同步（Sync）中登录 Obsidian 账户\n选择一个远程 Vault（首次需创建）\n设置加密密码（务必妥善保管，丢失后无法恢复）\n选择要同步的文件夹和文件类型\n在另一台设备上同样登录并连接到同一个远程 Vault\n加密密码是恢复数据的唯一凭证。官方无法帮你重置。建议将密码保存在密码管理器中，或写在纸上安全存放。\n免费同步方案\n如果你不想为同步付费，有几种免费方案可以选择。\niCloud（macOS + iOS 用户首选）\n将 Vault 文件夹放在 iCloud Drive 中，macOS 和 iOS 设备间自动同步。\n优点是零配置、苹果生态无缝体验。\n缺点是 Windows 上的 iCloud 客户端体验一般，偶尔出现同步冲突。\nOneDrive / Dropbox\n将 Vault 文件夹放在 OneDrive 或 Dropbox 的同步目录中。\n支持全平台（Windows、macOS、Linux、移动端），比 iCloud 跨平台兼容性更好。\n注意：不要在多个设备上同时编辑同一篇笔记，可能产生冲突副本。\nGit + GitHub 版本管理\n将 Vault 初始化为 Git 仓库，推送到 GitHub 私有仓库。\n这种方法的好处是自带版本历史，每次提交都相当于一个快照。\n实例：初始化 Vault 为 Git 仓库",
+    "examples": [
+     "# 进入你的 Vault 目录\ncd ~/Documents/我的知识库\n\n# 初始化 Git 仓库\ngit init\n\n# 创建 .gitignore 文件，忽略 Obsidian 的配置和缓存\necho \".obsidian/workspace.json\" >> .gitignore\necho \".obsidian/workspace-mobile.json\" >> .gitignore\necho \".trash/\" >> .gitignore\n\n# 首次提交\ngit add .\ngit commit -m \"初始化知识库\"\n\n# 关联 GitHub 私有仓库并推送\ngit remote add origin git@github.com:username/my-vault.git\ngit push -u origin main"
+    ]
+   },
+   {
+    "title": "Obsidian 教程",
+    "url": "https://www.runoob.com/obsidian/obsidian-tutorial.html",
+    "body": "Obsidian 是一款基于 Markdown 文件的个人知识库与笔记管理工具，主要用于知识整理、笔记记录和构建个人知识体系。\nObsidian 采用本地文件存储方式，所有笔记都以普通 Markdown 文档形式保存，便于迁移、备份和长期管理。\nObsidian 和传统笔记软件最大的区别不是能记笔记，而是它把笔记变成一个可连接、可扩展、可计算的知识网络。",
+    "examples": []
+   },
+   {
+    "title": "Obsidian Web Clipper",
+    "url": "https://www.runoob.com/obsidian/obsidian-web-clipper.html",
+    "body": "Obsidian Web Clipper 是 Obsidian 官方出品的浏览器扩展，它能将任何网页一键保存为本地的 Markdown 笔记。\nObsidian Web Clipper 免费、开源、无广告，是你构建个人知识库的利器。\n安装\nWeb Clipper 支持所有主流浏览器，从对应商店安装即可。\n浏览器\n安装链接\nChrome / Brave / Arc / Vivaldi\nChrome Web Store\nFirefox\nFirefox Add-ons\nSafari（iOS / macOS）\nApp Store\nEdge\nEdge Add-ons\n安装完成后，点击浏览器工具栏中的 Obsidian 图标即可打开 Clipper 面板。\n首次使用时，它会自动检测正在运行的 Obsidian 仓库并完成关联，无需额外配置。\n我们可以在设置里面设置中文语言，点击 Obsidian 图标，点击设置按钮：\n常规选项中语言设置中文：\n核心功能\nWeb Clipper 提供两种主要使用方式：整页剪藏和高亮剪藏。\n整页剪藏\n打开任意网页，点击扩展图标，再点击「添加到 Obsidian」，页面内容就会以 Markdown 格式保存到你的仓库。\nWeb Clipper 会自动提取以下内容：\n文章正文（去除广告和侧边栏）\n标题、作者、发布日期、描述\n页面 URL 和来源域名\n代码块（保留语法高亮标记）、数学公式（LaTeX 格式）\n高亮剪藏\n不想保存整篇文章？选中你感兴趣的段落，点击高亮按钮，只保存划线部分。\n高亮内容会以引用块（>）的形式写入笔记。再次访问该页面时，你的高亮依然可见。\n操作流程如下：\n用鼠标选中页面上的文字或图片\n点击扩展图标\n选择「高亮选中内容」\n积累好所有高亮后，点击「添加到 Obsidian」一次性保存\n也可以右击鼠标选中 Obsidian Web Clipper 保存：\n模板：让剪藏更聪明\n这是 Web Clipper 最强大的功能。\n默认情况下所有网页都以同一格式保存，而模板让你可以针对不同类型的网页定制保存结构。\n我们可以在设置页面中模板选项下的 Default 中查看：\n内置模板类型\nWeb Clipper 官网展示了几种典型模板，适用于不同场景：\n模板类型\n提取内容\n适用场景\n文章模板\n自动填入 author、published、description，正文以文章格式保存\n阅读内容、博客、新闻\n食谱模板\n提取食材列表（自动转为待办复选框 - [ ]）、步骤、营养信息\n烹饪清单管理，配合 Tasks 插件体验更佳\n电影/书籍模板\n提取导演、评分、时长、主演、简介等\n配合 Dataview 插件制作观影记录数据库\n学术论文模板\n完整保留代码块和 LaTeX 公式\narxiv、ACM Digital Library 等学术网站\n创建自定义模板\n在扩展设置 → 模板 → 新建模板中，你可以自定义以下内容：\n配置项\n说明\n示例\n模板名称\n模板的标识名称\n「YouTube 视频」「GitHub 仓库」\n笔记名称\n支持变量\n{{title}} 或 {{date}}-{{title}}\n保存位置\n指定仓库中的文件夹\nClippings/Articles\nProperties\n笔记顶部自动填入的结构化属性（YAML 前置元数据）\nauthor、published、tags 等\n笔记正文\n完全自定义的 Markdown 模板\n可嵌入变量和任意 Markdown 内容\n模板自动触发\n设置「模板触发条件」后，访问特定网站时会自动应用对应模板，无需手动选择。\n触发条件\n自动应用\nURL 包含 youtube.com\nYouTube 模板\nURL 包含 arxiv.org\n论文模板\nURL 包含 amazon.com\n购物模板\n模板变量速查\n模板里可以使用变量自动填入页面数据，格式为 {{变量名}}。\n常用预设变量\n变量\n说明\n{{title}}\n页面标题\n{{url}}\n当前 URL\n{{author}}\n作者\n{{published}}\n发布日期\n{{description}}\n页面描述\n{{content}}\n正文内容（Markdown 格式）\n{{highlights}}\n所有高亮内容\n{{date}}\n当前日期\n{{site}}\n网站名称\n{{domain}}\n域名\n{{image}}\n社交分享图片 URL\n{{words}}\n字数统计\n高级变量\nMeta 变量 用于提取页面 <meta> 标签中的内容：\n实例",
+    "examples": [
+     "{{meta:name:description}}       ← description meta 标签\n{{meta:property:og:title}}      ← Open Graph 标题"
+    ]
+   },
+   {
+    "title": "Obsidian 工作流搭建",
+    "url": "https://www.runoob.com/obsidian/obsidian-workflows.html",
+    "body": "前面学到的功能好比工具箱中的散件——你知道怎么用锤子、怎么用螺丝刀，但还没学会造一张桌子。\n这一章将核心功能和插件串联成 5 套实用工作流，让你从「会用工具」提升到「拥有系统」。\n读书笔记工作流\n阅读是知识输入的主要方式。以下工作流帮你把一本书变成可检索、可关联的长期资产。\n流程概览\n创建书籍主页笔记：用模板快速创建，记录书的元信息\n阅读中记录摘录和评注：用 Callout 区分原文引用和个人思考\n提炼核心概念笔记：将书中的重要概念独立成原子笔记\n建立概念之间的链接：将新概念与已有知识网络连接\n书籍主页模板\n---\ntitle: \"书籍名称\"\nauthor: \"作者名\"\ntags:\n - 阅读\n - 类型/技术\nrating: 4\ndate_started: 2026-05-01\ndate_finished: 2026-05-20\nstatus: 已读完\n---\n正文结构\n实例",
+    "examples": [
+     "# 《书名》\n\n## 3 句话总结\n\n1. 这本书的核心观点是什么\n2. 最有价值的洞见是什么\n3. 适合谁读，解决了什么问题\n\n## 核心概念\n\n- [[概念 A]]：一句话说明\n- [[概念 B]]：一句话说明\n- [[概念 C]]：一句话说明\n\n## 摘录与评注\n\n> [!quote] 原文摘录\n> 这是书中的一段重要原文。\n\n我的理解：这段话说的是...它让我联想到 [[相关概念]]。\n\n> [!quote] 原文摘录\n> 另一段重要原文。\n\n我的理解：这与 A 作者的观点有分歧，因为...\n\n## 行动清单\n\n- [ ] 尝试实践概念 A\n- [ ] 将概念 B 应用到项目中\n- [ ] 重读第 3 章并补充笔记"
+    ]
+   }
+  ]
+ }
+}

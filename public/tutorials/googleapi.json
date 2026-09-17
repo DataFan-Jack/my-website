@@ -1,0 +1,68 @@
+{
+ "tutorial": {
+  "name": "Google Maps API",
+  "category": "工具与运维",
+  "desc": "在本教程中我们将学习如何使用谷歌地图API V3创建交互式地图。",
+  "url": "https://www.runoob.com/googleapi/",
+  "chapters": [
+   {
+    "title": "Google 地图API Key",
+    "url": "https://www.runoob.com/googleapi/google-maps-api-key.html",
+    "body": "开始学习本教程前，你需要拥有一个免费的 Google 地图 API key。\n开始学习？\n开始学习本教程前，你需要在Google上申请一个指定的API key。\n通过以下步骤我们可以免费获取 API key 。\n访问 https://code.google.com/apis/console/, \n使用你的Google账号登陆。\n登陆后会出现如下界面：\n点击 \"Create Project\" 按钮。\n在服务列表中找到 Google Maps API v3, 然后点击 \"off\"（关闭） 让其开启该服务器\n在下一个步骤中，选择\"I Agree...\" 然后点击 \"Accept\" 按钮。 现在你在服务列表中应该就可以看到 Google Maps API v3 已经变为 \"on\"（开启）状态。\n接着在左侧菜单中点击 \"API Access\" ，在右侧栏中将看到以下提示\n\"Create an OAuth 2.0 client id...\"。\n点击 \"Create an OAuth 2.0 client id...\"，将弹出一个表单，表单需要你填入你的项目名称，项目图片或者logo，然后点击 \"Next\" 按钮。\n然后，我们需要选择应用类型 (\"Web application\" ：网站应用), 然后填写你的站点地址，之后点击 \"Create Client Id\" 按钮即可。\n最后我们就可以得到我们需要的 API key,如下图所示：\n注意： 保存你的API key！ ( 在填写的指定 URL 中开发所有的 Google 地图应用你需要使用该API key)。",
+    "examples": []
+   },
+   {
+    "title": "Google Maps 基础",
+    "url": "https://www.runoob.com/googleapi/google-maps-basic.html",
+    "body": "创建一个简单的 Google 地图\n现在让我们创建一个简单的 Google 地图。\n以下是显示了英国伦敦的 Google 地图：\n实例",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc&callback=initMap\" async defer></script>\n<script>\nfunction initialize()\n{\n    var mapProp = {\n        center:new google.maps.LatLng(51.508742,-0.120850),\n        zoom:5,\n        mapTypeId:google.maps.MapTypeId.ROADMAP\n    };\n    var map=new google.maps.Map(document.getElementById(\"googleMap\"), mapProp);\n}\n \ngoogle.maps.event.addDomListener(window, 'load', initialize);\n</script>\n</head>\n<body>\n<div id=\"googleMap\" style=\"width:500px;height:380px;\"></div>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "Google 地图控件集",
+    "url": "https://www.runoob.com/googleapi/google-maps-controls.html",
+    "body": "一个Google 地图 - 默认控件集设置：",
+    "examples": []
+   },
+   {
+    "title": "Google 地图事件",
+    "url": "https://www.runoob.com/googleapi/google-maps-events.html",
+    "body": "点击标记缩放地图 - 绑定在google地图上的事件。",
+    "examples": []
+   },
+   {
+    "title": "Google 地图",
+    "url": "https://www.runoob.com/googleapi/google-maps-overlays.html",
+    "body": "在Google地图中添加一个标记",
+    "examples": []
+   },
+   {
+    "title": "Google 地图 API 参考手册",
+    "url": "https://www.runoob.com/googleapi/google-maps-ref.html",
+    "body": "Google 地图API 参考手册\n地图\n构造函数/对象\n描述\nMap()\n在指定的 HTML 容器中创建新的地图，该容器通常是一个DIV元素。\n叠加层\n构造函数/对象\n描述\nMarker\n创建一个标记。\nMarkerOptions\n标记的选项。由DirectionsRenderer渲染的所有标记都将使用这些选项。\nMarkerImage\nA structure representing a Marker icon or shadow image\nMarkerShape\nDefines the marker shape to use in determination of a marker's clickable \n region (type and coord)\nAnimation\nSpecifies animations that can be played on a marker (bounce or drop)\nInfoWindow\nCreates an info window\nInfoWindowOptions\nOptions for rendering the info window\nPolyline\nCreates a polyline (contains path and stroke styles)\nPolylineOptions\nOptions for rendering the polyline\nPolygon\nCreates a polygon (contains path and stroke+fill styles)\nPolygonOptions\nOptions for rendering the polygon\nRectangle\nCreates a rectangle (contains bounds and stroke+fill styles)\nRectangleOptions\nOptions for rendering the rectangle\nCircle\nCreates a circle (contains center+radius and stroke+fill styles)\nCircleOptions\nOptions for rendering the circle\nGroundOverlay\nGroundOverlayOptions\nOverlayView\nMapPanes\nMapCanvasProjection\n事件\n构造函数/对象\n描述\nMapsEventListener\nIt has no methods and no constructor. Its instances are returned from \n addListener(), addDomListener() and are eventually passed back to \n removeListener()\nevent\nAdds/Removes/Trigger event listeners\nMouseEvent\nReturned from various mouse events on the map and overlays\n控件集\n构造函数/对象\n描述\nMapTypeControlOptions\nHolds options for modifying a control (position and style)\nMapTypeControlStyle\nSpecifies what kind of map control to display (Drop-down menu or \n buttons)\nOverviewMapControlOptions\nOptions for rendering of the overview map control (opened or collapsed)\nPanControlOptions\nOptions for rendering of the pan control (position)\nRotateControlOptions\nOptions for rendering of the rotate control (position)\nScaleControlOptions\nOptions for rendering of the scale control (position and style)\nScaleControlStyle\nSpecifies what kind of scale control to display\nStreetViewControlOptions\nOptions for rendering of the street view pegman control (position)\nZoomControlOptions\nOptions for rendering of the zoom control (position and style)\nZoomControlStyle\nSpecifies what kind of zoom control to display (large or small)\nControlPosition\nSpecifies the placement of controls on the map",
+    "examples": []
+   },
+   {
+    "title": "Google 地图类型",
+    "url": "https://www.runoob.com/googleapi/google-maps-types.html",
+    "body": "HYBRID类型的google地图:",
+    "examples": []
+   },
+   {
+    "title": "Google Maps API 教程",
+    "url": "https://www.runoob.com/googleapi/googleapi-tutorial.html",
+    "body": "在本教程中我们将学习如何使用谷歌地图API V3创建交互式地图。\n现在开始学习 Google Maps API ！",
+    "examples": []
+   },
+   {
+    "title": "地图 API Map() 构造器",
+    "url": "https://www.runoob.com/googleapi/ref-map.html",
+    "body": "实例\n创建一个 Google 地图:\n尝试一下 »",
+    "examples": [
+     "var map=new google.maps.Map(document.getElementById(\"googleMap\"),mapOpt);"
+    ]
+   }
+  ]
+ }
+}

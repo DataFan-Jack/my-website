@@ -1,0 +1,446 @@
+{
+ "tutorial": {
+  "name": "Java",
+  "category": "后端开发",
+  "desc": "Java 是由 Sun Microsystems 公司于 1995 年 5 月推",
+  "url": "https://www.runoob.com/java/",
+  "chapters": [
+   {
+    "title": "Java 抽象类",
+    "url": "https://www.runoob.com/java/java-abstraction.html",
+    "body": "在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。\n抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。\n由于抽象类不能实例化对象，所以抽象类必须被继承，才能被使用。也是因为这个原因，通常在设计阶段决定要不要设计抽象类。\n父类包含了子类集合的常见的方法，但是由于父类本身是抽象的，所以不能使用这些方法。\n在 Java 中抽象类表示的是一种继承关系，一个类只能继承一个抽象类，而一个类却可以实现多个接口。\n抽象类\n在 Java 语言中使用 abstract class 来定义抽象类。如下实例：\nEmployee.java 文件代码：",
+    "examples": [
+     "/* 文件名 : Employee.java */\npublic abstract class Employee\n{\nprivate String name;\n   private String address;\n   private int number;\n   public Employee(String name, String address, int number)\n{\nSystem.out.println(\"Constructing an Employee\");\n      this.name = name;\n      this.address = address;\n      this.number = number;\n   }\npublic double computePay()\n{\nSystem.out.println(\"Inside Employee computePay\");\n     return 0.0;\n   }\npublic void mailCheck()\n{\nSystem.out.println(\"Mailing a check to \" + this.name\n       + \" \" + this.address);\n   }\npublic String toString()\n{\nreturn name + \" \" + address + \" \" + number;\n   }\npublic String getName()\n{\nreturn name;\n   }\npublic String getAddress()\n{\nreturn address;\n   }\npublic void setAddress(String newAddress)\n{\naddress = newAddress;\n   }\npublic int getNumber()\n{\nreturn number;\n   }\n}"
+    ]
+   },
+   {
+    "title": "Java Applet 基础",
+    "url": "https://www.runoob.com/java/java-applet-basics.html",
+    "body": "Applet 是一种 Java 程序。它一般运行在支持 Java 的 Web 浏览器内。因为它有完整的 Java API支持,所以Applet 是一个全功能的 Java 应用程序。\n如下所示是独立的 Java 应用程序和 applet 程序之间重要的不同：\nJava 中 Applet 类继承了 java.applet.Applet 类。\nApplet 类没有定义 main()，所以一个 Applet 程序不会调用 main() 方法。\nApplet 被设计为嵌入在一个 HTML 页面。\n当用户浏览包含 Applet 的 HTML 页面，Applet 的代码就被下载到用户的机器上。\n要查看一个 Applet 需要 JVM。 JVM 可以是 Web 浏览器的一个插件，或一个独立的运行时环境。\n用户机器上的 JVM 创建一个 Applet 类的实例，并调用 Applet 生命周期过程中的各种方法。\nApplet 有 Web 浏览器强制执行的严格的安全规则，Applet 的安全机制被称为沙箱安全。\nApplet 需要的其他类可以用 Java 归档（JAR）文件的形式下载下来。\nApplet的生命周期\nApplet 类中的四个方法给我们提供了一个框架，你可以在该框架上开发小程序：\ninit: 该方法的目的是为你的 Applet 提供所需的任何初始化。在 Applet 标记内的 param 标签被处理后调用该方法。\nstart: 浏览器调用 init 方法后，该方法被自动调用。每当用户从其他页面返回到包含 Applet 的页面时，则调用该方法。\nstop: 当用户从包含 Applet 的页面移除的时候，该方法自动被调用。因此，可以在相同的 Applet 中反复调用该方法。\ndestroy: 此方法仅当浏览器正常关闭时调用。因为 Applet 只有在 HTML 网页上有效，所以你不应该在用户离开包含 Applet 的页面后遗漏任何资源。\npaint: 该方法在 start() 方法之后立即被调用，或者在 Applet 需要重绘在浏览器的时候调用。paint() 方法实际上继承于 java.awt。\n\"Hello, World\" Applet:\n下面是一个简单的 Applet 程序 HelloWorldApplet.java:\nHelloWorldApplet.java 文件代码：",
+    "examples": [
+     "import java.applet.*;\nimport java.awt.*;\n \npublic class HelloWorldApplet extends Applet\n{\npublic void paint (Graphics g)\n{\ng.drawString (\"Hello World\", 25, 50);\n   }\n}"
+    ]
+   },
+   {
+    "title": "Java 数组",
+    "url": "https://www.runoob.com/java/java-array.html",
+    "body": "数组对于每一门编程语言来说都是重要的数据结构之一，当然不同语言对数组的实现及处理也不尽相同。\nJava 语言中提供的数组是用来存储固定大小的同类型元素。\n你可以声明一个数组变量，如 numbers[100] 来代替直接声明 100 个独立变量 number0，number1，....，number99。\n本教程将为大家介绍 Java 数组的声明、创建和初始化，并给出其对应的代码。\n声明数组变量\n首先必须声明数组变量，才能在程序中使用数组。下面是声明数组变量的语法：",
+    "examples": [
+     "dataType[] arrayRefVar;   // 首选的方法\n \n或\n \ndataType arrayRefVar[];  // 效果相同，但不是首选方法"
+    ]
+   },
+   {
+    "title": "Java ArrayList",
+    "url": "https://www.runoob.com/java/java-arraylist.html",
+    "body": "Java 集合框架\nArrayList 类是一个可以动态修改的数组，与普通数组的区别就是它是没有固定大小的限制，我们可以添加或删除元素。\nArrayList 继承了 AbstractList ，并实现了 List 接口。\nArrayList 类位于 java.util 包中，使用前需要引入它，语法格式如下：\nimport java.util.ArrayList; // 引入 ArrayList 类\n\nArrayList<E> objectName =new ArrayList<>();　 // 初始化\nE: 泛型数据类型，用于设置 objectName 的数据类型，只能为引用数据类型。\nobjectName: 对象名。\nArrayList 是一个数组队列，提供了相关的添加、删除、修改、遍历等功能。\n添加元素\nArrayList 类提供了很多有用的方法，添加元素到 ArrayList 可以使用 add() 方法:\n实例",
+    "examples": [
+     "import java.util.ArrayList;\n\npublic class RunoobTest {\n    public static void main(String[] args) {\n        ArrayList<String> sites = new ArrayList<String>();\n        sites.add(\"Google\");\n        sites.add(\"Runoob\");\n        sites.add(\"Taobao\");\n        sites.add(\"Weibo\");\n        System.out.println(sites);\n    }\n}"
+    ]
+   },
+   {
+    "title": "Java 基本数据类型",
+    "url": "https://www.runoob.com/java/java-basic-datatypes.html",
+    "body": "变量就是申请内存来存储值。也就是说，当创建变量的时候，需要在内存中申请空间。\n内存管理系统根据变量的类型为变量分配存储空间，分配的空间只能用来储存该类型数据。\n因此，通过定义不同类型的变量，可以在内存中储存整数、小数或者字符。\nJava 的两大数据类型:\n内置数据类型\n引用数据类型\n内置数据类型\nJava语言提供了八种基本类型。六种数字类型（四个整数型，两个浮点型），一种字符类型，还有一种布尔型。\nbyte：\nbyte 数据类型是8位、有符号的，以二进制补码表示的整数；\n最小值是 -128（-2^7）；\n最大值是 127（2^7-1）；\n默认值是 0；\nbyte 类型用在大型数组中节约空间，主要代替整数，因为 byte 变量占用的空间只有 int 类型的四分之一；\n例子：byte a = 100，byte b = -50。\nshort：\nshort 数据类型是 16 位、有符号的以二进制补码表示的整数\n最小值是 -32768（-2^15）；\n最大值是 32767（2^15 - 1）；\nShort 数据类型也可以像 byte 那样节省空间。一个short变量是int型变量所占空间的二分之一；\n默认值是 0；\n例子：short s = 1000，short r = -20000。\nint：\nint 数据类型是32位、有符号的以二进制补码表示的整数；\n最小值是 -2,147,483,648（-2^31）；\n最大值是 2,147,483,647（2^31 - 1）；\n一般地整型变量默认为 int 类型；\n默认值是 0 ；\n例子：int a = 100000, int b = -200000。\nlong：\nlong 数据类型是 64 位、有符号的以二进制补码表示的整数；\n最小值是 -9,223,372,036,854,775,808（-2^63）；\n最大值是 9,223,372,036,854,775,807（2^63 -1）；\n这种类型主要使用在需要比较大整数的系统上；\n默认值是 0L；\n例子： long a = 100000L，long b = -200000L。\n\"L\"理论上不分大小写，但是若写成\"l\"容易与数字\"1\"混淆，不容易分辩。所以最好大写。\nfloat：\nfloat 数据类型是单精度、32位、符合IEEE 754标准的浮点数；\nfloat 在储存大型浮点数组的时候可节省内存空间；\n默认值是 0.0f；\n浮点数不能用来表示精确的值，如货币；\n例子：float f1 = 234.5f。\ndouble：\ndouble 数据类型是双精度、64 位、符合 IEEE 754 标准的浮点数；\n浮点数的默认类型为 double 类型；\ndouble类型同样不能表示精确的值，如货币；\n默认值是 0.0d；\n例子：\ndouble d1 = 7D ;\ndouble d2 = 7.; \ndouble d3 = 8.0; \ndouble d4 = 8.D; \ndouble d5 = 12.9867;\n7 是一个 int 字面量，而 7D，7. 和 8.0 是 double 字面量。\nboolean：\nboolean数据类型表示一位的信息；\n只有两个取值：true 和 false；\n这种类型只作为一种标志来记录 true/false 情况；\n默认值是 false；\n例子：boolean one = true。\nchar：\nchar 类型是一个单一的 16 位 Unicode 字符；\n最小值是 \\u0000（十进制等效值为 0）；\n最大值是 \\uffff（即为 65535）；\nchar 数据类型可以储存任何字符；\n例子：char letter = 'A';。\n实例\n对于数值类型的基本类型的取值范围，我们无需强制去记忆，因为它们的值都已经以常量的形式定义在对应的包装类中了。请看下面的例子：\n实例",
+    "examples": [
+     "public class PrimitiveTypeTest {\npublic static void main(String[] args) {\n// byte  \nSystem.out.println(\"基本类型：byte 二进制位数：\" + Byte.SIZE);  \n        System.out.println(\"包装类：java.lang.Byte\");  \n        System.out.println(\"最小值：Byte.MIN_VALUE=\" + Byte.MIN_VALUE);  \n        System.out.println(\"最大值：Byte.MAX_VALUE=\" + Byte.MAX_VALUE);  \n        System.out.println();  \n  \n        // short  \nSystem.out.println(\"基本类型：short 二进制位数：\" + Short.SIZE);  \n        System.out.println(\"包装类：java.lang.Short\");  \n        System.out.println(\"最小值：Short.MIN_VALUE=\" + Short.MIN_VALUE);  \n        System.out.println(\"最大值：Short.MAX_VALUE=\" + Short.MAX_VALUE);  \n        System.out.println();  \n  \n        // int  \nSystem.out.println(\"基本类型：int 二进制位数：\" + Integer.SIZE);  \n        System.out.println(\"包装类：java.lang.Integer\");  \n        System.out.println(\"最小值：Integer.MIN_VALUE=\" + Integer.MIN_VALUE);  \n        System.out.println(\"最大值：Integer.MAX_VALUE=\" + Integer.MAX_VALUE);  \n        System.out.println();  \n  \n        // long  \nSystem.out.println(\"基本类型：long 二进制位数：\" + Long.SIZE);  \n        System.out.println(\"包装类：java.lang.Long\");  \n        System.out.println(\"最小值：Long.MIN_VALUE=\" + Long.MIN_VALUE);  \n        System.out.println(\"最大值：Long.MAX_VALUE=\" + Long.MAX_VALUE);  \n        System.out.println();  \n  \n        // float  \nSystem.out.println(\"基本类型：float 二进制位数：\" + Float.SIZE);  \n        System.out.println(\"包装类：java.lang.Float\");  \n        System.out.println(\"最小值：Float.MIN_VALUE=\" + Float.MIN_VALUE);  \n        System.out.println(\"最大值：Float.MAX_VALUE=\" + Float.MAX_VALUE);  \n        System.out.println();  \n  \n        // double  \nSystem.out.println(\"基本类型：double 二进制位数：\" + Double.SIZE);  \n        System.out.println(\"包装类：java.lang.Double\");  \n        System.out.println(\"最小值：Double.MIN_VALUE=\" + Double.MIN_VALUE);  \n        System.out.println(\"最大值：Double.MAX_VALUE=\" + Double.MAX_VALUE);  \n        System.out.println();  \n  \n        // char  \nSystem.out.println(\"基本类型：char 二进制位数：\" + Character.SIZE);  \n        System.out.println(\"包装类：java.lang.Character\");  \n        // 以数值形式而不是字符形式将Character.MIN_VALUE输出到控制台  \nSystem.out.println(\"最小值：Character.MIN_VALUE=\"  \n                + (int) Character.MIN_VALUE);  \n        // 以数值形式而不是字符形式将Character.MAX_VALUE输出到控制台  \nSystem.out.println(\"最大值：Character.MAX_VALUE=\"  \n                + (int) Character.MAX_VALUE);  \n    }\n}"
+    ]
+   },
+   {
+    "title": "Java 基础语法",
+    "url": "https://www.runoob.com/java/java-basic-syntax.html",
+    "body": "一个 Java 程序可以认为是一系列对象的集合，而这些对象通过调用彼此的方法来协同工作。下面简要介绍下类、对象、方法和实例变量的概念。\n对象：对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫、吃等。\n类：类是一个模板，它描述一类对象的行为和状态。\n方法：方法就是行为，一个类可以有很多方法。逻辑运算、数据修改以及所有动作都是在方法中完成的。\n实例变量：每个对象都有独特的实例变量，对象的状态由这些实例变量的值决定。\n第一个Java程序\n下面看一个简单的 Java 程序，它将输出字符串 Hello World\n实例",
+    "examples": [
+     "public class HelloWorld {\n/* 第一个Java程序\n     * 它将输出字符串 Hello World\n     */\npublic static void main(String[] args) {\nSystem.out.println(\"Hello World\"); // 输出 Hello World\n}\n}"
+    ]
+   },
+   {
+    "title": "Java Character 类",
+    "url": "https://www.runoob.com/java/java-character.html",
+    "body": "Character 类用于对单个字符进行操作。\nCharacter 类在对象中包装一个基本类型 char 的值\n实例",
+    "examples": [
+     "char ch = 'a';\n \n// Unicode 字符表示形式\nchar uniChar = '\\u039A'; \n \n// 字符数组\nchar[] charArray ={ 'a', 'b', 'c', 'd', 'e' };"
+    ]
+   },
+   {
+    "title": "Java 集合框架",
+    "url": "https://www.runoob.com/java/java-collections.html",
+    "body": "早在 Java 2 中之前，Java 就提供了特设类。比如：Dictionary, Vector, Stack, 和 Properties 这些类用来存储和操作对象组。\n虽然这些类都非常有用，但是它们缺少一个核心的，统一的主题。由于这个原因，使用 Vector 类的方式和使用 Properties 类的方式有着很大不同。\n集合框架被设计成要满足以下几个目标。\n该框架必须是高性能的。基本集合（动态数组，链表，树，哈希表）的实现也必须是高效的。\n该框架允许不同类型的集合，以类似的方式工作，具有高度的互操作性。\n对一个集合的扩展和适应必须是简单的。\n为此，整个集合框架就围绕一组标准接口而设计。你可以直接使用这些接口的标准实现，诸如： LinkedList, HashSet, 和 TreeSet 等,除此之外你也可以通过这些接口实现自己的集合。\n从上面的集合框架图可以看到，Java 集合框架主要包括两种类型的容器，一种是集合（Collection），存储一个元素集合，另一种是图（Map），存储键/值对映射。Collection 接口又有 3 种子类型，List、Set 和 Queue，再下面是一些抽象类，最后是具体实现类，常用的有 ArrayList、LinkedList、HashSet、LinkedHashSet、HashMap、LinkedHashMap 等等。\n集合框架是一个用来代表和操纵集合的统一架构。所有的集合框架都包含如下内容：\n接口：\n是代表集合的抽象数据类型。例如 Collection、List、Set、Map 等。之所以定义多个接口，是为了以不同的方式操作集合对象\n实现（类）：是集合接口的具体实现。从本质上讲，它们是可重复使用的数据结构，例如：ArrayList、LinkedList、HashSet、HashMap。\n算法：是实现集合接口的对象里的方法执行的一些有用的计算，例如：搜索和排序，这些算法实现了多态，那是因为相同的方法可以在相似的接口上有着不同的实现。\n除了集合，该框架也定义了几个 Map 接口和类。Map 里存储的是键/值对。尽管 Map 不是集合，但是它们完全整合在集合中。\n集合框架体系如图所示\nJava 集合框架提供了一套性能优良，使用方便的接口和类，java集合框架位于java.util包中， 所以当使用集合框架的时候需要进行导包。\n集合接口\n集合框架定义了一些接口。本节提供了每个接口的概述：\n序号\n接口描述\n1\nCollection 接口\nCollection 是最基本的集合接口，一个 Collection 代表一组 Object，即 Collection 的元素, Java不提供直接继承自Collection的类，只提供继承于的子接口(如List和set)。\nCollection 接口存储一组不唯一，无序的对象。\n2\nList 接口\nList接口是一个有序的 Collection，使用此接口能够精确的控制每个元素插入的位置，能够通过索引(元素在List中位置，类似于数组的下标)来访问List中的元素，第一个元素的索引为 0，而且允许有相同的元素。\nList 接口存储一组不唯一，有序（插入顺序）的对象。\n3\nSet\nSet 具有与 Collection 完全一样的接口，只是行为上不同，Set 不保存重复的元素。\nSet 接口存储一组唯一，无序的对象。\n4\nSortedSet \n\n继承于Set保存有序的集合。\n5\nMapMap 接口存储一组键值对象，提供key（键）到value（值）的映射。\n6\nMap.Entry \n\n描述在一个Map中的一个元素（键/值对）。是一个 Map 的内部接口。\n7\nSortedMap\n\n继承于 Map，使 Key 保持在升序排列。\n8\nEnumeration\n\n这是一个传统的接口和定义的方法，通过它可以枚举（一次获得一个）对象集合中的元素。这个传统接口已被迭代器取代。\nSet和List的区别\n1. Set 接口实例存储的是无序的，不重复的数据。List 接口实例存储的是有序的，可以重复的元素。\n2. Set 检索效率低下，删除和插入效率高，插入和删除不会引起元素位置改变 <实现类有HashSet,TreeSet>。\n3. List 和数组类似，可以动态增长，根据实际存储的数据的长度自动增长 List 的长度。查找元素效率高，插入删除效率低，因为会引起其他元素位置改变 <实现类有ArrayList,LinkedList,Vector> 。\n集合实现类（集合类）\nJava提供了一套实现了Collection接口的标准集合类。其中一些是具体类，这些类可以直接拿来使用，而另外一些是抽象类，提供了接口的部分实现。\n标准集合类汇总于下表：\n序号\n类描述\n1\nAbstractCollection \n\n实现了大部分的集合接口。\n2\nAbstractList \n\n继承于AbstractCollection 并且实现了大部分List接口。\n3\nAbstractSequentialList \n\n继承于 AbstractList ，提供了对数据元素的链式访问而不是随机访问。\n4\nLinkedList\n该类实现了List接口，允许有null（空）元素。主要用于创建链表数据结构，该类没有同步方法，如果多个线程同时访问一个List，则必须自己实现访问同步，解决方法就是在创建List时候构造一个同步的List。例如：\nList list=Collections.synchronizedList(newLinkedList(...));\nLinkedList 查找效率低。\n5\nArrayList\n该类也是实现了List的接口，实现了可变大小的数组，随机访问和遍历元素时，提供更好的性能。该类也是非同步的,在多线程的情况下不要使用。ArrayList 增长当前长度的50%，插入删除效率低。\n6\nAbstractSet \n\n继承于AbstractCollection 并且实现了大部分Set接口。\n7\nHashSet\n该类实现了Set接口，不允许出现重复元素，不保证集合中元素的顺序，允许包含值为null的元素，但最多只能一个。\n8\nLinkedHashSet\n\n具有可预知迭代顺序的 Set 接口的哈希表和链接列表实现。\n9\nTreeSet该类实现了Set接口，可以实现排序等功能。\n10\nAbstractMap \n\n实现了大部分的Map接口。\n11\nHashMap\nHashMap 是一个散列表，它存储的内容是键值对(key-value)映射。\n\n该类实现了Map接口，根据键的HashCode值存储数据，具有很快的访问速度，最多允许一条记录的键为null，不支持线程同步。\n12\nTreeMap\n\n继承了AbstractMap，并且使用一颗树。\n13\nWeakHashMap\n\n继承AbstractMap类，使用弱密钥的哈希表。\n14\nLinkedHashMap\n\n继承于HashMap，使用元素的自然顺序对元素进行排序.\n15\nIdentityHashMap\n\n继承AbstractMap类，比较文档时使用引用相等。\n在前面的教程中已经讨论通过java.util包中定义的类，如下所示：\n序号\n类描述\n1\nVector\n该类和ArrayList非常相似，但是该类是同步的，可以用在多线程的情况，该类允许设置默认的增长长度，默认扩容方式为原来的2倍。\n2\nStack\n\n栈是Vector的一个子类，它实现了一个标准的后进先出的栈。\n3\nDictionary\n\nDictionary 类是一个抽象类，用来存储键/值对，作用和Map类相似。\n4\nHashtable\n\nHashtable 是 Dictionary(字典) 类的子类，位于 java.util 包中。\n5\nProperties\n\nProperties 继承于 Hashtable，表示一个持久的属性集，属性列表中每个键及其对应值都是一个字符串。\n6\nBitSet\n一个Bitset类创建一种特殊类型的数组来保存位值。BitSet中数组大小会随需要增加。\n集合算法\n集合框架定义了几种算法，可用于集合和映射。这些算法被定义为集合类的静态方法。\n在尝试比较不兼容的类型时，一些方法能够抛出 ClassCastException异常。当试图修改一个不可修改的集合时，抛出UnsupportedOperationException异常。\n集合定义三个静态的变量：EMPTY_SET，EMPTY_LIST，EMPTY_MAP的。这些变量都不可改变。\n序号\n算法描述\n1\n集合算法呢（Collection Algorithms）\n 这里是一个列表中的所有算法实现。\n如何使用迭代器\n通常情况下，你会希望遍历一个集合中的元素。例如，显示集合中的每个元素。\n一般遍历数组都是采用for循环或者增强for，这两个方法也可以用在集合框架，但是还有一种方法是采用迭代器遍历集合框架，它是一个对象，实现了Iterator 接口或 ListIterator接口。\n迭代器，使你能够通过循环来得到或删除集合的元素。ListIterator 继承了 Iterator，以允许双向遍历列表和修改元素。\n序号\n迭代器方法描述\n1\n使用 Java Iterator这里通过实例列出 Iterator 和 ListIterator 接口提供的所有方法。\n遍历 ArrayList\n实例",
+    "examples": [
+     "import java.util.*;\n \npublic class Test{\npublic static void main(String[] args) {\nList<String> list=new ArrayList<String>();\n     list.add(\"Hello\");\n     list.add(\"World\");\n     list.add(\"HAHAHAHA\");\n     //第一种遍历方法使用 For-Each 遍历 List\nfor (String str : list) { //也可以改写 for(int i=0;i<list.size();i++) 这种形式\nSystem.out.println(str);\n     }\n//第二种遍历，把链表变为数组相关的内容进行遍历\nString[] strArray=new String[list.size()];\n     list.toArray(strArray);\n     for(int i=0;i<strArray.length;i++) //这里也可以改写为  for(String str:strArray) 这种形式\n{\nSystem.out.println(strArray[i]);\n     }\n//第三种遍历 使用迭代器进行相关遍历\nIterator<String> ite=list.iterator();\n     while(ite.hasNext())//判断下一个元素之后有值\n{\nSystem.out.println(ite.next());\n     }\n}\n}"
+    ]
+   },
+   {
+    "title": "Java 注释",
+    "url": "https://www.runoob.com/java/java-comments.html",
+    "body": "在计算机语言中，注释是计算机语言的一个重要组成部分，用于在源代码中解释代码的作用，可以增强程序的可读性，可维护性。\nJava 注释是一种在 Java 程序中用于提供代码功能说明的文本。\n注释不会被编译器包含在最终的可执行程序中，因此不会影响程序的运行。\n注释是良好的编程习惯，它们帮助程序员更容易地理解代码的用途和功能，并且在团队协作中非常有用。\nJava 注释主要有三种类型：\n单行注释\n多行注释\n文档注释\n单行注释\n单行注释以双斜杠 // 开始：\n\n实例",
+    "examples": [
+     "// 这是一个单行注释\nint x = 10; // 初始化一个变量x为10"
+    ]
+   },
+   {
+    "title": "Java 构造方法",
+    "url": "https://www.runoob.com/java/java-constructor.html",
+    "body": "在 Java 中，构造方法（Constructor）是用于创建类的对象的特殊方法。\n当使用 new 关键字创建对象时，构造方法会自动调用，用来初始化对象的属性。\n构造方法具有以下几个特点：\n与类名相同：构造方法的名称必须与类名完全一致，包括大小写。这是构造方法的一个基本要求。\n没有返回类型：构造方法没有返回类型声明，即使是 void 也不写。这使得它与普通方法区分开来。\n自动调用：每次使用 new 创建对象时，构造方法会自动调用，以初始化对象的属性和状态。\n不能直接调用：构造方法只能通过 new 关键字在创建对象时调用，不能像普通方法那样直接调用。\n支持重载：可以为一个类定义多个构造方法，只要它们的参数列表不同。通过重载，可以创建不同的构造方法以适应不同的初始化需求。\n默认构造方法：如果没有定义任何构造方法，Java 会提供一个无参的默认构造方法。但一旦定义了任何其他构造方法，Java 不再提供默认构造方法。\nthis 关键字的使用：在构造方法中可以使用 this 来引用当前对象的属性、方法，或调用另一个构造方法（必须是构造方法的第一行），以避免重复代码。\n不能被继承，但可以被调用：构造方法不能被子类继承，但子类可以使用 super() 来调用父类的构造方法，以便初始化继承的属性。\n对象初始化保障：构造方法的主要作用是初始化对象的属性和状态，保证对象在创建时处于一个合法的初始状态。\n构造方法的作用：\n初始化对象属性：构造方法的主要作用是为对象的属性赋初值。\n保证对象初始化的完整性：在构造方法中可以设置默认值或必要参数，从而避免对象未完全初始化的问题。\n构造方法的类型\nJava 中的构造方法分为两种类型：无参构造方法和有参构造方法。\n1、无参构造方法（默认构造方法）\n如果一个类中没有定义任何构造方法，Java 会默认提供一个无参构造方法。例如：\n实例",
+    "examples": [
+     "public class Person {\n    public Person() {\n        System.out.println(\"Person对象已创建\");\n    }\n}"
+    ]
+   },
+   {
+    "title": "Java 数据结构",
+    "url": "https://www.runoob.com/java/java-data-structures.html",
+    "body": "Java 提供了丰富的数据结构来处理和组织数据。\nJava 的 java.util 包中提供了许多这些数据结构的实现，可以根据需要选择合适的类。\n以下是一些常见的 Java 数据结构：\n数组（Arrays）\n数组（Arrays）是一种基本的数据结构，可以存储固定大小的相同类型的元素。\nint[] array = new int[5];\n特点： 固定大小，存储相同类型的元素。\n优点： 随机访问元素效率高。\n缺点： 大小固定，插入和删除元素相对较慢。\n列表（Lists）\nJava 提供了多种列表实现，如 ArrayList 和 LinkedList。\nList<String> arrayList = new ArrayList<>();\nList<Integer> linkedList = new LinkedList<>();\nArrayList:\n特点： 动态数组，可变大小。\n优点： 高效的随机访问和快速尾部插入。\n缺点： 中间插入和删除相对较慢。\nLinkedList:\n特点： 双向链表，元素之间通过指针连接。\n优点： 插入和删除元素高效，迭代器性能好。\n缺点： 随机访问相对较慢。\n集合（Sets）\n集合（Sets）用于存储不重复的元素，常见的实现有 HashSet 和 TreeSet。\nSet<String> hashSet = new HashSet<>();\nSet<Integer> treeSet = new TreeSet<>();\nHashSet:\n特点： 无序集合，基于HashMap实现。\n优点： 高效的查找和插入操作。\n缺点： 不保证顺序。\nTreeSet:\n特点：TreeSet 是有序集合，底层基于红黑树实现，不允许重复元素。\n优点： 提供自动排序功能，适用于需要按顺序存储元素的场景。\n缺点： 性能相对较差，不允许插入 null 元素。\n映射（Maps）\n映射（Maps）用于存储键值对，常见的实现有 HashMap 和 TreeMap。\nMap<String, Integer> hashMap = new HashMap<>();\nMap<String, Integer> treeMap = new TreeMap<>();\nHashMap:\n特点： 基于哈希表实现的键值对存储结构。\n优点： 高效的查找、插入和删除操作。\n缺点： 无序，不保证顺序。\nTreeMap:\n特点： 基于红黑树实现的有序键值对存储结构。\n优点： 有序，支持按照键的顺序遍历。\n缺点： 插入和删除相对较慢。\n栈（Stack）\n栈（Stack）是一种线性数据结构，它按照后进先出（Last In, First Out，LIFO）的原则管理元素。在栈中，新元素被添加到栈的顶部，而只能从栈的顶部移除元素。这就意味着最后添加的元素是第一个被移除的。\nStack<Integer> stack = new Stack<>();\nStack 类:\n特点： 代表一个栈，通常按照后进先出（LIFO）的顺序操作元素。\n队列（Queue）\n队列（Queue）遵循先进先出（FIFO）原则，常见的实现有 LinkedList 和 PriorityQueue。\nQueue<String> queue = new LinkedList<>();\nQueue 接口:\n特点： 代表一个队列，通常按照先进先出（FIFO）的顺序操作元素。\n实现类： LinkedList, PriorityQueue, ArrayDeque。\n堆（Heap）\n堆（Heap）优先队列的基础，可以实现最大堆和最小堆。\nPriorityQueue<Integer> minHeap = new PriorityQueue<>();\nPriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());\n树（Trees）\nJava 提供了 TreeNode 类型，可以用于构建二叉树等数据结构。\nclass TreeNode {\n int val;\n TreeNode left;\n TreeNode right;\n TreeNode(int x) { val = x; }\n}\n图（Graphs）\n图的表示通常需要自定义数据结构或使用图库，Java 没有内建的图类。\n以上介绍的只是 Java 中一些常见的数据结构，实际上还有很多其他的数据结构和算法可以根据具体问题选择使用。\n其他一些说明\n以下这些类是传统遗留的，在 Java2 中引入了一种新的框架-集合框架(Collection)，我们后面再讨论。\n枚举（Enumeration）\n枚举（Enumeration）接口虽然它本身不属于数据结构,但它在其他数据结构的范畴里应用很广。 枚举（The Enumeration）接口定义了一种从数据结构中取回连续元素的方式。\n例如，枚举定义了一个叫nextElement 的方法，该方法用来得到一个包含多元素的数据结构的下一个元素。\n关于枚举接口的更多信息，请参见枚举（Enumeration）。\n位集合（BitSet）\n位集合类实现了一组可以单独设置和清除的位或标志。\n该类在处理一组布尔值的时候非常有用，你只需要给每个值赋值一\"位\"，然后对位进行适当的设置或清除，就可以对布尔值进行操作了。\n关于该类的更多信息，请参见位集合（BitSet）。\n向量（Vector）\n向量（Vector）类和传统数组非常相似，但是Vector的大小能根据需要动态的变化。\n和数组一样，Vector对象的元素也能通过索引访问。\n使用Vector类最主要的好处就是在创建对象的时候不必给对象指定大小，它的大小会根据需要动态的变化。\n关于该类的更多信息，请参见向量(Vector)\n栈（Stack）\n栈（Stack）实现了一个后进先出（LIFO）的数据结构。\n你可以把栈理解为对象的垂直分布的栈，当你添加一个新元素时，就将新元素放在其他元素的顶部。\n当你从栈中取元素的时候，就从栈顶取一个元素。换句话说，最后进栈的元素最先被取出。\n关于该类的更多信息，请参见栈（Stack）。\n字典（Dictionary）\n字典（Dictionary） 类是一个抽象类，它定义了键映射到值的数据结构。\n当你想要通过特定的键而不是整数索引来访问数据的时候，这时候应该使用 Dictionary。\n由于 Dictionary 类是抽象类，所以它只提供了键映射到值的数据结构，而没有提供特定的实现。\n关于该类的更多信息，请参见字典（ Dictionary）。\nDictionary 类在较新的 Java 版本中已经被弃用（deprecated），推荐使用 Map 接口及其实现类，如 HashMap、TreeMap 等，来代替 Dictionary。\nMap 接口及其实现类 可以参考：Java 集合框架。\n哈希表（Hashtable）\nHashtable类提供了一种在用户定义键结构的基础上来组织数据的手段。\n例如，在地址列表的哈希表中，你可以根据邮政编码作为键来存储和排序数据，而不是通过人名。\n哈希表键的具体含义完全取决于哈希表的使用情景和它包含的数据。\n关于该类的更多信息，请参见哈希表（HashTable）。\n属性（Properties）\nProperties 继承于 Hashtable.Properties 类表示了一个持久的属性集.属性列表中每个键及其对应值都是一个字符串。\nProperties 类被许多Java类使用。例如，在获取环境变量时它就作为System.getProperties()方法的返回值。\n关于该类的更多信息，请参见属性（Properties）。",
+    "examples": []
+   },
+   {
+    "title": "Java 日期时间",
+    "url": "https://www.runoob.com/java/java-date-time.html",
+    "body": "Java 提供了多套日期时间 API，以下是主要类别的对比和常用方法总结：\n类别\n主要类\n线程安全\n可变性\nJava 版本\n特点\n传统日期\nDate, Calendar，GregorianCalendar\n否\n可变\n1.0+\n设计缺陷多，不推荐使用\n新日期时间\nLocalDate, LocalTime, LocalDateTime, ZonedDateTime, ChronoUnit\n是\n不可变\n8+\n设计良好，推荐使用\n时间戳\nInstant\n是\n不可变\n8+\n机器时间，精确到纳秒\n格式化\nDateTimeFormatter\n是\n不可变\n8+\n线程安全的格式化类\nLocalDate/DateTimeFormatter\nLocalDate/DateTimeFormatter 是 Java 8 引入的日期类，LocalDate 用于表示不带时间的日期（年-月-日），DateTimeFormatter 用于格式化和解析日期时间对象。\n实例",
+    "examples": [
+     "import java.time.LocalDate;\nimport java.time.format.DateTimeFormatter;\n\npublic class RunoobTest {\n    public static void main(String[] args) {\n        // 获取当前日期\n        LocalDate today = LocalDate.now();\n        System.out.println(\"当前日期: \" + today);\n        \n        // 创建特定日期\n        LocalDate nationalDay = LocalDate.of(2025, 10, 1);\n        System.out.println(\"国庆节: \" + nationalDay);\n        \n        // 日期加减\n        LocalDate tomorrow = today.plusDays(1);\n        LocalDate nextMonth = today.plusMonths(1);\n        LocalDate lastYear = today.minusYears(1);\n        \n        System.out.println(\"明天: \" + tomorrow);\n        System.out.println(\"下个月: \" + nextMonth);\n        System.out.println(\"去年今天: \" + lastYear);\n    }\n}"
+    ]
+   },
+   {
+    "title": "Java 文档注释",
+    "url": "https://www.runoob.com/java/java-documentation.html",
+    "body": "Java 支持三种注释方式：\n单行注释\n多行注释\n文档注释\n前两种分别是 // 和 /* */，第三种被称作文档注释，它以 /** 开始，以 */ 结束。\n前两种注释内容可以参考：Java 注释\n文档注释允许你在程序中嵌入关于程序的信息。\n你可以使用 javadoc 工具软件来生成信息，并输出到 HTML 文件中。\n文档注释，使你更加方便的记录你的程序信息。\njavadoc 标签\njavadoc 工具软件识别以下标签：\n标签\n描述\n示例\n@author\n标识一个类的作者\n@author description\n@deprecated\n指名一个过期的类或成员\n@deprecated description\n{@docRoot}\n指明当前文档根目录的路径\nDirectory Path\n@exception\n标志一个类抛出的异常\n@exception exception-name explanation\n{@inheritDoc}\n从直接父类继承的注释\nInherits a comment from the immediate surperclass.\n{@link}\n插入一个到另一个主题的链接\n{@link name text}\n{@linkplain}\n插入一个到另一个主题的链接，但是该链接显示纯文本字体\nInserts an in-line link to another topic.\n@param\n说明一个方法的参数\n@param parameter-name explanation\n@return\n说明返回值类型\n@return explanation\n@see\n指定一个到另一个主题的链接\n@see anchor\n@serial\n说明一个序列化属性\n@serial description\n@serialData\n说明通过writeObject( ) 和 writeExternal( )方法写的数据\n@serialData description\n@serialField\n说明一个ObjectStreamField组件\n@serialField name type description\n@since\n标记当引入一个特定的变化时\n@since release\n@throws\n和 @exception标签一样.\nThe @throws tag has the same meaning as the @exception tag.\n{@value}\n显示常量的值，该常量必须是static属性。\nDisplays the value of a constant, which must be a static field.\n@version\n指定类的版本\n@version info\n文档注释\n在开始的 /** 之后，第一行或几行是关于类、变量和方法的主要描述。\n之后，你可以包含一个或多个各种各样的 @ 标签。每一个 @ 标签必须在一个新行的开始或者在一行的开始紧跟星号 *。\n多个相同类型的标签应该放成一组。例如，如果你有三个 @see 标签，可以将它们一个接一个的放在一起。\n下面是一个类的稳定注释的实例：",
+    "examples": [
+     "/*** 这个类绘制一个条形图\n* @author runoob\n* @version 1.2\n*/"
+    ]
+   },
+   {
+    "title": "Java 封装",
+    "url": "https://www.runoob.com/java/java-encapsulation.html",
+    "body": "在面向对象程式设计方法中，封装（英语：Encapsulation）是指一种将抽象性函式接口的实现细节部分包装、隐藏起来的方法。\n封装可以被认为是一个保护屏障，防止该类的代码和数据被外部类定义的代码随机访问。\n要访问该类的代码和数据，必须通过严格的接口控制。\n封装最主要的功能在于我们能修改自己的实现代码，而不用修改那些调用我们代码的程序片段。\n适当的封装可以让程式码更容易理解与维护，也加强了程式码的安全性。\n封装的优点\n1. 良好的封装能够减少耦合。\n2. 类内部的结构可以自由修改。\n3. 可以对成员变量进行更精确的控制。\n4. 隐藏信息，实现细节。\n实现Java封装的步骤\n1. 修改属性的可见性来限制对属性的访问（一般限制为private），例如：",
+    "examples": [
+     "public class Person {\nprivate String name;\n    private int age;\n}"
+    ]
+   },
+   {
+    "title": "Java 枚举(enum)",
+    "url": "https://www.runoob.com/java/java-enum.html",
+    "body": "Java 枚举是一个特殊的类，一般表示一组常量，比如一年的 4 个季节，一年的 12 个月份，一个星期的 7 天，方向有东南西北等。\nJava 枚举类使用 enum 关键字来定义，各个常量使用逗号 , 来分割。\n例如定义一个颜色的枚举类。\nenum Color \n{ \n RED, GREEN, BLUE; \n}\n以上枚举类 Color 颜色常量有 RED, GREEN, BLUE，分别表示红色，绿色，蓝色。\n使用实例：\n实例",
+    "examples": [
+     "enum Color \n{ \n    RED, GREEN, BLUE; \n} \n  \npublic class Test \n{ \n    // 执行输出结果\n    public static void main(String[] args) \n    { \n        Color c1 = Color.RED; \n        System.out.println(c1); \n    } \n}"
+    ]
+   },
+   {
+    "title": "Java 开发环境配置",
+    "url": "https://www.runoob.com/java/java-environment-setup.html",
+    "body": "在本章节中我们将为大家介绍如何搭建Java开发环境。\nWindows 上安装开发环境\nLinux 上安装开发环境\nJava IDE 介绍\nwindow系统安装java\n下载JDK\n首先我们需要下载 java 开发工具包 JDK，下载地址：https://www.oracle.com/java/technologies/downloads/，在下载页面中根据自己的系统选择对应的版本，本文以 Window 64位系统为例：\n下载后 JDK 的安装根据提示进行，还有安装 JDK 的时候也会安装 JRE，一并安装就可以了。\n安装JDK，安装过程中可以自定义安装目录等信息，例如我们选择安装目录为 C:\\Program Files (x86)\\Java\\jdk1.8.0_91。\n配置环境变量\n1.安装完成后，右击\"我的电脑\"，点击\"属性\"，选择\"高级系统设置\"；\n2.选择\"高级\"选项卡，点击\"环境变量\"；\n然后就会出现如下图所示的画面：\n在 \"系统变量\" 中设置 3 项属性，JAVA_HOME、PATH、CLASSPATH(大小写无所谓),若已存在则点击\"编辑\"，不存在则点击\"新建\"。\n注意：如果使用 1.5 以上版本的 JDK，不用设置 CLASSPATH 环境变量，也可以正常编译和运行 Java 程序。\n变量设置参数如下：\n变量名：JAVA_HOME\n变量值：C:\\Program Files (x86)\\Java\\jdk1.8.0_91        // 要根据自己的实际路径配置\n变量名：CLASSPATH\n变量值：.;%JAVA_HOME%\\lib\\dt.jar;%JAVA_HOME%\\lib\\tools.jar;         //记得前面有个\".\"\n变量名：Path\n变量值：%JAVA_HOME%\\bin;%JAVA_HOME%\\jre\\bin;\nJAVA_HOME 设置\nPATH设置\n注意：在 Windows10 中，Path 变量里是分条显示的，我们需要将 %JAVA_HOME%\\bin;%JAVA_HOME%\\jre\\bin; 分开添加，否则无法识别：\n%JAVA_HOME%\\bin;\n%JAVA_HOME%\\jre\\bin;\n更多内容可参考：Windows 10 配置Java 环境变量\nCLASSPATH 设置\n这是 Java 的环境配置，配置完成后，你可以启动 Eclipse 来编写代码，它会自动完成java环境的配置。\n测试JDK是否安装成功\n1、\"开始\"->\"运行\"，键入\"cmd\"；\n2、键入命令: java -version、java、javac 几个命令，出现以下信息，说明环境变量配置成功；\nLinux，UNIX，Solaris，FreeBSD环境变量设置\n环境变量PATH应该设定为指向Java二进制文件安装的位置。如果设置遇到困难，请参考shell文档。\n例如，假设你使用bash作为shell，你可以把下面的内容添加到你的 .bashrc文件结尾: export PATH=/path/to/java:$PATH\n流行 Java 开发工具\n正所谓工欲善其事必先利其器，我们在开发 Java 语言过程中同样需要一款不错的开发工具，目前市场上的 IDE 很多，本文为大家推荐以下下几款 Java 开发工具：\nJetBrains 的 IDEA， 现在很多人开始使用了，功能很强大，下载地址：https://www.jetbrains.com/idea/download/\nVSCode : VSCode（全称：Visual Studio Code）是一款由微软开发且跨平台的免费源代码编辑器。\n下载地址：https://code.visualstudio.com/\n安装教程： https://www.runoob.com/w3cnote/vscode-tutorial.html\nNetbeans:开源免费的 Java IDE，下载地址： https://www.netbeans.org/index.html\nEclipse:另一个免费开源的 Java IDE，下载地址： https://www.eclipse.org/downloads/packages/\n选择 Eclipse IDE for Java Developers：\n使用 IntelliJ IDEA创建第一个 Java 应用\n1、启动 IntelliJ IDEA。\n2、在欢迎屏幕中单击\"新建项目\"。\n3、在\"新建项目\"向导中，从左侧列表中选择\"Java\"。\n4、为项目命名（例如 HelloWorld）并根据需要更改默认位置。\n5、在本教程中，我们不会使用版本控制系统，因此请禁用\"创建 Git 存储库\"选项。\n6、确保在构建系统中选择了 IntelliJ。\n要在 IntelliJ IDEA 中开发 Java 应用程序，您需要 Java SDK (JDK)。\n如果 IntelliJ IDEA 中已定义所需的 JDK，请从 JDK 列表中选择它。\n如果您的计算机上安装了 JDK，但未在 IDE 中定义，请选择\"添加 JDK\"并指定 JDK 主目录的路径（例如，/Library/Java/JavaVirtualMachines/jdk-20.0.1.jdk）。\n创建包和类，在项目工具窗口中，右键单击 src 文件夹，选择新建，然后选择 Java 类。\n在名称字段中，输入 com.example.helloworld.HelloWorld 并点击确定，IntelliJ IDEA 将创建 com.example.helloworld 包和 HelloWorld 类。\n您的浏览器不支持 HTML5 video 标签。\n \n开始编写代码：\n您的浏览器不支持 HTML5 video 标签。\n \n写个输出 Hello World 的代码\n您的浏览器不支持 HTML5 video 标签。\n \n执行代码，并输出结果：\n您的浏览器不支持 HTML5 video 标签。\n 使用 Eclipse 运行第一个 Java 程序\n视频演示如下所示：\n您的浏览器不支持 HTML5 video 标签。\n HelloWorld.java 文件代码：",
+    "examples": [
+     "public class HelloWorld {\npublic static void main(String[] args) {\nSystem.out.println(\"Hello World\");\n    }\n}"
+    ]
+   },
+   {
+    "title": "Java 实例",
+    "url": "https://www.runoob.com/java/java-examples.html",
+    "body": "本章节我们将为大家介绍 Java 常用的实例，通过实例学习我们可以更快的掌握 Java 的应用。\nJava 环境设置实例\nJava 实例 – 如何编译一个Java 文件？\nJava 实例 – Java 如何运行一个编译过的类文件?\nJava 实例 - 如何执行指定class文件目录（classpath）？\nJava 实例 – 如何查看当前 Java 运行的版本?\nJava 字符串\nJava 实例 – 字符串比较\nJava 实例 - 查找字符串最后一次出现的位置\nJava 实例 - 删除字符串中的一个字符\nJava 实例 - 字符串替换\nJava 实例 - 字符串反转\nJava 实例 - 字符串查找\nJava 实例 - 字符串分割\nJava 实例 - 字符串分割(StringTokenizer)\nJava 实例 - 字符串小写转大写\nJava 实例 - 测试两个字符串区域是否相等\nJava 实例 - 字符串性能比较测试\nJava 实例 - 字符串优化\nJava 实例 - 字符串格式化\nJava 实例 - 连接字符串\nJava 数组\nJava 实例 – 数组排序及元素查找\nJava 实例 – 数组添加元素\nJava 实例 – 获取数组长度\nJava 实例 – 数组反转\nJava 实例 – 数组输出\nJava 实例 – 数组获取最大和最小值\nJava 实例 – 数组合并\nJava 实例 – 数组填充\nJava 实例 – 数组扩容\nJava 实例 – 查找数组中的重复元素\nJava 实例 – 删除数组元素\nJava 实例 – 数组差集\nJava 实例 – 数组交集\nJava 实例 – 在数组中查找指定元素\nJava 实例 – 判断数组是否相等\nJava 实例 - 数组并集\nJava 时间处理\nJava 实例 - 格式化时间（SimpleDateFormat）\nJava 实例 - 获取当前时间\nJava 实例 - 获取年份、月份等\nJava 实例 - 时间戳转换成时间\nJava 方法\nJava 实例 – 方法重载\nJava 实例 – 输出数组元素\nJava 实例 – 汉诺塔算法\nJava 实例 – 斐波那契数列\nJava 实例 – 阶乘\nJava 实例 – 方法覆盖\nJava 实例 – instanceOf 关键字用法\nJava 实例 – break 关键字用法\nJava 实例 – continue 关键字用法\nJava 实例 – 标签(Label)\nJava 实例 – enum 和 switch 语句使用\nJava 实例 – Enum（枚举）构造函数及方法的使用\nJava 实例 – for 和 foreach循环使用\nJava 实例 – Varargs 可变参数使用\nJava 实例 – 重载(overloading)方法中使用 Varargs\n打印图形\nJava 实例 – 打印菱形\nJava 实例 – 九九乘法表\nJava 实例 – 打印三角形\nJava 实例 – 打印倒立的三角形\nJava 实例 – 打印平行四边形\nJava 实例 – 打印矩形\nJava 文件操作\nJava 实例 - 文件写入\nJava 实例 - 读取文件内容\nJava 实例 - 删除文件\nJava 实例 - 将文件内容复制到另一个文件\nJava 实例 - 向文件中追加数据\nJava 实例 - 创建临时文件\nJava 实例 - 修改文件最后的修改日期\nJava 实例 - 获取文件大小\nJava 实例 - 文件重命名\nJava 实例 - 设置文件只读\nJava 实例 - 检测文件是否存在\nJava 实例 - 在指定目录中创建文件\nJava 实例 - 获取文件修改时间\nJava 实例 - 创建文件\nJava 实例 - 文件路径比较\nJava 目录操作\nJava 实例 - 递归创建目录\nJava 实例 - 删除目录\nJava 实例 - 判断目录是否为空\nJava 实例 - 判断文件是否隐藏\nJava 实例 - 获取目录大小\nJava 实例 - 在指定目录中查找文件\nJava 实例 - 获取文件的上级目录\nJava 实例 - 获取目录最后修改时间\nJava 实例 - 打印目录结构\nJava 实例 - 遍历指定目录下的所有目录\nJava 实例 - 遍历指定目录下的所有文件\nJava 实例 - 在指定目录中查找文件\nJava 实例 - 遍历系统根目录\nJava 实例 - 查看当前工作目录\nJava 实例 - 遍历目录\nJava 异常处理\nJava 实例 - 异常处理方法\nJava 实例 - 多个异常处理（多个catch）\nJava 实例 - Finally的用法\nJava 实例 - 使用 catch 处理异常\nJava 实例 - 多线程异常处理\nJava 实例 - 获取异常的堆栈信息\nJava 实例 - 重载方法异常处理\nJava 实例 - 链试异常\nJava 实例 - 自定义异常\nJava 数据结构\nJava 实例 – 数字求和运算\nJava 实例 – 利用堆栈将中缀表达式转换成后缀\nJava 实例 – 在链表（LinkedList）的开头和结\nJava 实例 – 获取链表（LinkedList）的第一个\nJava 实例 – 删除链表中的元素\nJava 实例 – 获取链表的元素\nJava 实例 – 获取向量元素的索引值\nJava 实例 – 栈的实现\nJava 实例 – 链表元素查找\nJava 实例 – 压栈出栈的方法实现字符串反转\nJava 实例 – 队列（Queue）用法\nJava 实例 – 获取向量的最大元素\nJava 实例 – 链表修改\nJava 实例 – 旋转向量\nJava 集合\nJava 实例 – 数组转集合\nJava 实例 – 集合比较\nJava 实例 – HashMap遍历\nJava 实例 – 集合长度\nJava 实例 – 集合打乱顺序\nJava 实例 – 集合遍历\nJava 实例 – 集合反转\nJava 实例 – 删除集合中指定元素\nJava 实例 – 只读集合\nJava 实例 – 集合输出\nJava 实例 – 集合转数组\nJava 实例 – List 循环移动元素\nJava 实例 – 查找 List 中的最大最小值\nJava 实例 – 遍历 HashTable 的键值\nJava 实例 – 使用 Enumeration 遍历 HashTable\nJava 实例 – 集合中添加不同类型元素\nJava 实例 – List 元素替换\nJava 实例 – List 截取\nJava 网络实例\nJava 实例 – 获取指定主机的IP地址\nJava 实例 – 查看端口是否已使用\nJava 实例 – 获取本机ip地址及主机名\nJava 实例 – 获取远程文件大小\nJava 实例 – Socket 实现多线程服务器程序\nJava 实例 – 查看主机指定文件的最后修改时间\nJava 实例 – 使用 Socket 连接到指定主机\nJava 实例 – 网页抓取\nJava 实例 – 获取 URL响应头的日期信息\nJava 实例 – 获取 URL 响应头信息\nJava 实例 – 解析 URL\nJava 实例 – ServerSocket 和 Socket 通信实例\nJava 线程\nJava 实例 – 查看线程是否存活\nJava 实例 – 获取当前线程名称\nJava 实例 – 状态监测\nJava 实例 – 线程优先级设置\nJava 实例 – 死锁及解决方法\nJava 实例 – 获取线程id\nJava 实例 – 线程挂起\nJava 实例 – 终止线程\nJava 实例 – 生产者/消费者问题\nJava 实例 – 获取线程状态\nJava 实例 – 获取所有线程\nJava 实例 – 查看线程优先级\nJava 实例 – 中断线程",
+    "examples": []
+   },
+   {
+    "title": "Java 异常处理",
+    "url": "https://www.runoob.com/java/java-exceptions.html",
+    "body": "在 Java 中，异常处理是一种重要的编程概念，用于处理程序执行过程中可能出现的错误或异常情况。\n异常是程序中的一些错误，但并不是所有的错误都是异常，并且错误有时候是可以避免的。\n比如说，你的代码少了一个分号，那么运行出来结果是提示是错误 java.lang.Error，如果你用 System.out.println(11/0)，那么你是因为你用 0 做了除数，会抛出 java.lang.ArithmeticException 的异常。\n异常发生的原因有很多，通常包含以下几大类：\n用户输入了非法数据。\n要打开的文件不存在。\n网络通信时连接中断，或者JVM内存溢出。\n这些异常有的是因为用户错误引起，有的是程序错误引起的，还有其它一些是因为物理错误引起的。\n要理解 Java 异常处理是如何工作的，你需要掌握以下三种类型的异常：\n检查性异常：最具代表的检查性异常是用户错误或问题引起的异常，这些异常在编译时强制要求程序员处理。例如要打开一个不存在文件时，一个异常就发生了，这些异常在编译时不能被简单地忽略。\n这类异常通常使用 try-catch 块来捕获并处理异常，或者在方法声明中使用 throws 子句声明方法可能抛出的异常。\ntry {\n // 可能会抛出异常的代码\n} catch (IOException e) {\n // 处理异常的代码\n}\n或者：\npublic void readFile() throws IOException {\n // 可能会抛出IOException的代码\n}\n运行时异常： 这些异常在编译时不强制要求处理，通常是由程序中的错误引起的，例如 NullPointerException、ArrayIndexOutOfBoundsException 等，这类异常可以选择处理，但并非强制要求。\ntry {\n // 可能会抛出异常的代码\n} catch (NullPointerException e) {\n // 处理异常的代码\n}\n错误： 错误不是异常，而是脱离程序员控制的问题，错误在代码中通常被忽略。例如，当栈溢出时，一个错误就发生了，它们在编译也检查不到的。\nJava 提供了以下关键字和类来支持异常处理：\ntry：用于包裹可能会抛出异常的代码块。\ncatch：用于捕获异常并处理异常的代码块。\nfinally：用于包含无论是否发生异常都需要执行的代码块。\nthrow：用于手动抛出异常。\nthrows：用于在方法声明中指定方法可能抛出的异常。\nException类：是所有异常类的父类，它提供了一些方法来获取异常信息，如 getMessage()、printStackTrace() 等。\nException 类的层次\n所有的异常类是从 java.lang.Exception 类继承的子类。\nException 类是 Throwable 类的子类。除了Exception类外，Throwable还有一个子类Error 。\nJava 程序通常不捕获错误。错误一般发生在严重故障时，它们在Java程序处理的范畴之外。\nError 用来指示运行时环境发生的错误。\n例如，JVM 内存溢出。一般地，程序不会从错误中恢复。\n异常类有两个主要的子类：IOException 类和 RuntimeException 类。\n在 Java 内置类中(接下来会说明)，有大部分常用检查性和非检查性异常。\nJava 内置异常类\nJava 语言定义了一些异常类在 java.lang 标准包中。\n标准运行时异常类的子类是最常见的异常类。由于 java.lang 包是默认加载到所有的 Java 程序的，所以大部分从运行时异常类继承而来的异常都可以直接使用。\nJava 根据各个类库也定义了一些其他的异常，下面的表中列出了 Java 的非检查性异常。\n异常\n描述\nArithmeticException\n当出现异常的运算条件时，抛出此异常。例如，一个整数\"除以零\"时，抛出此类的一个实例。\nArrayIndexOutOfBoundsException\n用非法索引访问数组时抛出的异常。如果索引为负或大于等于数组大小，则该索引为非法索引。\nArrayStoreException\n试图将错误类型的对象存储到一个对象数组时抛出的异常。\nClassCastException\n当试图将对象强制转换为不是实例的子类时，抛出该异常。\nIllegalArgumentException\n抛出的异常表明向方法传递了一个不合法或不正确的参数。\nIllegalMonitorStateException\n抛出的异常表明某一线程已经试图等待对象的监视器，或者试图通知其他正在等待对象的监视器而本身没有指定监视器的线程。\nIllegalStateException\n在非法或不适当的时间调用方法时产生的信号。换句话说，即 Java 环境或 Java 应用程序没有处于请求操作所要求的适当状态下。\nIllegalThreadStateException\n线程没有处于请求操作所要求的适当状态时抛出的异常。\nIndexOutOfBoundsException\n指示某排序索引（例如对数组、字符串或向量的排序）超出范围时抛出。\nNegativeArraySizeException\n如果应用程序试图创建大小为负的数组，则抛出该异常。\nNullPointerException\n当应用程序试图在需要对象的地方使用 null 时，抛出该异常\nNumberFormatException\n当应用程序试图将字符串转换成一种数值类型，但该字符串不能转换为适当格式时，抛出该异常。\nSecurityException\n由安全管理器抛出的异常，指示存在安全侵犯。\nStringIndexOutOfBoundsException\n此异常由 String 方法抛出，指示索引或者为负，或者超出字符串的大小。\nUnsupportedOperationException\n当不支持请求的操作时，抛出该异常。\n下面的表中列出了 Java 定义在 java.lang 包中的检查性异常类。\n异常\n描述\nClassNotFoundException\n应用程序试图加载类时，找不到相应的类，抛出该异常。\nCloneNotSupportedException\n当调用 Object 类中的 clone 方法克隆对象，但该对象的类无法实现 Cloneable 接口时，抛出该异常。\nIllegalAccessException\n拒绝访问一个类的时候，抛出该异常。\nInstantiationException\n当试图使用 Class 类中的 newInstance 方法创建一个类的实例，而指定的类对象因为是一个接口或是一个抽象类而无法实例化时，抛出该异常。\nInterruptedException\n一个线程被另一个线程中断，抛出该异常。\nNoSuchFieldException\n请求的变量不存在\nNoSuchMethodException\n请求的方法不存在\n异常方法\n下面的列表是 Throwable 类的主要方法:\n序号\n方法及说明\n1\npublic String getMessage()\n 返回关于发生的异常的详细信息。这个消息在Throwable 类的构造函数中初始化了。\n2\npublic Throwable getCause()\n 返回一个 Throwable 对象代表异常原因。\n3\npublic String toString()\n 返回此 Throwable 的简短描述。\n4\npublic void printStackTrace()\n 将此 Throwable 及其回溯打印到标准错误流。\n5\npublic StackTraceElement [] getStackTrace()\n 返回一个包含堆栈层次的数组。下标为0的元素代表栈顶，最后一个元素代表方法调用堆栈的栈底。\n6\npublic Throwable fillInStackTrace()\n 用当前的调用栈层次填充Throwable 对象栈层次，添加到栈层次任何先前信息中。\n捕获异常\n使用 try 和 catch 关键字可以捕获异常。try/catch 代码块放在异常可能发生的地方。\ntry/catch代码块中的代码称为保护代码，使用 try/catch 的语法如下：\ntry\n{\n // 程序代码\n}catch(ExceptionName e1)\n{\n //Catch 块\n}\nCatch 语句包含要捕获异常类型的声明。当保护代码块中发生一个异常时，try 后面的 catch 块就会被检查。\n如果发生的异常包含在 catch 块中，异常会被传递到该 catch 块，这和传递一个参数的方法是一样。\n实例\n下面的例子中声明有两个元素的一个数组，当代码试图访问数组的第四个元素的时候就会抛出一个异常。\nExcepTest.java 文件代码：",
+    "examples": [
+     "// 文件名 : ExcepTest.java\nimport java.io.*;\npublic class ExcepTest{\npublic static void main(String args[]){\ntry{\nint a[] = new int[2];\n         System.out.println(\"Access element three :\" + a[3]);\n      }catch(ArrayIndexOutOfBoundsException e){\nSystem.out.println(\"Exception thrown  :\" + e);\n      }\nSystem.out.println(\"Out of the block\");\n   }\n}"
+    ]
+   },
+   {
+    "title": "Java 流(Stream)、文件(File)和IO",
+    "url": "https://www.runoob.com/java/java-files-io.html",
+    "body": "Java 中的流（Stream）、文件（File）和 IO（输入输出）是处理数据读取和写入的基础设施，它们允许程序与外部数据（如文件、网络、系统输入等）进行交互。\njava.io 包是 Java 标准库中的一个核心包，提供了用于系统输入和输出的类，它包含了处理数据流（字节流和字符流）、文件读写、序列化以及数据格式化的工具。\njava.io 是处理文件操作、流操作以及低级别 IO 操作的基础包。\njava.io 包中的流支持很多种格式，比如：基本类型、对象、本地化字符集等等。\n一个流可以理解为一个数据的序列。输入流表示从一个源读取数据，输出流表示向一个目标写数据。\n读取控制台输入\nJava 的控制台输入由 System.in 完成。\n为了获得一个绑定到控制台的字符流，你可以把 System.in 包装在一个 BufferedReader 对象中来创建一个字符流。\n下面是创建 BufferedReader 的基本语法：",
+    "examples": [
+     "BufferedReader br = new BufferedReader(new\nInputStreamReader(System.in));"
+    ]
+   },
+   {
+    "title": "Java 泛型",
+    "url": "https://www.runoob.com/java/java-generics.html",
+    "body": "Java 泛型（generics）是 JDK 5 中引入的一个新特性, 泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。\n泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。\n假定我们有这样一个需求：写一个排序方法，能够对整型数组、字符串数组甚至其他任何类型的数组进行排序，该如何实现？\n答案是可以使用 Java 泛型。\n使用 Java 泛型的概念，我们可以写一个泛型方法来对一个对象数组排序。然后，调用该泛型方法来对整型数组、浮点数数组、字符串数组等进行排序。\n泛型方法\n你可以写一个泛型方法，该方法在调用时可以接收不同类型的参数。根据传递给泛型方法的参数类型，编译器适当地处理每一个方法调用。\n下面是定义泛型方法的规则：\n所有泛型方法声明都有一个类型参数声明部分（由尖括号分隔），该类型参数声明部分在方法返回类型之前（在下面例子中的 <E>）。\n每一个类型参数声明部分包含一个或多个类型参数，参数间用逗号隔开。一个泛型参数，也被称为一个类型变量，是用于指定一个泛型类型名称的标识符。\n类型参数能被用来声明返回值类型，并且能作为泛型方法得到的实际参数类型的占位符。\n泛型方法体的声明和其他方法一样。注意类型参数只能代表引用型类型，不能是原始类型（像 int、double、char 等）。\njava 中泛型标记符：\nE - Element (在集合中使用，因为集合中存放的是元素)\nT - Type（Java 类）\nK - Key（键）\nV - Value（值）\nN - Number（数值类型）\n？ - 表示不确定的 java 类型\n实例\n下面的例子演示了如何使用泛型方法打印不同类型的数组元素：\n实例",
+    "examples": [
+     "public class GenericMethodTest\n{\n// 泛型方法 printArray                         \npublic static < E > void printArray( E[] inputArray )\n{\n// 输出数组元素            \nfor ( E element : inputArray ){\nSystem.out.printf( \"%s \", element );\n         }\nSystem.out.println();\n    }\npublic static void main( String args[] )\n{\n// 创建不同类型数组： Integer, Double 和 Character\nInteger[] intArray = { 1, 2, 3, 4, 5 };\n        Double[] doubleArray = { 1.1, 2.2, 3.3, 4.4 };\n        Character[] charArray = { 'H', 'E', 'L', 'L', 'O' };\n \n        System.out.println( \"整型数组元素为:\" );\n        printArray( intArray ); // 传递一个整型数组\nSystem.out.println( \"\\n双精度型数组元素为:\" );\n        printArray( doubleArray ); // 传递一个双精度型数组\nSystem.out.println( \"\\n字符型数组元素为:\" );\n        printArray( charArray ); // 传递一个字符型数组\n}\n}"
+    ]
+   },
+   {
+    "title": "Java HashMap",
+    "url": "https://www.runoob.com/java/java-hashmap.html",
+    "body": "Java 集合框架\nHashMap 是一个散列表，它存储的内容是键值对(key-value)映射。\nHashMap 实现了 Map 接口，根据键的 HashCode 值存储数据，具有很快的访问速度，最多允许一条记录的键为 null，不支持线程同步。\nHashMap 是无序的，即不会记录插入的顺序。\nHashMap 继承于AbstractMap，实现了 Map、Cloneable、java.io.Serializable 接口。\nHashMap 的 key 与 value 类型可以相同也可以不同，可以是字符串（String）类型的 key 和 value，也可以是整型（Integer）的 key 和字符串（String）类型的 value。\nHashMap 中的元素实际上是对象，一些常见的基本类型可以使用它的包装类。\n基本类型对应的包装类表如下：\n基本类型\n引用类型\nboolean\nBoolean\nbyte\nByte\nshort\nShort\nint\nInteger\nlong\nLong\nfloat\nFloat\ndouble\nDouble\nchar\nCharacter\nHashMap 类位于 java.util 包中，使用前需要引入它，语法格式如下：\nimport java.util.HashMap; // 引入 HashMap 类\n以下实例我们创建一个 HashMap 对象 Sites， 整型（Integer）的 key 和字符串（String）类型的 value：\nHashMap<Integer, String> Sites = new HashMap<Integer, String>();\n添加元素\nHashMap 类提供了很多有用的方法，添加键值对(key-value)可以使用 put() 方法:\n实例",
+    "examples": [
+     "// 引入 HashMap 类      \nimport java.util.HashMap;\n\npublic class RunoobTest {\n    public static void main(String[] args) {\n        // 创建 HashMap 对象 Sites\n        HashMap<Integer, String> Sites = new HashMap<Integer, String>();\n        // 添加键值对\n        Sites.put(1, \"Google\");\n        Sites.put(2, \"Runoob\");\n        Sites.put(3, \"Taobao\");\n        Sites.put(4, \"Zhihu\");\n        System.out.println(Sites);\n    }\n}"
+    ]
+   },
+   {
+    "title": "Java HashSet",
+    "url": "https://www.runoob.com/java/java-hashset.html",
+    "body": "Java 集合框架\nHashSet 基于 HashMap 来实现的，是一个不允许有重复元素的集合。\nHashSet 允许有 null 值。\nHashSet 是无序的，即不会记录插入的顺序。\nHashSet 不是线程安全的， 如果多个线程尝试同时修改 HashSet，则最终结果是不确定的。 您必须在多线程访问时显式同步对 HashSet 的并发访问。\nHashSet 实现了 Set 接口。\nHashSet 中的元素实际上是对象，一些常见的基本类型可以使用它的包装类。\n基本类型对应的包装类表如下：\n基本类型\n引用类型\nboolean\nBoolean\nbyte\nByte\nshort\nShort\nint\nInteger\nlong\nLong\nfloat\nFloat\ndouble\nDouble\nchar\nCharacter\nHashSet 类位于 java.util 包中，使用前需要引入它，语法格式如下：\nimport java.util.HashSet; // 引入 HashSet 类\n以下实例我们创建一个 HashSet 对象 sites，用于保存字符串元素：\nHashSet<String> sites = new HashSet<String>();\n添加元素\nHashSet 类提供了很多有用的方法，添加元素可以使用 add() 方法:\n实例",
+    "examples": [
+     "// 引入 HashSet 类      \nimport java.util.HashSet;\n\npublic class RunoobTest {\n    public static void main(String[] args) {\n    HashSet<String> sites = new HashSet<String>();\n        sites.add(\"Google\");\n        sites.add(\"Runoob\");\n        sites.add(\"Taobao\");\n        sites.add(\"Zhihu\");\n        sites.add(\"Runoob\");  // 重复的元素不会被添加\n        System.out.println(sites);\n    }\n}"
+    ]
+   },
+   {
+    "title": "Java 条件语句 - if...else",
+    "url": "https://www.runoob.com/java/java-if-else-switch.html",
+    "body": "Java 中的条件语句允许程序根据条件的不同执行不同的代码块。\n一个 if 语句包含一个布尔表达式和一条或多条语句。\n语法\nif 语句的语法如下：",
+    "examples": [
+     "if(布尔表达式)\n{\n//如果布尔表达式为true将执行的语句\n}"
+    ]
+   },
+   {
+    "title": "Java 继承",
+    "url": "https://www.runoob.com/java/java-inheritance.html",
+    "body": "继承的概念\n继承是java面向对象编程技术的一块基石，因为它允许创建分等级层次的类。\n继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。\n生活中的继承：\n兔子和羊属于食草动物类，狮子和豹属于食肉动物类。\n食草动物和食肉动物又是属于动物类。\n所以继承需要符合的关系是：is-a，父类更通用，子类更具体。\n虽然食草动物和食肉动物都是属于动物，但是两者的属性和行为上有差别，所以子类会具有父类的一般特性也会具有自身的特性。\n类的继承格式\n在 Java 中通过 extends 关键字可以申明一个类是从另外一个类继承而来的，一般形式如下：\n类的继承格式",
+    "examples": [
+     "class 父类 {\n}\nclass 子类 extends 父类 {\n}"
+    ]
+   },
+   {
+    "title": "Java 接口",
+    "url": "https://www.runoob.com/java/java-interfaces.html",
+    "body": "接口（英文：Interface），在JAVA编程语言中是一个抽象类型，是抽象方法的集合，接口通常以interface来声明。一个类通过继承接口的方式，从而来继承接口的抽象方法。\n接口并不是类，编写接口的方式和类很相似，但是它们属于不同的概念。类描述对象的属性和方法。接口则包含类要实现的方法。\n除非实现接口的类是抽象类，否则该类要定义接口中的所有方法。\n接口无法被实例化，但是可以被实现。一个实现接口的类，必须实现接口内所描述的所有方法，否则就必须声明为抽象类。另外，在 Java 中，接口类型可用来声明一个变量，他们可以成为一个空指针，或是被绑定在一个以此接口实现的对象。\n接口与类相似点：\n一个接口可以有多个方法。\n接口文件保存在 .java 结尾的文件中，文件名使用接口名。\n接口的字节码文件保存在 .class 结尾的文件中。\n接口相应的字节码文件必须在与包名称相匹配的目录结构中。\n接口与类的区别：\n接口不能用于实例化对象。\n接口没有构造方法。\n接口中所有的方法必须是抽象方法，Java 8 之后 接口中可以使用 default 关键字修饰的非抽象方法。\n接口不能包含成员变量，除了 static 和 final 变量。\n接口不是被类继承了，而是要被类实现。\n接口支持多继承。\n接口特性\n接口中每一个方法也是隐式抽象的,接口中的方法会被隐式的指定为 public abstract（只能是 public abstract，其他修饰符都会报错）。\n接口中可以含有变量，但是接口中的变量会被隐式的指定为 public static final 变量（并且只能是 public，用 private 修饰会报编译错误）。\n接口中的方法是不能在接口中实现的，只能由实现接口的类来实现接口中的方法。\n抽象类和接口的区别\n1. 抽象类中的方法可以有方法体，就是能实现方法的具体功能，但是接口中的方法不行。\n2. 抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是 public static final 类型的。\n3. 接口中不能含有静态代码块以及静态方法(用 static 修饰的方法)，而抽象类是可以有静态代码块和静态方法。\n4. 一个类只能继承一个抽象类，而一个类却可以实现多个接口。\n注：JDK 1.8 以后，接口里可以有静态方法和方法体了。\n注：JDK 1.8 以后，接口允许包含具体实现的方法，该方法称为\"默认方法\"，默认方法使用 default 关键字修饰。更多内容可参考 Java 8 默认方法。\n注：JDK 1.9 以后，允许将方法定义为 private，使得某些复用的代码不会把方法暴露出去。更多内容可参考 Java 9 私有接口方法。\n接口的声明\n接口的声明语法格式如下：",
+    "examples": [
+     "[可见度] interface 接口名称 [extends 其他的接口名] {\n// 声明变量\n// 抽象方法\n}"
+    ]
+   },
+   {
+    "title": "Java 简介",
+    "url": "https://www.runoob.com/java/java-intro.html",
+    "body": "Java 是由 Sun Microsystems 公司于 1995 年 5 月推出的 Java 面向对象程序设计语言和 Java 平台的总称。由 James Gosling和同事们共同研发，并在 1995 年正式推出。\n后来 Sun 公司被 Oracle （甲骨文）公司收购，Java 也随之成为 Oracle 公司的产品。\nJava分为三个体系：\nJavaSE（J2SE）（Java2 Platform Standard Edition，java平台标准版）\nJavaEE(J2EE)(Java 2 Platform,Enterprise Edition，java平台企业版)\nJavaME(J2ME)(Java 2 Platform Micro Edition，java平台微型版)。\n2005 年 6 月，JavaOne 大会召开，SUN 公司公开 Java SE 6。此时，Java 的各种版本已经更名，以取消其中的数字 \"2\"：J2EE 更名为 Java EE，J2SE 更名为Java SE，J2ME 更名为 Java ME。\n主要特性\nJava 语言是简单的：\nJava 语言的语法与 C 语言和 C++ 语言很接近，使得大多数程序员很容易学习和使用。另一方面，Java 丢弃了 C++ 中很少使用的、很难理解的、令人迷惑的那些特性，如操作符重载、多继承、自动的强制类型转换。特别地，Java 语言不使用指针，而是引用。并提供了自动分配和回收内存空间，使得程序员不必为内存管理而担忧。\nJava 语言是面向对象的：\nJava 语言提供类、接口和继承等面向对象的特性，为了简单起见，只支持类之间的单继承，但支持接口之间的多继承，并支持类与接口之间的实现机制（关键字为 implements）。Java 语言全面支持动态绑定，而 C++语言只对虚函数使用动态绑定。总之，Java语言是一个纯的面向对象程序设计语言。\nJava语言是分布式的：\nJava 语言支持 Internet 应用的开发，在基本的 Java 应用编程接口中有一个网络应用编程接口（java net），它提供了用于网络应用编程的类库，包括 URL、URLConnection、Socket、ServerSocket 等。Java 的 RMI（远程方法激活）机制也是开发分布式应用的重要手段。\nJava 语言是健壮的：Java 的强类型机制、异常处理、垃圾的自动收集等是 Java 程序健壮性的重要保证。对指针的丢弃是 Java 的明智选择。Java 的安全检查机制使得 Java 更具健壮性。\nJava语言是安全的：\nJava通常被用在网络环境中，为此，Java 提供了一个安全机制以防恶意代码的攻击。除了Java 语言具有的许多安全特性以外，Java 对通过网络下载的类具有一个安全防范机制（类 ClassLoader），如分配不同的名字空间以防替代本地的同名类、字节代码检查，并提供安全管理机制（类 SecurityManager）让 Java 应用设置安全哨兵。\nJava 语言是体系结构中立的：\nJava 程序（后缀为 java 的文件）在 Java 平台上被编译为体系结构中立的字节码格式（后缀为 class 的文件），然后可以在实现这个 Java 平台的任何系统中运行。这种途径适合于异构的网络环境和软件的分发。\nJava 语言是可移植的：\n这种可移植性来源于体系结构中立性，另外，Java 还严格规定了各个基本数据类型的长度。Java 系统本身也具有很强的可移植性，Java 编译器是用 Java 实现的，Java 的运行环境是用 ANSI C 实现的。\nJava 语言是解释型的：\n如前所述，Java 程序在 Java 平台上被编译为字节码格式，然后可以在实现这个 Java 平台的任何系统中运行。在运行时，Java 平台中的 Java 解释器对这些字节码进行解释执行，执行过程中需要的类在联接阶段被载入到运行环境中。\nJava 是高性能的：\n与那些解释型的高级脚本语言相比，Java 的确是高性能的。事实上，Java 的运行速度随着 JIT(Just-In-Time）编译器技术的发展越来越接近于 C++。\nJava 语言是多线程的：\n在 Java 语言中，线程是一种特殊的对象，它必须由 Thread 类或其子（孙）类来创建。通常有两种方法来创建线程：其一，使用型构为 Thread(Runnable) 的构造子类将一个实现了 Runnable 接口的对象包装成一个线程，其二，从 Thread 类派生出子类并重写 run 方法，使用该子类创建的对象即为线程。值得注意的是 Thread 类已经实现了 Runnable 接口，因此，任何一个线程均有它的 run 方法，而 run 方法中包含了线程所要运行的代码。线程的活动由一组方法来控制。Java 语言支持多个线程的同时执行，并提供多线程之间的同步机制（关键字为 synchronized）。\nJava 语言是动态的：\nJava 语言的设计目标之一是适应于动态变化的环境。Java 程序需要的类能够动态地被载入到运行环境，也可以通过网络来载入所需要的类。这也有利于软件的升级。另外，Java 中的类有一个运行时刻的表示，能进行运行时刻的类型检查。\n发展历史\n1995 年 5 月 23 日，Java 语言诞生\n1996 年 1 月，第一个 JDK-JDK1.0 诞生\n1996 年 4 月，10 个最主要的操作系统供应商申明将在其产品中嵌入 JAVA 技术\n1996 年 9 月，约 8.3 万个网页应用了 JAVA 技术来制作\n1997 年 2 月 18 日，JDK1.1 发布\n1997 年 4 月 2 日，JavaOne 会议召开，参与者逾一万人，创当时全球同类会议规模之纪录\n1997 年 9 月，JavaDeveloperConnection 社区成员超过十万\n1998 年 2 月，JDK1.1 被下载超过 2,000,000次\n1998 年 12 月 8 日，JAVA2 企业平台 J2EE 发布\n1999 年 6月，SUN 公司发布 Java 的三个版本：标准版（JavaSE, 以前是 J2SE）、企业版（JavaEE 以前是 J2EE）和微型版（JavaME，以前是 J2ME）\n2000 年 5 月 8 日，JDK1.3 发布\n2000 年 5 月 29 日，JDK1.4 发布\n2001 年 6 月 5 日，NOKIA 宣布，到 2003 年将出售 1 亿部支持 Java 的手机\n2001 年 9 月 24 日，J2EE1.3 发布\n2002 年 2 月 26 日，J2SE1.4 发布，自此 Java 的计算能力有了大幅提升\n2004 年 9 月 30 日 18:00PM，J2SE1.5 发布，成为 Java 语言发展史上的又一里程碑。为了表示该版本的重要性，J2SE1.5 更名为 Java SE 5.0\n2005 年 6 月，JavaOne 大会召开，SUN 公司公开 Java SE 6。此时，Java 的各种版本已经更名，以取消其中的数字 \"2\"：J2EE 更名为 Java EE，J2SE 更名为 Java SE，J2ME 更名为 Java ME\n2006 年 12 月，SUN 公司发布 JRE6.0\n2009 年 04 月 20 日，甲骨文 74 亿美元收购 Sun，取得 Java 的版权。\n2010 年 11 月，由于甲骨文对于 Java 社区的不友善，因此 Apache 扬言将退出 JCP。\n2011 年 7 月 28 日，甲骨文发布 Java7.0 的正式版。\n2014 年 3 月 18 日，Oracle 公司发表 Java SE 8。\n2017 年 9 月 21 日，Oracle 公司发表 Java SE 9\n2018 年 3 月 21 日，Oracle 公司发表 Java SE 10\n2018 年 9 月 25 日，Java SE 11 发布\n2019 年 3 月 20 日，Java SE 12 发布\nJava 开发工具\nJava 语言尽量保证系统内存在 1G 以上，其他工具如下所示：\nLinux 系统、Mac OS 系统、Windows 95/98/2000/XP，WIN 7/8系统。\nJava JDK 7、8……\nvscode 编辑器或者其他编辑器。\nIDE：Eclipse、\nIntelliJ IDEA、NetBeans 等。\n安装好以上的工具后，我们就可以输出Java的第一个程序 \"Hello World！\"",
+    "examples": [
+     "public class HelloWorld {\npublic static void main(String[] args) {\nSystem.out.println(\"Hello World\");\n    }\n}"
+    ]
+   },
+   {
+    "title": "Java Iterator（迭代器）",
+    "url": "https://www.runoob.com/java/java-iterator.html",
+    "body": "Java 集合框架\nJava迭代器（Iterator）是 Java 集合框架中的一种机制，是一种用于遍历集合（如列表、集合和映射等）的接口。\n它提供了一种统一的方式来访问集合中的元素，而不需要了解底层集合的具体实现细节。\nJava Iterator（迭代器）不是一个集合，它是一种用于访问集合的方法，可用于迭代 ArrayList 和 HashSet 等集合。\nIterator 是 Java 迭代器最简单的实现，ListIterator 是 Collection API 中的接口， 它扩展了 Iterator 接口。\n迭代器接口定义了几个方法，最常用的是以下三个：\nnext() - 返回迭代器的下一个元素，并将迭代器的指针移到下一个位置。\nhasNext() - 用于判断集合中是否还有下一个元素可以访问。\nremove() - 从集合中删除迭代器最后访问的元素（可选操作）。\nIterator 类位于 java.util 包中，使用前需要引入它，语法格式如下：\nimport java.util.Iterator; // 引入 Iterator 类\n通过使用迭代器，我们可以逐个访问集合中的元素，而不需要使用传统的 for 循环或索引。这种方式更加简洁和灵活，并且适用于各种类型的集合。\n获取一个迭代器\n集合想获取一个迭代器可以使用 iterator() 方法:\n实例",
+    "examples": [
+     "// 引入 ArrayList 和 Iterator 类\nimport java.util.ArrayList;\nimport java.util.Iterator;\n\npublic class RunoobTest {\n    public static void main(String[] args) {\n\n        // 创建集合\n        ArrayList<String> sites = new ArrayList<String>();\n        sites.add(\"Google\");\n        sites.add(\"Runoob\");\n        sites.add(\"Taobao\");\n        sites.add(\"Zhihu\");\n\n        // 获取迭代器\n        Iterator<String> it = sites.iterator();\n\n        // 输出集合中的第一个元素\n        System.out.println(it.next());\n    }\n}"
+    ]
+   },
+   {
+    "title": "Java 常用类库",
+    "url": "https://www.runoob.com/java/java-libs.html",
+    "body": "Java 提供了丰富的类库，以下是一些最常用的类。\n1. 核心 Java 类库\nJava 标准库提供了丰富的内置类库，以下是常用的一些核心类库：\n类别\n类库名称\n主要功能\n集合框架\njava.util.ArrayList\n动态数组实现\njava.util.LinkedList\n双向链表实现\njava.util.HashMap\n哈希表实现的 Map\njava.util.Vector\n实现了一个动态数组\njava.util.HashSet\n基于哈希表的 Set\njava.util.Scanner\n获取用户的输入\njava.util.regex.Pattern\n正则表达式\njava.util.regex.Macher\n正则表达式\nIO/NIO\njava.io.File\n文件和目录操作\njava.nio.file.Files\n文件操作工具类\njava.io.InputStream\n字节流基础类\njava.io.OutputStream\n字节流基础类\n多线程\njava.lang.Thread\n线程操作类\njava.util.concurrent.ExecutorService\n线程池管理\n日期时间\njava.time.LocalDate\n日期处理\njava.time.LocalDateTime\n日期时间处理\njava.time.ZonedDateTime\n带有时区的日期和时间\njava.util.Date\n当前的日期\njava.text.SimpleDateFormat\n时间日期格式化\njava.util.Calendar\n处理时间日期\njava.util.GregorianCalendar\n实现了公历日历\njava.time.Instant\n表示时间线上的一个瞬时点\njava.time.ChronoUnit\n用于测量时间的标准单位\njava.time.Period\n表示两个日期之间的时间间隔\njava.time.Duration\n表示基于时间的时段（小时、分钟、秒、纳秒）\n网络编程\njava.net.URL\nURL 处理\njava.net.Socket\n套接字编程\n2. 常用第三方库\n以下是 Java 生态系统中广泛使用的第三方库：\n类别\n库名称\n主要功能\n官方网站\nJSON 处理\nJackson\nJSON 序列化/反序列化\nhttps://github.com/FasterXML/jackson\nGson\nGoogle 的 JSON 库\nhttps://github.com/google/gson\n单元测试\nJUnit\nJava 单元测试框架\nhttps://junit.org/junit5/\nMockito\nMock 测试框架\nhttps://site.mockito.org/\n日志记录\nLog4j\n日志记录框架\nhttps://logging.apache.org/log4j/\nSLF4J\n日志门面框架\nhttps://www.slf4j.org/\nWeb 开发\nSpring Framework\n企业级应用框架\nhttps://spring.io/projects/spring-framework\nSpring Boot\n快速应用开发框架\nhttps://spring.io/projects/spring-boot\n数据库\nHibernate\nORM 框架\nhttps://hibernate.org/\nMyBatis\nSQL 映射框架\nhttps://mybatis.org/mybatis-3/\n构建工具\nMaven\n项目构建和依赖管理\nhttps://maven.apache.org/\nGradle\n灵活构建工具\nhttps://gradle.org/\n3. 如何选择适合的类库\n3.1 评估标准\n功能需求：首先明确项目需要什么功能\n社区支持：活跃的社区意味着更好的支持和文档\n性能表现：对于性能敏感的应用需要特别考虑\n学习曲线：考虑团队的学习成本\n维护状态：检查项目是否还在积极维护\n3.2 版本选择建议\n优先选择 LTS (长期支持) 版本\n避免使用已经停止维护的版本\n新项目可以考虑较新的稳定版本\n4. 使用示例\n4.1 使用 Jackson 处理 JSON\n实例",
+    "examples": [
+     "import com.fasterxml.jackson.databind.ObjectMapper;\n\npublic class JsonExample {\n    public static void main(String[] args) {\n        ObjectMapper mapper = new ObjectMapper();\n        try {\n            // 对象转 JSON\n            String json = mapper.writeValueAsString(new User(\"张三\", 25));\n            System.out.println(json);\n            \n            // JSON 转对象\n            User user = mapper.readValue(json, User.class);\n            System.out.println(user);\n        } catch (Exception e) {\n            e.printStackTrace();\n        }\n    }\n}"
+    ]
+   },
+   {
+    "title": "Java LinkedList",
+    "url": "https://www.runoob.com/java/java-linkedlist.html",
+    "body": "Java 集合框架\n链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个节点里存到下一个节点的地址。\n链表可分为单向链表和双向链表。\n一个单向链表包含两个值: 当前节点的值和一个指向下一个节点的链接。\n一个双向链表有三个整数值: 数值、向后的节点链接、向前的节点链接。\nJava LinkedList（链表） 类似于 ArrayList，是一种常用的数据容器。\n与 ArrayList 相比，LinkedList 的增加和删除的操作效率更高，而查找和修改的操作效率较低。\n以下情况使用 ArrayList :\n频繁访问列表中的某一个元素。\n只需要在列表末尾进行添加和删除元素操作。\n以下情况使用 LinkedList :\n你需要通过循环迭代来访问列表中的某些元素。\n需要频繁的在列表开头、中间、末尾等位置进行添加和删除元素操作。\nLinkedList 继承了 AbstractSequentialList 类。\nLinkedList 实现了 Queue 接口，可作为队列使用。\nLinkedList 实现了 List 接口，可进行列表的相关操作。\nLinkedList 实现了 Deque 接口，可作为队列使用。\nLinkedList 实现了 Cloneable 接口，可实现克隆。\nLinkedList 实现了 java.io.Serializable 接口，即可支持序列化，能通过序列化去传输。\nLinkedList 类位于 java.util 包中，使用前需要引入它，语法格式如下：\n// 引入 LinkedList 类\nimport java.util.LinkedList; \n\nLinkedList<E> list = new LinkedList<E>(); // 普通创建方法\n或者\nLinkedList<E> list = new LinkedList(Collection<? extends E> c); // 使用集合创建链表\n创建一个简单的链表实例：\n实例",
+    "examples": [
+     "// 引入 LinkedList 类\nimport java.util.LinkedList;\n\npublic class RunoobTest {\n    public static void main(String[] args) {\n        LinkedList<String> sites = new LinkedList<String>();\n        sites.add(\"Google\");\n        sites.add(\"Runoob\");\n        sites.add(\"Taobao\");\n        sites.add(\"Weibo\");\n        System.out.println(sites);\n    }\n}"
+    ]
+   },
+   {
+    "title": "Java 循环结构 - for, while 及 do...while",
+    "url": "https://www.runoob.com/java/java-loop.html",
+    "body": "顺序结构的程序语句只能被执行一次。\n如果您想要同样的操作执行多次，就需要使用循环结构。\nJava中有三种主要的循环结构：\nwhile 循环\ndo…while 循环\nfor 循环\n在 Java5 中引入了一种主要用于数组的增强型 for 循环。\nwhile 循环\nwhile是最基本的循环，它的结构为：",
+    "examples": [
+     "while( 布尔表达式 ) {\n//循环内容\n}"
+    ]
+   },
+   {
+    "title": "Java 方法",
+    "url": "https://www.runoob.com/java/java-methods.html",
+    "body": "在前面几个章节中我们经常使用到 System.out.println()，那么它是什么呢？\nprintln() 是一个方法。\nSystem 是系统类。\nout 是标准输出对象。\n这句话的用法是调用系统类 System 中的标准输出对象 out 中的方法 println()。\n那么什么是方法呢？\nJava方法是语句的集合，它们在一起执行一个功能。\n方法是解决一类问题的步骤的有序组合\n方法包含于类或对象中\n方法在程序中被创建，在其他地方被引用\n方法的优点\n1. 使程序变得更简短而清晰。\n2. 有利于程序维护。\n3. 可以提高程序开发的效率。\n4. 提高了代码的重用性。\n方法的命名规则\n1.方法的名字的第一个单词应以小写字母作为开头，后面的单词则用大写字母开头写，不使用连接符。例如：addPerson。\n2.下划线可能出现在 JUnit 测试方法名称中用以分隔名称的逻辑组件。一个典型的模式是：test<MethodUnderTest>_<state>，例如 testPop_emptyStack。\n方法的定义\n一般情况下，定义一个方法包含以下语法：",
+    "examples": [
+     "修饰符 返回值类型 方法名(参数类型 参数名){\n    ...\n    方法体\n    ...\n    return 返回值;\n}"
+    ]
+   },
+   {
+    "title": "Java 修饰符",
+    "url": "https://www.runoob.com/java/java-modifier-types.html",
+    "body": "Java语言提供了很多修饰符，主要分为以下两类：\n访问修饰符\n非访问修饰符\n修饰符用来定义类、方法或者变量，通常放在语句的最前端。我们通过下面的例子来说明：",
+    "examples": [
+     "public class ClassName {\n// ...\n}\nprivate boolean myFlag;\nstatic final double weeks = 9.5;\nprotected static final int BOXWIDTH = 42;\npublic static void main(String[] arguments) {\n// 方法体\n}"
+    ]
+   },
+   {
+    "title": "Java 多线程编程",
+    "url": "https://www.runoob.com/java/java-multithreading.html",
+    "body": "Java 给多线程编程提供了内置的支持。\n一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。\n多线程是多任务的一种特别的形式，但多线程使用了更小的资源开销。\n这里定义和线程相关的另一个术语 - 进程：一个进程包括由操作系统分配的内存空间，包含一个或多个线程。一个线程不能独立的存在，它必须是进程的一部分。一个进程一直运行，直到所有的非守护线程都结束运行后才能结束。\n多线程能满足程序员编写高效率的程序来达到充分利用 CPU 的目的。\n一个线程的生命周期\n线程是一个动态执行的过程，它也有一个从产生到死亡的过程。\n下图显示了一个线程完整的生命周期。\n新建状态:使用 new 关键字和 Thread 类或其子类建立一个线程对象后，该线程对象就处于新建状态。它保持这个状态直到程序 start() 这个线程。\n就绪状态:当线程对象调用了start()方法之后，该线程就进入就绪状态。就绪状态的线程处于就绪队列中，要等待JVM里线程调度器的调度。\n运行状态:如果就绪状态的线程获取 CPU 资源，就可以执行 run()，此时线程便处于运行状态。处于运行状态的线程最为复杂，它可以变为阻塞状态、就绪状态和死亡状态。\n阻塞状态:如果一个线程执行了sleep（睡眠）、suspend（挂起）等方法，失去所占用资源之后，该线程就从运行状态进入阻塞状态。在睡眠时间已到或获得设备资源后可以重新进入就绪状态。可以分为三种：\n等待阻塞：运行状态中的线程执行 wait() 方法，使线程进入到等待阻塞状态。\n同步阻塞：线程在获取 synchronized 同步锁失败(因为同步锁被其他线程占用)。\n其他阻塞：通过调用线程的 sleep() 或 join() 发出了 I/O 请求时，线程就会进入到阻塞状态。当sleep() 状态超时，join() 等待线程终止或超时，或者 I/O 处理完毕，线程重新转入就绪状态。\n死亡状态: 一个运行状态的线程完成任务或者其他终止条件发生时，该线程就切换到终止状态。\n线程的优先级\n每一个 Java 线程都有一个优先级，这样有助于操作系统确定线程的调度顺序。\nJava 线程的优先级是一个整数，其取值范围是 1 （Thread.MIN_PRIORITY ） - 10 （Thread.MAX_PRIORITY ）。\n默认情况下，每一个线程都会分配一个优先级 NORM_PRIORITY（5）。\n具有较高优先级的线程对程序更重要，并且应该在低优先级的线程之前分配处理器资源。但是，线程优先级不能保证线程执行的顺序，而且非常依赖于平台。\n创建一个线程\nJava 提供了三种创建线程的方法：\n通过实现 Runnable 接口；\n通过继承 Thread 类本身；\n通过 Callable 和 Future 创建线程。\n通过实现 Runnable 接口来创建线程\n创建一个线程，最简单的方法是创建一个实现 Runnable 接口的类。\n为了实现 Runnable，一个类只需要执行一个方法调用 run()，声明如下：",
+    "examples": [
+     "public void run()"
+    ]
+   },
+   {
+    "title": "Java MySQL 连接",
+    "url": "https://www.runoob.com/java/java-mysql-connect.html",
+    "body": "本章节我们为大家介绍 Java 如何使用 使用 JDBC 连接 MySQL 数据库。\nJava 连接 MySQL 需要驱动包，最新版下载地址为：http://dev.mysql.com/downloads/connector/j/，解压后得到 jar 库文件，然后在对应的项目中导入该库文件。\n你可以下载本站提供的 jar 包：mysql-connector-java-5.1.39-bin.jar\n本实例使用的是 Eclipse，导入 jar 包：\nMySQL 8.0 以上版本的数据库连接有所不同：\n1、MySQL 8.0 以上版本驱动包版本 mysql-connector-java-8.0.16.jar。\n2、com.mysql.jdbc.Driver 更换为 com.mysql.cj.jdbc.Driver。\nMySQL 8.0 以上版本不需要建立 SSL 连接的，需要显示关闭。\nallowPublicKeyRetrieval=true 允许客户端从服务器获取公钥。\n最后还需要设置 CST。\n加载驱动与连接数据库方式如下：\nClass.forName(\"com.mysql.cj.jdbc.Driver\");\nconn = DriverManager.getConnection(\"jdbc:mysql://localhost:3306/test_demo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC\",\"root\",\"password\");\n创建测试数据\n接下来我们在 MySQL 中创建 RUNOOB 数据库，并创建 websites 数据表，表结构如下：",
+    "examples": [
+     "CREATE TABLE `websites` (\n`id` int(11) NOT NULL AUTO_INCREMENT,\n  `name` char(20) NOT NULL DEFAULT '' COMMENT '站点名称',\n  `url` varchar(255) NOT NULL DEFAULT '',\n  `alexa` int(11) NOT NULL DEFAULT '0' COMMENT 'Alexa 排名',\n  `country` char(10) NOT NULL DEFAULT '' COMMENT '国家',\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;"
+    ]
+   },
+   {
+    "title": "Java 网络编程",
+    "url": "https://www.runoob.com/java/java-networking.html",
+    "body": "网络编程是指编写运行在多个设备（计算机）的程序，这些设备都通过网络连接起来。\njava.net 包中 J2SE 的 API 包含有类和接口，它们提供低层次的通信细节。你可以直接使用这些类和接口，来专注于解决问题，而不用关注通信细节。\njava.net 包中提供了两种常见的网络协议的支持：\nTCP：TCP（英语：Transmission Control Protocol，传输控制协议） 是一种面向连接的、可靠的、基于字节流的传输层通信协议，TCP 层是位于 IP 层之上，应用层之下的中间层。TCP 保障了两个应用程序之间的可靠通信。通常用于互联网协议，被称 TCP / IP。\nUDP：UDP （英语：User Datagram Protocol，用户数据报协议），位于 OSI 模型的传输层。一个无连接的协议。提供了应用程序之间要发送数据的数据报。由于UDP缺乏可靠性且属于无连接协议，所以应用程序通常必须容许一些丢失、错误或重复的数据包。\n本教程主要讲解以下两个主题。\nSocket 编程：这是使用最广泛的网络概念，它已被解释地非常详细。\nURL 处理：这部分会在另外的篇幅里讲，点击这里更详细地了解在 Java 语言中的 URL 处理。\nSocket 编程\n套接字使用TCP提供了两台计算机之间的通信机制。 客户端程序创建一个套接字，并尝试连接服务器的套接字。\n当连接建立时，服务器会创建一个 Socket 对象。客户端和服务器现在可以通过对 Socket 对象的写入和读取来进行通信。\njava.net.Socket 类代表一个套接字，并且 java.net.ServerSocket 类为服务器程序提供了一种来监听客户端，并与他们建立连接的机制。\n以下步骤在两台计算机之间使用套接字建立TCP连接时会出现：\n服务器实例化一个 ServerSocket 对象，表示通过服务器上的端口通信。\n服务器调用 ServerSocket 类的 accept() 方法，该方法将一直等待，直到客户端连接到服务器上给定的端口。\n服务器正在等待时，一个客户端实例化一个 Socket 对象，指定服务器名称和端口号来请求连接。\nSocket 类的构造函数试图将客户端连接到指定的服务器和端口号。如果通信被建立，则在客户端创建一个 Socket 对象能够与服务器进行通信。\n在服务器端，accept() 方法返回服务器上一个新的 socket 引用，该 socket 连接到客户端的 socket。\n连接建立后，通过使用 I/O 流在进行通信，每一个socket都有一个输出流和一个输入流，客户端的输出流连接到服务器端的输入流，而客户端的输入流连接到服务器端的输出流。\nTCP 是一个双向的通信协议，因此数据可以通过两个数据流在同一时间发送。以下是一些类提供的一套完整的有用的方法来实现 socket。\nServerSocket 类的方法\n服务器应用程序通过使用 java.net.ServerSocket 类以获取一个端口,并且侦听客户端请求。\nServerSocket 类有四个构造方法：\n序号\n方法描述\n1\npublic ServerSocket(int port) throws IOException\n 创建绑定到特定端口的服务器套接字。\n2\npublic ServerSocket(int port, int backlog) throws IOException\n 利用指定的 backlog 创建服务器套接字并将其绑定到指定的本地端口号。\n3\npublic ServerSocket(int port, int backlog, InetAddress address) throws IOException\n 使用指定的端口、侦听 backlog 和要绑定到的本地 IP 地址创建服务器。\n4\npublic ServerSocket() throws IOException\n 创建非绑定服务器套接字。\n创建非绑定服务器套接字。 如果 ServerSocket 构造方法没有抛出异常，就意味着你的应用程序已经成功绑定到指定的端口，并且侦听客户端请求。\n这里有一些 ServerSocket 类的常用方法：\n序号\n方法描述\n1\npublic int getLocalPort()\n   返回此套接字在其上侦听的端口。\n2\npublic Socket accept() throws IOException\n 侦听并接受到此套接字的连接。\n3\npublic void setSoTimeout(int timeout)\n  通过指定超时值启用/禁用 SO_TIMEOUT，以毫秒为单位。\n4\npublic void bind(SocketAddress host, int backlog)\n 将 ServerSocket 绑定到特定地址（IP 地址和端口号）。\nSocket 类的方法\njava.net.Socket 类代表客户端和服务器都用来互相沟通的套接字。客户端要获取一个 Socket 对象通过实例化 ，而 服务器获得一个 Socket 对象则通过 accept() 方法的返回值。\nSocket 类有五个构造方法.\n序号\n方法描述\n1\npublic Socket(String host, int port) throws UnknownHostException, IOException.\n 创建一个流套接字并将其连接到指定主机上的指定端口号。\n2\npublic Socket(InetAddress host, int port) throws IOException\n 创建一个流套接字并将其连接到指定 IP 地址的指定端口号。\n3\npublic Socket(String host, int port, InetAddress localAddress, int localPort) throws IOException.\n 创建一个套接字并将其连接到指定远程主机上的指定远程端口。\n4\npublic Socket(InetAddress host, int port, InetAddress localAddress, int localPort) throws IOException.\n 创建一个套接字并将其连接到指定远程地址上的指定远程端口。\n5\npublic Socket()\n 通过系统默认类型的 SocketImpl 创建未连接套接字\n当 Socket 构造方法返回，并没有简单的实例化了一个 Socket 对象，它实际上会尝试连接到指定的服务器和端口。\n下面列出了一些感兴趣的方法，注意客户端和服务器端都有一个 Socket 对象，所以无论客户端还是服务端都能够调用这些方法。\n序号\n方法描述\n1\npublic void connect(SocketAddress host, int timeout) throws IOException\n 将此套接字连接到服务器，并指定一个超时值。\n2\npublic InetAddress getInetAddress()\n  返回套接字连接的地址。\n3\npublic int getPort()\n 返回此套接字连接到的远程端口。\n4\npublic int getLocalPort()\n 返回此套接字绑定到的本地端口。\n5\npublic SocketAddress getRemoteSocketAddress()\n 返回此套接字连接的端点的地址，如果未连接则返回 null。\n6\npublic InputStream getInputStream() throws IOException\n 返回此套接字的输入流。\n7\npublic OutputStream getOutputStream() throws IOException\n 返回此套接字的输出流。\n8\npublic void close() throws IOException\n 关闭此套接字。\nInetAddress 类的方法\n这个类表示互联网协议(IP)地址。下面列出了 Socket 编程时比较有用的方法：\n序号\n方法描述\n1\nstatic InetAddress getByAddress(byte[] addr)\n 在给定原始 IP 地址的情况下，返回 InetAddress 对象。\n2\nstatic InetAddress getByAddress(String host, byte[] addr)\n 根据提供的主机名和 IP 地址创建 InetAddress。\n3\nstatic InetAddress getByName(String host)\n 在给定主机名的情况下确定主机的 IP 地址。\n4\nString getHostAddress() \n 返回 IP 地址字符串（以文本表现形式）。\n5\nString getHostName() \n  获取此 IP 地址的主机名。\n6\nstatic InetAddress getLocalHost()\n 返回本地主机。\n7\nString toString()\n 将此 IP 地址转换为 String。\nSocket 客户端实例\n如下的 GreetingClient 是一个客户端程序，该程序通过 socket 连接到服务器并发送一个请求，然后等待一个响应。\nGreetingClient.java 文件代码：",
+    "examples": [
+     "// 文件名 GreetingClient.java\nimport java.net.*;\nimport java.io.*;\n \npublic class GreetingClient\n{\npublic static void main(String [] args)\n{\nString serverName = args[0];\n      int port = Integer.parseInt(args[1]);\n      try\n{\nSystem.out.println(\"连接到主机：\" + serverName + \" ，端口号：\" + port);\n         Socket client = new Socket(serverName, port);\n         System.out.println(\"远程主机地址：\" + client.getRemoteSocketAddress());\n         OutputStream outToServer = client.getOutputStream();\n         DataOutputStream out = new DataOutputStream(outToServer);\n \n         out.writeUTF(\"Hello from \" + client.getLocalSocketAddress());\n         InputStream inFromServer = client.getInputStream();\n         DataInputStream in = new DataInputStream(inFromServer);\n         System.out.println(\"服务器响应： \" + in.readUTF());\n         client.close();\n      }catch(IOException e)\n{\ne.printStackTrace();\n      }\n}\n}"
+    ]
+   },
+   {
+    "title": "Java NIO Files 类",
+    "url": "https://www.runoob.com/java/java-nio-file.html",
+    "body": "java.nio.file.Files 是 Java NIO (New I/O) 包中的一个实用工具类，位于 java.nio.file 包中。\njava.nio.file.Files 提供了一系列静态方法来操作文件系统中的文件和目录，大大简化了文件 I/O 操作。\n主要特点\n静态方法：所有方法都是静态的，无需创建实例\n功能丰富：提供文件读写、属性操作、目录遍历等多种功能\n异常处理：统一使用 IOException 处理文件操作异常\n与 Path 配合：主要与 java.nio.file.Path 接口一起使用\n常用方法分类\n注意：许多方法会抛出 IOException，使用时需要进行异常处理。\n以下是 java.nio.file.Files 类的常用方法：\n方法\n描述\n文件操作\nstatic Path copy(Path source, Path target, CopyOption... options)\n将文件从源路径复制到目标路径\nstatic Path move(Path source, Path target, CopyOption... options)\n移动或重命名文件\nstatic void delete(Path path)\n删除文件\nstatic boolean deleteIfExists(Path path)\n如果文件存在则删除\n文件属性\nstatic boolean exists(Path path, LinkOption... options)\n检查文件是否存在\nstatic boolean isDirectory(Path path, LinkOption... options)\n检查路径是否为目录\nstatic boolean isRegularFile(Path path, LinkOption... options)\n检查路径是否为常规文件\nstatic boolean isReadable(Path path)\n检查文件是否可读\nstatic boolean isWritable(Path path)\n检查文件是否可写\nstatic boolean isExecutable(Path path)\n检查文件是否可执行\nstatic long size(Path path)\n返回文件大小(字节)\nstatic FileTime getLastModifiedTime(Path path, LinkOption... options)\n获取文件最后修改时间\n文件内容操作\nstatic byte[] readAllBytes(Path path)\n读取文件所有字节\nstatic List<String> readAllLines(Path path)\n读取文件所有行\nstatic List<String> readAllLines(Path path, Charset cs)\n用指定字符集读取文件所有行\nstatic Stream<String> lines(Path path)\n返回文件中行的流\nstatic Stream<String> lines(Path path, Charset cs)\n用指定字符集返回文件中行的流\nstatic Path write(Path path, byte[] bytes, OpenOption... options)\n将字节写入文件\nstatic Path write(Path path, Iterable<? extends CharSequence> lines, OpenOption... options)\n将文本行写入文件\n目录操作\nstatic Stream<Path> list(Path dir)\n列出目录中的条目\nstatic DirectoryStream<Path> newDirectoryStream(Path dir)\n打开目录流\nstatic Path createDirectory(Path dir, FileAttribute<?>... attrs)\n创建目录\nstatic Path createDirectories(Path dir, FileAttribute<?>... attrs)\n创建目录(包括所有不存在的父目录)\n临时文件/目录\nstatic Path createTempFile(Path dir, String prefix, String suffix, FileAttribute<?>... attrs)\n创建临时文件\nstatic Path createTempDirectory(Path dir, String prefix, FileAttribute<?>... attrs)\n创建临时目录\n其他\nstatic Path createFile(Path path, FileAttribute<?>... attrs)\n创建新文件\nstatic SeekableByteChannel newByteChannel(Path path, OpenOption... options)\n打开或创建文件，返回可查找的字节通道\nstatic InputStream newInputStream(Path path, OpenOption... options)\n打开文件输入流\nstatic OutputStream newOutputStream(Path path, OpenOption... options)\n打开文件输出流\nstatic BufferedReader newBufferedReader(Path path)\n打开缓冲读取器\nstatic BufferedWriter newBufferedWriter(Path path, OpenOption... options)\n打开缓冲写入器\nstatic String probeContentType(Path path)\n探测文件内容类型\n1、文件操作\n文件读写\n实例",
+    "examples": [
+     "// 读取文件所有行\nList<String> lines = Files.readAllLines(path);\n\n// 写入文件\nFiles.write(path, content.getBytes());\n\n// 追加写入\nFiles.write(path, content.getBytes(), StandardOpenOption.APPEND);"
+    ]
+   },
+   {
+    "title": "Java Number & Math 类",
+    "url": "https://www.runoob.com/java/java-number.html",
+    "body": "Java Number\n一般地，当需要使用数字的时候，我们通常使用内置数据类型，如：byte、int、long、double 等。\n实例",
+    "examples": [
+     "int a = 5000;\nfloat b = 13.65f;\nbyte c = 0x4a;"
+    ]
+   },
+   {
+    "title": "Java Object 类",
+    "url": "https://www.runoob.com/java/java-object-class.html",
+    "body": "Java Object 类是所有类的父类，也就是说 Java 的所有类都继承了 Object，子类可以使用 Object 的所有方法。\nObject 类位于 java.lang 包中，编译时会自动导入，我们创建一个类时，如果没有明确继承一个父类，那么它就会自动继承 Object，成为 Object 的子类。\nObject 类可以显式继承，也可以隐式继承，以下两种方式是一样的：\n显式继承:\npublic class Runoob extends Object{\n\n}\n隐式继承:\npublic class Runoob {\n\n}\n类的构造函数\n序号\n构造方法 & 描述\n1\nObject()\n构造一个新对象。\n类的方法\n序号\n方法 & 描述\n1\nprotected Object clone()创建并返回一个对象的拷贝\n2\nboolean equals(Object obj)比较两个对象是否相等\n3\nprotected void finalize()当 GC (垃圾回收器)确定不存在对该对象的有更多引用时，由对象的垃圾回收器调用此方法。\n4\nClass<?> getClass()获取对象的运行时对象的类\n5\nint hashCode()获取对象的 hash 值\n6\nvoid notify()唤醒在该对象上等待的某个线程\n7\nvoid notifyAll()唤醒在该对象上等待的所有线程\n8\nString toString()返回对象的字符串表示形式\n9\nvoid wait()让当前线程进入等待状态。直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法。\n10\nvoid wait(long timeout)让当前线程处于等待(阻塞)状态，直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法，或者超过参数设置的timeout超时时间。\n11\nvoid wait(long timeout, int nanos)与 wait(long timeout) 方法类似，多了一个 nanos 参数，这个参数表示额外时间（以纳秒为单位，范围是 0-999999）。 所以超时的时间还需要加上 nanos 纳秒。。",
+    "examples": []
+   },
+   {
+    "title": "Java 对象和类",
+    "url": "https://www.runoob.com/java/java-object-classes.html",
+    "body": "Java 作为一种面向对象的编程语言，支持以下基本概念：\n1、类（Class）：\n定义对象的蓝图，包括属性和方法。\n示例：public class Car { ... }\n2、对象（Object）：\n类的实例，具有状态和行为。\n示例：Car myCar = new Car();\n3、继承（Inheritance）：\n一个类可以继承另一个类的属性和方法。\n示例：public class Dog extends Animal { ... }\n4、封装（Encapsulation）：\n将对象的状态（字段）私有化，通过公共方法访问。\n示例：private String name; \npublic String getName() { return name; }\n5、多态（Polymorphism）：\n对象可以表现为多种形态，主要通过方法重载和方法重写实现。\n示例：方法重载：public int add(int a, int b) { ... } 和 public double add(double a, double b) { ... }\n方法重写：@Override public void makeSound() { System.out.println(\"Meow\"); }\n6、抽象（Abstraction）：\n使用抽象类和接口来定义必须实现的方法，不提供具体实现。\n示例：抽象类：public abstract class Shape { abstract void draw(); }\n接口：public interface Animal { void eat(); }\n7、接口（Interface）：\n定义类必须实现的方法，支持多重继承。\n示例：public interface Drivable { void drive(); }\n8、方法（Method）：\n定义类的行为，包含在类中的函数。\n示例：public void displayInfo() { System.out.println(\"Info\"); }\n9、方法重载（Method Overloading）：\n同一个类中可以有多个同名的方法，但参数不同。\n示例：\n public class MathUtils {\n public int add(int a, int b) {\n return a + b;\n }\n\n public double add(double a, double b) {\n return a + b;\n }\n}\n本节我们重点研究对象和类的概念。\n对象：对象是类的一个实例（对象不是找个女朋友），有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫、吃等。\n类：类是一个模板，它描述一类对象的行为和状态。\n下图中男孩（boy）、女孩（girl）为类（class），而具体的每个人为该类的对象（object）：\n下图中汽车为类（class），而具体的每辆车为该汽车类的对象（object），对象包含了汽车的颜色、品牌、名称等。\nJava中的对象\n现在让我们深入了解什么是对象。看看周围真实的世界，会发现身边有很多对象，车，狗，人等等。所有这些对象都有自己的状态和行为。\n拿一条狗来举例，它的状态有：名字、品种、颜色，行为有：叫、摇尾巴和跑。\n对比现实对象和软件对象，它们之间十分相似。\n软件对象也有状态和行为。软件对象的状态就是属性，行为通过方法体现。\n在软件开发中，方法操作对象内部状态的改变，对象的相互调用也是通过方法来完成。\nJava 中的类\n类可以看成是创建 Java 对象的模板。\n通过上图创建一个简单的类来理解下 Java 中类的定义：",
+    "examples": [
+     "public class Dog {\nString breed;\n    int size;\n    String colour;\n    int age;\n \n    void eat() {\n}\nvoid run() {\n}\nvoid sleep(){\n}\nvoid name(){\n}\n}"
+    ]
+   },
+   {
+    "title": "Java 运算符",
+    "url": "https://www.runoob.com/java/java-operators.html",
+    "body": "计算机的最基本用途之一就是执行数学运算，作为一门计算机语言，Java也提供了一套丰富的运算符来操纵变量。我们可以把运算符分成以下几组：\n算术运算符\n关系运算符\n位运算符\n逻辑运算符\n赋值运算符\n其他运算符\n算术运算符\n算术运算符用在数学表达式中，它们的作用和在数学中的作用一样。下表列出了所有的算术运算符。\n表格中的实例假设整数变量A的值为10，变量B的值为20：\n操作符\n描述\n例子\n+\n加法 - 相加运算符两侧的值\nA + B 等于 30\n-\n减法 - 左操作数减去右操作数\nA – B 等于 -10\n*\n乘法 - 相乘操作符两侧的值\nA * B等于200\n/\n除法 - 左操作数除以右操作数\nB / A等于2\n％\n取余 - 左操作数除以右操作数的余数\nB%A等于0\n++\n自增: 操作数的值增加1\nB++ 或 ++B 等于 21（区别详见下文）\n--\n自减: 操作数的值减少1\nB-- 或 --B 等于 19（区别详见下文）\n实例\n下面的简单示例程序演示了算术运算符。复制并粘贴下面的 Java 程序并保存为 Test.java 文件，然后编译并运行这个程序：\n实例",
+    "examples": [
+     "public class Test {\npublic static void main(String[] args) {\nint a = 10;\n     int b = 20;\n     int c = 25;\n     int d = 25;\n     System.out.println(\"a + b = \" + (a + b) );\n     System.out.println(\"a - b = \" + (a - b) );\n     System.out.println(\"a * b = \" + (a * b) );\n     System.out.println(\"b / a = \" + (b / a) );\n     System.out.println(\"b % a = \" + (b % a) );\n     System.out.println(\"c % a = \" + (c % a) );\n     System.out.println(\"a++   = \" +  (a++) );\n     System.out.println(\"a--   = \" +  (a--) );\n     // 查看  d++ 与 ++d 的不同\nSystem.out.println(\"d++   = \" +  (d++) );\n     System.out.println(\"++d   = \" +  (++d) );\n  }\n}"
+    ]
+   },
+   {
+    "title": "Java 重写(Override)与重载(Overload)",
+    "url": "https://www.runoob.com/java/java-override-overload.html",
+    "body": "重写(Override)\n重写（Override）是指子类定义了一个与其父类中具有相同名称、参数列表和返回类型的方法，并且子类方法的实现覆盖了父类方法的实现。\n即外壳不变，核心重写！\n重写的好处在于子类可以根据需要，定义特定于自己的行为。也就是说子类能够根据需要实现父类的方法。这样，在使用子类对象调用该方法时，将执行子类中的方法而不是父类中的方法。\n重写方法不能抛出新的检查异常或者比被重写方法申明更加宽泛的异常。例如：\n父类的一个方法申明了一个检查异常 IOException，但是在重写这个方法的时候不能抛出 Exception 异常，因为 Exception 是 IOException 的父类，抛出 IOException 异常或者 IOException 的子类异常。\n在面向对象原则里，重写意味着可以重写任何现有方法。实例如下：\nTestDog.java 文件代码：",
+    "examples": [
+     "class Animal{\npublic void move(){\nSystem.out.println(\"动物可以移动\");\n   }\n}\nclass Dog extends Animal{\npublic void move(){\nSystem.out.println(\"狗可以跑和走\");\n   }\n}\npublic class TestDog{\npublic static void main(String args[]){\nAnimal a = new Animal(); // Animal 对象\nAnimal b = new Dog(); // Dog 对象\na.move();// 执行 Animal 类的方法\nb.move();//执行 Dog 类的方法\n}\n}"
+    ]
+   },
+   {
+    "title": "Java 包(package)",
+    "url": "https://www.runoob.com/java/java-package.html",
+    "body": "为了更好地组织类，Java 提供了包机制，用于区别类名的命名空间。\n包的作用\n1、把功能相似或相关的类或接口组织在同一个包中，方便类的查找和使用。\n2、如同文件夹一样，包也采用了树形目录的存储方式。同一个包中的类名字是不同的，不同的包中的类的名字是可以相同的，当同时调用两个不同包中相同类名的类时，应该加上包名加以区别。因此，包可以避免名字冲突。\n3、包也限定了访问权限，拥有包访问权限的类才能访问某个包中的类。\nJava 使用包（package）这种机制是为了防止命名冲突，访问控制，提供搜索和定位类（class）、接口、枚举（enumerations）和注释（annotation）等。\n包语句的语法格式为：",
+    "examples": [
+     "package pkg1[．pkg2[．pkg3…]];"
+    ]
+   },
+   {
+    "title": "Java 多态",
+    "url": "https://www.runoob.com/java/java-polymorphism.html",
+    "body": "多态是同一个行为具有多个不同表现形式或形态的能力。\n多态就是同一个接口，使用不同的实例而执行不同操作，如图所示：\n多态性是对象多种表现形式的体现。\n现实中，比如我们按下 F1 键这个动作：\n如果当前在 Flash 界面下弹出的就是 AS 3 的帮助文档；\n如果当前在 Word 下弹出的就是 Word 帮助；\n在 Windows 下弹出的就是 Windows 帮助和支持。\n同一个事件发生在不同的对象上会产生不同的结果。\n多态的优点\n1. 消除类型之间的耦合关系\n2. 可替换性\n3. 可扩充性\n4. 接口性\n5. 灵活性\n6. 简化性\n多态存在的三个必要条件\n继承\n重写\n父类引用指向子类对象：Parent p = new Child();",
+    "examples": [
+     "class Shape {\n    void draw() {}\n}\n  \nclass Circle extends Shape {\n    void draw() {\n        System.out.println(\"Circle.draw()\");\n    }\n}\n  \nclass Square extends Shape {\n    void draw() {\n        System.out.println(\"Square.draw()\");\n    }\n}\n  \nclass Triangle extends Shape {\n    void draw() {\n        System.out.println(\"Triangle.draw()\");\n    }\n}"
+    ]
+   },
+   {
+    "title": "Java 反射（Reflection）",
+    "url": "https://www.runoob.com/java/java-reflection.html",
+    "body": "Java 反射（Reflection）是一个强大的特性，它允许程序在运行时查询、访问和修改类、接口、字段和方法的信息。反射提供了一种动态地操作类的能力，这在很多框架和库中被广泛使用，例如Spring框架的依赖注入。\n反射 API\nJava 的反射 API 提供了一系列的类和接口来操作 Class 对象。主要的类包括：\njava.lang.Class：表示类的对象。提供了方法来获取类的字段、方法、构造函数等。\njava.lang.reflect.Field：表示类的字段（属性）。提供了访问和修改字段的能力。\njava.lang.reflect.Method：表示类的方法。提供了调用方法的能力。\njava.lang.reflect.Constructor：表示类的构造函数。提供了创建对象的能力。\n工作流程\n获取 Class 对象：首先获取目标类的 Class 对象。\n获取成员信息：通过 Class 对象，可以获取类的字段、方法、构造函数等信息。\n操作成员：通过反射 API 可以读取和修改字段的值、调用方法以及创建对象。\n以下是 Java 反射的基本使用方式及其常见应用。\n1. 获取 Class 对象\n每个类在 JVM 中都有一个与之相关的 Class 对象。可以通过以下方式获取 Class 对象：\n通过类字面量\nClass<?> clazz = String.class;\n通过对象实例：\nString str = \"Hello\";\nClass<?> clazz = str.getClass();\n通过 Class.forName() 方法：\nClass<?> clazz = Class.forName(\"java.lang.String\");\n2. 创建对象\n可以使用反射动态创建对象：\nClass<?> clazz = Class.forName(\"java.lang.String\");\nObject obj = clazz.getDeclaredConstructor().newInstance();\n3. 访问字段\n可以通过反射访问和修改类的字段：\nClass<?> clazz = Person.class;\nField field = clazz.getDeclaredField(\"name\");\nfield.setAccessible(true); // 如果字段是私有的，需要设置为可访问\nObject value = field.get(personInstance); // 获取字段值\nfield.set(personInstance, \"New Name\"); // 设置字段值\n4. 调用方法\n可以通过反射调用类的方法：\nClass<?> clazz = Person.class;\nMethod method = clazz.getMethod(\"sayHello\");\nmethod.invoke(personInstance);\n\nMethod methodWithArgs = clazz.getMethod(\"greet\", String.class);\nmethodWithArgs.invoke(personInstance, \"World\");\n5. 获取构造函数\n可以使用反射获取和调用构造函数：\nClass<?> clazz = Person.class;\nConstructor<?> constructor = clazz.getConstructor(String.class, int.class);\nObject obj = constructor.newInstance(\"John\", 30);\n6. 获取接口和父类\n可以使用反射获取类实现的接口和父类：\nClass<?> clazz = Person.class;\n\n// 获取所有接口\nClass<?>[] interfaces = clazz.getInterfaces();\nfor (Class<?> i : interfaces) {\n System.out.println(\"Interface: \" + i.getName());\n}\n\n// 获取父类\nClass<?> superClass = clazz.getSuperclass();\nSystem.out.println(\"Superclass: \" + superClass.getName());\n以下是一个完整的示例，展示了如何使用反射来创建对象、访问字段和调用方法：\n实例",
+    "examples": [
+     "import java.lang.reflect.Constructor;\nimport java.lang.reflect.Field;\nimport java.lang.reflect.Method;\n\npublic class ReflectionExample {\n\n    public static void main(String[] args) throws Exception {\n        // 获取 Class 对象\n        Class<?> clazz = Person.class;\n        \n        // 创建对象\n        Constructor<?> constructor = clazz.getConstructor(String.class, int.class);\n        Object person = constructor.newInstance(\"John\", 30);\n        \n        // 访问字段\n        Field nameField = clazz.getDeclaredField(\"name\");\n        nameField.setAccessible(true);\n        System.out.println(\"Name: \" + nameField.get(person));\n        \n        // 修改字段\n        nameField.set(person, \"Doe\");\n        System.out.println(\"Updated Name: \" + nameField.get(person));\n        \n        // 调用方法\n        Method greetMethod = clazz.getMethod(\"greet\", String.class);\n        greetMethod.invoke(person, \"World\");\n    }\n}\n\nclass Person {\n    private String name;\n    private int age;\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    public void greet(String message) {\n        System.out.println(name + \" says: \" + message);\n    }\n}"
+    ]
+   },
+   {
+    "title": "Java 正则表达式",
+    "url": "https://www.runoob.com/java/java-regular-expressions.html",
+    "body": "正则表达式定义了字符串的模式。\n正则表达式可以用来搜索、编辑或处理文本。\n正则表达式并不仅限于某一种语言，但是在每种语言中有细微的差别。\nJava 提供了 java.util.regex 包，它包含了 Pattern 和 Matcher 类，用于处理正则表达式的匹配操作。\n正则表达式实例\n一个字符串其实就是一个简单的正则表达式，例如 Hello World 正则表达式匹配 \"Hello World\" 字符串。\n.（点号）也是一个正则表达式，它匹配任何一个字符如：\"a\" 或 \"1\"。\n下表列出了一些正则表达式的实例及描述：\n正则表达式\n描述\nthis is text\n匹配字符串 \"this is text\"\nthis\\s+is\\s+text\n注意字符串中的 \\s+。\n匹配单词 \"this\" 后面的 \\s+ 可以匹配多个空格，之后匹配 is 字符串，再之后 \\s+ 匹配多个空格然后再跟上 text 字符串。\n可以匹配这个实例：this is text\n^\\d+(\\.\\d+)?\n^ 定义了以什么开始\n\\d+ 匹配一个或多个数字\n? 设置括号内的选项是可选的\n\\. 匹配 \".\"\n可以匹配的实例：\"5\", \"1.5\" 和 \"2.21\"。\n更多正则表达式内容可以参考：正则表达式 - 教程\njava.util.regex 包\njava.util.regex 包是 Java 标准库中用于支持正则表达式操作的包。\njava.util.regex 包主要包括以下三个类：\nPattern 类：pattern 对象是一个正则表达式的编译表示。Pattern 类没有公共构造方法。要创建一个 Pattern 对象，你必须首先调用其公共静态编译方法，它返回一个 Pattern 对象。该方法接受一个正则表达式作为它的第一个参数。\nMatcher 类：Matcher 对象是对输入字符串进行解释和匹配操作的引擎。与Pattern 类一样，Matcher 也没有公共构造方法。你需要调用 Pattern 对象的 matcher 方法来获得一个 Matcher 对象。\nPatternSyntaxException：PatternSyntaxException 是一个非强制异常类，它表示一个正则表达式模式中的语法错误。\n以下实例中使用了正则表达式 .*runoob.* 用于查找字符串中是否包了 runoob 子串：\n实例",
+    "examples": [
+     "import java.util.regex.*;\n \nclass RegexExample1{\npublic static void main(String[] args){\nString content = \"I am noob \" +\n        \"from runoob.com.\";\n \n      String pattern = \".*runoob.*\";\n \n      boolean isMatch = Pattern.matches(pattern, content);\n      System.out.println(\"字符串中是否包含了 'runoob' 子字符串? \" + isMatch);\n   }\n}"
+    ]
+   },
+   {
+    "title": "Java Scanner 类",
+    "url": "https://www.runoob.com/java/java-scanner-class.html",
+    "body": "java.util.Scanner 是 Java5 的新特征，我们可以通过 Scanner 类来获取用户的输入。\n下面是创建 Scanner 对象的基本语法：",
+    "examples": [
+     "Scanner s = new Scanner(System.in);"
+    ]
+   },
+   {
+    "title": "Java 发送邮件",
+    "url": "https://www.runoob.com/java/java-sending-email.html",
+    "body": "使用Java应用程序发送 E-mail 十分简单，但是首先你应该在你的机器上安装 JavaMail API 和Java Activation Framework (JAF) 。\n您可以从 Java 网站下载最新版本的 JavaMail，打开网页右侧有个 Downloads 链接，点击它下载。\n您可以从 Java 网站下载最新版本的 JAF（版本 1.1.1）。\n你也可以使用本站提供的下载链接：\nJavaMail mail.jar 1.4.5\nJAF（版本 1.1.1） activation.jar\n下载并解压缩这些文件，在新创建的顶层目录中，您会发现这两个应用程序的一些 jar 文件。您需要把 mail.jar 和 activation.jar 文件添加到您的 CLASSPATH 中。\n如果你使用第三方邮件服务器如QQ的SMTP服务器，可查看文章底部用户认证完整的实例。\n发送一封简单的 E-mail\n下面是一个发送简单E-mail的例子。假设你的本地主机已经连接到网络。\nSendEmail.java 文件代码：",
+    "examples": [
+     "// 文件名 SendEmail.java\nimport java.util.*;\nimport javax.mail.*;\nimport javax.mail.internet.*;\nimport javax.activation.*;\n \npublic class SendEmail\n{\npublic static void main(String [] args)\n{\n// 收件人电子邮箱\nString to = \"abcd@gmail.com\";\n \n      // 发件人电子邮箱\nString from = \"web@gmail.com\";\n \n      // 指定发送邮件的主机为 localhost\nString host = \"localhost\";\n \n      // 获取系统属性\nProperties properties = System.getProperties();\n \n      // 设置邮件服务器\nproperties.setProperty(\"mail.smtp.host\", host);\n \n      // 获取默认session对象\nSession session = Session.getDefaultInstance(properties);\n \n      try{\n// 创建默认的 MimeMessage 对象\nMimeMessage message = new MimeMessage(session);\n \n         // Set From: 头部头字段\nmessage.setFrom(new InternetAddress(from));\n \n         // Set To: 头部头字段\nmessage.addRecipient(Message.RecipientType.TO,\n                                  new InternetAddress(to));\n \n         // Set Subject: 头部头字段\nmessage.setSubject(\"This is the Subject Line!\");\n \n         // 设置消息体\nmessage.setText(\"This is actual message\");\n \n         // 发送消息\nTransport.send(message);\n         System.out.println(\"Sent message successfully....\");\n      }catch (MessagingException mex) {\nmex.printStackTrace();\n      }\n}\n}"
+    ]
+   },
+   {
+    "title": "Java 序列化",
+    "url": "https://www.runoob.com/java/java-serialization.html",
+    "body": "Java 序列化是一种将对象转换为字节流的过程，以便可以将对象保存到磁盘上，将其传输到网络上，或者将其存储在内存中，以后再进行反序列化，将字节流重新转换为对象。\n序列化在 Java 中是通过 java.io.Serializable 接口来实现的，该接口没有任何方法，只是一个标记接口，用于标识类可以被序列化。\n当你序列化对象时，你把它包装成一个特殊文件，可以保存、传输或存储。反序列化则是打开这个文件，读取序列化的数据，然后将其还原为对象，以便在程序中使用。\n序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。\n以下是 Java 序列化的基本概念和用法：\n实现 Serializable 接口： 要使一个类可序列化，需要让该类实现 java.io.Serializable 接口，这告诉 Java 编译器这个类可以被序列化，例如：\n实例",
+    "examples": [
+     "import java.io.Serializable;\n\npublic class MyClass implements Serializable {\n    // 类的成员和方法\n}"
+    ]
+   },
+   {
+    "title": "Java String 类",
+    "url": "https://www.runoob.com/java/java-string.html",
+    "body": "字符串广泛应用 在 Java 编程中，在 Java 中字符串属于对象，Java 提供了 String 类来创建和操作字符串。\n创建字符串\n创建字符串最简单的方式如下:",
+    "examples": [
+     "String str = \"Runoob\";"
+    ]
+   },
+   {
+    "title": "Java StringBuffer 和 StringBuilder 类",
+    "url": "https://www.runoob.com/java/java-stringbuffer.html",
+    "body": "当对字符串进行修改的时候，需要使用 StringBuffer 和 StringBuilder 类。\n和 String 类不同的是，StringBuffer 和 StringBuilder 类的对象能够被多次的修改，并且不产生新的未使用对象。\n在使用 StringBuffer 类时，每次都会对 StringBuffer 对象本身进行操作，而不是生成新的对象，所以如果需要对字符串进行修改推荐使用 StringBuffer。\nStringBuilder 类在 Java 5 中被提出，它和 StringBuffer 之间的最大不同在于 StringBuilder 的方法不是线程安全的（不能同步访问）。\n由于 StringBuilder 相较于 StringBuffer 有速度优势，所以多数情况下建议使用 StringBuilder 类。\n实例",
+    "examples": [
+     "public class RunoobTest{\npublic static void main(String[] args){\nStringBuilder sb = new StringBuilder(10);\n        sb.append(\"Runoob..\");\n        System.out.println(sb);  \n        sb.append(\"!\");\n        System.out.println(sb); \n        sb.insert(8, \"Java\");\n        System.out.println(sb); \n        sb.delete(5,8);\n        System.out.println(sb);  \n    }\n}"
+    ]
+   },
+   {
+    "title": "Java switch case 语句",
+    "url": "https://www.runoob.com/java/java-switch-case.html",
+    "body": "switch case 语句判断一个变量与一系列值中某个值是否相等，每个值称为一个分支。\n语法\nswitch case 语句语法格式如下：",
+    "examples": [
+     "switch(expression){\ncase value :\n       //语句\nbreak; //可选\ncase value :\n       //语句\nbreak; //可选\n//你可以有任意数量的case语句\ndefault : //可选\n//语句\n}"
+    ]
+   },
+   {
+    "title": "Java 教程",
+    "url": "https://www.runoob.com/java/java-tutorial.html",
+    "body": "Java 是由 Sun Microsystems 公司于 1995 年 5 月推出的高级程序设计语言。\nJava 可运行于多个平台，如 Windows, Mac OS 及其他多种 UNIX 版本的系统。\n本教程通过简单的实例将让大家更好的了解 Java 编程语言。\n移动操作系统 Android 大部分的代码采用 Java 编程语言编程。\nJava 在线工具\nJDK 11 在线中文手册",
+    "examples": []
+   },
+   {
+    "title": "Java 变量命名规则",
+    "url": "https://www.runoob.com/java/java-variable-naming-rules.html",
+    "body": "在 Java 中，不同类型的变量（例如实例变量、局部变量、静态变量等）有一些命名规则和约定。\n遵循一些基本规则，这有助于提高代码的可读性和维护性。\n以下是各种变量命名规则的概述：\n使用有意义的名字： 变量名应该具有清晰的含义，能够准确地反映变量的用途。避免使用单个字符或无意义的缩写。\n驼峰命名法（Camel Case）： 在变量名中使用驼峰命名法，即将每个单词的首字母大写，除了第一个单词外，其余单词的首字母都采用大写形式。例如：myVariableName。\n避免关键字： 不要使用 Java 关键字（例如，class、int、boolean等）作为变量名。\n区分大小写： Java 是大小写敏感的，因此变量名中的大小写字母被视为不同的符号。例如，myVariable 和 myvariable 是两个不同的变量。\n不以数字开头： 变量名不能以数字开头，但可以包含数字。\n遵循命名约定： 对于不同类型的变量（局部变量、实例变量、静态变量等），可以采用不同的命名约定，例如使用前缀或后缀来区分。\n局部变量\n使用驼峰命名法。\n应该以小写字母开头。\n变量名应该是描述性的，能够清晰地表示其用途。\nint myLocalVariable;\n实例变量（成员变量）\n使用驼峰命名法。\n应该以小写字母开头。\n变量名应该是描述性的，能够清晰地表示其用途。\nprivate int myInstanceVariable;\n静态变量（类变量）\n使用驼峰命名法，应该以小写字母开头。\n通常也可以使用大写蛇形命名法，全大写字母，单词之间用下划线分隔。\n变量名应该是描述性的，能够清晰地表示其用途。\n// 使用驼峰命名法\npublic static int myStaticVariable;\n\n// 使用大写蛇形命名法\npublic static final int MAX_SIZE = 100;\n常量\n使用全大写字母，单词之间用下划线分隔。\n常量通常使用 final 修饰。\npublic static final double PI = 3.14;\n参数\n使用驼峰命名法。\n应该以小写字母开头。\n参数名应该是描述性的，能够清晰地表示其用途。\npublic void myMethod(int myParameter) {\n // 方法体\n}\n类名\n使用驼峰命名法。\n应该以大写字母开头。\n类名应该是描述性的，能够清晰地表示其用途。\npublic class MyClass {\n // 类的成员和方法\n}",
+    "examples": []
+   },
+   {
+    "title": "Java 变量类型",
+    "url": "https://www.runoob.com/java/java-variable-types.html",
+    "body": "在 Java 语言中，所有的变量在使用前必须声明。\n声明变量的基本格式如下：",
+    "examples": [
+     "type identifier [ = value][, identifier [= value] ...] ;"
+    ]
+   },
+   {
+    "title": "Java 8 新特性",
+    "url": "https://www.runoob.com/java/java8-new-features.html",
+    "body": "Java 8 (又称为 jdk 1.8) 是 Java 语言开发的一个主要版本。 Oracle 公司于 2014 年 3 月 18 日发布 Java 8 ，它支持函数式编程，新的 JavaScript 引擎，新的日期 API，新的Stream API 等。\n新特性\nJava8 新增了非常多的特性，我们主要讨论以下几个：\nLambda 表达式 − Lambda 允许把函数作为一个方法的参数（函数作为参数传递到方法中）。\n方法引用 − 方法引用提供了非常有用的语法，可以直接引用已有Java类或对象（实例）的方法或构造器。与lambda联合使用，方法引用可以使语言的构造更紧凑简洁，减少冗余代码。\n默认方法 − 默认方法就是一个在接口里面有了一个实现的方法。\n新工具 − 新的编译工具，如：Nashorn引擎 jjs、 类依赖分析器jdeps。\nStream API −新添加的Stream API（java.util.stream） 把真正的函数式编程风格引入到Java中。\nDate Time API − 加强对日期与时间的处理。\nOptional 类 − Optional 类已经成为 Java 8 类库的一部分，用来解决空指针异常。\nNashorn, JavaScript 引擎 − Java 8提供了一个新的Nashorn javascript引擎，它允许我们在JVM上运行特定的javascript应用。\n更多的新特性可以参阅官网：What's New in JDK 8\n在关于 Java 8 文章的实例，我们均使用 jdk 1.8 环境，你可以使用以下命令查看当前 jdk 的版本：\n$ java -version\njava version \"1.8.0_31\"\nJava(TM) SE Runtime Environment (build 1.8.0_31-b13)\nJava HotSpot(TM) 64-Bit Server VM (build 25.31-b07, mixed mode)\n编程风格\nJava 8 希望有自己的编程风格，并与 Java 7 区别开，以下实例展示了 Java 7 和 Java 8 的编程格式：\nJava8Tester.java 文件代码：",
+    "examples": [
+     "import java.util.Collections;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Comparator;\n \npublic class Java8Tester {\npublic static void main(String args[]){\nList<String> names1 = new ArrayList<String>();\n      names1.add(\"Google \");\n      names1.add(\"Runoob \");\n      names1.add(\"Taobao \");\n      names1.add(\"Baidu \");\n      names1.add(\"Sina \");\n        \n      List<String> names2 = new ArrayList<String>();\n      names2.add(\"Google \");\n      names2.add(\"Runoob \");\n      names2.add(\"Taobao \");\n      names2.add(\"Baidu \");\n      names2.add(\"Sina \");\n        \n      Java8Tester tester = new Java8Tester();\n      System.out.println(\"使用 Java 7 语法: \");\n        \n      tester.sortUsingJava7(names1);\n      System.out.println(names1);\n      System.out.println(\"使用 Java 8 语法: \");\n        \n      tester.sortUsingJava8(names2);\n      System.out.println(names2);\n   }\n// 使用 java 7 排序\nprivate void sortUsingJava7(List<String> names){\nCollections.sort(names, new Comparator<String>() {\n         @Override\npublic int compare(String s1, String s2) {\nreturn s1.compareTo(s2);\n         }\n});\n   }\n// 使用 java 8 排序\nprivate void sortUsingJava8(List<String> names){\nCollections.sort(names, (s1, s2) -> s1.compareTo(s2));\n   }\n}"
+    ]
+   },
+   {
+    "title": "Java 9 新特性",
+    "url": "https://www.runoob.com/java/java9-new-features.html",
+    "body": "Java 9 发布于 2017 年 9 月 22 日，带来了很多新特性，其中最主要的变化是已经实现的模块化系统。接下来我们会详细介绍 Java 9 的新特性。\nJava 9 新特性\n模块系统：模块是一个包的容器，Java 9 最大的变化之一是引入了模块系统（Jigsaw 项目）。\nREPL (JShell)：交互式编程环境。\nHTTP 2 客户端：HTTP/2标准是HTTP协议的最新版本，新的 HTTPClient API 支持 WebSocket 和 HTTP2 流以及服务器推送特性。\n改进的 Javadoc：Javadoc 现在支持在 API 文档中的进行搜索。另外，Javadoc 的输出现在符合兼容 HTML5 标准。\n多版本兼容 JAR 包：多版本兼容 JAR 功能能让你创建仅在特定版本的 Java 环境中运行库程序时选择使用的 class 版本。\n集合工厂方法：List，Set 和 Map 接口中，新的静态工厂方法可以创建这些集合的不可变实例。\n私有接口方法：在接口中使用private私有方法。我们可以使用 private 访问修饰符在接口中编写私有方法。\n进程 API: 改进的 API 来控制和管理操作系统进程。引进 java.lang.ProcessHandle 及其嵌套接口 Info 来让开发者逃离时常因为要获取一个本地进程的 PID 而不得不使用本地代码的窘境。\n改进的 Stream API：改进的 Stream API 添加了一些便利的方法，使流处理更容易，并使用收集器编写复杂的查询。\n改进 try-with-resources：如果你已经有一个资源是 final 或等效于 final 变量,您可以在 try-with-resources 语句中使用该变量，而无需在 try-with-resources 语句中声明一个新变量。\n改进的弃用注解 @Deprecated：注解 @Deprecated 可以标记 Java API 状态，可以表示被标记的 API 将会被移除，或者已经破坏。\n改进钻石操作符(Diamond Operator) ：匿名类可以使用钻石操作符(Diamond Operator)。\n改进 Optional 类：java.util.Optional 添加了很多新的有用方法，Optional 可以直接转为 stream。\n多分辨率图像 API：定义多分辨率图像API，开发者可以很容易的操作和展示不同分辨率的图像了。\n改进的 CompletableFuture API ： CompletableFuture 类的异步机制可以在 ProcessHandle.onExit 方法退出时执行操作。\n轻量级的 JSON API：内置了一个轻量级的JSON API\n响应式流（Reactive Streams) API: Java 9中引入了新的响应式流 API 来支持 Java 9 中的响应式编程。\n更多的新特性可以参阅官网：What's New in JDK 9\nJDK 9 下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk9-doc-downloads-3850606.html\n在关于 Java 9 文章的实例，我们均使用 jdk 1.9 环境，你可以使用以下命令查看当前 jdk 的版本：\n$ java -version\njava version \"9-ea\"\nJava(TM) SE Runtime Environment (build 9-ea+163)\nJava HotSpot(TM) 64-Bit Server VM (build 9-ea+163, mixed mode)\n接下来我们将详细为大家简介 Java 9 的新特性：\n\n序号\n特性\n1\n模块系统\n2\nREPL (JShell)\n3\n改进的 Javadoc\n4\n多版本兼容 JAR 包\n5\n集合工厂方法\n6\n私有接口方法\n7\n进程 API\n8\nStream API\n9\ntry-with-resources\n10\n@Deprecated\n11\n内部类的钻石操作符(Diamond Operator)\n12\nOptional 类\n13\n多分辨率图像 API\n14\nCompletableFuture API",
+    "examples": []
+   }
+  ]
+ }
+}

@@ -1,0 +1,102 @@
+{
+ "tutorial": {
+  "name": "LaTeX",
+  "category": "编程语言",
+  "desc": "LaTeX（发音为 \"Lay-tech\" 或 \"Lah-tech\"）是一种用于文",
+  "url": "https://www.runoob.com/latex/",
+  "chapters": [
+   {
+    "title": "LaTeX 安装与配置",
+    "url": "https://www.runoob.com/latex/latex-install.html",
+    "body": "LaTeX 是一种基于 TeX 的排版系统，使用前需要安装 TeX 发行版和编辑器。\n本章将介绍LaTeX 安装与配置，适用于 Windows、macOS 和 Linux 系统。\nLaTeX 的安装\nWindows 系统\n在 Windows 系统上，推荐使用 MiKTeX 或 TeX Live 来安装 LaTeX。\n安装 MiKTeX\n下载 MiKTeX：访问 MiKTeX 官方网站，下载适合你系统的安装程序。\n运行安装程序：双击下载的安装程序，按照提示进行安装。建议选择\"完整安装\"以确保所有常用宏包都已安装。\n配置环境变量：安装完成后，确保 MiKTeX 的 bin 目录已添加到系统的 PATH 环境变量中。这样可以在命令行中直接使用 LaTeX 命令。\n安装 TeX Live\n下载 TeX Live：访问 TeX Live 官方网站，下载适合你系统的安装程序。\n运行安装程序：双击下载的安装程序，按照提示进行安装。TeX Live 的安装过程较为耗时，因为它包含了大量的宏包和工具。\n配置环境变量：安装完成后，确保 TeX Live 的 bin 目录已添加到系统的 PATH 环境变量中。\nmacOS 系统\n在 macOS 系统上，推荐使用 MacTeX 来安装 LaTeX。\n安装 MacTeX\n下载 MacTeX：访问 MacTeX 官方网站，下载适合你系统的安装程序。\n运行安装程序：双击下载的 .pkg 文件，按照提示进行安装。MacTeX 包含了 TeX Live 和相关的 GUI 工具。\n配置环境变量：安装完成后，确保 TeX Live 的 bin 目录已添加到系统的 PATH 环境变量中。\nLinux 系统\n在 Linux 系统上，推荐使用 TeX Live 来安装 LaTeX。\n安装 TeX Live\n使用包管理器安装：大多数 Linux 发行版都提供了 TeX Live 的包。你可以使用包管理器来安装。例如，在 Ubuntu 上可以使用以下命令：\n\nsudo apt-get install texlive-full\n这将安装完整的 TeX Live 发行版，包括所有常用的宏包和工具。\n手动安装：如果你需要最新版本的 TeX Live，可以从 TeX Live 官方网站 下载安装脚本并手动安装。\nLaTeX 的配置\n编辑器选择\nLaTeX 文档是纯文本文件，因此你可以使用任何文本编辑器来编写 LaTeX 代码。然而，使用专门的 LaTeX 编辑器可以提高效率。以下是一些常用的 LaTeX 编辑器：\nTeXstudio：跨平台的 LaTeX 编辑器，功能强大，适合初学者和高级用户。\nOverleaf：在线 LaTeX 编辑器，无需安装，适合协作和快速编辑。\nVS Code：通用代码编辑器，通过安装 LaTeX 插件（如 LaTeX Workshop）可以支持 LaTeX 编辑和编译。\n编译 LaTeX 文档\nLaTeX 文档需要通过编译生成最终的 PDF 文件。常用的编译命令有：\npdflatex：生成 PDF 文件，适合大多数文档。\nxelatex：支持 Unicode 和 TrueType 字体，适合处理中文文档。\nlualatex：基于 Lua 的编译引擎，支持现代字体和高级功能。\n编译命令的使用方式如下：\npdflatex mydocument.tex\n这将生成 mydocument.pdf 文件。\n处理中文文档\n如果你需要处理中文文档，推荐使用 xelatex 或 lualatex 编译引擎，并配合 ctex 宏包。以下是一个简单的 LaTeX 中文文档示例：\n实例",
+    "examples": [
+     "\\documentclass[UTF8]{ctexart}\n\\begin{document}\n你好，世界！\n\\end{document}"
+    ]
+   },
+   {
+    "title": "LaTeX 简介",
+    "url": "https://www.runoob.com/latex/latex-intro.html",
+    "body": "LaTeX 是一种基于 TeX 的排版系统，广泛用于生成高质量的科技和数学文档，由美国计算机科学家 Leslie Lamport 在 20 世纪 80 年代开发。\nTeX 是由 Donald Knuth 开发的底层排版引擎，主要用于处理复杂的数学公式和高质量的排版。\nLaTeX 在 TeX 的基础上提供了更高层次的抽象，使得用户可以更专注于内容，而无需过多担心排版细节。\n与常见的文字处理软件（如 Microsoft Word）不同，LaTeX 使用纯文本文件来描述文档的结构和内容，并通过编译生成最终的 PDF 文件。LaTeX 特别适合处理复杂的数学公式、参考文献、交叉引用等。\nLaTeX 的设计初衷是为了方便学术论文和技术文档的排版，尤其是数学、物理、计算机科学等领域。随着时间的推移，LaTeX 逐渐成为学术界和出版界的标准工具之一。\nLaTeX 特点\n高质量排版：LaTeX 以其专业的排版效果而著称，尤其是对数学公式的处理非常出色。它能自动调整文档格式，生成符合出版标准的高质量排版效果。\n基于标记语言：LaTeX 采用纯文本的标记语言格式，用户通过输入特定的命令和标签来定义文档的结构和格式。例如，用户通过 \\section{} 来定义章节，通过 \\textbf{} 来加粗文字。\n跨平台支持：LaTeX 是跨平台的，支持 Windows、macOS 和 Linux 等操作系统。生成的文档通常为 PDF 格式，且在不同平台上具有一致的展示效果。\n适合学术写作：LaTeX 非常适合用于撰写学术论文、书籍、技术文档、报告等，尤其是包含大量数学公式、参考文献和复杂排版需求的文档。它对文献管理、公式输入和排版效果有极好的支持。\n自动化文档管理：LaTeX 在长文档、书籍或论文中提供了强大的自动化功能，例如自动编号、自动生成目录、交叉引用、自动排版公式等。它能够自动处理文献引用、参考文献列表等，非常适合需要精准格式的文档。\n开源免费：LaTeX 是开源的，任何人都可以免费下载并使用它。同时，LaTeX 社区也非常活跃，提供了大量的模板、宏包和技巧，帮助用户提升排版效率。\nLaTeX 如何工作？\nLaTeX 并不像传统的 WYSIWYG（所见即所得）编辑器那样，你不直接看到最终的排版效果，而是通过编辑一个纯文本文件，输入文档的内容、结构和格式指令。这个文件通常以 .tex 为后缀。\n编写 LaTeX 源代码：首先，你使用文本编辑器（如 TeXworks 或 TeXstudio）编写 LaTeX 源文件。你在文件中指定文档的结构、标题、段落、公式、表格等内容，并用 LaTeX 命令来指定如何格式化它们。\n编译：然后，你通过 LaTeX 编译器（如 pdflatex）将 .tex 文件编译成 PDF 或其他输出格式。在编译过程中，LaTeX 会自动生成目录、表格、公式编号、参考文献等。\n生成最终文档：编译后的输出就是最终的文档，你可以查看 PDF 版本的结果，它会按照你的格式要求生成高质量的排版。\n为什么使用 LaTeX？\n学术写作：如果你是科研人员、学者或学生，LaTeX 非常适合写学术论文、报告、书籍等，特别是那些需要插入复杂数学公式和参考文献的文档。\n高质量排版：LaTeX 自动处理排版细节，能够生成符合国际出版标准的文档格式。无论是字体、行间距、页边距，还是章节标题的格式，LaTeX 都能精确控制。\n复杂文档结构：LaTeX 适合处理大型文档（如书籍、论文、技术手册），它能够自动生成目录、索引、参考文献，并支持交叉引用和自动编号。\n数学与科学文献：LaTeX 是数学、物理、工程学等领域的首选工具，因为它能方便地输入和排版复杂的数学公式。\nLaTeX 与 Word 的比较\n特性\nLaTeX\nMicrosoft Word\n排版质量\n专业级排版，尤其擅长处理复杂公式和长文档。\n适合简单文档，复杂排版需要手动调整。\n学习曲线\n需要学习基本语法，初期上手较难。\n所见即所得，易于上手。\n自动化程度\n自动处理编号、交叉引用、目录生成等。\n需要手动调整编号和格式。\n数学公式支持\n强大的数学公式排版能力，支持复杂符号和结构。\n公式编辑功能有限，复杂公式难以处理。\n跨平台支持\n完全跨平台，文档在不同系统上表现一致。\n跨平台支持较好，但格式可能因版本不同而有所变化。\n文档结构\n内容与格式分离，便于维护和协作。\n内容与格式混合，长文档维护较困难。\n扩展性\n通过宏包扩展功能，支持自定义命令和环境。\n功能扩展依赖于插件，灵活性较低。\nLaTeX 的工作流程可以概括为三步：写源码、运行编译、得到 PDF。\n我们写的 .tex 文件就是普通的纯文本文件，用任何编辑器都能打开，编译器负责把它变成最终成品 PDF。\nLaTeX 的基本工作流程\n使用 LaTeX 编写文档的基本流程如下：\n编写源代码：使用纯文本编辑器编写 .tex 文件，内容包含文档结构、文本和命令。\n编译文档：通过 LaTeX 编译器（如 pdflatex、xelatex）将 .tex 文件转换为 PDF 或其他格式。\n查看结果：生成的 PDF 文件可以直接查看，内容会根据源代码自动排版。\n例如，一个简单的 LaTeX 文档如下：\n实例",
+    "examples": [
+     "\\documentclass{article} % 文档类\n\\title{我的第一个 LaTeX 文档} % 标题\n\\author{作者} % 作者\n\\date{\\today} % 日期\n\n\\begin{document}\n\\maketitle % 生成标题\n\n\\section{引言} % 章节\n这是我的第一个 LaTeX 文档！\\\\ % 换行\n这是一个简单的段落。\n\n\\section{数学公式}\n这是一个行内公式：$E = mc^2$。\\\\ % 行内公式\n这是一个行间公式：\n\\[\n\\int_a^b f(x) \\, dx\n\\]\n\\end{document}"
+    ]
+   },
+   {
+    "title": "LaTeX Beamer 演示文稿与简历模板",
+    "url": "https://www.runoob.com/latex/latex-latex-beamer.html",
+    "body": "本章节将介绍 LaTeX 的两个高频「成品形态」：学术幻灯片 Beamer，以及用 moderncv 模板排简历。\nBeamer：学术幻灯片标准工具\nBeamer 是 LaTeX 的幻灯片文档类，也是数学、计算机领域学术报告的主流工具——它排出的公式幻灯片，是 PPT 很难企及的。\n核心概念只有一个：frame（帧）。一个 frame 就是一页幻灯片，其余语法与你学了十一篇的 LaTeX 完全一致。\n实例：第一份中文幻灯片",
+    "examples": [
+     "\\documentclass{ctexbeamer}        % 中文幻灯片文档类（beamer + 中文支持）\n\\usetheme{Madrid}                 % 主题：决定配色、页眉页脚与版式\n\n\\title{LaTeX 快速入门}\n\\author{RUNOOB}\n\\date{\\today}\n\n\\begin{document}\n\n\\begin{frame}                     % 封面页\n  \\titlepage\n\\end{frame}\n\n\\begin{frame}{大纲}               % 花括号里的文字是该页标题\n  \\tableofcontents\n\\end{frame}\n\n\\section{引言}\n\\begin{frame}{为什么用 LaTeX}\n  \\begin{itemize}\n    \\item 数学公式排版质量高\n    \\item 编号、目录、引用全自动\n    \\pause                        % 放映时先显示前两条，按键后再出现这条\n    \\item 长文档格式统一\n  \\end{itemize}\n\\end{frame}\n\n\\section{公式示例}\n\\begin{frame}{公式排版示例}\n  行内公式 $E = mc^2$，行间公式：\n  \\[\n    \\int_0^1 x^2 \\,\\mathrm{d}x = \\frac{1}{3}\n  \\]\n\\end{frame}\n\n\\end{document}"
+    ]
+   },
+   {
+    "title": "LaTeX 插图与表格",
+    "url": "https://www.runoob.com/latex/latex-latex-figures-tables.html",
+    "body": "图表是论文的骨架件。本篇讲四件事：插图命令与浮动体、基础表格、学术标准的三线表、合并单元格。\nLaTeX 对图表的管理哲学与编号一致：你只管放内容和起标题，位置、编号、引用全部自动。\n插图：graphicx 宏包\n插图只需要两条命令：导言区加载 graphicx，正文里 \\includegraphics 放图片文件。\n常用选项\n含义\n示例\nwidth\n宽度，可用相对值\nwidth=0.8\\textwidth（版心宽的 80%）\nheight\n高度\nheight=5cm\nscale\n缩放倍数\nscale=0.5\nangle\n旋转角度\nangle=90\n文件名建议不带扩展名：写 sin 而不是 sin.png，LaTeX 会自动按当前编译器支持的格式查找（XeLaTeX 支持 PDF、PNG、JPG 等），换格式不用改源码。\n控制图片大小时优先用 width=\\textwidth 的比例值，而不是 scale——前者保证图片永远不超出版心，后者在不同字号设置下可能意外溢出。\n浮动体：figure 环境\n图片不该直接躺在正文流里，标准做法是放进 figure 浮动体环境。\n实例：标准插图",
+    "examples": [
+     "\\documentclass{ctexart}\n\\usepackage{graphicx}              % 插图必备宏包\n\\begin{document}\n正弦函数 $y = \\sin x$ 的图像如图~\\ref{fig:sin} 所示。\n\n\\begin{figure}[htbp]               % 浮动体环境，位置参数见下表\n  \\centering                       % 图片在浮动体内居中\n  \\includegraphics[width=0.6\\textwidth]{sin}\n  \\caption{正弦函数曲线}            % 图题，编号自动生成\n  \\label{fig:sin}                  % 标签，供 \\ref 引用\n\\end{figure}\n\\end{document}"
+    ]
+   },
+   {
+    "title": "LaTeX 数学公式进阶",
+    "url": "https://www.runoob.com/latex/latex-latex-math-advanced-html.html",
+    "body": "上一篇解决了单行公式，这一篇处理「大块头」：矩阵、方程组、多行推导和公式编号。\n它们全部来自 amsmath 宏包——这也是为什么所有数学文档的导言区都该有一行 \\usepackage{amsmath}。\n矩阵：matrix 家族\n矩阵用环境表示：& 分隔列，\\\\ 换行，环境名决定外层的括号样式。\n环境\n外层样式\n典型用途\nmatrix\n无括号\n拼接数据块\npmatrix\n圆括号 ( )\n普通矩阵\nbmatrix\n方括号 [ ]\n系数矩阵、线性代数\nBmatrix\n大括号 { }\n集合表示\nvmatrix\n单竖线 | |\n行列式\nVmatrix\n双竖线 ‖ ‖\n范数\npmatrix（圆括号矩阵）",
+    "examples": []
+   },
+   {
+    "title": "LaTeX 数学公式基础",
+    "url": "https://www.runoob.com/latex/latex-latex-math-basic.html",
+    "body": "数学排版是 LaTeX 皇冠上的明珠，也是大多数人选择它的第一理由。\n本篇覆盖数学公式的地基：行内与行间公式、上下标、分数、根号、希腊字母与常用符号表。\n文中每个「写法 → 效果」对照均为实时渲染，你在网页上看到的效果，就是 LaTeX 排出来的样子。\n行内公式与行间公式\n公式只有两种存在形态：嵌在句子里的行内公式，用一对 $ 包住；独立成行居中的行间公式，用 \\[ 和 \\] 包住。\n实例",
+    "examples": [
+     "一元二次方程 $ax^2 + bx + c = 0$ 的求根公式为\n\\[\n  x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a},\n\\]\n其中判别式 $\\Delta = b^2 - 4ac$ 决定根的个数。"
+    ]
+   },
+   {
+    "title": "LaTeX 常用宏包与技巧",
+    "url": "https://www.runoob.com/latex/latex-latex-packages.html",
+    "body": "前几个章节用到的宏包已经不少，本篇做个系统收口：宏包速查、自定义命令、代码排版、多文件工程、latexmk 与排错心法。\n掌握这些「工具箱」内容，你就从会写 LaTeX 进化到会管理 LaTeX 项目。\n常用宏包速查\n宏包用 \\usepackage[选项]{宏包名} 加载，全部放在导言区。\n宏包\n用途\n本系列出现\ngeometry\n页面边距与纸张\nLaTeX 文档结构与排版\nfancyhdr\n页眉页脚\nLaTeX 文档结构与排版\namsmath / amssymb\n数学公式增强 / 扩展符号\nLaTeX 数学公式基础、LaTeX 数学公式进阶\ngraphicx\n插图\nLaTeX 插图与表格\nbooktabs / multirow\n三线表 / 纵向合并单元格\nLaTeX 插图与表格\nenumitem\n列表定制\nLaTeX 文字格式与列表\nxcolor\n颜色定义\n本章节介绍\nlistings\n代码排版\n本章节介绍\nhyperref\n超链接与书签\nLaTeX 交叉引用与文献管理\nbiblatex\n参考文献（现代方案）\nLaTeX 交叉引用与文献管理\nfloat\n图表强制定位 [H]\nLaTeX 插图与表格\n本地环境提示 File 'xxx.sty' not found 时，用 tlmgr install xxx 安装（TeX Live），MiKTeX 则会自动下载。Overleaf 自带几乎所有宏包，无此烦恼。\n自定义命令：\\newcommand\n当同样的内容写了三遍以上，就该定义命令了。\\newcommand{\\命令名}[参数个数]{定义}。\n实例：三种自定义命令",
+    "examples": [
+     "% 无参数：把长命令缩短\n\\newcommand{\\R}{\\mathbb{R}}            % 以后写 $\\R$ 就是 $\\mathbb{R}$\n\n% 一个参数：封装固定格式\n\\newcommand{\\email}[1]{\\texttt{#1}}   % #1 表示第一个参数\n\n% 带默认值的可选参数：[参数个数][默认值]\n\\newcommand{\\vecn}[2][n]{x_1, \\dots, x_#1}\n% 用法：$\\vecn{...}$ 得到 x_1, …, x_n\n%      $\\vecn[5]{...}$ 得到 x_1, …, x_5\n\n\\begin{document}\n定义在 $\\R$ 上的函数，向量 $\\vecn$ 与 $\\vecn[5]$，\n联系邮箱 \\email{service@runoob.com}。\n\\end{document}"
+    ]
+   },
+   {
+    "title": "LaTeX 实战：排版一篇完整论文",
+    "url": "https://www.runoob.com/latex/latex-latex-project.html",
+    "body": "本篇把前十篇的知识全部装配起来：用多文件工程，从零排版一篇带摘要、公式、图表和参考文献的完整小论文。\n建议照着做一遍——看会了不等于写会了，完整走过一次流程，LaTeX 就真正属于你。\n项目结构\n先规划目录：骨架与内容分离，每章一个文件。\npaper/\n├── main.tex # 骨架：导言区 + 按顺序组装各章节\n├── refs.bib # 参考文献数据库\n├── figures/\n│ └── fit.png # 插图\n└── sections/\n ├── abstract.tex # 摘要\n ├── intro.tex # 引言\n ├── method.tex # 方法\n ├── result.tex # 实验结果\n └── conclusion.tex # 结论\nmain.tex：项目骨架\n骨架文件只做三件事：加载宏包、声明标题、按顺序组装。\n实例：main.tex",
+    "examples": [
+     "\\documentclass[12pt, a4paper]{ctexart}\n\n% ---------- 页面与基础宏包 ----------\n\\usepackage{geometry}\n\\geometry{margin=2.5cm}\n\\usepackage{amsmath, amssymb}       % 数学\n\\usepackage{graphicx}               % 插图\n\\usepackage{booktabs, multirow}     % 三线表\n\\usepackage[colorlinks=true, linkcolor=blue,\n            citecolor=blue, urlcolor=blue]{hyperref}\n\n% ---------- 标题信息 ----------\n\\title{基于最小二乘法的周期信号拟合研究}\n\\author{RUNOOB}\n\\date{\\today}\n\n\\begin{document}\n\n\\maketitle\n\\input{sections/abstract}           % 摘要\n\\input{sections/intro}              % 引言\n\\input{sections/method}             % 方法\n\\input{sections/result}             % 实验结果\n\\input{sections/conclusion}         % 结论\n\n\\bibliographystyle{plain}\n\\bibliography{refs}                 % 参考文献\n\n\\end{document}"
+    ]
+   },
+   {
+    "title": "LaTeX 交叉引用与文献管理",
+    "url": "https://www.runoob.com/latex/latex-latex-references.html",
+    "body": "长文档的两大自动化利器：交叉引用（章节、图表、公式之间互相指向）和参考文献管理（BibTeX）。\n它们的共同哲学：编号永远是自动的，你只负责起一个「标签名」。\n标签与引用：\\label 与 \\ref\n交叉引用三步走：在被引用处 \\label{标签} 打标签，在引用处 \\ref{标签}（或 \\pageref、\\eqref）取编号。\n命令\n输出什么\n典型搭配\n\\label{key}\n无输出，给前面的对象打标签\n紧跟 \\section、\\caption、equation\n\\ref{key}\n编号数字（如 3、1.2）\n第~\\ref{sec:method} 节\n\\eqref{key}\n带括号编号（如 (1)）\n式~\\eqref{eq:loss}（公式专用）\n\\pageref{key}\n所在页码\n见第~\\pageref{sec:method} 页\n\\label 必须紧跟被引用的命令之后、写在同一个环境层级里——「\\section{方法}\\label{sec:m}」是正确姿势，把 \\label 写到下一段去，引用到的就是错误的对象。公式的 \\label 要写在 equation 环境内部。\n实例：章节、公式、图片互引",
+    "examples": [
+     "\\documentclass{ctexart}\n\\usepackage{amsmath, graphicx}\n\\begin{document}\n\n\\section{方法}\\label{sec:method}\n本节介绍模型结构，损失函数见式~\\eqref{eq:loss}，\n实验分析见第~\\ref{sec:result} 节。\n\n\\begin{equation}\\label{eq:loss}\n  L = \\sum_{i=1}^{n} \\left( y_i - \\hat{y}_i \\right)^2\n\\end{equation}\n\n\\section{实验结果}\\label{sec:result}\n方法（第~\\ref{sec:method} 节）的损失由式~\\eqref{eq:loss} 度量，\n曲线形态见图~\\ref{fig:sin}。\n\n\\begin{figure}[htbp]\n  \\centering\n  \\includegraphics[width=0.5\\textwidth]{sin}\n  \\caption{正弦曲线}\n  \\label{fig:sin}\n\\end{figure}\n\n\\end{document}"
+    ]
+   },
+   {
+    "title": "LaTeX 文档结构与排版",
+    "url": "https://www.runoob.com/latex/latex-latex-structure.html",
+    "body": "本章节解决一个文档的「骨架」问题：标题怎么排、章节怎么分、目录怎么生成、页面边距和页眉页脚怎么设置。\n这些内容的特点是：设置一次，全文自动生效——这正是 LaTeX 处理长文档的核心优势。\n标题、作者与日期\n三步走：在导言区声明信息，在正文区调用 \\maketitle 渲染。\n实例：标题区",
+    "examples": [
+     "\\documentclass{ctexart}\n\n\\title{论文标题}                  % 标题（必填，想渲染标题区就必须定义）\n\\author{张三 \\and 李四}           % 作者，\\and 分隔多位作者\n\\date{\\today}                     % 日期：\\today 自动当天；{} 空参数表示不显示\n\n\\begin{document}\n\n\\maketitle                        % 在这里渲染标题区（居中的标题、作者、日期）\n\n\\end{document}"
+    ]
+   },
+   {
+    "title": "LaTeX 文字格式与列表",
+    "url": "https://www.runoob.com/latex/latex-latex-text.html",
+    "body": "本篇处理正文的「血肉」：字体样式怎么切换、字号怎么调、三种列表环境怎么用、对齐方式怎么控制。\n原则依旧：这些是语义命令，你告诉 LaTeX「这是强调」，具体长什么样由文档类决定。\n字体样式\n常用样式一共五种，都是「命令 + 花括号」的形式，作用于括号内的文字。\n效果\n命令\n说明\n加粗\n\\textbf{...}\nbold face\n斜体\n\\textit{...}\n中文会自动映射为楷体\n下划线\n\\underline{...}\n正式排版中慎用，欧美习惯用斜体代替\n等宽\n\\texttt{...}\ntypewriter，代码、命令、文件名专用\n强调\n\\emph{...}\n智能强调：正文里变斜体，斜体里变正体\n实例：字体样式",
+    "examples": [
+     "\\documentclass{ctexart}\n\\begin{document}\n\\textbf{加粗文字}、\\textit{斜体文字}、\\underline{下划线文字}、\\texttt{等宽文字}。\n\n中文强调用 \\emph{重点}，英文强调用 \\emph{emphasis}。\n\n组合使用：\\textbf{加粗且\\textit{斜体}}，\\texttt{代码里也可以\\textbf{加粗}}。\n\\end{document}"
+    ]
+   },
+   {
+    "title": "LaTeX 教程",
+    "url": "https://www.runoob.com/latex/latex-tutorial.html",
+    "body": "LaTeX（发音为 \"Lay-tech\" 或 \"Lah-tech\"）是一种用于文档排版的系统，特别擅长于生成高质量的文本和数学公式。\nLaTeX 基于 TeX 排版系统，由 Leslie Lamport 开发，目的是提供一种简便的方式来使用 TeX 进行复杂文档的排版，尤其在学术领域得到了广泛应用。",
+    "examples": []
+   }
+  ]
+ }
+}

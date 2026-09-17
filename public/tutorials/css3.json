@@ -1,0 +1,180 @@
+{
+ "tutorial": {
+  "name": "CSS3",
+  "category": "前端开发",
+  "desc": "CSS 用于控制网页的样式和布局。",
+  "url": "https://www.runoob.com/css3/",
+  "chapters": [
+   {
+    "title": "CSS 网格容器",
+    "url": "https://www.runoob.com/css3/css-grid-container.html",
+    "body": "尝试一下 »\n网格容器\n要使 HTML 元素变成一个网格容器，可以将 display 属性设置为 grid 或 inline-grid。\n网格容器内放置着由列和行内组成的网格元素。\ngrid-template-columns 属性\ngrid-template-columns 属性定义了网格布局中的列的数量，它也可以设置每个列的宽度。\n属性值是一个以空格分隔的列表，其中每个值定义相对应列的宽度。\n如果您希望网格布局包含 4 列，则需要设置 4 列的宽度，如果所有列的宽度都是一样的，可以设置为 auto。\n以下实例设置了 4 列的网格布局：\n实例",
+    "examples": [
+     ".grid-container {\ndisplay: grid;\n  grid-template-columns: auto auto auto auto;\n}"
+    ]
+   },
+   {
+    "title": "CSS 网格元素",
+    "url": "https://www.runoob.com/css3/css-grid-item.html",
+    "body": "尝试一下 »\nCSS 网格元素\n网格容器包含了一个或多个网格元素。\n默认情况下，网格容器的每一列和每一行都有一个网格元素，我们也可以设置网格元素跨越多个列或行，行和列为行号。\ngrid-column 属性\ngrid-column 属性定义了网格元素列的开始和结束位置。\n注意： grid-column 是 grid-column-start 和 grid-column-end 属性的简写属性。\n我们可以参考行号来设置网格元素，也可以使用关键字 \"span\" 来定义元素将跨越的列数。\n以下实例设置 \"item1\" 在第 1 列开始，在第 5 列前结束：\n实例",
+    "examples": [
+     ".item1 {\ngrid-column: 1 / 5;\n}"
+    ]
+   },
+   {
+    "title": "CSS 网格布局",
+    "url": "https://www.runoob.com/css3/css-grid.html",
+    "body": "网格是一组相交的水平线和垂直线，它定义了网格的列和行。\nCSS 提供了一个基于网格的布局系统，带有行和列，可以让我们更轻松地设计网页，而无需使用浮动和定位。\n以下是一个简单的网页布局，使用了网格布局，包含六列和三行：\n尝试一下 »\n浏览器支持\n目前最新的一些浏览器版本都支持网格布局。\n57.0\n16.0\n52.0\n10\n44\n网格元素\n网格布局由一个父元素及一个或多个子元素组成。\n实例",
+    "examples": [
+     "<div class=\"grid-container\">\n<div class=\"grid-item\">1</div>\n<div class=\"grid-item\">2</div>\n<div class=\"grid-item\">3</div>\n<div class=\"grid-item\">4</div>\n<div class=\"grid-item\">5</div>\n<div class=\"grid-item\">6</div>\n<div class=\"grid-item\">7</div>\n<div class=\"grid-item\">8</div>\n<div class=\"grid-item\">9</div>\n</div>"
+    ]
+   },
+   {
+    "title": "CSS3 2D 转换",
+    "url": "https://www.runoob.com/css3/css3-2dtransforms.html",
+    "body": "CSS3 转换\nCSS3 转换可以对元素进行移动、缩放、转动、拉长或拉伸。\n它是如何工作？\n转换的效果是让某个元素改变形状，大小和位置。\n您可以使用 2D 或 3D 转换来转换您的元素。\n鼠标移动到以下元素上，查看 2D 和 3D 的转换效果：\n2D 转换",
+    "examples": []
+   },
+   {
+    "title": "CSS3 3D 转换",
+    "url": "https://www.runoob.com/css3/css3-3dtransforms.html",
+    "body": "3D 转换\nCSS3 允许您使用 3D 转换来对元素进行格式化。\n在本章中，您将学到其中的一些 3D 转换方法：\nrotateX()\nrotateY()\n点击下面的元素，来查看 2D 转换与 3D 转换之间的不同之处：\n2D rotate",
+    "examples": []
+   },
+   {
+    "title": "CSS3 动画",
+    "url": "https://www.runoob.com/css3/css3-animations.html",
+    "body": "CSS3 动画\nCSS3 可以创建动画，它可以取代许多网页动画图像、Flash 动画和 JavaScript 实现的效果。\nCSS3动画",
+    "examples": []
+   },
+   {
+    "title": "CSS3 背景",
+    "url": "https://www.runoob.com/css3/css3-backgrounds.html",
+    "body": "CSS3 背景\nCSS3 中包含几个新的背景属性，提供更大背景元素控制。\n在本章您将了解以下背景属性：\nbackground-image\nbackground-size\nbackground-origin\nbackground-clip\n您还将学习如何使用多重背景图像。\n浏览器支持\n表格中的数字表示支持该属性的第一个浏览器版本号。\n紧跟在 -webkit-, -ms- 或 -moz- 前的数字为支持该前缀属性的第一个浏览器版本号。\n属性\nbackground-image(with multiple backgrounds)\n4.0\n9.0\n3.6\n3.1\n11.5\nbackground-size\n4.01.0 -webkit-\n9.0\n4.03.6 -moz-\n4.13.0 -webkit-\n10.510.0 -o-\nbackground-origin\n1.0\n9.0\n4.0\n3.0\n10.5\nbackground-clip\n4.0\n9.0\n4.0\n3.0\n10.5\nCSS3 background-image属性",
+    "examples": []
+   },
+   {
+    "title": "CSS3 圆角",
+    "url": "https://www.runoob.com/css3/css3-border-radius.html",
+    "body": "CSS3 圆角\n使用 CSS3 border-radius 属性，你可以给任何元素制作 \"圆角\"。",
+    "examples": []
+   },
+   {
+    "title": "CSS3 边框",
+    "url": "https://www.runoob.com/css3/css3-borders.html",
+    "body": "CSS3 边框\n用 CSS3，你可以创建圆角边框，添加阴影框，并作为边界的形象而不使用设计程序，如 Photoshop。\n在本章中，您将了解以下的边框属性：\nborder-radius\nbox-shadow\nborder-image",
+    "examples": []
+   },
+   {
+    "title": "CSS3 框大小",
+    "url": "https://www.runoob.com/css3/css3-box-sizing.html",
+    "body": "CSS3 box-sizing 属性可以设置 width 和 height 属性中包含了 padding(内边距) 和 border(边框)。\n浏览器支持\n表格中的数字表示支持该属性的第一个浏览器的版本号。\n紧跟在数字后面的 -webkit- 或 -moz- 为指定浏览器的前缀。\n属性\nbox-sizing\n10.04.0 -webkit-\n8.0\n29.02.0 -moz-\n5.13.1 -webkit-\n9.5\n不使用 CSS3 box-sizing 属性\n默认情况下，元素的宽度与高度计算方式如下：\nwidth(宽) + padding(内边距) + border(边框) = 元素实际宽度\nheight(高) + padding(内边距) + border(边框) = 元素实际高度\n这就意味着我们在设置元素的 width/height 时，元素真实展示的高度与宽度会更大(因为元素的边框与内边距也会计算在 width/height 中)。\n这个是个较小的框 (width 为 300px ，height 为 100px)。",
+    "examples": []
+   },
+   {
+    "title": "CSS 按钮",
+    "url": "https://www.runoob.com/css3/css3-buttons.html",
+    "body": "本章节我们为大家介绍使用 CSS 来制作按钮。\n基本按钮样式\n默认按钮CSS 按钮\n实例\n尝试一下 »",
+    "examples": [
+     ".button {    background-color: #4CAF50; /* Green */    border: none;    \n    color: white;    padding: 15px 32px;    text-align: center;    \n    text-decoration: none;    display: inline-block;    font-size: 16px;\n    }"
+    ]
+   },
+   {
+    "title": "CSS3 弹性盒子(Flex Box)",
+    "url": "https://www.runoob.com/css3/css3-flexbox.html",
+    "body": "弹性盒子是 CSS3 的一种新的布局模式。\nCSS3 弹性盒（ Flexible Box 或 flexbox），是一种当页面需要适应不同的屏幕大小以及设备类型时确保元素拥有恰当的行为的布局方式。\n引入弹性盒布局模型的目的是提供一种更加有效的方式来对一个容器中的子元素进行排列、对齐和分配空白空间。\n浏览器支持\n表格中的数字表示支持该属性的第一个浏览器的版本号。\n紧跟在数字后面的 -webkit- 或 -moz- 为指定浏览器的前缀。\n属性\nBasic support(single-line flexbox)\n29.021.0 -webkit-\n11.0\n22.018.0 -moz-\n6.1 -webkit-\n12.1 -webkit-\nMulti-line flexbox\n29.021.0 -webkit-\n11.0\n28.0\n6.1 -webkit-\n17.015.0 -webkit-12.1\nCSS3 弹性盒子内容\n弹性盒子由弹性容器(Flex container)和弹性子元素(Flex item)组成。\n弹性容器通过设置 display 属性的值为 flex 或 inline-flex将其定义为弹性容器。\n弹性容器内包含了一个或多个弹性子元素。\n注意： 弹性容器外及弹性子元素内是正常渲染的。弹性盒子只定义了弹性子元素如何在弹性容器内布局。\n弹性子元素通常在弹性盒子内一行显示。默认情况每个容器只有一行。\n以下元素展示了弹性子元素在一行内显示，从左到右:\n实例\n.flex-container{display: -webkit-flex;\n display:flex;\n width:400px;\n height:250px;\n background-color:lightgrey;\n}.flex-item{background-color:cornflowerblue;\n width:100px;\n height:100px;\n margin:10px;\n}",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<style>"
+    ]
+   },
+   {
+    "title": "CSS3 字体",
+    "url": "https://www.runoob.com/css3/css3-fonts.html",
+    "body": "CSS3 @font-face 规则\n使用以前 CSS 的版本，网页设计师不得不使用用户计算机上已经安装的字体。\n使用 CSS3，网页设计师可以使用他/她喜欢的任何字体。\n当你发现您要使用的字体文件时，只需简单的将字体文件包含在网站中，它会自动下载给需要的用户。\n您所选择的字体在新的 CSS3 版本有关于 @font-face 规则描述。\n您\"自己的\"的字体是在 CSS3 @font-face 规则中定义的。\n浏览器支持\n表格中的数字表示支持该属性的第一个浏览器版本号。\n属性\n@font-face\n4.0\n9.0\n3.5\n3.2\n10.0\nInternet Explorer 9+, Firefox, Chrome, Safari, 和 Opera 支持 WOFF (Web Open Font Format) 字体.\nFirefox, Chrome, Safari, 和 Opera 支持 .ttf(True Type字体)和.otf(OpenType)字体字体类型）。\nChrome, Safari 和 Opera 也支持 SVG 字体/折叠.\nInternet Explorer 同样支持 EOT (Embedded OpenType) 字体.\n注意： Internet Explorer 8 以及更早的版本不支持新的 @font-face 规则。\n使用您需要的字体\n在新的 @font-face 规则中，您必须首先定义字体的名称（比如 myFirstFont），然后指向该字体文件。\n提示：URL请使用小写字母的字体，大写字母在IE中会产生意外的结果\n如需为 HTML 元素使用字体，请通过 font-family 属性来引用字体的名称 (myFirstFont)：\n实例",
+    "examples": [
+     "<style> \n@font-face\n{\nfont-family: myFirstFont;\n    src: url(sansation_light.woff);\n}\ndiv\n{\nfont-family:myFirstFont;\n}\n</style>"
+    ]
+   },
+   {
+    "title": "CSS3 渐变（Gradients）",
+    "url": "https://www.runoob.com/css3/css3-gradients.html",
+    "body": "渐变效果",
+    "examples": []
+   },
+   {
+    "title": "CSS 图片",
+    "url": "https://www.runoob.com/css3/css3-images.html",
+    "body": "本章节将为大家介绍如何使用 CSS 来布局图片。\n圆角图片\n实例\n圆角图片:\n尝试一下 »",
+    "examples": [
+     "img {    border-radius: 8px;}"
+    ]
+   },
+   {
+    "title": "CSS3 简介",
+    "url": "https://www.runoob.com/css3/css3-intro.html",
+    "body": "CSS3 已完全向后兼容，所以你就不必改变现有的设计。\nCSS3 \n模块\nCSS3 被拆分为\"模块\"。旧规范已拆分成小块，还增加了新的。\n一些最重要 CSS3 模块如下：\n选择器\n盒模型\n背景和边框\n文字特效\n2D/3D转换\n动画\n多列布局\n用户界面\nCSS3\n建议\nW3C 的 CSS3 规范仍在开发。\n但是，现在新的浏览器已经都支持 CSS3 属性。",
+    "examples": []
+   },
+   {
+    "title": "CSS3 多媒体查询实例",
+    "url": "https://www.runoob.com/css3/css3-mediaqueries-ex.html",
+    "body": "本章节我们将为大家演示一些多媒体查询实例。\n开始之前我们先制作一个电子邮箱的链接列表。HTML 代码如下：\n实例 1\n尝试一下 »",
+    "examples": [
+     "<!DOCTYPE html><html><head><style>ul {    \n\tlist-style-type: none;}ul li a {    color: \n\tgreen;    text-decoration: none;    \n\tpadding: 3px;     display: block;}</style>\n</head><body><ul>  <li><a data-email=\"johndoe@example.com\"\nhref=\"mailto:johndoe@example.com\">John Doe</a></li>  <li><a\ndata-email=\"marymoe@example.com\" href=\"mailto:marymoe@example.com\">Mary \n\tMoe</a></li>  <li><a data-email=\"amandapanda@example.com\" href=\"mailto:amandapanda@example.com\">Amanda \n\tPanda</a></li></ul></body></html>"
+    ]
+   },
+   {
+    "title": "CSS3 多媒体查询",
+    "url": "https://www.runoob.com/css3/css3-mediaqueries.html",
+    "body": "CSS2 多媒体类型\n@media 规则在 CSS2 中有介绍，针对不同媒体类型可以定制不同的样式规则。\n例如：你可以针对不同的媒体类型(包括显示器、便携设备、电视机，等等)设置不同的样式规则。\n但是这些多媒体类型在很多设备上支持还不够友好。\nCSS3 多媒体查询\nCSS3 的多媒体查询继承了 CSS2 多媒体类型的所有思想： 取代了查找设备的类型，CSS3 根据设置自适应显示。\n媒体查询可用于检测很多事情，例如：\nviewport(视窗) 的宽度与高度\n设备的宽度与高度\n朝向 (智能手机横屏，竖屏) 。\n分辨率\n目前很多针对苹果手机，Android 手机，平板等设备都会使用到多媒体查询。\n浏览器支持\n表格中的数字表示支持该属性的第一个浏览器的版本号。\n属性\n@media\n21.0\n9.0\n3.5\n4.0\n9.0\n多媒体查询语法\n多媒体查询由多种媒体组成，可以包含一个或多个表达式，表达式根据条件是否成立返回 true 或 false。",
+    "examples": [
+     "@media not|only mediatype and (expressions) {\nCSS 代码...;\n}"
+    ]
+   },
+   {
+    "title": "CSS3 多列",
+    "url": "https://www.runoob.com/css3/css3-multiple-columns.html",
+    "body": "CSS3 可以将文本内容设计成像报纸一样的多列布局，如下实例:\n菜鸟教程 - 学的不仅是技术，更是梦想！菜鸟教程(www.runoob.com)提供了最全的编程技术基础教程, 介绍了HTML、CSS、Javascript、Python，Java，Ruby，C，PHP , MySQL等各种编程语言的基础知识。 同时本站中也提供了大量的在线实例，通过实例，您可以更好的学习编程。\n浏览器支持\n表格中的数字表示支持该方法的第一个浏览器的版本号。\n紧跟在数字后面的 -webkit- 或 -moz- 为指定浏览器的前缀。\n属性\ncolumn-count\n4.0 -webkit-\n10.0\n2.0 -moz-\n3.1 -webkit-\n15.0 -webkit-11.1\ncolumn-gap\n4.0 -webkit-\n10.0\n2.0 -moz-\n3.1 -webkit-\n15.0 -webkit-11.1\ncolumn-rule\n4.0 -webkit-\n10.0\n2.0 -moz-\n3.1 -webkit-\n15.0 -webkit-11.1\ncolumn-rule-color\n4.0 -webkit-\n10.0\n2.0 -moz-\n3.1 -webkit-\n15.0 -webkit11.1\ncolumn-rule-style\n4.0 -webkit-\n10.0\n2.0 -moz-\n3.1 -webkit-\n15.0 -webkit11.1\ncolumn-rule-width\n4.0 -webkit-\n10.0\n2.0 -moz-\n3.1 -webkit-\n15.0 -webkit11.1\ncolumn-width\n4.0 -webkit-\n10.0\n2.0 -moz-\n3.1 -webkit-\n15.0 -webkit11.1\nCSS3 多列属性\n本章节我们将学习以下几个 CSS3 的多列属性:\ncolumn-count\ncolumn-gap\ncolumn-rule-style\ncolumn-rule-width\ncolumn-rule-color\ncolumn-rule\ncolumn-span\ncolumn-width\nCSS3 创建多列\ncolumn-count 属性指定了需要分割的列数。\n以下实例将 <div> 元素中的文本分为 3 列：\n实例\n尝试一下 »",
+    "examples": [
+     "div\n{\n\t   \n\t-webkit-column-count: 3; /* Chrome, Safari, Opera */\n   \n-moz-column-count: 3; /* Firefox */\n    column-count: 3;\n}"
+    ]
+   },
+   {
+    "title": "CSS 分页实例",
+    "url": "https://www.runoob.com/css3/css3-pagination.html",
+    "body": "本章节我们将为大家介绍如何通过使用 CSS 来创建分页的实例。\n简单分页\n如果你的网站有很多个页面，你就需要使用分页来为每个页面做导航。\n以下实例演示了如何使用 HTML 和 CSS 来创建分页：\nCSS 实例\n尝试一下 »",
+    "examples": [
+     "ul.pagination {    display: inline-block;    \n\tpadding: 0;    margin: 0;}ul.pagination li \n\t{display: inline;}ul.pagination li a {    color: \n\tblack;    float: left;    padding: 8px \n\t16px;    text-decoration: none;}"
+    ]
+   },
+   {
+    "title": "CSS3 文本效果",
+    "url": "https://www.runoob.com/css3/css3-text-effects.html",
+    "body": "CSS3 文本效果\nCSS3中包含几个新的文本特征。\n在本章中您将了解以下文本属性：\ntext-shadow\nbox-shadow\ntext-overflow\nword-wrap\nword-break\n浏览器支持\n属性\ntext-shadow\n4.0\n10.0\n3.5\n4.0\n9.5\nbox-shadow\n10.04.0 -webkit-\n9.0\n4.03.5 -moz-\n5.13.1 -webkit-\n10.5\ntext-overflow\n4.0\n6.0\n7.0\n3.1\n11.09.0 -o-\nword-wrap\n23.0\n5.5\n3.5\n6.1\n12.1\nword-break\n4.0\n5.5\n15.0\n3.1\n15.0\nCSS3 的文本阴影\nCSS3 中，text-shadow属性适用于文本阴影。\n您指定了水平阴影，垂直阴影，模糊的距离，以及阴影的颜色：\n实例\n给标题添加阴影:",
+    "examples": [
+     "h1\n{\ntext-shadow: 5px 5px 5px #FF0000;\n}"
+    ]
+   },
+   {
+    "title": "CSS3 过渡",
+    "url": "https://www.runoob.com/css3/css3-transitions.html",
+    "body": "CSS3 过渡\nCSS3中，我们为了添加某种效果可以从一种样式转变到另一个的时候，无需使用Flash动画或JavaScript。用鼠标移过下面的元素：\n用鼠标移过下面的元素：\nCSS3过渡",
+    "examples": []
+   },
+   {
+    "title": "CSS3 教程",
+    "url": "https://www.runoob.com/css3/css3-tutorial.html",
+    "body": "CSS 用于控制网页的样式和布局。\nCSS3 是最新的 CSS 标准。\n本教程向您讲解 CSS3 中的新特性。\n开始学习 CSS3!\nCSS3 代码生成器!\nCSS3 实例",
+    "examples": [
+     "div\n{\ntransform:rotate(30deg);\n}"
+    ]
+   },
+   {
+    "title": "CSS3 用户界面",
+    "url": "https://www.runoob.com/css3/css3-user-interface.html",
+    "body": "CSS3 用户界面\n在 CSS3 中, 增加了一些新的用户界面特性来调整元素尺寸，框尺寸和外边框。\n在本章中，您将了解以下的用户界面属性：\nresize\nbox-sizing\noutline-offset\n浏览器支持\n表格中的数字表示支持该属性的第一个浏览器版本号。\n紧跟在 -webkit-, -ms- 或 -moz- 前的数字为支持该前缀属性的第一个浏览器版本号。\n属性\nresize\n4.0\n79.0\n5.04.0 -moz-\n4.0\n15.0\nbox-sizing\n10.04.0 -webkit-\n8.0\n29.02.0 -moz-\n5.13.1 -webkit-\n9.5\noutline-offset\n4.0\n15.0\n5.04.0 -moz-\n4.0\n9.5\nCSS3 调整尺寸(Resizing)\nCSS3中，resize属性指定一个元素是否应该由用户去调整大小。\n这个 div 元素由用户调整大小。 (在 Firefox 4+, Chrome, 和 Safari中)",
+    "examples": []
+   }
+  ]
+ }
+}

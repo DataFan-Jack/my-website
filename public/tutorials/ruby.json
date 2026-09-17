@@ -1,0 +1,322 @@
+{
+ "tutorial": {
+  "name": "Ruby",
+  "category": "后端开发",
+  "desc": "Ruby 是一种开源的面向对象程序设计的服务器端脚本语言，在 20 世纪 90 ",
+  "url": "https://www.runoob.com/ruby/",
+  "chapters": [
+   {
+    "title": "Ruby 数组（Array）",
+    "url": "https://www.runoob.com/ruby/ruby-array.html",
+    "body": "Ruby 数组是任何对象的有序整数索引集合。数组中的每个元素都与一个索引相关，并可通过索引进行获取。\n数组的索引从 0 开始，这与 C 或 Java 中一样。一个负数的索相对于数组的末尾计数的，也就是说，索引为 -1 表示数组的最后一个元素，-2 表示数组中的倒数第二个元素，依此类推。\nRuby 数组可存储诸如 String、 Integer、 Fixnum、 Hash、 Symbol 等对象，甚至可以是其他 Array 对象。\nRuby 数组不需要指定大小，当向数组添加元素时，Ruby 数组会自动增长。",
+    "examples": []
+   },
+   {
+    "title": "Ruby 块",
+    "url": "https://www.runoob.com/ruby/ruby-block.html",
+    "body": "您已经知道 Ruby 如何定义方法以及您如何调用方法。类似地，Ruby 有一个块的概念。\n块由大量的代码组成。\n您需要给块取个名称。\n块中的代码总是包含在大括号 {} 内。\n块总是从与其具有相同名称的函数调用。这意味着如果您的块名称为 test，那么您要使用函数 test 来调用这个块。\n您可以使用 yield 语句来调用块。",
+    "examples": []
+   },
+   {
+    "title": "Ruby CGI Cookie",
+    "url": "https://www.runoob.com/ruby/ruby-cgi-cookies.html",
+    "body": "HTTP协议是无状态协议。但对于一个商业网站，它需要保持不同的页面间的会话信息。\n如用户在网站注册过程中需要跳转页面，但又要保证之前填写的信息不丢失。\n这种情况下 Cookie 很好的帮我们解决了问题。\nCookie 是如何工作的？\n几乎所有的网站设计者在进行网站设计时都使用了Cookie，因为他们都想给浏览网站的用户提供一个更友好的、人文化的浏览环境，同时也能更加准确地收集访问者的信息。\n写入和读取\nCookies集合是附属于Response对象及Request对象的数据集合，使用时需要在前面加上Response或Request。\n用于给客户机发送Cookies的语法通常为：\n当给不存在的Cookies集合设置时，就会在客户机创建，如果该Cookies己存在，则会被代替。由于Cookies是作为HTTP传输的头信息的一部分发给客户机的，所以向客户机发送Cookies的代码一般放在发送给浏览器的HTML文件的标记之前。\n如果用户要读取Cookies，则必须使用Request对象的Cookies集合，其使用方法是： 需要注意的是，只有在服务器未被下载任何数据给浏览器前，浏览器才能与Server进行Cookies集合的数据交换，一旦浏览器开始接收Server所下载的数据，Cookies的数据交换则停止，为了避免错误，要在程序和前面加上response.Buffer=True。\n集合的属性\n1.Expires属性：此属性用来给Cookies设置一个期限，在期限内只要打开网页就可以调用被保存的Cookies，如果过了此期限Cookies就自动被删除。如：\n设定Cookies的有效期到2004年4月1日，到时将自动删除。如果一个Cookies没有设定有效期，则其生命周期从打开浏览器开始，到关闭浏览器结束，每次运行后生命周期将结束，下次运行将重新开始。\n2.Domain属性：这个属性定义了Cookies传送数据的唯一性。若只将某Cookies传送给_blank\">搜狐主页时，则可使用如下代码：\n3.Path属性：定义了Cookies只发给指定的路径请求，如果Path属性没有被设置，则使用应用软件的默认路径。\n4.Secure属性：指定Cookies能否被用户读取。\n5、Name=Value : Cookies是以键值对的形式进行设置和检索的。\nRuby 中处理Cookies\n你可以创建一个名为 cookie 的对象并存储文本信息，将该信息发送至浏览器，调用 CGI.out 设置cookie的头部：\n实例",
+    "examples": [
+     "#!/usr/bin/ruby\nrequire \"cgi\"\ncgi = CGI.new(\"html4\")\ncookie = CGI::Cookie.new('name' => 'mycookie',\n                         'value' => 'Zara Ali',\n                         'expires' => Time.now + 3600)\ncgi.out('cookie' => cookie) do\ncgi.head + cgi.body { \"Cookie stored\" }\nend"
+    ]
+   },
+   {
+    "title": "Ruby CGI方法",
+    "url": "https://www.runoob.com/ruby/ruby-cgi-methods.html",
+    "body": "以下为CGI类的方法列表：\n序号\n方法描述\n1\nCGI::new([ level=\"query\"])创建 CGI 对象。query可以是以下值:\nquery: 没有 HTML 生成输出\nhtml3: HTML3.2\nhtml4: HTML4.0 Strict\nhtml4Tr: HTML4.0 Transitional\nhtml4Fr: HTML4.0 Frameset\n2\nCGI::escape( str)使用 URL 编码来转义字符串\n3\nCGI::unescape( str)对通过 escape() 编码的字符串进行解码。\n4\nCGI::escapeHTML( str)编码 HTML 特殊字符, 包括: & < >。\n5\nCGI::unescapeHTML( str)解码 HTML 特殊字符, 包括: & < >。\n6\nCGI::escapeElement( str[, element...])在指定的 HTML 元素中编码 HTML 特殊字符。\n7\nCGI::unescapeElement( str, element[, element...])在指定的 HTML 元素中解码 HTML 特殊字符。\n8\nCGI::parse( query)解析查询字符串，并返回包含哈希的 键=》值 对。\n9\nCGI::pretty( string[, leader=\" \"])返回整齐的HTML格式。 如果指定了 leader ，它将写入到每一行的开头。 leader 默认值为两个空格。\n10\nCGI::rfc1123_date( time)根据 RFC-1123 来格式化时间 (例如, Tue, 2 Jun 2008 00:00:00 GMT)。\nCGI 实例化方法\n以下实例中我们将 CGI::new 的对象赋值给 c 变量，方法列表如下：\n序号\n方法描述\n1\nc[ name]返回一个数组，包含了对应字段名为 name 的值。\n2\nc.checkbox( name[, value[, check=false]])\nc.checkbox( options)返回 HTML 字符串用于定义 checkbox 字段。标签的属性可以以一个哈希函数作为参数传递。\n3\nc.checkbox_group( name, value...)\nc.checkbox_group( options)>返回 HTML 字符串用于定义 checkbox 组。标签的属性可以以一个哈希函数作为参数传递。\n4\nc.file_field( name[, size=20[, max]])\nc.file_field( options)返回定义 file 字段的HTML字符串。\n5\nc.form([ method=\"post\"[, url]]) { ...}\nc.form( options)返回定义 form 表单的HTML字符串。 如果指定了代码块，将作为表单内容输出。标签的属性可以以一个哈希函数作为参数传递。\n6\nc.cookies返回 CGI::Cookie 对象，包含了cookie 中的键值对。\n7\nc.header([ header])返回 CGI 头部的信息。如果 header 参数是哈希值，其键 - 值对，用于创建头部信息。\n8\nc.hidden( name[, value])\nc.hidden( options)返回定义一个隐藏字段的HTML字符串。标签的属性可以以一个哈希函数作为参数传递。\n9\nc.image_button( url[, name[, alt]])\nc.image_button( options)返回定义一个图像按钮的HTML字符串。标签的属性可以以一个哈希函数作为参数传递。\n10\nc.keys返回一个数组，包含了表单的字段名。\n11\nc.key?( name)\nc.has_key?( name)\nc.include?( name)如果表单包含了指定的字段名返回 true。\n12\nc.multipart_form([ url[, encode]]) { ...}\nc.multipart_form( options) { ...}返回定义一个多媒体表单（multipart）的HTML字符串。标签的属性可以以一个哈希函数作为参数传递。\n13\nc.out([ header]) { ...}生成 HTML 并输出。使用由块的输出来创建页面的主体生成的字符串。\n14\nc.params返回包含表单字段名称和值的哈希值。\n15\nc.params= hash设置使用字段名和值。\n16\nc.password_field( name[, value[, size=40[, max]]])\nc.password_field( options)返回定义一个password字段的HTML字符串。标签的属性可以以一个哈希函数作为参数传递。\n17\nc.popup_menu( name, value...)\nc.popup_menu( options)\nc.scrolling_list( name, value...)\nc.scrolling_list( options)返回定义一个弹出式菜单的HTML字符串。标签的属性可以以一个哈希函数作为参数传递。\n18\nc.radio_button( name[, value[, checked=false]])\nc.radio_button( options)返回定义一个radio字段的HTML字符串。标签的属性可以以一个哈希函数作为参数传递。\n19\nc.radio_group( name, value...)\nc.radio_group( options)返回定义一个radio按钮组的HTML字符串。标签的属性可以以一个哈希函数作为参数传递。\n20\nc.reset( name[, value])\nc.reset( options)返回定义一个reset按钮的HTML字符串。 标签的属性可以以一个哈希函数作为参数传递\n21\nc.text_field( name[, value[, size=40[, max]]])\nc.text_field( options)返回定义一个text字段的HTML字符串。标签的属性可以以一个哈希函数作为参数传递。\n22\nc.textarea( name[, cols=70[, rows=10]]) { ...}\nc.textarea( options) { ...}返回定义一个textarea字段的HTML字符串。 如果指定了块，代码块输出的字符串将作为 textarea 的内容。 标签的属性可以以一个哈希函数作为参数传递。\nHTML 生成方法\n你可以再 CGI 实例中使用相应的 HTML 标签名来创建 HTML 标签，实例如下：\n实例",
+    "examples": [
+     "#!/usr/bin/ruby\nrequire \"cgi\"\ncgi = CGI.new(\"html4\")\ncgi.out{\n   cgi.html{\n      cgi.head{ \"\\n\"+cgi.title{\"This Is a Test\"} } +\n      cgi.body{ \"\\n\"+\n         cgi.form{\"\\n\"+\n            cgi.hr +\n            cgi.h1 { \"A Form: \" } + \"\\n\"+\n            cgi.textarea(\"get_text\") +\"\\n\"+\n            cgi.br +\n            cgi.submit\n         }\n      }\n   }\n}"
+    ]
+   },
+   {
+    "title": "Ruby CGI Session",
+    "url": "https://www.runoob.com/ruby/ruby-cgi-sessions.html",
+    "body": "CGI::Session 可以为用户和CGI环境保存持久的会话状态，会话使用后需要关闭，这样可以保证数据写入到存储当中，当会话完成后，你需要删除该数据。\n实例",
+    "examples": [
+     "#!/usr/bin/ruby\nrequire 'cgi'\nrequire 'cgi/session'\ncgi = CGI.new(\"html4\")\nsess = CGI::Session.new( cgi, \"session_key\" => \"a_test\",\n                              \"prefix\" => \"rubysess.\")\nlastaccess = sess[\"lastaccess\"].to_s\nsess[\"lastaccess\"] = Time.now\nif cgi['bgcolor'][0] =~ /[a-z]/\nsess[\"bgcolor\"] = cgi['bgcolor']\nend\ncgi.out{\n  cgi.html {\n    cgi.body (\"bgcolor\" => sess[\"bgcolor\"]){\n      \"The background of this page\"    +\n      \"changes based on the 'bgcolor'\" +\n      \"each user has in session.\"      +\n      \"Last access time: #{lastaccess}\"\n    }\n  }\n}"
+    ]
+   },
+   {
+    "title": "Ruby CGI 编程",
+    "url": "https://www.runoob.com/ruby/ruby-cgi.html",
+    "body": "Ruby 是一门通用的语言，不仅仅是一门应用于WEB开发的语言，但 Ruby 在WEB应用及WEB工具中的开发是最常见的。\n使用Ruby您不仅可以编写自己的SMTP服务器，FTP程序，或Ruby Web服务器，而且还可以使用Ruby进行CGI编程。\n接下来，让我们花点时间来学习Ruby的CGI编辑。\n网页浏览\n为了更好的了解CGI是如何工作的，我们可以从在网页上点击一个链接或URL的流程：\n1、使用你的浏览器访问URL并连接到HTTP web 服务器。\n2、Web服务器接收到请求信息后会解析URL，并查找访问的文件在服务器上是否存在，如果存在返回文件的内容，否则返回错误信息。\n3、浏览器从服务器上接收信息，并显示接收的文件或者错误信息。\nCGI程序可以是 Ruby 脚本，Python 脚本，PERL 脚本，SHELL 脚本，C 或者 C++ 程序等。\nCGI架构图\nWeb服务器支持及配置\n在你进行CGI编程前，确保您的Web服务器支持CGI及已经配置了CGI的处理程序。\nApache 支持CGI 配置：\n设置好CGI目录：\nScriptAlias /cgi-bin/ /var/www/cgi-bin/\n所有的HTTP服务器执行CGI程序都保存在一个预先配置的目录。这个目录被称为CGI目录，并按照惯例，它被命名为/var/www/cgi-bin目录。\nCGI文件的扩展名为.cgi，Ruby 也可以使用 .rb 扩展名。\n默认情况下，Linux服务器配置运行的cgi-bin目录中为/var/www。\n如果你想指定其他运行CGI脚本的目录，可以修改httpd.conf配置文件，如下所示：\n<Directory \"/var/www/cgi-bin\">\n AllowOverride None\n Options +ExecCGI\n Order allow,deny\n Allow from all\n</Directory>\n在 AddHandler 中添加 .rb 后缀，这样我们就可以访问 .rb 结尾的 Ruby 脚本文件：\nAddHandler cgi-script .cgi .pl .rb\n编写 CGI 脚本\n最基本的 Ruby CGI 代码如下所示：\n#!/usr/bin/ruby\n\nputs \"Content-type: text/html\\n\\n\"\nputs \"<html><body>This is a test</body></html>\"\n你可以将该代码保持到 test.cgi 文件中，上次到服务器并赋予足够权限，即可作为 CGI 脚本执行。\n如果你站的的地址为http://www.example.com/ ，即可用过http://www.example.com/test.cgi 访问该程序，输出结果为： \"This is a test.\"。\n浏览器访问该网址后，Web 服务器会在站点目录下找到 test.cgi文件，然后通过Ruby解析器来解析脚本代码并访问HTML文档。\n使用 cgi.rb\nRuby 可以调用 CGI 库来编写更复杂的CGI脚本。\n以下代码调用了 CGI 库来创建一个脚本的CGI脚本。\n#!/usr/bin/ruby\n\nrequire 'cgi'\n\ncgi = CGI.new\nputs cgi.header\nputs \"<html><body>This is a test</body></html>\"\n以下代码中，创建了CGI 对象并打印头部信息。\n表单处理\n使用CGI库可以通过两种方式获取表单提交（或URL中的参数）的数据，\n例如URL：/cgi-bin/test.cgi?FirstName=Zara&LastName=Ali。\n你可以使用 CGI#[] 来直接获取参数FirstName和LastName：\n#!/usr/bin/ruby\n\nrequire 'cgi'\ncgi = CGI.new\ncgi['FirstName'] # => [\"Zara\"]\ncgi['LastName'] # => [\"Ali\"]\n另外一种获取表单数据的方法：\n#!/usr/bin/ruby\n\nrequire 'cgi'\ncgi = CGI.new\nh = cgi.params # => {\"FirstName\"=>[\"Zara\"],\"LastName\"=>[\"Ali\"]}\nh['FirstName'] # => [\"Zara\"]\nh['LastName'] # => [\"Ali\"]\n以下代码用于检索所有的键值：\n#!/usr/bin/ruby\n\nrequire 'cgi'\ncgi = CGI.new\ncgi.keys # => [\"FirstName\", \"LastName\"]\n如果表单包含了多个相同名称的字段，则该相同字段的值将保存在数组中。\n以下实例中，指定表单中三个相同的字段\"name\"，值分别为 \"Zara\", \"Huma\" 和 \"Nuha\":\n#!/usr/bin/ruby\n\nrequire 'cgi'\ncgi = CGI.new\ncgi['name'] # => \"Zara\"\ncgi.params['name'] # => [\"Zara\", \"Huma\", \"Nuha\"]\ncgi.keys # => [\"name\"]\ncgi.params # => {\"name\"=>[\"Zara\", \"Huma\", \"Nuha\"]}\n注意：Ruby 会自动判断 GET 和 POST 方法，所以无需对两种方法区别对待。\n以下是相关的HML代码：\n<html>\n<body>\n<form method=\"POST\" action=\"http://www.example.com/test.cgi\">\nFirst Name :<input type=\"text\" name=\"FirstName\" value=\"\" />\n<br />\nLast Name :<input type=\"text\" name=\"LastName\" value=\"\" /> \n\n<input type=\"submit\" value=\"Submit Data\" />\n</form>\n</body>\n</html>\n创建 Form 表单和 HTML\nCGI 包含了大量的方法来创建 HTML，每个HTML标签都有相对应的方法。\n在使用这些方法前，比必须通过 CGI.new 来创建 CGI 对象。\n为了使标签的嵌套更加的简单，这些方法将内容作为了代码块，代码块将返回字符串作为标签的内容。如下所示：\n#!/usr/bin/ruby\n\nrequire \"cgi\"\ncgi = CGI.new(\"html4\")\ncgi.out{\n cgi.html{\n cgi.head{ \"\\n\"+cgi.title{\"This Is a Test\"} } +\n cgi.body{ \"\\n\"+\n cgi.form{\"\\n\"+\n cgi.hr +\n cgi.h1 { \"A Form: \" } + \"\\n\"+\n cgi.textarea(\"get_text\") +\"\\n\"+\n cgi.br +\n cgi.submit\n }\n }\n }\n}\n字符串转义\n当你在处理 URL 中的参数或者 HTML 表单数据时，需要对指定的特殊字符进行转义，如：引号（\"）,反斜杠(/)。\nRuby CGI 对象提供了CGI.escape 和 CGI.unescape 方法来处理这些特殊字符的转义：\n#!/usr/bin/ruby\n\nrequire 'cgi'\nputs CGI.escape(Zara Ali/A Sweet & Sour Girl\")\n以上代码执行结果如下：\n#!/usr/bin/ruby\n\nrequire 'cgi'\nputs CGI.escape(Zara Ali/A Sweet & Sour Girl\")\n另一组实例：\n#!/usr/bin/ruby\n\nrequire 'cgi'\nputs CGI.escapeHTML('<h1>Zara Ali/A Sweet & Sour Girl</h1>')\n以上代码执行结果如下：\n&lt;h1&gt;Zara Ali/A Sweet & Sour Girl&lt;/h1&gt;'\nCGI 类中常用的方法\n以下是Ruby中完整的CGI类的相关方法\nRuby CGI - 标准 CGI 库相关方法\nCookies 和 Sessions\nRuby CGI Cookies - 如何处理 CGI Cookies.\nRuby CGI Sessions - 如何处理 CGI sessions.",
+    "examples": []
+   },
+   {
+    "title": "Ruby 类案例",
+    "url": "https://www.runoob.com/ruby/ruby-class-case-study.html",
+    "body": "下面将创建一个名为 Customer 的 Ruby 类，声明两个方法：\ndisplay_details：该方法用于显示客户的详细信息。\ntotal_no_of_customers：该方法用于显示在系统中创建的客户总数量。\n实例",
+    "examples": [
+     "#!/usr/bin/ruby\nclass Customer\n@@no_of_customers=0\ndef initialize(id, name, addr)\n@cust_id=id\n@cust_name=name\n@cust_addr=addr\nend\ndef display_details()\nputs \"Customer id #@cust_id\"\nputs \"Customer name #@cust_name\"\nputs \"Customer address #@cust_addr\"\nend\ndef total_no_of_customers()\n@@no_of_customers += 1\nputs \"Total number of customers: #@@no_of_customers\"\nend\nend"
+    ]
+   },
+   {
+    "title": "Ruby 类和对象",
+    "url": "https://www.runoob.com/ruby/ruby-class.html",
+    "body": "Ruby 是一种完美的面向对象编程语言。面向对象编程语言的特性包括：\n数据封装\n数据抽象\n多态性\n继承\n这些特性将在 面向对象的 Ruby 中进行讨论。\n一个面向对象的程序，涉及到的类和对象。类是个别对象创建的蓝图。在面向对象的术语中，您的自行车是自行车类的一个实例。\n以车辆为例，它包括车轮（wheels）、马力（horsepower）、燃油或燃气罐容量（fuel or gas tank capacity）。这些属性形成了车辆（Vehicle）类的数据成员。借助这些属性您能把一个车辆从其他车辆中区分出来。\n车辆也能包含特定的函数，比如暂停（halting）、驾驶（driving）、超速（speeding）。这些函数形成了车辆（Vehicle）类的数据成员。因此，您可以定义类为属性和函数的组合。\n类 Vehicle 的定义如下：\n实例",
+    "examples": [
+     "Class Vehicle\n{\n   Number no_of_wheels\nNumber horsepower\nCharacters type_of_tank\nNumber Capacity\nFunction speeding\n   {\n   }\n \n   Function driving\n   {\n   }\n   \n   Function halting\n   {\n   }\n}"
+    ]
+   },
+   {
+    "title": "Ruby 命令行选项",
+    "url": "https://www.runoob.com/ruby/ruby-command-line-options.html",
+    "body": "Ruby 一般是从命令行运行，方式如下：\n$ ruby [ options ] [.] [ programfile ] [ arguments ... ]\n解释器可以通过下列选项被调用，来控制解释器的环境和行为。\n选项\n描述\n-a\n与 -n 或 -p 一起使用时，可以打开自动拆分模式(auto split mode)。请查看 -n 和 -p 选项。\n-c\n只检查语法，不执行程序。\n-C dir\n在执行前改变目录（等价于 -X）。\n-d\n启用调试模式（等价于 -debug）。\n-F pat\n指定 pat 作为默认的分离模式（$;）。\n-e prog\n指定 prog 作为程序在命令行中执行。可以指定多个 -e 选项，用来执行多个程序。\n-h\n显示命令行选项的一个概览。\n-i [ ext]\n把文件内容重写为程序输出。原始文件会被加上扩展名 ext 保存下来。如果未指定 ext，原始文件会被删除。\n-I dir\n添加 dir 作为加载库的目录。\n-K [ kcode]\n指定多字节字符集编码。e 或 E 对应 EUC（extended Unix code），s 或\nS 对应 SJIS（Shift-JIS），u 或 U 对应 UTF-8，a、A、n 或 N 对应 ASCII。\n-l\n启用自动行尾处理。从输入行取消一个换行符，并向输出行追加一个换行符。\n-n\n把代码放置在一个输入循环中（就像在 while gets; ... end 中一样）。\n-0[ octal]\n设置默认的记录分隔符（$/）为八进制。如果未指定 octal 则默认为 \\0。\n-p\n把代码放置在一个输入循环中。在每次迭代后输出变量 $_ 的值。\n-r lib\n使用 require 来加载 lib 作为执行前的库。\n-s\n解读程序名称和文件名参数之间的匹配模式 -xxx 的任何参数作为开关，并定义相应的变量。\n-T [level]\n设置安全级别，执行不纯度测试（如果未指定 level，则默认值为 1）。\n-v\n显示版本，并启用冗余模式。\n-w\n启用冗余模式。如果未指定程序文件，则从 STDIN 读取。\n-x [dir]\n删除 #!ruby 行之前的文本。如果指定了 dir，则把目录改变为 dir。\n-X dir\n在执行前改变目录（等价于 -C）。\n-y\n启用解析器调试模式。\n--copyright\n显示版权声明。\n--debug\n启用调试模式（等价于 -d）。\n--help\n显示命令行选项的一个概览（等价于 -h）。\n--version\n显示版本。\n--verbose\n启用冗余模式（等价于 -v）。设置 $VERBOSE 为 true。\n--yydebug\n启用解析器调试模式（等价于 -y）。\n单字符的命令行选项可以组合使用。下面两行表达了同样的意思：\n$ ruby -ne 'print if /Ruby/' /usr/share/bin\n\n\n$ ruby -n -e 'print if /Ruby/' /usr/share/bin",
+    "examples": []
+   },
+   {
+    "title": "Ruby 注释",
+    "url": "https://www.runoob.com/ruby/ruby-comment.html",
+    "body": "注释是在运行时会被忽略的 Ruby 代码内的注释行。单行注释以 # 字符开始，直到该行结束，如下所示：\n实例",
+    "examples": [
+     "#!/usr/bin/ruby -w\n# 这是一个单行注释。\nputs \"Hello, Ruby!\""
+    ]
+   },
+   {
+    "title": "Ruby 数据库访问 - DBI 教程",
+    "url": "https://www.runoob.com/ruby/ruby-database-access.html",
+    "body": "本章节将向您讲解如何使用 Ruby 访问数据库。Ruby DBI 模块为 Ruby 脚本提供了类似于 Perl DBI 模块的独立于数据库的接口。\nDBI 即 Database independent interface，代表了 Ruby 独立于数据库的接口。DBI 在 Ruby 代码与底层数据库之间提供了一个抽象层，允许您简单地实现数据库切换。它定义了一系列方法、变量和规范，提供了一个独立于数据库的一致的数据库接口。\nDBI 可与下列进行交互：\nADO (ActiveX Data Objects)\nDB2\nFrontbase\nmSQL\nMySQL\nODBC\nOracle\nOCI8 (Oracle)\nPostgreSQL\nProxy/Server\nSQLite\nSQLRelay",
+    "examples": []
+   },
+   {
+    "title": "Ruby 数据类型",
+    "url": "https://www.runoob.com/ruby/ruby-datatypes.html",
+    "body": "本章节我们将为大家介绍 Ruby 的基本数据类型。\nRuby支持的数据类型包括基本的Number、String、Ranges、Symbols，以及true、false和nil这几个特殊值，同时还有两种重要的数据结构——Array和Hash。\n数值类型(Number)\n1、整型(Integer)\n整型分两种，如果在31位以内（四字节），那为Fixnum实例。如果超过，即为Bignum实例。\n整数范围从 -230 到 230-1，在这个范围内的整数是类 Fixnum 的对象， 当整数值大于或等于2的30次方时（\n -262 到 262-1），会自动转化为 Bignum 类型。\n您可以在整数前使用一个可选的前导符号，一个可选的基础指标（0 对应 octal，0x 对应 hex，0b 对应 binary），后跟一串数字。下划线字符在数字字符串中被忽略。\n您可以获取一个 ASCII 字符或一个用问号标记的转义序列的整数值。\n实例",
+    "examples": [
+     "123 # Fixnum 十进制\n1_234 # Fixnum 带有下划线的十进制\n-500 # 负的 Fixnum\n0377 # 八进制\n0xff # 十六进制\n0b1011 # 二进制\n\"a\".ord # \"a\" 的字符编码\n?\\n # 换行符（0x0a）的编码\n12345678901234567890 # 大数\n#整型 Integer 以下是一些整型字面量 \n#字面量（literal）：代码中能见到的值，数值，bool值，字符串等都叫字面量 \n#如以下的0,1_000_000,0xa等 \na1=0\n#带千分符的整型 \na2=1_000_000\n#其它进制的表示 \na3=0xa\nputs a1,a2\nputs a3\n#puts print 都是向控制台打印字符，其中puts带回车换行符 \n=begin \n这是注释，称作：嵌入式文档注释 \n类似C#中的/**/ \n=end"
+    ]
+   },
+   {
+    "title": "Ruby 日期 & 时间（Date & Time）",
+    "url": "https://www.runoob.com/ruby/ruby-date-time.html",
+    "body": "Time 类在 Ruby 中用于表示日期和时间。它是基于操作系统提供的系统日期和时间之上。该类可能无法表示 1970 年之前或者 2038 年之后的日期。\n本教程将让您熟悉日期和时间的所有重要的概念。",
+    "examples": []
+   },
+   {
+    "title": "Ruby 判断",
+    "url": "https://www.runoob.com/ruby/ruby-decision.html",
+    "body": "Ruby 提供了几种很常见的条件结构。在这里，我们将解释所有的条件语句和 Ruby 中可用的修饰符。\nRuby if...else 语句\n语法",
+    "examples": [
+     "if conditional [then]\ncode...\n[elsif conditional [then]\ncode...]...\n[else\ncode...]\nend"
+    ]
+   },
+   {
+    "title": "Ruby Dir 类和方法",
+    "url": "https://www.runoob.com/ruby/ruby-dir-methods.html",
+    "body": "Dir 是一个表示用于给出操作系统中目录中的文件名的目录流。Dir 类也拥有与目录相关的操作，比如通配符文件名匹配、改变工作目录等。\n类方法\n序号\n方法 & 描述\n1\nDir[pat]\nDir::glob( pat)返回一个数组，包含与指定的通配符模式 pat 匹配的文件名：\n* - 匹配包含 null 字符串的任意字符串\n** - 递归地匹配任意字符串\n? - 匹配任意单个字符\n[...] - 匹配封闭字符中的任意一个\n{a,b...} - 匹配字符串中的任意一个\nDir[\"foo.*\"] # 匹配 \"foo.c\"、 \"foo.rb\" 等等\nDir[\"foo.?\"] # 匹配 \"foo.c\"、 \"foo.h\" 等等\n2\nDir::chdir( path)改变当前目录。\n3\nDir::chroot( path)改变根目录（只允许超级用户）。并不是在所有的平台上都可用。\n4\nDir::delete( path)删除 path 指定的目录。目录必须是空的。\n5\nDir::entries( path)返回一个数组，包含目录 path 中的文件名。\n6\nDir::foreach( path) {| f| ...}为 path 指定的目录中的每个文件执行一次块。\n7\nDir::getwd\nDir::pwd返回当前目录。\n8\nDir::mkdir( path[, mode=0777])创建 path 指定的目录。权限模式可被 File::umask 的值修改，在 Win32 的平台上会被忽略。\n9\nDir::new( path)\nDir::open( path)\nDir::open( path) {| dir| ...}返回 path 的新目录对象。如果 open 给出一个块，则新目录对象会传到该块，块会在终止前关闭目录对象。\n10\nDir::pwd参见 Dir::getwd。\n11\nDir::rmdir( path)\nDir::unlink( path)\nDir::delete( path)删除 path 指定的目录。目录必须是空的。\n实例方法\n假设 d 是 Dir 类的一个实例：\n序号\n方法 & 描述\n1\nd.close关闭目录流。\n2\nd.each {| f| ...}为 d 中的每一个条目执行一次块。\n3\nd.pos\nd.tell返回 d 中的当前位置。\n4\nd.pos= offset设置目录流中的位置。\n5\nd.pos= pos\nd.seek(pos)移动到 d 中的某个位置。pos 必须是一个由 d.pos 返回的值或 0。\n6\nd.read返回 d 的下一个条目。\n7\nd.rewind移动 d 中的位置到第一个条目。\n8\nd.seek(po s)参见 d.pos=pos。\n9\nd.tell参见 d.pos。",
+    "examples": []
+   },
+   {
+    "title": "Ruby 中文编码",
+    "url": "https://www.runoob.com/ruby/ruby-encoding.html",
+    "body": "前面章节中我们已经学会了如何用 Ruby 输出 \"Hello, World!\"，英文没有问题，但是如果你输出中文字符\"你好，世界\"就有可能会碰到中文编码问题。\nRuby 文件中如果未指定编码，在执行过程会出现报错：\n#!/usr/bin/ruby -w\n\nputs \"你好，世界！\";\n以上程序执行输出结果为：\ninvalid multibyte char (US-ASCII)\n以上出错信息显示了 Ruby 使用用 ASCII 编码来读源码，中文会出现乱码，解决方法为只要在文件开头加入 # -*- coding: UTF-8 -*-（EMAC写法） 或者 #coding=utf-8 就行了。\n实例",
+    "examples": [
+     "#!/usr/bin/ruby -w\n# -*- coding: UTF-8 -*-\nputs \"你好，世界！\";"
+    ]
+   },
+   {
+    "title": "Ruby 环境变量",
+    "url": "https://www.runoob.com/ruby/ruby-environment-variables.html",
+    "body": "Ruby 解释器使用下列环境变量来控制它的行为。ENV 对象包含了所有当前设置的环境变量列表。\n变量\n描述\nDLN_LIBRARY_PATH\n动态加载模块搜索的路径。\nHOME\n当没有参数传递给 Dir::chdir 时，要移动到的目录。也用于 File::expand_path 来扩展 \"~\"。\nLOGDIR\n当没有参数传递给 Dir::chdir 且未设置环境变量 HOME 时，要移动到的目录。\nPATH\n执行子进程的搜索路径，以及在指定 -S 选项后，Ruby 程序的搜索路径。每个路径用冒号分隔（在 DOS 和 Windows 中用分号分隔）。\nRUBYLIB\n库的搜索路径。每个路径用冒号分隔（在 DOS 和 Windows 中用分号分隔）。\nRUBYLIB_PREFIX\n用于修改 RUBYLIB 搜索路径，通过使用格式 path1;path2 或 path1path2，把库的前缀 path1 替换为 path2。\nRUBYOPT\n传给 Ruby 解释器的命令行选项。在 taint 模式时被忽略（其中，$SAFE 大于 0）。\nRUBYPATH\n指定 -S 选项后，Ruby 程序的搜索路径。优先级高于 PATH。在 taint 模式时被忽略（其中，$SAFE 大于 0）。\nRUBYSHELL\n指定执行命令时所使用的 shell。如果未设置该环境变量，则使用 SHELL 或 COMSPEC。\n对于 Unix，使用 env 命令来查看所有环境变量的列表。\nHOSTNAME=ip-72-167-112-17.ip.secureserver.net\nRUBYPATH=/usr/bin\nSHELL=/bin/bash\nTERM=xterm\nHISTSIZE=1000\nSSH_CLIENT=122.169.131.179 1742 22\nSSH_TTY=/dev/pts/1\nUSER=amrood\nJRE_HOME=/usr/java/jdk/jre\nJ2RE_HOME=/usr/java/jdk/jre\nPATH=/usr/local/bin:/bin:/usr/bin:/home/guest/bin\nMAIL=/var/spool/mail/guest\nPWD=/home/amrood\nINPUTRC=/etc/inputrc\nJAVA_HOME=/usr/java/jdk\nLANG=C\nHOME=/root\nSHLVL=2\nJDK_HOME=/usr/java/jdk\nLOGDIR=/usr/log/ruby\nLOGNAME=amrood\nSSH_CONNECTION=122.169.131.179 1742 72.167.112.17 22\nLESSOPEN=|/usr/bin/lesspipe.sh %s\nRUBYLIB=/usr/lib/ruby\nG_BROKEN_FILENAMES=1\n_=/bin/env",
+    "examples": []
+   },
+   {
+    "title": "Ruby 环境",
+    "url": "https://www.runoob.com/ruby/ruby-environment.html",
+    "body": "本地环境设置\n如果您想要设置 Ruby 编程语言的环境，请阅读本章节的内容。本章将向您讲解与环境设置有关的所有重要的主题。建议先学习下面几个主题，然后再进一步深入学习其他主题：\nLinux/Unix 上的 Ruby 安装：如果您想要在 Linux/Unix 上配置开发环境，那么请查看本章节的内容。\nWindows 上的 Ruby 安装：如果您想要在 Windows 上配置开发环境，那么请查看本章节的内容。\nRuby 命令行选项：本章节列出了所有的命令行选项，您可以和 Ruby 解释器一起使用这些命令行选项。\nRuby 环境变量：本章节列出了所有重要的环境变量列表，设置这些环境变量以便让 Ruby 解释器工作。\n流行的 Ruby 编辑器\n为了编写 Ruby 程序，您需要一个编辑器：\n如果您是在 Windows 上进行编写，那么您可以使用任何简单的文本编辑器，比如 VSCode 或 Edit plus。\nVIM（Vi IMproved）是一个简单的文本编辑器，几乎在所有的 Unix 上都是可用的，现在也能在 Windows 上使用。另外，您还可以使用您喜欢的 vi 编辑器来编写 Ruby 程序。\nRubyWin 是一个针对 Windows 的 Ruby 集成开发环境（IDE）。\nRuby Development Environment （RDE） 对于 Windows 用户来说，也是一个很好的集成开发环境（IDE）。\n交互式 Ruby（IRb）\n交互式 Ruby（IRb）为体验提供了一个 shell。在 IRb shell 内，您可以逐行立即查看解释结果。\n这个工具会随着 Ruby 的安装自动带有，所以您不需要做其他额外的事情，IRb 即可正常工作。\n只需要在命令提示符中键入 irb，一个交互式 Ruby Session 将会开始，如下所示：\n$irb\nirb 0.6.1(99/09/16)\nirb(main):001:0> def hello\nirb(main):002:1> out = \"Hello World\"\nirb(main):003:1> puts out\nirb(main):004:1> end\nnil\nirb(main):005:0> hello\nHello World\nnil\nirb(main):006:0>\n这里您可以先不用关心上面命令的执行内容，我们将在后续的章节中向您讲解。\n接下来将学习什么？\n假设现在您已经设置好 Ruby 环境，且已经做好编写第一个 Ruby 程序的准备。下一章我们将向您讲解如何编写 Ruby 程序。",
+    "examples": []
+   },
+   {
+    "title": "Ruby 异常",
+    "url": "https://www.runoob.com/ruby/ruby-exceptions.html",
+    "body": "异常和执行总是被联系在一起。如果您打开一个不存在的文件，且没有恰当地处理这种情况，那么您的程序则被认为是低质量的。\n如果异常发生，则程序停止。异常用于处理各种类型的错误，这些错误可能在程序执行期间发生，所以要采取适当的行动，而不至于让程序完全停止。\nRuby 提供了一个完美的处理异常的机制。我们可以在 begin/end 块中附上可能抛出异常的代码，并使用 rescue 子句告诉 Ruby 完美要处理的异常类型。",
+    "examples": []
+   },
+   {
+    "title": "Ruby File 类和方法",
+    "url": "https://www.runoob.com/ruby/ruby-file-methods.html",
+    "body": "File 表示一个连接到普通文件的 stdio 对象。open 为普通文件返回该类的一个实例。\n类方法\n序号\n方法 & 描述\n1\nFile::atime( path)返回 path 的最后访问时间。\n2\nFile::basename( path[, suffix])返回 path 末尾的文件名。如果指定了 suffix，则它会从文件名末尾被删除。\n例如：File.basename(\"/home/users/bin/ruby.exe\") #=> \"ruby.exe\"\n3\nFile::blockdev?( path)如果 path 是一个块设备，则返回 true。\n4\nFile::chardev?( path)如果 path 是一个字符设备，则返回 true。\n5\nFile::chmod( mode, path...)改变指定文件的权限模式。\n6\nFile::chown( owner, group, path...)改变指定文件的所有者和所属组。\n7\nFile::ctime( path)返回 path 的最后一个 inode 更改时间。\n8\nFile::delete( path...)\nFile::unlink( path...)删除指定的文件。\n9\nFile::directory?( path)如果 path 是一个目录，则返回 true。\n10\nFile::dirname( path)返回 path 的目录部分，不包括最后的文件名。\n11\nFile::executable?( path)如果 path 是可执行的，则返回 true。\n12\nFile::executable_real?( path)如果 path 通过真正的用户权限是可执行的，则返回 true。\n13\nFile::exist?( path)如果 path 存在，则返回 true。\n1\nFile::expand_path( path[, dir])返回 path 的绝对路径，扩展 ~ 为进程所有者的主目录，~user 为用户的主目录。相对路径是相对于 dir 指定的目录，如果 dir 被省略则相对于当前工作目录。\n14\nFile::file?( path)如果 path 是一个普通文件，则返回 true。\n15\nFile::ftype( path)返回下列其中一个字符串，表示文件类型：\nfile - 普通文件\ndirectory - 目录\ncharacterSpecial - 字符特殊文件\nblockSpecial - 块特殊文件\nfifo - 命名管道（FIFO）\nlink - 符号链接\nsocket - Socket\nunknown - 未知的文件类型\n16\nFile::grpowned?( path)如果 path 由用户的所属组所有，则返回 true。\n17\nFile::join( item...)返回一个字符串，由指定的项连接在一起，并使用 File::Separator 进行分隔。\n例如：File::join(\"\", \"home\", \"usrs\", \"bin\") # => \"/home/usrs/bin\"\n18\nFile::link( old, new)创建一个到文件 old 的硬链接。\n19\nFile::lstat( path)与 stat 相同，但是它返回自身符号链接上的信息，而不是所指向的文件。\n20\nFile::mtime( path)返回 path 的最后一次修改时间。\n21\nFile::new( path[, mode=\"r\"])\nFile::open( path[, mode=\"r\"])\nFile::open( path[, mode=\"r\"]) {|f| ...}打开文件。如果指定了块，则通过传递新文件作为参数来执行块。当块退出时，文件会自动关闭。这些方法有别于 Kernel.open，即使 path 是以 | 开头，后续的字符串也不会作为命令运行。\n22\nFile::owned?( path)如果 path 由有效的用户所有，则返回 true。\n23\nFile::pipe?( path)如果 path 是一个管道，则返回 true。\n24\nFile::readable?( path)如果 path 是可读的，则返回 true。\n25\nFile::readable_real?( path)如果 path 通过真正的用户权限是可读的，则返回 true。\n25\nFile::readlink( path)返回 path 所指向的文件。\n26\nFile::rename( old, new)改变文件名 old 为 new。\n27\nFile::setgid?( path)如果设置了 path 的 set-group-id 权限位，则返回 true。\n28\nFile::setuid?( path)如果设置了 path 的 set-user-id 权限位，则返回 true。\n29\nFile::size( path)返回 path 的文件大小。\n30\nFile::size?( path)返回 path 的文件大小，如果为 0 则返回 nil。\n31\nFile::socket?( path)如果 path 是一个 socket，则返回 true。\n32\nFile::split( path)返回一个数组，包含 path 的内容，path 被分成 File::dirname(path) 和 File::basename(path)。\n33\nFile::stat( path)返回 path 上带有信息的 File::Stat 对象。\n34\nFile::sticky?( path)如果设置了 path 的 sticky 位，则返回 true。\n35\nFile::symlink( old, new)创建一个指向文件 old 的符号链接。\n36\nFile::symlink?( path)如果 path 是一个符号链接，则返回 true。\n37\nFile::truncate( path, len)截断指定的文件为 len 字节。\n38\nFile::unlink( path...)删除 path 给定的文件。\n39\nFile::umask([ mask])如果未指定参数，则为该进程返回当前的 umask。如果指定了一个参数，则设置了 umask，并返回旧的 umask。\n40\nFile::utime( atime, mtime, path...)改变指定文件的访问和修改时间。\n41\nFile::writable?( path)如果 path 是可写的，则返回 true。\n42\nFile::writable_real?( path)如果 path 通过真正的用户权限是可写的，则返回 true。\n43\nFile::zero?( path)如果 path 的文件大小是 0，则返回 true。\n实例方法\n假设 f 是 File 类的一个实例：\n序号\n方法 & 描述\n1\nf.atime返回 f 的最后访问时间。\n2\nf.chmode( mode)改变 f 的权限模式。\n3\nf.chown( owner, group)改变 f 的所有者和所属组。\n4\nf.ctime返回 f 的最后一个 inode 更改时间。\n5\nf.flock( op)调用 flock(2)。op 可以是 0 或一个逻辑值或 File 类常量 LOCK_EX、LOCK_NB、LOCK_SH 和 LOCK_UN。\n6\nf.lstat与 stat 相同，但是它返回自身符号链接上的信息，而不是所指向的文件。\n7\nf.mtime返回 f 的最后修改时间。\n8\nf.path返回用于创建 f 的路径名。\n9\nf.reopen( path[, mode=\"r\"])重新打开文件。\n10\nf.truncate( len)截断 f 为 len 字节。",
+    "examples": []
+   },
+   {
+    "title": "Ruby 哈希（Hash）",
+    "url": "https://www.runoob.com/ruby/ruby-hash.html",
+    "body": "哈希（Hash）是类似 \"key\" => \"value\" 这样的键值对集合。哈希类似于一个数组，只不过它的索引不局限于使用数字。\nHash 的索引（或者叫\"键\"）几乎可以是任何对象。\nHash 虽然和数组类似，但却有一个很重要的区别：Hash 的元素没有特定的顺序。 如果顺序很重要的话就要使用数组了。",
+    "examples": []
+   },
+   {
+    "title": "Ruby 文件的输入与输出",
+    "url": "https://www.runoob.com/ruby/ruby-input-output.html",
+    "body": "Ruby 提供了一整套 I/O 相关的方法，在内核（Kernel）模块中实现。所有的 I/O 方法派生自 IO 类。\n类 IO 提供了所有基础的方法，比如 read、 write、 gets、 puts、 readline、 getc 和 printf。\n本章节将讲解所有 Ruby 中可用的基础的 I/O 函数。如需了解更多的函数，请查看 Ruby 的 IO 类。",
+    "examples": []
+   },
+   {
+    "title": "Ruby 安装 - Linux",
+    "url": "https://www.runoob.com/ruby/ruby-installation-unix.html",
+    "body": "下面列出了在 Linux 机器上安装 Ruby 的步骤。\n注意：在安装之前，请确保您有 root 权限。\n源码安装\n下载最新版的 Ruby 压缩文件。请点击这里下载。\n下载 Ruby 之后，解压到新创建的目录下：\n$ tar -xvzf ruby-2.2.3.tgz \n$ cd ruby-2.2.3\n现在，配置并编译源代码，如下所示：\n$ ./configure\n$ make\n$ sudo make install\n安装后，通过在命令行中输入以下命令来确保一切工作正常：\n$ruby -v\nruby 2.2.3……\n如果一切工作正常，将会输出所安装的 Ruby 解释器的版本，如上所示。如果您安装了其他版本，则会显示其他不同的版本。\n自动安装 Ruby\n如果您的计算机已经连接到 Internet，那么最简单安装 Ruby 的方式是使用 yum 或 apt-get。在命令提示符中输入以下的命令，即可在您的计算机上安装 Ruby。\n$ sudo yum install ruby # CentOS, Fedora, 或 RHEL 系统\n\n或\n\nsudo apt-get install ruby-full # Debian 或 Ubuntu 系统\n如果你是苹果系统，可以使用 brew 命令安装：\n$ brew install ruby\n使用 RVM 安装 Ruby\nRVM 能在系统中安装和管理多个 Ruby 版本。同时还能管理不同的 gem 集。支持 OS X、Linux 和其它类 UNIX 操作系统。\n安装 RVM\n$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB\n$ curl -sSL https://get.rvm.io | bash -s stable\n安装完成后，会列出一些安装信息，其中有一行要注意：\n...\nTo start using RVM you need to run `source /etc/profile.d/rvm.sh`\n....\n意思是如果要开始使用需要执行一个 source 命令来重新执行刚修改的初始化文件，根据安装提示，执行以下命令载入 RVM 环境（新开 Termal 就不用这么做了，会自动重新载入的）\nsource /etc/profile.d/rvm.sh\n检查一下是否安装正确\n$ rvm -v\nrvm 1.22.17 (stable) by Wayne E. Seguin <wayneeseguin@gmail.com>, Michal Papis <mpapis@gmail.com> [https://rvm.io/]\n用 RVM 安装 Ruby 环境\n列出已知的 ruby 版本:\n$ rvm list known\n可以选择现有的 rvm 版本来进行安装（下面以 rvm 2.4.2 版本的安装为例）\n$ rvm install 2.4.2\n同样继续等待漫长的下载，编译过程，完成以后，Ruby, Ruby Gems 就安装好了。\nrvm 常用命令\n查询已经安装的 ruby\n$ rvm list\n卸载一个已安装版本\n$ rvm remove 1.9.2\n设置 Ruby 版本\nRVM 装好以后，需要执行下面的命令将指定版本的 Ruby 设置为系统默认版本\n$ rvm 2.0.0 --default\n同样，也可以用其他版本号，前提是你有用 rvm install 安装过那个版本\n这个时候你可以测试是否正确\n$ ruby -v\nruby 2.0.0p247 (2013-06-27 revision 41674) [x86_64-darwin13.0.0]\n\n$ gem -v\n2.1.6\n这有可能是因为 Ruby 的默认源使用的是 cocoapods.org，国内访问这个网址有时候会有问题，网上的一种解决方案是将远替换成 ruby-china 的，替换方式如下：\n$ gem source -r https://rubygems.org/\n$ gem source -a https://gems.ruby-china.com/\n要想验证是否替换成功了，可以执行：\n$ gem sources -l\n正常的输出结果：\n*** CURRENT SOURCES ***\n\nhttps://gems.ruby-china.com/\n请确保只有 gems.ruby-china.com\n$ gem install rails\n如果你使用 Gemfile 和 Bundle (例如：Rails 项目)\n你可以用 Bundler 的 Gem 源代码镜像命令。\n$ bundle config mirror.https://rubygems.org https://gems.ruby-china.com\n这样你不用改你的 Gemfile 的 source。\nsource 'https://rubygems.org/'\ngem 'rails', '4.1.0'\n...",
+    "examples": []
+   },
+   {
+    "title": "Ruby 安装 - Windows",
+    "url": "https://www.runoob.com/ruby/ruby-installation-windows.html",
+    "body": "下面列出了在 Windows 机器上安装 Ruby 的步骤。\n下载地址：\n官网：http://rubyinstaller.org/downloads/\n国内：https://rubyinstaller.cn/\n注意：在安装时，您可能有不同的可用版本。\nWindow 系统下，我们可以使用 RubyInstaller 来安装 Ruby 环境，下载地址为：请点击这里下载。\n下载 rubyinstaller 之后，解压到新创建的目录下：\n双击 rubyinstaller-2.2.3.exe 文件，启动 Ruby 安装向导。\n点击 Next，继续向导，记得勾选 Add Ruby executables to your PATH，直到 Ruby 安装程序完成 Ruby 安装为止。\n如果您的安装没有适当地配置环境变量，接下来您可能需要进行环境变量的配置。\n如果您使用的是 Windows 9x，那么请在您的 c:\\autoexec.bat 中添加：set PATH=\"D:\\(ruby 安装目录)\\bin;%PATH%\"\nWindows NT/2000 用户需要修改注册表。\n点击控制面板|系统性能|环境变量。\n在系统变量下，选择 Path，并点击 EDIT。\n在变量值列表的末尾添加 Ruby 目录，并点击 OK。\n在系统变量下，选择 PATHEXT，并点击 EDIT。\n添加 .RB 和 .RBW 到变量值列表中，并点击 OK。\n安装后，通过在命令行中输入以下命令来确保一切工作正常：\n$ ruby -v\nruby 2.2.3\n如果一切工作正常，将会输出所安装的 Ruby 解释器的版本，如上所示。如果您安装了其他版本，则会显示其他不同的版本。",
+    "examples": []
+   },
+   {
+    "title": "Ruby 简介",
+    "url": "https://www.runoob.com/ruby/ruby-intro.html",
+    "body": "Ruby是一种纯粹的面向对象编程语言。它由日本的松本行弘（まつもとゆきひろ/Yukihiro Matsumoto）创建于1993年。\n您可以在 www.ruby-lang.org 的 Ruby 邮件列表上找到松本行弘（まつもとゆきひろ/Yukihiro Matsumoto）的名字。在 Ruby 社区，松本也被称为马茨（Matz）。\nRuby 是\"程序员的最佳朋友\"。\nRuby 的特性与 Smalltalk、Perl 和 Python 类似。Perl、Python 和 Smalltalk 是脚本语言。Smalltalk 是一个真正的面向对象语言。Ruby，与 Smalltalk 一样，是一个完美的面向对象语言。使用 Ruby 的语法比使用 Smalltalk 的语法要容易得多。",
+    "examples": []
+   },
+   {
+    "title": "Ruby 迭代器",
+    "url": "https://www.runoob.com/ruby/ruby-iterators.html",
+    "body": "简单来说：迭代(iterate)指的是重复做相同的事，所以迭代器(iterator)就是用来重复多次相同的事。\n迭代器是集合支持的方法。存储一组数据成员的对象称为集合。在 Ruby 中，数组(Array)和哈希(Hash)可以称之为集合。\n迭代器返回集合的所有元素，一个接着一个。在这里我们将讨论两种迭代器，each 和 collect。",
+    "examples": []
+   },
+   {
+    "title": "Ruby JSON",
+    "url": "https://www.runoob.com/ruby/ruby-json.html",
+    "body": "本章节我们将为大家介绍如何使用 Ruby 语言来编码和解码 JSON 对象。\n环境配置\n在使用 Ruby 编码或解码 JSON 数据前，我们需要先安装 Ruby JSON 模块。在安装该模块前你需要先安装 Ruby gem，我们使用 Ruby gem 安装 JSON 模块。\n但是，如果你使用的是最新版本的 Ruby，可能已经安装了 gem，解析来我们就可以使用以下命令来安装Ruby JSON 模块：\n$gem install json\n使用 Ruby 解析 JSON\n以下为JSON数据，将该数据存储在 input.json 文件中：\ninput.json 文件",
+    "examples": [
+     "{\n\"President\": \"Alan Isaac\",\n  \"CEO\": \"David Richardson\",\n  \n  \"India\": [\n\"Sachin Tendulkar\",\n    \"Virender Sehwag\",\n    \"Gautam Gambhir\"\n],\n \n  \"Srilanka\": [\n\"Lasith Malinga\",\n    \"Angelo Mathews\",\n    \"Kumar Sangakkara\"\n],\n \n  \"England\": [\n\"Alastair Cook\",\n    \"Jonathan Trott\",\n    \"Kevin Pietersen\"\n]\n}"
+    ]
+   },
+   {
+    "title": "Ruby 循环",
+    "url": "https://www.runoob.com/ruby/ruby-loop.html",
+    "body": "Ruby 中的循环用于执行相同的代码块若干次。本章节将详细介绍 Ruby 支持的所有循环语句。\nRuby while 语句\n语法",
+    "examples": [
+     "while conditional [do]\ncode\nend"
+    ]
+   },
+   {
+    "title": "Ruby 方法",
+    "url": "https://www.runoob.com/ruby/ruby-method.html",
+    "body": "Ruby 方法与其他编程语言中的函数类似。Ruby 方法用于捆绑一个或多个重复的语句到一个单元中。\n方法名应以小写字母开头。如果您以大写字母作为方法名的开头，Ruby 可能会把它当作常量，从而导致不正确地解析调用。\n方法应在调用之前定义，否则 Ruby 会产生未定义的方法调用异常。",
+    "examples": []
+   },
+   {
+    "title": "Ruby 模块（Module）",
+    "url": "https://www.runoob.com/ruby/ruby-module.html",
+    "body": "模块（Module）是一种把方法、类和常量组合在一起的方式。模块（Module）为您提供了两大好处。\n模块提供了一个命名空间和避免名字冲突。\n模块实现了 mixin 装置。\n模块（Module）定义了一个命名空间，相当于一个沙盒，在里边您的方法和常量不会与其他地方的方法常量冲突。\n模块类似与类，但有以下不同：\n模块不能实例化\n模块没有子类\n模块只能被另一个模块定义",
+    "examples": []
+   },
+   {
+    "title": "Ruby 多线程",
+    "url": "https://www.runoob.com/ruby/ruby-multithreading.html",
+    "body": "每个正在系统上运行的程序都是一个进程。每个进程包含一到多个线程。\n线程是程序中一个单一的顺序控制流程，在单个程序中同时运行多个线程完成不同的工作,称为多线程。\nRuby 中我们可以通过 Thread 类来创建多线程，Ruby的线程是一个轻量级的，可以以高效的方式来实现并行的代码。\n创建 Ruby 线程\n要启动一个新的线程，只需要调用 Thread.new 即可:",
+    "examples": [
+     "# 线程 #1 代码部分\nThread.new {\n  # 线程 #2 执行代码\n}\n# 线程 #1 执行代码"
+    ]
+   },
+   {
+    "title": "Ruby 连接 Mysql - MySql2",
+    "url": "https://www.runoob.com/ruby/ruby-mysql-mysql2.html",
+    "body": "前面一章节我们介绍了 Ruby DBI 的使用。这章节我们技术 Ruby 连接 Mysql 更高效的驱动 mysql2，目前也推荐使用这种方式连接 MySql。\n安装 mysql2 驱动：",
+    "examples": [
+     "gem install mysql2"
+    ]
+   },
+   {
+    "title": "Ruby 面向对象",
+    "url": "https://www.runoob.com/ruby/ruby-object-oriented.html",
+    "body": "Ruby 是纯面向对象的语言，Ruby 中的一切都是以对象的形式出现。Ruby 中的每个值都是一个对象，即使是最原始的东西：字符串、数字，甚至连 true 和 false 都是对象。类本身也是一个对象，是 Class 类的一个实例。本章将向您讲解所有与 Ruby 面向对象相关的主要功能。\n类用于指定对象的形式，它结合了数据表示法和方法，把数据整理成一个整齐的包。类中的数据和方法被称为类的成员。",
+    "examples": []
+   },
+   {
+    "title": "Ruby 运算符",
+    "url": "https://www.runoob.com/ruby/ruby-operator.html",
+    "body": "Ruby 支持一套丰富的运算符。大多数运算符实际上是方法调用。例如，a + b 被解释为 a.+(b)，其中指向变量 a 的 + 方法被调用，b 作为方法调用的参数。\n对于每个运算符（+ - * / % ** & | ^ << >> && ||），都有一个相对应的缩写赋值运算符（+= -= 等等）。",
+    "examples": []
+   },
+   {
+    "title": "Ruby 范围（Range）",
+    "url": "https://www.runoob.com/ruby/ruby-range.html",
+    "body": "范围（Range）无处不在：a 到 z、 0 到 9、等等。Ruby 支持范围，并允许我们以不同的方式使用范围：\n作为序列的范围\n作为条件的范围\n作为间隔的范围",
+    "examples": []
+   },
+   {
+    "title": "Ruby 正则表达式",
+    "url": "https://www.runoob.com/ruby/ruby-regular-expressions.html",
+    "body": "正则表达式是一种特殊序列的字符，它通过使用有专门语法的模式来匹配或查找字符串集合。\n正则表达式用事先定义好的一些特定字符、及这些特定字符的组合，组成一个\"规则字符串\"，这个\"规则字符串\"用来表达对字符串的一种过滤逻辑。\n语法\n正则表达式从字面上看是一种介于斜杠之间或介于跟在 %r 后的任意分隔符之间的模式，如下所示：",
+    "examples": [
+     "/pattern/\n/pattern/im # 可以指定选项\n%r!/usr/local! # 使用分隔符的正则表达式"
+    ]
+   },
+   {
+    "title": "Ruby RubyGems",
+    "url": "https://www.runoob.com/ruby/ruby-rubygems.html",
+    "body": "RubyGems 是 Ruby 的一个包管理器，它提供一个分发 Ruby 程序和库的标准格式，还提供一个管理程序包安装的工具。\nRubyGems 旨在方便地管理 gem 安装的工具，以及用于分发 gem 的服务器。这类似于 Ubuntu 下的apt-get, Centos 的 yum，Python 的 pip。\nRubyGems大约创建于2003年11月，从Ruby 1.9版起成为Ruby标准库的一部分。\n如果你的 Ruby 低于 1.9 版本，也可以通过手动安装:\n首先下载安装包：https://rubygems.org/pages/download。\n解压并进入目录，执行命令：ruby setup.rb\n更新 RubyGems 命令：\n$ gem update --system # 需要管理员或root用户\nGem\nGem 是 Ruby 模块 (叫做 Gems) 的包管理器。其包含包信息，以及用于安装的文件。\nGem通常是依照\".gemspec\"文件构建的，包含了有关Gem信息的YAML文件。Ruby代码也可以直接建立Gem，这种情况下通常利用Rake来进行。\ngem命令\ngem命令用于构建、上传、下载以及安装Gem包。\ngem用法\nRubyGems 在功能上与 apt-get、portage、yum 和 npm 非常相似。\n安装：\ngem install mygem\n卸载：\ngem uninstall mygem\n列出已安装的gem：\ngem list --local\n列出可用的gem，例如：\ngem list --remote\n为所有的gems创建RDoc文档：\ngem rdoc --all\n下载一个gem，但不安装：\ngem fetch mygem\n从可用的gem中搜索，例如：\ngem search STRING --remote\ngem 包的构建\ngem命令也被用来构建和维护.gemspec和.gem文件。\n利用.gemspec文件构建.gem：\ngem build mygem.gemspec\n修改国内源\n由于国内网络原因（你懂的），导致 rubygems.org 存放在 Amazon S3 上面的资源文件间歇性连接失败。\n所以你会与遇到 gem install rack 或 bundle install 的时候半天没有响应，具体可以用 gem install rails -V 来查看执行过程。\n因此我们可以将它修改为国内的下载源: https://gems.ruby-china.com首先，查看当前源：\n$ gem sources -l\n*** CURRENT SOURCES ***\n\nhttps://rubygems.org/\n接着，移除 https://rubygems.org/，并添加国内下载源 https://gems.ruby-china.com/。\n$ gem sources --remove https://rubygems.org/\n$ gem sources -a https://gems.ruby-china.com/\n$ gem sources -l\n*** CURRENT SOURCES ***\n\nhttps://gems.ruby-china.com/\n# 请确保只有 gems.ruby-china.com\n$ gem install rails\n如果你使用 Gemfile 和 Bundle (例如：Rails 项目)\n你可以用bundle的gem源代码镜像命令。\n$ bundle config mirror.https://rubygems.org https://gems.ruby-china.com/\n这样你不用改你的 Gemfile 的 source。\nsource 'https://rubygems.org/'\ngem 'rails', '4.1.0'\n...",
+    "examples": []
+   },
+   {
+    "title": "Ruby 发送邮件 - SMTP",
+    "url": "https://www.runoob.com/ruby/ruby-sending-email.html",
+    "body": "SMTP（Simple Mail Transfer Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。\nRuby提供了 Net::SMTP 来发送邮件，并提供了两个方法 new 和 start:\nnew 方法有两个参数：\nserver name 默认为 localhost\nport number 默认为 25\nstart 方法有以下参数：\nserver - SMTP 服务器 IP, 默认为 localhost\nport - 端口号，默认为 25\ndomain - 邮件发送者域名，默认为 ENV[\"HOSTNAME\"]\naccount - 用户名，默认为 nil\npassword - 用户密码，默认为nil\nauthtype - 验证类型，默认为 cram_md5\nSMTP 对象实例化方法调用了 sendmail, 参数如下：\nsource - 一个字符串或数组或每个迭代器在任一时间中返回的任何东西。\nsender -一个字符串，出现在 email 的表单字段。\nrecipients - 一个字符串或字符串数组，表示收件人的地址。\n实例\n以下提供了简单的Ruby脚本来发送邮件:\n实例",
+    "examples": [
+     "require 'net/smtp'\nmessage = <<MESSAGE_END\nFrom: Private Person <me@fromdomain.com>\nTo: A Test User <test@todomain.com>\nSubject: SMTP e-mail test\nThis is a test e-mail message.\nMESSAGE_END\nNet::SMTP.start('localhost') do |smtp|\n  smtp.send_message message, 'me@fromdomain.com', \n                             'test@todomain.com'\nend"
+    ]
+   },
+   {
+    "title": "Ruby Socket 编程",
+    "url": "https://www.runoob.com/ruby/ruby-socket-programming.html",
+    "body": "Ruby提供了两个级别访问网络的服务，在底层你可以访问操作系统，它可以让你实现客户端和服务器为面向连接和无连接协议的基本套接字支持。\nRuby 统一支持应用程序的网络协议，如FTP、HTTP等。\n不管是高层的还是底层的。ruby提供了一些基本类，让你可以使用TCP,UDP,SOCKS等很多协议交互，而不必拘泥在网络层。这些类也提供了辅助类，让你可以轻松的对服务器进行读写。\n接下来就让我们来学习如何进行 Ruby Socket 编程\n什么是 Sockets\n应用层通过传输层进行数据通信时，TCP和UDP会遇到同时为多个应用程序进程提供并发服务的问题。多个TCP连接或多个应用程序进程可能需要 通过同一个TCP协议端口传输数据。为了区别不同的应用程序进程和连接，许多计算机操作系统为应用程序与TCP／IP协议交互提供了称为套接字 (Socket)的接口，区分不同应用程序进程间的网络通信和连接。\n生成套接字，主要有3个参数：通信的目的IP地址、使用的传输 层协议(TCP或UDP)和使用的端口号。Socket原意是\"插座\"。通过将这3个参数结合起来，与一个\"插座\"Socket绑定，应用层就可以和传输 层通过套接字接口，区分来自不同应用程序进程或网络连接的通信，实现数据传输的并发服务。\nSockets 词汇解析：\n选项\n描述\ndomain\n指明所使用的协议族，通常为 PF_INET, PF_UNIX, PF_X25, 等等。\ntype\n指定socket的类型：SOCK_STREAM 或SOCK_DGRAM，Socket接口还定义了原始Socket（SOCK_RAW），允许程序使用低层协议\nprotocol\n通常赋值0。\nhostname\n网络接口的标识符：\n字符串, 可以是主机名或IP地址\n字符串 \"<broadcast>\", 指定 INADDR_BROADCAST 地址。\n0 长度的字符串, 指定INADDR_ANY\n一个整数，解释为主机字节顺序的二进制地址。\nport\nport是端口的编号，每个服务器都会监听客户端连接的一个或多个端口号，一个端口号可以是 Fixnum 的端口号, 包含了服务器名和端口。\n简单的客户端\n以下我们通过给定的主机和端口编写了一个简单的客户端实例，Ruby TCPSocket 类提供了 open 方法来打开一个 socket。\nTCPSocket.open(hosname, port ) 打开一个 TCP 连接。\n一旦你打开一个 Socket 连接，你可以像 IO 对象一样读取它，完成后，你需要像关闭文件一样关闭该连接。\n以下实例演示了如何连接到一个指定的主机，并从 socket 中读取数据，最后关闭socket：\n实例",
+    "examples": [
+     "require 'socket' # Sockets 是标准库\nhostname = 'localhost'\nport = 2000\ns = TCPSocket.open(hostname, port)\nwhile line = s.gets # 从 socket 中读取每行数据\nputs line.chop # 打印到终端\nend\ns.close # 关闭 socket"
+    ]
+   },
+   {
+    "title": "Ruby 字符串（String）",
+    "url": "https://www.runoob.com/ruby/ruby-string.html",
+    "body": "Ruby 中的 String 对象用于存储或操作一个或多个字节的序列。\nRuby 字符串分为单引号字符串（'）和双引号字符串（\"），区别在于双引号字符串能够支持更多的转义字符。\n单引号字符串\n最简单的字符串是单引号字符串，即在单引号内存放字符串：",
+    "examples": [
+     "'这是一个 Ruby 程序的字符串'"
+    ]
+   },
+   {
+    "title": "Ruby 语法",
+    "url": "https://www.runoob.com/ruby/ruby-syntax.html",
+    "body": "让我们编写一个简单的 Ruby 程序。所有的 Ruby 文件扩展名都是 .rb。所以，把下面的源代码放在 test.rb 文件中。\n实例",
+    "examples": [
+     "#!/usr/bin/ruby -w\nputs \"Hello, Ruby!\";"
+    ]
+   },
+   {
+    "title": "Ruby 教程",
+    "url": "https://www.runoob.com/ruby/ruby-tutorial.html",
+    "body": "Ruby 是一种开源的面向对象程序设计的服务器端脚本语言，在 20 世纪 90 年代中期由日本的松本行弘（まつもとゆきひろ/Yukihiro Matsumoto）设计并开发。在 Ruby 社区，松本也被称为马茨（Matz）。Ruby 可运行于多种平台，如 Windows、MAC OS 和 UNIX 的各种版本。\n学习本教程，您将对 Ruby 有一个全面的了解。\n现在开始学习 Ruby！",
+    "examples": []
+   },
+   {
+    "title": "Ruby 变量",
+    "url": "https://www.runoob.com/ruby/ruby-variable.html",
+    "body": "变量是持有可被任何程序使用的任何数据的存储位置。\nRuby 支持五种类型的变量。\n一般小写字母、下划线开头：变量（Variable）。\n$开头：全局变量（Global variable）。\n@开头：实例变量（Instance variable）。\n@@开头：类变量（Class variable）类变量被共享在整个继承链中\n大写字母开头：常数（Constant）。\n您已经在前面的章节中大概了解了这些变量，本章节将为您详细讲解这五种类型的变量。\nRuby 全局变量\n全局变量以 $ 开头。未初始化的全局变量的值为 nil，在使用 -w 选项后，会产生警告。\n给全局变量赋值会改变全局状态，所以不建议使用全局变量。\n下面的实例显示了全局变量的用法。\n实例",
+    "examples": [
+     "#!/usr/bin/ruby\n# -*- coding: UTF-8 -*-\n$global_variable = 10\nclass Class1\ndef print_global\nputs \"全局变量在 Class1 中输出为 #$global_variable\"\nend\nend\nclass Class2\ndef print_global\nputs \"全局变量在 Class2 中输出为 #$global_variable\"\nend\nend\nclass1obj = Class1.new\nclass1obj.print_global\nclass2obj = Class2.new\nclass2obj.print_global"
+    ]
+   },
+   {
+    "title": "Ruby Web Service 应用 - SOAP4R",
+    "url": "https://www.runoob.com/ruby/ruby-web-services.html",
+    "body": "什么是 SOAP？\n简单对象访问协议(SOAP,全写为Simple Object Access Protocol)是交换数据的一种协议规范。\nSOAP 是一种简单的基于 XML 的协议，它使应用程序通过 HTTP 来交换信息。\n简单对象访问协议是交换数据的一种协议规范，是一种轻量的、简单的、基于XML（标准通用标记语言下的一个子集）的协议，它被设计成在WEB上交换结构化的和固化的信息。\n更多 SOAP 教程请查看：http://www.w3cschool.cc/soap/soap-tutorial.html。\nSOAP4R 安装\nSOAP4R 由Hiroshi Nakamura开发实现，用于 Ruby 的 SOAP 应用。\nSOAP4R 下载地址：http://raa.ruby-lang.org/project/soap4r/。\n注意：你的ruby环境可能已经安装了该该组件。\nLinux 环境下你也可以使用 gem 来安装该组件，命令如下：",
+    "examples": [
+     "gem install soap4r --include-dependencies"
+    ]
+   },
+   {
+    "title": "Ruby XML, XSLT 和 XPath 教程",
+    "url": "https://www.runoob.com/ruby/ruby-xml-xslt-xpath.html",
+    "body": "什么是 XML ?\nXML 指可扩展标记语言（eXtensible Markup Language）。\n可扩展标记语言，标准通用标记语言的子集，一种用于标记电子文件使其具有结构性的标记语言。\n它可以用来标记数据、定义数据类型，是一种允许用户对自己的标记语言进行定义的源语言。 它非常适合万维网传输，提供统一的方法来描述和交换独立于应用程序或供应商的结构化数据。\n更多内容请查看我们的 XML 教程\nXML解析器结构和API\nXML的解析器主要有DOM和SAX两种。\nSAX解析器是基于事件处理的，需要从头到尾把XML文档扫描一遍，在扫描的过程中，每次遇到一个语法结构时，就会调用这个特定语法结构的事件处理程序，向应用程序发送一个事件。\nDOM是文档对象模型解析，构建文档的分层语法结构，在内存中建立DOM树，DOM树的节点以对象的形式来标识，文档解析文成以后，文档的整个DOM树都会放在内存中。\nRuby 中解析及创建 XML\nRUBY中对XML的文档的解析可以使用这个库REXML库。\nREXML库是ruby的一个XML工具包，是使用纯Ruby语言编写的，遵守XML1.0规范。\n在Ruby1.8版本及其以后，RUBY标准库中将包含REXML。\nREXML库的路径是： rexml/document\n所有的方法和类都被封装到一个REXML模块内。\nREXML解析器比其他的解析器有以下优点：\n100% 由 Ruby 编写。\n可适用于 SAX 和 DOM 解析器。\n它是轻量级的,不到2000行代码。\n很容易理解的方法和类。\n基于 SAX2 API 和完整的 XPath 支持。\n使用 Ruby 安装，而无需单独安装。\n以下为实例的 XML 代码，保存为movies.xml:",
+    "examples": [
+     "<collection shelf=\"New Arrivals\">\n<movie title=\"Enemy Behind\">\n<type>War, Thriller</type>\n<format>DVD</format>\n<year>2003</year>\n<rating>PG</rating>\n<stars>10</stars>\n<description>Talk about a US-Japan war</description>\n</movie>\n<movie title=\"Transformers\">\n<type>Anime, Science Fiction</type>\n<format>DVD</format>\n<year>1989</year>\n<rating>R</rating>\n<stars>8</stars>\n<description>A schientific fiction</description>\n</movie>\n<movie title=\"Trigun\">\n<type>Anime, Action</type>\n<format>DVD</format>\n<episodes>4</episodes>\n<rating>PG</rating>\n<stars>10</stars>\n<description>Vash the Stampede!</description>\n</movie>\n<movie title=\"Ishtar\">\n<type>Comedy</type>\n<format>VHS</format>\n<rating>PG</rating>\n<stars>2</stars>\n<description>Viewable boredom</description>\n</movie>\n</collection>"
+    ]
+   }
+  ]
+ }
+}

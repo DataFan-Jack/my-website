@@ -1,0 +1,348 @@
+{
+ "tutorial": {
+  "name": "Kotlin",
+  "category": "后端开发",
+  "desc": "Kotlin 是一门运行在 Java 虚拟机上的静态类型编程语言，由 JetBr",
+  "url": "https://www.runoob.com/kotlin/",
+  "chapters": [
+   {
+    "title": "Kotlin 注解",
+    "url": "https://www.runoob.com/kotlin/kotlin-annotation.html",
+    "body": "注解（Annotation）是一种给代码附加元数据的机制，它本身不影响程序逻辑，但能被编译器、框架和注解处理器读取。\nKotlin 的注解既能作用于 Kotlin 自身的声明，也能精确指定落到 JVM 的哪个位置，比如字段、getter 或 setter。\n本章节讲注解的定义与元注解、参数类型、使用处目标，以及日常开发最常用的内置注解。\n注解的定义与使用\n用 annotation class 定义一个注解，它也可以有构造参数。\n使用注解时把 @注解名 放在目标声明之前，带参数的注解用括号传入实参。\n实例",
+    "examples": [
+     "// 定义一个注解：@Target 限定能用在哪里，@Retention 决定能否在运行时读到\n@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)\n@Retention(AnnotationRetention.RUNTIME)\n@MustBeDocumented\nannotation class ApiDoc(\n    val author: String,                  // 必填参数\n    val version: String = \"1.0\",         // 可选参数，有默认值\n    val tags: Array<String> = []         // 数组参数\n)\n\n@ApiDoc(author = \"RUNOOB\", version = \"2.2\", tags = [\"collection\", \"annotation\"])\nclass SiteService {\n    @ApiDoc(author = \"RUNOOB\")\n    fun listSites(): List<String> = listOf(\"runoob\", \"RUNOOB\")\n}\n\nfun main() {\n    // 通过 Java 反射读取运行时注解，不需要额外引入 kotlin-reflect\n    val clazz = SiteService::class.java\n    val classDoc = clazz.getAnnotation(ApiDoc::class.java)\n    println(\"类注解：author=${classDoc.author}, version=${classDoc.version}, tags=${classDoc.tags.toList()}\")\n\n    // 方法上的注解同样可以读取\n    val method = clazz.getDeclaredMethod(\"listSites\")\n    val methodDoc = method.getAnnotation(ApiDoc::class.java)\n    println(\"方法注解：author=${methodDoc.author}, version=${methodDoc.version}\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 基础语法",
+    "url": "https://www.runoob.com/kotlin/kotlin-basic-syntax.html",
+    "body": "本文从包声明和程序入口开始，逐步介绍 Kotlin 最基础也最常用的语法要素。\n这些规则几乎会出现在之后每一篇教程里，值得先花时间弄明白。\n包声明与 import\n包声明写在源文件最上方，用来给代码分组并避免命名冲突。\n包名不要求与目录结构完全一致，但保持一致是通行做法，工程上几乎都会遵守。\n实例",
+    "examples": [
+     "// 文件路径：com/runoob/Util.kt\npackage com.runoob                    // 包声明必须在文件第一行（注释除外）\n\nimport kotlin.math.PI                 // 导入单个声明\nimport kotlin.math.sqrt               // 每行导入一个\n\nfun circleArea(r: Double): Double = PI * r * r\n\nfun main() {\n    println(\"半径 2 的圆面积：${sqrt(circleArea(2.0) / PI)}\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 基本数据类型",
+    "url": "https://www.runoob.com/kotlin/kotlin-basic-types.html",
+    "body": "Kotlin 是一门静态类型语言，变量在声明时类型就已经确定，编译器会在编译期检查类型是否正确。\nKotlin 把数据分为数值类型（Byte、Short、Int、Long、Float、Double）、布尔类型 Boolean、字符类型 Char、字符串类型 String 以及数组类型等。\n本篇介绍这些基本类型的取值范围、字面量写法和相互转换规则，它们是后面学习函数、集合和面向对象的基础。\n数值类型与位宽\nKotlin 的数值类型与 Java 基本一致，但有一个重要区别：Kotlin 的 Char 不属于数值类型，不能直接参与数值运算。\n下表列出了六种数值类型的位宽与取值范围。\n类型\n位宽\n取值范围\n说明\nByte\n8\n-128 ~ 127\n最小的整数类型\nShort\n16\n-32768 ~ 32767\n较少使用\nInt\n32\n-2147483648 ~ 2147483647\n整数的默认类型\nLong\n64\n-9223372036854775808 ~ 9223372036854775807\n字面量需要加 L 后缀\nFloat\n32\n约 ±3.4×1038\n单精度，6~7 位有效数字，字面量加 f 后缀\nDouble\n64\n约 ±1.8×10308\n双精度，15~16 位有效数字，浮点的默认类型\n在 JVM 平台上，非空的 Int、Long、Double 会直接使用 Java 的 int、long、double 基本类型表示，不会产生额外的对象开销。\n只有把它们放进泛型、或者声明为可空类型（例如 Int?）时，才会发生装箱（boxing），变成 Integer、Long 这样的对象。\n位宽与溢出\n每种整数类型的位宽是固定的，运算结果超出范围时会发生溢出，而不是抛出异常。\n下面的例子演示了 Int 的边界行为。\n实例",
+    "examples": [
+     "fun main() {\n    val max = Int.MAX_VALUE      // Int 的最大值\n    println(max)                 // 2147483647\n    println(max + 1)             // -2147483648，溢出后绕回最小值\n\n    val min = Int.MIN_VALUE      // Int 的最小值\n    println(min)                 // -2147483648\n    println(min - 1)             // 2147483647，向另一个方向溢出\n\n    // 需要更大范围时使用 Long，注意先把 Int 转成 Long 再相加\n    val big = Int.MAX_VALUE.toLong() + 1\n    println(big)                 // 2147483648\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 类与对象",
+    "url": "https://www.runoob.com/kotlin/kotlin-class-object.html",
+    "body": "类是对数据和行为的封装，对象是类的一个具体实例。\n本章节从最简单的空类讲起，逐步覆盖属性、构造器、初始化块、内部类和访问修饰符，这些是后面学习继承与接口的地基。\n类的定义\nKotlin 用 class 关键字定义类，类名后面可以跟主构造器，类体写在大括号里。\n创建一个对象不需要 new 关键字，直接写类名加括号即可，这一点与 Java 不同。\n实例",
+    "examples": [
+     "// 文件路径：Main.kt\n\n// 空类：没有类体，大括号可以省略\nclass Runoob\n\n// 带空主构造器的类，与上面写法等价\nclass RunoobSite()\n\nfun main() {\n    // 不需要 new，直接调用类名创建对象\n    val a = Runoob()\n    val b = RunoobSite()\n\n    println(\"a 的类型：${a::class.simpleName}\")\n    println(\"b 的类型：${b::class.simpleName}\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 集合操作",
+    "url": "https://www.runoob.com/kotlin/kotlin-collection-ops.html",
+    "body": "Kotlin 标准库为集合提供了一整套链式操作函数，把「筛选、变换、汇总、排序、分组、查找」这些常见任务写成一行表达式即可完成。\n这些函数绝大多数返回新集合，不会改动原集合，因此可以放心地串起来使用。\n本章节按七个类别讲解最常用的集合操作，每个函数都配有可直接运行的示例和真实输出。\n过滤\n过滤操作按条件挑选元素，结果是一个新列表，原集合保持不变。\n函数\n作用\n返回类型\nfilter\n保留使 lambda 返回 true 的元素\nList<T>\nfilterNot\n保留使 lambda 返回 false 的元素，即 filter 的反面\nList<T>\nfilterNotNull\n去掉所有 null，并把元素类型从 T? 收窄为 T\nList<T>\npartition\n按一个条件拆成「满足」和「不满足」两个列表\nPair<List<T>, List<T>>\n实例",
+    "examples": [
+     "fun main() {\n    val numbers = listOf(1, 2, 3, 4, 5, 6)\n\n    // filter：只保留偶数\n    val evens = numbers.filter { it % 2 == 0 }\n    println(\"偶数：$evens\")\n\n    // filterNot：保留不满足条件的元素，等价于 filter { !... }\n    val odds = numbers.filterNot { it % 2 == 0 }\n    println(\"奇数：$odds\")\n\n    // filterNotNull：去掉 null，结果类型自动变成 List<String>\n    val raw = listOf(\"runoob\", null, \"RUNOOB\", null, \"kotlin\")\n    val clean: List<String> = raw.filterNotNull()\n    println(\"去空后：$clean\")\n\n    // partition：一次得到两组结果，用解构声明分别接收\n    val (big, small) = numbers.partition { it > 3 }\n    println(\"大于 3：$big\")\n    println(\"小于等于 3：$small\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 集合",
+    "url": "https://www.runoob.com/kotlin/kotlin-collections.html",
+    "body": "集合是日常开发中用得最多的数据结构，Kotlin 在 Java 集合框架之上重新设计了接口层次。\n它把\"只读\"和\"可变\"拆成两套接口，让函数签名能明确表达\"我不会修改这个集合\"，同时保持了与 Java 集合的完全互操作。\n集合层次结构\nKotlin 的集合接口都在 kotlin.collections 包中，该包默认导入，不需要写 import。\nList 和 Set 属于同一个继承链，Map 则是完全独立的一支，不继承 Collection 也不继承 Iterable。\n只读接口\n可变接口\n特点\nIterable<T>\nMutableIterable<T>\n集合层次根接口，支持 for 循环遍历\nCollection<T>\nMutableCollection<T>\n在 Iterable 之上增加 size、isEmpty、contains\nList<T>\nMutableList<T>\n有序、元素可重复、支持下标访问\nSet<T>\nMutableSet<T>\n元素唯一，重复添加会被忽略\nMap<K, V>\nMutableMap<K, V>\n键值对集合，键唯一，独立于 Collection\n注意：Map 不是 Collection。它既不能直接用于 for 循环，也没有 size 之外的 Collection 方法，遍历时需要访问 keys、values 或 entries。\n只读接口与可变接口\n只读接口只提供读取方法，没有 add、remove、clear 这些修改操作。\n把集合声明成 List 类型，调用方就无法往里添加元素，这个约束由编译器强制保证。\n实例",
+    "examples": [
+     "fun main() {\n    val mutable = mutableListOf(\"Runoob\", \"RUNOOB\")\n\n    // 同一个对象，用只读接口引用它\n    val readOnly: List<String> = mutable\n\n    // readOnly.add(\"Kotlin\")  // 编译错误：List 接口没有 add 方法\n\n    // 通过可变引用依然可以修改\n    mutable.add(\"Kotlin\")\n\n    // 只读引用看到的是同一个对象，因此也能看到变化\n    println(readOnly)\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 命令行编译与 REPL",
+    "url": "https://www.runoob.com/kotlin/kotlin-command-line.html",
+    "body": "不装 IDE 也能写 Kotlin，官方提供的 kotlinc 编译器足以完成编译、打包和运行。\n本文介绍 kotlinc 的安装、常用参数、交互式 REPL，以及 .kts 脚本模式。\n安装 kotlinc\nkotlinc 是 Kotlin 的命令行编译器，随 Kotlin 发行版一起分发。\n不同系统有不同的安装方式，选一种即可，安装完成后命令会加入 PATH。\n方式\n适用系统\n安装命令\nSDKMAN!\nmacOS / Linux / WSL\nsdk install kotlin\nHomebrew\nmacOS\nbrew install kotlin\nMacPorts\nmacOS\nsudo port install kotlin\n手动下载\n全平台\n从 GitHub Releases 下载 zip 后解压并配置 PATH\nSDKMAN! 是最省心的方式，安装和切换版本都很方便。\n$ curl -s https://get.sdkman.io | bash\n$ source \"$HOME/.sdkman/bin/sdkman-init.sh\"\n$ sdk install kotlin\n\nDownloading: kotlin 2.2.0\nIn progress...\nInstalling: kotlin 2.2.0\nDone installing!\n\nSetting kotlin 2.2.0 as default.\n手动下载时请打开官方发布页，选择最新版本，不要照抄旧教程里写死的旧版本号。\n下载地址：https://github.com/JetBrains/kotlin/releases/latest\n解压后在环境变量中把 kotlinc/bin 目录加进 PATH 即可。\n$ export PATH=\"$PATH:/opt/kotlinc/bin\"\n\n# 把上面这行写进 ~/.zshrc 或 ~/.bashrc，重启终端后永久生效\n注意：Kotlin 2.2 运行需要 JDK 8 及以上。安装 kotlinc 前先执行 java -version 确认 JDK 已就绪。\n验证安装\n安装完成后，用 -version 参数确认版本信息。\n$ kotlinc -version\ninfo: kotlinc-jvm 2.2.0 (JRE 17.0.11+9)\n输出中的 kotlinc-jvm 表示当前是 JVM 后端，括号里是运行编译器所用的 JRE 版本。\n如果提示 command not found，说明 PATH 没有配置正确。\n编译并运行第一个程序\n先准备一个最简单的源文件，文件名必须与扩展名 .kt 一致。\n实例",
+    "examples": [
+     "// 文件路径：hello.kt\nfun main() {\n    println(\"Hello, Runoob!\")            // 输出一行文本\n    println(\"欢迎来到 www.runoob.com\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 条件控制",
+    "url": "https://www.runoob.com/kotlin/kotlin-condition-control.html",
+    "body": "条件控制让程序根据不同的情况执行不同的代码。\nKotlin 提供 if 和 when 两种条件结构，它们都是表达式，可以直接把结果赋给变量。\n本篇介绍 if 的各种写法、when 的分支条件与穷尽性规则，以及 Kotlin 2.2 起稳定的 when 守卫条件。\nif 表达式\nif 的基本写法与 Java 类似，括号里是条件，条件为真时执行花括号里的代码。\n当分支里只有一条语句时，花括号可以省略，但建议保留，可读性更好。\n实例",
+    "examples": [
+     "fun main() {\n    val age = 18\n\n    if (age >= 18) {\n        println(\"已成年\")\n    }\n\n    // 单条语句可以省略花括号\n    if (age >= 18) println(\"已成年（省略花括号）\")\n\n    // 条件不成立时执行 else\n    if (age < 18) {\n        println(\"未成年\")\n    } else {\n        println(\"成年\")\n    }\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 协程",
+    "url": "https://www.runoob.com/kotlin/kotlin-coroutines.html",
+    "body": "协程是一种可以挂起和恢复的轻量级线程，用来解决异步任务写法复杂、回调嵌套过深的问题。\n用协程写出来的异步代码和同步代码结构几乎一样，但执行时不会阻塞线程。\n什么是协程\n传统的异步编程依赖回调，几个任务一嵌套就形成了「回调地狱」，错误处理也很分散。\n另一种做法是开线程，但线程由操作系统调度，创建成本高，数量一多切换开销就上来了。\n协程走的是第三条路：它运行在线程之上，由编译器生成的代码负责挂起和恢复，一个线程可以同时跑成千上万个协程。\n关键在于「挂起」不等于「阻塞」：协程遇到耗时操作时会让出线程，线程去执行别的任务，等结果就绪后再把协程恢复回来。\n所以协程特别适合网络请求、文件读写、数据库访问这类等待时间远大于计算时间的场景。\n协程在 Kotlin 1.3 起成为稳定特性，API 由官方库 kotlinx-coroutines 提供。\n第一个协程\n最常用的两个构建器是 runBlocking 和 launch。\nrunBlocking 会阻塞当前线程直到内部所有协程结束，通常只在 main 函数和测试里使用。\nlaunch 启动一个不阻塞当前线程的协程，返回一个 Job 对象。\n实例",
+    "examples": [
+     "import kotlinx.coroutines.delay\nimport kotlinx.coroutines.launch\nimport kotlinx.coroutines.runBlocking\n\nfun main() = runBlocking {          // 阻塞主线程，直到内部协程全部完成\n    println(\"开始，线程：${Thread.currentThread().name}\")\n\n    launch {                       // 启动协程，不阻塞后面的代码\n        delay(100)                 // 挂起 100 毫秒，线程此时可以去干别的\n        println(\"协程 A 完成\")\n    }\n\n    launch {\n        delay(50)\n        println(\"协程 B 完成\")\n    }\n\n    println(\"main 协程继续执行\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 数据类与解构",
+    "url": "https://www.runoob.com/kotlin/kotlin-data-class.html",
+    "body": "数据类专门用来保存数据，只要在 class 前面加上 data，编译器就会自动生成一组常用方法。\n这些方法包括 equals、hashCode、toString、componentN 和 copy，省去大量重复代码。\n配合解构声明，还能把对象里的属性一次性拆到多个变量中。\n定义一个数据类\n数据类的写法很简单，主构造器里至少要有一个参数，并且参数都要标上 val 或 var。\n实例",
+    "examples": [
+     "// data 关键字写在 class 之前\ndata class RunoobSite(val name: String, val url: String, val age: Int)\n\nfun main() {\n    val site = RunoobSite(\"菜鸟教程\", \"www.runoob.com\", 12)\n\n    println(site)      // 自动生成的 toString()\n    println(site.name) // 属性照常访问\n\n    val same = RunoobSite(\"菜鸟教程\", \"www.runoob.com\", 12)\n    println(site == same)                              // 自动生成的 equals()\n    println(site.hashCode() == same.hashCode())        // 自动生成的 hashCode()\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 委托",
+    "url": "https://www.runoob.com/kotlin/kotlin-delegated.html",
+    "body": "委托是一种基础的设计模式：一个对象把请求转交给另一个对象来处理。\nKotlin 用 by 关键字直接支持委托，编译器会自动生成转发代码，比手写委托类简洁得多。\nKotlin 的委托分为两类：类委托和属性委托，本章节会逐一讲解，并说明编译器的翻译规则。\n类委托\n类委托的写法是在类头后面加 : 接口 by 委托对象，编译器会为接口中的每个方法生成转发实现。\n实例",
+    "examples": [
+     "interface Base {\n    fun print()\n}\n\n// 被委托的类\nclass BaseImpl(private val x: Int) : Base {\n    override fun print() {\n        println(\"BaseImpl: $x\")\n    }\n}\n\n// Derived 把 Base 接口的实现委托给构造参数 b\nclass Derived(b: Base) : Base by b\n\nfun main() {\n    val b = BaseImpl(10)\n    Derived(b).print()   // 实际调用的是 b.print()\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 枚举类",
+    "url": "https://www.runoob.com/kotlin/kotlin-enum-classes.html",
+    "body": "枚举类用来定义一组固定的常量，每个常量都是这个枚举类的一个实例。\n相比散落各处的字符串或数字常量，枚举让类型更安全，也让 when 分支可以被编译器检查。\nKotlin 的枚举还可以带构造参数、实现接口，甚至让每个常量拥有自己的方法实现。\n定义枚举类\n用 enum class 声明枚举，常量之间用逗号分隔，末尾不需要分号。\n实例",
+    "examples": [
+     "enum class RunoobColor {\n    RED, GREEN, BLUE\n}\n\nfun main() {\n    val color = RunoobColor.RED\n    println(color)                    // 直接打印就是常量名\n    println(RunoobColor.RED.name)     // name 属性\n    println(RunoobColor.RED.ordinal)  // ordinal 从 0 开始\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 环境搭建",
+    "url": "https://www.runoob.com/kotlin/kotlin-environment.html",
+    "body": "写 Kotlin 代码之前，需要先准备一个能编译和运行它的环境。\n本文介绍五种常见方式，从最省事的在线运行到正式项目的 Gradle、Maven 与 Android Studio 配置。\n五种运行方式对比\n不同方式适合不同阶段，先看一张对比表再决定从哪里开始。\n方式\n安装成本\n适用场景\n是否推荐长期使用\n在线运行\n无需安装\n学习语法、验证小段代码\n否\nIntelliJ IDEA\n安装 IDE 与 JDK\n本地学习、调试、阅读源码\n是\n命令行 kotlinc\n安装编译器\n理解编译过程、写小脚本\n视情况\nGradle\n安装 JDK 即可\n正式 Kotlin/JVM 项目\n是\nMaven\n安装 JDK 即可\n已有 Maven 体系的项目\n是\nAndroid Studio\n安装 IDE 与 SDK\nAndroid 应用开发\n是\n注意：Kotlin 2.2 要求 JDK 8 及以上。旧教程里写的「JDK 1.6」早已不受支持，按那个版本配置会直接报错。\n在线运行\n如果只想马上试一行代码，在线工具是最快的方式，连 JDK 都不用装。\n官方 Playground 地址是 play.kotlinlang.org，打开就能编辑并运行。\n把下面的代码粘贴进去，点击 Run 即可看到输出。\n实例",
+    "examples": [
+     "// 在线运行的最小示例\nfun main() {\n    val siteName = \"菜鸟教程\"                  // 声明不可变变量\n    println(\"Hello, $siteName!\")               // 字符串模板\n    println(\"网址：www.runoob.com\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 异常处理",
+    "url": "https://www.runoob.com/kotlin/kotlin-exception.html",
+    "body": "异常是程序运行过程中出现的意外情况，Kotlin 用 try-catch 捕获它们，让程序在出错后仍能继续执行。\n与 Java 相比，Kotlin 最大的不同是没有受检异常，编译器不再强迫你为每个方法声明它可能抛出的异常。\n本章节从异常层次讲到资源自动关闭，覆盖日常开发中会用到的全部异常处理手段。\n异常层次\nKotlin 的异常体系与 JVM 一致，根类型是 Throwable，下面分成 Error 和 Exception 两支。\n类型\n含义\n典型子类\n是否应该捕获\nThrowable\n所有可抛出对象的根类型\nException、Error\n一般不直接捕获\nError\nJVM 层面的严重错误，程序通常无法恢复\nOutOfMemoryError、StackOverflowError\n不建议捕获\nException\n程序逻辑或运行环境导致的问题，可以恢复\nIOException、IllegalArgumentException\n应该处理\nRuntimeException\n运行时才暴露的异常，Kotlin 中没有受检异常，绝大多数异常属于这一支\nNullPointerException、IndexOutOfBoundsException\n按需处理\n提示：不要把 Error 也一并捕获。像内存耗尽、栈溢出这类问题，即使捕获了也无从恢复，反而会掩盖真正的故障。\ntry-catch-finally\ntry 块放可能出错的代码，catch 块按异常类型依次匹配，finally 块无论是否发生异常都会执行。\ncatch 的匹配是从上到下的，因此子类型要写在父类型前面。\n实例",
+    "examples": [
+     "fun main() {\n    // 依次处理三种输入，观察不同 catch 分支的匹配\n    val inputs = listOf(\"42\", \"runoob\", null)\n\n    for (input in inputs) {\n        try {\n            // input 是 String?，!! 在遇到 null 时抛出 NullPointerException\n            val value: Int = input!!.toInt()\n            println(\"$input 转换成功：$value\")\n        } catch (e: NumberFormatException) {\n            // 字符串不是合法数字时进入这里\n            println(\"数字格式错误：${e.message}\")\n        } catch (e: NullPointerException) {\n            println(\"遇到 null 值\")\n        } finally {\n            // 无论成功还是失败都会执行，适合放清理逻辑\n            println(\"--- 处理完一轮 ---\")\n        }\n    }\n\n    println(\"循环结束，程序继续运行\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 继承",
+    "url": "https://www.runoob.com/kotlin/kotlin-extend.html",
+    "body": "继承让子类复用父类的属性和方法，并在需要时改写它们的行为。\nKotlin 的继承比 Java 更保守：类和方法默认都是 final 的，必须显式打开才能被继承或重写。\nAny 与通用方法\nKotlin 中所有类都有一个共同的超类 Any，没有显式写父类的类都默认继承它。\nAny 声明了三个方法：equals()、hashCode() 和 toString()，它们的默认实现都可以被子类重写。\n实例",
+    "examples": [
+     "// 文件路径：Main.kt\nclass Site(val name: String, val url: String) {\n    // 重写 toString，让打印结果可读\n    override fun toString(): String = \"Site(name=$name, url=$url)\"\n\n    // 重写 equals，改为按内容比较\n    override fun equals(other: Any?): Boolean {\n        if (this === other) return true\n        if (other !is Site) return false\n        return name == other.name && url == other.url\n    }\n\n    // 重写 equals 后必须一起重写 hashCode，保证相等对象哈希码相同\n    override fun hashCode(): Int = 31 * name.hashCode() + url.hashCode()\n}\n\nfun main() {\n    val a = Site(\"RUNOOB\", \"www.runoob.com\")\n    val b = Site(\"RUNOOB\", \"www.runoob.com\")\n\n    println(a)\n    println(\"a == b：${a == b}\")                     // 内容相等\n    println(\"a === b：${a === b}\")                   // 不是同一个对象\n    println(\"哈希码相同：${a.hashCode() == b.hashCode()}\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 扩展",
+    "url": "https://www.runoob.com/kotlin/kotlin-extensions.html",
+    "body": "Kotlin 可以在不修改原类、不使用继承、也不套用装饰器模式的前提下，给一个类添加新的函数和属性。\n这种能力叫扩展，它让代码可以像调用成员一样调用你补上去的函数，读起来非常自然。\n但扩展本质上只是静态的语法糖，它不会真的往被扩展的类里插入任何成员，理解这一点是掌握扩展的关键。\n扩展函数\n扩展函数的写法是在函数名前写上接收者类型和一个点号，接收者就是这个函数要扩展的类。\n实例",
+    "examples": [
+     "class User(var name: String)\n\n// 给 User 类扩展一个 printInfo 函数\nfun User.printInfo() {\n    println(\"用户名 $name\")\n}\n\nfun main() {\n    val user = User(\"Runoob\")\n    user.printInfo()   // 像调用成员函数一样调用扩展函数\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 函数",
+    "url": "https://www.runoob.com/kotlin/kotlin-function.html",
+    "body": "函数是组织代码的基本单位，把一段逻辑封装起来并起个名字，之后可以反复调用。\nKotlin 的函数比 Java 灵活得多：有参数默认值、命名参数、可变参数、局部函数、尾递归和中缀调用，还能用表达式体让写法更短。\n本页从最基本的函数定义讲起，重点说明返回类型什么时候可以省略、什么时候必须写。\n函数定义与返回值\nKotlin 用 fun 关键字定义函数，参数写在圆括号里，格式是 参数名: 类型。\n函数体有两种形式：块体（block body）用花括号包起来，表达式体（expression body）用等号直接给出结果。\n实例",
+    "examples": [
+     "// 文件路径：FunctionBasic.kt\n\n// 块体：有花括号和 return，返回类型必须显式写出\nfun add(a: Int, b: Int): Int {\n    return a + b\n}\n\n// 表达式体：用 = 直接给出结果，返回类型可以推断为 Int\nfun sub(a: Int, b: Int) = a - b\n\n// 块体但没有返回值：默认返回 Unit，可以省略 : Unit\nfun printSum(a: Int, b: Int) {\n    println(\"$a + $b = ${a + b}\")\n}\n\nfun main() {\n    println(add(1, 2))       // 调用块体函数\n    println(sub(5, 3))       // 调用表达式体函数\n    printSum(2, 3)\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 泛型",
+    "url": "https://www.runoob.com/kotlin/kotlin-generics.html",
+    "body": "泛型就是「参数化类型」，把类型也当成参数来使用。\n有了泛型，同一个类或函数就能安全地处理多种类型的数据，同时把类型检查交给编译器完成。\nKotlin 的泛型与 Java 类似，但用声明处型变取代了通配符，写法更统一，用起来也更安全。\n泛型类\n在类名后面加一对尖括号声明类型参数，这个参数就可以在类的属性和方法里当类型使用。\n实例",
+    "examples": [
+     "// T 是类型参数，创建实例时再确定它具体是什么类型\nclass Box<T>(t: T) {\n    var value = t\n}\n\nfun main() {\n    val boxInt = Box<Int>(10)          // 显式指定 T 为 Int\n    val boxString = Box(\"RUNOOB\")      // 省略类型参数，编译器推断为 Box<String>\n    println(boxInt.value)\n    println(boxString.value)\n}"
+    ]
+   },
+   {
+    "title": "Kotlin Gradle 构建",
+    "url": "https://www.runoob.com/kotlin/kotlin-gradle.html",
+    "body": "Gradle 是目前 Kotlin/JVM 项目使用最广泛的构建工具，它负责编译源码、管理第三方依赖、运行测试和打包产物。\n本章节从零开始搭建一个 Kotlin Gradle 项目，讲清 build.gradle.kts 的写法、依赖配置的区别以及常用命令。\n为什么用 Gradle\n写几个 Kotlin 文件用 kotlinc 编译就够了，但真实项目远不止编译这一件事。\n你需要引入第三方库、区分主代码和测试代码、把项目拆成多个模块、在打包时生成不同环境的产物，这些工作手工完成既繁琐又容易出错。\nGradle 把这些工作变成可重复执行的「任务」，一条命令就能完成。\n与 Maven 相比，Gradle 使用 Kotlin DSL 或 Groovy DSL 编写配置，配置文件本身就是代码，可以写循环、条件判断和自定义函数，灵活性更高。\nKotlin 官方文档和 Android 官方文档都以 Gradle 作为默认构建方案，新项目基本不需要再考虑其他选择。\n能力\n说明\n典型场景\n依赖管理\n自动下载并解析第三方库，处理传递依赖\n引入协程、序列化等库\n多模块构建\n一次命令构建整个项目的所有模块\n服务端 + 公共库 + 测试模块\n任务编排\n任务之间有依赖关系，按顺序自动执行\n编译后再打包，打包前先跑测试\n增量构建\n只重新处理发生变化的文件\n大项目二次构建加速\n多语言支持\n同一个项目里混合 Kotlin、Java、资源文件\nJava 老项目渐进迁移到 Kotlin\n项目目录结构\nGradle 遵循「约定优于配置」，源码放在固定的目录里，不需要额外声明路径。\n一个标准的 Kotlin/JVM 项目结构如下，源码集（source set）分为 main 和 test 两部分。\nrunoob-demo/\n├── build.gradle.kts # 构建脚本，声明插件、依赖、任务\n├── settings.gradle.kts # 项目名与子模块声明\n├── gradle.properties # 可选，构建参数与 JVM 参数\n├── gradlew # Linux/macOS 下的 Gradle Wrapper 脚本\n├── gradlew.bat # Windows 下的 Gradle Wrapper 脚本\n├── gradle/wrapper/ # Wrapper 的 jar 与版本配置\n└── src\n ├── main/kotlin/ # 主源码集，参与最终产物\n │ └── com/runoob/Main.kt\n └── test/kotlin/ # 测试源码集，不进入最终产物\n └── com/runoob/MainTest.kt\nKotlin 源码的扩展名是 .kt，包名 com.runoob 对应目录 src/main/kotlin/com/runoob。\n使用 IntelliJ IDEA 新建 Kotlin 项目时，IDE 会自动生成这套结构，你只需要关注 src 目录和两个构建脚本。\n提示：务必使用项目自带的 gradlew 而不是系统安装的 gradle 命令。gradlew 会锁定构建工具版本，保证团队里每个人、每台机器上的构建结果一致。\nbuild.gradle.kts 最小配置\n构建脚本是项目的核心，下面这份配置已经能完成编译、运行和测试。\n文件路径：build.gradle.kts。\n实例",
+    "examples": [
+     "// 文件路径：build.gradle.kts\n\nplugins {\n    // Kotlin/JVM 插件，2.2.0 是本章节的版本基准\n    kotlin(\"jvm\") version \"2.2.0\"\n    // application 插件会生成 run 任务，让项目可以直接启动\n    application\n}\n\ngroup = \"com.runoob\"    // 组织标识，影响发布时的坐标\nversion = \"1.0.0\"       // 项目版本号\n\nrepositories {\n    // 依赖仓库，mavenCentral 是绝大多数开源库的所在地\n    mavenCentral()\n}\n\ndependencies {\n    // 测试依赖，只在 test 源码集可见\n    testImplementation(kotlin(\"test\"))\n}\n\nkotlin {\n    // 锁定编译使用的 JDK 版本，避免不同机器结果不一致\n    jvmToolchain(17)\n}\n\napplication {\n    // 主类全名，Kotlin 顶层 main 函数编译后类名带 Kt 后缀\n    mainClass.set(\"com.runoob.MainKt\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 内联函数与 reified",
+    "url": "https://www.runoob.com/kotlin/kotlin-inline-function.html",
+    "body": "Lambda 用起来很轻巧，但在 JVM 上每个 Lambda 都会被编译成一个函数对象，高频调用时这些对象会带来实实在在的开销。\ninline 让编译器把函数体和 Lambda 体直接复制到调用处，从而消除函数对象和调用开销，也是 reified 类型参数能够存在的前提。\n本章节说明为什么需要内联、noinline 与 crossinline 的区别、非局部返回的规则，以及什么时候不该用 inline。\n为什么需要内联\n没有 inline 时，一个接收 Lambda 的函数在编译后是这样工作的：调用方先创建一个函数对象，再把它传给函数，函数内部通过 invoke() 调用它。\n如果这个函数在循环里被调用成千上万次，就会产生成千上万个临时对象。\n实例",
+    "examples": [
+     "// 文件路径：InlineBasic.kt\n\n// 普通高阶函数：Lambda 会被编译成一个函数对象\nfun runTask(action: () -> Unit) {\n    action()\n}\n\n// 内联函数：编译器把函数体和 Lambda 体复制到调用处\ninline fun runTaskInline(action: () -> Unit) {\n    action()\n}\n\nfun main() {\n    runTask { println(\"普通调用：RUNOOB\") }\n    runTaskInline { println(\"内联调用：RUNOOB\") }\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 接口",
+    "url": "https://www.runoob.com/kotlin/kotlin-interface.html",
+    "body": "接口描述一组能力或契约，它告诉调用方「这个类型能做什么」，但不限制具体怎么实现。\nKotlin 的接口比 Java 更灵活：方法可以带默认实现，属性也可以带默认 getter。\n接口的定义\n用 interface 关键字定义接口，里面可以写抽象方法，也可以写带方法体的默认实现。\n接口成员默认是 public 且 open 的，这一点和类的成员默认 final 正好相反。\n实例",
+    "examples": [
+     "// 文件路径：Main.kt\ninterface Site {\n    // 抽象方法：没有方法体，实现类必须重写\n    fun name(): String\n\n    // 带默认实现的方法：实现类可以直接用，也可以重写\n    fun url(): String = \"www.runoob.com\"\n\n    // 默认实现可以调用其他成员，包括抽象的 name()\n    fun info(): String = \"站点：${name()}，地址：${url()}\"\n}\n\n// 全部重写\nclass RunoobSite : Site {\n    override fun name(): String = \"RUNOOB\"\n\n    override fun url(): String = \"https://www.runoob.com\"\n}\n\n// 只重写抽象方法，url() 和 info() 使用接口的默认实现\nclass SimpleSite : Site {\n    override fun name(): String = \"Runoob\"\n}\n\nfun main() {\n    println(RunoobSite().info())\n    println(SimpleSite().info())\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 简介",
+    "url": "https://www.runoob.com/kotlin/kotlin-intro.html",
+    "body": "Kotlin 是一门静态类型语言，代码在编译期就会检查类型，因此很多错误在运行之前就能被发现。\n它由 JetBrains 于 2011 年首次公开，2016 年发布 1.0 正式版，名字来自俄罗斯圣彼得堡附近的科特林岛（Kotlin Island）。\nKotlin 最初的目标是给 JVM 提供一门比 Java 更简洁、更安全的语言，如今已经可以编译到多个平台。\n同一个 .kt 源文件，既可以编译成 JVM 字节码，也可以编译成 JavaScript、Wasm 或本地机器码。\n注意：Kotlin 与 Java 是互操作关系而不是替代关系。在同一个项目中，两种语言可以同时存在，Kotlin 代码能直接调用 Java 类库，Java 代码也能调用 Kotlin 类。\nKotlin 发展历程\n了解版本时间线，能帮你在阅读旧资料时判断哪些写法已经过时。\n年份\n版本 / 事件\n说明\n2011\nKotlin 首次公开\nJetBrains 在 JVM 语言峰会上公布该项目\n2016\nKotlin 1.0\n第一个正式稳定版本发布\n2017\nGoogle I/O 宣布\nKotlin 成为 Android 官方支持的开发语言\n2019\nKotlin-first\nGoogle 宣布 Android 开发以 Kotlin 为首选语言\n2020\nKotlin 1.4\n引入 SAM 转换、sealed interface、尾逗号\n2021\nKotlin 1.5\n值类稳定、JVM records 支持\n2022\nKotlin 1.7\nK2 编译器进入 Alpha 阶段\n2023\nKotlin 1.9\n区间操作符 ..< 与枚举 entries 稳定\n2024\nKotlin 2.0\nK2 编译器正式发布，编译速度与智能转换显著提升\n2025\nKotlin 2.2\nwhen 守卫条件稳定、非局部 break/continue 稳定\nKotlin 2.0 是一次重要转折，K2 编译器重写了前端，让编译更快、类型推断更聪明。\n本教程所有示例都以 Kotlin 2.2 为准，涉及版本差异的地方会明确标注「X.Y 起」。\n为什么选择 Kotlin\n选择一门语言，本质上是在选择它的生态和它帮你避免的问题。\nKotlin 在这几个方面的表现尤其突出。\n优势\n具体表现\n简洁\n一行代码可以完成 Java 中需要多行样板代码的工作，例如数据类、属性访问器\n安全\n类型系统区分可空类型与非空类型，把空指针异常挡在编译期\n互操作\n与 Java 双向调用，现有 Java 项目可以逐步迁移而不用重写\n多平台\n同一份业务逻辑可以编译到 JVM、JS、Wasm、iOS、Linux、Windows\n工具友好\nIntelliJ IDEA 与 Android Studio 原生支持，官方工具链成熟\n如果你已经熟悉 Java，学习 Kotlin 的成本主要在函数式写法和空安全规则上，语法本身并不难。\nKotlin 能做什么\nKotlin 的编译器后端决定了它能覆盖哪些平台。\n目前官方支持四个后端，每个后端对应一类应用场景。\n后端\n目标平台\n典型用途\nKotlin/JVM\nJava 虚拟机\nAndroid 应用、Spring Boot 服务端、桌面工具\nKotlin/JS\n浏览器与 Node.js\n前端页面、全栈 Kotlin 项目\nKotlin/Wasm\nWebAssembly\n浏览器中运行的高性能模块\nKotlin/Native\n原生机器码\niOS、macOS、Linux、Windows 原生程序与嵌入式\n除此之外，Kotlin 还常用于数据科学（KotlinDL、DataFrame）、脚本编写（.kts 文件）以及 Gradle 构建脚本。\nAndroid 开发是目前使用 Kotlin 最广泛的领域，Google 官方的大部分新示例都使用 Kotlin 编写。\n第一个 Kotlin 程序\n先看最简单的形式：一个文件、一个入口函数、一行输出。\nKotlin 程序的入口是 main 函数，文件名可以任意，但习惯上使用 hello.kt 这类小写名称。\n实例",
+    "examples": [
+     "// 文件路径：hello.kt\n// 第一个 Kotlin 程序\nfun main() {\n    println(\"Hello, Runoob!\")            // 打印一行文本并换行\n    println(\"欢迎来到 www.runoob.com\")     // 中文同样可以直接输出\n}"
+    ]
+   },
+   {
+    "title": "Kotlin Java 互操作",
+    "url": "https://www.runoob.com/kotlin/kotlin-java-interop.html",
+    "body": "Kotlin 从设计之初就把「和 Java 无缝互操作」当作核心目标，两者编译后都运行在 JVM 上，可以直接互相调用。\n本章节介绍两个方向调用时的规则、平台类型带来的空安全风险，以及让 Java 调用更友好的几个注解。\nKotlin 调用 Java\nKotlin 可以直接使用任何 Java 类，不需要额外的包装。\nKotlin 还对 Java 的 getter 和 setter 做了语法糖：person.getName() 可以直接写成 person.name。\n先看一个普通的 Java 类。\n实例",
+    "examples": [
+     "// 文件路径：Person.java\npublic class Person {\n    private String name;          // 私有字段\n    private int age;\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    // Java 的 getter / setter\n    public String getName() { return name; }\n    public void setName(String name) { this.name = name; }\n    public int getAge() { return age; }\n    public void setAge(int age) { this.age = age; }\n\n    // 静态方法\n    public static String welcome(String site) {\n        return \"欢迎来到 \" + site;\n    }\n}"
+    ]
+   },
+   {
+    "title": "Kotlin Lambda 高阶函数",
+    "url": "https://www.runoob.com/kotlin/kotlin-lambda.html",
+    "body": "在 Kotlin 里，函数是一等公民（first‑class citizen）：可以赋值给变量、作为参数传递、作为返回值返回。\n把函数当作数据来用，就引出了函数类型、Lambda 表达式和高阶函数这几个概念，它们也是 Kotlin 集合操作写法简洁的根本原因。\n本章节从函数类型讲起，逐步过渡到 Lambda、闭包、函数引用与 SAM 转换。\n函数类型\n函数类型描述\"接收什么参数、返回什么值\"，写法是 (参数类型) -> 返回类型。\n函数类型本身也是一种类型，所以可以声明变量、作为参数、作为返回值。\n实例",
+    "examples": [
+     "// 文件路径：LambdaType.kt\n\n// 接收两个 Int，返回 Int\nval sum: (Int, Int) -> Int = { a, b -> a + b }\n\n// 接收一个 String，返回 String\nval greet: (String) -> String = { name -> \"你好，$name\" }\n\n// 不接收参数，不返回有意义的值\nval log: () -> Unit = { println(\"RUNOOB\") }\n\n// 整个函数类型的值可以为 null，要加一层括号\nvar callback: ((Int) -> Int)? = null\n\nfun main() {\n    println(sum(1, 2))\n    println(greet(\"Runoob\"))\n    log()\n\n    callback = { it * 2 }\n    // callback 可能为 null，用安全调用 ?.invoke\n    println(callback?.invoke(21))\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 循环控制",
+    "url": "https://www.runoob.com/kotlin/kotlin-loop-control.html",
+    "body": "循环让同一段代码重复执行，是控制程序流程最基本的工具之一。\nKotlin 的循环语法和 Java 很像，但没有传统的三段式 for (int i = 0; i < n; i++)，取而代之的是直接遍历集合与区间。\n本页介绍 for、while、do...while 三种循环，以及 break、continue 的标签跳转，最后是 Kotlin 2.2 起稳定的非局部 break 与 continue。\nfor 循环\nfor 循环用于遍历任何提供了迭代器（iterator）的对象，集合、数组、区间都可以。\n语法是 for (元素 in 可迭代对象) { ... }，元素不需要声明类型，编译器会自动推断。\n实例",
+    "examples": [
+     "// 文件路径：LoopFor.kt\nfun main() {\n    // listOf 创建一个只读列表\n    val sites = listOf(\"Runoob\", \"www.runoob.com\", \"RUNOOB\")\n\n    // 依次取出每个元素，变量 site 的类型自动推断为 String\n    for (site in sites) {\n        println(site)\n    }\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 多平台与 Kotlin/JS、Native",
+    "url": "https://www.runoob.com/kotlin/kotlin-multiplatform.html",
+    "body": "Kotlin 不只能编译成 JVM 字节码，还能编译成 JavaScript、WebAssembly 和原生机器码。\nKotlin Multiplatform（简称 KMP）就是在这套多后端能力之上，让同一份业务逻辑在多个平台上复用。\nKotlin 的四个后端\n所谓后端，指的是把 Kotlin 源码翻译成哪种目标代码的那一部分编译器。\n目前一共有四个后端，它们共享同一套语言前端，所以语法和标准库用起来基本一致。\n后端\n产物\n典型场景\n备注\nKotlin/JVM\nJVM 字节码（.class / .jar）\n服务端、Android、桌面\n可用全部 Java 生态与反射\nKotlin/JS\nJavaScript 模块\n浏览器、Node.js\nIR 后端，Kotlin 1.9 起为唯一后端\nKotlin/Native\n原生可执行文件或框架\niOS、macOS、Linux、嵌入式\n闭世界编译，没有 JVM 反射\nKotlin/Wasm\nWebAssembly 模块\n浏览器、WASI 运行时\nBeta 阶段，目标是 wasmJs 与 wasmWasi\n四个后端共用同一套语言规则，但标准库中与平台相关的部分不同。\n例如文件读写、线程、时间这些 API，各平台的实现完全不一样，这也是多平台项目要分 source set 的原因。\nKotlin/JVM\nKotlin/JVM 是最成熟、使用最广的后端，编译产物就是标准的 JVM 字节码。\n它能直接调用 Java 库，也可以用反射、注解处理器、字节码框架这些 JVM 生态的工具。\n默认目标是 JVM 1.8 字节码，可以通过 jvmTarget 调高，Kotlin 2.2.20 起支持到 JDK 25。\n实例",
+    "examples": [
+     "// 文件路径：build.gradle.kts\nplugins {\n    kotlin(\"jvm\") version \"2.2.0\"\n}\n\nkotlin {\n    compilerOptions {\n        // 生成的字节码版本，按项目实际运行环境调整\n        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)\n    }\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 各版本新特性速查",
+    "url": "https://www.runoob.com/kotlin/kotlin-new-features.html",
+    "body": "Kotlin 从 2016 年发布 1.0 到 2025 年的 2.2，语言在十年间不断补齐能力、稳定实验特性。\n本章节按版本顺序梳理关键新特性，并给出从旧版本升级的迁移建议，方便你在实际项目中判断哪些写法可以用、从哪个版本起可用。\n版本时间线\n先建立整体印象：每个大版本解决什么问题，什么时候可以放心使用。\n下表列出 1.0 到 2.2 的发布时间与里程碑特性。\n版本\n发布时间\n里程碑特性\n1.0\n2016 年 2 月\n首个正式版本，JVM 目标稳定\n1.1\n2017 年 3 月\n协程实验性引入、typealias、sealed 子类同文件\n1.2\n2017 年 11 月\n多平台项目、expect/actual\n1.3\n2018 年 10 月\n内联类、无符号类型、契约\n1.4\n2020 年 8 月\nSAM 转换、sealed interface、尾逗号\n1.5\n2021 年 5 月\n值类稳定、JVM records、invokedynamic 字符串拼接\n1.6\n2021 年 11 月\n密封类 when 语句穷尽、协程稳定\n1.7\n2022 年 6 月\nK2 编译器 Alpha、..< 运算符\n1.8\n2022 年 12 月\nEnum.entries、data object\n1.9\n2023 年 7 月\n..< 稳定、data object 与 entries 稳定\n2.0\n2024 年 5 月\nK2 编译器正式发布、when 守卫、智能转换增强\n2.1\n2024 年 11 月\n上下文参数重构、嵌套 typealias\n2.2\n2025 年 6 月\nwhen 守卫稳定、非局部 break/continue 稳定\n提示：本章节以 Kotlin 2.2 为基准。表中带「实验性」「预览」字样的特性需要额外开启或加 @OptIn 注解，正式项目请谨慎使用。\n1.0 到 1.4：补齐语言基础能力\n这四个版本主要解决「Kotlin 能不能做某件事」的问题，很多今天我们习以为常的语法都是在这个阶段引入的。\n1.1：协程、typealias 与 sealed 同文件\n协程在这个版本首次以实验特性出现，后来成为 Kotlin 处理异步任务的核心方案。\ntypealias 让复杂类型有了短名字，函数类型和泛型签名因此清爽很多。\nsealed 类的子类限制也从「必须内嵌」放宽为「同一文件即可」。\n实例",
+    "examples": [
+     "// 文件路径：src/main/kotlin/com/runoob/TypeAliasDemo.kt\npackage com.runoob\n\n// Kotlin 1.1 起支持类型别名\ntypealias UserId = Int\n\n// Kotlin 1.1 起，sealed 类的子类只需在同一个文件里\nsealed class State\nclass Loading : State()\nclass Done : State()\n\nfun findUserName(id: UserId): String = \"用户 $id\"\n\nfun main() {\n    println(findUserName(1001))\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 空安全",
+    "url": "https://www.runoob.com/kotlin/kotlin-null-safety.html",
+    "body": "空安全（null safety）是 Kotlin 最核心的语言特性，它在类型系统层面把\"可能为 null\"和\"一定不为 null\"区分开。\n只要编译器判断某个值可能为 null，就必须显式处理，否则代码无法通过编译，大量空指针异常因此被提前到编译期发现。\n可空类型与非空类型\nKotlin 的类型默认都不可为 null，只有加上问号 ? 才表示可空。\n非空类型可以放心调用成员，可空类型必须先做判空处理，编译器不会替你假设它不为 null。\n实例",
+    "examples": [
+     "fun main() {\n    val name: String = \"Runoob\"           // 非空，永远不可能是 null\n    var site: String? = \"www.runoob.com\"  // 可空，可以赋值为 null\n\n    // 非空类型直接访问成员，编译器保证安全\n    println(name.length)\n\n    // 可空类型必须用安全调用，直接写 site.length 会编译报错\n    println(site?.length)\n\n    site = null\n    println(site?.length)\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 对象表达式与对象声明",
+    "url": "https://www.runoob.com/kotlin/kotlin-object-declarations.html",
+    "body": "Kotlin 用 object 关键字把「创建对象」和「声明类」两件事合在了一起。\n对象表达式用来在代码现场创建一个对某个类做了轻微改动的匿名对象，不需要为它单独声明一个子类。\n对象声明则用来声明一个全局唯一的对象，也就是设计模式中的单例。\n两者语法相似，语义却完全不同，本章节会把它们的区别讲清楚。\n对象表达式\n对象表达式写作 object : 超类型 { ... }，它在你写下这行代码的位置立即创建并执行一个匿名对象。\n最常见的用途是实现一个接口，然后把对象直接交给某个方法使用。\n实例",
+    "examples": [
+     "// 定义一个接口\ninterface Greeter {\n    fun greet(): String\n}\n\nfun main() {\n    // object : Greeter 表示创建一个实现了 Greeter 接口的匿名对象\n    val runoob = object : Greeter {\n        override fun greet() = \"Hello, RUNOOB\"\n    }\n    println(runoob.greet())\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 运算符重载",
+    "url": "https://www.runoob.com/kotlin/kotlin-operator.html",
+    "body": "运算符重载让自定义类型也能使用 +、-、[] 这些符号，写出来的代码更接近数学表达式。\nKotlin 通过给函数加上 operator 关键字来实现重载，本质上是把运算符翻译成一次普通的函数调用。\noperator 关键字\n重载运算符的写法，是定义一个名字固定的函数，并在前面加 operator。\n这个函数可以是类的成员函数，也可以是扩展函数，但必须用 operator 修饰，否则编译报错。\n实例",
+    "examples": [
+     "class Point(val x: Int, val y: Int) {\n    // 函数名必须叫 plus，并且用 operator 修饰\n    operator fun plus(other: Point): Point = Point(x + other.x, y + other.y)\n\n    override fun toString(): String = \"($x, $y)\"\n}\n\nfun main() {\n    val a = Point(1, 2)\n    val b = Point(3, 4)\n\n    // a + b 会被编译器翻译成 a.plus(b)\n    println(a + b)\n    println(a.plus(b))\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 运算符与位运算",
+    "url": "https://www.runoob.com/kotlin/kotlin-operators.html",
+    "body": "运算符是用来对数据做运算的符号，例如加法 +、比较 >、逻辑与 &&。\nKotlin 的算术、赋值、比较、逻辑运算符与 Java 基本一致，但位运算没有符号，改用具名函数。\n本篇还会介绍区间运算符 .. 和 ..<，它们是 Kotlin 里非常常用的语法糖。\n算术运算符\nKotlin 支持加、减、乘、除、取余五种二元算术运算符，以及正负号和自增自减。\n需要特别注意的是整数除法：两个整数相除，结果仍然是整数，小数部分被直接丢弃。\n实例",
+    "examples": [
+     "fun main() {\n    println(7 + 3)      // 10\n    println(7 - 3)      // 4\n    println(7 * 3)      // 21\n    println(7 / 3)      // 2，整数除法直接截断小数部分\n    println(7 % 3)      // 1，取余\n    println(7.0 / 3)    // 2.3333333333333335，有一个是浮点结果就是浮点\n    println(-7 % 3)     // -1，余数的符号与被除数一致\n\n    // 整数除以零会抛异常\n    // println(1 / 0)   // 抛出 ArithmeticException: / by zero\n    // 浮点除以零不会抛异常\n    println(1.0 / 0.0)  // Infinity\n    println(0.0 / 0.0)  // NaN\n\n    // 一元运算符\n    println(-5)         // -5\n    println(+5)         // 5\n\n    // 自增自减\n    var i = 1\n    println(i++)        // 1，先取值再加 1\n    println(i)          // 2\n    println(++i)        // 3，先加 1 再取值\n    println(i--)        // 3\n    println(i)          // 2\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 反射",
+    "url": "https://www.runoob.com/kotlin/kotlin-reflection.html",
+    "body": "反射是指在运行时检查类、函数、属性等程序结构，并且可以动态调用它们的能力。\nKotlin 提供了一套自己的反射 API，通过 kotlin-reflect 库使用，比 Java 反射更简洁，还能保留可空性、属性等 Kotlin 特有的信息。\n什么是反射\n正常情况下，我们写的代码在编译期就确定了要调用哪个函数、访问哪个属性。\n反射打破了这一点：程序在运行时才知道自己要操作的对象是谁。\n举例来说，配置文件里写了一个方法名 save，程序读进来之后通过反射找到并调用它，代码里不需要写死 obj.save()。\n常见的使用场景有依赖注入框架、序列化库、测试工具、脚本引擎等。\n业务代码里很少需要直接写反射，但理解它能帮你读懂这些框架的内部行为。\n使用代价\n反射很强大，代价也不小，不要为了「看起来灵活」而滥用。\n代价\n说明\n运行库体积\nkotlin-reflect 会给程序增加约 2.5 MB 的依赖\n运行性能\n反射调用比直接调用慢，按名字查找的开销尤其明显\n类型安全\n方法名写成字符串，拼错要等到运行时才报错\n代码混淆\nR8、ProGuard 可能重命名或删除被反射访问的成员，导致运行失败\n可维护性\nIDE 无法跳转和重构，也会破坏类的封装\n提示：能用普通代码表达的逻辑就不要用反射。只有当「调用方在编译期确实不知道要操作谁」时，反射才是合理选择。\nKClass 与 ::class\nKotlin 用 KClass 表示一个类的运行时信息，通过 ::class 获取。\nKClass 是 Kotlin 自己的类型，它能告诉你类的简单名、限定名，也能知道属性是否可空。\n实例",
+    "examples": [
+     "package com.runoob\n\nimport kotlin.reflect.KClass\n\n// 定义一个示例类\nclass Runoob(val name: String, var age: Int)\n\nfun main() {\n    // 类名 ::class 得到 KClass 对象\n    val kClass: KClass<Runoob> = Runoob::class\n    println(\"简单名: ${kClass.simpleName}\")\n    println(\"限定名: ${kClass.qualifiedName}\")\n\n    // 通过实例也能拿到 KClass，类型和上面完全一样\n    val site = Runoob(\"RUNOOB\", 10)\n    println(\"实例的类: ${site::class.simpleName}\")\n    println(\"是同一个对象: ${site::class == Runoob::class}\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 作用域函数",
+    "url": "https://www.runoob.com/kotlin/kotlin-scope-functions.html",
+    "body": "作用域函数是 Kotlin 标准库提供的一组小工具，它们让对象在一个临时的作用域里被操作，并决定这段代码最终返回什么。\n用好它们能让代码更短、更清晰；用错则会让返回值与预期不符，这是初学者最容易踩的坑之一。\n什么是作用域函数\n作用域函数本质上都是接收一个 lambda 的普通函数，区别只有两点：lambda 里怎么引用对象，以及整个调用返回什么。\n引用对象有两种方式：作为 lambda 的接收者（用 this 访问），或作为 lambda 的参数（用 it 访问）。\n返回值也有两种：返回 lambda 最后一行的结果，或返回对象本身。\n这两点组合起来，就得到了五个最常用的作用域函数：let、run、with、apply、also。\n五个作用域函数总览\n下表先建立整体印象，后面再逐个展开。\n函数\n引用方式\n返回值\n典型用途\n起始版本\nlet\nit\nlambda 结果\n可空对象判空后转换、把对象变成另一个值\nKotlin 1.0\nrun\nthis\nlambda 结果\n在对象上下文里做多步计算并返回结果\nKotlin 1.0\nwith\nthis\nlambda 结果\n对同一个对象连续调用多个成员\nKotlin 1.0\napply\nthis\n接收者本身\n配置对象属性后返回对象\nKotlin 1.0\nalso\nit\n接收者本身\n附加日志、校验等操作后返回对象\nKotlin 1.1 起\nrunCatching\n无 / this\nResult 包装\n把可能抛异常的代码包起来统一处理\nKotlin 1.3 起\n表中最后一行 runCatching 严格说不是作用域函数，而是异常处理工具，因为它经常和作用域函数一起出现，这里一并列出。\n记忆口诀：let 和 also 用 it，run、with、apply 用 this。\n返回 lambda 结果的是 let、run、with；返回接收者本身的是 apply 和 also。\nlet\nlet 把对象作为参数传给 lambda，用 it 引用，返回 lambda 最后一行的结果。\n它最常见的用法是配合安全调用处理可空对象，只有对象非空时 lambda 才会执行。\n实例",
+    "examples": [
+     "// 文件路径：Main.kt\nfun main() {\n    val site: String? = \"www.runoob.com\"\n\n    // 只有 site 非空时，lambda 才会执行，it 就是 site\n    site?.let {\n        println(\"站点：$it\")\n        println(\"长度：${it.length}\")\n    }\n\n    val nullSite: String? = null\n\n    // 用 Elvis 运算符兜底，让表达式一定有值\n    val length = nullSite?.let { it.length } ?: 0\n    println(\"空对象兜底长度：$length\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 密封类与密封接口",
+    "url": "https://www.runoob.com/kotlin/kotlin-sealed-class.html",
+    "body": "密封类用来表示一个受限的类层次：某个值的所有可能类型在编译期就完全确定。\n正因为子类是已知的有限集合，when 表达式才能在没有 else 的情况下通过穷尽性检查。\n它常用于状态机、接口返回结果、事件类型这类「只有这几种情况」的建模。\n密封类的定义\n用 sealed 修饰的类就是密封类，它本身是抽象的，不能直接实例化。\n密封类的构造器默认是 protected，只有它的子类能够继承。\n实例",
+    "examples": [
+     "// 文件：RunoobResult.kt\nsealed class RunoobResult\n\n// 子类与密封类写在同一个文件中\ndata class Success(val data: String) : RunoobResult()\ndata class Failure(val message: String) : RunoobResult()\nobject Loading : RunoobResult()\n\nfun main() {\n    val result: RunoobResult = Success(\"www.runoob.com\")\n    println(result)\n\n    // RunoobResult()   // 编译错误：密封类不能直接实例化\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 序列",
+    "url": "https://www.runoob.com/kotlin/kotlin-sequence.html",
+    "body": "序列（Sequence）是一种惰性求值的集合视图，它把多个操作合并成一次遍历，避免生成大量中间集合。\n集合的 filter、map 每调用一次就会生成一个新列表，数据量大时内存和时间都会被浪费；序列则让元素逐个流过整条操作链。\n本章节讲清楚序列和集合的区别、如何创建序列，以及在什么场景下值得改用序列。\n什么是序列\n序列由接口 Sequence<T> 表示，它只承诺一件事：可以逐个产出元素。\n与 List、Set 不同，序列本身不存储元素，它保存的是「如何计算下一个元素」的规则。\n实例",
+    "examples": [
+     "fun main() {\n    // 一个普通的列表\n    val list = listOf(\"runoob\", \"RUNOOB\", \"kotlin\")\n\n    // asSequence() 把列表包装成序列，此时不会做任何计算\n    val sequence = list.asSequence()\n\n    // 只有调用末端操作时，元素才会真正被处理\n    println(sequence.first())\n    println(sequence.count())\n}"
+    ]
+   },
+   {
+    "title": "Kotlin IntelliJ IDEA环境搭建",
+    "url": "https://www.runoob.com/kotlin/kotlin-setup.html",
+    "body": "IntelliJ IDEA 免费的社区版下载地址：https://www.jetbrains.com/idea/download/\n下载安装后，我们就可以使用该工具来创建项目，创建过程需要选择 SDK， Kotlin 与 JDK 1.6+ 一起使用。\n在右侧的下拉菜单中勾选 Kotlin (Java) 复选框。\n接下来我们取一个项目名:HelloWorld\n项目创建完后，文件结构如下，跟 Java 的还是很类似的。\n接下来 我们点击 src 文件夹，创建一个 Kotlin 文件，它可以任意命名，这里我们创建 app.kt\n接下来，我们在 app.kt 文件中写点代码。IntelliJ IDEA 为我们提供了一个快速完成此操作的模板，只需键入 main 然后按 Tab 即可。\n现在我们添加一行代码来打印出\"Hello, World!\"吧。\n接下来我们可以鼠标点击编辑器左上角 kotlin图标并选择 Run 'AppKt'来运行代码：\n运行成功后就可以在窗口 Run 中看到结果。\n这样我们第一个 Kotlin 代码就运行起来了。",
+    "examples": []
+   },
+   {
+    "title": "Kotlin 字符串与正则",
+    "url": "https://www.runoob.com/kotlin/kotlin-string.html",
+    "body": "字符串是编程中最常用的数据类型，用来表示文本。\nKotlin 的 String 类提供了丰富的查找、截取、替换方法，还支持原始字符串和字符串模板，写起来比 Java 简洁很多。\n本篇先介绍字符串本身，再介绍正则表达式 Regex 的完整用法。\n字符串基础与不可变性\n字符串用双引号包裹，类型是 String。\nString 是不可变的（immutable）：一旦创建，内容就不能再改变。\n所有看起来像\"修改\"的方法，例如 uppercase()、replace()，实际上都返回一个新的字符串，原字符串保持不变。\n实例",
+    "examples": [
+     "fun main() {\n    val site = \"Runoob\"\n\n    // 调用 uppercase 得到新字符串，原字符串不受影响\n    val upper = site.uppercase()\n    println(site)         // Runoob\n    println(upper)        // RUNOOB\n\n    // 用方括号按下标取字符，下标从 0 开始\n    println(site[0])      // R\n    println(site.length)  // 6\n\n    // 用 for 遍历每一个字符\n    for (c in site) {\n        print(c)\n    }\n    println()             // 输出换行\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 编码规范与惯用法",
+    "url": "https://www.runoob.com/kotlin/kotlin-style.html",
+    "body": "能跑通的代码只是及格线，团队协作还要求代码风格一致、写法地道。\n本章节整理 Kotlin 官方推荐的命名约定、格式化规则，以及初学者最容易写错的常见惯用法。\n为什么需要统一风格\n代码的阅读次数远远多于编写次数，风格统一能显著降低阅读成本。\n命名一致让调用者不用猜函数是做什么的，格式一致让代码评审聚焦在逻辑而不是空格上。\nKotlin 官方发布了代码风格约定，IntelliJ IDEA 内置的格式化器默认就遵循这套约定。\n社区还提供了 ktlint 和 detekt 两个工具，可以把风格检查接入构建流程，在提交前自动发现问题。\n工具\n定位\n典型用法\nIDEA 格式化器\n编辑器内置，快捷键即可格式化\nCtrl+Alt+L 或 Cmd+Option+L\nktlint\n轻量风格检查与自动修复\n./gradlew ktlintFormat\ndetekt\n静态代码分析，覆盖复杂度与坏味道\n./gradlew detekt\n命名约定\n命名是代码里出现频率最高的元素，统一的命名规则比任何注释都有效。\nKotlin 的命名约定与 Java 基本一致，只有常量和测试方法等少数几处有 Kotlin 特色。\n元素\n约定\n示例\n包名\n全小写，不用下划线，多个单词直接相连\ncom.runoob.demo\n类与接口\n大驼峰 UpperCamelCase\nSiteInfo、DataRepository\n函数与方法\n小驼峰 lowerCamelCase\ngetSiteName()、findById()\n常量\n全大写下划线分隔，配合 const val 或 val\nconst val MAX_COUNT = 100\n属性与局部变量\n小驼峰，避免无意义的单字母\nsiteName、pageSize\n类型参数\n单个大写字母，或大驼峰加 T 后缀\nT、TResult\n枚举值\n全大写下划线分隔\nRED、DARK_BLUE\n文件与目录\n与文件中的顶层类名保持一致\nSiteInfo.kt\n测试方法\nJVM 上可用反引号包裹自然语言描述\nfun `add returns sum`()\n包名不要使用下划线，这一点和部分其他语言的习惯不同，com.runoob_demo 是错误写法。\n布尔类型的属性建议用 is、has、can 开头，让语义一目了然。\n实例",
+    "examples": [
+     "// 文件路径：src/main/kotlin/com/runoob/Site.kt\npackage com.runoob\n\n// 类名大驼峰\ndata class Site(val name: String, val url: String) {\n    // 布尔属性用 is 开头，读起来像一句话\n    val isSecure: Boolean\n        get() = url.startsWith(\"https://\")\n}\n\n// 顶层常量全大写\nconst val MAX_SITE_COUNT = 100\n\n// 顶层函数小驼峰\nfun describeSite(site: Site): String = \"${site.name} -> ${site.url}\"\n\nfun main() {\n    val site = Site(\"Runoob\", \"https://www.runoob.com\")\n    println(describeSite(site))\n    println(\"是否安全连接：${site.isSecure}\")\n    println(\"最大站点数：$MAX_SITE_COUNT\")\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 测试",
+    "url": "https://www.runoob.com/kotlin/kotlin-testing.html",
+    "body": "测试是保证代码正确性的第一道防线，它让你在修改代码后能快速确认没有破坏已有功能。\nKotlin 提供了跨平台的测试库 kotlin.test，配合 JUnit 就能写出简洁、可读的单元测试。\nkotlin.test 与 JUnit\n这两个名字经常一起出现，但它们的职责并不相同。\nJUnit 是 JVM 上最主流的测试框架，负责发现测试方法、组织执行流程、生成测试报告。\nkotlin.test 是 Kotlin 官方提供的测试库，它定义了一套统一的断言 API 和注解。\nkotlin.test 本身不是框架，它通过适配器把断言转发给底层的测试框架，在 JVM 上默认就是 JUnit。\n这样写出来的测试代码可以跨平台复用，在 Kotlin/JS、Kotlin/Native 上换一个适配器即可。\n组件\n职责\n典型内容\nJUnit 5\n测试框架，负责运行与报告\n@Test 的发现、测试生命周期、报告生成\nkotlin.test\n统一断言与注解 API\nassertEquals、assertTrue、assertFailsWith\nkotlinx-coroutines-test\n协程测试支持\nrunTest、虚拟时间、TestDispatcher\n提示：JUnit 4 与 JUnit 5 的包名和注解都不同。新项目直接使用 JUnit 5，它的扩展模型更灵活，Gradle 也需要显式声明 useJUnitPlatform()。\n引入依赖\n在 Gradle 项目中，测试依赖写在 testImplementation 配置里，只在测试源码集可见。\nkotlin(\"test\") 会自动选择与当前测试框架匹配的适配器版本。\n实例",
+    "examples": [
+     "// 文件路径：build.gradle.kts\n\nplugins {\n    kotlin(\"jvm\") version \"2.2.0\"\n}\n\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    // kotlin.test 统一断言 API，版本随 Kotlin 插件自动确定\n    testImplementation(kotlin(\"test\"))\n    // JUnit 5 聚合包，包含 API 与运行引擎\n    testImplementation(\"org.junit.jupiter:junit-jupiter:5.11.4\")\n}\n\ntasks.test {\n    // Kotlin 1.5 起，使用 JUnit 5 必须显式声明测试平台\n    useJUnitPlatform()\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 教程",
+    "url": "https://www.runoob.com/kotlin/kotlin-tutorial.html",
+    "body": "Kotlin 是一门运行在 Java 虚拟机上的静态类型编程语言，由 JetBrains 开发。\nKotlin 语法简洁、天生支持空安全，并且可以和 Java 代码互相调用，是 Android 开发的官方首选语言。\nKotlin 可以编译成 Java 字节码，也可以编译成 JavaScript，方便在没有 JVM 的设备上运行。\n本教程基于 Kotlin 2.2 编写，从零开始带你掌握 Kotlin 的语法、面向对象、集合、协程与工程实践。",
+    "examples": []
+   },
+   {
+    "title": "Kotlin 值类",
+    "url": "https://www.runoob.com/kotlin/kotlin-value-class.html",
+    "body": "值类（value class）让开发者给基本类型套上一层有语义的类型外壳，同时几乎不付出运行时开销。\n它解决的是\"用 String 表示邮箱、用 Int 表示用户 ID 容易传错参数\"这类问题，又不会像普通包装类那样每次使用都分配对象。\n什么是值类\n值类的核心思想是：源码层面它是一个独立的类型，编译后却尽量退化为它包裹的那个底层值。\n先看一个没有值类时容易犯的错误。\n实例",
+    "examples": [
+     "// 三个参数都是 String，编译器无法阻止调用者把顺序写反\nfun transfer(fromAccount: String, toAccount: String, amount: Double) {\n    println(\"从 $fromAccount 转账 $amount 到 $toAccount\")\n}\n\nfun main() {\n    val account = \"6222021234567890\"\n    val password = \"runoob-2026\"\n    // 参数顺序写反了，编译照样通过，运行时才暴露问题\n    transfer(password, account, 100.0)\n}"
+    ]
+   },
+   {
+    "title": "Kotlin 可见性修饰符",
+    "url": "https://www.runoob.com/kotlin/kotlin-visibility.html",
+    "body": "可见性修饰符决定一个类、函数或属性能在多大的范围内被访问。\nKotlin 提供四个修饰符：public、internal、protected 和 private。\n合理使用它们可以隐藏实现细节，避免外部代码依赖不该依赖的东西。\n四个修饰符总览\n不同位置能使用的修饰符并不相同，下表先给出一个全局印象。\n修饰符\n顶层声明\n类成员\n可见范围\npublic\n可用（默认）\n可用（默认）\n任何地方\ninternal\n可用\n可用\n同一个模块内\nprotected\n不可用\n可用\n本类及其子类的内部\nprivate\n可用\n可用\n顶层声明：本文件；类成员：本类\nKotlin 没有 Java 那样的「包级可见性」。\n不写修饰符就是 public，包名不影响可见范围。\n提醒：protected 不能用于顶层声明，只能写在类或接口的成员上。\nprivate：顶层同文件，类内仅本类\nprivate 的含义取决于它修饰的是顶层声明还是类成员，这两者容易混淆。\n修饰顶层声明时，private 表示只在这个源文件内可见，其他文件即使包名相同也无法访问。\n实例",
+    "examples": [
+     "// 文件：RunoobFile.kt\nprivate const val SITE: String = \"www.runoob.com\"   // 顶层 private：仅本文件可见\n\nfun printSite() {\n    println(SITE)   // 同一个文件内可以访问\n}\n\n// 文件：Main.kt（与 RunoobFile.kt 一起编译）\nfun main() {\n    printSite()      // 可以调用，printSite 是 public\n    // println(SITE) // 编译错误：Cannot access 'SITE': it is private in file\n}"
+    ]
+   },
+   {
+    "title": "Kotlin Android 环境搭建",
+    "url": "https://www.runoob.com/kotlin/otlin-android-setup.html",
+    "body": "安装 Kotlin 插件\nAndroid Studio 从 3.0（preview）版本开始将内置安装 Kotlin 插件。\n打开 Settings ( Mac 为 Preferences) 面板，在右侧找到 Plugins 选项 (快捷键 Ctrl+, Mac 下为 command+)，搜索框输入 \"Kotlin\" 查找，点击 Search in repositories(仓库中搜索)，然后安装即可，安装完成之后需要重启 Android Studio。\n创建新工程\n选择 Start a new Android Studio project 或者 File | New project，大多数选项均有默认值 ，只需要按几次\"回车\"键即可。\nAndroid Studio 3.0 在当前对话框中提供启用 Kotlin 支持的选项，勾选后可以跳过 \"配置 Kotlin 工程（Configuring Kotlin in the project）\"的步骤。\n选择 Android 版本:\n选择需要创建的 Activity 样式:\n命名该 Activity:\n在 Android Studio 3.0 中，可以选择使用 Kotlin 创建 activity，因此也不需要\"将Java 代码转换为 Kotlin（Converting Java code to Kotlin）\"这一步骤。\n早期版本中则会先使用 Java 创建 activity，然后再使用自动转换工具 进行转换。\n将 Java 代码转换为 Kotlin\n重新打开Android Studio，新建一个Android项目吧，添加一个默认的MainActivity\n打开 MainActivity.java 文件，通过菜单栏依次调出 Code | Convert Java File to Kotlin File：\n转换完成后即可看到使用 Kotlin 编写的 activity。\n工程中配置 Kotlin\n在开始编辑此文件时，Android Studio 会提示当前工程还未配置 Kotlin，根据提示完成操作即可，或者可以在菜单栏中选择 Tools\n选择配置时有如下对话框，选择已安装的最新版本即可。\nKotlin 配置完成后，应用程序的 build.gradle 文件会更新。 你能看到新增了 apply plugin: 'kotlin-android' 及其依赖。\n同步工程，在提示框中点击\"立即同步（Sync Now）\"或者使用 Sync Project with Gradle Files命令。",
+    "examples": []
+   }
+  ]
+ }
+}

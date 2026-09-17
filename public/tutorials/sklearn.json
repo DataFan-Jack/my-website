@@ -1,0 +1,102 @@
+{
+ "tutorial": {
+  "name": "Sklearn",
+  "category": "人工智能",
+  "desc": "Sklearn（全称 scikit-learn）是一个开源的机器学习库。",
+  "url": "https://www.runoob.com/sklearn/",
+  "chapters": [
+   {
+    "title": "Sklearn 基础概念",
+    "url": "https://www.runoob.com/sklearn/sklearn-basics.html",
+    "body": "在使用 Sklearn 进行机器学习时，需要了解一些基础的概念。\nSklearn 提供了一种统一且简洁的 API 来实现各种机器学习算法和流程，能够帮助我们快速实现各种机器学习任务。\n接下来我们从以下几个概念展开说明：数据表示、模型类型、预处理方法、评估指标、模型调优等。\n1、数据表示：数据集和特征\n数据集是 Sklearn 最基本的概念之一。\n机器学习的核心任务是从数据中学习模式，数据的表示方式至关重要。\n数据集（Dataset）\n在 scikit-learn 中，数据通常通过两个主要的对象来表示： 特征矩阵 和 目标向量。\n特征矩阵（Feature Matrix）：每一行代表一个数据样本，每一列代表一个特征（即输入变量）。它是一个二维的数组或矩阵，通常使用 NumPy 数组或 pandas DataFrame 来存储。\n假设我们有 3 个样本，每个样本有 2 个特征。\n实例",
+    "examples": [
+     "import numpy as np\nX = np.array([[1.0, 2.0], [2.0, 3.0], [3.0, 4.0]])"
+    ]
+   },
+   {
+    "title": "Sklearn 自定义模型与功能",
+    "url": "https://www.runoob.com/sklearn/sklearn-custom-models-and-functions.html",
+    "body": "自定义模型可以扩展 scikit-learn 的功能，以便满足特定应用场景下的需求。\n在 scikit-learn 中，除了使用现成的模型和预处理功能外，用户还可以根据自己的需求创建自定义的模型、转换器和功能。\n自定义模型和功能的实现通常涉及继承 scikit-learn 的基类，如 BaseEstimator 和 TransformerMixin，然后实现特定的 fit 和 predict 方法。\n本章节会在以下几个方面展开说明：\n自定义转换器（Transformer）\n自定义估计器（Estimator）\n自定义管道步骤\n如何通过继承 BaseEstimator 和 TransformerMixin 实现自定义算法\n1、自定义转换器（Transformer）\n转换器是用于对数据进行转换的组件，例如标准化、特征选择等。自定义转换器可以继承 TransformerMixin，并实现 fit 和 transform 方法。\n自定义转换器的步骤：\nfit 方法：通常用于学习数据的属性（如均值、方差、特征选择标准等）。fit 方法返回转换器本身，以便可以进行链式调用。\ntransform 方法：应用已学习的属性，对数据进行转换或处理。\n自定义转换器示例：自定义标准化转换器：\n假设我们希望实现一个自定义的标准化转换器，标准化是将数据的每个特征缩放到均值为 0、方差为 1 的范围。\n实例",
+    "examples": [
+     "import numpy as np\nfrom sklearn.base import BaseEstimator, TransformerMixin\n\nclass CustomScaler(BaseEstimator, TransformerMixin):\n    def fit(self, X, y=None):\n        \"\"\"\n        计算每个特征的均值和标准差\n        \"\"\"\n        self.mean_ = np.mean(X, axis=0)\n        self.std_ = np.std(X, axis=0)\n        return self  # 返回对象本身\n\n    def transform(self, X):\n        \"\"\"\n        标准化数据\n        \"\"\"\n        return (X - self.mean_) / self.std_\n\n# 测试自定义转换器\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\n\n# 加载数据\ndata = load_iris()\nX, y = data.data, data.target\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# 创建自定义转换器对象\nscaler = CustomScaler()\n\n# 使用自定义标准化\nscaler.fit(X_train)\nX_train_scaled = scaler.transform(X_train)\nX_test_scaled = scaler.transform(X_test)\n\nprint(\"Scaled training data:\\n\", X_train_scaled)"
+    ]
+   },
+   {
+    "title": "Sklearn 数据预处理",
+    "url": "https://www.runoob.com/sklearn/sklearn-data-preprocessing.html",
+    "body": "数据预处理是机器学习项目中的一个关键步骤，它直接影响模型的训练效果和最终性能。\n在进行机器学习建模时，数据预处理是至关重要的一步，它帮助我们清洗和转换原始数据，以便为机器学习模型提供最佳的输入。\n数据预处理涉及多个步骤，包括处理缺失值、数据转换、标准化、编码等。\n合适的预处理不仅能提高模型的准确性，还能帮助模型更好地泛化。\n1、处理缺失值\n缺失值是指在数据集中某些特征的值缺失。\n机器学习算法通常无法直接处理缺失值，因此我们需要对缺失值进行处理。\n检查缺失值\n首先，检查数据集中是否有缺失值。\n通常可以使用 pandas 来查看数据集中的缺失值：\n实例",
+    "examples": [
+     "import pandas as pd\n\n# 假设我们有一个 DataFrame df\nprint(df.isnull().sum())  # 查看每一列缺失值的数量"
+    ]
+   },
+   {
+    "title": "Sklearn 房价预测",
+    "url": "https://www.runoob.com/sklearn/sklearn-house-prices.html",
+    "body": "接下来我们使用 sklearn 进行北京房价预测。\n我们会从数据加载、探索性分析、特征工程到模型训练与优化逐步展开，演示如何使用 sklearn 的工具和库完成预测任务。\n内容概要：\n1. 数据生成与查看\n使用一个字典创建了模拟数据，并将其转换为 pandas DataFrame。\n数据包含了房屋的面积、房间数、楼层、建造年份、位置（类别变量），以及房价（目标变量）。\n通过 df.head() 和 df.describe() 来检查数据的基本结构和统计信息。\n2. 数据预处理\n特征选择：从原始数据中选择了与房价相关的特征（面积、房间数、楼层、建造年份、位置）。\n数据拆分：使用 train_test_split 将数据集分为 80% 的训练集和 20% 的测试集。\n数值特征标准化：使用 StandardScaler 对数值特征进行标准化。\n类别特征编码：使用 OneHotEncoder 对类别特征（location）进行 One-Hot 编码。\nColumnTransformer 将数值和类别特征的处理整合成一个步骤。\n3. 模型训练\n使用 Pipeline 将数据预处理与模型训练步骤结合，确保整个过程的流水线化。\n使用线性回归模型 (LinearRegression) 进行训练。\n4. 模型评估\n通过 mean_squared_error 计算均方误差（MSE），以及通过 r2_score 计算决定系数（R²）。\n输出评估结果，查看模型的预测准确性。\n5. 模型优化\n使用 GridSearchCV 对线性回归的超参数进行调优，主要调整的是 fit_intercept（是否拟合截距）。\n通过网格搜索找到最佳超参数，并使用最佳模型对测试集进行预测。\n重新计算优化后的模型评估指标（MSE 和 R²）。\n1、数据生成与查看\n我们首先构造一个模拟的 DataFrame，其中包含一些常见的房价预测特征，如房屋面积、房间数、楼层、建造年份和地理位置（类别型变量）。\n实例",
+    "examples": [
+     "import pandas as pd\nimport numpy as np\n\n# 模拟数据：房屋面积 (平方米)、房间数、楼层、建造年份、位置（类别变量）\ndata = {\n    'area': [70, 85, 100, 120, 60, 150, 200, 80, 95, 110],\n    'rooms': [2, 3, 3, 4, 2, 5, 6, 3, 3, 4],\n    'floor': [5, 2, 8, 10, 3, 15, 18, 7, 9, 11],\n    'year_built': [2005, 2010, 2012, 2015, 2000, 2018, 2020, 2008, 2011, 2016],\n    'location': ['Chaoyang', 'Haidian', 'Chaoyang', 'Dongcheng', 'Fengtai', 'Haidian', 'Chaoyang', 'Fengtai', 'Dongcheng', 'Haidian'],\n    'price': [5000000, 6000000, 6500000, 7000000, 4500000, 10000000, 12000000, 5500000, 6200000, 7500000]  # 房价（目标变量）\n}\n\n# 创建 DataFrame\ndf = pd.DataFrame(data)\n\n# 查看数据\nprint(\"数据预览：\")\nprint(df.head())"
+    ]
+   },
+   {
+    "title": "Sklearn 安装",
+    "url": "https://www.runoob.com/sklearn/sklearn-install.html",
+    "body": "要学习 Sklearn，安装是第一步，由于 Sklearn 依赖于其他几个库（如 NumPy、SciPy 和 matplotlib），所以我们需要确保这些依赖库也已安装。\n系统环境要求：\nPython 版本：scikit-learn 支持 Python 3.7 及以上版本。\n操作系统：scikit-learn 可以在 Windows、macOS 和 Linux 等主流操作系统上运行。\n包管理工具：你可以使用 pip 或 conda 来安装 scikit-learn。\n本章节我们使用 pip 安装 scikit-learn。\n安装前，确保已安装 Python 和 pip。\n检查 Python 是否安装：\npython --version\n检查 pip 是否安装：\npip --version\n如果未安装 python 和 pip，可以参考我们的： Python 安装 与 Pip 安装。\n注意：目前最新的 Python 版本已经预装了 pip。\n注意：Python 2.7.9 + 或 Python 3.4+ 以上版本都自带 pip 工具。\n安装 Sklearn\nSklearn 全称为 scikit-learn。\n使用 pip 安装最新版本的 scikit-learn：\npip install scikit-learn\n如果你希望安装特定版本的 scikit-learn，可以指定版本号：\npip install scikit-learn==1.2.0\n检查安装是否成功\n安装完成后，我们可以通过以下代码检查 scikit-learn 是否安装成功：\n实例",
+    "examples": [
+     "import sklearn\nprint(sklearn.__version__)"
+    ]
+   },
+   {
+    "title": "Sklearn 简介",
+    "url": "https://www.runoob.com/sklearn/sklearn-intro.html",
+    "body": "Sklearn，全称为 Sklearn，是一个基于 Python 的开源机器学习库。\nSklearn 是一个功能强大、易于使用的机器学习库，提供了从数据预处理到模型评估的一整套工具。\nSklearn 构建在 NumPy 和 SciPy 基础之上，因此它能够高效地处理数值计算和数组操作。\nSklearn 适用于各类机器学习任务，如分类、回归、聚类、降维等。\nSklearn 凭借其简洁而一致的 API，Sklearn 已经成为了机器学习爱好者和专家的必备工具之一。\nSklearn 如何工作\n在 Sklearn 中，机器学习的流程遵循一定的模式：数据加载、数据预处理、训练模型、评估模型 和 调优模型。\n具体工作流程如下：\n数据加载：使用 Sklearn 或其他库加载数据集，例如通过 datasets.load_iris() 加载经典的鸢尾花数据集，或使用 train_test_split() 分割数据。\n数据预处理：根据数据的类型，可能需要进行标准化、去噪、缺失值填充等操作。\n选择算法和训练模型：选择适合的算法（如逻辑回归、支持向量机等），使用 .fit() 方法对模型进行训练。\n模型评估：使用交叉验证或单一训练/测试集来评估模型的准确性、召回率、F1分数等性能指标。\n模型优化：使用网格搜索（GridSearchCV）或随机搜索（RandomizedSearchCV）对模型进行超参数优化，提高模型性能。\nSklearn 的特点\n易用性：Sklearn 的 API 设计简洁且一致，使得学习曲线较为平缓。通过简单的 fit、predict、score 等方法，可以快速实现机器学习任务。\n高效性：虽然 Sklearn 是纯 Python 编写，但它的底层大多数实现依赖于 Cython 和 NumPy，这使得它在执行机器学习算法时速度非常快。\n丰富的功能：Sklearn 提供了大量经典的机器学习算法，包括：分类算法：如逻辑回归、支持向量机（SVM）、K近邻（KNN）、随机森林等\n回归算法：如线性回归、岭回归、Lasso回归等\n聚类算法：如 K均值、层次聚类、DBSCAN 等\n降维算法：如主成分分析（PCA）、t-SNE 等\n模型选择与评估：交叉验证、网格搜索、模型评估指标等\n兼容性好：Sklearn 可以很好地与 NumPy、SciPy、Pandas 等 Python 数据处理库兼容，支持多种数据格式（如 NumPy 数组、Pandas DataFrame）进行输入和输出。\nSklearn 支持的机器学习任务\nSklearn 提供了丰富的工具，支持以下几类机器学习任务：\n监督学习（Supervised Learning）：分类问题：预测数据的类别（例如，电子邮件垃圾邮件分类、图像分类、疾病预测等）。\n回归问题：预测连续值（例如，房价预测、股票价格预测等）。\n无监督学习（Unsupervised Learning）：聚类问题：将数据分组为不同的类群（例如，客户分群、文档聚类等）。\n降维问题：将高维数据投影到低维空间，便于可视化或减少计算复杂度（例如，PCA、t-SNE）。\n半监督学习（Semi-supervised Learning）：部分数据是带标签的，部分数据是无标签的，模型尝试从这些数据中提取信息。\n强化学习（Reinforcement Learning）：虽然 Sklearn 主要专注于监督和无监督学习，但也有一些相关的工具，可以用来处理强化学习问题。\nSklearn 中常见的模块和类\n分类（Classification）sklearn.linear_model.LogisticRegression：逻辑回归\nsklearn.svm.SVC：支持向量机分类\nsklearn.neighbors.KNeighborsClassifier：K近邻分类\nsklearn.ensemble.RandomForestClassifier：随机森林分类\n回归（Regression）sklearn.linear_model.LinearRegression：线性回归\nsklearn.linear_model.Ridge：岭回归\nsklearn.ensemble.RandomForestRegressor：随机森林回归\n聚类（Clustering）sklearn.cluster.KMeans：K均值聚类\nsklearn.cluster.DBSCAN：基于密度的空间聚类\n降维（Dimensionality Reduction）sklearn.decomposition.PCA：主成分分析（PCA）\nsklearn.decomposition.NMF：非负矩阵分解\n模型选择（Model Selection）sklearn.model_selection.train_test_split：将数据集划分为训练集和测试集\nsklearn.model_selection.GridSearchCV：网格搜索，寻找最佳超参数\n数据预处理（Preprocessing）sklearn.preprocessing.StandardScaler：标准化\nsklearn.preprocessing.MinMaxScaler：最小-最大标准化\nsklearn.preprocessing.OneHotEncoder：独热编码\n常用术语解释\n拟合（Fit）：指将模型应用于训练数据，并通过训练调整模型的参数。model.fit(X_train, y_train)\n预测（Predict）：根据训练好的模型，对未知数据进行预测。model.predict(X_test)\n评估（Score）：评估模型的性能，通常返回一个评分指标，例如准确率。model.score(X_test, y_test)\n交叉验证（Cross-validation）：将数据集划分为多个子集，通过多次训练和验证，评估模型的稳定性和泛化能力。\nSklearn 与其他库的关系\n与 NumPy 和 SciPy 的关系：Sklearn 构建在 NumPy 和 SciPy 基础之上，因此它能够高效地处理数值计算和数组操作。\n与 Pandas 的关系：Pandas 提供了强大的数据处理能力，而 Sklearn 支持从 Pandas 的 DataFrame 中直接提取数据进行模型训练和预测。\n与 TensorFlow 和 PyTorch 的关系：Sklearn 主要关注传统的机器学习方法，而 TensorFlow 和 PyTorch 则更侧重于深度学习模型。尽管如此，Sklearn 与这些库可以结合使用，处理一些前期的特征工程任务，或作为基础模型与深度学习进行比较。",
+    "examples": []
+   },
+   {
+    "title": "Sklearn 应用案例",
+    "url": "https://www.runoob.com/sklearn/sklearn-iris-dataset.html",
+    "body": "鸢尾花数据集（Iris Dataset）是机器学习中最经典的入门数据集之一。\n鸢尾花数据集包含了三种鸢尾花（Setosa、Versicolor、Virginica）每种花的 4 个特征：花萼长度、花萼宽度、花瓣长度和花瓣宽度。\n接下来我们的任务是基于这些特征来预测鸢尾花的种类。\n本章节案例将涵盖数据加载、可视化、特征选择、数据预处理、建立分类模型、模型评估及优化等步骤。\n1、数据加载与可视化\n数据加载\n首先，加载鸢尾花数据集，scikit-learn 提供了直接加载鸢尾花数据集的接口。\n实例",
+    "examples": [
+     "from sklearn.datasets import load_iris\nimport pandas as pd\n\n# 加载鸢尾花数据集\ndata = load_iris()\n\n# 转换为 DataFrame 方便查看\ndf = pd.DataFrame(data.data, columns=data.feature_names)\ndf['target'] = data.target\ndf['species'] = df['target'].apply(lambda x: data.target_names[x])\n\n# 查看前几行数据\nprint(df.head())"
+    ]
+   },
+   {
+    "title": "Sklearn 机器学习模型",
+    "url": "https://www.runoob.com/sklearn/sklearn-ml-model.html",
+    "body": "机器学习模型是实现自动化数据分析、模式识别和预测的核心工具。\n根据任务类型的不同，机器学习模型通常可以分为：\n分类模型（Classification）：预测离散类别\n回归模型（Regression）：预测连续数值\n聚类模型（Clustering）：对数据进行自动分组\n本章节将详细介绍这些常见的机器学习模型，并介绍如何评估和优化模型。\n1、分类模型\n分类问题是机器学习中最常见的问题之一，其目的是将输入数据映射到离散的类别标签。\n常见分类模型包括：\n逻辑回归\nK-近邻（KNN）\n支持向量机（SVM）\n决策树\n随机森林\n逻辑回归（Logistic Regression）\n逻辑回归虽然名字中带\"回归\"，但本质是概率型分类模型，常用于二分类问题。\n其核心思想是：\n先进行线性加权求和\n再通过 Sigmoid 函数将结果映射到 0~1 之间作为概率\n形式可表示为：\n逻辑回归的核心公式为：\nscikit-learn 实现:\n实例",
+    "examples": [
+     "from sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\n\n# 假设 X 是特征矩阵，y 是标签\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)\n\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\n\n# 预测\ny_pred = model.predict(X_test)"
+    ]
+   },
+   {
+    "title": "Sklearn 模型评估与调优",
+    "url": "https://www.runoob.com/sklearn/sklearn-model-evaluation.html",
+    "body": "机器学习模型的评估与调优是确保模型泛化能力和预测准确度的关键步骤。\n通过合适的评估指标和调优方法，可以有效提高模型性能，避免过拟合或欠拟合的风险。\n本章节将详细介绍交叉验证、网格搜索、随机搜索、模型评估方法等内容。\n1、交叉验证\n介绍交叉验证的概念\n交叉验证（Cross-Validation）是一种用于评估模型性能的技术，它通过将数据集分成多个子集（折叠），并多次训练和测试模型来获得更稳定、可靠的评估结果。\n交叉验证有助于检测模型是否过拟合，并且能够更准确地评估模型的泛化能力。\n常见的交叉验证方法包括：\nK-fold 交叉验证：将数据分成 K 个折叠，依次选择其中一个折叠作为测试集，其他 K-1 个折叠作为训练集，重复 K 次，最后计算 K 次的结果平均值。\n留一法交叉验证（Leave-One-Out Cross-Validation, LOOCV）：每次只保留一个数据点作为测试集，剩余的作为训练集。这种方法非常耗时，但可以用于小数据集。\n分层 K-fold 交叉验证：在 K-fold 中，确保每个折叠中的类别分布与整个数据集相似，适用于类别不平衡的情况。\nscikit-learn 提供了多种交叉验证的方法，如 cross_val_score 和 cross_val_predict 等，可以帮助我们高效地进行交叉验证。\n使用 cross_val_score 执行 K-fold 交叉验证\ncross_val_score 函数用于执行 K-fold 交叉验证，返回每个折叠的评分结果，帮助我们评估模型的稳定性和性能。\n使用 cross_val_score 执行 K-fold 交叉验证:\n实例",
+    "examples": [
+     "from sklearn.model_selection import cross_val_score\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.datasets import load_iris\n\n# 加载数据\ndata = load_iris()\nX, y = data.data, data.target\n\n# 创建模型\nmodel = RandomForestClassifier()\n\n# 执行 K-fold 交叉验证\nscores = cross_val_score(model, X, y, cv=5)  # 5-fold 交叉验证\nprint(f\"Cross-validation scores: {scores}\")\nprint(f\"Mean accuracy: {scores.mean()}\")"
+    ]
+   },
+   {
+    "title": "Sklearn 模型保存与加载",
+    "url": "https://www.runoob.com/sklearn/sklearn-model-save-load.html",
+    "body": "在机器学习中，模型的训练过程通常是耗时的，为了避免每次重新训练模型，我们可以将训练好的模型保存下来，便于以后进行加载和预测。\nscikit-learn 提供了两种常用的方式来保存和加载模型：joblib 和 pickle。\n1、使用 joblib 保存与加载模型\njoblib 是一个高效的 Python 序列化工具，特别适合用于保存包含大量数值数组（如 numpy 数组、scikit-learn 模型等）的对象。相较于 pickle，joblib 在处理大规模数据时更高效。\njoblib 是 Python 的一个外部库，可以通过以下命令安装：\npip install joblib\n保存模型\njoblib 提供了一个简单的 API 来保存和加载对象。\n我们可以使用 joblib.dump() 方法将模型保存到文件中。\n实例",
+    "examples": [
+     "import joblib\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.svm import SVC\n\n# 加载数据\ndata = load_iris()\nX, y = data.data, data.target\n\n# 划分训练集和测试集\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# 创建并训练模型\nmodel = SVC(kernel='linear')\nmodel.fit(X_train, y_train)\n\n# 保存模型到文件\njoblib.dump(model, 'svm_model.joblib')"
+    ]
+   },
+   {
+    "title": "Sklearn 管道（Pipeline）",
+    "url": "https://www.runoob.com/sklearn/sklearn-pipeline.html",
+    "body": "在机器学习项目中，数据处理、特征工程、模型训练、评估等步骤往往是互相依赖的，这些步骤的顺序和协调性对于最终模型的性能至关重要。\nPipeline 是 scikit-learn 中用于组织和简化这些步骤的一个重要工具。\n通过 Pipeline，我们可以将数据预处理与模型训练整合在一起，从而简化工作流并提高代码的可复用性。\n什么是 Pipeline\nPipeline 是一个可按顺序执行多个数据处理步骤和模型训练步骤的工具。\n在 Pipeline 中，每个步骤是一个元组，包含一个名称和一个对象。\n每个对象通常是一个 转换器（Transformer） 或 估计器（Estimator），其中：\n转换器（Transformer） 是执行数据转换的对象，比如数据预处理（例如归一化、标准化、特征选择等）。\n估计器（Estimator） 是用于训练模型的对象，例如分类器或回归器。\nPipeline 使得将多个步骤整合为一个可重用的工作流变得简单，并且可以确保数据处理过程的一致性，避免因代码重复或手动处理导致的错误。\n为什么要使用 Pipeline\n简化代码：将多个步骤组合成一个整体，简化了代码结构和管理。\n避免数据泄漏：在数据预处理时，确保训练集和测试集的处理是隔离的，避免数据泄漏。比如，标准化操作时，不能在测试集上计算均值和标准差。\n减少重复工作：通过 Pipeline 可以把数据预处理与模型训练过程串联起来，避免在每次训练时重复写预处理代码。\n提高可复用性：将数据处理和模型训练封装成一个 Pipeline 对象，可以在不同的项目和数据集上复用。\n方便调优：通过 Pipeline 可以直接在调优时应用超参数优化、交叉验证等，简化整个流程。\nPipeline 的组成部分\nPipeline 由多个步骤（step）组成，每个步骤是一个元组，包含两个元素：\n步骤名称（字符串类型）: 用于标识每个步骤。\n转换器或估计器: 用于数据处理或建模的对象。\n常见的步骤包括：\n数据预处理步骤：如数据清洗、标准化、编码等。\n模型训练步骤：如分类器、回归器等。\n创建一个简单的 Pipeline\n假设我们有一个数据集，并且需要对数据进行标准化后训练一个支持向量机（SVM）分类器。我们可以将标准化和模型训练步骤组合成一个管道（Pipeline）。\n实例",
+    "examples": [
+     "from sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.svm import SVC\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.datasets import load_iris\n\n# 加载数据\ndata = load_iris()\nX, y = data.data, data.target\n\n# 将数据集划分为训练集和测试集\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# 创建 Pipeline\npipeline = Pipeline([\n    ('scaler', StandardScaler()),  # 数据标准化\n    ('svc', SVC())  # 支持向量机分类器\n])\n\n# 训练模型\npipeline.fit(X_train, y_train)\n\n# 预测结果\ny_pred = pipeline.predict(X_test)\n\n# 打印模型精度\nprint(f\"Model accuracy: {pipeline.score(X_test, y_test)}\")"
+    ]
+   },
+   {
+    "title": "Sklearn 教程",
+    "url": "https://www.runoob.com/sklearn/sklearn-tutorial.html",
+    "body": "Sklearn（全称 scikit-learn）是一个开源的机器学习库。\nSklearn 是一个基于 Python 编程语言的开源机器学习库，致力于提供简单而高效的工具。\nSklearn 建立在 NumPy、SciPy 和 matplotlib 这些科学计算库之上，提供了简单而高效的数据挖掘和数据分析工具。\nSklearn 是许多机器学习项目的核心工具之一，并且在学术界、工业界和个人项目中广泛应用。\nSklearn 适用于各类机器学习任务，如分类、回归、聚类、降维等。",
+    "examples": []
+   }
+  ]
+ }
+}

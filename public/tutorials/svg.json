@@ -1,0 +1,168 @@
+{
+ "tutorial": {
+  "name": "SVG",
+  "category": "前端开发",
+  "desc": "SVG 意为可缩放矢量图形（Scalable Vector Graphics）。",
+  "url": "https://www.runoob.com/svg/",
+  "chapters": [
+   {
+    "title": "SVG 圆形 <circle>",
+    "url": "https://www.runoob.com/svg/svg-circle.html",
+    "body": "SVG 中的 <circle> 元素用于绘制圆形，它是SVG中常用的基本形状之一。\n使用 <circle> 元素可以创建圆形的图形，并可以通过设置属性来控制圆形的位置、大小和样式。\n基本语法\n<circle\n cx=\"x-coordinate\" <!-- 圆心的 x 坐标 -->\n cy=\"y-coordinate\" <!-- 圆心的 y 坐标 -->\n r=\"radius\" <!-- 圆的半径 -->\n fill=\"fill-color\" <!-- 圆的填充颜色 -->\n stroke=\"stroke-color\" <!-- 圆的描边颜色 -->\n stroke-width=\"width\" <!-- 圆的描边宽度 -->\n/>\n属性解析：\ncx 和 cy 属性定义了圆心的坐标，即圆的中心点的位置。\nr 属性定义了圆的半径，以确定圆的大小。\nfill 属性定义了圆的填充颜色。\nstroke 属性定义了圆的描边颜色。\nstroke-width 属性定义了圆的描边宽度。\n以下代码绘制了一个蓝色填充、黑色描边、半径为 50 像素的圆形，圆心坐标为 (100, 100)。\n<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n <circle cx=\"100\" cy=\"100\" r=\"50\" fill=\"blue\" stroke=\"black\" stroke-width=\"2\" />\n</svg>\n实例\n下面是 SVG 代码：\n实例\n尝试一下 »",
+    "examples": [
+     "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n \n<circle cx=\"100\" cy=\"50\" r=\"40\" stroke=\"black\"\n \nstroke-width=\"2\" fill=\"red\"/>\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 椭圆 <ellipse>",
+    "url": "https://www.runoob.com/svg/svg-ellipse.html",
+    "body": "SVG 中的 <ellipse> 元素用于绘制椭圆形，它是SVG中常用的基本形状之一。\n使用 <ellipse> 元素可以创建椭圆形的图形，并可以通过设置属性来控制椭圆的位置、大小和样式。\n基本语法\n<ellipse\n cx=\"x-coordinate\" <!-- 椭圆中心点的 x 坐标 -->\n cy=\"y-coordinate\" <!-- 椭圆中心点的 y 坐标 -->\n rx=\"x-radius\" <!-- 椭圆水平轴的半径 -->\n ry=\"y-radius\" <!-- 椭圆垂直轴的半径 -->\n fill=\"fill-color\" <!-- 椭圆的填充颜色 -->\n stroke=\"stroke-color\" <!-- 椭圆的描边颜色 -->\n stroke-width=\"width\" <!-- 椭圆的描边宽度 -->\n/>\n属性解析：\ncx 和 cy 属性定义了椭圆的中心点坐标，即椭圆的中心位置。\nrx 属性定义了椭圆水平轴（x轴）的半径。\nry 属性定义了椭圆垂直轴（y轴）的半径。\nfill 属性定义了椭圆的填充颜色。\nstroke 属性定义了椭圆的描边颜色。\nstroke-width 属性定义了椭圆的描边宽度。\n以下代码绘制了一个蓝色填充、黑色描边、水平轴半径为 80 像素、垂直轴半径为 50 像素的椭圆形，椭圆的中心点坐标为 (100, 100)。\n<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n <ellipse cx=\"100\" cy=\"100\" rx=\"80\" ry=\"50\" fill=\"blue\" stroke=\"black\" stroke-width=\"2\" />\n</svg>\n实例 1\n椭圆与圆很相似，不同之处在于椭圆有不同的 x 和 y 半径，而圆的 x 和 y 半径是相同的。\n下面是 SVG 代码：\n实例",
+    "examples": [
+     "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n<ellipse cx=\"300\" cy=\"80\" rx=\"100\" ry=\"50\"\nstyle=\"fill:yellow;stroke:purple;stroke-width:2\"/>\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 基本语法",
+    "url": "https://www.runoob.com/svg/svg-example.html",
+    "body": "SVG 文档由一个或多个 SVG 元素组成，它们定义了图形的内容和属性。\n<svg\n width=\"200\" <!-- 指定SVG画布的宽度 -->\n height=\"200\" <!-- 指定SVG画布的高度 -->\n xmlns=\"http://www.w3.org/2000/svg\"> <!-- 指定SVG命名空间 -->\n <!-- SVG图形内容 -->\n</svg>\nwidth 和 height 属性定义了SVG画布的宽度和高度。\nxmlns 属性指定 SVG 文档的 XML 命名空间。\nSVG 的基本语法：\nSVG文档以 <svg> 标签开始，以 </svg> 标签结束。\nSVG元素使用标签来描述不同的图形，例如 <circle> 表示圆形，<rect> 表示矩形等。\nSVG元素可以包含属性，用于指定图形的各种特性，如位置、大小、颜色等。\n绘制基本图形：\nSVG 提供了一系列的图形元素来绘制各种形状的图形，如矩形、圆形、直线、多边形等。\n<rect>：绘制矩形\n<circle>：绘制圆形\n<ellipse>：绘制椭圆\n<line>：绘制直线\n<polyline>：绘制折线\n<polygon>：绘制多边形\n<path>：绘制路径\n矩形（Rectangles）：使用 <rect> 元素绘制矩形，可以指定矩形的位置、大小、圆角等属性。\n<rect x=\"50\" y=\"50\" width=\"100\" height=\"50\" rx=\"10\" ry=\"10\" fill=\"blue\" />\n圆形（Circles）：使用 <circle> 元素绘制圆形，可以指定圆心坐标和半径。\n<circle cx=\"100\" cy=\"100\" r=\"50\" fill=\"red\" />\n椭圆（Ellipses）：使用 <ellipse> 元素绘制椭圆，可以指定椭圆的中心坐标和长短轴的半径。\n<ellipse cx=\"100\" cy=\"100\" rx=\"80\" ry=\"50\" fill=\"green\" />\n直线（Lines）：使用 <line> 元素绘制直线，需要指定起点和终点坐标。\n<line x1=\"50\" y1=\"50\" x2=\"150\" y2=\"150\" stroke=\"black\" stroke-width=\"2\" />\n多边形（Polygons）：使用 <polygon> 元素绘制多边形，需要指定多个顶点的坐标。\n<polygon points=\"100,50 150,150 50,150\" fill=\"orange\" />\n折线（Polylines）：使用 <polyline> 元素绘制折线，需要指定多个点的坐标。\n<polyline points=\"100,50 150,150 50,150\" fill=\"none\" stroke=\"blue\" stroke-width=\"2\" />\n路径（Paths）：使用 <path> 元素绘制路径，可以通过指定一系列的路径命令来绘制各种形状。\n<path d=\"M10 10 L90 10 L90 90 Z\" fill=\"none\" stroke=\"black\" stroke-width=\"2\" />\n渐变和填充：\n使用 <linearGradient> 或 <radialGradient> 定义渐变。\n使用 fill 和 stroke 属性指定填充和描边样式。\n文本和字体：\n使用 <text> 元素插入文本。\n使用 font-family、font-size 等属性控制文本样式。\n动画和交互：\n使用CSS或JavaScript创建动画效果。\n添加事件处理器实现交互功能，如鼠标点击、悬停等。\nSVG 元素属性：\nSVG元素可以具有各种属性，用于指定图形的位置、大小、颜色等特性。\n<circle\n cx=\"100\" <!-- 圆心的x坐标 -->\n cy=\"100\" <!-- 圆心的y坐标 -->\n r=\"50\" <!-- 圆的半径 -->\n fill=\"red\" <!-- 填充颜色 -->\n stroke=\"black\" <!-- 描边颜色 -->\n stroke-width=\"2\" <!-- 描边宽度 -->\n/>\ncx 和 cy 属性定义了圆心的x和y坐标。\nr 属性定义了圆的半径。\nfill 属性定义了填充颜色。\nstroke 属性定义了描边颜色。\nstroke-width 属性定义了描边宽度。\n嵌套和分组：\nSVG 元素可以嵌套和分组，以便更好地组织和管理图形元素。\n<g id=\"group1\"> <!-- 定义一个分组 -->\n <!-- 分组内的图形元素 -->\n <rect x=\"10\" y=\"10\" width=\"50\" height=\"50\" />\n <circle cx=\"100\" cy=\"100\" r=\"30\" />\n</g>\n<g> 元素用于创建一个分组。\nid 属性用于为分组指定一个唯一的标识符。\n简单的 SVG 实例\nSVG 文件推荐使用 .svg（全部小写）作为此类文件的扩展名。\n1、以下是一个简单的 SVG 文件示例，创建一个包含一个圆形的 SVG 图像：\ntest.svg 文件",
+    "examples": [
+     "<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n  <circle cx=\"100\" cy=\"100\" r=\"80\" fill=\"blue\" />\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 实例",
+    "url": "https://www.runoob.com/svg/svg-examples.html",
+    "body": "在线实例\n下面的例子是把 SVG 代码直接嵌入到 HTML 代码中。\n几乎所有现代浏览器都支持 SVG（可缩放矢量图形）格式。\n以下是一些主要浏览器的支持情况：\nGoogle Chrome：全面支持SVG，版本从1.0开始。\nMozilla Firefox：全面支持SVG，版本从1.5开始。\nMicrosoft Edge：全面支持SVG。\nSafari：全面支持SVG，版本从3.1开始。\nOpera：全面支持SVG，版本从9.0开始。\n移动浏览器支持:\niOS Safari：全面支持SVG。\nAndroid Browser：全面支持SVG。\nChrome for Android：全面支持SVG。\nSVG 实例\nSVG基本形状\n一个圆\n矩形\n不透明矩形\n一个矩形不透明2\n一个带圆角矩形\n一个椭圆\n累叠而上的三个椭圆\n两个椭圆\n一条线\n三角形\n四边形\n一个星星\n另一个星星\n折线\n另一个折线\n路径\n二次贝塞尔曲线\n编写文字\n旋转文本\n路径上文字\n几行文字\n文本链接\n定义一条线，文本或轮廓颜色（stroke）\n定义一条线宽度，文本或轮廓（stroke-width）\nstroke-linecap属性定义不同类型的开放路径的终结：\n定义虚线（stroke-dasharray）\nSVG滤镜\nfeGaussianBlur - 模糊效果\nfeOffset - 偏移一个矩形，然后混合偏移图像顶部\nfeOffset - 模糊偏移图像\nfeOffset - 使阴影变黑色\nfeOffset - 为阴影涂上一层颜色\n一个feBlend滤镜\n一个feColorMatrix滤镜\n一个feComponentTransfer滤镜\nfeOffset、feFlood、feComposite、feMerge 以及 feMergeNode\n一个feMorphology滤镜\n滤镜1\n滤镜2\n滤镜3\n滤镜4\n滤镜5\n滤镜6\nSVG渐变\n水平线性渐变从黄色到红色的椭圆形\n垂直线性渐变从黄色到红色椭圆形\n水平线性渐变从黄色到红色并添加一个椭圆内文本\n放射性渐变从白色到蓝色椭圆\n放射性渐变从白色到蓝色的另一个椭圆\nSVG杂项\n重复用 5 秒时间淡出的矩形\n矩形会变大并改变颜色\n会改变颜色的三个矩形\n沿一个运动路径移动的文本\n沿一个运动路径移动、旋转并缩放的文本\n沿一个运动路径移动、旋转并缩放的文本 + 逐步放大并改变颜色的矩形",
+    "examples": []
+   },
+   {
+    "title": "SVG 模糊效果",
+    "url": "https://www.runoob.com/svg/svg-fegaussianblur.html",
+    "body": "SVG 中的模糊效果可以通过 <feGaussianBlur> 元素实现，该元素使用高斯模糊算法来模糊图像。\n模糊效果可以用于创建柔和的阴影、景深效果、模糊背景等各种视觉效果。\n<feGaussianBlur> 元素：\n<feGaussianBlur> 元素用于对图像进行高斯模糊处理，它有两个主要参数：\nstdDeviation：指定高斯模糊的标准差。标准差越大，模糊程度越高。可以使用一个或两个数字，分别表示水平和垂直方向的标准差。如果只提供一个数字，则水平和垂直方向的标准差相同。\nin：指定输入图像，通常为 SourceGraphic，表示应用滤镜效果的目标元素本身。\n以下代码定义了一个模糊滤镜，然后将其应用于一个红色填充的矩形，使矩形呈现出模糊的效果，stdDeviation=\"5\" 表示水平和垂直方向的标准差均为 5，即模糊程度为 5 个像素。\n实例",
+    "examples": [
+     "<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n  <!-- 定义模糊滤镜 -->\n  <filter id=\"blur_filter\">\n    <feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"5\" />\n  </filter>\n  \n  <!-- 应用模糊滤镜的矩形 -->\n  <rect x=\"50\" y=\"50\" width=\"100\" height=\"80\" fill=\"red\" filter=\"url(#blur_filter)\" />\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 阴影",
+    "url": "https://www.runoob.com/svg/svg-feoffset.html",
+    "body": "<feOffset>\n<feOffset> 是 SVG 滤镜中的一个元素，用于在图像上创建一个偏移效果，可以用来创建阴影、轮廓和其他视觉效果。它的作用是将输入图像的每个像素沿着指定的水平和垂直方向移动一定的距离，然后将结果图像作为滤镜效果的输出。\n基本语法\n<feOffset dx=\"x-offset\" dy=\"y-offset\" />\ndx 属性定义了阴影在水平方向上的偏移量。\ndy 属性定义了阴影在垂直方向上的偏移量。\n以下代码定义了一个偏移滤镜，然后将其应用于一个红色填充的矩形，使矩形呈现出带有偏移效果的阴影，阴影在水平方向和垂直方向上分别偏移了 5 个像素。\n实例",
+    "examples": [
+     "<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n  <!-- 定义偏移滤镜 -->\n  <filter id=\"offset_filter\">\n    <feOffset dx=\"5\" dy=\"5\" />\n  </filter>\n  \n  <!-- 应用偏移滤镜的矩形 -->\n  <rect x=\"50\" y=\"50\" width=\"100\" height=\"80\" fill=\"red\" filter=\"url(#offset_filter)\" />\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 滤镜",
+    "url": "https://www.runoob.com/svg/svg-filters-intro.html",
+    "body": "SVG 滤镜是一种强大的图形效果技术，可以用来实现各种视觉效果，例如模糊、阴影、光照等。\n滤镜可以应用于 SVG 图形元素，例如矩形、圆形、路径等，以及 SVG 文本元素，使它们呈现出不同的外观和效果。\n基本语法\nSVG 滤镜通常使用 <filter> 元素定义，并通过 filter 属性将其应用于目标元素。\n<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n <!-- 定义滤镜 -->\n <filter id=\"filter_id\">\n <!-- 滤镜效果 -->\n </filter>\n \n <!-- 应用滤镜的目标元素 -->\n <rect x=\"50\" y=\"50\" width=\"100\" height=\"80\" filter=\"url(#filter_id)\" />\n</svg>\n滤镜效果\nSVG 滤镜可以实现多种效果，常见的滤镜效果包括：\n模糊（Blur）：使图像产生模糊效果，通过 <feGaussianBlur> 元素实现。\n阴影（Shadow）：为图像添加阴影效果，通过 <feDropShadow> 元素实现。\n亮度、对比度调整（Brightness, Contrast）：调整图像的亮度和对比度，通过 <feComponentTransfer> 元素实现。\n颜色矩阵（Color Matrix）：通过颜色矩阵操作修改图像的颜色，通过 <feColorMatrix> 元素实现。\n混合模式（Blend Mode）：将两个图像混合在一起，通过 <feBlend> 元素实现。\n以下代码定义了一个模糊滤镜，然后将其应用于一个红色填充的矩形，使矩形呈现出模糊的效果。\n实例\n尝试一下 »",
+    "examples": [
+     "<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n  <!-- 定义模糊滤镜 -->\n  <filter id=\"blur_filter\">\n    <feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"5\" />\n  </filter>\n  \n  <!-- 应用模糊滤镜的矩形 -->\n  <rect x=\"50\" y=\"50\" width=\"100\" height=\"80\" fill=\"red\" filter=\"url(#blur_filter)\" />\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 渐变 - 线性",
+    "url": "https://www.runoob.com/svg/svg-grad-linear.html",
+    "body": "SVG 渐变\n渐变是一种从一种颜色到另一种颜色的平滑过渡。另外，可以把多个颜色的过渡应用到同一个元素上。\nSVG 渐变主要有两种类型：\n线性渐变 - <linearGradient>\n放射性渐变 - <radialGradient>\nSVG 线性渐变 - <linearGradient>\nSVG 中的 <linearGradient> 元素用于创建线性渐变，它可以沿着一条直线从一个颜色过渡到另一个颜色，从而创建平滑的渐变效果。\n线性渐变可用于填充或描边 SVG 图形元素，使其呈现出丰富的颜色变化。\n基本语法\n<linearGradient id=\"gradient_id\" x1=\"x1\" y1=\"y1\" x2=\"x2\" y2=\"y2\">\n <stop offset=\"offset1\" stop-color=\"color1\" />\n <stop offset=\"offset2\" stop-color=\"color2\" />\n <!-- 更多的 <stop> 元素 -->\n</linearGradient>\n参数说明：\nid 属性定义了线性渐变的唯一标识符，用于在SVG图像中引用该渐变。\nx1 和 y1 属性定义了渐变的起始点坐标。\nx2 和 y2 属性定义了渐变的结束点坐标。\n<stop> 元素用于指定渐变中的颜色和颜色的位置。\n线性渐变可以定义为水平，垂直或角渐变：\n当 y1 和 y2 相等，而 x1 和 x2 不同时，可创建水平渐变\n当 x1 和 x2 相等，而 y1 和 y2 不同时，可创建垂直渐变\n当 x1 和 x2 不同，且 y1 和 y2 不同时，可创建角形渐变\n以下代码定义了一个从红色到蓝色的水平线性渐变，然后将其应用于一个填充矩形，使矩形呈现出渐变的填充效果。\n实例",
+    "examples": [
+     "<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n  <!-- 定义线性渐变 -->\n  <linearGradient id=\"gradient\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">\n    <stop offset=\"0%\" stop-color=\"red\" />\n    <stop offset=\"100%\" stop-color=\"blue\" />\n  </linearGradient>\n  \n  <!-- 应用线性渐变的矩形 -->\n  <rect x=\"50\" y=\"50\" width=\"100\" height=\"80\" fill=\"url(#gradient)\" />\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 渐变- 放射性",
+    "url": "https://www.runoob.com/svg/svg-grad-radial.html",
+    "body": "SVG 中的 <radialGradient> 元素用于创建径向渐变，它可以从一个中心点向外扩散形成渐变效果，使图形呈现出环形、放射状等丰富的颜色变化。\n径向渐变可以应用于填充或描边 SVG 图形元素，为其添加立体感和视觉效果。\n基本语法\n<radialGradient id=\"gradient_id\" cx=\"cx\" cy=\"cy\" r=\"r\" fx=\"fx\" fy=\"fy\">\n <stop offset=\"offset1\" stop-color=\"color1\" />\n <stop offset=\"offset2\" stop-color=\"color2\" />\n <!-- 更多的 <stop> 元素 -->\n</radialGradient>\n参数说明：\nid 属性定义了径向渐变的唯一标识符，用于在SVG图像中引用该渐变。\ncx 和 cy 属性定义了渐变的中心点坐标。\nr 属性定义了渐变的半径。\nfx 和 fy 属性定义了渐变焦点的坐标（可选），用于控制渐变的形状和方向。\n<stop> 元素用于指定渐变中的颜色和颜色的位置。\n以下代码定义了一个从红色到蓝色的径向渐变，然后将其应用于一个填充的圆形，使圆形呈现出渐变的填充效果。\n实例",
+    "examples": [
+     "<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n  <!-- 定义径向渐变 -->\n  <radialGradient id=\"gradient\" cx=\"50%\" cy=\"50%\" r=\"50%\" fx=\"50%\" fy=\"50%\">\n    <stop offset=\"0%\" stop-color=\"red\" />\n    <stop offset=\"100%\" stop-color=\"blue\" />\n  </radialGradient>\n  \n  <!-- 应用径向渐变的圆形 -->\n  <circle cx=\"100\" cy=\"100\" r=\"80\" fill=\"url(#gradient)\" />\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 在 HTML 页面",
+    "url": "https://www.runoob.com/svg/svg-inhtml.html",
+    "body": "SVG 文件可通过以下标签嵌入 HTML 文档：<img>、<object> 或者 <iframe>。\nSVG 的代码可以直接嵌入到 HTML 页面中，或您可以直接链接到 SVG 文件。\n使用 < img> 标签\n通过 <img> 标签可以将 SVG 图像作为图片嵌入到 HTML 页面中，可以使用 src 属性指定 SVG 文件的路径，也可以设置 width 和 height 属性来指定图片的宽度和高度。\n语法:\n<img src=\"example.svg\" alt=\"SVG Image\" width=\"200\" height=\"200\">\n使用 <object> 标签\n<object> 标签用于将外部资源嵌入到HTML页面中，可以使用 data 属性指定 SVG 文件的路径，type 属性指定资源的 MIME 类型。\n支持 SVG 的浏览器会直接显示 SVG 图像，不支持的浏览器会显示替代内容。\n语法:\n<object data=\"example.svg\" type=\"image/svg+xml\" width=\"200\" height=\"200\">\n Your browser does not support SVG\n</object>\n使用 <iframe> 标签\n<iframe> 标签用于在 HTML 页面中嵌入另一个HTML文档。可以使用 src 属性指定 SVG 文件的路径，并设置 width 和 height 属性来指定 iframe 的宽度和高度。\n语法:\n<iframe src=\"example.svg\" width=\"200\" height=\"200\"></iframe>\n直接在 HTML 嵌入 SVG 代码\n在 HTML 页面中直接嵌入 SVG 代码，SVG 代码可以放置在 <body> 标签中或其他合适的位置。\n这种方式使得 SVG 图像与 HTML 内容混合在一起，可以直接在 HTML 页面中编辑和调整 SVG 图像。\n实例",
+    "examples": [
+     "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n<circle cx=\"100\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"2\" fill=\"red\" />\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 简介",
+    "url": "https://www.runoob.com/svg/svg-intro.html",
+    "body": "SVG，可缩放矢量图形（Scalable Vector Graphics），是一种用于描述二维图形的 XML 标记语言。\n与位图图像不同，SVG 图像以文本形式存储，并且可以缩放到任意大小而不会失真，因为它们基于数学描述而不是像素。\n学习之前应具备的基础知识：\n继续学习之前，你应该对以下内容有基本的了解：\nHTML\nXML 基础\n如果希望首先学习这些内容，请在本站的首页选择相应的教程。\n什么是SVG？\nSVG 指可伸缩矢量图形 (Scalable Vector Graphics)\nSVG 用来定义用于网络的基于矢量的图形\nSVG 使用 XML 格式定义图形\nSVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失\nSVG 是万维网联盟的标准\nSVG 与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体\nSVG 是 W3C 推荐标准\nSVG 于 2003 年 1 月 14 日成为 W3C 推荐标准。\n如需阅读更多有关 W3C 的 SVG 活动的信息，请访问我们的 W3C 教程。\nSVG 的历史和优势\nSVG 历史：\nSVG 由 1998 年成立的 W3C SVG 工作组启动开发，随着当年提交给 W3C 的六份标准提案应运而生：\n2001年9月4日，发布SVG 1.0。\n2003年1月4日，发布 SVG 1.1。\n2003年1月14日，推出SVG移动子版本：SVG Tiny和SVG Basic。\n2008年12月22日，发布SVG Tiny 1.2。\n2011年8月16日，发布SVG 1.1（第2版），成为W3C目前推荐的标准。\nW3C目前仍正在研究制定SVG 2，目前最新的草稿发布见点击这里查看 。\nSVG 优势：\n可缩放性：SVG 图像可以无损地缩放到任意大小而不失真。这是因为 SVG 是基于矢量描述的，而不是像素图像，因此在不同分辨率和尺寸的屏幕上都能保持清晰。\n文本性质：SVG 文件是基于XML的文本文件，易于编辑和维护。你可以直接编辑 SVG 文件来调整图形，也可以使用文本编辑器或代码编辑器来创建和修改 SVG 图像。\n交互性：SVG 允许添加交互式元素，如链接、动画和事件处理器。这使得 SVG 图像可以与用户进行交互，从而创建更丰富的用户体验。\n动画支持：SVG 支持使用 CSS 和 JavaScript 创建动画，使图形更生动。你可以通过 CSS 动画或 JavaScript 脚本来实现 SVG 图形的动态效果，如过渡、旋转、缩放等。\n可嵌入性：SVG 图像可以直接嵌入到 HTML 文档中，也可以作为外部文件链接到 HTML 文档中。这使得 SVG 图像可以与其他Web技术无缝集成，如 CSS、JavaScript 等。\n查看 SVG 文件\nSVG 在现代 Web 浏览器中得到广泛支持，包括 Chrome、Firefox、Safari等 。\n可以通过内联 SVG 代码或外部 SVG 文件将 SVG 图像嵌入到HTML文档中。\nGoogle Chrome：Google Chrome 是一个流行的现代 Web 浏览器，对 SVG 格式有很好的支持，并且提供了丰富的开发者工具。\nMozilla Firefox：Mozilla Firefox 也是一个广泛使用的 Web 浏览器，支持 SVG 图像的显示和渲染，并且支持大多数 SVG 特性。\nApple Safari：Safari 是苹果公司开发的 Web 浏览器，对 SVG 有很好的支持，适用于 Mac、iOS 等设备。\nMicrosoft Edge：Microsoft Edge 是微软公司推出的 Web 浏览器，支持 SVG 格式，并在不断改进 SVG 的支持。\nOpera：Opera 是一款快速、安全的 Web 浏览器，对 SVG 有很好的支持，并且支持许多现代 Web 技术。\nBrave：Brave 是一款注重隐私保护的 Web 浏览器，基于 Chromium 开发，因此也支持 SVG 图像。\nVivaldi：Vivaldi 是一款高度可定制的Web浏览器，也基于 Chromium 开发，并支持 SVG 格式。\n创建SVG文件\n以下是创建 SVG 文件的基本步骤：\n打开文本编辑器：使用你喜欢的文本编辑器，如 Visual Studio Code 等，查看 VScode 教程。\n编写 SVG 代码：在文本编辑器中编写 SVG 代码。SVG 代码由 XML 标记组成，描述了图形元素、属性和样式。\n保存文件：将编写好的 SVG 代码保存为以 .svg 扩展名结尾的文件，如 example.svg。\n预览 SVG 文件：用 Web 浏览器打开 SVG 文件，或者将 SVG 文件嵌入到 HTML 文档中，在浏览器中预览 SVG 图像。\n以下是一个简单的 SVG 文件示例，创建一个包含一个圆形的 SVG 图像：\n\n<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n <circle cx=\"100\" cy=\"100\" r=\"80\" fill=\"blue\" />\n</svg>\n这段代码描述了一个 SVG 画布，宽度为 200 个单位，高度也为 200 个单位。在画布上绘制了一个圆形，圆心坐标为(100, 100)，半径为80个单位，填充颜色为蓝色。",
+    "examples": []
+   },
+   {
+    "title": "SVG 直线 <line>",
+    "url": "https://www.runoob.com/svg/svg-line.html",
+    "body": "SVG 中的 <line> 元素用于绘制直线，它是 SVG 中常用的基本形状之一。\n使用 <line> 元素可以创建两个点之间的直线，并可以通过设置属性来控制直线的位置、长度和样式。\n基本语法\n<line\n x1=\"x1-coordinate\" <!-- 起点的 x 坐标 -->\n y1=\"y1-coordinate\" <!-- 起点的 y 坐标 -->\n x2=\"x2-coordinate\" <!-- 终点的 x 坐标 -->\n y2=\"y2-coordinate\" <!-- 终点的 y 坐标 -->\n stroke=\"stroke-color\" <!-- 直线的颜色 -->\n stroke-width=\"width\" <!-- 直线的宽度 -->\n/>\n属性解析:\nx1 和 y1 属性定义了直线的起点坐标。\nx2 和 y2 属性定义了直线的终点坐标。\nstroke 属性定义了直线的颜色。\nstroke-width 属性定义了直线的宽度。\n以下代码绘制了一个黑色描边、宽度为 2 像素的直线，起点坐标为 (50, 50)，终点坐标为 (150, 150)。\n<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n <line x1=\"50\" y1=\"50\" x2=\"150\" y2=\"150\" stroke=\"black\" stroke-width=\"2\" />\n</svg>\n实例\n下面是SVG代码：\n实例\n尝试一下 »",
+    "examples": [
+     "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n \n<line x1=\"0\" y1=\"0\" x2=\"200\" y2=\"200\"\n \nstyle=\"stroke:rgb(255,0,0);stroke-width:2\"/>\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 路径 <path>",
+    "url": "https://www.runoob.com/svg/svg-path.html",
+    "body": "SVG 中的 <path> 元素用于创建路径，它是 SVG 中最强大和最灵活的基本形状之一。\n使用 <path> 元素可以绘制直线、曲线、弧线等各种复杂的图形，并且可以通过设置路径命令来控制路径的形状和样式。\n基本语法\n<path\n d=\"path-data\" <!-- 定义路径的路径数据 -->\n fill=\"fill-color\" <!-- 路径的填充颜色 -->\n stroke=\"stroke-color\" <!-- 路径的描边颜色 -->\n stroke-width=\"width\" <!-- 路径的描边宽度 -->\n/>\n属性解析：\nd 属性定义了路径的路径数据，即路径命令序列。路径数据由一系列的路径命令组成，每个路径命令以字母开头，后面跟随一组数字参数。常用的路径命令包括：M（移动到）、L（直线到）、H（水平线到）、V（垂直线到）、C（三次贝塞尔曲线）、S（光滑曲线）、Q（二次贝塞尔曲线）、T（光滑二次贝塞尔曲线）、A（圆弧）、Z（闭合路径）等。\nfill 属性定义了路径的填充颜色。\nstroke 属性定义了路径的描边颜色。\nstroke-width 属性定义了路径的描边宽度。\n以下代码绘制了一个橙色填充、黑色描边、宽度为 2 像素的路径，其路径数据为移动到 (50, 50)，然后依次连接到 (150, 50) 和 (100, 150)，最后闭合路径。\n<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n <path d=\"M 50 50 L 150 50 L 100 150 Z\" fill=\"orange\" stroke=\"black\" stroke-width=\"2\" />\n</svg>\n实例 1\n下面的例子定义了一条路径，它开始于位置 150 0，到达位置 75 200，然后从那里开始到 225 200，最后在 150 0 关闭路径。\n下面是SVG代码：\n实例",
+    "examples": [
+     "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n<path d=\"M150 0 L75 200 L225 200 Z\" />\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 多边形 <polygon>",
+    "url": "https://www.runoob.com/svg/svg-polygon.html",
+    "body": "SVG 中的 <polygon> 元素用于绘制多边形，它是 SVG 中常用的基本形状之一。\n使用 <polygon> 元素可以创建闭合的多边形，并可以通过设置属性来控制多边形的顶点坐标、填充颜色、边框颜色等。\n基本语法\n<polygon\n points=\"x1,y1 x2,y2 x3,y3 ...\" <!-- 多边形各个顶点的坐标 -->\n fill=\"fill-color\" <!-- 多边形的填充颜色 -->\n stroke=\"stroke-color\" <!-- 多边形的边框颜色 -->\n stroke-width=\"width\" <!-- 多边形的边框宽度 -->\n/>\n属性解析：\npoints 属性定义了多边形各个顶点的坐标，多个顶点的坐标以空格或逗号分隔，并且每对坐标使用逗号分隔。\nfill 属性定义了多边形的填充颜色。\nstroke 属性定义了多边形的边框颜色。\nstroke-width 属性定义了多边形的边框宽度。\n以下代码绘制了一个橙色填充、黑色描边、宽度为 2 像素的多边形，其顶点坐标分别为 (100, 10)、(150, 190) 和 (50, 190)，形成一个闭合的三角形。\n<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n <polygon points=\"100,10 150,190 50,190\" fill=\"orange\" stroke=\"black\" stroke-width=\"2\" />\n</svg>\n实例 1\n<polygon> 标签用来创建含有不少于三个边的图形。\n多边形是由直线组成，其形状是\"封闭\"的（所有的线条连接起来）。\npolygon来自希腊。 \"Poly\" \n意味 \"many\" ， \"gon\" 意味 \"angle\".\n下面是 SVG 代码：\n实例",
+    "examples": [
+     "<svg height=\"210\" width=\"500\">\n<polygon points=\"200,10 250,190 160,210\"\nstyle=\"fill:lime;stroke:purple;stroke-width:1\"/>\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 多段 <polyline>",
+    "url": "https://www.runoob.com/svg/svg-polyline.html",
+    "body": "SVG 中的 <polyline> 元素用于绘制多段线，它是 SVG 中常用的基本形状之一。\n与 <polygon> 元素不同， <polyline> 绘制的线条是未封闭的，即起点和终点不会自动连接。使用 <polyline> 元素可以创建多个连接的线段，并可以通过设置属性来控制线段的顶点坐标、填充颜色、边框颜色等。\n基本语法\n<polyline\n points=\"x1,y1 x2,y2 x3,y3 ...\" <!-- 多段线各个顶点的坐标 -->\n fill=\"none\" <!-- 多段线的填充颜色，使用 \"none\" 表示不填充 -->\n stroke=\"stroke-color\" <!-- 多段线的边框颜色 -->\n stroke-width=\"width\" <!-- 多段线的边框宽度 -->\n/>\n属性解析：\npoints 属性定义了多段线各个顶点的坐标，多个顶点的坐标以空格或逗号分隔，并且每对坐标使用逗号分隔。\nfill 属性用于定义多段线的填充颜色，通常设置为 \"none\" 表示不填充。\nstroke 属性定义了多段线的边框颜色。\nstroke-width 属性定义了多段线的边框宽度。\n以下代码绘制了一个黑色描边、宽度为 2 像素的多段线，其顶点坐标分别为 (50, 50)、(100, 150)、(150, 100) 和 (200, 200)，形成了多个连接的线段。\n<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n <polyline points=\"50,50 100,150 150,100 200,200\" fill=\"none\" stroke=\"black\" stroke-width=\"2\" />\n</svg>\n实例 1\n<polyline> 元素是用于创建任何只有直线的形状：\nSorry, your browser does not support inline SVG.\n下面是SVG代码：\n实例",
+    "examples": [
+     "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n<polyline points=\"20,20 40,25 60,40 80,120 120,140 200,180\"\nstyle=\"fill:none;stroke:black;stroke-width:3\" />\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG <rect>",
+    "url": "https://www.runoob.com/svg/svg-rect.html",
+    "body": "SVG（可缩放矢量图形）的 <rect> 元素用于绘制矩形，是 SVG 中常用的基本形状之一，它允许你绘制矩形，并可以通过设置属性来控制矩形的位置、大小、圆角等样式。\n基本语法\n<rect\n x=\"x-coordinate\" <!-- 矩形左上角的 x 坐标 -->\n y=\"y-coordinate\" <!-- 矩形左上角的 y 坐标 -->\n width=\"width-value\" <!-- 矩形的宽度 -->\n height=\"height-value\" <!-- 矩形的高度 -->\n rx=\"rx-value\" <!-- 矩形的圆角半径（水平方向） -->\n ry=\"ry-value\" <!-- 矩形的圆角半径（垂直方向） -->\n fill=\"fill-color\" <!-- 矩形的填充颜色 -->\n stroke=\"stroke-color\" <!-- 矩形的描边颜色 -->\n stroke-width=\"width-value\" <!-- 矩形的描边宽度 -->\n/>\n属性解析：\nx 和 y 属性指定了矩形左上角的坐标，即矩形的起始点。\nwidth 和 height 属性定义了矩形的宽度和高度。\nrx 和 ry 属性用于指定矩形的圆角半径。如果只设置 rx，则所有角的圆角半径都相同；如果同时设置 rx 和 ry，则可以分别指定水平和垂直方向的圆角半径。\nfill 属性定义了矩形的填充颜色。\nstroke 属性定义了矩形的描边颜色。\nstroke-width 属性定义了矩形的描边宽度。\n下面的代码绘制了一个蓝色填充、黑色描边、宽度为 2 像素的矩形，左上角坐标为 (50, 50)，宽度为 100，高度为 80。\n<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n <rect x=\"50\" y=\"50\" width=\"100\" height=\"80\" fill=\"blue\" stroke=\"black\" stroke-width=\"2\" />\n</svg>\n实例 1\n下面是 SVG 代码：\n实例\n尝试一下 »",
+    "examples": [
+     "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n \n<rect width=\"300\" height=\"100\"\n \nstyle=\"fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0)\"/>\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 参考手册",
+    "url": "https://www.runoob.com/svg/svg-reference.html",
+    "body": "SVG 规范中定义了更多的元素和属性。\n常见 SVG 属性：\nid: 元素的唯一标识符。\nclass: 元素的类名，用于CSS样式。\nstyle: 元素的内联样式。\ntransform: 应用到元素上的变换。\nx, y: 元素的位置。\nwidth, height: 元素的尺寸。\nfill: 填充颜色。\nstroke: 描边颜色。\nstroke-width: 描边宽度。\nopacity: 透明度。\nvisibility: 元素的可见性。\nSVG 元素列表如下：\n元素\n说明\n属性\n<svg>\n定义 SVG 文档的根元素\nwidthheightviewBoxpreserveAspectRatioxmlns...\n<a>\n定义超链接\nxlink:hreftarget...\n<altGlyph>\n定义替代的字形\nglyphRefformatrotatedxdy...\n<altGlyphDef>\n定义用于 <altGlyph> 的替代的字形集合\n(无)\n<altGlyphItem>\n定义 <altGlyphDef> 的可替代的字形\nglyphRefformat...\n<animate>\n定义动画\nattributeNamefromtodurrepeatCountfill...\n<animateColor>\n定义颜色动画\nattributeNamefromtodurrepeatCountfill...\n<animateMotion>\n定义路径动画\npathdurrepeatCount...\n<animateTransform>\n定义变换动画\nattributeNametypefromtodur...\n<circle>\n定义圆形\ncxcyrfillstrokestroke-width...\n<clipPath>\n定义剪切路径\nclipPathUnits(无)\n<color-profile>\n定义颜色配置文件\n(无)\n<cursor>\n定义鼠标指针\nxywidthheightxlink:href...\n<defs>\n定义可重复使用的元素\n(无)\n<desc>\n为 SVG 元素提供描述\n(无)\n<discard>\n规定要丢弃的元素\n(无)\n<ellipse>\n定义椭圆\ncxcyrxryfillstrokestroke-width...\n<feBlend>\n定义图像混合\ninin2mode...\n<feColorMatrix>\n定义颜色矩阵\nintypevalues...\n<feComponentTransfer>\n定义颜色/Alpha 组件的转换函数\n(无)\n<feComposite>\n定义图像合成\ninin2operator...\n<feConvolveMatrix>\n定义卷积矩阵\ninorderkernelMatrix...\n<feDiffuseLighting>\n定义漫反射光照\ninsurfaceScalediffuseConstant...\n<feDisplacementMap>\n定义位移图\ninin2scale...\n<feDistantLight>\n定义远程光照\nazimuthelevation...\n<feDropShadow>\n定义投射阴影\ndxdystdDeviation...\n<feFlood>\n定义用于图形元素的颜色\nflood-colorflood-opacity...\n<feFuncA>\n定义用于调整 Alpha 通道的曲线\ntypetableValuesslope...\n<feFuncB>\n定义用于调整图像的曲线\ntypetableValuesslope...\n<feFuncG>\n定义用于调整图像的曲线\ntypetableValuesslope...\n<feFuncR>\n定义用于调整图像的曲线\ntypetableValuesslope...\n<feGaussianBlur>\n定义高斯模糊效果\nstdDeviation...\n<feImage>\n定义要嵌入的图像\nhrefresult...\n<feMerge>\n定义用于合并图像的滤镜图形\n(无)\n<feMergeNode>\n定义用于合并图像的输入图像\n(无)\n<feMorphology>\n定义用于改变输入图像形状的滤镜\noperatorradius...\n<feOffset>\n定义输入图像的偏移\ndxdy...\n<fePointLight>\n定义点光源\nxyz...\n<feSpecularLighting>\n定义镜面高光效果\ninsurfaceScalespecularConstant...\n<feSpotLight>\n定义聚光灯\nxyzpointsAtXpointsAtYpointsAtZ...\n<feTile>\n定义重复输入图像\n(无)\n<feTurbulence>\n定义湍流图像\nbaseFrequencynumOctaves...\n<filter>\n定义滤镜效果\nfilterUnitsprimitiveUnitsxywidthheight...\n<font>\n定义字体资源\nhoriz-origin-xhoriz-origin-yhoriz-adv-xvert-origin-xvert-origin-yvert-adv-y...\n<font-face>\n定义字体的属性\nfont-familyfont-stylefont-variantfont-weightfont-stretch...\n<font-face-format>\n定义字体文件格式\n(无)\n<font-face-name>\n定义字体名称\n(无)\n<font-face-src>\n定义字体文件的位置\n(无)\n<font-face-uri>\n定义字体文件的位置\n(无)\n<foreignObject>\n定义 SVG 文件中的其它 XML 命名空",
+    "examples": []
+   },
+   {
+    "title": "SVG Stroke 属性",
+    "url": "https://www.runoob.com/svg/svg-stroke.html",
+    "body": "SVG 中的 stroke 属性用于定义图形元素的描边（边框）颜色，它可以应用于任何具有轮廓的图形元素，如 <rect>、<circle>、<path> 等。\n基本语法\n<element stroke=\"color\" />\n属性解析：\nstroke 属性定义了图形元素的描边颜色，可以使用颜色名称、十六进制颜色值、RGB值、RGBA值等来表示颜色。\n如果不想显示描边，可以将 stroke 属性设置为 \"none\"。\nSVG 提供了一个范围广泛 stroke 属性。\nstroke\nstroke-width\nstroke-linecap\nstroke-dasharray\n所有 stroke 属性，可应用于任何种类的线条，文字和元素就像一个圆的轮廓。\n下面代码绘制了一个红色填充的矩形，并且指定了蓝色的描边。\n<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n <!-- 绘制一个红色矩形，带有蓝色描边 -->\n <rect x=\"50\" y=\"50\" width=\"100\" height=\"80\" fill=\"red\" stroke=\"blue\" />\n</svg>\nSVG stroke 属性\nStroke 属性定义一条线，文本或元素轮廓颜色：\n下面是 SVG 代码：\n实例",
+    "examples": [
+     "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n<g fill=\"none\">\n<path stroke=\"red\" d=\"M5 20 l215 0\" />\n<path stroke=\"blue\" d=\"M5 40 l215 0\" />\n<path stroke=\"black\" d=\"M5 60 l215 0\" />\n</g>\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 文本 <text>",
+    "url": "https://www.runoob.com/svg/svg-text.html",
+    "body": "SVG 中的 <text> 元素用于在 SVG 图像中添加文本内容，它允许你在指定的位置显示文本，并可以通过设置属性来控制文本的样式、字体、大小等。\n基本语法\n<text\n x=\"x-coordinate\" <!-- 文本左上角的 x 坐标 -->\n y=\"y-coordinate\" <!-- 文本左上角的 y 坐标 -->\n font-family=\"font\" <!-- 字体名称 -->\n font-size=\"size\" <!-- 字体大小 -->\n fill=\"fill-color\" <!-- 文本颜色 -->\n text-anchor=\"anchor\" <!-- 文本锚点 -->\n>\n Text content <!-- 文本内容 -->\n</text>\n属性解析：\nx 和 y 属性定义了文本左上角的坐标，即文本的起始点位置。\nfont-family 属性定义了文本的字体名称，可以是系统字体或自定义字体。\nfont-size 属性定义了文本的字体大小，以像素为单位。\nfill 属性定义了文本的颜色。\ntext-anchor 属性定义了文本锚点，即文本相对于指定坐标的对齐方式，常用取值有 \"start\"（默认，左对齐）、\"middle\"（居中对齐）和 \"end\"（右对齐）。\n以下代码在 SVG 图像中绘制了一段文本，文本内容为 \"Hello, SVG!\"，字体为 Arial，大小为 20 像素，颜色为蓝色，居中对齐，并且文本左上角的坐标为 (100, 100)。\n<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n <text x=\"100\" y=\"100\" font-family=\"Arial\" font-size=\"20\" fill=\"blue\" text-anchor=\"middle\">Hello, SVG!</text>\n</svg>\n实例 1\n写一个文本：\n下面是 SVG 代码：\n实例\n尝试一下 »",
+    "examples": [
+     "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n \n<text x=\"0\" y=\"15\" fill=\"red\">I \nlove SVG</text>\n</svg>"
+    ]
+   },
+   {
+    "title": "SVG 教程",
+    "url": "https://www.runoob.com/svg/svg-tutorial.html",
+    "body": "SVG 意为可缩放矢量图形（Scalable Vector Graphics）。\nSVG 是一种用于描述二维图形的 XML 标记语言，与位图图像不同，SVG图像以文本形式存储，并且可以缩放到任意大小而不会失真，因为它们基于数学描述而不是像素。\nSVG 图形是可伸缩的，无需分辨率依赖，这意味着它们可以在不失真的情况下被放大或缩小。\nSVG 广泛应用于网页设计、图标制作、数据可视化和其他图形相关的领域。",
+    "examples": []
+   },
+   {
+    "title": "SVG VScode",
+    "url": "https://www.runoob.com/svg/svg-vscode.html",
+    "body": "在上一章节中我们已经介绍了 SVG 基本概念及实例，本章节我们将介绍 SVG 代码的编辑器 -- VScode。\nVSCode（全称：Visual Studio Code）是一款由微软开发且跨平台的免费源代码编辑器，VSCode 开发环境非常简单易用。\n安装 VS Code\nVSCode 安装也很简单，打开官网 https://code.visualstudio.com/，下载软件包，一步步安装即可，安装过程注意安装路径设置、环境变量默认自动添加到系统中，勾选以下所有选项：\nVSCode 完整安装教程参考：https://www.runoob.com/vscode/vscode-tutorial.html\n创建一个 svg 代码文件\n打开 VScode，然后点击新建文件：\n在搜索框输入 svg，创建 test.svg 文件：\n输入代码：\n<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n <circle cx=\"100\" cy=\"100\" r=\"80\" fill=\"blue\" />\n</svg>\n保存 test.svg 文件代码。\n安装 SVG 扩展\n点击扩展图片，搜索关键字 svg，安装扩展：\n安装完成后，可以右击 svg 文件，在列表中选择\"预览 SVG\"：\n预览效果：",
+    "examples": []
+   }
+  ]
+ }
+}

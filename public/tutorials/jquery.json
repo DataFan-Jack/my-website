@@ -1,0 +1,326 @@
+{
+ "tutorial": {
+  "name": "jQuery",
+  "category": "前端开发",
+  "desc": "jQuery 是一个 JavaScript 库。",
+  "url": "https://www.runoob.com/jquery/",
+  "chapters": [
+   {
+    "title": "jQuery - AJAX get() 和 post() 方法",
+    "url": "https://www.runoob.com/jquery/jquery-ajax-get-post.html",
+    "body": "jQuery get() 和 post() 方法用于通过 HTTP GET 或 POST 请求从服务器请求数据。\nHTTP 请求：GET vs POST\n两种在客户端和服务器端进行请求-响应的常用方法是：GET 和 POST。\nGET - 从指定的资源请求数据\nPOST - 向指定的资源提交要处理的数据\nGET 基本上用于从服务器获得（取回）数据。注释：GET 方法可能返回缓存数据。\nPOST 也可用于从服务器获取数据。不过，POST 方法不会缓存数据，并且常用于连同请求一起发送数据。\n如需学习更多有关 GET 和 POST 以及两方法差异的知识，请阅读我们的 HTTP 方法 - GET 对比 POST。\njQuery $.get() 方法\n$.get() 方法通过 HTTP GET 请求从服务器上请求数据。\n语法：\n$.get(URL,callback);\n或\n$.get( URL [, data ] [, callback ] [, dataType ] )\nURL：发送请求的 URL字符串。\ndata：可选的，发送给服务器的字符串或 key/value 键值对。\ncallback：可选的，请求成功后执行的回调函数。\ndataType：可选的，从服务器返回的数据类型。默认：智能猜测（可以是xml, json, script, 或 html）。\n下面的例子使用 $.get() 方法从服务器上的一个文件中取回数据：\n实例",
+    "examples": [
+     "$(\"button\").click(function(){\n  $.get(\"demo_test.php\",function(data,status){\nalert(\"数据: \" + data + \"\\n状态: \" + status);\n  });\n});"
+    ]
+   },
+   {
+    "title": "jQuery - AJAX 简介",
+    "url": "https://www.runoob.com/jquery/jquery-ajax-intro.html",
+    "body": "AJAX 是与服务器交换数据的技术，它在不重载全部页面的情况下，实现了对部分网页的更新。\njQuery AJAX 实例\n获取外部内容",
+    "examples": [
+     "使用 jQuery AJAX 修改文本内容"
+    ]
+   },
+   {
+    "title": "jQuery - AJAX load() 方法",
+    "url": "https://www.runoob.com/jquery/jquery-ajax-load.html",
+    "body": "jQuery load() 方法\njQuery load() 方法是简单但强大的 AJAX 方法。\nload() 方法从服务器加载数据，并把返回的数据放入被选元素中。\n语法:",
+    "examples": [
+     "$(selector).load(URL,data,callback);"
+    ]
+   },
+   {
+    "title": "jQuery 效果- 动画",
+    "url": "https://www.runoob.com/jquery/jquery-animate.html",
+    "body": "jQuery animate() 方法允许您创建自定义的动画。\njQuery 动画实例jQuery",
+    "examples": []
+   },
+   {
+    "title": "jQuery Callback 方法",
+    "url": "https://www.runoob.com/jquery/jquery-callback.html",
+    "body": "Callback 函数在当前动画 100% 完成之后执行。\njQuery 动画的问题\n许多 jQuery 函数涉及动画。这些函数也许会将 speed 或 duration 作为可选参数。\n例子：$(\"p\").hide(\"slow\")\nspeed 或 duration 参数可以设置许多不同的值，比如 \"slow\", \"fast\", \"normal\" 或毫秒。\n实例\n以下实例在隐藏效果完全实现后回调函数:\n使用 callback 实例",
+    "examples": [
+     "$(\"button\").click(function(){\n  $(\"p\").hide(\"slow\",function(){\nalert(\"段落现在被隐藏了\");\n  });\n});"
+    ]
+   },
+   {
+    "title": "jQuery - 链(Chaining)",
+    "url": "https://www.runoob.com/jquery/jquery-chaining.html",
+    "body": "通过 jQuery，可以把动作/方法链接在一起。\nChaining 允许我们在一条语句中运行多个 jQuery 方法（在相同的元素上）。\njQuery 方法链接\n直到现在，我们都是一次写一条 jQuery 语句（一条接着另一条）。\n不过，有一种名为链接（chaining）的技术，允许我们在相同的元素上运行多条 jQuery 命令，一条接着另一条。\n提示： 这样的话，浏览器就不必多次查找相同的元素。\n如需链接一个动作，您只需简单地把该动作追加到之前的动作上。\n下面的例子把 css()、slideUp() 和 slideDown() 链接在一起。\"p1\" 元素首先会变为红色，然后向上滑动，再然后向下滑动：\n实例",
+    "examples": [
+     "$(\"#p1\").css(\"color\",\"red\").slideUp(2000).slideDown(2000);"
+    ]
+   },
+   {
+    "title": "jQuery Cookie 插件",
+    "url": "https://www.runoob.com/jquery/jquery-cookie-plugin.html",
+    "body": "jQuery 可以通过 jquery.cookie.js 插件来操作 Cookie。\n官方地址：http://plugins.jquery.com/cookie/\nGithub 地址：https://github.com/carhartl/jquery-cookie\n使用 jquery.cookie.js 之前需要先引入 jQuery：",
+    "examples": [
+     "<script src=\"/path/to/jquery.min.js\"></script>\n<script src=\"/path/to/jquery.cookie.js\"></script>"
+    ]
+   },
+   {
+    "title": "jQuery - 获取并设置 CSS 类",
+    "url": "https://www.runoob.com/jquery/jquery-css-classes.html",
+    "body": "通过 jQuery，可以很容易地对 CSS 元素进行操作。 切换 CSS 类\njQuery 操作 CSS\njQuery 拥有若干进行 CSS 操作的方法。我们将学习下面这些：\naddClass() - 向被选元素添加一个或多个类\nremoveClass() - 从被选元素删除一个或多个类\ntoggleClass() - 对被选元素进行添加/删除类的切换操作\ncss() - 设置或返回样式属性\n实例样式表\n下面的样式表将用于本页的所有例子：",
+    "examples": [
+     ".important {\nfont-weight:bold;\n    font-size:xx-large;\n}\n.blue {\ncolor:blue;\n}"
+    ]
+   },
+   {
+    "title": "jQuery css() 方法",
+    "url": "https://www.runoob.com/jquery/jquery-css.html",
+    "body": "jQuery css() 方法\ncss() 方法设置或返回被选元素的一个或多个样式属性。\n返回 CSS 属性\n如需返回指定的 CSS 属性的值，请使用如下语法：\ncss(\"propertyname\");",
+    "examples": []
+   },
+   {
+    "title": "jQuery 尺寸",
+    "url": "https://www.runoob.com/jquery/jquery-dimensions.html",
+    "body": "通过 jQuery，很容易处理元素和浏览器窗口的尺寸。\njQuery 尺寸方法\njQuery 提供多个处理尺寸的重要方法：\nwidth()\nheight()\ninnerWidth()\ninnerHeight()\nouterWidth()\nouterHeight()\njQuery 尺寸\njQuery width() 和 height() 方法\nwidth() 方法设置或返回元素的宽度（不包括内边距、边框或外边距）。\nheight() 方法设置或返回元素的高度（不包括内边距、边框或外边距）。\n下面的例子返回指定的 <div> 元素的宽度和高度：\n实例",
+    "examples": [
+     "$(\"button\").click(function(){\nvar txt=\"\";\n  txt+=\"div 的宽度是: \" + $(\"#div1\").width() + \"</br>\";\n  txt+=\"div 的高度是: \" + $(\"#div1\").height();\n  $(\"#div1\").html(txt);\n});"
+    ]
+   },
+   {
+    "title": "jQuery - 添加元素",
+    "url": "https://www.runoob.com/jquery/jquery-dom-add.html",
+    "body": "通过 jQuery，可以很容易地添加新元素/内容。\n添加新的 HTML 内容\n我们将学习用于添加新内容的四个 jQuery 方法：\nappend() - 在被选元素的结尾插入内容\nprepend() - 在被选元素的开头插入内容\nafter() - 在被选元素之后插入内容\nbefore() - 在被选元素之前插入内容\njQuery append() 方法\njQuery append() 方法在被选元素的结尾插入内容（仍然在该元素的内部）。\n实例",
+    "examples": [
+     "$(\"p\").append(\"追加文本\");"
+    ]
+   },
+   {
+    "title": "jQuery - 获取内容和属性",
+    "url": "https://www.runoob.com/jquery/jquery-dom-get.html",
+    "body": "jQuery 拥有可操作 HTML 元素和属性的强大方法。\njQuery DOM 操作\njQuery 中非常重要的部分，就是操作 DOM 的能力。\njQuery 提供一系列与 DOM 相关的方法，这使访问和操作元素和属性变得很容易。\nDOM = Document Object Model（文档对象模型）DOM 定义访问 HTML 和 XML 文档的标准：\n\"W3C 文档对象模型独立于平台和语言的界面，允许程序和脚本动态访问和更新文档的内容、结构以及样式。\"\n获得内容 - text()、html() 以及 val()\n三个简单实用的用于 DOM 操作的 jQuery 方法：\ntext() - 设置或返回所选元素的文本内容\nhtml() - 设置或返回所选元素的内容（包括 HTML 标签）\nval() - 设置或返回表单字段的值\n下面的例子演示如何通过 jQuery text() 和 html() 方法来获得内容：\n实例",
+    "examples": [
+     "$(\"#btn1\").click(function(){\nalert(\"Text: \" + $(\"#test\").text());\n});\n$(\"#btn2\").click(function(){\nalert(\"HTML: \" + $(\"#test\").html());\n});"
+    ]
+   },
+   {
+    "title": "jQuery - 删除元素",
+    "url": "https://www.runoob.com/jquery/jquery-dom-remove.html",
+    "body": "通过 jQuery，可以很容易地删除已有的 HTML 元素。\n删除元素/内容\n如需删除元素和内容，一般可使用以下两个 jQuery 方法：\nremove() - 删除被选元素（及其子元素）\nempty() - 从被选元素中删除子元素\njQuery remove() 方法\njQuery remove() 方法删除被选元素及其子元素。\n实例",
+    "examples": [
+     "$(\"#div1\").remove();"
+    ]
+   },
+   {
+    "title": "jQuery - 设置内容和属性",
+    "url": "https://www.runoob.com/jquery/jquery-dom-set.html",
+    "body": "设置内容 - text()、html() 以及 val()\n我们将使用前一章中的三个相同的方法来设置内容：\ntext() - 设置或返回所选元素的文本内容\nhtml() - 设置或返回所选元素的内容（包括 HTML 标记）\nval() - 设置或返回表单字段的值\n下面的例子演示如何通过 text()、html() 以及 val() 方法来设置内容：\n实例",
+    "examples": [
+     "$(\"#btn1\").click(function(){\n    $(\"#test1\").text(\"Hello world!\");\n});\n$(\"#btn2\").click(function(){\n    $(\"#test2\").html(\"<b>Hello world!</b>\");\n});\n$(\"#btn3\").click(function(){\n    $(\"#test3\").val(\"RUNOOB\");\n});"
+    ]
+   },
+   {
+    "title": "jQuery 事件",
+    "url": "https://www.runoob.com/jquery/jquery-events.html",
+    "body": "jQuery 是为事件处理特别设计的。\n什么是事件？\n页面对不同访问者的响应叫做事件。\n事件处理程序指的是当 HTML 中发生某些事件时所调用的方法。\n实例：\n在元素上移动鼠标。\n选取单选按钮\n点击元素\n在事件中经常使用术语\"触发\"（或\"激发\"）例如：\n\"当您按下按键时触发 keypress 事件\"。\n常见 DOM 事件：\n鼠标事件\n键盘事件\n表单事件\n文档/窗口事件\nclick\nkeypress\nsubmit\nload\ndblclick\nkeydown\nchange\nresize\nmouseenter\nkeyup\nfocus\nscroll\nmouseleave\nblur\nunload\nhover\njQuery 事件方法语法\n在 jQuery 中，大多数 DOM 事件都有一个等效的 jQuery 方法。\n页面中指定一个点击事件：",
+    "examples": [
+     "$(\"p\").click();"
+    ]
+   },
+   {
+    "title": "jQuery 实例",
+    "url": "https://www.runoob.com/jquery/jquery-examples.html",
+    "body": "你想增进 jQuery 技能吗？\njQuery 选择器\n$(this).hide()\n演示 jQuery 的 hide() 函数，隐藏当前的 HTML 元素。\n$(\"p\").hide()\n演示 jQuery 的 hide() 函数，隐藏所有 <p> 元素。\n$(\".test\").hide()\n演示 jQuery 的 hide() 函数，隐藏所有 class=\"test\" 的元素。\n$(\"#test\").hide()\n演示 jQuery 的 hide() 函数，隐藏 id=\"test\" 的元素。\njQuery 事件\njQuery click()\n演示 jQuery jQuery click() 事件.\njQuery \ndblclick()\n演示 jQuery dblclick() 事件。\njQuery \nmouseenter()\n演示 jQuery mouseenter() 事件。\njQuery \nmouseleave()\n演示 jQuery mouseleave() 事件。\njQuery \nmousedown()\n演示 jQuery mousedown() 事件。\njQuery mouseup()\n演示 jQuery mouseup() 事件。\njQuery hover()\n演示 jQuery hover() 事件。\njQuery \nfocus() 和 blur()\n演示 jQuery focus() 和 blur() 事件。\n实例解析\njQuery 隐藏/显示\njQuery hide()\n演示 jQuery hide() 方法。\njQuery \nhide() 和 show()\n演示jQuery hide() 和 show() 方法。\njQuery toggle()\njQuery toggle() 用于切换 hide() 和 show() 方法。\njQuery hide()\n另外一个隐藏文本的实例。\n实例解析\njQuery 淡入淡出\njQuery fadeIn()\n演示 jQuery fadeIn() 方法。\njQuery fadeOut()\n演示 jQuery fadeOut() 方法。\njQuery fadeToggle()\n演示 jQuery fadeToggle() 方法。\njQuery fadeTo()\n演示 jQuery fadeTo() 方法。\n实例解析\njQuery 滑动\njQuery slideDown()\n演示 jQuery slideDown() 方法。\njQuery slideUp()\n演示 jQuery slideUp() 方法。\njQuery slideToggle()\n演示 jQuery slideToggle() 方法。\n实例解析\njQuery 动画\njQuery animate()\n演示简单的 jQuery animate() 方法。\njQuery animate() - 设置多个css属性\n演示通过 jQuery animate() 方法 改变样式。\njQuery animate() - 使用相关值\n演示如何在 jQuery animate() 方法中使用相关值。\njQuery animate() - 使用预定义值\n演示通过 animate() 方法预定义 \"hide\", \"show\", \"toggle\" 值。\njQuery animate()\n演示更多 jQuery animate() 方法实例\njQuery animate()\n演示更多 jQuery animate() 方法实例 (多个 animate() 回调).\n实例 解析\njQuery 停止动画\njQuery stop() 滑动\n演示 jQuery stop() 方法。\njQuery stop() 动画 (带参数)\n演示 jQuery stop() 方法。\n实例解析\njQuery HTML 获取 和 属性\njQuery text() 和 html() - 获取文本和内容\n使用jQuery text() 和 html() 方法获取内容。\njQuery val() - 获取值\n使用jQuery val() 方法获取表单的字段值。\njQuery attr() - 获取属性值\n使用jQuery attr() 方法获取属性值。\n实例解析\njQuery HTML 设置内容和属性\njQuery text(), html(), 和 val() - 设置内容\n使用 jQuery text(), html() 和 val() 方法设置内容 。\njQuery text() 和 html() - 设置内容并使用回调函数\n使用 text() 和 html() 设置内容并使用回调函数\njQuery attr() - 设置属性值\n使用 jQuery attr() 方法设置属性值 。\njQuery attr() - 设置 多个属性值\n使用jQuery attr() 方法设置多个属性值。\njQuery attr() - 设置属性值并使用回调函数\n设置属性值 + 并使用回调函数调用attr().\n实例解析\njQuery HTML 添加元素/内容\njQuery append()\n在选取元素的末尾添加内容\njQuery prepend()\n在选取元素的开头添加内容\njQuery append() -插入多个元素\n创新新的 text/HTML 元素, jQuery 和 JavaScript/DOM。添加在新元素文本后。\njQuery after() 和 before()\n在选取元素的前后添加 HTML　元素。\njQuery after() - 插入多个元素\n创新新的 text/HTML 元素,jQuery和 JavaScript/DOM。在选取元素的末尾插入新元素。\n实例解析\njQuery HTML 移除元素/内容\njQuery remove()\n移除选取的元素\njQuery empty()\n移除选取元素的所有子元素\njQuery remove() - 使用参数\n过滤元素并移除\n实例解析\njQuery Get 和 设置 CSS 类\njQuery addClass()\n不同元素添加 class 属性\njQuery addClass() - 多个类\n 使用 addClass() 方法添加多个类\njQuery removeClass()\n移除指定元素的类\njQuery toggleClass()\n在选取的元素切换（添加/删除）类\n实例解析\njQuery css() 方法\njQuery css() - 返回 CSS 属性\n返回第一个匹配元素的css属性值\njQuery css() - 设置 CSS 属性\n设置 所有配置元素指定的 CSS 属性\njQuery css() - 设置 CSS 属性\n设置多个匹配元素的 CSS 属性\n实例解析\njQuery 尺寸\njQuery - 返回 width() 和 height()\n返回指定元素的 width 和 height\njQuery - 返回 innerWidth() 和 innerHeight()\n返回指定元素的 inner-width/height\njQuery - 返回 outerWidth() 和 outerHeight()\n返回指定元素的 outer-width/height\njQuery - 返回 outerWidth(true) 和 outerHeight(true)\n返回指定元素的 outer-width/height (包含外边框)\njQuery - 返回 width() 和 height() of document 和 window\n返回 HTML 文档和窗口的 width 和 height\njQuery - 设置 width() 和 height()\n设置指定元素的 width 和 height\n实例解析\njQuery 遍历 - 祖先\njQuery parent()\n演示 jQuery parent() 方法。\njQuery parents()\n演示 jQuery parents() 方法。\njQuery parentsUntil()\n演示 jQuery parentsUntil() 方法。\n实例解析\njQuery 遍历 - 后代\njQuery children()\n演示 jQuery children() 方法。\njQuery find()\n演示 jQuery find() 方法。\n实例解析\njQuery 遍历 - 同胞(siblings)\njQuery siblings()\n演示 jQuery siblings() 方法。\njQuery next()\n演示 jQuery next() 方法。\njQuery nextAll()\n演示 jQuery nextAll() 方法。\njQuery nextUntil()\n演示 jQuery nextUntil() 方法。\n实例解析\njQuery AJAX load() 方法\njQuery load()\n异步载入文件内容并插入到 <div> 元素中。\njQuery load()\n异步载入文件内容中指定的元素内容并插入到 <div> 元素.\njQuery load() - 使用回调函数(callback)\n使用 jQuery load() 方法的回调函数。\n实例解析\njQuery AJAX get() 和 post() 方法\njQuery get()\n使用 $.get() 方法从服务端异步获取数据\njQuery \npost()\n使用 $.post() 方法从服务端异步获取数据\n实例解析\n其他实例\njQuery 动态粒子效果",
+    "examples": []
+   },
+   {
+    "title": "jQuery 效果 - 淡入淡出",
+    "url": "https://www.runoob.com/jquery/jquery-fade.html",
+    "body": "通过 jQuery，您可以实现元素的淡入淡出效果。\n点击展示 淡入/淡出 面板\n因为时间是宝贵的，我们提供快捷方便的学习方法。\n在菜鸟教程,你可以学习需要的知识。",
+    "examples": []
+   },
+   {
+    "title": "jQuery 效果- 隐藏和显示",
+    "url": "https://www.runoob.com/jquery/jquery-hide-show.html",
+    "body": "隐藏、显示、切换，滑动，淡入淡出，以及动画，哇哦！\n点击 显示/隐藏面板\n因为时间是宝贵的，我们提供快捷方便的学习方法。\n在菜鸟教程,你可以学习需要的知识。",
+    "examples": []
+   },
+   {
+    "title": "jQuery 安装",
+    "url": "https://www.runoob.com/jquery/jquery-install.html",
+    "body": "网页中添加 jQuery\n可以通过多种方法在网页中添加 jQuery。 您可以使用以下方法：\n从 jquery.com 下载 jQuery 库\n从 CDN 中载入 jQuery, 如从 Google 中加载 jQuery\n下载 jQuery\n有两个版本的 jQuery 可供下载：\nProduction version - 用于实际的网站中，已被精简和压缩。\nDevelopment version - 用于测试和开发（未压缩，是可读的代码）\n以上两个版本都可以从 jquery.com 中下载。\njQuery 库是一个 JavaScript 文件，您可以使用 HTML 的 <script> 标签引用它：",
+    "examples": [
+     "<head>\n<script src=\"jquery-1.10.2.min.js\"></script>\n</head>"
+    ]
+   },
+   {
+    "title": "jQuery 简介",
+    "url": "https://www.runoob.com/jquery/jquery-intro.html",
+    "body": "jQuery 库可以通过一行简单的标记被添加到网页中。\n您需要具备的基础知识\n在您开始学习 jQuery 之前，您应该对以下知识有基本的了解：\nHTML\nCSS\nJavaScript\n如果您需要首先学习这些科目，请在我们的 首页 查找这些教程。\n什么是 jQuery ？\njQuery 是一个 JavaScript 函数库。\njQuery 是一个轻量级的\"写的少，做的多\"的 JavaScript 库。\njQuery 库包含以下功能：\nHTML 元素选取\nHTML 元素操作\nCSS 操作\nHTML 事件函数\nJavaScript 特效和动画\nHTML DOM 遍历和修改\nAJAX\nUtilities\n提示： 除此之外，jQuery 还提供了大量的插件。\n为什么使用 jQuery ？\n目前网络上有大量开源的 JS 代码库, 但是 jQuery 是目前最流行的 JS 代码库，而且提供了大量的扩展。\n很多大公司都在使用 jQuery， 例如:\nGoogle\nMicrosoft\nIBM\nNetflix\njQuery 是否适用于所有浏览器?jQuery 团体知道 JS 在不同浏览器中存在着大量的兼容性问题，目前 jQuery 兼容于所有主流浏览器, 包括 Internet Explorer 6!",
+    "examples": []
+   },
+   {
+    "title": "jQuery - noConflict() 方法",
+    "url": "https://www.runoob.com/jquery/jquery-noconflict.html",
+    "body": "如何在页面上同时使用 jQuery 和其他框架？\njQuery 和其他 JavaScript 框架\n正如您已经了解到的，jQuery 使用 $ 符号作为 jQuery 的简写。\n如果其他 JavaScript 框架也使用 $ 符号作为简写怎么办？\n其他一些 JavaScript 框架包括：MooTools、Backbone、Sammy、Cappuccino、Knockout、JavaScript MVC、Google Web Toolkit、Google Closure、Ember、Batman 以及 Ext JS。\n其中某些框架也使用 $ 符号作为简写（就像 jQuery），如果您在用的两种不同的框架正在使用相同的简写符号，有可能导致脚本停止运行。\njQuery 的团队考虑到了这个问题，并实现了 noConflict() 方法。\njQuery noConflict() 方法\nnoConflict() 方法会释放对 $ 标识符的控制，这样其他脚本就可以使用它了。\n当然，您仍然可以通过全名替代简写的方式来使用 jQuery：\n实例",
+    "examples": [
+     "$.noConflict();\njQuery(document).ready(function(){\njQuery(\"button\").click(function(){\njQuery(\"p\").text(\"jQuery 仍然在工作!\");\n  });\n});"
+    ]
+   },
+   {
+    "title": "jQuery Accordion",
+    "url": "https://www.runoob.com/jquery/jquery-plugin-accordion.html",
+    "body": "jQuery Accordion 插件用于创建折叠菜单。它通常与嵌套的列表、定义列表或嵌套的 div 一起使用。选项用于指定结构、激活的元素和定制的动画。",
+    "examples": []
+   },
+   {
+    "title": "jQuery Autocomplete",
+    "url": "https://www.runoob.com/jquery/jquery-plugin-autocomplete.html",
+    "body": "jQuery Autocomplete 插件根据用户输入值进行搜索和过滤，让用户快速找到并从预设值列表中选择。通过给 Autocomplete 字段焦点或者在其中输入字符，插件开始搜索匹配的条目并显示供选择的值的列表。通过输入更多的字符，用户可以过滤列表以获得更好的匹配。\n该插件现在是 jQuery UI 的一部分，独立的版本不会再更新了。目前版本是 1.6。\n访问 jQuery Autocomplete 官网，下载 jQuery Autocomplete 插件。\n如需了解更多有关 Autocomplete 的细节，请查看 API 文档 自动完成部件（Autocomplete Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery Growl 插件(消息提醒)",
+    "url": "https://www.runoob.com/jquery/jquery-plugin-message.html",
+    "body": "jQuery Growl 插件(消息提醒) 允许您很容易地在一个覆盖层显示反馈消息。消息会在一段时间后自动消失，不需要单击\"确定\"按钮等。用户也可以通过移动鼠标或点击关闭按钮加快隐藏信息。\n该插件目前版本是 1.0.0。\n访问 jQuery Growl 官网，下载 jQuery Growl 插件。",
+    "examples": []
+   },
+   {
+    "title": "jQuery Password Validation（密码验证）",
+    "url": "https://www.runoob.com/jquery/jquery-plugin-password-validation.html",
+    "body": "jQuery Password Validation（密码验证）插件扩展了 jQuery Validate 插件，提供了两种组件：\n一种评价密码的相关因素的功能：比如大小写字母的混合情况、字符（数字、特殊字符）的混合情况、长度、与用户名的相似度（可选的）。\n一种使用评价功能显示密码强度的验证插件自定义方法。显示的文本可以被本地化。\n您可以简单地自定义强度显示的外观、本地化消息显示，并集成到已有的表单中。\n该插件目前版本是 1.0.0。",
+    "examples": []
+   },
+   {
+    "title": "jQuery Prettydate",
+    "url": "https://www.runoob.com/jquery/jquery-plugin-prettydate.html",
+    "body": "jQuery Prettydate 插件为表单提供了强大的验证功能，让客户端表单验证变得更简单，同时提供了大量的定制选项，满足应用程序各种需求。该插件捆绑了一套有用的验证方法，包括 URL 和电子邮件验证，同时提供了一个用来编写用户自定义方法的 API。所有的捆绑方法默认使用英语作为错误信息，且已翻译成其他 37 种语言。\n该插件目前版本是 1.1.0。\n下载 jQuery Prettydate Validation（密码验证）插件。",
+    "examples": []
+   },
+   {
+    "title": "jQuery Tooltip",
+    "url": "https://www.runoob.com/jquery/jquery-plugin-tooltip.html",
+    "body": "jQuery Tooltip 插件取代了原生的工具提示框，让它们可自定义，您只需要调整它们的内容、位置和外观即可。\n该插件目前版本是 1.3，已经很长时间没有更新，推荐使用 jQuery UI 工具提示框（Tooltip）。\n如需了解更多有关 jQuery UI 工具提示框（Tooltip）的细节，请查看 API 文档 jQuery UI 工具提示框部件（Tooltip Widget）。",
+    "examples": []
+   },
+   {
+    "title": "jQuery 树型菜单插件(Treeview)",
+    "url": "https://www.runoob.com/jquery/jquery-plugin-treeview.html",
+    "body": "jQuery Treeview 提供了一个无序灵活的可折叠的树形菜单。适用于一些菜单的导航，支持基于 cookie 的持久性菜单。\n<ul id=\"browser\" class=\"filetree treeview-famfamfam\">\n    <li><span class=\"folder\">Folder 1</span>\n        <ul>\n            <li><span class=\"folder\">Item 1.1</span>\n                <ul>\n                    <li><span class=\"file\">Item 1.1.1</span></li>\n                </ul>\n            </li>\n            <li><span class=\"folder\">Folder 2</span>\n                <ul>\n                    <li><span class=\"folder\">Subfolder 2.1</span>\n                        <ul id=\"folder21\">\n                            <li><span class=\"file\">File 2.1.1</span></li>\n                            <li><span class=\"file\">File 2.1.2</span></li>\n                        </ul>\n                    </li>\n                    <li><span class=\"folder\">Subfolder 2.2</span>\n                        <ul>\n                            <li><span class=\"file\">File 2.2.1</span></li>\n                            <li><span class=\"file\">File 2.2.2</span></li>\n                        </ul>\n                    </li>\n                </ul>\n            </li>\n            <li class=\"closed\"><span class=\"folder\">Folder 3 (closed at start)</span>\n                <ul>\n                    <li><span class=\"file\">File 3.1</span></li>\n                </ul>\n            </li>\n            <li><span class=\"file\">File 4</span></li>\n        </ul>\n    </li>\n</ul>\n尝试一下 »\n相关链接\njQuery Treeview 完整实例下载：http://static.jyshare.com/download/jquery-treeview.zip。\njQuery Treeview Github 地址：https://github.com/jzaefferer/jquery-treeview。",
+    "examples": []
+   },
+   {
+    "title": "jQuery Validate",
+    "url": "https://www.runoob.com/jquery/jquery-plugin-validate.html",
+    "body": "jQuery Validate 插件为表单提供了强大的验证功能，让客户端表单验证变得更简单，同时提供了大量的定制选项，满足应用程序各种需求。该插件捆绑了一套有用的验证方法，包括 URL 和电子邮件验证，同时提供了一个用来编写用户自定义方法的 API。所有的捆绑方法默认使用英语作为错误信息，且已翻译成其他 37 种语言。\n该插件是由 Jörn Zaefferer 编写和维护的，他是 jQuery 团队的一名成员，是 jQuery UI 团队的主要开发人员，是 QUnit 的维护人员。该插件在 2006 年 jQuery 早期的时候就已经开始出现，并一直更新至今。目前版本是 1.14.0。\n访问 jQuery Validate 官网，下载最新版的 jQuery Validate 插件。",
+    "examples": []
+   },
+   {
+    "title": "jQuery AJAX 方法",
+    "url": "https://www.runoob.com/jquery/jquery-ref-ajax.html",
+    "body": "jQuery AJAX 方法\nAJAX 是一种与服务器交换数据的技术，可以在不重新载入整个页面的情况下更新网页的一部分。\n下面的表格列出了所有的 jQuery AJAX 方法：\n方法\n描述\n$.ajax()\n执行异步 AJAX 请求\n$.ajaxPrefilter()\n在每个请求发送之前且被 $.ajax() 处理之前，处理自定义 Ajax 选项或修改已存在选项\n$.ajaxSetup()\n为将来的 AJAX 请求设置默认值\n$.ajaxTransport()\n创建处理 Ajax 数据实际传送的对象\n$.get()\n使用 AJAX 的 HTTP GET 请求从服务器加载数据\n$.getJSON()\n使用 HTTP GET 请求从服务器加载 JSON 编码的数据\n$.getScript()\n使用 AJAX 的 HTTP GET 请求从服务器加载并执行 JavaScript\n$.param()\n创建数组或对象的序列化表示形式（可用于 AJAX 请求的 URL 查询字符串）\n$.post()\n使用 AJAX 的 HTTP POST 请求从服务器加载数据\najaxComplete()\n规定 AJAX 请求完成时运行的函数\najaxError()\n规定 AJAX 请求失败时运行的函数\najaxSend()\n规定 AJAX 请求发送之前运行的函数\najaxStart()\n规定第一个 AJAX 请求开始时运行的函数\najaxStop()\n规定所有的 AJAX 请求完成时运行的函数\najaxSuccess()\n规定 AJAX 请求成功完成时运行的函数\nload()\n从服务器加载数据，并把返回的数据放置到指定的元素中\nserialize()\n编码表单元素集为字符串以便提交\nserializeArray()\n编码表单元素集为 names 和 values 的数组",
+    "examples": []
+   },
+   {
+    "title": "jQuery 效果 方法",
+    "url": "https://www.runoob.com/jquery/jquery-ref-effects.html",
+    "body": "jQuery 效果方法\n下面的表格列出了所有用于创建动画效果的 jQuery 方法。\n方法\n描述\nanimate()\n对被选元素应用\"自定义\"的动画\nclearQueue()\n对被选元素移除所有排队函数（仍未运行的）\ndelay()\n对被选元素的所有排队函数（仍未运行）设置延迟\ndequeue()\n移除下一个排队函数，然后执行函数\nfadeIn()\n逐渐改变被选元素的不透明度，从隐藏到可见\nfadeOut()\n逐渐改变被选元素的不透明度，从可见到隐藏\nfadeTo()\n把被选元素逐渐改变至给定的不透明度\nfadeToggle()\n在 fadeIn() 和 fadeOut() 方法之间进行切换\nfinish()\n对被选元素停止、移除并完成所有排队动画\nhide()\n隐藏被选元素\nqueue()\n显示被选元素的排队函数\nshow()\n显示被选元素\nslideDown()\n通过调整高度来滑动显示被选元素\nslideToggle()\nslideUp() 和 slideDown() 方法之间的切换\nslideUp()\n通过调整高度来滑动隐藏被选元素\nstop()\n停止被选元素上当前正在运行的动画\ntoggle()\nhide() 和 show() 方法之间的切换",
+    "examples": []
+   },
+   {
+    "title": "jQuery 事件 方法",
+    "url": "https://www.runoob.com/jquery/jquery-ref-events.html",
+    "body": "jQuery 事件方法\n事件方法触发器或添加一个函数到被选元素的事件处理程序。\n下面的表格列出了所有用于处理事件的 jQuery 方法。\n方法\n描述\nbind()\n向元素添加事件处理程序\nblur()\n添加/触发失去焦点事件\nchange()\n添加/触发 change 事件\nclick()\n添加/触发 click 事件\ndblclick()\n添加/触发 double click 事件\ndelegate()\n向匹配元素的当前或未来的子元素添加处理程序\ndie()\n在版本 1.9 中被移除。移除所有通过 live() 方法添加的事件处理程序\nerror()\n在版本 1.8 中被废弃。添加/触发 error 事件\nevent.currentTarget\n在事件冒泡阶段内的当前 DOM 元素\nevent.data\n包含当前执行的处理程序被绑定时传递到事件方法的可选数据\nevent.delegateTarget\n返回当前调用的 jQuery 事件处理程序所添加的元素\nevent.isDefaultPrevented()\n返回指定的 event 对象上是否调用了 event.preventDefault()\nevent.isImmediatePropagationStopped()\n返回指定的 event 对象上是否调用了 event.stopImmediatePropagation()\nevent.isPropagationStopped()\n返回指定的 event 对象上是否调用了 event.stopPropagation()\nevent.namespace\n返回当事件被触发时指定的命名空间\nevent.pageX\n返回相对于文档左边缘的鼠标位置\nevent.pageY\n返回相对于文档上边缘的鼠标位置\nevent.preventDefault()\n阻止事件的默认行为\nevent.relatedTarget\n返回当鼠标移动时哪个元素进入或退出\nevent.result\n包含由被指定事件触发的事件处理程序返回的最后一个值\nevent.stopImmediatePropagation()\n阻止其他事件处理程序被调用\nevent.stopPropagation()\n阻止事件向上冒泡到 DOM 树，阻止任何父处理程序被事件通知\nevent.target\n返回哪个 DOM 元素触发事件\nevent.timeStamp\n返回从 1970 年 1 月 1 日到事件被触发时的毫秒数\nevent.type\n返回哪种事件类型被触发\nevent.which\n返回指定事件上哪个键盘键或鼠标按钮被按下\nevent.metaKey\n事件触发时 META 键是否被按下\nfocus()\n添加/触发 focus 事件\nfocusin()\n添加事件处理程序到 focusin 事件\nfocusout()\n添加事件处理程序到 focusout 事件\nhover()\n添加两个事件处理程序到 hover 事件\nkeydown()\n添加/触发 keydown 事件\nkeypress()\n添加/触发 keypress 事件\nkeyup()\n添加/触发 keyup 事件\nlive()\n在版本 1.9 中被移除。添加一个或多个事件处理程序到当前或未来的被选元素\nload()\n在版本 1.8 中被废弃。添加一个事件处理程序到 load 事件\nmousedown()\n添加/触发 mousedown 事件\nmouseenter()\n添加/触发 mouseenter 事件\nmouseleave()\n添加/触发 mouseleave 事件\nmousemove()\n添加/触发 mousemove 事件\nmouseout()\n添加/触发 mouseout 事件\nmouseover()\n添加/触发 mouseover 事件\nmouseup()\n添加/触发 mouseup 事件\noff()\n移除通过 on() 方法添加的事件处理程序\non()\n向元素添加事件处理程序\none()\n向被选元素添加一个或多个事件处理程序。该处理程序只能被每个元素触发一次\n$.proxy()\n接受一个已有的函数，并返回一个带特定上下文的新的函数\nready()\n规定当 DOM 完全加载时要执行的函数\nresize()\n添加/触发 resize 事件\nscroll()\n添加/触发 scroll 事件\nselect()\n添加/触发 select 事件\nsubmit()\n添加/触发 submit 事件\ntoggle()\n在版本 1.9 中被移除。添加 click 事件之间要切换的两个或多个函数\ntrigger()\n触发绑定到被选元素的所有事件\ntriggerHandler()\n触发绑定到被选元素的指定事件上的所有函数\nunbind()\n从被选元素上移除添加的事件处理程序\nundelegate()\n从现在或未来的被选元素上移除事件处理程序\nunload()\n在版本 1.8 中被废弃。添加事件处理程序到 unload 事件\ncontextmenu()\n添加事件处理程序到 contextmenu 事件\n$.holdReady()\n用于暂停或恢复.ready() 事件的执行",
+    "examples": []
+   },
+   {
+    "title": "jQuery HTML / CSS 方法",
+    "url": "https://www.runoob.com/jquery/jquery-ref-html.html",
+    "body": "jQuery HTML / CSS 方法\n下面的表格列出了所有用于处理 HTML 和 CSS 的 jQuery 方法。\n下面的方法适用于 HTML 和 XML 文档。除了：html() 方法。\n方法\n描述\naddClass()\n向被选元素添加一个或多个类名\nafter()\n在被选元素后插入内容\nappend()\n在被选元素的结尾插入内容\nappendTo()\n在被选元素的结尾插入 HTML 元素\nattr()\n设置或返回被选元素的属性/值\nbefore()\n在被选元素前插入内容\nclone()\n生成被选元素的副本\ncss()\n为被选元素设置或返回一个或多个样式属性\ndetach()\n移除被选元素（保留数据和事件）\nempty()\n从被选元素移除所有子节点和内容\nhasClass()\n检查被选元素是否包含指定的 class 名称\nheight()\n设置或返回被选元素的高度\nhtml()\n设置或返回被选元素的内容\ninnerHeight()\n返回元素的高度（包含 padding，不包含 border）\ninnerWidth()\n返回元素的宽度（包含 padding，不包含 border）\ninsertAfter()\n在被选元素后插入 HTML 元素\ninsertBefore()\n在被选元素前插入 HTML 元素\noffset()\n设置或返回被选元素的偏移坐标（相对于文档）\noffsetParent()\n返回第一个定位的祖先元素\nouterHeight()\n返回元素的高度（包含 padding 和 border）\nouterWidth()\n返回元素的宽度（包含 padding 和 border）\nposition()\n返回元素的位置（相对于父元素）\nprepend()\n在被选元素的开头插入内容\nprependTo()\n在被选元素的开头插入 HTML 元素\nprop()\n设置或返回被选元素的属性/值\nremove()\n移除被选元素（包含数据和事件）\nremoveAttr()\n从被选元素移除一个或多个属性\nremoveClass()\n从被选元素移除一个或多个类\nremoveProp()\n移除通过 prop() 方法设置的属性\nreplaceAll()\n把被选元素替换为新的 HTML 元素\nreplaceWith()\n把被选元素替换为新的内容\nscrollLeft()\n设置或返回被选元素的水平滚动条位置\nscrollTop()\n设置或返回被选元素的垂直滚动条位置\ntext()\n设置或返回被选元素的文本内容\ntoggleClass()\n在被选元素中添加/移除一个或多个类之间切换\nunwrap()\n移除被选元素的父元素\nval()\n设置或返回被选元素的属性值（针对表单元素）\nwidth()\n设置或返回被选元素的宽度\nwrap()\n在每个被选元素的周围用 HTML 元素包裹起来\nwrapAll()\n在所有被选元素的周围用 HTML 元素包裹起来\nwrapInner()\n在每个被选元素的内容周围用 HTML 元素包裹起来\n$.escapeSelector()\n转义CSS选择器中有特殊意义的字符或字符串\n$.cssHooks\n提供了一种方法通过定义函数来获取和设置特定的CSS值",
+    "examples": []
+   },
+   {
+    "title": "jQuery 杂项方法",
+    "url": "https://www.runoob.com/jquery/jquery-ref-misc.html",
+    "body": "jQuery 杂项方法\n方法\n描述\ndata()\n向被选元素附加数据，或者从被选元素获取数据\neach()\n为每个匹配元素执行函数\nget()\n获取由选择器指定的 DOM 元素\nindex()\n从匹配元素中搜索给定元素\n$.noConflict()\n释放变量 $ 的 jQuery 控制权\n$.param()\n创建数组或对象的序列化表示形式（可在生成 AJAX 请求时用于 URL 查询字符串中）\nremoveData()\n移除之前存放的数据\nsize()\n在版本 1.8 中被废弃。返回被 jQuery 选择器匹配的 DOM 元素的数量\ntoArray()\n以数组的形式检索所有包含在 jQuery 集合中的所有 DOM 元素\npushStack()\n将一个DOM元素集合加入到jQuery栈\n$.when()\n提供一种方法来执行一个或多个对象的回调函数\njQuery 实用工具\n方法\n描述\n$.boxModel\n在版本 1.8 中被废弃。检测浏览器是否使用W3C的CSS盒模型渲染当前页面\n$.browser\n在版本 1.9 中被废弃。返回用户当前使用的浏览器的相关信息\n$.contains()\n判断另一个DOM元素是否是指定DOM元素的后代\n$.each()\n遍历指定的对象和数组\n$.extend()\n将一个或多个对象的内容合并到目标对象\n$.fn.extend()\n为jQuery扩展一个或多个实例属性和方法\n$.globalEval()\n全局性地执行一段JavaScript代码\n$.grep()\n过滤并返回满足指定函数的数组元素\n$.inArray()\n在数组中查找指定值并返回它的索引值（如果没有找到，则返回-1）\n$.isArray()\n判断指定参数是否是一个数组\n$.isEmptyObject()\n检查对象是否为空（不包含任何属性）\n$.isFunction()\n判断指定参数是否是一个函数\n$.isNumeric()\n判断指定参数是否是一个数字值\n$.isPlainObject()\n判断指定参数是否是一个纯粹的对象\n$.isWindow()\n判断指定参数是否是一个窗口\n$.isXMLDoc()\n判断一个DOM节点是否位于XML文档中，或者其本身就是XML文档\n$.makeArray()\n将一个类似数组的对象转换为真正的数组对象\n$.map()\n指定函数处理数组中的每个元素(或对象的每个属性)，并将处理结果封装为新的数组返回\n$.merge()\n合并两个数组内容到第一个数组\n$.noop()\n一个空函数\n$.now()\n返回当前时间\n$.parseHTML()\n将HTML字符串解析为对应的DOM节点数组\n$.parseJSON()\n将符合标准格式的JSON字符串转为与之对应的JavaScript对象\n$.parseXML()\n将字符串解析为对应的XML文档\n$.trim()\n去除字符串两端的空白字符\n$.type()\n确定JavaScript内置对象的类型\n$.unique()\n在jQuery 3.0中被弃用。对DOM元素数组进行排序，并移除重复的元素\n$.uniqueSort()\n对DOM元素数组进行排序，并移除重复的元素\n$.data()\n在指定的元素上存取数据，并返回设置值\n$.hasData()\n确定一个元素是否有相关的jQuery数据\n$.sub()\n创建一个新的jQuery副本，其属性和方法可以修改，而不会影响原来的jQuery对象\n$.speed\n创建一个包含一组属性的对象用来定义自定义动画\n$.htmlPrefilter()\n通过jQuery操作方法修改和过滤HTML字符串\n$.readyException()\n处理包裹在jQuery()中函数同步抛出的错误\njQuery 回调对象\njQuery 1.7 版本中新增的 jQuery.Callbacks() 函数,返回一个多功能对象，此对象提供了一种强大的方法来管理回调列表。它能够增加、删除、触发、禁用回调函数。\n方法\n描述\n$.Callbacks()\n一个多用途的回调列表对象，用来管理回调函数列表\ncallbacks.add()\n在回调列表中添加一个回调或回调的集合\ncallbacks.disable()\n禁用回调列表中的回调函数\ncallbacks.disabled()\n确定回调列表是否已被禁用\ncallbacks.empty()\n从列表中清空所有的回调\ncallbacks.fire()\n传入指定的参数调用所有的回调\ncallbacks.fired()\n确定回调是否至少已经调用一次\ncallbacks.firewith()\n给定的上下文和参数访问列表中的所有回调\ncallbacks.has()\n判断回调列表中是否添加过某回调函数\ncallbacks.lock()\n锁定当前状态的回调列表\ncallbacks.locked()\n判断回调列表是否被锁定\ncallbacks.remove()\n从回调列表中的删除一个回调或回调集合\njQuery 延迟对象\n在jQuery 1.5中介绍了 Deferred 延迟对象，它是通过调用 jQuery.Deferred() 方法来创建的可链接的实用对象。它可注册多个回调函数到回调列表，调用回调列表并且传递异步或同步功能的成功或失败的状态。\n延迟对象是可链接的，类似于一个 jQuery 对象可链接的方式，区别于它有自己的方法。在创建一个 Deferred 对象之后，您可以使用以下任何方法，直接链接到通过调用一个或多个的方法创建或保存的对象。\n方法\n描述\n$.Deferred()\n返回一个链式实用对象方法来注册多个回调\ndeferred.always()\n当Deferred（延迟）对象被受理或被拒绝时，调用添加的处理程序\ndeferred.done()\n当Deferred（延迟）对象被受理时，调用添加的处理程序\ndeferred.fail()\n当Deferred（延迟）对象被拒绝时，调用添加的处理程序\ndeferred.isRejected()\n从jQuery1.7开始已经过时，确定 Deferred 对象是否已被拒绝\ndeferred.isResolved()\n从jQuery1.7开始已经过时，确定 Deferred 对象是否已被解决\ndeferred.notify()\n给定一个参数，调用正在延迟对象上进行的回调函数( progressCallbacks )\ndeferred.notifyWith()\n给定上下文和参数，调用正在延迟对象上进行的回调函数( progressCallbacks )\ndeferred.pipe()\n过滤 and/or 链式延迟对象的工具方法\ndeferred.progress()\n当Deferred（延迟）对象生成进度通知时，调用添加处理程序\ndeferred.promise()\n返回 Deferred(延迟)的 Promise 对象\ndeferred.reject()\n拒绝 Deferred（延迟）对象，并根据给定的参数调用任何 failCallbacks 回调函数\ndeferred.rejectWith()\n拒绝 Deferred（延迟）对象，并根据给定的 context 和 args 参数调用任何 failCallbacks 回调函数\ndeferred.resolve()\n解决Deferred（延迟）对象，并根据给定的参数调用任何 doneCallbacks 回调函数\ndeferred.resolveWith()\n解决Deferred（延迟）对象，并根据给定的context 和 args 参数调用任何 doneCallbacks 回调函数\ndeferred.state()\n确定一个Deferred（延迟）对象的当前状态\ndeferred.then()\n当Deferred（延迟）对象解决，拒绝或仍在进行中时，调用添加处理程序\n.promise()\n返回一个 Promise 对象，观察某种类型被绑定到集合的所有行动，是否已被加入到队列中",
+    "examples": []
+   },
+   {
+    "title": "jQuery 属性",
+    "url": "https://www.runoob.com/jquery/jquery-ref-prop.html",
+    "body": "jQuery 属性\n方法\n描述\ncontext\n在版本 1.10 中被废弃。包含被传递到 jQuery 的原始上下文\njquery\n包含 jQuery 的版本号\njQuery.fx.interval\n改变以毫秒计的动画运行速率\njQuery.fx.off\n对所有动画进行全局禁用或启用\njQuery.support\n包含表示不同浏览器特性或漏洞的属性集（主要用于 jQuery 的内部使用）\nlength\n包含 jQuery 对象中元素的数目\njQuery.cssNumber\n包含所有可以不使用单位的CSS属性的对象",
+    "examples": []
+   },
+   {
+    "title": "jQuery 选择器",
+    "url": "https://www.runoob.com/jquery/jquery-ref-selectors.html",
+    "body": "jQuery 选择器\n请使用我们的 jQuery 选择器检测器 来演示不同的选择器。\n选择器\n实例\n选取\n*\n$(\"*\")\n所有元素\n#id\n$(\"#lastname\")\nid=\"lastname\" 的元素\n.class\n$(\".intro\")\nclass=\"intro\" 的所有元素\n.class,.class\n$(\".intro,.demo\")\nclass 为 \"intro\" 或 \"demo\" 的所有元素\nelement\n$(\"p\")\n所有 <p> 元素\nel1,el2,el3\n$(\"h1,div,p\")\n所有 <h1>、<div> 和 <p> 元素\n:first\n$(\"p:first\")\n第一个 <p> 元素\n:last\n$(\"p:last\")\n最后一个 <p> 元素\n:even\n$(\"tr:even\")\n所有偶数 <tr> 元素，索引值从 0 开始，第一个元素是偶数 (0)，第二个元素是奇数 (1)，以此类推。\n:odd\n$(\"tr:odd\")\n所有奇数 <tr> 元素，索引值从 0 开始，第一个元素是偶数 (0)，第二个元素是奇数 (1)，以此类推。\n:first-child\n$(\"p:first-child\")\n属于其父元素的第一个子元素的所有 <p> 元素\n:first-of-type\n$(\"p:first-of-type\")\n属于其父元素的第一个 <p> 元素的所有 <p> 元素\n:last-child\n$(\"p:last-child\")\n属于其父元素的最后一个子元素的所有 <p> 元素\n:last-of-type\n$(\"p:last-of-type\")\n属于其父元素的最后一个 <p> 元素的所有 <p> 元素\n:nth-child(n)\n$(\"p:nth-child(2)\")\n属于其父元素的第二个子元素的所有 <p> 元素\n:nth-last-child(n)\n$(\"p:nth-last-child(2)\")\n属于其父元素的第二个子元素的所有 <p> 元素，从最后一个子元素开始计数\n:nth-of-type(n)\n$(\"p:nth-of-type(2)\")\n属于其父元素的第二个 <p> 元素的所有 <p> 元素\n:nth-last-of-type(n)\n$(\"p:nth-last-of-type(2)\")\n属于其父元素的第二个 <p> 元素的所有 <p> 元素，从最后一个子元素开始计数\n:only-child\n$(\"p:only-child\")\n属于其父元素的唯一子元素的所有 <p> 元素\n:only-of-type\n$(\"p:only-of-type\")\n属于其父元素的特定类型的唯一子元素的所有 <p> 元素\nparent > child\n$(\"div > p\")\n<div> 元素的直接子元素的所有 <p> 元素\nparent descendant\n$(\"div p\")\n<div> 元素的后代的所有 <p> 元素\nelement + next\n$(\"div + p\")\n每个 <div> 元素相邻的下一个 <p> 元素\nelement ~ siblings\n$(\"div ~ p\")\n<div> 元素同级的所有 <p> 元素\n:eq(index)\n$(\"ul li:eq(3)\")\n列表中的第四个元素（index 值从 0 开始）\n:gt(no)\n$(\"ul li:gt(3)\")\n列举 index 大于 3 的元素\n:lt(no)\n$(\"ul li:lt(3)\")\n列举 index 小于 3 的元素\n:not(selector)\n$(\"input:not(:empty)\")\n所有不为空的输入元素\n:header\n$(\":header\")\n所有标题元素 <h1>, <h2> ...\n:animated\n$(\":animated\")\n所有动画元素\n:focus\n$(\":focus\")\n当前具有焦点的元素\n:contains(text)\n$(\":contains('Hello')\")\n所有包含文本 \"Hello\" 的元素\n:has(selector)\n$(\"div:has(p)\")\n所有包含有 <p> 元素在其内的 <div> 元素\n:empty\n$(\":empty\")\n所有空元素\n:parent\n$(\":parent\")\n匹配所有含有子元素或者文本的父元素。\n:hidden\n$(\"p:hidden\")\n所有隐藏的 <p> 元素\n:visible\n$(\"table:visible\")\n所有可见的表格\n:root\n$(\":root\")\n文档的根元素\n:lang(language)\n$(\"p:lang(de)\")\n所有 lang 属性值为 \"de\" 的 <p> 元素\n[attribute]\n$(\"[href]\")\n所有带有 href 属性的元素\n[attribute=value]\n$(\"[href='default.htm']\")\n所有带有 href 属性且值等于 \"default.htm\" 的元素\n[attribute!=value]\n$(\"[href!='default.htm']\")\n所有带有 href 属性且值不等于 \"default.htm\" 的元素\n[attribute$=value]\n$(\"[href$='.jpg']\")\n所有带有 href 属性且值以 \".jpg\" 结尾的元素\n[attribute|=value]\n$(\"[title|='Tomorrow']\")\n所有带有 title 属性且值等于 'Tomorrow' 或者以 'Tomorrow' 后跟连接符作为开头的字符串\n[attribute^=value]\n$(\"[title^='Tom']\")\n所有带有 title 属性且值以 \"Tom\" 开头的元素\n[attribute~=value]\n$(\"[title~='hello']\")\n所有带有 title 属性且值包含单词 \"hello\" 的元素\n[attribute*=value]\n$(\"[title*='hello']\")\n所有带有 title 属性且值包含字符串 \"hello\" 的元素\n[name=value][name2=value2]\n$( \"input[id][name$='man']\" )\n带有 id 属性，并且 name 属性以 man 结尾的输入框\n:input\n$(\":input\")\n所有 input 元素\n:text\n$(\":text\")\n所有带有 type=\"text\" 的 input 元素\n:password\n$(\":password\")\n所有带有 type=\"password\" 的 input 元素\n:radio\n$(\":radio\")\n所有带有 type=\"radio\" 的 input 元素\n:checkbox\n$(\":checkbox\")\n所有带有 type=\"checkbox\" 的 input 元素\n:submit\n$(\":submit\")\n所有带有 type=\"submit\" 的 input 元素\n:reset\n$(\":reset\")\n所有带有 type=\"reset\" 的 input 元素\n:button\n$(\":button\")\n所有带有 type=\"button\" 的 input 元素\n:image\n$(\":image\")\n所有带有 type=\"image\" 的 input 元素\n:file\n$(\":file\")\n所有带有 type=\"file\" 的 input 元素\n:enabled\n$(\":enabled\")\n所有启用的元素\n:disabled\n$(\":disabled\")\n所有禁用的元素\n:selected\n$(\":selected\")\n所有选定的下拉列表元素\n:checked\n$(\":checked\")\n所有选中的复选框选项\n.selector\n$(selector).selector\n在jQuery 1.7中已经不被赞成使用。返回传给jQuery()的原始选择器\n:target\n$( \"p:target\" )\n选择器将选中ID和URI中一个格式化的标识符相匹配的<p>元素",
+    "examples": []
+   },
+   {
+    "title": "jQuery 遍历 方法",
+    "url": "https://www.runoob.com/jquery/jquery-ref-traversing.html",
+    "body": "jQuery 遍历方法\n方法\n描述\nadd()\n把元素添加到匹配元素的集合中\naddBack()\n把之前的元素集添加到当前集合中\nandSelf()\n在版本 1.8 中被废弃。addBack() 的别名\nchildren()\n返回被选元素的所有直接子元素\nclosest()\n返回被选元素的第一个祖先元素\ncontents()\n返回被选元素的所有直接子元素（包含文本和注释节点）\neach()\n为每个匹配元素执行函数\nend()\n结束当前链中最近的一次筛选操作，并把匹配元素集合返回到前一次的状态\neq()\n返回带有被选元素的指定索引号的元素\nfilter()\n把匹配元素集合缩减为匹配选择器或匹配函数返回值的新元素\nfind()\n返回被选元素的后代元素\nfirst()\n返回被选元素的第一个元素\nhas()\n返回拥有一个或多个元素在其内的所有元素\nis()\n根据选择器/元素/jQuery 对象检查匹配元素集合，如果存在至少一个匹配元素，则返回 true\nlast()\n返回被选元素的最后一个元素\nmap()\n把当前匹配集合中的每个元素传递给函数，产生包含返回值的新 jQuery 对象\nnext()\n返回被选元素的后一个同级元素\nnextAll()\n返回被选元素之后的所有同级元素\nnextUntil()\n返回介于两个给定参数之间的每个元素之后的所有同级元素\nnot()\n从匹配元素集合中移除元素\noffsetParent()\n返回第一个定位的父元素\nparent()\n返回被选元素的直接父元素\nparents()\n返回被选元素的所有祖先元素\nparentsUntil()\n返回介于两个给定参数之间的所有祖先元素\nprev()\n返回被选元素的前一个同级元素\nprevAll()\n返回被选元素之前的所有同级元素\nprevUntil()\n返回介于两个给定参数之间的每个元素之前的所有同级元素\nsiblings()\n返回被选元素的所有同级元素\nslice()\n把匹配元素集合缩减为指定范围的子集",
+    "examples": []
+   },
+   {
+    "title": "jQuery 效果 - 滑动",
+    "url": "https://www.runoob.com/jquery/jquery-slide.html",
+    "body": "jQuery 滑动方法可使元素上下滑动。\n点击这里，隐藏/显示面板\n一寸光阴一寸金，因此，我们为您提供快捷易懂的学习内容。\n在这里，您可以通过一种易懂的便利的模式获得您需要的任何知识。",
+    "examples": []
+   },
+   {
+    "title": "jQuery 停止动画",
+    "url": "https://www.runoob.com/jquery/jquery-stop.html",
+    "body": "jQuery stop() 方法用于在动画或效果完成前对它们进行停止。\n停止滑动\n点击这里，向上/向下滑动面板\n时间是宝贵的，因此，我们为您提供快捷易懂的学习内容。\n在这里，您可以通过一种易懂的便利的模式获得您需要的任何知识。",
+    "examples": []
+   },
+   {
+    "title": "jQuery 语法",
+    "url": "https://www.runoob.com/jquery/jquery-syntax.html",
+    "body": "通过 jQuery，您可以选取（查询，query） HTML 元素，并对它们执行\"操作\"（actions）。\njQuery 语法\njQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操作。\n基础语法： $(selector).action()\n美元符号定义 jQuery\n选择符（selector）\"查询\"和\"查找\" HTML 元素\njQuery 的 action() 执行对元素的操作\n实例:\n$(this).hide() - 隐藏当前元素\n$(\"p\").hide() - 隐藏所有 <p> 元素\n$(\"p.test\").hide() - 隐藏所有 class=\"test\" 的 <p> 元素\n$(\"#test\").hide() - 隐藏 id=\"test\" 的元素\n你对 CSS 选择器熟悉吗？\njQuery 使用的语法是 XPath 与 CSS 选择器语法的组合。在本教程接下来的章节，您将学习到更多有关选择器的语法。\n文档就绪事件\n您也许已经注意到在我们的实例中的所有 jQuery 函数位于一个 document ready 函数中：",
+    "examples": [
+     "$(document).ready(function(){\n// 开始写 jQuery 代码...\n});"
+    ]
+   },
+   {
+    "title": "jQuery 遍历 - 祖先",
+    "url": "https://www.runoob.com/jquery/jquery-traversing-ancestors.html",
+    "body": "祖先是父、祖父或曾祖父等等。\n通过 jQuery，您能够向上遍历 DOM 树，以查找元素的祖先。\n向上遍历 DOM 树\n这些 jQuery 方法很有用，它们用于向上遍历 DOM 树：\nparent()\nparents()\nparentsUntil()\njQuery parent() 方法\nparent() 方法返回被选元素的直接父元素。\n该方法只会向上一级对 DOM 树进行遍历。\n下面的例子返回每个 <span> 元素的直接父元素：\n实例",
+    "examples": [
+     "$(document).ready(function(){\n  $(\"span\").parent();\n});"
+    ]
+   },
+   {
+    "title": "jQuery 遍历 - 后代",
+    "url": "https://www.runoob.com/jquery/jquery-traversing-descendants.html",
+    "body": "后代是子、孙、曾孙等等。\n通过 jQuery，您能够向下遍历 DOM 树，以查找元素的后代。\n向下遍历 DOM 树\n下面是两个用于向下遍历 DOM 树的 jQuery 方法：\nchildren()\nfind()\njQuery children() 方法\nchildren() 方法返回被选元素的所有直接子元素。\n该方法只会向下一级对 DOM 树进行遍历。\n下面的例子返回每个 <div> 元素的所有直接子元素：\n实例",
+    "examples": [
+     "$(document).ready(function(){\n  $(\"div\").children();\n});"
+    ]
+   },
+   {
+    "title": "jQuery 遍历- 过滤",
+    "url": "https://www.runoob.com/jquery/jquery-traversing-filtering.html",
+    "body": "缩小搜索元素的范围\n三个最基本的过滤方法是：first(), last() 和 eq()，它们允许您基于其在一组元素中的位置来选择一个特定的元素。\n其他过滤方法，比如 filter() 和 not() 允许您选取匹配或不匹配某项指定标准的元素。\njQuery first() 方法\nfirst() 方法返回被选元素的首个元素。\n下面的例子选取首个 <div> 元素内部的第一个 <p> 元素：\n实例",
+    "examples": [
+     "$(document).ready(function(){\n  $(\"div p\").first();\n});"
+    ]
+   },
+   {
+    "title": "jQuery 遍历 - 同胞(siblings)",
+    "url": "https://www.runoob.com/jquery/jquery-traversing-siblings.html",
+    "body": "同胞拥有相同的父元素。\n通过 jQuery，您能够在 DOM 树中遍历元素的同胞元素。\n在 DOM 树中水平遍历\n有许多有用的方法让我们在 DOM 树进行水平遍历：\nsiblings()\nnext()\nnextAll()\nnextUntil()\nprev()\nprevAll()\nprevUntil()\njQuery siblings() 方法\nsiblings() 方法返回被选元素的所有同胞元素。\n下面的例子返回 <h2> 的所有同胞元素：\n实例",
+    "examples": [
+     "$(document).ready(function(){\n  $(\"h2\").siblings();\n});"
+    ]
+   },
+   {
+    "title": "jQuery 遍历",
+    "url": "https://www.runoob.com/jquery/jquery-traversing.html",
+    "body": "什么是遍历？\njQuery 遍历，意为\"移动\"，用于根据其相对于其他元素的关系来\"查找\"（或选取）HTML 元素。以某项选择开始，并沿着这个选择移动，直到抵达您期望的元素为止。\n下图展示了一个家族树。通过 jQuery 遍历，您能够从被选（当前的）元素开始，轻松地在家族树中向上移动（祖先），向下移动（子孙），水平移动（同胞）。这种移动被称为对 DOM 进行遍历。\n图示解析：\n<div> 元素是 <ul> 的父元素，同时是其中所有内容的祖先。\n<ul> 元素是 <li> 元素的父元素，同时是 <div> 的子元素\n左边的 <li> 元素是 <span> 的父元素，<ul> 的子元素，同时是 <div> 的后代。\n<span> 元素是 <li> 的子元素，同时是 <ul> 和 <div> 的后代。\n两个 <li> 元素是同胞（拥有相同的父元素）。\n右边的 <li> 元素是 <b> 的父元素，<ul> 的子元素，同时是 <div> 的后代。\n<b> 元素是右边的 <li> 的子元素，同时是 <ul> 和 <div> 的后代。\n祖先是父、祖父、曾祖父等等。后代是子、孙、曾孙等等。同胞拥有相同的父。\n遍历 DOM\njQuery 提供了多种遍历 DOM 的方法。\n遍历方法中最大的种类是树遍历（tree-traversal）。\n下一章会讲解如何在 DOM 树中向上、下以及同级移动。",
+    "examples": []
+   },
+   {
+    "title": "jQuery 教程",
+    "url": "https://www.runoob.com/jquery/jquery-tutorial.html",
+    "body": "jQuery 是一个 JavaScript 库。\njQuery 极大地简化了 JavaScript 编程。\njQuery 很容易学习。",
+    "examples": []
+   }
+  ]
+ }
+}

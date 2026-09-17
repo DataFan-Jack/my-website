@@ -1,0 +1,234 @@
+{
+ "tutorial": {
+  "name": "R 语言教程",
+  "category": "其他",
+  "desc": "R 语言是为数学研究工作者设计的一种数学编程语言，主要用于统计分析、绘图、数据挖",
+  "url": "https://www.runoob.com/r/",
+  "chapters": [
+   {
+    "title": "R 数组",
+    "url": "https://www.runoob.com/r/r-array.html",
+    "body": "数组也是 R 语言的对象，R 语言可以创建一维或多维数组。\nR 语言数组是一个同一类型的集合，前面我们学的矩阵 matrix 其实就是一个二维数组。\n向量、矩阵、数组关系可以看下图：\nR 语言数组创建使用 array() 函数，该函数使用向量作为输入参数，可以使用 dim 设置数组维度。\narray() 函数语法格式如下：\narray(data = NA, dim = length(data), dimnames = NULL)\n参数说明：\ndata - 指定数组的数据源，可以是一个向量、矩阵或列表。\ndim - 指定数组的维度，可以是一个整数向量或一个表示维度的元组，默认是一维数组。例如，dim = c(2, 3, 4) 表示创建一个 2x3x4 的三维数组。\ndimnames - 可选参数，用于指定数组每个维度的名称，可以是一个包含维度名称的列表。\n在 R 中，数组索引是从 1 开始的，与其他编程语言的习惯有所不同。\n此外，R 还提供了丰富的函数和操作符用于处理数组数据，如索引、切片、重塑、聚合等。\n在 R 中，可以使用矩阵（Matrix）或列表（List）来表示多维数组。\n矩阵（Matrix）：矩阵是 R 中最常用的表示数组的形式，它是一个二维的结构，具有固定的行数和列数。\n可以使用 matrix() 函数创建矩阵，指定数据元素和维度。\n实例",
+    "examples": [
+     "# 创建一个3x3的矩阵\nmy_matrix <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9), nrow = 3, ncol = 3)\nprint(my_matrix)"
+    ]
+   },
+   {
+    "title": "R 绘图 - 条形图",
+    "url": "https://www.runoob.com/r/r-bar-charts.html",
+    "body": "条形图，也称为柱状图条形图，是一种以长方形的长度为变量的统计图表。\n条形图可以是水平或垂直的，每个长方形可以有不同的颜色。\nR 语言使用 barplot() 函数来创建条形图，格式如下：\nbarplot(H,xlab,ylab,main, names.arg,col,beside)\n参数说明：\nH 向量或矩阵，包含图表用的数字值，每个数值表示矩形条的高度。\nxlab x 轴标签。\nylab y 轴标签。\nmain 图表标题。\nnames.arg 每个矩形条的名称。\ncol 每个矩形条的颜色。\n接下来我们创建一个简单的条形图：\n实例",
+    "examples": [
+     "# 准备一个向量\ncvd19 = c(83534,2640626,585493)\n\n# 显示条形图\nbarplot(cvd19)"
+    ]
+   },
+   {
+    "title": "R 基础运算",
+    "url": "https://www.runoob.com/r/r-basic-operators.html",
+    "body": "本章介绍 R 语言的简单运算。\n赋值\n一般语言的赋值是 = 号，但是 R 语言是数学语言，所以赋值符号与我们数学书上的伪代码很相似，是一个左箭头 <- ：\n实例",
+    "examples": [
+     "a <- 123\nb <- 456\nprint(a + b)"
+    ]
+   },
+   {
+    "title": "R 语言基础",
+    "url": "https://www.runoob.com/r/r-basic-syntax.html",
+    "body": "一门新的语言学习一般是从输出 \"Hello, World!\" 程序开始，R 语言的 \"Hello, World!\" 程序代码如下：\n实例（helloworld.R）\n运行实例 »",
+    "examples": [
+     "myString <- \"Hello, World!\"\n\nprint ( myString )"
+    ]
+   },
+   {
+    "title": "R 绘图 - 中文支持",
+    "url": "https://www.runoob.com/r/r-charts-cn.html",
+    "body": "不同系统的字体库目录：\nLinux 一般在 /usr/share/fonts 下，我们可以使用 fc-list 命令查看：\n# fc-list\n/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf: DejaVu Serif:style=Bold\n/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf: DejaVu Sans Mono:style=Book\n/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf: DejaVu Sans:style=Book\n/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf: DejaVu Sans:style=Bold\n/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf: DejaVu Sans Mono:style=Bold\n/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf: DejaVu Serif:style=Book\nWindows 字体在 C:\\Windows\\Fonts\\ 文件下，直接打开就能看到了。\nmac OS 字体在 /System/Library/Fonts 和 /Library/Fonts 目录下。\n系统支持的字体库，可以通过安装 showtext 来查看：\n> install.packages(\"showtext\", repos = \"https://mirrors.ustc.edu.cn/CRAN/\") # 安装 showtext\n...\n> font_files() # 查看字体\n path file family face version\n1 /Library/Fonts Arial Unicode.ttf Arial Unicode MS Regular Version 1.01x\n ps_name\n1 ArialUnicodeMS\n看到有 ArialUnicodeMS，我们就可以用了：\npie3D(info,labels = names,explode = 0.1, main = \"3D 图\",family = \"ArialUnicodeMS\")\n载入自定义字体\n系统的字体库有时候不是支持的很好，\nshowtext() 函数可以载入我们自定义的字体，可以下载字体包 ttf，然后使用 font_add() 函数添加。\n这里我们使用思源黑体，思源黑体是 Adobe 与 Google 推出的一款开源字体。\n官网：https://source.typekit.com/source-han-serif/cn/\nGitHub 地址：https://github.com/adobe-fonts/source-han-sans/tree/release/OTF/SimplifiedChinese\n打开链接后，在里面选一个就好了：\n你也可以在网盘下载: https://pan.baidu.com/s/14cRhgYvvYotVIFkRVd71fQ 。\n可以下载个 OTF 字体，比如 SourceHanSansSC-Bold.otf，将该文件文件放在当前执行的代码文件中：\n柱形图使用字体库：\n实例",
+    "examples": [
+     "# 载入 showtext\nlibrary(showtext);\n# 第一个参数设置字体名称，第二个参数为字体库路径，同目录下，我们写字体库名就可以了\nfont_add(\"SyHei\", \"SourceHanSansSC-Bold.otf\"); \n\n\n# 设置文件名，输出为 png\npng(file = \"runoob-bar-cn.png\")\n\ncvd19 = c(83534,2640626,585493)\n#加载字体\nshowtext_begin();\nbarplot(cvd19,\n    main=\"新冠疫情条形图\",\n    col=c(\"#ED1C24\",\"#22B14C\",\"#FFC90E\"),\n    names.arg=c(\"中国\",\"美国\",\"印度\"),\n    family='SyHei'     # 设置字体库\n)\n# 去掉字体\nshowtext_end();"
+    ]
+   },
+   {
+    "title": "R 注释",
+    "url": "https://www.runoob.com/r/r-comments.html",
+    "body": "注释主要用于一段代码的解析，可以让阅读者更易理解，编程语言的注释会被编译器忽略掉，且不会影响代码的执行。\n一般编程语言的注释分为单行注释与多行注释，但是 R 语言只支持单行注释，注释符号为 #。\n其实如果有多行注释我们只需要在每一行添加 # 号就好了。\n单行注释",
+    "examples": [
+     "# 这是我的第一个编程代码\nmyString <- \"Hello, World!\"\n\nprint ( myString )"
+    ]
+   },
+   {
+    "title": "R 数据框",
+    "url": "https://www.runoob.com/r/r-data-frame.html",
+    "body": "数据框（Data frame）可以理解成我们常说的\"表格\"。\n数据框是 R 语言的数据结构，是特殊的二维列表。\n数据框每一列都有一个唯一的列名，长度都是相等的，同一列的数据类型需要一致，不同列的数据类型可以不一样。\nR 语言数据框使用 data.frame() 函数来创建，语法格式如下：\ndata.frame(…, row.names = NULL, check.rows = FALSE,\n check.names = TRUE, fix.empty.names = TRUE,\n stringsAsFactors = default.stringsAsFactors())\n…: 列向量，可以是任何类型（字符型、数值型、逻辑型），一般以 tag = value 的形式表示，也可以是 value。\nrow.names: 行名，默认为 NULL，可以设置为单个数字、字符串或字符串和数字的向量。\ncheck.rows: 检测行的名称和长度是否一致。\ncheck.names: 检测数据框的变量名是否合法。\nfix.empty.names: 设置未命名的参数是否自动设置名字。\nstringsAsFactors: 布尔值，字符是否转换为因子，factory-fresh 的默认值是 TRUE，可以通过设置选项（stringsAsFactors=FALSE）来修改。\n以下创建一个简单的数据框，包含姓名、工号、月薪：\n实例",
+    "examples": [
+     "table = data.frame(\n    姓名 = c(\"张三\", \"李四\"),\n    工号 = c(\"001\",\"002\"),\n    月薪 = c(1000, 2000)\n    \n)\nprint(table) # 查看 table 数据"
+    ]
+   },
+   {
+    "title": "R 数据重塑",
+    "url": "https://www.runoob.com/r/r-data-reshaping.html",
+    "body": "合并数据框\nR 语言合并数据框使用 merge() 函数。\nmerge() 函数语法格式如下：\n# S3 方法\nmerge(x, y, …)\n\n# data.frame 的 S3 方法 \nmerge(x, y, by = intersect(names(x), names(y)),\n by.x = by, by.y = by, all = FALSE, all.x = all, all.y = all,\n sort = TRUE, suffixes = c(\".x\",\".y\"), no.dups = TRUE,\n incomparables = NULL, …)\n常用参数说明：\nx, y： 数据框\nby, by.x, by.y：指定两个数据框中匹配列名称，默认情况下使用两个数据框中相同列名称。\nall：逻辑值; all = L 是 all.x = L 和 all.y = L 的简写，L 可以是 TRUE 或 FALSE。\nall.x：逻辑值，默认为 FALSE。如果为 TRUE, 显示 x 中匹配的行，即便 y 中没有对应匹配的行，y 中没有匹配的行用 NA 来表示。\nall.y：逻辑值，默认为 FALSE。如果为 TRUE, 显示 y 中匹配的行，即便 x 中没有对应匹配的行，x 中没有匹配的行用 NA 来表示。\nsort：逻辑值，是否对列进行排序。\nmerge() 函数和 SQL 的 JOIN 功能很相似：\nNatural join 或 INNER JOIN：如果表中有至少一个匹配，则返回行\nLeft outer join 或 LEFT JOIN：即使右表中没有匹配，也从左表返回所有的行\nRight outer join 或 RIGHT JOIN：即使左表中没有匹配，也从右表返回所有的行\nFull outer join 或 FULL JOIN：只要其中一个表中存在匹配，则返回行\n实例",
+    "examples": [
+     "# data frame 1\ndf1 = data.frame(SiteId = c(1:6), Site = c(\"Google\",\"Runoob\",\"Taobao\",\"Facebook\",\"Zhihu\",\"Weibo\"))\n\n\n# data frame 2\ndf2 = data.frame(SiteId = c(2, 4, 6, 7, 8), Country = c(\"CN\",\"USA\",\"CN\",\"USA\",\"IN\")) \n\n# INNER JOIN \ndf1 = merge(x=df1,y=df2,by=\"SiteId\")\nprint(\"----- INNER JOIN -----\")\nprint(df1)\n\n# FULL JOIN\ndf2 = merge(x=df1,y=df2,by=\"SiteId\",all=TRUE)\nprint(\"----- FULL JOIN -----\")\nprint(df2)\n\n# LEFT JOIN\ndf3 = merge(x=df1,y=df2,by=\"SiteId\",all.x=TRUE)\nprint(\"----- LEFT JOIN -----\")\nprint(df3)\n\n# RIGHT JOIN\ndf4 = merge(x=df1,y=df2,by=\"SiteId\",all.y=TRUE)\nprint(\"----- RIGHT JOIN -----\")\nprint(df4)"
+    ]
+   },
+   {
+    "title": "R 数据类型",
+    "url": "https://www.runoob.com/r/r-data-types.html",
+    "body": "数据类型指的是用于声明不同类型的变量或函数的一个广泛的系统。\n变量的类型决定了变量存储占用的空间，以及如何解释存储的位模式。\nR 语言中的最基本数据类型主要有三种：\n数字\n逻辑\n文本\n数字常量主要有两种：\n一般型\n123 -0.125\n科学计数法\n1.23e2 -1.25E-1\n逻辑类型在许多其他编程语言中常称为布尔型（Boolean），常量值只有 TRUE 和 FALSE。\n注意：R 语言区分大小写，true 或 True 不能代表 TRUE。\n最直观的数据类型就是文本类型。文本就是其它语言中常出现的字符串（String），常量用双引号包含。在 R 语言中，文本常量既可以用单引号包含，也可以用双引号包含，例如：\n实例",
+    "examples": [
+     "> 'runoob' == \"runoob\"\n[1] TRUE"
+    ]
+   },
+   {
+    "title": "R 判断语句",
+    "url": "https://www.runoob.com/r/r-decision-making.html",
+    "body": "判断结构要求程序员指定一个或多个要评估或测试的条件，以及条件为真时要执行的语句（必需的）和条件为假时要执行的语句（可选的）。\n下面是大多数编程语言中典型的判断结构的一般形式：",
+    "examples": []
+   },
+   {
+    "title": "R 语言实例",
+    "url": "https://www.runoob.com/r/r-examples.html",
+    "body": "100总计实例",
+    "examples": []
+   },
+   {
+    "title": "R 因子",
+    "url": "https://www.runoob.com/r/r-factor.html",
+    "body": "因子用于存储不同类别的数据类型，例如人的性别有男和女两个类别，年龄来分可以有未成年人和成年人。\nR 语言创建因子使用 factor() 函数，向量作为输入参数。\nfactor() 函数语法格式：\nfactor(x = character(), levels, labels = levels,\n exclude = NA, ordered = is.ordered(x), nmax = NA)\n参数说明：\nx：向量。\nlevels：指定各水平值, 不指定时由x的不同值来求得。\nlabels：水平的标签, 不指定时用各水平值的对应字符串。\nexclude：排除的字符。\nordered：逻辑值，用于指定水平是否有序。\nnmax：水平的上限数量。\n以下实例把字符型向量转换成因子：\n实例",
+    "examples": [
+     "x <- c(\"男\", \"女\", \"男\", \"男\",  \"女\")\nsex <- factor(x)\nprint(sex)\nprint(is.factor(sex))"
+    ]
+   },
+   {
+    "title": "R 函数",
+    "url": "https://www.runoob.com/r/r-functions.html",
+    "body": "函数是一组一起执行一个任务的语句。R 语言本身提供了很多的内置函数，当然我们也可以自己创建函数。\n您可以把代码划分到不同的函数中。如何划分代码到不同的函数中是由您来决定的，但在逻辑上，划分通常是根据每个函数执行一个特定的任务来进行的。\n函数声明告诉编译器函数的名称、返回类型和参数。函数定义提供了函数的实际主体。\nR 语言中函数是一个对象，可以拥有属性。\n定义函数\n函数定义通常由以下几个部分组成：\n函数名: 为函数指定一个唯一的名称，以便在调用时使用。\n参数: 定义函数接受的输入值。参数是可选的，可以有多个。\n函数体: 包含实际执行的代码块，用大括号 {} 括起来。\n返回值: 指定函数的输出结果，使用关键字return。\nR 语言中的函数定义使用 function 关键字，一般形式如下：\nfunction_name <- function(arg_1, arg_2, ...) {\n # 函数体\n # 执行的代码块\n return(output)\n}\n说明：\nfunction_name : 为函数名\narg_1, arg_2, ... : 形式参数列表\n函数返回值使用 return()。\n以下是一个简单的例子，展示如何定义和使用函数：\n实例",
+    "examples": [
+     "# 定义一个加法函数\nadd_numbers <- function(x, y) {\n  result <- x + y\n  return(result)\n}\n\n# 调用函数\nsum_result <- add_numbers(3, 4)\nprint(sum_result)  # 输出 7"
+    ]
+   },
+   {
+    "title": "R CSV 文件",
+    "url": "https://www.runoob.com/r/r-input-csv-file.html",
+    "body": "R 作为统计学专业工具，如果只能人工的导入和导出数据将使其功能变得没有意义，所以 R 支持批量的从主流的表格存储格式文件（例如 CSV、Excel、XML 等）中获取数据。\nCSV 表格交互\nCSV（Comma-Separated Values，CSV，有时也称为字符分隔值，因为分隔字符也可以不是逗号） 是一种非常流行的表格存储文件格式，这种格式适合储存中型或小型数据规模的数据。\n由于大多数软件支持这个文件格式，所以常用于数据的储存与交互。\nCSV 本质是文本，它的文件格式极度简单：数据一行一行的用文本保存起来而已，每条记录被分隔符分隔为字段，每条记录都有同样的字段序列。\n以下是一个简单的 sites.csv 文件（存储在测试程序的相同目录下）：\nid,name,url,likes\n1,Google,www.google.com,111\n2,Runoob,www.runoob.com,222\n3,Taobao,www.taobao.com,333\nCSV 用逗号来分割列，如果数据中含有逗号，就要用双引号将整个数据块包括起来。\n注意：包含非英文字符的文本要注意保存的编码，由于很多计算机普遍使用 UTF-8 编码，所以我是用 UTF-8 进行保存的。\n注意： CSV 文件最后一行需要保留一个空行，不然执行程序会有警告信息。\nWarning message:\nIn read.table(file = file, header = header, sep = sep, quote = quote, :\n incomplete final line found by readTableHeader on 'sites.csv'\n读取 CSV 文件\n接下来我们就可以使用 read.csv() 函数来读取 CSV 文件的数据：\n实例",
+    "examples": [
+     "data <- read.csv(\"sites.csv\", encoding=\"UTF-8\")\nprint(data)"
+    ]
+   },
+   {
+    "title": "R Excel 文件",
+    "url": "https://www.runoob.com/r/r-input-excel-file.html",
+    "body": "Excel 格式的文件主要是 xls 或 xlsx，这两种文件可以在 R 语言中导入 xlsx 库来实现直接的读取。\nR 语言读写 Excel 文件需要安装扩展包，我们可以在 R 到控制台输入以下命令来安装：\ninstall.packages(\"xlsx\", repos = \"https://mirrors.ustc.edu.cn/CRAN/\")\n安装过程如下：\n事实上，几乎所有的 Excel 软件与大多数表格软件一样支持 CSV 格式的数据，所以完全可以通过 CSV 与 R 交互，没必要再使用 Excel。\n查看 xlsx 是否安装成功：\n实例",
+    "examples": [
+     "# 验证包是否安装\nany(grepl(\"xlsx\",installed.packages()))\n# 载入包\nlibrary(\"xlsx\")\nlibrary(\"xlsx\")"
+    ]
+   },
+   {
+    "title": "R JSON 文件",
+    "url": "https://www.runoob.com/r/r-input-json-file.html",
+    "body": "JSON: JavaScript Object Notation(JavaScript 对象表示法)。\nJSON 是存储和交换文本信息的语法。\nJSON 类似 XML，但比 XML 更小、更快，更易解析。\n如果你对 JSON 还不了解，可以先查阅：JSON 教程\nR 语言读写 JSON 文件需要安装扩展包，我们可以在 R 到控制台输入以下命令来安装：\ninstall.packages(\"rjson\", repos = \"https://mirrors.ustc.edu.cn/CRAN/\")\n查看是否安装成功：\n> any(grepl(\"rjson\",installed.packages()))\n[1] TRUE\n创建 sites.json 文件，json 文件与测试脚本同一目录下，代码如下：\n实例",
+    "examples": [
+     "{\n\"id\":[\"1\",\"2\",\"3\"],\n   \"name\":[\"Google\",\"Runoob\",\"Taobao\"],\n   \"url\":[\"www.google.com\",\"www.runoob.com\",\"www.taobao.com\"],\n   \"likes\":[ 111,222,333]\n}"
+    ]
+   },
+   {
+    "title": "R XML 文件",
+    "url": "https://www.runoob.com/r/r-input-xml-file.html",
+    "body": "XML 指的是可扩展标记语言（eXtensible Markup Language），XML 被设计用来传输和存储数据。\n如果你对 XML 还不了解，可以先查阅：XML 教程\nR 语言读写 XML 文件需要安装扩展包，我们可以在 R 到控制台输入以下命令来安装：\ninstall.packages(\"XML\", repos = \"https://mirrors.ustc.edu.cn/CRAN/\")\n查看是否安装成功：\n> any(grepl(\"XML\",installed.packages()))\n[1] TRUE\n创建 sites.xml 文件，xml 文件与测试脚本同一目录下，代码如下：\n实例",
+    "examples": [
+     "<sites>\n<site>\n<id>1</id>\n<name>Google</name>\n<url>www.google.com</url>\n<likes>111</likes>\n</site>\n<site>\n<id>2</id>\n<name>Runoob</name>\n<url>www.runoob.com</url>\n<likes>222</likes>\n</site>\n<site>\n<id>3</id>\n<name>Taobao</name>\n<url>www.taobao.com</url>\n<likes>333</likes>\n</site>\n</sites>"
+    ]
+   },
+   {
+    "title": "Java 中操作 R",
+    "url": "https://www.runoob.com/r/r-java.html",
+    "body": "首先，在 R 中安装软件包 \"Rserve\" 。\n如果你使用的是 RGui 可视化界面，在菜单栏的 程序包 - 安装程序包 里可以完成这个步骤。如果你使用的是纯粹的 R Console，可以使用以下命令：\ninstall.packages(\"Rserve\", repos = \"https://mirrors.ustc.edu.cn/CRAN/\")\n当 Reserve 安装完成之后，在 R 的根目录下会有一个 library 目录，在其中找到 Rserve/java 目录，然后会发现目录下有两个文件：REngine.jar 和 Rserve.jar。\n这两个文件就是 Java 中的 R 接口库。\n注意：Java 不能做到脱离 R 系统独立使用 R 的功能！\n第一步 启动 Reserve\n进入 R，输入以下代码已启动 Rserve：\nlibrary(\"Rserve\")\nRserve()\n如果启动成功，R 会输出 Rserve 的路径。\n第二步 编写 Java 程序\n首先导入刚才的两个 jar 库。\n导入之后，我们认识一个关键的类：RConnection, 这个类可以用于连接到 Rserve。\n我们现在在 Java 中利用 R 完成一个逆矩阵运算：\n实例",
+    "examples": [
+     "import org.rosuda.REngine.Rserve.*;\n\npublic class Main {\n\n    public static void main(String[] args) {\n        RConnection rcon = null;\n        try {\n            // 建立与 Rserve 的连接\n            rcon = new RConnection(\"127.0.0.1\");\n            \n            // eval() 函数用于令 R 执行 R 语句\n            // 此处制造了一个 m1 矩阵\n            rcon.eval(\"m1 = matrix(c(1, 2, 3, 4), 2, 2, byrow=TRUE)\");\n            \n            // solve() 函数在 R 中求 m1 矩阵的逆矩阵\n            // 并将结果返回，asDoubleMatrix 函数可以将数据转换成\n            // Java 中的 double 二维数组以表示矩阵\n            double[][] m1 = rcon.eval(\"solve(m1)\").asDoubleMatrix();\n            \n            // 输出矩阵的内容\n            for (int i = 0; i < m1.length; i++) {\n                for (int j = 0; j < m1[0].length; j++)\n                    System.out.print(m1[i][j] + \"\\t\");\n                System.out.println();\n            }\n        } catch (Exception e) {\n            e.printStackTrace();\n        } finally {\n            if (rcon != null) rcon.close();\n        }\n    }\n}"
+    ]
+   },
+   {
+    "title": "R 绘图 - 函数曲线图",
+    "url": "https://www.runoob.com/r/r-line_charts.html",
+    "body": "函数曲线图是研究函数的重要工具。\nR 中 curve() 函数可以绘制函数的图像，代码格式如下：\ncurve(expr, from = NULL, to = NULL, n = 101, add = FALSE,\n type = \"l\", xname = \"x\", xlab = xname, ylab = NULL,\n log = NULL, xlim = NULL, …)\n\n# S3 函数的方法\nplot(x, y = 0, to = 1, from = y, xlim = NULL, ylab = NULL, …)\n注：R 语言的类有 S3 类和 S4 类，S3 类用的比较广，创建简单粗糙但是灵活，而 S4 类比较精细。\n参数：\nexpr：函数表达式\nfrom 和 to：绘图的起止范围\nn：一个整数值，表示 x 取值的数量\nadd：是一个逻辑值，当为 TRUE 时，表示将绘图添加到已存在的绘图中。\ntype：绘图的类型，p 为点、l 为直线， o 同时绘制点和线，且线穿过点。\nxname：用于 x 轴变量的名称。\nxlim 和 ylim 表示x轴和y轴的范围。\nxlab，ylab：x 轴和 y 轴的标签名称。\nplot 函数中，x 和 y 分别表示所绘图形的横坐标和纵坐标。\n以下我们绘制一个 sin(x) 函数的图表：\ncurve(sin(x), -2 * pi, 2 * pi)\n注意：任何计算机绘图工具绘制的都是模式图，它并不能保证与真的函数图像一模一样，它只是每隔一段距离取一个点，然后计算这个点的\"高度\"并绘制出来，为了保证曲线连续性，相邻两个点之间会有直线连接，所以在某些情况下例如 tan(x) 可能会出现错误：\n在每一个 (2n+1)Pi / 2 的位置都会出现断点，但是 R 的图像将它们连接了，希望大家理解这一点。\n当然，不是所有的函数都像 sin 一样支持向量处理，我们也可以手动生成一个数字序列然后用 plot 函数生成函数图像。假设函数 f 仅支持单个数值作为参数：\n实例",
+    "examples": [
+     "# 定义函数 f\nf = function (x) {\n    if (x >= 0) {\n        x\n    } else {\n        x ^ 2\n    }\n}\n\n# 生成自变量序列\nx = seq(-2, 2, length=100)\n\n# 生成因变量序列\ny = rep(0, length(x))\nj = 1\nfor (i in x) {\n    y[j] = f(i)\n    j = j + 1\n}\n\n# 绘制图像\nplot(x, y, type='l')"
+    ]
+   },
+   {
+    "title": "R 列表",
+    "url": "https://www.runoob.com/r/r-list.html",
+    "body": "列表是 R 语言的对象集合，可以用来保存不同类型的数据，可以是数字、字符串、向量、另一个列表、矩阵、数据框等，当然还可以包含矩阵和函数。\n列表是一种灵活的数据结构，可以存储和操作多种类型的数据对象。\n创建列表\nR 语言创建列表使用 list() 函数。\n如下实例，我们创建一个列表，包含了字符串、向量和数字：\n实例",
+    "examples": [
+     "list_data <- list(\"runoob\", \"google\", c(11,22,33), 123, 51.23, 119.1)\nprint(list_data)"
+    ]
+   },
+   {
+    "title": "R 循环",
+    "url": "https://www.runoob.com/r/r-loop.html",
+    "body": "有的时候，我们可能需要多次执行同一块代码。一般情况下，语句是按顺序执行的：函数中的第一个语句先执行，接着是第二个语句，依此类推。\n编程语言提供了更为复杂执行路径的多种控制结构。\n循环语句允许我们多次执行一个语句或语句组，下面是大多数编程语言中循环语句的流程图：",
+    "examples": []
+   },
+   {
+    "title": "R 矩阵",
+    "url": "https://www.runoob.com/r/r-matrix.html",
+    "body": "R 语言为线性代数的研究提供了矩阵类型，这种数据结构很类似于其它语言中的二维数组，但 R 提供了语言级的矩阵运算支持。\n矩阵里的元素可以是数字、符号或数学式。\n一个 M x N 的矩阵是一个由 M（row） 行 和 N 列（column）元素排列成的矩形阵列。\n以下是一个由 6 个数字元素构成的 2 行 3 列的矩阵：\nR 语言的矩阵可以使用 matrix() 函数来创建，语法格式如下：\nmatrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE,dimnames = NULL)\n参数说明：\ndata 向量，矩阵的数据\nnrow 行数\nncol 列数\nbyrow 逻辑值，为 FALSE 按列排列，为 TRUE 按行排列\ndimname 设置行和列的名称\n创建一个数字矩阵：\n实例",
+    "examples": [
+     "# byrow 为 TRUE 元素按行排列\nM <- matrix(c(3:14), nrow = 4, byrow = TRUE)\nprint(M)\n\n# Ebyrow 为 FALSE 元素按列排列\nN <- matrix(c(3:14), nrow = 4, byrow = FALSE)\nprint(N)\n\n# 定义行和列的名称\nrownames = c(\"row1\", \"row2\", \"row3\", \"row4\")\ncolnames = c(\"col1\", \"col2\", \"col3\")\n\nP <- matrix(c(3:14), nrow = 4, byrow = TRUE, dimnames = list(rownames, colnames))\nprint(P)"
+    ]
+   },
+   {
+    "title": "R MySQL 连接",
+    "url": "https://www.runoob.com/r/r-mysql-connect.html",
+    "body": "MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL 是最好的 RDBMS(Relational Database Management System：关系数据库管理系统)应用软件之一。\n如果你对 MySQL 还不了解，可以先查阅：MySQL 教程\nR 语言读写 MySQL 文件需要安装扩展包，我们可以在 R 到控制台输入以下命令来安装：\ninstall.packages(\"RMySQL\", repos = \"https://mirrors.ustc.edu.cn/CRAN/\")\n查看是否安装成功：\n> any(grepl(\"RMySQL\",installed.packages()))\n[1] TRUE\nMySQL 目前被甲骨文收购，所以很多人使用来它的复制版本 MariaDB，MariaDB 在 GNU GPL下开源，MariaDB 的开发是由 MySQL 的一些原始开发者领导的，所以语法操作都差不多：\ninstall.packages(\"RMariaDB\", repos = \"https://mirrors.ustc.edu.cn/CRAN/\")\n在 test 数据库中创建数据表 runoob，表结构及数据代码如下：\n实例",
+    "examples": [
+     "--\n-- 表的结构 `runoob`\n--\n \nCREATE TABLE `runoob` (\n`id` int(11) NOT NULL,\n  `name` char(20) NOT NULL,\n  `url` varchar(255) NOT NULL,\n  `likes` int(11) NOT NULL\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n \n--\n-- 转存表中的数据 `runoob`\n--\n \nINSERT INTO `runoob` (`id`, `name`, `url`, `likes`) VALUES\n(1, 'Google', 'www.google.com', 111),\n(2, 'Runoob', 'www.runoob.com', 222),\n(3, 'Taobao', 'www.taobao.com', 333);"
+    ]
+   },
+   {
+    "title": "R 包",
+    "url": "https://www.runoob.com/r/r-package.html",
+    "body": "包是 R 函数、实例数据、预编译代码的集合，包括 R 程序，注释文档、实例、测试数据等。\nR 语言相关的包一般存储安装目录下对 \"library\" 目录，默认情况在 R 语言安装完成已经自带来一些常用对包，当然我们也可以在后期自定义添加一些要使用的包。\nR 语言完整的相关包可以查阅：https://cran.r-project.org/web/packages/available_packages_by_name.html\n接下来我们主要介绍如何安装 R 语言的包。\n查看 R 包的安装目录\n我们可以使用以下函数来查看 R 包的安装目录：\n实例",
+    "examples": [
+     "> .libPaths()\n[1] \"/Library/Frameworks/R.framework/Versions/4.0/Resources/library\"\n>"
+    ]
+   },
+   {
+    "title": "R 绘图 - 饼图",
+    "url": "https://www.runoob.com/r/r-pie-charts.html",
+    "body": "R 语言提供来大量的库来实现绘图功能。\n饼图，或称饼状图，是一个划分为几个扇形的圆形统计图表，用于描述量、频率或百分比之间的相对关系。\nR 语言使用 pie() 函数来实现饼图，语法格式如下：\npie(x, labels = names(x), edges = 200, radius = 0.8,\n clockwise = FALSE, init.angle = if(clockwise) 90 else 0,\n density = NULL, angle = 45, col = NULL, border = NULL,\n lty = NULL, main = NULL, …)\nx: 数值向量，表示每个扇形的面积。\nlabels: 字符型向量，表示各扇形面积标签。\nedges: 这个参数用处不大，指的是多边形的边数（圆的轮廓类似很多边的多边形）。\nradius: 饼图的半径。\nmain: 饼图的标题。\nclockwise: 是一个逻辑值,用来指示饼图各个切片是否按顺时针做出分割。\nangle: 设置底纹的斜率。\ndensity: 底纹的密度。默认值为 NULL。\ncol: 是表示每个扇形的颜色，相当于调色板。\n绘制饼状图要做这些准备：反映数量的向量、各部分的标签、各部分的颜色（可选）。\n接下来我们绘制一个简单的饼图：\n实例",
+    "examples": [
+     "# 数据准备\ninfo = c(1, 2, 4, 8)\n\n# 命名\nnames = c(\"Google\", \"Runoob\", \"Taobao\", \"Weibo\")\n\n# 涂色（可选）\ncols = c(\"#ED1C24\",\"#22B14C\",\"#FFC90E\",\"#3f48CC\")\n\n# 绘图\npie(info, labels=names, col=cols)"
+    ]
+   },
+   {
+    "title": "R 绘图 - 散点图",
+    "url": "https://www.runoob.com/r/r-scatterplots-charts.html",
+    "body": "散点图是将所有的数据以点的形式展现在直角坐标系上，以显示变量之间的相互影响程度，点的位置由变量的数值决定，每个点对应一个 X 和 Y 轴点坐标。\n散点图可以使用 plot() 函数来绘制，语法格式如下：\nplot(x, y, type=\"p\", main, xlab, ylab, xlim, ylim, axes)\nx 横坐标 x 轴的数据集合\ny 纵坐标 y 轴的数据集合\ntype：绘图的类型，p 为点、l 为直线， o 同时绘制点和线，且线穿过点。\nmain 图表标题。\nxlab、ylab x 轴和 y 轴的标签名称。\nxlim、ylim x 轴和 y 轴的范围。\naxes 布尔值，是否绘制两个 x 轴。\ntype 参数可选择值：\np：点图\nl：线图\nb：同时绘制点和线\nc：仅绘制参数 b 所示的线\no：同时绘制点和线，且线穿过点\nh：绘制出点到横坐标轴的垂直线\ns：阶梯图，先横后纵\nS：阶梯图，先纵后竖\nn： 空图\n创建一个简单的线图：\n实例",
+    "examples": [
+     "x<-c(10,40)\ny<-c(20,60)\n# 生成 png 图片\npng(file = \"runnob-test-plot2.png\")\n\nplot(x, y, \"l\")"
+    ]
+   },
+   {
+    "title": "R 环境安装",
+    "url": "https://www.runoob.com/r/r-setup.html",
+    "body": "R 语言的开发环境本身具备了图形开发环境，这与其他很多工程语言是不同的，所以开发环境最好安装在为桌面个人计算机设计的操作系统上（如 Windows, macOS 或 Ubuntu 桌面版 等）。\n首先，我们需要下载 R 语言环境的安装包：\nWindows\n官方地址：https://cloud.r-project.org/bin/windows/base/\nUSTC 镜像：https://mirrors.ustc.edu.cn/CRAN/bin/windows/base/\nTUNA 镜像：https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/windows/base/\nLinux\n官方地址：https://cloud.r-project.org/bin/linux/\nUSTC 镜像：https://mirrors.ustc.edu.cn/CRAN/bin/linux/\nTUNA 镜像：https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/linux/\nmacOS\n官方地址：https://cloud.r-project.org/bin/macosx/\nUSTC 镜像：https://mirrors.ustc.edu.cn/CRAN/bin/macosx/\nTUNA 镜像：https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/macosx/\n以上的版本有可能是过时的，如果你需要最新版本，可以访问：\n清华大学源：\nhttps://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/\n官网：https://cloud.r-project.org/bin/\nWindows 操作系统\nWindows 安装很简单，下载安装包后，双击下载的安装包，开始安装向导：\n注意：这里使用的操作系统是 64 位的，但现在仍有少数的计算机使用的是 32 位的操作系统，如果你的操作系统是 32 位的，请在此步骤选择\"32-bit 用户安装\"选项。\n当我们在交互式的命令窗口输入以下代码：\nprint(\"Hello, world\")\n输出结果为：\n\"Hello, world\"\nLinux\nUbuntu 安装\n执行以下命令安装 R 语言执行环境：\n# sudo apt update\n# sudo apt -y upgrade\n# sudo apt -y install r-base\n安装成功后，执行 R 命令就可以进入交互式的编程窗口了：\nCentos 安装\n# sudo yum install R\n输入以下命令，查看安装的版本：\n# R --version\n交互式命令可以通过输入 q() 来退出：\n> q()\nSave workspace image? [y/n/c]: y\nmacOS 安装\nmacOS 安装 R 语言环境类似 Windows，下载 pkg 安装包，双击安装包打开，然后按安装向导安装：\n安装成功后，执行 R 命令就可以进入交互式的编程窗口了：\n交互式命令可以通过输入 q() 来退出：\n> q()\nSave workspace image? [y/n/c]: y\n脚本执行\n在 R 语言中，可以在命令行中使用 Rscript 命令来执行 R 脚本文件。\nRscript 命令允许您直接从命令行运行 R 脚本，而无需打开 R 控制台。。\n要使用 Rscript命令 执行 R 脚本文件，可以按照以下步骤进行操作：\n创建一个 R 脚本文件，其中包含要执行的R代码。例如，将以下代码保存为 script.R 文件：\nscript.R 文件代码：",
+    "examples": [
+     "# script.R\nx <- 1:10\ny <- x^2\nprint(y)"
+    ]
+   },
+   {
+    "title": "R 字符串",
+    "url": "https://www.runoob.com/r/r-string.html",
+    "body": "R 语言中，字符串是一种表示文本数据的数据类型，它由字符（字符向量）组成，可以包含字母、数字、符号和空格等字符。\nR 语言字符串可以使用一对单引号 ' ' 或一对双引号 \" \" 来表示。\n单引号字符串中可以包含双引号。\n单引号字符串中不可以包含单引号。\n双引号字符串中可以包含单引号。\n双引号字符串中不可以包含双引号。\n创建字符串：您可以使用单引号或双引号来创建字符串。\n以下实例演示来字符串的使用：\n实例",
+    "examples": [
+     "a <- '使用单引号'\nprint(a)\n\nb <- \"使用双引号\"\nprint(b)\n\nc <- \"双引号字符串中可以包含单引号（'） \"\nprint(c)\n\nd <- '单引号字符串中可以包含双引号（\"） '\nprint(d)"
+    ]
+   },
+   {
+    "title": "R 语言教程",
+    "url": "https://www.runoob.com/r/r-tutorial.html",
+    "body": "R 语言是为数学研究工作者设计的一种数学编程语言，主要用于统计分析、绘图、数据挖掘。\n如果你是一个计算机程序的初学者并且急切地想了解计算机的通用编程，R 语言不是一个很理想的选择，可以选择 Python、C 或 Java。\nR 语言与 C 语言都是贝尔实验室的研究成果，但两者有不同的侧重领域，R 语言是一种解释型的面向数学理论研究工作者的语言，而 C 语言是为计算机软件工程师设计的。\nR 语言是解释运行的语言（与 C 语言的编译运行不同），它的执行速度比 C 语言慢得多，不利于优化。但它在语法层面提供了更加丰富的数据结构操作并且能够十分方便地输出文字和图形信息，所以它广泛应用于数学尤其是统计学领域。\nR 语言官方网站：https://cran.r-project.org/\n官方镜像站列表：https://cran.r-project.org/mirrors.html",
+    "examples": []
+   }
+  ]
+ }
+}

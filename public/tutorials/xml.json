@@ -1,0 +1,204 @@
+{
+ "tutorial": {
+  "name": "XML",
+  "category": "后端开发",
+  "desc": "XML 指可扩展标记语言（eXtensible Markup Language）",
+  "url": "https://www.runoob.com/xml/",
+  "chapters": [
+   {
+    "title": "XML 应用程序",
+    "url": "https://www.runoob.com/xml/xml-applications.html",
+    "body": "本章演示一些基于 XML, HTML, XML DOM 和 JavaScript 构建的小型 XML 应用程序。\nXML 文档实例\n在本应用程序中，我们将使用 \"cd_catalog.xml\" 文件。\n在 HTML div 元素中显示第一个 CD\n下面的实例从第一个 CD 元素中获取 XML 数据，然后在 id=\"showCD\" 的 HTML 元素中显示数据。displayCD() 函数在页面加载时调用：\n实例\n尝试一下 »",
+    "examples": [
+     "x=xmlDoc.getElementsByTagName(\"CD\");\ni=0;\nfunction displayCD()\n{\nartist=(x[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue);\ntitle=(x[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue);\nyear=(x[i].getElementsByTagName(\"YEAR\")[0].childNodes[0].nodeValue);\ntxt=\"Artist: \" + artist + \"<br />Title: \" + title + \"<br />Year: \"+ year;\ndocument.getElementById(\"showCD\").innerHTML=txt;\n}"
+    ]
+   },
+   {
+    "title": "XML 属性",
+    "url": "https://www.runoob.com/xml/xml-attributes.html",
+    "body": "XML元素具有属性，类似 HTML。\n属性（Attribute）提供有关元素的额外信息。\nXML 属性\n在 HTML 中，属性提供有关元素的额外信息：\n<img src=\"computer.gif\">\n<a href=\"demo.html\">",
+    "examples": []
+   },
+   {
+    "title": "XML CDATA",
+    "url": "https://www.runoob.com/xml/xml-cdata.html",
+    "body": "XML 文档中的所有文本均会被解析器解析。\n只有 CDATA 区段中的文本会被解析器忽略。\nPCDATA - 被解析的字符数据\nXML 解析器通常会解析 XML 文档中所有的文本。\n当某个 XML 元素被解析时，其标签之间的文本也会被解析：\n<message>This text is also parsed</message>",
+    "examples": []
+   },
+   {
+    "title": "使用 CSS 显示 XML",
+    "url": "https://www.runoob.com/xml/xml-display.html",
+    "body": "通过使用 CSS（Cascading Style Sheets 层叠样式表），您可以添加显示信息到 XML 文档中。\n使用 CSS 显示您的 XML？\n使用 CSS 来格式化 XML 文档是有可能的。\n下面的实例就是关于如何使用 CSS 样式表来格式化 XML 文档：\n请看这个 XML 文件：CD 目录\n然后看这个样式表：CSS 文件\n最后，请查看：使用 CSS 文件格式化的 CD 目录\n下面是 XML 文件的一小部分。第二行把 XML 文件链接到 CSS 文件：\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><?xml-stylesheet type=\"text/css\" href=\"cd_catalog.css\"?>\n<CATALOG>\n \n <CD>\n \n <TITLE>Empire Burlesque</TITLE>\n \n <ARTIST>Bob Dylan</ARTIST>\n \n <COUNTRY>USA</COUNTRY>\n \n <COMPANY>Columbia</COMPANY>\n \n <PRICE>10.90</PRICE>\n \n <YEAR>1985</YEAR>\n \n </CD>\n \n <CD>\n \n <TITLE>Hide your heart</TITLE>\n \n <ARTIST>Bonnie Tyler</ARTIST>\n \n <COUNTRY>UK</COUNTRY>\n \n <COMPANY>CBS Records</COMPANY>\n \n <PRICE>9.90</PRICE>\n \n <YEAR>1988</YEAR>\n \n </CD>\n.\n.\n.\n</CATALOG>",
+    "examples": []
+   },
+   {
+    "title": "XML DOM 高级",
+    "url": "https://www.runoob.com/xml/xml-dom-advanced.html",
+    "body": "XML DOM - 高级\n在本教程的较早章节中，我们介绍了 XML DOM，并使用了 XML DOM 的 getElementsByTagName() 方法从 XML 文档中取回数据。\n在本章中我们将结合一些其他重要的 XML DOM 方法。\n您可以在我们的 XML DOM 教程 中学习更多有关 XML DOM 的知识。\n获取元素的值\n下面的实例中使用的 XML 文件：books.xml。\n下面的实例检索第一个 <title> 元素的文本值：\n实例\n尝试一下 »",
+    "examples": [
+     "txt=xmlDoc.getElementsByTagName(\"title\")[0].childNodes[0].nodeValue;"
+    ]
+   },
+   {
+    "title": "XML DOM",
+    "url": "https://www.runoob.com/xml/xml-dom.html",
+    "body": "DOM（Document Object Model 文档对象模型）定义了访问和操作文档的标准方法。\nXML DOM\nXML DOM（XML Document Object Model）定义了访问和操作 XML 文档的标准方法。\nXML DOM 把 XML 文档作为树结构来查看。\n所有元素可以通过 DOM 树来访问。可以修改或删除它们的内容，并创建新的元素。元素，它们的文本，以及它们的属性，都被认为是节点。\n在我们的 XML DOM 教程中，您可以学习更多有关 XML DOM 的知识。\nHTML DOM\nHTML DOM 定义了访问和操作 HTML 文档的标准方法。\n所有 HTML 元素可以通过 HTML DOM 来访问。\n在我们的 HTML DOM 教程中，您可以学习更多有关 HTML DOM 的知识。.\n加载一个 XML 文件 - 跨浏览器实例\n下面的实例把 XML 文档（\"note.xml\"）解析到 XML DOM 对象中，然后通过 JavaScript 提取一些信息：\n实例\n尝试一下 »",
+    "examples": [
+     "<html>\n<body>\n<h1>W3Schools Internal Note</h1>\n<div>\n<b>To:</b> <span id=\"to\"></span><br />\n<b>From:</b> <span id=\"from\"></span><br />\n<b>Message:</b> <span id=\"message\"></span>\n</div>\n<script>\nif (window.XMLHttpRequest)\n  {// code for IE7+, Firefox, Chrome, Opera, Safari\n  xmlhttp=new XMLHttpRequest();\n  }\nelse\n  {// code for IE6, IE5\n  xmlhttp=new ActiveXObject(\"Microsoft.XMLHTTP\");\n  }\nxmlhttp.open(\"GET\",\"note.xml\",false);\nxmlhttp.send();\nxmlDoc=xmlhttp.responseXML;\ndocument.getElementById(\"to\").innerHTML=\nxmlDoc.getElementsByTagName(\"to\")[0].childNodes[0].nodeValue;\ndocument.getElementById(\"from\").innerHTML=\nxmlDoc.getElementsByTagName(\"from\")[0].childNodes[0].nodeValue;\ndocument.getElementById(\"message\").innerHTML=\nxmlDoc.getElementsByTagName(\"body\")[0].childNodes[0].nodeValue;\n</script>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "XML 注意事项",
+    "url": "https://www.runoob.com/xml/xml-dont.html",
+    "body": "这里列出了您在使用 XML 时应该尽量避免使用的技术。\nInternet Explorer - XML 数据岛\n它是什么？XML 数据岛是嵌入到 HTML 页面中的 XML 数据。\n为什么要避免使用它？XML 数据岛只在 Internet Explorer 浏览器中有效。\n用什么代替它？您应当在 HTML 中使用 JavaScript 和 XML DOM 来解析并显示 XML。\n如需更多有关 JavaScript 和 XML DOM 的信息，请访问我们的 XML DOM 教程。\nXML 数据岛实例\n本例使用 XML 文档 \"cd_catalog.xml\"。\n把 XML 文档绑定到 HTML 文档中的一个 <xml> 标签。id 属性定义数据岛的标识符，而 src 属性指向 XML 文件：\n实例\n本实例只适用于 IE 浏览器\n尝试一下 »",
+    "examples": [
+     "<html>\n<body>\n<xml id=\"cdcat\" src=\"cd_catalog.xml\"></xml>\n<table border=\"1\" datasrc=\"#cdcat\">\n<tr>\n<td><span datafld=\"ARTIST\"></span></td>\n<td><span datafld=\"TITLE\"></span></td>\n</tr>\n</table>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "XML 验证",
+    "url": "https://www.runoob.com/xml/xml-dtd.html",
+    "body": "拥有正确语法的 XML 被称为\"形式良好\"的 XML。\n通过 DTD 验证的XML是\"合法\"的 XML。\n形式良好的 XML 文档\n\"形式良好\"的 XML 文档拥有正确的语法。\n在前面的章节描述的语法规则：\nXML 文档必须有一个根元素\nXML元素都必须有一个关闭标签\nXML 标签对大小写敏感\nXML 元素必须被正确的嵌套\nXML 属性值必须加引号\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<note>\n<to>Tove</to>\n<from>Jani</from>\n<heading>Reminder</heading>\n<body>Don't forget me this weekend!</body>\n</note>",
+    "examples": []
+   },
+   {
+    "title": "XML - E4X",
+    "url": "https://www.runoob.com/xml/xml-e4x.html",
+    "body": "E4X 向 JavaScript 添加了对 XML 的直接支持。\nE4X 实例\n这个实例仅适用于 Firefox！\n尝试一下 »",
+    "examples": [
+     "var employees=\n<employees>\n<person>\n    <name>Tove</name>\n    <age>32</age>\n</person>\n<person>\n    <name>Jani</name>\n    <age>26</age>\n</person>\n</employees>;\ndocument.write(employees.person.(name == \"Tove\").age);"
+    ]
+   },
+   {
+    "title": "XML 编辑器",
+    "url": "https://www.runoob.com/xml/xml-editors.html",
+    "body": "如果您希望极认真地学习和使用 XML，那么您一定会从一款专业的 XML 编辑器的使用上受益。\nXML 是基于文本的\nXML 是基于文本的标记语言。\n关于 XML 的一件很重要的事情是，XML 可被类似记事本这样的简单的文本编辑器来创建和编辑。\n不过，在您开始使用 XML 进行工作时，您很快会发现，使用一款专业的 XML 编辑器来编辑 XML 文档会更好。\n为什么不使用记事本?\n许多 Web 开发人员使用记事本来编辑 HTML 和 XML 文档，这是因为最常用的操作系统都带有记事本，而且它很容易使用。从个人来讲，我经常使用记事本来快速地编辑某些简单的 HTML、CSS 以及 XML 文件。\n但是，如果您将记事本用于 XML 编辑，可能很快会发现不少问题。\n记事本不能确定您编辑的文档类型，所以也就无法辅助您的工作。\n为什么使用 XML 编辑器?\n当今，XML 是非常重要的技术，并且开发项目正在使用这些基于 XML 的技术：\n用 XML Schema 定义 XML 的结构和数据类型\n用 XSLT 来转换 XML 数据\n用 SOAP 来交换应用程序之间的 XML 数据\n用 WSDL 来描述网络服务\n用 RDF 来描述网络资源\n用 XPath 和 XQuery 来访问 XML 数据\n用 SMIL 来定义图形\n为了能够编写出无错的 XML 文档，您需要一款智能的 XML 编辑器！\nXML 编辑器\n专业的 XML 编辑器会帮助您编写无错的 XML 文档，根据某种 DTD 或者 schema 来验证 XML，以及强制您创建合法的 XML 结构。\nXML 编辑器应该能够：\n为开始标签自动添加结束标签\n强制您编写合法的 XML\n根据某种 DTD 来验证 XML\n根据某种 Schema 来验证 XML\n对您的 XML 语法进行代码的颜色化\n在菜鸟教程，我们多年来一直使用 XMLSpy。 XMLSpy 是我们最喜爱的 XML 编辑器。这里是我们特别喜欢的一些特点：\n在 32 位和 64 位版本中可用\n使用方便\n上下文敏感的人们帮手\n语法着色和漂亮的印刷\n智能修复验证与自动校正错误\n文本视图和网格视图之间轻松切换\n图形化的 XML Schema 编辑器\n所有主流数据库的数据库导入导出\nSharePoint® 服务器支持\n内置许多 XML 文档类型的模板\n显示 XML 数据的图表创建\nXPath 1.0/2.0 的智能自动完成\nXSLT 1.0/2.0 编辑器、分析器和调试器\nXQuery 编辑器、分析器和调试器\nSOAP 客户端和调试器\n图像化的 WSDL 1.1/2.0 编辑器\nXBRL 验证 & 分类编辑\n支持 Office 2007 / OOXML\nJava、C++ 和 C# 的代码生成\nHTML5 和 CSS3 支持\n了解更多关于 XMLSpy\nXMLSpy 是 Altova MissionKit® 的 XML 软件套件的六个工具之一。\n了解更多用于 XML 开发的 Altova MissionKit。",
+    "examples": []
+   },
+   {
+    "title": "XML 元素",
+    "url": "https://www.runoob.com/xml/xml-elements.html",
+    "body": "XML 文档包含 XML 元素。\n什么是 XML 元素？\nXML 元素指的是从（且包括）开始标签直到（且包括）结束标签的部分。\n一个元素可以包含：\n其他元素\n文本\n属性\n或混合以上所有...",
+    "examples": [
+     "<bookstore>\n<book category=\"CHILDREN\">\n<title>Harry Potter</title>\n<author>J K. Rowling</author>\n<year>2005</year>\n<price>29.99</price>\n</book>\n<book category=\"WEB\">\n<title>Learning XML</title>\n<author>Erik T. Ray</author>\n<year>2003</year>\n<price>39.95</price>\n</book>\n</bookstore>"
+    ]
+   },
+   {
+    "title": "XML 编码",
+    "url": "https://www.runoob.com/xml/xml-encoding.html",
+    "body": "XML 文档可以包含非 ASCII 字符，比如挪威语 æ ø å，或者法语 ê è é。\n为了避免错误，需要规定 XML 编码，或者将 XML 文件存为 Unicode。\nXML 编码错误\n如果您载入一个 XML 文档，您可以得到两个不同的错误，表示编码问题：\n在文本内容中发现无效字符。\n如果您的 XML 中包含非 ASCII 字符，且文件保存为没有指定编码的单字节 ANSI（或 ASCII），您会得到一个错误。\n单字节编码属性的 XML 文件。\n相同的单字节没有编码属性的 XML 文件。\n将当前编码切换为不被支持的指定编码\n如果您的 XML 文件保存为带有指定的单字节编码（WINDOWS-1252、ISO-8859-1、UTF-8）的双字节 Unicode（或 UTF-16），您会得到一个错误。\n如果您的 XML 文件保存为带有指定的双字节编码（UTF-16）的单字节 ANSI（或 ASCII），您也会得到一个错误。\n双字节没有编码的 XML 文件。\n相同的双字节具有单字节编码的 XML 文件。\nWindows 记事本\nWindows 记事本默认会将文件保存为单字节的 ANSI（ASCII）。\n如果您选择 \"另存为...\"，就可以指定 ANSI、UTF-8、Unicode（UTF-16）或 Unicode Big。\n将下面的 XML 保存为 ANSI、UTF-8 和 Unicode（注意文档不包含任何编码属性）。\n<?xml version=\"1.0\"?>\n<note>\n <from>Jani</from>\n <to>Tove</to>\n\n <message>Norwegian: æøå. French: êèé</message>\n</note>",
+    "examples": []
+   },
+   {
+    "title": "XML 实例",
+    "url": "https://www.runoob.com/xml/xml-examples.html",
+    "body": "这些例子演示了 XML 文件、XML 格式化和 XML 转换（XSLT）。\n还演示了与 XML 一起使用的 JavaScript（AJAX）。\n查看 XML 文件\n查看一个简单的 XML 文件（note.xml）查看一个带有错误的相同的 XML 文件查看一个 XML 的 CD 目录查看一个 XML 的植物目录查看一个 XML 的食物菜单\n实例解释\nXML 和 CSS\n查看一个 XML 的 CD 目录查看对应的 CSS 文件显示由 CSS 文件格式化的 CD 目录\n实例解释\nXML 和 XSLT\n查看一个 XML 的食物菜单查看对应的 XSLT 样式表显示由 XSLT 样式表格式化的食物菜单\n实例解释\n解析 XML 和 XML DOM\n查看一个简单的 XML 文件（note.xml）解析 XML 文件 - 跨浏览器实例解析 XML 字符串 - 跨浏览器实例\n实例解释\nXML to HTML\n查看一个 XML 的 CD 目录把 XML 数据显示为 HTML 表格\n实例解释\nXML 应用程序\n查看一个 XML 的 CD 目录在 div 元素中显示 XML 数据XML 节点导航一个简单的 CD 目录应用程序\n实例解释\n来自服务器的 XML 输出\n查看 ASP 如何返回 XML查看 PHP 如何返回 XML查看来自数据库的 XML 输出\n实例解释\nXML DOM 高级\n获取 XML 元素的值获取 XML 属性的值更改 XML 元素的值把一个新的属性添加到 XML 元素创建一个新的 XML 元素删除一个 XML 元素\n实例解释",
+    "examples": []
+   },
+   {
+    "title": "XMLHttpRequest 对象",
+    "url": "https://www.runoob.com/xml/xml-http.html",
+    "body": "XMLHttpRequest 对象\nXMLHttpRequest 对象用于在后台与服务器交换数据。\nXMLHttpRequest 对象是开发者的梦想，因为您能够：\n在不重新加载页面的情况下更新网页\n在页面已加载后从服务器请求数据\n在页面已加载后从服务器接收数据\n在后台向服务器发送数据\n如需学习更多关于 XMLHttpRequest 对象的知识，请学习我们的 XML DOM 教程。\nXMLHttpRequest 实例\n当你在下面的输入字段中键入一个字符，一个 XMLHttpRequest 发送到服务器 - 返回名称的建议（从服务器上的文件）：\n在输入框中键入一个字母：\n首字母\n建议:\n创建一个 XMLHttpRequest 对象\n所有现代浏览器（IE7+、Firefox、Chrome、Safari 和 Opera）都有内建的 XMLHttpRequest 对象。\n创建 XMLHttpRequest 对象的语法：\nxmlhttp=new XMLHttpRequest();",
+    "examples": []
+   },
+   {
+    "title": "XML 简介",
+    "url": "https://www.runoob.com/xml/xml-intro.html",
+    "body": "XML 被设计用来传输和存储数据。\nHTML 被设计用来显示数据。\nXML 指可扩展标记语言（eXtensible Markup Language）。\n可扩展标记语言（英语：Extensible Markup Language，简称：XML）是一种标记语言，是从标准通用标记语言（SGML）中简化修改出来的。它主要用到的有可扩展标记语言、可扩展样式语言（XSL）、XBRL和XPath等。\n应该掌握的基础知识\n在您继续学习之前，需要对以下知识有基本的了解：\nHTML\nJavaScript\n如果您希望首先学习这些项目，请在我们的 首页 访问这些教程。\n什么是 XML？\nXML 指可扩展标记语言（EXtensible Markup Language）。\nXML 是一种很像HTML的标记语言。\nXML 的设计宗旨是传输数据，而不是显示数据。\nXML 标签没有被预定义。您需要自行定义标签。\nXML 被设计为具有自我描述性。\nXML 是 W3C 的推荐标准。\nXML 和 HTML 之间的差异\nXML 不是 HTML 的替代。\nXML 和 HTML 为不同的目的而设计：\nXML 被设计用来传输和存储数据，其焦点是数据的内容。\nHTML 被设计用来显示数据，其焦点是数据的外观。\nHTML 旨在显示信息，而 XML 旨在传输信息。\nXML 不会做任何事情\n也许这有点难以理解，但是 XML 不会做任何事情。XML 被设计用来结构化、存储以及传输信息。\n下面实例是 Jani 写给 Tove 的便签，存储为 XML：",
+    "examples": [
+     "<note>\n<to>Tove</to>\n<from>Jani</from>\n<heading>Reminder</heading>\n<body>Don't forget me this weekend!</body>\n</note>"
+    ]
+   },
+   {
+    "title": "XML 命名空间",
+    "url": "https://www.runoob.com/xml/xml-namespaces.html",
+    "body": "XML 命名空间提供避免元素命名冲突的方法。\n命名冲突\n在 XML 中，元素名称是由开发者定义的，当两个不同的文档使用相同的元素名时，就会发生命名冲突。\n这个 XML 携带 HTML 表格的信息：\n<table>\n \n <tr>\n \n <td>Apples</td>\n \n <td>Bananas</td>\n \n </tr>\n</table>",
+    "examples": []
+   },
+   {
+    "title": "XML Parser",
+    "url": "https://www.runoob.com/xml/xml-parser.html",
+    "body": "所有现代浏览器都有内建的 XML 解析器。\nXML 解析器把 XML 文档转换为 XML DOM 对象 - 可通过 JavaScript 操作的对象。\n解析 XML 文档\n下面的代码片段把 XML 文档解析到 XML DOM 对象中：\nif (window.XMLHttpRequest)\n {// code for IE7+, Firefox, Chrome, Opera, Safari\n xmlhttp=new XMLHttpRequest();\n }\nelse\n {// code for IE6, IE5\n xmlhttp=new ActiveXObject(\"Microsoft.XMLHTTP\");\n }\nxmlhttp.open(\"GET\",\"books.xml\",false);\nxmlhttp.send();\nxmlDoc=xmlhttp.responseXML;",
+    "examples": []
+   },
+   {
+    "title": "现实生活中的 XML",
+    "url": "https://www.runoob.com/xml/xml-real-life.html",
+    "body": "如何使用 XML 来交换信息的一些实例。\n实例：XML 新闻\nXMLNews 是用于交换新闻和其他信息的规范。\n对新闻的供求双方来说，通过使用这种标准，可以使各种类型的新闻信息通过不同软硬件以及编程语言进行的制作、接收和存档更加容易：\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<nitf>\n \n<head>\n \n<title>Colombia Earthquake</title>\n \n</head>\n \n<body>\n \n<headline>\n \n <hl1>143 Dead in Colombia Earthquake</hl1>\n \n</headline>\n \n<byline>\n \n <bytag>By Jared Kotler, Associated Press Writer</bytag>\n \n</byline>\n \n<dateline>\n \n <location>Bogota, Colombia</location>\n \n <date>Monday January 25 1999 7:28 ET</date>\n \n</dateline>\n \n</body>\n</nitf>",
+    "examples": []
+   },
+   {
+    "title": "服务器上的 XML",
+    "url": "https://www.runoob.com/xml/xml-server.html",
+    "body": "XML 文件是类似 HTML 文件的纯文本文件。\nXML 能够通过标准的 Web 服务器轻松地存储和生成。\n在服务器上存储 XML 文件\nXML 文件在 Internet 服务器上进行存储的方式与 HTML 文件完全相同。\n启动 Windows 记事本，并写入以下行：\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<note>\n \n <from>Jani</from>\n \n <to>Tove</to>\n \n <message>Remember me this weekend</message>\n</note>",
+    "examples": []
+   },
+   {
+    "title": "XML 总结 下一步学习什么呢？",
+    "url": "https://www.runoob.com/xml/xml-summary.html",
+    "body": "XML 总结\nXML 可用于交换、共享和存储数据。\nXML 文档形成 树状结构，在\"根\"和\"叶子\"的分支机构开始的。\nXML 有非常简单的 语法规则。带有正确语法的 XML 是\"形式良好\"的。有效的 XML 是针对 DTD 进行验证的。\nXSLT 用于把 XML 转换为其他格式，比如 HTML。\n所有现代的浏览器有一个内建的 XML 解析器，可读取和操作 XML。\nDOM（Document Object Model）定义了一个访问 XML 的标准方式。\nXMLHttpRequest 对象提供了一个网页加载后与服务器进行通信的方式。\nXML 命名空间提供了一种避免元素命名冲突的方法。\nCDATA 区域内的文本会被解析器忽略。\n我们的 XML 实例也代表了这个 XML 教程总结。\n下一步学习什么呢？\n我们推荐学习 XML DOM 和 XSLT。\n如果您想要学习有关验证 XML 的知识，我们推荐学习 DTD 和 XML Schema。\n下面是每个主题的一个简短描述。\nXML DOM（Document Object Model）\nXML DOM 定义了一种访问和处理 XML 文档的标准方式。\nXML DOM 是平台和语言独立的，可用于任何编程语言，如 Java、JavaScript 和 VBScript。\n如果您想要学习更多有关 DOM 的知识，请访问我们的 XML DOM 教程。\nXSLT（XML 样式表语言转换）\nXSLT 是 XML 文件的样式表语言。\n通过使用 XSLT，可以把 XML 文档转换为其他格式，比如 XHTML。\n如果您想要学习更多有关 XSLT 的知识，请访问我们的 XSLT 教程。\nXML DTD（文档类型定义）\nDTD 的目的是定义 XML 文档中合法的元素、属性和实体。\n通过使用 DTD，每个 XML 文件可以随身携带它自己的格式的描述。\nDTD 可以被用来确认您收到的数据和您自己的数据是否有效。\n如果您想要学习更多有关 DTD 的知识，请访问我们的 DTD 教程。\nXML Schema\nXML Schema 是一种基于 XML 的 DTD 替代。\n不像 DTD，XML Schema 支持数据类型，且使用 XML 语法。\n如果您想要学习更多有关 XML Schema 的知识，请访问我们的 XML Schema 教程。",
+    "examples": []
+   },
+   {
+    "title": "XML 语法规则",
+    "url": "https://www.runoob.com/xml/xml-syntax.html",
+    "body": "XML 的语法规则很简单，且很有逻辑。\n这些规则很容易学习，也很容易使用。\nXML 声明\nXML 声明文件的可选部分，如果存在需要放在文档的第一行，如下所示：\n<?xml version=\"1.0\" encoding=\"utf-8\"?>\n以上实例包含 XML 版本（version=\"1.0\"），甚至包含字符编码（encoding=\"utf-8\"）。\nUTF-8 也是 HTML5, CSS, JavaScript, PHP, 和 SQL 的默认编码。\nXML 文档必须有根元素\nXML 必须包含根元素，它是所有其他元素的父元素，比如以下实例中 root 就是根元素：",
+    "examples": [
+     "<root>\n<child>\n<subchild>.....</subchild>\n</child>\n</root>"
+    ]
+   },
+   {
+    "title": "XML 相关技术",
+    "url": "https://www.runoob.com/xml/xml-technologies.html",
+    "body": "下面是一个 XML 技术的列表。\nXHTML (可扩展 HTML)\n更严格更纯净的基于 XML 的 HTML 版本。\nXML DOM (XML 文档对象模型)\n访问和操作 XML 的标准文档模型。\nXSL (可扩展样式表语言) XSL 包含三个部分：\nXSLT (XSL 转换) - 把 XML 转换为其他格式，比如 HTML\nXSL-FO (XSL 格式化对象)- 用于格式化 XML 文档的语言\nXPath - 用于导航 XML 文档的语言\nXQuery (XML 查询语言)\n基于 XML 的用于查询 XML 数据的语言。\nDTD (文档类型定义)\n用于定义 XML 文档中的合法元素的标准。\nXSD (XML 架构)\n基于 XML 的 DTD 替代物。\nXLink (XML 链接语言)\n在 XML 文档中创建超级链接的语言。\nXPointer (XML 指针语言)\n允许 XLink 超级链接指向 XML 文档中更多具体的部分。\nSOAP (简单对象访问协议)\n允许应用程序在 HTTP 之上交换信息的基于 XML 的协议。\nWSDL (Web 服务描述语言)\n用于描述网络服务的基于 XML 的语言。\nRDF (资源描述框架)\n用于描述网络资源的基于 XML 的语言。\nRSS (真正简易聚合)\n聚合新闻以及类新闻站点内容的格式。\nSVG (可伸缩矢量图形)\n定义 XML 格式的图形。",
+    "examples": []
+   },
+   {
+    "title": "HTML 页面显示 XML 数据",
+    "url": "https://www.runoob.com/xml/xml-to-html.html",
+    "body": "在 HTML 页面中显示 XML 数据\n在下面的实例中，我们打开一个 XML 文件（\"cd_catalog.xml\"），然后遍历每个 CD 元素，并显示HTML 表格中的 ARTIST 元素和 TITLE 元素的值：\n实例\n尝试一下 »",
+    "examples": [
+     "<html>\n<body>\n<script>\nif (window.XMLHttpRequest)\n  {// code for IE7+, Firefox, Chrome, Opera, Safari\n  xmlhttp=new XMLHttpRequest();\n  }\nelse\n  {// code for IE6, IE5\n  xmlhttp=new ActiveXObject(\"Microsoft.XMLHTTP\");\n  }\nxmlhttp.open(\"GET\",\"cd_catalog.xml\",false);\nxmlhttp.send();\nxmlDoc=xmlhttp.responseXML; \ndocument.write(\"<table border='1'>\");\nvar x=xmlDoc.getElementsByTagName(\"CD\");\nfor (i=0;i<x.length;i++)\n  { \n  document.write(\"<tr><td>\");\n  document.write(x[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue);\n  document.write(\"</td><td>\");\n  document.write(x[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue);\n  document.write(\"</td></tr>\");\n  }\ndocument.write(\"</table>\");\n</script>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "XML 树结构",
+    "url": "https://www.runoob.com/xml/xml-tree.html",
+    "body": "XML 文档形成了一种树结构，它从\"根部\"开始，然后扩展到\"枝叶\"。\n一个 XML 文档实例\nXML 文档使用简单的具有自我描述性的语法：",
+    "examples": [
+     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<note>\n<to>Tove</to>\n<from>Jani</from>\n<heading>Reminder</heading>\n<body>Don't forget me this weekend!</body>\n</note>"
+    ]
+   },
+   {
+    "title": "XML 教程",
+    "url": "https://www.runoob.com/xml/xml-tutorial.html",
+    "body": "XML 指可扩展标记语言（eXtensible Markup Language）。\nXML 被设计用来传输和存储数据，不用于表现和展示数据，HTML 则用来表现数据。\nXML 很重要，也很容易学习。\n现在开始学习 XML!",
+    "examples": []
+   },
+   {
+    "title": "XML 用途",
+    "url": "https://www.runoob.com/xml/xml-usage.html",
+    "body": "XML 应用于 Web 开发的许多方面，常用于简化数据的存储和共享。\nXML 把数据从 HTML 分离\n如果您需要在 HTML 文档中显示动态数据，那么每当数据改变时将花费大量的时间来编辑 HTML。\n通过 XML，数据能够存储在独立的 XML 文件中。这样您就可以专注于使用 HTML/CSS 进行显示和布局，并确保修改底层数据不再需要对 HTML 进行任何的改变。\n通过使用几行 JavaScript 代码，您就可以读取一个外部 XML 文件，并更新您的网页的数据内容。\nXML 简化数据共享\n在真实的世界中，计算机系统和数据使用不兼容的格式来存储数据。\nXML 数据以纯文本格式进行存储，因此提供了一种独立于软件和硬件的数据存储方法。\n这让创建不同应用程序可以共享的数据变得更加容易。\nXML 简化数据传输\n对开发人员来说，其中一项最费时的挑战一直是在互联网上的不兼容系统之间交换数据。\n由于可以通过各种不兼容的应用程序来读取数据，以 XML 交换数据降低了这种复杂性。\nXML 简化平台变更\n升级到新的系统（硬件或软件平台），总是非常费时的。必须转换大量的数据，不兼容的数据经常会丢失。\nXML 数据以文本格式存储。这使得 XML 在不损失数据的情况下，更容易扩展或升级到新的操作系统、新的应用程序或新的浏览器。\nXML 使您的数据更有用\n不同的应用程序都能够访问您的数据，不仅仅在 HTML 页中，也可以从 XML 数据源中进行访问。\n通过 XML，您的数据可供各种阅读设备使用（掌上计算机、语音设备、新闻阅读器等），还可以供盲人或其他残障人士使用。\nXML 用于创建新的互联网语言\n很多新的互联网语言是通过 XML 创建的。\n这里有一些实例：\nXHTML\n用于描述可用的 Web 服务 的 WSDL\n作为手持设备的标记语言的 WAP 和 WML\n用于新闻 feed 的 RSS 语言\n描述资本和本体的 RDF 和 OWL\n用于描述针对 Web 的多媒体 的 SMIL\n假如开发人员都是理性的\n假如他们都是理性的，就让未来的应用程序使用 XML 来交换数据吧。\n未来也许会出现某种字处理软件、电子表格程序以及数据库，它们可以使用 XML 格式读取彼此的数据，而不需要使用任何的转换程序。",
+    "examples": []
+   },
+   {
+    "title": "XML 验证器",
+    "url": "https://www.runoob.com/xml/xml-validator.html",
+    "body": "使用我们的 XML 验证器来对您的 XML 文件进行语法检查。\nXML 错误会终止您的程序\nXML 文档中的错误会终止您的 XML 应用程序。\nW3C 的 XML 规范声明：如果 XML 文档存在错误，那么程序就不应当继续处理这个文档。理由是，XML 软件应当轻巧，快速，具有良好的兼容性。\n如果使用 HTML，创建包含大量错误的文档是有可能的（比如您忘记了结束标签）。其中一个主要的原因是 HTML 浏览器相当臃肿，兼容性也很差，并且它们有自己的方式来确定当发现错误时文档应该显示为什么样子。\n使用 XML 时，这种情况不应当存在。\n对您的 XML 进行语法检查\n为了帮助您对 XML 进行语法检查，我们创建了一个 XML 验证器。\n把您的 XML 粘贴到下面的文本框中，然后点击\"验证\"按钮来进行语法检查。\n语法正确实例：\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<note>\n<to>Tove</to>\n<from>Jani</from> \n<heading>Reminder</heading>\n<body>Don't forget me this weekend!</body>\n</note>\n语法错误实例：\n注释：只会检查您的 XML 是否\"形式良好\"。如果您想根据 DTD 来验证 XML，请参阅此页面上的最后一段。\n根据 DTD 来验证 XML\n如果您运行 Internet Explorer，您可以在下面的文本区域中根据 DTD 验证您的 XML。\n只要把 DOCTYPE 声明（带有 DTD）添加到您的 XML 中 <xml> 元素后，然后点击\"验证\"按钮即可：",
+    "examples": []
+   },
+   {
+    "title": "查看 XML 文件",
+    "url": "https://www.runoob.com/xml/xml-view.html",
+    "body": "在所有主流的浏览器中，均能够查看原始的 XML 文件。\n不要指望 XML 文件会直接显示为 HTML 页面。\n查看 XML 文件\n<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>",
+    "examples": []
+   },
+   {
+    "title": "使用 XSLT 显示 XML",
+    "url": "https://www.runoob.com/xml/xml-xsl.html",
+    "body": "通过使用 XSLT，您可以把 XML 文档转换成 HTML 格式。\n使用 XSLT 显示 XML\nXSLT 是首选的 XML 样式表语言。\nXSLT（eXtensible Stylesheet Language Transformations）远比 CSS 更加完善。\nXSLT 是在浏览器显示 XML 文件之前，先把它转换为 HTML：\nXML 文件\nXSLT 文件\n如果您想要学习有关 XSLT 的知识，请在我们的首页查找 XSLT 教程。\n在服务器上通过 XSLT 转换 XML\n在上面的实例中，当浏览器读取 XML 文件时，XSLT 转换是由浏览器完成的。\n在使用 XSLT 来转换 XML 时，不同的浏览器可能会产生不同结果。为了减少这种问题，可以在服务器上进行 XSLT 转换。\n查看结果。",
+    "examples": []
+   }
+  ]
+ }
+}

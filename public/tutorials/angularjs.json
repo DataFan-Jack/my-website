@@ -1,0 +1,220 @@
+{
+ "tutorial": {
+  "name": "AngularJS",
+  "category": "前端开发",
+  "desc": "AngularJS 通过新的属性和表达式扩展了 HTML。",
+  "url": "https://www.runoob.com/angularjs/",
+  "chapters": [
+   {
+    "title": "AngularJS 动画",
+    "url": "https://www.runoob.com/angularjs/angularjs-animations.html",
+    "body": "AngularJS 提供了动画效果，可以配合 CSS 使用。\nAngularJS 使用动画需要引入 angular-animate.min.js 库。\n<script src=\"http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular-animate.min.js\"></script>\n还需在应用中使用模型 ngAnimate：\n<body ng-app=\"ngAnimate\">\n什么是动画？\n动画是通过改变 HTML 元素产生的动态变化效果。\n实例\n勾选复选框隐藏 DIV:\n尝试一下 »",
+    "examples": [
+     "<body ng-app=\"ngAnimate\">隐藏 DIV: <input type=\"checkbox\" ng-model=\"myCheck\">\n<div ng-hide=\"myCheck\"></div></body>"
+    ]
+   },
+   {
+    "title": "AngularJS API",
+    "url": "https://www.runoob.com/angularjs/angularjs-api.html",
+    "body": "API 意为 Application \nProgramming Interface（应用程序编程接口）。\nAngularJS 全局 API\nAngularJS 全局 API 用于执行常见任务的 JavaScript 函数集合，如：\n比较对象\n迭代对象\n转换对象\n全局 API 函数使用 angular 对象进行访问。\n以下列出了一些通用的 API 函数：\nAPI\n描述\nangular.lowercase (<angular1.7）\nangular.$$lowercase()（angular1.7+）\n转换字符串为小写\nangular.uppercase() (<angular1.7）\nangular.$$uppercase()（angular1.7+）\n转换字符串为大写\nangular.isString()\n判断给定的对象是否为字符串，如果是返回 true。\nangular.isNumber()\n判断给定的对象是否为数字，如果是返回 true。\n注意：自 AngularJS 1.7 之后移除 angular.lowercase 和 angular.uppercase 方法, 改为 angular.$$lowercase 和 angular.$$uppercase\nangular.lowercase()\n实例",
+    "examples": [
+     "<div ng-app=\"myApp\" ng-controller=\"myCtrl\">\n<p>{{ x1 }}</p>\n<p>{{ x2 }}</p>\n</div>\n<script>\nvar app = angular.module('myApp', []);\napp.controller('myCtrl', function($scope) {\n    $scope.x1 = \"RUNOOB\";\n    $scope.x2 = angular.$$lowercase($scope.x1);\n});\n</script>"
+    ]
+   },
+   {
+    "title": "AngularJS 应用",
+    "url": "https://www.runoob.com/angularjs/angularjs-application.html",
+    "body": "现在是时候创建一个真正的 AngularJS 单页 Web 应用（single page web application，SPA）了。\nAngularJS 应用实例\n您已经学习了足够多关于 AngularJS 的知识，现在可以开始创建您的第一个 AngularJS 应用程序：\n我的笔记\n保存清除\n剩余字数: 100",
+    "examples": []
+   },
+   {
+    "title": "AngularJS Bootstrap",
+    "url": "https://www.runoob.com/angularjs/angularjs-bootstrap.html",
+    "body": "AngularJS 的首选样式表是 Twitter Bootstrap， Twitter Bootstrap 是目前最受欢迎的前端框架。\n查看 Bootstrap教程。\nBootstrap\n你可以在你的 AngularJS 应用中加入 Twitter Bootstrap，你可以在你的 <head>元素中添加如下代码:",
+    "examples": [
+     "<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css\">"
+    ]
+   },
+   {
+    "title": "AngularJS 控制器",
+    "url": "https://www.runoob.com/angularjs/angularjs-controllers.html",
+    "body": "AngularJS 控制器 控制 AngularJS 应用程序的数据。\nAngularJS 控制器是常规的 JavaScript 对象。\nAngularJS 控制器\nAngularJS 应用程序被控制器控制。\nng-controller 指令定义了应用程序控制器。\n控制器是 JavaScript 对象，由标准的 JavaScript 对象的构造函数 创建。\nAngularJS 实例\n尝试一下 »",
+    "examples": [
+     "<div ng-app=\"myApp\" ng-controller=\"myCtrl\">\n名: <input type=\"text\" ng-model=\"firstName\"><br>\n\t姓: <input type=\"text\" ng-model=\"lastName\"><br><br>\n\t姓名: {{firstName + \" \" + lastName}}\n</div><script>var app = angular.module('myApp', \n    []);app.controller('myCtrl', function($scope) {    $scope.firstName \n    = \"John\";    $scope.lastName = \"Doe\";});</script>"
+    ]
+   },
+   {
+    "title": "AngularJS 依赖注入",
+    "url": "https://www.runoob.com/angularjs/angularjs-dependency-injection.html",
+    "body": "什么是依赖注入\nwiki 上的解释是：依赖注入（Dependency Injection，简称DI）是一种软件设计模式，在这种模式下，一个或更多的依赖（或服务）被注入（或者通过引用传递）到一个独立的对象（或客户端）中，然后成为了该客户端状态的一部分。\n该模式分离了客户端依赖本身行为的创建，这使得程序设计变得松耦合，并遵循了依赖反转和单一职责原则。与服务定位器模式形成直接对比的是，它允许客户端了解客户端如何使用该系统找到依赖\n一句话 --- 没事你不要来找我，有事我会去找你。\nAngularJS 提供很好的依赖注入机制。以下5个核心组件用来作为依赖注入：\nvalue\nfactory\nservice\nprovider\nconstant\nvalue\nValue 是一个简单的 javascript 对象，用于向控制器传递值（配置阶段）：\n// 定义一个模块\nvar mainApp = angular.module(\"mainApp\", []);\n\n// 创建 value 对象 \"defaultInput\" 并传递数据\nmainApp.value(\"defaultInput\", 5);\n...\n\n// 将 \"defaultInput\" 注入到控制器\nmainApp.controller('CalcController', function($scope, CalcService, defaultInput) {\n $scope.number = defaultInput;\n $scope.result = CalcService.square($scope.number);\n \n $scope.square = function() {\n $scope.result = CalcService.square($scope.number);\n }\n});\nfactory\nfactory 是一个函数用于返回值。在 service 和 controller 需要时创建。\n通常我们使用 factory 函数来计算或返回值。\n// 定义一个模块\nvar mainApp = angular.module(\"mainApp\", []);\n\n// 创建 factory \"MathService\" 用于两数的乘积 provides a method multiply to return multiplication of two numbers\nmainApp.factory('MathService', function() {\n var factory = {};\n \n factory.multiply = function(a, b) {\n return a * b\n }\n return factory;\n}); \n\n// 在 service 中注入 factory \"MathService\"\nmainApp.service('CalcService', function(MathService){\n this.square = function(a) {\n return MathService.multiply(a,a);\n }\n});\n...\nprovider\nAngularJS 中通过 provider 创建一个 service、factory等(配置阶段)。\nProvider 中提供了一个 factory 方法 get()，它用于返回 value/service/factory。\n// 定义一个模块\nvar mainApp = angular.module(\"mainApp\", []);\n...\n\n// 使用 provider 创建 service 定义一个方法用于计算两数乘积\nmainApp.config(function($provide) {\n $provide.provider('MathService', function() {\n this.$get = function() {\n var factory = {}; \n \n factory.multiply = function(a, b) {\n return a * b; \n }\n return factory;\n };\n });\n});\nconstant\nconstant(常量)用来在配置阶段传递数值，注意这个常量在配置阶段是不可用的。\nmainApp.constant(\"configParam\", \"constant value\");\n实例\n以下实例提供了以上几个依赖注入机制的演示。\nAngularJS 实例 - factory",
+    "examples": [
+     "var mainApp = angular.module(\"mainApp\", []);\nmainApp.value(\"defaultInput\", 5);\n \nmainApp.factory('MathService', function() {\nvar factory = {};\n \n    factory.multiply = function(a, b) {\nreturn a * b;\n    }\nreturn factory;\n});\n \nmainApp.service('CalcService', function(MathService){\nthis.square = function(a) {\nreturn MathService.multiply(a,a);\n    }\n});\n \nmainApp.controller('CalcController', function($scope, CalcService, defaultInput) {\n    $scope.number = defaultInput;\n    $scope.result = CalcService.square($scope.number);\n \n    $scope.square = function() {\n        $scope.result = CalcService.square($scope.number);\n    }\n});"
+    ]
+   },
+   {
+    "title": "AngularJS 指令",
+    "url": "https://www.runoob.com/angularjs/angularjs-directives.html",
+    "body": "AngularJS 通过被称为 指令 的新属性来扩展 HTML。\nAngularJS 通过内置的指令来为应用添加功能。\nAngularJS 允许你自定义指令。\nAngularJS 指令\nAngularJS 指令是扩展的 HTML 属性，带有前缀 ng-。\nng-app 指令初始化一个 AngularJS 应用程序。\nng-init 指令初始化应用程序数据。\nng-model 指令把元素值（比如输入域的值）绑定到应用程序。\n完整的指令内容可以参阅 AngularJS 参考手册。\nAngularJS 实例",
+    "examples": [
+     "<div ng-app=\"\" ng-init=\"firstName='John'\">\n<p>在输入框中尝试输入：</p>\n<p>姓名：<input type=\"text\" ng-model=\"firstName\"></p>\n<p>你输入的为： {{ firstName }}</p>\n</div>"
+    ]
+   },
+   {
+    "title": "AngularJS 实例",
+    "url": "https://www.runoob.com/angularjs/angularjs-examples.html",
+    "body": "实例\n您可以在线编辑实例，然后点击按钮查看结果。\nAngularJS 实例",
+    "examples": [
+     "<div ng-app=\"\">\n<p>名字 : <input type=\"text\" ng-model=\"name\"></p>\n<h1>Hello {{name}}</h1>\n</div>"
+    ]
+   },
+   {
+    "title": "AngularJS 表达式",
+    "url": "https://www.runoob.com/angularjs/angularjs-expressions.html",
+    "body": "AngularJS 使用 表达式 把数据绑定到 HTML。\nAngularJS 表达式\nAngularJS 表达式写在双大括号内：{{ expression }}。\nAngularJS 表达式把数据绑定到 HTML，这与 ng-bind 指令有异曲同工之妙。\nAngularJS 将在表达式书写的位置\"输出\"数据。\nAngularJS 表达式 很像 JavaScript \n表达式：它们可以包含文字、运算符和变量。\n实例 {{ 5 + 5 }} 或 {{ firstName + \" \" + lastName }}\nAngularJS 实例",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<script src=\"http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js\"></script>\n</head>\n<body>\n<div ng-app=\"\">\n<p>我的第一个表达式: {{ 5 + 5 }}</p>\n</div>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "AngularJS 过滤器",
+    "url": "https://www.runoob.com/angularjs/angularjs-filters.html",
+    "body": "过滤器可以使用一个管道字符（|）添加到表达式和指令中。\nAngularJS 过滤器\nAngularJS 过滤器可用于转换数据：\n过滤器\n描述\ncurrency\n格式化数字为货币格式。\nfilter\n从数组项中选择一个子集。\nlowercase\n格式化字符串为小写。\norderBy\n根据某个表达式排列数组。\nuppercase\n格式化字符串为大写。\n表达式中添加过滤器\n过滤器可以通过一个管道字符（|）和一个过滤器添加到表达式中。.\n(下面的两个实例，我们将使用前面章节中提到的 person 控制器)\nuppercase 过滤器将字符串格式化为大写：\nAngularJS 实例\n尝试一下 »",
+    "examples": [
+     "<div ng-app=\"myApp\" ng-controller=\"personCtrl\">\n<p>姓名为 {{ lastName | uppercase }}</p>\n</div>"
+    ]
+   },
+   {
+    "title": "AngularJS 表单",
+    "url": "https://www.runoob.com/angularjs/angularjs-forms.html",
+    "body": "AngularJS 表单是输入控件的集合。\nHTML 控件\n以下 HTML input 元素被称为 HTML 控件:\ninput 元素\nselect 元素\nbutton 元素\ntextarea 元素\n数据绑定\nInput 控件使用 ng-model 指令来实现数据绑定。",
+    "examples": [
+     "<input type=\"text\" ng-model=\"firstname\">"
+    ]
+   },
+   {
+    "title": "AngularJS HTML DOM",
+    "url": "https://www.runoob.com/angularjs/angularjs-html-dom.html",
+    "body": "AngularJS 为 HTML DOM 元素的属性提供了绑定应用数据的指令。\nng-disabled 指令\nng-disabled 指令直接绑定应用程序数据到 HTML 的 disabled 属性。\nAngularJS 实例\n尝试一下 »",
+    "examples": [
+     "<div ng-app=\"\" ng-init=\"mySwitch=true\">\n<p><button ng-disabled=\"mySwitch\">点我!</button>\n</p><p>\n<input type=\"checkbox\" ng-model=\"mySwitch\">按钮</p>\n<p>{{ mySwitch }}</p>\n</div>"
+    ]
+   },
+   {
+    "title": "AngularJS 事件",
+    "url": "https://www.runoob.com/angularjs/angularjs-html-events.html",
+    "body": "AngularJS 有自己的 HTML 事件指令。\nng-click 指令\nng-click \n指令定义了 AngularJS 点击事件。\nAngularJS 实例\n尝试一下 »",
+    "examples": [
+     "<div ng-app=\"\" ng-controller=\"myCtrl\"><button ng-click=\"count \n= count + 1\">点我！</button>\n<p>{{ count }}</p></div>"
+    ]
+   },
+   {
+    "title": "AngularJS XMLHttpRequest",
+    "url": "https://www.runoob.com/angularjs/angularjs-http.html",
+    "body": "$http 是 AngularJS 中的一个核心服务，用于读取远程服务器的数据。\n使用格式：\n// 简单的 GET 请求，可以改为 POST\n$http({\n    method: 'GET',\n    url: '/someUrl'\n}).then(function successCallback(response) {\n        // 请求成功执行代码\n    }, function errorCallback(response) {\n        // 请求失败执行代码\n});\n简写方法\nPOST 与 GET 简写方法格式：\n$http.get('/someUrl', config).then(successCallback, errorCallback);\n$http.post('/someUrl', data, config).then(successCallback, errorCallback);\n此外还有以下简写方法：\n$http.get\n$http.head\n$http.post\n$http.put\n$http.delete\n$http.jsonp\n$http.patch\n更详细内容可参见：https://docs.angularjs.org/api/ng/service/$http\n读取 JSON 文件\n以下是存储在web服务器上的 JSON 文件：\nhttps://www.runoob.com/try/angularjs/data/sites.php",
+    "examples": [
+     "{\n\"sites\": [\n{\n\"Name\": \"菜鸟教程\",\n            \"Url\": \"www.runoob.com\",\n            \"Country\": \"CN\"\n},\n        {\n\"Name\": \"Google\",\n            \"Url\": \"www.google.com\",\n            \"Country\": \"USA\"\n},\n        {\n\"Name\": \"Facebook\",\n            \"Url\": \"www.facebook.com\",\n            \"Country\": \"USA\"\n},\n        {\n\"Name\": \"微博\",\n            \"Url\": \"www.weibo.com\",\n            \"Country\": \"CN\"\n}\n]\n}"
+    ]
+   },
+   {
+    "title": "AngularJS 包含",
+    "url": "https://www.runoob.com/angularjs/angularjs-include.html",
+    "body": "在 AngularJS 中，你可以在 HTML 中包含 HTML 文件。\n在 HTML 中包含 HTML 文件\n在 HTML 中，目前还不支持包含 HTML 文件的功能。\n服务端包含\n大多服务端脚本都支持包含文件功能 (SSI： Server Side Includes)。\n使用 SSI, 你可在 HTML 中包含 HTML 文件，并发送到客户端浏览器。\nPHP 实例",
+    "examples": [
+     "<?php require(\"navigation.php\"); ?>"
+    ]
+   },
+   {
+    "title": "AngularJS 简介",
+    "url": "https://www.runoob.com/angularjs/angularjs-intro.html",
+    "body": "AngularJS 是一个 JavaScript 框架。它可通过 <script> 标签添加到 HTML 页面。\nAngularJS 通过 指令 扩展了 HTML，且通过 表达式 绑定数据到 HTML。\nAngularJS 是一个 JavaScript 框架\nAngularJS 是一个 JavaScript 框架。它是一个以 JavaScript 编写的库。\nAngularJS 是以一个 JavaScript 文件形式发布的，可通过 script 标签添加到网页中：",
+    "examples": [
+     "<script src=\"https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js\"></script>"
+    ]
+   },
+   {
+    "title": "AngularJS ng-model 指令",
+    "url": "https://www.runoob.com/angularjs/angularjs-model.html",
+    "body": "ng-model 指令用于绑定应用程序数据到 HTML 控制器(input, \nselect, textarea)的值。\nng-model 指令\nng-model 指令可以将输入域的值与 AngularJS 创建的变量绑定。\nAngularJS 实例\n尝试一下 »",
+    "examples": [
+     "<div ng-app=\"myApp\" ng-controller=\"myCtrl\">    名字: \n\t<input ng-model=\"name\"></div><script>var app = angular.module('myApp', []);\n\tapp.controller('myCtrl', function($scope) {    $scope.name \n\t= \"John Doe\";});</script>"
+    ]
+   },
+   {
+    "title": "AngularJS 模块",
+    "url": "https://www.runoob.com/angularjs/angularjs-modules.html",
+    "body": "模块定义了一个应用程序。\n模块是应用程序中不同部分的容器。\n模块是应用控制器的容器。\n控制器通常属于一个模块。\n创建模块\n你可以通过 AngularJS 的 angular.module 函数来创建模块：\nvar app = angular.module(\"myApp\", []);",
+    "examples": [
+     "<div ng-app=\"myApp\">...</div><script>"
+    ]
+   },
+   {
+    "title": "AngularJS 参考手册",
+    "url": "https://www.runoob.com/angularjs/angularjs-reference.html",
+    "body": "AngularJS 指令\n本教程用到的 AngularJS 指令 :\n指令\n描述\nng-app\n定义应用程序的根元素。\nng-bind\n绑定 HTML 元素到应用程序数据\nng-bind-html\n绑定 HTML 元素的 innerHTML 到应用程序数据，并移除 HTML 字符串中危险字符\nng-bind-template\n规定要使用模板替换的文本内容\nng-blur\n规定 blur 事件的行为\nng-change\n规定在内容改变时要执行的表达式\nng-checked\n规定元素是否被选中\nng-class\n指定 HTML 元素使用的 CSS 类\nng-class-even\n类似 ng-class，但只在偶数行起作用\nng-class-odd\n类似 ng-class，但只在奇数行起作用\nng-click\n定义元素被点击时的行为\nng-cloak\n在应用正要加载时防止其闪烁\nng-controller\n定义应用的控制器对象\nng-copy\n规定拷贝事件的行为\nng-csp\n修改内容的安全策略\nng-cut\n规定剪切事件的行为\nng-dblclick\n规定双击事件的行为\nng-disabled\n规定一个元素是否被禁用\nng-focus\n规定聚焦事件的行为\nng-form\n指定 HTML 表单继承控制器表单\nng-hide\n隐藏或显示 HTML 元素\nng-href\n为 the <a> 元素指定链接\nng-if\n如果条件为 false 移除 HTML 元素\nng-include\n在应用中包含 HTML 文件\nng-init\n定义应用的初始化值\nng-jq\n定义应用必须使用到的库，如：jQuery\nng-keydown\n规定按下按键事件的行为\nng-keypress\n规定按下按键事件的行为\nng-keyup\n规定松开按键事件的行为\nng-list\n将文本转换为列表 (数组)\nng-model\n绑定 HTML 控制器的值到应用数据\nng-model-options\n规定如何更新模型\nng-mousedown\n规定按下鼠标按键时的行为\nng-mouseenter\n规定鼠标指针穿过元素时的行为\nng-mouseleave\n规定鼠标指针离开元素时的行为\nng-mousemove\n规定鼠标指针在指定的元素中移动时的行为\nng-mouseover\n规定鼠标指针位于元素上方时的行为\nng-mouseup\n规定当在元素上松开鼠标按钮时的行为\nng-non-bindable\n规定元素或子元素不能绑定数据\nng-open\n指定元素的 open 属性\nng-options\n在 <select> 列表中指定 <options>\nng-paste\n规定粘贴事件的行为\nng-pluralize\n根据本地化规则显示信息\nng-readonly\n指定元素的 readonly 属性\nng-repeat\n定义集合中每项数据的模板\nng-selected\n指定元素的 selected 属性\nng-show\n显示或隐藏 HTML 元素\nng-src\n指定 <img> 元素的 src 属性\nng-srcset\n指定 <img> 元素的 srcset 属性\nng-style\n指定元素的 style 属性\nng-submit\n规定 onsubmit 事件发生时执行的表达式\nng-switch\n规定显示或隐藏子元素的条件\nng-transclude\n规定填充的目标位置\nng-value\n规定 input 元素的值\n过滤器解析 AngularJs 过滤器。\nAngularJS 事件\nAngularJS 支持以下事件:\nng-click\nng-dbl-click\nng-mousedown\nng-mouseenter\nng-mouseleave\nng-mousemove\nng-keydown\nng-keyup\nng-keypress\nng-change\n事件解析： Angular 事件。\nAngularJS 验证属性\n$dirty\n$invalid\n$error\n验证解析：Angular 验证。\nAngularJS 全局 API\n转换\nAPI\n描述\nangular.lowercase()\n将字符串转换为小写\nangular.uppercase()\n将字符串转换为大写\nangular.copy()\n数组或对象深度拷贝\nangular.forEach()\n对象或数组的迭代函数\n比较\nAPI\n描述\nangular.isArray()\n如果引用的是数组返回 true\nangular.isDate()\n如果引用的是日期返回 true\nangular.isDefined()\n如果引用的已定义返回 true\nangular.isElement()\n如果引用的是 DOM 元素返回 true\nangular.isFunction()\n如果引用的是函数返回 true\nangular.isNumber()\n如果引用的是数字返回 true\nangular.isObject()\n如果引用的是对象返回 true\nangular.isString()\n如果引用的是字符串返回 true\nangular.isUndefined()\n如果引用的未定义返回 true\nangular.equals()\n如果两个对象相等返回 true\nJSON\nAPI\n描述\nangular.fromJson()\n反序列化 JSON 字符串\nangular.toJson()\n序列化 JSON 字符串\n基础\nAPI\n描述\nangular.bootstrap()\n手动启动 AngularJS\nangular.element()\n包裹着一部分DOM element或者是HTML字符串，把它作为一个jQuery元素来处理。\nangular.module()\n创建，注册或检索 AngularJS 模块\n全局 API 解析 ：Angular API。",
+    "examples": []
+   },
+   {
+    "title": "AngularJS 路由",
+    "url": "https://www.runoob.com/angularjs/angularjs-routing.html",
+    "body": "本章节我们将为大家介绍 AngularJS 路由。\nAngularJS 路由允许我们通过不同的 URL 访问不同的内容。\n通过 AngularJS 可以实现多视图的单页 Web 应用（single page web application，SPA）。\n通常我们的 URL 形式为 http://runoob.com/first/page，但在单页 Web 应用中 AngularJS 通过 #! + 标记 实现，例如：\nhttp://runoob.com/#!/first\nhttp://runoob.com/#!/second\nhttp://runoob.com/#!/third\n注意 Angular1.6 之前的版本是通过 # + 标记 实现路由。\n当我们点击以上的任意一个链接时，向服务端请的地址都是一样的 (http://runoob.com/)。 因为 #! 号之后的内容在向服务端请求时会被浏览器忽略掉。 所以我们就需要在客户端实现 #! 号后面内容的功能实现。 AngularJS 路由就通过 #! + 标记 帮助我们区分不同的逻辑页面并将不同的页面绑定到对应的控制器上。\n在以上图形中，我们可以看到创建了两个 URL： /ShowOrders 和 /AddNewOrder。每个 URL 都有对应的视图和控制器。\n接下来我们来看一个简单的实例：\nAngularJS 实例",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<title>AngularJS 路由实例 - 菜鸟教程</title>\n<script src=\"https://cdn.bootcss.com/angular.js/1.7.0/angular.min.js\"></script>\n<script src=\"https://cdn.bootcss.com/angular.js/1.7.0/angular-route.min.js\"></script>\n</head>\n<body ng-app='routingDemoApp'>\n<h2>AngularJS 路由应用</h2>\n<ul>\n<li><a href=\"#!/\">首页</a></li>\n<li><a href=\"#!/computers\">电脑</a></li>\n<li><a href=\"#!/printers\">打印机</a></li>\n<li><a href=\"#!/blabla\">其他</a></li>\n</ul>\n<div ng-view></div>\n<script>\n        angular.module('routingDemoApp',['ngRoute'])\n        .config(['$routeProvider', function($routeProvider){\n            $routeProvider\n            .when('/',{template:'这是首页页面'})\n            .when('/computers',{template:'这是电脑分类页面'})\n            .when('/printers',{template:'这是打印机页面'})\n            .otherwise({redirectTo:'/'});\n        }]);\n    </script>\n</body>\n</html>"
+    ]
+   },
+   {
+    "title": "AngularJS Scope(作用域)",
+    "url": "https://www.runoob.com/angularjs/angularjs-scopes.html",
+    "body": "Scope(作用域) 是应用在 HTML (视图) 和 JavaScript (控制器)之间的纽带。\nScope 是一个对象，有可用的方法和属性。\nScope 可应用在视图和控制器上。\n如何使用 Scope\n当你在 AngularJS 创建控制器时，你可以将 $scope 对象当作一个参数传递:\nAngularJS 实例\n控制器中的属性对应了视图上的属性：\nvar app = angular.module('myApp', \n []);app.controller('myCtrl', function($scope) {    $scope.carname \n = \"Volvo\";});",
+    "examples": [
+     "<div ng-app=\"myApp\" ng-controller=\"myCtrl\"><h1>{{carname}}</h1></div><script>"
+    ]
+   },
+   {
+    "title": "AngularJS Select(选择框)",
+    "url": "https://www.runoob.com/angularjs/angularjs-select.html",
+    "body": "AngularJS 可以使用数组或对象创建一个下拉列表选项。\n使用 ng-options 创建选择框\n在 AngularJS 中我们可以使用 ng-option 指令来创建一个下拉列表，列表项通过对象和数组循环输出，如下实例:\n实例",
+    "examples": [
+     "<div ng-app=\"myApp\" ng-controller=\"myCtrl\">\n<select ng-init=\"selectedName = names[0]\" ng-model=\"selectedName\" ng-options=\"x for x in names\">\n</select>\n</div>\n<script>\nvar app = angular.module('myApp', []);\napp.controller('myCtrl', function($scope) {\n    $scope.names = [\"Google\", \"Runoob\", \"Taobao\"];\n});\n</script>"
+    ]
+   },
+   {
+    "title": "AngularJS 服务(Service)",
+    "url": "https://www.runoob.com/angularjs/angularjs-services.html",
+    "body": "AngularJS 中你可以创建自己的服务，或使用内建服务。\n什么是服务？\n在 AngularJS 中，服务是一个函数或对象，可在你的 AngularJS 应用中使用。\nAngularJS 内建了30 多个服务。\n有个 $location 服务，它可以返回当前页面的 URL 地址。\n实例\n尝试一下 »",
+    "examples": [
+     "var app = angular.module('myApp', []);app.controller('customersCtrl', \n\tfunction($scope, $location) {    $scope.myUrl = $location.absUrl();\n\t});"
+    ]
+   },
+   {
+    "title": "AngularJS SQL",
+    "url": "https://www.runoob.com/angularjs/angularjs-sql.html",
+    "body": "在前面章节中的代码也可以用于读取数据库中的数据。\n使用 PHP 从 MySQL 中获取数据\nAngularJS 实例\n尝试一下 »",
+    "examples": [
+     "<div ng-app=\"myApp\" ng-controller=\"customersCtrl\"> <table>  <tr\nng-repeat=\"x in names\">    <td>{{ x.Name }}</td>\n    <td>{{ x.Country \n}}</td>  </tr></table></div>\n<script>var app = angular.module('myApp', []);app.controller('customersCtrl', \n function($scope, $http) {    $http.get(\"https://www.runoob.com/try/angularjs/data/Customers_MySQL.php\")    \n .success(function (response) {$scope.names = response.records;});});</script>"
+    ]
+   },
+   {
+    "title": "AngularJS 表格",
+    "url": "https://www.runoob.com/angularjs/angularjs-tables.html",
+    "body": "ng-repeat 指令可以完美的显示表格。\n在表格中显示数据\n使用 angular 显示表格是非常简单的：\nAngularJS 实例",
+    "examples": [
+     "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<script src=\"https://cdn.bootcss.com/angular.js/1.6.3/angular.min.js\"></script>\n</head>\n<body>\n<div ng-app=\"myApp\" ng-controller=\"customersCtrl\">\n<table>\n<tr ng-repeat=\"x in names\">\n<td>{{ x.Name }}</td>\n<td>{{ x.Country }}</td>\n</tr>\n</table>\n</div>\n<script>\nvar app = angular.module('myApp', []);\napp.controller('customersCtrl', function($scope, $http) {\n    $http.get(\"/try/angularjs/data/Customers_JSON.php\")\n    .then(function (result) {\n        $scope.names = result.data.records;\n    });\n});\n</script>"
+    ]
+   },
+   {
+    "title": "AngularJS 教程",
+    "url": "https://www.runoob.com/angularjs/angularjs-tutorial.html",
+    "body": "AngularJS 通过新的属性和表达式扩展了 HTML。\nAngularJS 可以构建一个单一页面应用程序（SPAs：Single Page Applications）。\nAngularJS 学习起来非常简单。\n现在开始学习 AngularJS！",
+    "examples": []
+   },
+   {
+    "title": "AngularJS 输入验证",
+    "url": "https://www.runoob.com/angularjs/angularjs-validation.html",
+    "body": "AngularJS 表单和控件可以验证输入的数据。\n输入验证\n在前面的几个章节中，你已经学到关于 AngularJS 表单和控件的知识。\nAngularJS 表单和控件可以提供验证功能，并对用户输入的非法数据进行警告。\n客户端的验证不能确保用户输入数据的安全，所以服务端的数据验证也是必须的。\n应用代码\n尝试一下 »",
+    "examples": [
+     "<!DOCTYPE html><html><script src=\"http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js\"></script>\n<body>\n<h2>Validation Example</h2><form  ng-app=\"myApp\"  \n\tng-controller=\"validateCtrl\"name=\"myForm\" novalidate>\n<p>用户名:<br>  <input type=\"text\" name=\"user\" ng-model=\"user\"\nrequired>  <span style=\"color:red\" ng-show=\"myForm.user.$dirty && \n\tmyForm.user.$invalid\">  <span ng-show=\"myForm.user.$error.required\">用户名是必须的。</span>  </span></p><p>邮箱:<br>  \n\t<input type=\"email\" name=\"email\" ng-model=\"email\" required>  <span\nstyle=\"color:red\" ng-show=\"myForm.email.$dirty && myForm.email.$invalid\">  \n\t<span ng-show=\"myForm.email.$error.required\">邮箱是必须的。</span>  \n\t<span ng-show=\"myForm.email.$error.email\">非法的邮箱。</span>  \n\t</span></p><p>  <input type=\"submit\"  \n\tng-disabled=\"myForm.user.$dirty && myForm.user.$invalid ||  \n\tmyForm.email.$dirty && myForm.email.$invalid\"></p></form>\n<script>var app = angular.module('myApp', []);app.controller('validateCtrl', \n    function($scope) {    \n\t$scope.user = 'John Doe';    $scope.email = 'john.doe@gmail.com';\n\t});</script></body></html>"
+    ]
+   }
+  ]
+ }
+}

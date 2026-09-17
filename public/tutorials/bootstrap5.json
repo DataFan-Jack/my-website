@@ -1,0 +1,304 @@
+{
+ "tutorial": {
+  "name": "Bootstrap5",
+  "category": "前端开发",
+  "desc": "Bootstrap 是全球最受欢迎的前端组件库，用于开发响应式布局、移动设备优先",
+  "url": "https://www.runoob.com/bootstrap5/",
+  "chapters": [
+   {
+    "title": "Bootstrap5 信息提示框",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-alerts.html",
+    "body": "Bootstrap 5 可以很容易实现信息提示框。\n提示框可以使用 .alert 类, 后面加上 .alert-success, .alert-info, .alert-warning, \n.alert-danger, .alert-primary, .alert-secondary, .alert-light 或 .alert-dark 类来实现:\n实例",
+    "examples": [
+     "<div class=\"alert alert-success\">\n<strong>成功!</strong> 指定操作成功提示信息。\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 徽章（Badges）",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-badges.html",
+    "body": "徽章（Badges）主要用于突出显示新的或未读的项。如需使用徽章，只需要将 .badge 类加上带有指定意义的颜色类 (如 .bg-secondary) 添加到 <span> \n元素上即可。 徽章可以根据父元素的大小的变化而变化:\n实例",
+    "examples": [
+     "<h1>测试标题 <span class=\"badge bg-secondary\">New</span></h1>\n<h2>测试标题 <span class=\"badge bg-secondary\">New</span></h2>\n<h3>测试标题 <span class=\"badge bg-secondary\">New</span></h3>\n<h4>测试标题 <span class=\"badge bg-secondary\">New</span></h4>\n<h5>测试标题 <span class=\"badge bg-secondary\">New</span></h5>\n<h6>测试标题 <span class=\"badge bg-secondary\">New</span></h6>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 按钮组",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-button-groups.html",
+    "body": "Bootstrap 5 中允许我们将按钮放在同一行上。\n可以在 <div> 元素上添加 .btn-group 类来创建按钮组。\n实例",
+    "examples": [
+     "<div class=\"btn-group\">\n<button type=\"button\" class=\"btn btn-primary\">Apple</button>\n<button type=\"button\" class=\"btn btn-primary\">Samsung</button>\n<button type=\"button\" class=\"btn btn-primary\">Sony</button>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 按钮",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-buttons.html",
+    "body": "Bootstrap 5 提供了不同样式的按钮。\n实例",
+    "examples": [
+     "<button type=\"button\" class=\"btn\">基本按钮</button>\n<button type=\"button\" class=\"btn btn-primary\">主要按钮</button>\n<button type=\"button\" class=\"btn btn-secondary\">次要按钮</button>\n<button type=\"button\" class=\"btn btn-success\">成功</button>\n<button type=\"button\" class=\"btn btn-info\">信息</button>\n<button type=\"button\" class=\"btn btn-warning\">警告</button>\n<button type=\"button\" class=\"btn btn-danger\">危险</button>\n<button type=\"button\" class=\"btn btn-dark\">黑色</button>\n<button type=\"button\" class=\"btn btn-light\">浅色</button>\n<button type=\"button\" class=\"btn btn-link\">链接</button>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 卡片",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-cards.html",
+    "body": "Bootstrap 5 卡片（Card）组件 是一种强大且灵活的容器，用于展示各种内容，如文本、图片、列表、按钮等。\n卡片组件在 Bootstrap 5 中得到了改进和增强，提供了更多的定制选项和更灵活的布局方式。\n卡片组件在 UI 设计中非常常见，尤其适用于博客、社交媒体、仪表盘和其他内容展示页面。\n基本结构\nBootstrap 5 的卡片组件包括以下常用元素：\n.card：卡片的最外层容器。\n.card-body：卡片的主要内容区域。\n.card-title：卡片的标题部分。\n.card-text：卡片的文本部分。\n.card-img-top 或 .card-img-bottom：卡片顶部或底部的图片。\n卡片样式类说明：\n类名\n说明\n示例用法\n.card\n卡片的容器类，用于包装整个卡片。\n<div class=\"card\">...</div>\n.card-body\n包含卡片内容的容器，通常用于放置文本、标题等。\n<div class=\"card-body\">...</div>\n.card-title\n卡片标题类，通常包含卡片的主要标题。\n<h5 class=\"card-title\">Card Title</h5>\n.card-text\n卡片文本类，通常包含卡片的正文内容。\n<p class=\"card-text\">Some quick example text...</p>\n.card-img-top\n卡片顶部的图片类，通常用于展示卡片顶部的图像。\n<img src=\"image.jpg\" class=\"card-img-top\">\n.card-img-bottom\n卡片底部的图片类，通常用于展示卡片底部的图像。\n<img src=\"image.jpg\" class=\"card-img-bottom\">\n.card-header\n卡片的头部区域，用于放置标题或其他内容。\n<div class=\"card-header\">Card Header</div>\n.card-footer\n卡片的底部区域，用于放置额外的信息或操作按钮等。\n<div class=\"card-footer\">Card Footer</div>\n.card-link\n用于在卡片中创建链接。\n<a href=\"#\" class=\"card-link\">Card link</a>\n.card-deck\n在 Bootstrap 5 中已被废弃，使用 row 和 col 代替。\n<div class=\"card-deck\">...</div>\n.card-group\n在 Bootstrap 5 中已被废弃，使用 row 和 col 代替。\n<div class=\"card-group\">...</div>\n.card-columns\n使用多列布局，卡片按照流式布局排列。\n<div class=\"card-columns\">...</div>\n.card-subtitle\n卡片的副标题，通常显示在标题下方。\n<h6 class=\"card-subtitle mb-2 text-muted\">Card subtitle</h6>\n.card-img-overlay\n在卡片图片上叠加内容层，常用于显示文本或其他元素。\n<div class=\"card-img-overlay\">Overlay content</div>\n简单的卡片\n我们可以通过 Bootstrap5 的 .card 与 .card-body 类来创建一个简单的卡片，卡片可以包含头部、内容、底部以及各种颜色设置，实例如下:\n实例",
+    "examples": [
+     "<div class=\"card\">\n<div class=\"card-body\">简单的卡片</div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 轮播",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-carousel.html",
+    "body": "轮播是一个循环的幻灯片：\n如何创建轮播\n以下实例创建了一个简单的图片轮播效果 ：\n实例",
+    "examples": [
+     "<!-- 轮播 -->\n<div id=\"demo\" class=\"carousel slide\" data-bs-ride=\"carousel\">\n<!-- 指示符 -->\n<div class=\"carousel-indicators\">\n<button type=\"button\" data-bs-target=\"#demo\" data-bs-slide-to=\"0\" class=\"active\"></button>\n<button type=\"button\" data-bs-target=\"#demo\" data-bs-slide-to=\"1\"></button>\n<button type=\"button\" data-bs-target=\"#demo\" data-bs-slide-to=\"2\"></button>\n</div>\n<!-- 轮播图片 -->\n<div class=\"carousel-inner\">\n<div class=\"carousel-item active\">\n<img src=\"https://static.jyshare.com/images/mix/img_fjords_wide.jpg\" class=\"d-block\" style=\"width:100%\">\n</div>\n<div class=\"carousel-item\">\n<img src=\"https://static.jyshare.com/images/mix/img_nature_wide.jpg\" class=\"d-block\" style=\"width:100%\">\n</div>\n<div class=\"carousel-item\">\n<img src=\"https://static.jyshare.com/images/mix/img_mountains_wide.jpg\" class=\"d-block\" style=\"width:100%\">\n</div>\n</div>\n<!-- 左右切换按钮 -->\n<button class=\"carousel-control-prev\" type=\"button\" data-bs-target=\"#demo\" data-bs-slide=\"prev\">\n<span class=\"carousel-control-prev-icon\"></span>\n</button>\n<button class=\"carousel-control-next\" type=\"button\" data-bs-target=\"#demo\" data-bs-slide=\"next\">\n<span class=\"carousel-control-next-icon\"></span>\n</button>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 折叠",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-collapse.html",
+    "body": "Bootstrap5 折叠可以很容易的实现内容的显示与隐藏。\ndata-bs-toggle 和 data-bs-target 是用于定义组件行为和目标元素的自定义数据属性。\n1、data-bs-toggle 属性：\n用于定义组件的行为，指示组件在何时触发。\n可以设置的值取决于具体的组件类型，如 \"collapse\"（折叠菜单）、\"modal\"（模态框）、\"tab\"（标签页）等。\ndata-bs-toggle=\"collapse\" 用于触发折叠菜单的展开与折叠。\ndata-bs-toggle=\"modal\" 用于触发模态框的显示与隐藏。\ndata-bs-toggle=\"tab\" 用于触发标签页的切换。\n2、data-bs-target 属性：\n用于指定组件的目标元素或目标选择器。\n目标元素可以是一个 CSS 选择器，用于标识要操作的具体元素。\n也可以是一个指定的元素 ID，以 # 开头，如 data-bs-target=\"#myModal\"。\ndata-bs-target 属性与 data-bs-toggle 属性一起使用，用于将组件行为与目标元素关联起来。\n以下实例中，当按钮被点击时，data-bs-toggle=\"collapse\" 属性触发了折叠菜单的行为，data-bs-target=\"#demo\" 属性指定了折叠菜单的目标元素为 ID 为 demo 的 <div> 元素。\n实例",
+    "examples": [
+     "<button data-bs-toggle=\"collapse\" data-bs-target=\"#demo\">折叠</button>\n<div id=\"demo\" class=\"collapse\">\n这里是一些测试的内容。。。\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 颜色",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-colors.html",
+    "body": "Bootstrap 5 提供了一些有代表意义的颜色类：.text-muted, \n.text-primary, .text-success, .text-info,\n.text-warning, .text-danger, .text-secondary, .text-white,\n.text-dark, .text-body (默认颜色，为黑色) and .text-light:\n实例",
+    "examples": [
+     "<div class=\"container\">\n<h2>代表指定意义的文本颜色</h2>\n<p class=\"text-muted\">柔和的文本。</p>\n<p class=\"text-primary\">重要的文本。</p>\n<p class=\"text-success\">执行成功的文本。</p>\n<p class=\"text-info\">代表一些提示信息的文本。</p>\n<p class=\"text-warning\">警告文本。</p>\n<p class=\"text-danger\">危险操作文本。</p>\n<p class=\"text-secondary\">副标题。</p>\n<p class=\"text-dark\">深灰色文字。</p>\n<p class=\"text-body\">默认颜色，为黑色。</p>\n<p class=\"text-light\">浅灰色文本（白色背景上看不清楚）。</p>\n<p class=\"text-white\">白色文本（白色背景上看不清楚）。</p>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 容器",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-container.html",
+    "body": "在上一章节中我们了解到 Bootstrap 需要一个容器元素来包裹网站的内容。\n我们可以使用以下两个容器类：\n.container 类是默认的容器，提供一个固定宽度的布局，宽度会随着屏幕大小的不同而调整。。\n.container-fluid 类用于 100% 宽度，占据全部视口（viewport）的容器，使用这个容器类会始终充满整个屏幕的宽度，适用于全屏布局。。\n固定宽度\n.container 类用于创建固定宽度的响应式页面。\n注意：宽度 (max-width) 会根据屏幕宽度同比例放大或缩小。\n超级小屏幕\n <576px\n小屏幕\n ≥576px\n中等屏幕\n ≥768px\n大屏幕\n ≥992px\n特大屏幕\n ≥1200px\n超级大屏幕\n ≥1400px\nmax-width\n100%\n540px\n720px\n960px\n1140px\n1320px\n以下实例中，我们可以尝试调整浏览器窗口的大小来查看容器宽度在不同屏幕中等变化：\nBootstrap5 .container 实例",
+    "examples": [
+     "<div class=\"container\">\n<h1>我的第一个 Bootstrap 页面</h1>\n<p>这是一些文本。</p>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 下拉菜单",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-dropdowns.html",
+    "body": "下拉菜单是可切换的，是以列表格式显示链接的上下文菜单。\n实例",
+    "examples": [
+     "<div class=\"dropdown\">\n<button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-bs-toggle=\"dropdown\">\n    下拉菜单按钮\n  </button>\n<div class=\"dropdown-menu\">\n<a class=\"dropdown-item\" href=\"#\">链接 1</a>\n<a class=\"dropdown-item\" href=\"#\">链接 2</a>\n<a class=\"dropdown-item\" href=\"#\">链接 3</a>\n</div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 Flex（弹性）布局",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-flex.html",
+    "body": "Bootstrap5 通过 flex 类来控制页面的布局。\n弹性盒子(flexbox)\nBootstrap 3 与 Bootstrap 4/5 最大的区别就是 Bootstrap 4/5 使用弹性盒子来布局，而不是使用浮动来布局。\n弹性盒子是 CSS3 的一种新的布局模式，更适合响应式的设计，如果你还不了解 flex，可以阅读我们的 CSS3 弹性盒子(Flex Box) 教程\n注意：IE9 及其以下版本不支持弹性盒子，所以如果你需要兼容 IE8-9，请使用 Bootstrap 3。\n以下实例使用 d-flex 类创建一个弹性盒子容器，并设置三个弹性子元素：\n实例",
+    "examples": [
+     "<div class=\"d-flex p-3 bg-secondary text-white\">\n<div class=\"p-2 bg-info\">Flex item 1</div>\n<div class=\"p-2 bg-warning\">Flex item 2</div>\n<div class=\"p-2 bg-primary\">Flex item 3</div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 复选框与单选框",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-form-check-radio.html",
+    "body": "如果您希望用户从预设选项列表中选择任意数量的选项，可以使用复选框：\n实例",
+    "examples": [
+     "<div class=\"form-check\">\n<input class=\"form-check-input\" type=\"checkbox\" id=\"check1\" name=\"option1\" value=\"something\" checked>\n<label class=\"form-check-label\">Option 1</label>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 表单浮动标签",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-form-floating-labels.html",
+    "body": "默认情况下，标签内容一般显示在 input 输入框的上方：\n使用浮动标签，可以在 input 输入框内插入标签，在单击 input 输入框时使它们浮动到上方\nBootstrap 实例",
+    "examples": [
+     "<div class=\"form-floating mb-3 mt-3\">\n<input type=\"text\" class=\"form-control\" id=\"email\" placeholder=\"Enter email\" name=\"email\">\n<label for=\"email\">Email</label>\n</div>\n<div class=\"form-floating mt-3 mb-3\">\n<input type=\"text\" class=\"form-control\" id=\"pwd\" placeholder=\"Enter password\" name=\"pswd\">\n<label for=\"pwd\">Password</label>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 输入框组",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-form-input-group.html",
+    "body": "我们可以使用 .input-group 类来向表单输入框中添加更多的样式，如图标、文本或者按钮。\n.input-group-text 类来设置文本的样式。。\nBootstrap 实例",
+    "examples": [
+     "<form>\n<div class=\"input-group mb-3\">\n<span class=\"input-group-text\">@</span>\n<input type=\"text\" class=\"form-control\" placeholder=\"Username\">\n</div>\n<div class=\"input-group\">\n<input type=\"text\" class=\"form-control\" placeholder=\"Your Email\">\n<span class=\"input-group-text\">@runoob.com</span>\n</div>\n</form>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 选择区间",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-form-range.html",
+    "body": "要设置一个选择区间可以在 input 元素中添加 type=\"range\" 并使用 .form-range 类：\n选择区间：\n实例",
+    "examples": [
+     "<label for=\"customRange\" class=\"form-label\">Custom range</label>\n<input type=\"range\" class=\"form-range\" id=\"customRange\">"
+    ]
+   },
+   {
+    "title": "Bootstrap5 表单验证",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-form-validation.html",
+    "body": "我们可以使用不同的验证类来设置表单的验证功能。\n.was-validated 或 .needs-validation 添加到 <form> 元素中，input 输入字段将具有绿色（有效）或红色（无效）边框效果，用于说明表单是否需要输入内容。\n.valid-feedback 或 .invalid-feedback 类用来告诉用户缺少什么信息，或者在提交表单之前需要完成什么。\n实例\n使用 .was-validated 类显示表单在提交之前需要填写的内容：",
+    "examples": [
+     "<form action=\"\" class=\"was-validated\">\n<div class=\"form-group\">\n<label for=\"uname\">Username:</label>\n<input type=\"text\" class=\"form-control\" id=\"uname\" placeholder=\"Enter username\" name=\"uname\" required>\n<div class=\"valid-feedback\">验证成功！</div>\n<div class=\"invalid-feedback\">请输入用户名！</div>\n</div>\n<div class=\"form-group\">\n<label for=\"pwd\">Password:</label>\n<input type=\"password\" class=\"form-control\" id=\"pwd\" placeholder=\"Enter password\" name=\"pswd\" required>\n<div class=\"valid-feedback\">验证成功！</div>\n<div class=\"invalid-feedback\">请输入密码！</div>\n</div>\n<div class=\"form-group form-check\">\n<label class=\"form-check-label\">\n<input class=\"form-check-input\" type=\"checkbox\" name=\"remember\" required> 同意协议\n      <div class=\"valid-feedback\">验证成功！</div>\n<div class=\"invalid-feedback\">同意协议才能提交。</div>\n</label>\n</div>\n<button type=\"submit\" class=\"btn btn-primary\">提交</button>\n</form>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 表单",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-forms.html",
+    "body": "在本章中，我们将学习如何使用 Bootstrap 创建表单。Bootstrap 通过一些简单的 HTML 标签和扩展的类即可创建出不同样式的表单。\n表单元素 <input>, <textarea>, 和 \n<select> elements \n在使用 .form-control 类的情况下，宽度都是设置为 100%。\nBootstrap5 表单布局\n堆叠表单 (全屏宽度)：垂直方向\n内联表单：水平方向\nBootstrap 提供了两种类型的表单布局:\n堆叠表单\n以下实例使用两个输入框，一个复选框，一个提交按钮来创建堆叠表单：\n实例",
+    "examples": [
+     "<form>\n<div class=\"mb-3 mt-3\">\n<label for=\"email\" class=\"form-label\">Email:</label>\n<input type=\"email\" class=\"form-control\" id=\"email\" placeholder=\"Enter email\" name=\"email\">\n</div>\n<div class=\"mb-3\">\n<label for=\"pwd\" class=\"form-label\">Password:</label>\n<input type=\"password\" class=\"form-control\" id=\"pwd\" placeholder=\"Enter password\" name=\"pswd\">\n</div>\n<div class=\"form-check mb-3\">\n<label class=\"form-check-label\">\n<input class=\"form-check-input\" type=\"checkbox\" name=\"remember\"> Remember me\n    </label>\n</div>\n<button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n</form>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 网格系统",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-grid-basic.html",
+    "body": "Bootstrap 提供了一套响应式、移动设备优先的流式网格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多 12 列。\n我们也可以根据自己的需要，定义列数：\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n4\n4\n4\n4\n8\n6\n6\n12\nBootstrap 5 的网格系统是响应式的，列会根据屏幕大小自动重新排列。\n请确保每一行中列的总和等于或小于 12。\n网格类\nBootstrap 5 网格系统有以下 6 个类:\n.col- 针对所有设备。\n.col-sm- 平板 - 屏幕宽度等于或大于 576px。\n.col-md- 桌面显示器 - 屏幕宽度等于或大于 768px。\n.col-lg- 大桌面显示器 - 屏幕宽度等于或大于 992px。\n.col-xl- 特大桌面显示器 - 屏幕宽度等于或大于 1200px。\n.col-xxl- 超大桌面显示器 - 屏幕宽度等于或大于 1400px。\n网格系统规则\nBootstrap5 网格系统规则:\n网格每一行需要放在设置了 .container (固定宽度) 或 .container-fluid (全屏宽度) 类的容器中，这样就可以自动设置一些外边距与内边距。\n使用行来创建水平的列组。\n内容需要放置在列中，并且只有列可以是行的直接子节点。\n预定义的类如 .row 和 .col-sm-4 可用于快速制作网格布局。\n列通过填充创建列内容之间的间隙。 这个间隙是通过 .rows 类上的负边距设置第一行和最后一列的偏移。\n网格列是通过跨越指定的 12 个列来创建。 例如，设置三个相等的列，需要使用三个 .col-sm-4 来设置。\nBootstrap 5 和 Bootstrap 4 使用 flexbox（弹性盒子） 而不是浮动。\n Flexbox 的一大优势是，没有指定宽度的网格列将自动设置为等宽与等高列 。 如果您想了解有关 Flexbox 的更多信息，可以阅读我们的 CSS Flexbox 教程 。\n下表总结了 Bootstrap 网格系统如何在不同设备上工作的：\n超小设备<576px\n平板≥576px\n桌面显示器≥768px\n大桌面显示器≥992px\n特大桌面显示器≥1200px\n超大桌面显示器≥1400px\n容器最大宽度\nNone (auto)\n540px\n720px\n960px\n1140px\n1320px\n类前缀\n.col-\n.col-sm-\n.col-md-\n.col-lg-\n.col-xl-\n.col-xxl-\n列数量和\n12\n间隙宽度\n1.5rem\n（一个列的每边分别 .75rem）\n可嵌套\nYes\n列排序\nYes\n我们将上述的类组合使用，从而创建更灵活的页面布局。\n提示：每个类都是按比例放大的，所以如果你想设置 sm 和 md 具有相同的宽度，你只需要指定 sm 即可。\nBootstrap 5 网格的基本结构\n以下代码为 Bootstrap 5 网格的基本结构:\nBootstrap5 网格基本结构",
+    "examples": [
+     "<!-- 第一个例子：控制列的宽度及在不同的设备上如何显示 -->\n<div class=\"row\">\n<div class=\"col-*-*\"></div>\n</div>\n<div class=\"row\">\n<div class=\"col-*-*\"></div>\n<div class=\"col-*-*\"></div>\n<div class=\"col-*-*\"></div>\n</div>\n<!-- 第二个例子：或让 Bootstrap 者自动处理布局 -->\n<div class=\"row\">\n<div class=\"col\"></div>\n<div class=\"col\"></div>\n<div class=\"col\"></div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 图像形状",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-images.html",
+    "body": "Bootstrap 5 提供了许多类来帮助你快速调整和优化图像的外观，尤其是控制图像的形状、尺寸和响应式布局。\n圆角图片\n.rounded 类可以让图片显示圆角效果：\n实例",
+    "examples": [
+     "<img src=\"cinqueterre.jpg\" class=\"rounded\" alt=\"Cinque Terre\">"
+    ]
+   },
+   {
+    "title": "Bootstrap5 安装使用",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-install.html",
+    "body": "我们可以通过以下两种方式来安装 Bootstrap5：\n使用 Bootstrap5 CDN。\n从官网 getbootstrap.com 下载 Bootstrap 5。\nBootstrap 5 CDN\nCDNJS：\nBootstrap5 CDN",
+    "examples": [
+     "<!-- 新 Bootstrap5 核心 CSS 文件 -->\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css\">\n<!--  popper.min.js 用于弹窗、提示、下拉菜单 -->\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.2/umd/popper.min.js\"></script>\n<!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.min.js\"></script>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 Jumbotron",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-jumbotron.html",
+    "body": "Jumbotron（超大屏幕）会创建一个大的灰色背景框，里面可以设置一些特殊的内容和信息。\n在 Bootstrap 3 中引入了一个 jumbotron 来创建一个大的背景框，用于显示一些重要的信息。\n在 Bootstrap 5 中，已经不再支持 Jumbotron。但是，我们可以使用 <div> 元素添加一些辅助类与颜色类来达到相同的效果：\n提示: Jumbotron 里头可以放一些 HTML标签，也可以是 Bootstrap 的元素。\n实例",
+    "examples": [
+     "<div class=\"mt-4 p-5 bg-primary text-white rounded\">\n<h1>菜鸟教程</h1>\n<p>学的不仅是技术，更是梦想！！！</p>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 列表组",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-list-groups.html",
+    "body": "Bootstrap 5 列表组（List Group） 是一种用于展示一系列项目或内容的组件，通常用于展示导航、标签、菜单或其他类似的列表形式。\n列表组组件提供了一个灵活的方式来展示有序或无序的内容，可以自定义每个项目的样式、交互和布局。\n基本结构\nBootstrap 5 列表组由以下几部分组成：\n.list-group：用于包裹整个列表的容器。\n.list-group-item：每个列表项，通常包含文本、链接或其他内容。\n.list-group-item-action：使列表项变得可点击，常用于创建可交互的列表。\n.list-group-item-primary 等：用于为列表项添加不同的背景色或其他样式。\n大部分基础列表组都是无序的。\n要创建列表组，可以在 <ul> 元素上添加 .list-group 类, 在\n<li> 元素上添加 .list-group-item 类:\n实例",
+    "examples": [
+     "<ul class=\"list-group\">\n<li class=\"list-group-item\">第一项</li>\n<li class=\"list-group-item\">第二项</li>\n<li class=\"list-group-item\">第三项</li>\n</ul>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 模态框",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-modal.html",
+    "body": "模态框（Modal）是覆盖在父窗体上的子窗体。通常，目的是显示来自一个单独的源的内容，可以在不离开父窗体的情况下有一些互动。子窗体可提供信息交互等。\n如何创建模态框\n以下实例创建了一个简单的模态框效果 ：\n实例",
+    "examples": [
+     "<button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\">\n  打开模态框\n</button>\n<!-- 模态框 -->\n<div class=\"modal\" id=\"myModal\">\n<div class=\"modal-dialog\">\n<div class=\"modal-content\">\n<!-- 模态框头部 -->\n<div class=\"modal-header\">\n<h4 class=\"modal-title\">模态框标题</h4>\n<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\"></button>\n</div>\n<!-- 模态框内容 -->\n<div class=\"modal-body\">\n        模态框内容..\n      </div>\n<!-- 模态框底部 -->\n<div class=\"modal-footer\">\n<button type=\"button\" class=\"btn btn-danger\" data-bs-dismiss=\"modal\">关闭</button>\n</div>\n</div>\n</div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 导航栏",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-navbar.html",
+    "body": "导航栏一般放在页面的顶部。\n我们可以使用 .navbar 类来创建一个标准的导航栏，后面紧跟: .navbar-expand-xxl|xl|lg|md|sm 类来创建响应式的导航栏\n(大屏幕水平铺开，小屏幕垂直堆叠)。\n导航栏上的选项可以使用 <ul> 元素并添加 class=\"navbar-nav\" 类。\n然后在 <li> 元素上添加 .nav-item 类， <a> 元素上使用 .nav-link 类:\n实例",
+    "examples": [
+     "<!-- 小屏幕上水平导航栏会切换为垂直的 -->\n<nav class=\"navbar navbar-expand-sm bg-light\">\n<!-- Links -->\n<ul class=\"navbar-nav\">\n<li class=\"nav-item\">\n<a class=\"nav-link\" href=\"#\">Link 1</a>\n</li>\n<li class=\"nav-item\">\n<a class=\"nav-link\" href=\"#\">Link 2</a>\n</li>\n<li class=\"nav-item\">\n<a class=\"nav-link\" href=\"#\">Link 3</a>\n</li>\n</ul>\n</nav>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 导航",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-navs.html",
+    "body": "如果你想创建一个简单的水平导航栏，可以在 <ul> 元素上添加 \n.nav类，在每个 <li> 选项上添加 .nav-item 类，在每个链接上添加 .nav-link 类:\n实例",
+    "examples": [
+     "<ul class=\"nav\">\n<li class=\"nav-item\">\n<a class=\"nav-link\" href=\"#\">Link</a>\n</li>\n<li class=\"nav-item\">\n<a class=\"nav-link\" href=\"#\">Link</a>\n</li>\n<li class=\"nav-item\">\n<a class=\"nav-link\" href=\"#\">Link</a>\n</li>\n<li class=\"nav-item\">\n<a class=\"nav-link disabled\" href=\"#\">Disabled</a>\n</li>\n</ul>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 侧边栏导航(Offcanvas)",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-offcanvas.html",
+    "body": "Bootstrap5 侧边栏侧边栏类似于模态框，在移动端设备中比较常用。\n创建滑动导航\n我们可以通过 JavaScript 来设置是否在 .offcanvas 类后面添加 .show 类，从而控制侧边栏的显示与隐藏：\n.offcanvas 隐藏内容 (默认)\n.offcanvas.show 显示内容\n可以使用 a 链接的 href 属性或者 button 元素使用 data-bs-target 属性来设置侧边栏。这两种情况都需要使用 data-bs-toggle=\"offcanvas\"。\n创建滑动导航实例如下：\n实例",
+    "examples": [
+     "<a class=\"btn btn-primary\" data-bs-toggle=\"offcanvas\" href=\"#offcanvasExample\" role=\"button\" aria-controls=\"offcanvasExample\">\n  使用链接的 href 属性\n</a>\n<button class=\"btn btn-primary\" type=\"button\" data-bs-toggle=\"offcanvas\" data-bs-target=\"#offcanvasExample\" aria-controls=\"offcanvasExample\">\n  按钮中使用 data-bs-target\n</button>\n<div class=\"offcanvas offcanvas-start\" tabindex=\"-1\" id=\"offcanvasExample\" aria-labelledby=\"offcanvasExampleLabel\">\n<div class=\"offcanvas-header\">\n<h5 class=\"offcanvas-title\" id=\"offcanvasExampleLabel\">侧边栏</h5>\n<button type=\"button\" class=\"btn-close text-reset\" data-bs-dismiss=\"offcanvas\" aria-label=\"Close\"></button>\n</div>\n<div class=\"offcanvas-body\">\n<div>\n      Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.\n    </div>\n<div class=\"dropdown mt-3\">\n<button class=\"btn btn-secondary dropdown-toggle\" type=\"button\" id=\"dropdownMenuButton\" data-bs-toggle=\"dropdown\">\n        Dropdown button\n      </button>\n<ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\n<li><a class=\"dropdown-item\" href=\"#\">Action</a></li>\n<li><a class=\"dropdown-item\" href=\"#\">Another action</a></li>\n<li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>\n</ul>\n</div>\n</div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 分页",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-pagination.html",
+    "body": "网页开发过程，如果碰到内容过多，一般都会做分页处理。\nBootstrap 5 可以很简单的实现分页效果。\n要创建一个基本的分页可以在 <ul> 元素上添加 .pagination 类。然后在 <li> 元素上添加 .page-item 类，<li> 元素的 <a> 标签上添加 .page-link 类:\n实例",
+    "examples": [
+     "<ul class=\"pagination\">\n<li class=\"page-item\"><a class=\"page-link\" href=\"#\">Previous</a></li>\n<li class=\"page-item\"><a class=\"page-link\" href=\"#\">1</a></li>\n<li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li>\n<li class=\"page-item\"><a class=\"page-link\" href=\"#\">3</a></li>\n<li class=\"page-item\"><a class=\"page-link\" href=\"#\">Next</a></li>\n</ul>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 弹出框",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-popover.html",
+    "body": "弹出框控件类似于提示框，它在鼠标点击到元素后显示，与提示框不同的是它可以显示更多的内容。\n如何创建弹出框\n通过向元素添加 data-bs-toggle=\"popover\" \n来来创建弹出框。\ntitle 属性的内容为弹出框的标题，data-bs-content 属性显示了弹出框的文本内容：",
+    "examples": [
+     "<button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"popover\" title=\"弹出框标题\" data-bs-content=\"弹出框内容\">多次点我</button>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 进度条",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-progressbars.html",
+    "body": "进度条可以显示用户任务的完成过程。\n创建一个基本的进度条的步骤如下：\n添加一个带有 .progress 类的 <div>。\n接着，在上面的 <div> 内，添加一个带有 class .progress-bar 的空的 <div>。\n添加一个带有百分比表示的宽度的 style 属性，例如 style=\"width:70%\" 表示进度条在 70% 的位置。\n实例",
+    "examples": [
+     "<div class=\"progress\">\n<div class=\"progress-bar\" style=\"width:70%\"></div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 滚动监听(Scrollspy)",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-scrollspy.html",
+    "body": "滚动监听（Scrollspy）插件，即自动更新导航插件，会根据滚动条的位置自动更新对应的导航目标。其基本的实现是随着您的滚动。\n如何创建滚动监听\n以下实例演示了如何创建滚动监听：\n实例",
+    "examples": [
+     "<!-- 可滚动区域 -->\n<body data-bs-spy=\"scroll\" data-bs-target=\".navbar\" data-bs-offset=\"50\">\n<!-- 导航栏 - <a> 元素用于跳到指定滚动区域 -->\n<nav class=\"navbar navbar-expand-sm bg-dark navbar-dark fixed-top\">\n...\n  <ul class=\"navbar-nav\">\n<li><a href=\"#section1\">Section 1</a></li>\n    ...\n</nav>\n<!-- Section 1 -->\n<div id=\"section1\">\n<h1>Section 1</h1>\n<p>Try to scroll this page and look at the navigation bar while scrolling!</p>\n</div>\n...\n \n</body>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 加载效果",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-spinners.html",
+    "body": "要创建加载中效果可以使用 .spinner-border 类:\n实例",
+    "examples": [
+     "<div class=\"spinner-border\"></div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 表格",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-tables.html",
+    "body": "Bootstrap 5 的表格（Table）组件提供了一系列功能和样式，使得表格更加易于构建、响应式和美观。\n我们可以轻松地创建带有不同样式、排序功能、分页和响应式布局的表格。\nBootstrap5 基础表格\n在 Bootstrap 5 中，创建表格的基础结构很简单，只需要使用标准的 HTML <table> 元素，并加上 table 类。\nBootstrap5 通过 .table 类来设置基础表格的样式，实例如下:\n实例",
+    "examples": [
+     "<table class=\"table\">\n<thead>\n<tr>\n<th>Firstname</th>\n<th>Lastname</th>\n<th>Email</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>John</td>\n<td>Doe</td>\n<td>john@example.com</td>\n</tr>\n<tr>\n<td>Mary</td>\n<td>Moe</td>\n<td>mary@example.com</td>\n</tr>\n<tr>\n<td>July</td>\n<td>Dooley</td>\n<td>july@example.com</td>\n</tr>\n</tbody>\n</table>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 消息弹窗(Toasts)",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-toasts.html",
+    "body": "Bootstrap5 弹窗 (Toasts) 是一种轻量级的通知组件，用于在页面的角落或底部显示临时性的信息、通知或警告。\n弹窗通常用于向用户显示短期消息，比如成功消息、错误消息、警告或其他通知。\n弹窗可以在页面的不同位置显示，包括左上角、右上角、左下角、右下角以及页面底部中央。\n如何创建弹窗\n要创建弹窗可以使用 .toast 类，并在该类里添加 .toast-header 和 .toast-body 类来表示标题和内容。\n注意：弹窗默认是关闭的，可以使用 .show 来设置显示，关闭弹窗可以在 <button>元素上添加 data-bs-dismiss=\"toast\":\n实例",
+    "examples": [
+     "<div class=\"toast show\">\n<div class=\"toast-header\">\n    弹窗标题\n    <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\"></button>\n</div>\n<div class=\"toast-body\">\n    这是一个Bootstrap 5弹窗示例。\n  </div>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 提示框",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-tooltip.html",
+    "body": "提示框是一个小小的弹窗，在鼠标移动到元素上显示，鼠标移到元素外就消失。\n如何创建提示框\n通过向元素添加 data-bs-toggle=\"tooltip\" \n来来创建提示框。\ntitle 属性的内容为提示框显示的内容：",
+    "examples": [
+     "<button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"tooltip\" title=\"我是提示内容!\">鼠标移动到我这</button>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 教程",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-tutorial.html",
+    "body": "Bootstrap 是全球最受欢迎的前端组件库，用于开发响应式布局、移动设备优先的 WEB 项目。\nBootstrap5 目前是 Bootstrap 的最新版本，是一套用于 HTML、CSS 和 JS 开发的开源工具集。它支持 Sass 变量和 mixins、响应式网格系统、大量的预建组件和强大的 JavaScript 插件，助你快速设计和自定义响应式、移动设备优先的站点。",
+    "examples": []
+   },
+   {
+    "title": "Bootstrap5 文字排版",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-typography.html",
+    "body": "Bootstrap 5 默认设置\nBootstrap 5 默认的\nfont-size 为 16px, \nline-height 为 1.5。\n默认的 font-family 为 \"Helvetica Neue\", Helvetica, Arial, sans-serif。\n此外，所有的 <p> 元素\nmargin-top: 0 、 margin-bottom: 1rem (16px)。\n<h1> - <h6>\nBootstrap 中定义了所有的 HTML 标题（h1 到 h6）的样式。请看下面的实例：\n实例",
+    "examples": [
+     "<div class=\"container\">\n<h1>h1 Bootstrap 标题</h1>\n<h2>h2 Bootstrap 标题</h2>\n<h3>h3 Bootstrap 标题</h3>\n<h4>h4 Bootstrap 标题</h4>\n<h5>h5 Bootstrap 标题</h5>\n<h6>h6 Bootstrap 标题</h6>\n</div>"
+    ]
+   },
+   {
+    "title": "Bootstrap5 小工具",
+    "url": "https://www.runoob.com/bootstrap5/bootstrap5-utilities.html",
+    "body": "Bootstrap 5 提供了很多有用的类来帮组我们快速实现效果，不需要重复写一些 CSS 代码。\n背景颜色\n设置不同元素的背景颜色时，需要通过 .text-* 类来设置匹配的文本颜色：\n实例",
+    "examples": [
+     "<div class=\"p-3 mb-2 bg-primary text-white\">.bg-primary</div>\n<div class=\"p-3 mb-2 bg-secondary text-white\">.bg-secondary</div>\n<div class=\"p-3 mb-2 bg-success text-white\">.bg-success</div>\n<div class=\"p-3 mb-2 bg-danger text-white\">.bg-danger</div>\n<div class=\"p-3 mb-2 bg-warning text-dark\">.bg-warning</div>\n<div class=\"p-3 mb-2 bg-info text-dark\">.bg-info</div>\n<div class=\"p-3 mb-2 bg-light text-dark\">.bg-light</div>\n<div class=\"p-3 mb-2 bg-dark text-white\">.bg-dark</div>\n<div class=\"p-3 mb-2 bg-body text-dark\">.bg-body</div>\n<div class=\"p-3 mb-2 bg-white text-dark\">.bg-white</div>\n<div class=\"p-3 mb-2 bg-transparent text-dark\">.bg-transparent</div>"
+    ]
+   }
+  ]
+ }
+}

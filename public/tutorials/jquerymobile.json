@@ -1,0 +1,242 @@
+{
+ "tutorial": {
+  "name": "jQuery Mobile",
+  "category": "前端开发",
+  "desc": "jQuery Mobile 是用于创建移动 Web 应用的前端开发框架。",
+  "url": "https://www.runoob.com/jquerymobile/",
+  "chapters": [
+   {
+    "title": "jQuery Mobile 按钮",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-buttons.html",
+    "body": "Mobile 应用程序是建立在您想要显示的简单的点击事物上。\n在 jQuery Mobile 中创建按钮\n在 jQuery Mobile 中，按钮可通过三种方式创建：\n使用 <button> 元素\n使用 <input> 元素\n使用带有 data-role=\"button\" 的 <a> 元素\n<button>\n尝试一下 »",
+    "examples": [
+     "<button>按钮</button>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 可折叠块",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-collapsibles.html",
+    "body": "可折叠内容块\n可折叠块允许您隐藏或显示内容 - 对于存储部分信息很有用。\n如需创建一个可折叠的内容块，需要为容器添加 data-role=\"collapsible\" 属性。在容器（div）内，添加一个标题元素（H1-H6），后跟您想要进行扩展的 HTML 标记：\n实例\n尝试一下 »",
+    "examples": [
+     "<div data-role=\"collapsible\">  \n\t\t<h1>点击我 - 我可以折叠!</h1>  <p>我是可折叠的内容。</p>\n\t\t</div>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 方向改变事件",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-events-orientation.html",
+    "body": "jQuery Mobile 方向改变（orientationchange）事件\n当用户垂直或水平旋转移动设备时，触发方向改变（orientationchange）事件。\n水平旋转",
+    "examples": []
+   },
+   {
+    "title": "jQuery Mobile 页面事件",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-events-page.html",
+    "body": "jQuery Mobile 页面事件\n在 jQuery Mobile 中与页面打交道的事件被分为四类：\nPage Initialization - 在页面创建前，当页面创建时，以及在页面初始化之后\nPage Load/Unload - 当外部页面加载时、卸载时或遭遇失败时\nPage Transition - 在页面过渡之前和之后\nPage Change - 当页面被更改，或遭遇失败时\n如需关于所有 jQuery Mobile 事件的完整信息，请访问我们的 jQuery Mobile 事件参考手册。\njQuery Mobile Initialization 事件\n当 jQuery Mobile 中的一张典型页面进行初始化时，它会经历三个阶段：\n在页面创建前\n页面创建\n页面初始化\n每个阶段触发的事件都可用于插入或操作代码。\n事件\n描述\npagebeforecreate\n当页面即将初始化，并且在 jQuery Mobile 已开始增强页面之前，触发该事件。\npagecreate\n当页面已创建，但增强完成之前，触发该事件。\npageinit\n当页面已初始化，并且在 jQuery Mobile 已完成页面增强之后，触发该事件。\n下面的例子演示在 jQuery Mobile 中创建页面时，何时触发每种事件：\n实例\n尝试一下 »",
+    "examples": [
+     "$(document).on(\"pagebeforecreate\",function(event){  \n\talert(\"pagebeforecreate 事件触发!\");}); $(document).on(\"pagecreate\",function(event){  \n\talert(\"pagecreate 事件触发!\");});"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 滚屏事件",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-events-scroll.html",
+    "body": "jQuery Mobile 提供了两种滚屏事件：滚屏开始时触发和滚动结束时触发。\njQuery Mobile 滚屏开始（Scrollstart）\nscrollstart 事件是在用户开始滚动页面时触发：\n实例\n尝试一下 »",
+    "examples": [
+     "$(document).on(\"scrollstart\",function(){  alert(\"开始滚动!\");});"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 触摸事件",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-events-touch.html",
+    "body": "触摸事件在用户触摸屏幕（页面）时触发。\n触摸事件同样可应用与桌面电脑上：点击或者滑动鼠标！\njQuery Mobile 点击\n点击事件在用户点击元素时触发。\n如下实例：当点击 <p> 元素时，隐藏当前的 <p> 元素：\n实例\n尝试一下 »",
+    "examples": [
+     "$(\"p\").on(\"tap\",function(){  $(this).hide();});"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 事件",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-events.html",
+    "body": "事件 = 所有不同访问者访问页面的响应动作。\njQuery Mobile 事件\n在jQuery Mobile你可以使用任何标准的 jQuery 事件 。\n除此之外, jQuery Mobile 也提供了针对移动端浏览器的事件：\n触摸事件 - 当用户触摸屏幕时触发\n滑动事件 - 当用户上下滑动时触发\n定位事件 - 当设备水平或垂直翻转时触发\n页面事件 - 当页面显示，隐藏，创建，加载或未加载时触发\n初始化 jQuery Mobile 事件\n在学习jQuery时我们学到了用$(document).ready()来使你的jQuery代码脚本在DOM元素加载完成后才开始执行：\njQuery document ready 事件\n尝试一下 »",
+    "examples": [
+     "<script>$(document).ready(function(){   // 编写jQuery方法...\n});</script>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 实例",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-examples.html",
+    "body": "jQuery Mobile 页面\n一个基本的移动网页多个页面对话框\n实例解释\njQuery Mobile 页面切换\n淡入效果从后向前翻转效果流动效果弹出效果滑动效果从右到左滑动并淡入效果从下到上滑动效果从上到下滑动效果翻页效果没有切换效果颠倒效果\n实例解释\njQuery Mobile 按钮\n创建按钮内联按钮组合按钮后退按钮带有圆角或不带有圆角的按钮小尺寸或常规尺寸的按钮带有阴影或不带有阴影的按钮\n实例解释\njQuery Mobile 按钮图标\n添加图标到按钮定位图标只显示图标\n实例解释\njQuery Mobile 工具栏\n创建头部栏和尾部栏在头部栏添加按钮在头部栏左侧添加按钮在头部栏右侧添加按钮带有按钮的尾部栏带有居中对齐按钮的尾部栏带有组合按钮的尾部栏带有水平组合按钮的尾部栏Inline 定位 - 头部栏和尾部栏与页面内容内联Fixed 定位 - 头部栏和尾部栏固定在页面的顶部和底部Fullscreen 定位 - 头部栏和尾部栏固定在页面的顶部和底部，但是会遮住页面内容\n实例解释\njQuery Mobile 导航栏\n创建导航栏内容中的导航栏尾部中的导航栏在导航栏中为按钮添加被选中（按下）外观持续添加被选中（按下）外观定位导航栏中的图标导航栏中 10 个按钮的演示\n实例解释\njQuery Mobile 可折叠块\n创建可折叠的内容块当页面加载时展开内容嵌套可折叠块可折叠集合取消可折叠块上的圆角让可折叠块更小改变可折叠块的图标可折叠列表可折叠表单\n实例解释\njQuery Mobile 网格\n两列布局三列布局四列布局五列布局自定义网格列内的多行\n实例解释\njQuery Mobile 列表\n创建列表视图带圆角的列表视图列表分隔自动分隔创建搜索过滤改变搜索框内的文本创建只读列表为列表项添加缩略图添加 HTML 元素，用信息填充列表项添加图标到列表项创建带有分割按钮的列表让列表项更具功能性创建计数气泡为列表项创建默认链接图标可折叠列表创建日历\n实例解释\njQuery Mobile 表单\n文本输入框文本输入域搜索输入框单选按钮复选框水平组合单选按钮和复选框带有单选按钮和复选框的 Field 容器预选中单选按钮/复选框创建选择菜单创建带有分隔（optgroup）的选择菜单自定义选择菜单在选择菜单中选择多个选项组合选择菜单水平组合选择菜单预选中选项可折叠表单创建滑动条控件高亮突出显示滑动条的值创建拨动开关预选中拨动开关\n实例解释\njQuery Mobile 主题\n主题 \"a\"主题 \"b\"主题头部、内容和尾部主题对话框主题按钮主题图标头部和尾部的主题按钮主题导航栏主题可折叠按钮和内容主题列表主题分割按钮主题可折叠列表主题表单主题可折叠表单自定义主题\n实例解释\njQuery Mobile 触摸事件\n点击（Tap）事件点击不放（Taphold）事件滑动（Swipe）事件向左滑动（Swipeleft）事件向右滑动（Swiperight）事件滚屏开始（Scrollstart）事件滚屏结束（Scrollstop）事件方向改变（Orientationchange）事件 - 提示方向方向改变（Orientationchange）事件 - 为纵向和横向设置不同的样式\n实例解释",
+    "examples": []
+   },
+   {
+    "title": "jQuery Mobile 过滤",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-filters.html",
+    "body": "可过滤元素\n所有的元素如果有一个或更多的子元素均可过滤。\n如何创建搜索字段:\n你想过滤的元素必须使用\n data-filter=\"true\" 属性。\n创建 <input> 元素并指定 id，元素上加上\n data-type=\"search\" 属性。这样就能创建基本的搜索字段。将 <input> 元素放置于一个表单中，表单 <form> 元素使用 \"ui-filterable\" 类 - 该类会调整搜索字段与过滤元素的外边距。\n接着为过滤的元素添加 data-input 属性。该值需要是 <input> 元素的 id。\n接下来我们创建一个可过滤的列表：\n列表中搜索元素\n尝试一下 »",
+    "examples": [
+     "<form class=\"ui-filterable\">  <input id=\"myFilter\" \n\tdata-type=\"search\"></form><ul data-role=\"listview\" \n\tdata-filter=\"true\" data-input=\"#myFilter\">  <li><a href=\"#\">Adele</a></li>  \n\t<li><a href=\"#\">Billy</a></li>  <li><a href=\"#\">Calvin</a></li>\n\t</ul>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 表单",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-form-basic.html",
+    "body": "jQuery Mobile 会自动为 HTML 表单自动添加样式，让它们看起来更具吸引力，触摸起来更具友好性。\njQuery Mobile 表单结构\njQuery Mobile 使用 CSS 为 HTML 表单元素添加样式，让它们更具吸引力，更易于使用。\n在 jQuery Mobile 中，您可以使用下列表单控件：\n文本输入框\n搜索输入框\n单选按钮\n复选框\n选择菜单\n滑动条\n翻转拨动开关\n当使用 jQuery Mobile 表单时，您应当知道：\n<form> 元素必须有一个 method 和一个 action 属性\n每个表单元素必须有一个唯一的 \"id\" 属性。id 必须是整个站点所有页面上唯一的。这是因为 jQuery Mobile 的单页导航机制使得多个不同页面在同一时间被呈现\n每个表单元素必须有一个标签。设置标签的 for 属性来匹配元素的 id\n实例\n尝试一下 »",
+    "examples": [
+     "<form method=\"post\" action=\"demoform.html\">  <label for=\"fname\">姓名:</label>  <input \n\ttype=\"text\" name=\"fname\" id=\"fname\"></form>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 表单输入元素",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-form-inputs.html",
+    "body": "jQuery Mobile 文本输入框\n输入字段是通过标准的 HTML 元素编码的，jQuery Mobile 将为它们添加样式使其看起来更具吸引力，在移动设备上更易使用。您也能使用新的 HTML5 的 <input> 类型：\n实例\n尝试一下 »",
+    "examples": [
+     "<form method=\"post\" action=\"demo_form.php\">  <div class=\"ui-field-contain\">    \n\t<label for=\"fullname\">全名:</label>    <input \n\ttype=\"text\" name=\"fullname\" id=\"fullname\">    <label \n\tfor=\"bday\">生日:</label>    <input type=\"date\" name=\"bday\" \n\tid=\"bday\">    <label for=\"email\">E-mail:</label>    \n\t<input type=\"email\" name=\"email\" id=\"email\" placeholder=\"你的电子邮箱..\">  \n\t</div></form>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 表单选择菜单",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-form-select.html",
+    "body": "jQuery Mobile 选择菜单\nIphone 上的选择菜单：",
+    "examples": []
+   },
+   {
+    "title": "jQuery Mobile 表单滑动条",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-form-sliders.html",
+    "body": "jQuery Mobile 滑动条控件\n滑动条允许您从一个范围的数字中选择一个值：\n如需创建滑动条，请使用 <input type=\"range\">：\n实例\n尝试一下 »",
+    "examples": [
+     "<form method=\"post\" action=\"demoform.php\">  <label for=\"points\">进度:</label>\n\t\t  <input type=\"range\" name=\"points\" id=\"points\" value=\"50\" min=\"0\" \n\t\tmax=\"100\"></form>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 网格",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-grids.html",
+    "body": "jQuery Mobile 网格布局\njQuery Mobile 提供了一套基于 CSS 的分列布局。然而，在移动设备上，由于考虑手机的屏幕宽度狭窄，一般不建议使用分栏分列布局。\n但有时您想要将较小的元素（如按钮或导航标签）并排地排列在一起，就像是在一个表格中一样。这种情况下，推荐使用分列布局。\n网格中的列是等宽的（合计是 100%），没有边框、背景、margin 或 padding。\n这里有四种布局网格可供使用：\n网格类\n列\n列宽\n对应\n实例\nui-grid-solo\n1\n100%\nui-block-a\n尝试一下\nui-grid-a\n2\n50% / 50%\nui-block-a|b\n尝试一下\nui-grid-b\n3\n33% / 33% / 33%\nui-block-a|b|c\n尝试一下\nui-grid-c\n4\n25% / 25% / 25% / 25%\nui-block-a|b|c|d\n尝试一下\nui-grid-d\n5\n20% / 20% / 20% / 20% / 20%\nui-block-a|b|c|d|e\n尝试一下\n在列容器内，子元素拥有的 class 为 ui-block-a|b|c|d|e 取决于列数。列会浮动并排。 \n实例 1:class 为 ui-grid-a（两列布局），您必须指定 ui-block-a 和 ui-block-b 的两个子元素。\n实例 2:class 为 ui-grid-b（三列布局），则必须添加 ui-block-a、ui-block-b 和 ui-block-c 的三个子元素。\n自定义网格\n通过使用CSS，您可以自定义列块：\n实例\n尝试一下 »",
+    "examples": [
+     "<style>.ui-block-a, .ui-block-b, .ui-block-c {\n\t\t   \n\t\tbackground-color: lightgray;    border: 1px solid black;    height: \n\t\t100px;    font-weight: bold;    text-align: center;    padding: 30px;\n\t\t}</style>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 按钮图标",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-icons.html",
+    "body": "jQuery Mobile 提供了一套让按钮看起来更称心如意的图标。\n添加图标到 jQuery Mobile 按钮\n我们可以使用 ui-icon 类将图标添加到按钮上，并可以使用指定类来设置按钮位置。\n<a href=\"#anylink\" class=\"ui-btn ui-icon-search ui-btn-icon-left\">Search</a>\n注意： 在其他方式的按钮上，如列表或表单中的按钮需要使用 data-icon 属性。在接下来的章节中我们会具体介绍。\n下面我们列出一些 jQuery Mobile 提供的可用图标：\n按钮类\n描述\n按钮\n实例\nui-icon-arrow-l\n左箭头\n尝试一下\nui-icon-arrow-r\n右箭头\n尝试一下\nui-icon-info\n信息\n尝试一下\nui-icon-delete\n删除\n尝试一下\nui-icon-back\n后退\n尝试一下\nui-icon-audio\n扬声器\n尝试一下\nui-icon-lock\n挂锁\n尝试一下\nui-icon-search\n搜索\n尝试一下\nui-icon-alert\n警告\n尝试一下\nui-icon-grid\n网格\n尝试一下\nui-icon-home\n主页\n尝试一下\n如需查看所有 jQuery Mobile 按钮图标的完整参考手册，请访问我们的 jQuery Mobile 图标参考手册。\n定位图标\n您也可以规定图标定位在按钮的什么部位：顶部（top）、右侧（right）、底部（bottom）、左侧（left）。\n请使用 ui-btn-icon 属性来指定位置：\n图标的位置：\n尝试一下 »",
+    "examples": [
+     "<a href=\"#anylink\" class=\"ui-btn ui-icon-search ui-btn-icon-top\">顶部</a><a href=\"#anylink\" \n  class=\"ui-btn ui-icon-search ui-btn-icon-right\">右侧</a><a href=\"#anylink\" \n  class=\"ui-btn ui-icon-search ui-btn-icon-bottom\">底部</a><a href=\"#anylink\" \n  class=\"ui-btn ui-icon-search ui-btn-icon-left\">左侧</a>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 安装",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-install.html",
+    "body": "在你的网页中添加 jQuery Mobile\n你可以通过以下几种方式将jQuery Mobile添加到你的网页中：\n从 CDN 中加载 jQuery Mobile (推荐)\n从jQuerymobile.com 下载 jQuery Mobile库\n从 CDN 中加载 jQuery Mobile\nCDN的全称是Content Delivery Network，即内容分发网络。其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。.\n使用 jQuery 内核, 你不需要在电脑上安装任何东西; 你仅仅需要在你的网页中加载以下层叠样式 (.css) 和 JavaScript 库 (.js) 就能够使用 jQuery Mobile:\njQuery Mobile CDN:\n尝试一下 »",
+    "examples": [
+     "<head><!-- meta使用viewport以确保页面可自由缩放 --><meta name=\"viewport\" content=\"width=device-width, \n  initial-scale=1\"><!-- 引入 jQuery Mobile 样式 -->\n  <link rel=\"stylesheet\" href=\"http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css\">\n<!-- 引入 jQuery 库 -->\n  <script src=\"http://code.jquery.com/jquery-1.11.3.min.js\"></script>\n<!-- 引入 jQuery Mobile 库 -->\n  <script src=\"http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js\"></script>\n</head>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 简介",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-intro.html",
+    "body": "jQuery Mobile 是一个用于创建移动端web应用的的前端框架。\n学习本教程前你需要先了解\n在开始学习 jQuery Mobile 前, 你应该了解一下基础知识：\nHTML\nCSS\njQuery\n如果你想学习这些知识，你可以访问本站的首页。\n什么是 jQuery Mobile?\njQuery Mobile 是针对触屏智能手机与平板电脑的网页开发框架。\njQuery Mobile 工作于所有主流的智能手机和平板电脑上：\njQuery Mobile 构建于 jQuery 以及 jQuery UI类库之上，如果您了解 jQuery，您可以很容易的学习 jQuery Mobile。\njQuery Mobile 使用了极少的 HTML5、CSS3、JavaScript 和 AJAX 脚本代码来完成页面的布局渲染。\n为什么使用 jQuery Mobile?\n通过使用jQuery Mobile 可以 \"写更少的代码，做更多的事情\" : 它可以通过一个灵活及简单的方式来布局网页，且兼容所有移动设备。\n不同设备使用了不同开发语言，jQuery Mobile可以很好的兼容不同的设备或操作系统：\nAndroid 和 Blackberry（黑莓） 使用JAVA语言。\niOS 使用 Objective C 语言\nWindows Phone 使用 C# 和 .net, 等。\njQuery Mobile 解决了不同设备兼容的问题，因为它只使用HTML，CSS和\nJavaScript，这是所有移动网络浏览器的标准！\n最好的阅读体验\n尽管jQuery Mobile兼容所有的移动设备，但是并不能完全兼容PC机（由于有限的CSS3支持）。\n为了更好的阅读本教程，建议您使用 Google Chrome 浏览器。",
+    "examples": []
+   },
+   {
+    "title": "jQuery Mobile 列表内容",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-list-content.html",
+    "body": "jQuery Mobile 列表图标\n默认情况下每个列表项都会包含一个箭头图标 \"carat-r\" (右箭头)。如果要修改这个图标可以使用 data-icon 属性:\n实例\n尝试一下 »",
+    "examples": [
+     "<ul data-role=\"listview\">   <li><a href=\"#\">Default is right \n\tarrow</a></li>  <li data-icon=\"plus\"><a href=\"#\">data-icon=\"plus\"</a></li>  \n\t<li data-icon=\"minus\"><a href=\"#\">data-icon=\"minus\"</a></li>  <li \n\tdata-icon=\"delete\"><a href=\"#\">data-icon=\"delete\"</a></li>  <li \n\tdata-icon=\"location\"><a href=\"#\">data-icon=\"location\"</a></li>   \n\t<li data-icon=\"false\"><a href=\"#\">data-icon=\"false\"</a></li></ul>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 列表视图",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-list-views.html",
+    "body": "jQuery Mobile 列表视图\njQuery Mobile 中的列表视图是标准的HTML 列表; 有序(<ol>) 和\n无序(<ul>).\n列表视图是jQuery Mobile中功能强大的一个特性。它会使标准的无序或有序列表应用更广泛。应用方法就是在ul或ol标签中添加data-role=\"listview\"属性。在每个项目(<li>)中添加链接，用户可以点击它：\n实例\n尝试一下 »",
+    "examples": [
+     "<ol data-role=\"listview\">  <li><a href=\"#\">列表项m</a></li>\n\t</ol><ul data-role=\"listview\">\n\t \n\t<li><a href=\"#\">列表项</a></li></ul>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 导航栏",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-navbars.html",
+    "body": "导航栏是由一组水平排列的链接组成，通常包含在头部或尾部内。\n默认情况下，导航栏中的链接将自动变成按钮（不需要 data-role=\"button\"）。\n使用 data-role=\"navbar\" 属性来定义导航栏：\n实例\n尝试一下 »",
+    "examples": [
+     "<div data-role=\"header\"> \n\t\t<div data-role=\"navbar\">    <ul>      <li><a href=\"#anylink\">首页</a></li>      <li><a href=\"#anylink\">页面二</a></li>      \n\t\t<li><a href=\"#anylink\">搜索</a></li>    </ul>\n\t\t \n\t\t</div></div>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 页面",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-pages.html",
+    "body": "开始学习 jQuery Mobile\n尽管jQuery Mobile兼容所有的移动设备，但是并不能完全兼容PC机（由于有限的CSS3支持）。\n为了更好的阅读本教程，建议您使用 Google Chrome 浏览器。\n实例\n尝试一下 »",
+    "examples": [
+     "<body><div data-role=\"page\">  <div \n  data-role=\"header\">    <h1>欢迎来到我的主页</h1>  </div>  \n  <div data-role=\"main\" class=\"ui-content\">    <p>我现在是一个移动端开发者!!</p>  \n  </div>  <div data-role=\"footer\">    <h1>底部文本</h1>  </div></div></body>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 面板",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-panels.html",
+    "body": "jQuery Mobile 中的面板会在屏幕的左侧向右侧划出。\n通过向指定 id 的 <div> 元素添加 data-role=\"panel\" 属性来创建面板。\n在 <div> 中添加 HTML 标记来显示你的面板内容：\n<div data-role=\"panel\" id=\"myPanel\">\n <h2>面板标题..</h2>\n <p>文本内容..</p>\n</div>\n注意： panel 标记必须置于头部、内容、底部组成的页面之前或之后。\n要访问面板，需要创建一个指向面板 <div> id 的链接，点击该链接即可打开面板:\n<a href=\"#myPanel\" class=\"ui-btn ui-btn-inline\">打开面板</a>\n简单的面板实例\n实例\n尝试一下 »",
+    "examples": [
+     "<div data-role=\"page\" id=\"pageone\">  <div \n\tdata-role=\"panel\" id=\"myPanel\">\n\t    <h2>面板头部..</h2>    <p>面板内容..</p>  </div>   <div \n\tdata-role=\"header\">    <h1>标准页面头部</h1>  \n\t</div>  <div data-role=\"main\" class=\"ui-content\">    \n\t<p>点击下面按钮打开面板。</p>    <a \n\thref=\"#myPanel\" class=\"ui-btn ui-btn-inline\">打开面板</a>  </div>  <div data-role=\"footer\">    \n\t<h1>底部文本</h1>  </div> </div>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 弹窗",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-popups.html",
+    "body": "弹窗是一个非常流行的对话框，弹窗可以覆盖在页面上展示。\n弹窗可用于显示一段文本，图片，地图或其他内容。\n创建一个弹窗，需要使用 <a> 和 <div> 元素。在 <a> 元素上添加 data-rel=\"popup\" \n属性， <div> 元素添加 data-role=\"popup\" 属性。\n接着我们为 <div> 指定 id， 然后设置 <a> 的 href 值为 <div> 指定的 id。\n <div> 中的内容为弹窗显示的内容。\n注意: <div> 弹窗与点击的 <a> 链接必须在同一个页面上。\n实例\n尝试一下 »",
+    "examples": [
+     "<a href=\"#myPopup\" data-rel=\"popup\" class=\"ui-btn ui-btn-inline \n\tui-corner-all\">显示弹窗</a><div data-role=\"popup\" id=\"myPopup\">  <p>这是一个简单的弹窗</p></div>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile CSS 类",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-ref-css.html",
+    "body": "jQuery CSS 类\njQuery Mobile CSS 类来设置不同元素的样式。\n以下列表包含了通用的 CSS 样式：\n全局类\n以下类可以在 jQuery Mobile 小工具中使用 (按钮，工具条，面板，表格，列表等。):\nClass\n描述\nui-corner-all\n为元素添加圆角\nui-shadow\n为元素添加阴影\nui-overlay-shadow\n为元素添加多层阴影\nui-mini\n让元素变小\n按钮类\n除了全局类外，你可以向 <a> 或 \n<button> 元素添加以下类 (不是 <input> 按钮):\nClass\n描述\nui-btn\n添加在 <a> 元素上并以按钮形式展示\nui-btn-inline\n在同一行上显示按钮\nui-btn-icon-top\n定位图标在按钮文本之上\nui-btn-icon-right\n定位图标在按钮文本的右边\nui-btn-icon-bottom\n定位图标在按钮文本之下\nui-btn-icon-left\n定位图标在按钮文本的左边\nui-btn-icon-notext\n只显示图标\nui-btn-a|b\n指定按钮演示。\"a\" 是默认的 (灰色背景黑色文本样式), \"b\" 修改颜色为黑色背景白色文本\n图标类\n所有可用图片的类用在 <a> 和 <button> 元素上 (查看 jQuery Mobile 图标参考手册 了解如何在其他元素上使用):\nClass\n图标描述\n图标\nui-icon-action\n动作 (一般用于页面跳转切换)\nui-icon-alert\n三角形内的感叹号\nui-icon-audio\n音响/音箱\nui-icon-arrow-d-l\n左下角箭头\nui-icon-arrow-d-r\n右下角箭头\nui-icon-arrow-u-l\n左上角箭头\nui-icon-arrow-u-r\n右上角箭头\nui-icon-arrow-l\n左角箭头\nui-icon-arrow-r\n右角箭头\nui-icon-arrow-u\n向上箭头\nui-icon-arrow-d\n向下箭头\nui-icon-back\n返回\nui-icon-bars\n三条水平线，一般用于展示列表按钮图标\nui-icon-bullets\n用于展示列表按钮图标\nui-icon-calendar\n日历\nui-icon-camera\n相机\nui-icon-carat-d\n向下滑动图标\nui-icon-carat-l\n向左滑动图标\nui-icon-carat-r\n向右滑动图标\nui-icon-carat-u\n向上滑动图标\nui-icon-check\n勾选\nui-icon-clock\n闹钟\nui-icon-cloud\n云\nui-icon-comment\n评论 / 消息\nui-icon-delete\n删除\nui-icon-edit\n编辑 / 铅笔\nui-icon-eye\n眼睛\nui-icon-forbidden\n禁用标识 sign\nui-icon-forward\n撤销 - (返回上一步)\nui-icon-gear\n齿轮，一般用于设置按钮图标\nui-icon-grid\n网格\nui-icon-heart\n心型，可用于文章收藏\nui-icon-home\n主页\nui-icon-info\n信息\nui-icon-location\n定位\nui-icon-lock\n锁\nui-icon-mail\n邮件 / 信封\nui-icon-minus\n减号\nui-icon-navigation\n导航\nui-icon-phone\n电话\nui-icon-power\n开关 (On/off)\nui-icon-plus\n加号\nui-icon-recycle\n循环\n 标识\nui-icon-refresh\n刷新\nui-icon-search\n搜索 / 放大镜\nui-icon-shop\n商店/购物袋\nui-icon-star\n星号\nui-icon-tag\n标签\nui-icon-user\n用户 / 人物\nui-icon-video\n视频 / 相机\n主题类 Classes\njQuery Mobile 提供了两个主题类: a (灰) 和 b (黑)。 但是，你可以创建你自己的自定义类 - 可定义到字母 \"z\" （查看 jQuery Mobile 主题 ）。 \n下表列出了可用的主题类。\n字母 (a-z) 意为样式可以指定 a 到 z。例如\nui-bar-a 或 ui-bar-b等。\nClass\n描述\nui-bar-(a-z)\n指定栏目演示 - 头部，底部及其他栏目\nui-body-(a-z)\n指定内容块的颜色 - 页面内容部分 (\n 1.4.0 版本已废弃), 列表视图， 弹窗, 侧栏，面板，加载，折叠。\nui-btn-(a-z)\n指定按钮颜色\nui-group-theme-(a-z)\n定义了控制组的演示 listviews 和 collapsible 集合。\nui-overlay-(a-z)\n定义了页面背景颜色，包括对话框，弹窗和其他出现在最顶层的页面容器\nui-page-theme-(a-z)\n定义了页面演示\n网格类\n网格中的列是等宽的（合计是 100%），没有边框、背景、margin 或 padding。 这里有四种布局网格可供使用：\n网格类\n列\n列宽\n对应\n实例\nui-grid-solo\n1\n100%\nui-block-a\n尝试一下\nui-grid-a\n2\n50% / 50%\nui-block-a|b\n尝试一下\nui-grid-b\n3\n33% / 33% / 33%\nui-block-a|b|c\n尝试一下\nui-grid-c\n4\n25% / 25% / 25% / 25%\nui-block-a|b|c|d\n尝试一下\nui-grid-d\n5\n20% / 20% / 20% / 20% / 20%\nui-block-a|b|c|d|e\n尝试一下\n更多信息可以查看 jQuery Mobile 网格 章节。",
+    "examples": []
+   },
+   {
+    "title": "jQuery Mobile Data 属性",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-ref-data.html",
+    "body": "jQuery Data 属性\njQuery Mobile 使用 HTML5 data-* 属性来为移动设备创建更具触摸友好性和吸引性的外观。\n在下面的参考列表中，粗体显示的值为默认值。\n按钮\n在1.4 版本以后已废弃。使用\nCSS 类 替代。带有 data-role=\"button\" 的超链接。button 元素、工具栏中的链接以及 input 字段都会自动渲染成按钮样式，不需要添加 data-role=\"button\"。\nData-属性\n值\n描述\ndata-corners\ntrue | false\n规定按钮是否圆角\ndata-icon\n图标参考手册\n规定按钮的图标。默认没有图标。\ndata-iconpos\nleft | right | top | bottom | notext\n规定图标的位置\ndata-iconshadow\ntrue | false\n规定按钮图标是否有阴影\ndata-inline\ntrue | false\n规定按钮是否内联\ndata-mini\ntrue | false\n规定按钮是小尺寸还是常规尺寸\ndata-shadow\ntrue | false\n规定按钮是否有阴影\ndata-theme\n字母 (a-z)\n规定按钮的主题颜色\n如需组合多个按钮，请使用带有 data-role=\"controlgroup\" 属性和 data-type=\"horizontal|vertical\" 的容器来规定是否水平或垂直组合按钮。\n复选框\n带有 type=\"checkbox\" 的成双成对的 label 和 input。它们会被自动渲染成按钮样式，data-role 不是必需的。\nData-属性\n值\n描述\ndata-mini\ntrue | false\n规定复选框是小尺寸还是常规尺寸\ndata-role\nnone\n防止 jQuery Mobile 把复选框渲染成按钮样式\ndata-theme\n字母 (a-z)\n规定复选框的主题颜色\n如需组合多个复选框，请使用带有 data-role=\"controlgroup\" 属性和 data-type=\"horizontal|vertical\" 的容器来规定是否水平或垂直组合复选框。\n可折叠块\n在带有 data-role=\"collapsible\" 的容器内部的后跟任意 HTML 标记的标题元素。\nData-属性\n值\n描述\ndata-collapsed\ntrue | false\n规定内容是折叠还是展开\ndata-collapsed-icon\n图标参考手册\n规定可折叠按钮的图标。默认是 \"plus\"\ndata-content-theme\n字母 (a-z)\n规定可折叠内容的主题颜色。是否为可折叠内容添加圆角\ndata-expanded-icon\n图标参考手册\n规定当内容展开时可折叠按钮的图标。默认是 \"minus\"\ndata-iconpos\nleft | right | top | bottom\n规定图标的位置\ndata-inset\ntrue | false\n规定可折叠按钮是否渲染成圆角且带外边距\ndata-mini\ntrue | false\n规定可折叠按钮是小尺寸还是常规尺寸\ndata-theme\n字母 (a-z)\n规定可折叠按钮的主题颜色\n可折叠集合\n在带有 data-role=\"collapsible-set\" 的容器内部的可折叠内容块。\nData-属性\n值\n描述\ndata-collapsed-icon\n图标参考手册\n规定可折叠按钮的图标。默认是 \"plus\"\ndata-content-theme\n字母 (a-z)\n规定可折叠按钮的主题颜色\ndata-expanded-icon\n图标参考手册\n规定当内容展开时可折叠按钮的图标。默认是 \"minus\"\ndata-iconpos\nleft | right | top | bottom | notext\n规定图标的位置\ndata-inset\ntrue | false\n规定可折叠块是否渲染成圆角且带外边距\ndata-mini\ntrue | false\n规定可折叠按钮是小尺寸还是常规尺寸\ndata-theme\n字母 (a-z)\n规定可折叠集合的主题颜色\n内容\n在 1.4 版本已废弃, 1.5 版本后不再支持。 使用 data-role=\"content\" 的容器。\nData-属性\n值\n描述\ndata-theme\n字母 (a-z)\n规定内容的主题颜色。\n控件组\n带有 data-role=\"controlgroup\" 的 <div> 或 <fieldset> 容器。 \n组合单个类型（基于链接的按钮、单选按钮、复选框、select 元素）的多个按钮样式的 input。对于组合表单复选框和单选按钮，推荐在带有 data-role=\"fieldcontain\" 的 <div> 内使用 <fieldset> 容器来改进标签样式。\nData-属性\n值\n描述\ndata-mini\ntrue | false\n规定控件组是小尺寸还是常规尺寸\ndata-type\nhorizontal | vertical\n规定控件组是水平显示还是垂直显示\n对话框\n带有 data-role=\"dialog\" 的容器或带有 data-rel=\"dialog\" 的链接。\nData-属性\n值\n描述\ndata-close-btn-text\nsometext\n规定对话框关闭按钮的文本\ndata-dom-cache\ntrue | false\n规定是否清除各个页面的 jQuery DOM 缓存（如果设置为 true，您必须自己管理 DOM 并在所有移动设备上进行测试）\ndata-overlay-theme\n字母 (a-z)\n规定对话框页面的蒙版（背景）颜色\ndata-theme\n字母 (a-z)\n规定对话框页面的主题颜色\ndata-title\nsometext\n规定对话框页面的标题\n增强\n带有 data-enhance=\"false\" 或 data-ajax=\"false\" 的容器。\nData-属性\n值\n描述\ndata-enhance\ntrue | false\n如果设置为 \"true\"（默认），jQuery Mobile 会自动渲染页面，使其更适合于移动设备。如果设置为 \"false\"，框架将不会渲染页面\ndata-ajax\ntrue | false\n规定是否通过 ajax 加载页面\n注意：data-enhance=\"false\" 必须与 $.mobile.ignoreContentEnabled=true\" 一同使用来阻止 jQuery Mobile 自动渲染页面。\n当 $.mobile.ignoreContentEnabled 设置为 true 时，data-ajax=\"false\" 容器内的任何链接或表单元素将会被框架的导航功能忽略。\n域容器\n1.4 版本后已废弃，在 1.5 版本后不再支持，将使用 class=\"ui-fieldcontain 替代\"。 包裹在 label/form 元素对，并带有 data-role=\"fieldcontain\" 的容器。\n固定工具栏\n带有 data-role=\"header\" 或 data-role=\"footer\"，并带有 data-position=\"fixed\" 属性的容器。\nData-属性\n值\n描述\ndata-disable-page-zoom\ntrue | false\n规定用户是否能缩放页面\ndata-fullscreen\ntrue | false\n规定工具栏是否一直固定在顶部或底部\ndata-tap-toggle\ntrue | false\n规定用户是否能够通过点击改变工具栏的可见性\ndata-transition\nslide | fade | none\n规定当点击发生时的切换效果\ndata-update-page-padding\ntrue | false\n规定页面顶部和底部的内边距是否在 resize、transition 和 \"updatelayout\" 事件发生时更新（jQuery Mobile 在 \"pageshow\" 事件发生时总是更新内边距）\ndata-visible-on-page-show\ntrue | false\n规定当父页面显示时工具栏的可见性\n翻转拨动开关\n一个带有 data-role=\"slider\" 的 <select> 元素和两个 <option> 元素。\nData-属性\n值\n描述\ndata-mini\ntrue | false\n规定开关是小尺寸还是常规尺寸\ndata-role\nnone\n防止 jQuery Mobile 把拨动开关渲染成按钮样式\ndata-theme\n字母 (a-z)\n规定拨动开关的主题颜色\ndata-track-theme\n字母 (a-z)\n规定轨道的主题颜色\n尾部栏\n带有 data-role=\"footer\" 的容器。\nData-属性\n值\n描述\ndata-id\nsometext\n规定唯一 ID。对于持续的尾部栏是必需的\ndata-position\ninline | fixed\n规定尾部栏是与页面内容内联还是保持固定在底部\ndata-fullscreen\ntrue | false\n规定尾部栏是固定在底部还是覆盖在页面内容上（查看范围更大）\ndata-theme\n字母 (a-z)\n规定尾部栏的主题颜色。默认是 \"a\"\n注意：如需启用全屏定位，请使用 data-position=\"fixed\"，然后添加 data-fullscreen 属性到元素上。\n头部栏\n带有 data-role=\"header\" 的容器。\nData-属性\n值\n描述\ndata-id\nsometext\n规定唯一 ID。对于持续的头部栏是必需的\ndata-position\ninline | fixed\n规定头部栏是与页面内容内联还是保持固定在顶部\ndata-fullscreen\ntrue | false\n规定头部栏是固定在顶部还是覆盖在页面内容上（查看范围更大）\ndata-theme\n字母 (a-z)\n规定头部栏的主题颜色。默认是 \"a\"\n注意：如需启用全屏定位，请使用 data-position=\"fixed\"，然后添加 data-fullscreen 属性到元素上。\n链接\n所有的链接，包含那些带有 data-role=\"button\" 的链接和表单提交按钮。\nData-属性\n值\n描述\ndata-ajax\ntrue | false\n规定是否通过 ajax 加载页面来提高用户体验和交互。如果设置为 false，jQuery Mobile 将会执行一个正常的页面请求。\ndata-direction\nreverse\n反向转换动画（仅用于页面和对话框）\ndata-dom-cache\ntrue | false\n规定是否清除各个页面的 jQuery DOM 缓存（如果设置为 true，您必须自己管理 DOM 并在所有移动设备上进行测试）\ndata-prefetch\ntrue | false\n规定是否预先读取页面到 DOM 中，以便当用户访问它们时可用\ndata-rel\nback | dialog | external | popup\n规定链接行为的选项。Back - 回退到历史记录中的前一个页面。Dialog - 以对话框形式打开链接，不保存到历史记录中。External - 用于链接到另一个域。Popup - 打开一个弹出窗口。\ndata-transition\nfade | flip | flow | pop | slide | slidedown | slidefade | slideup | turn | \nnone\n规定一个页面切换到下一个页面的效果。请查看我们的 jQuery Mobile 页面切换章节。\ndata-position-to\norigin | jQuery selector | window\n规定弹出框的位置。Origin - 默认。定位弹窗在打开它的链接上。jQuery selector - 定位弹窗在指定元素上。Window - 定位弹窗在窗口屏幕的中央。\n列表\n带有 data-role=\"listview\" 的 <ol> 或 <ul>。\nData-属性\n值\n描述\ndata-autodividers\ntrue | false\n规定是否自动划分列表项\ndata-count-theme\n字母 (a-z)\n规定计数气泡的主题颜色。\ndata-divider-theme\n字母 (a-z)\n规定列表分隔的主题颜色。\ndata-filter\ntrue | false\n规定是否在列表中添加搜索框\ndata-filter-placeholder\nsometext\n1.4 版本后废弃。使用 HTML placeholder 属性替代。规定搜索框内的文本。默认是 \"Filter items...\"\ndata-filter-theme\n字母 (a-z)\n规定搜索过滤的主题颜色。\ndata-icon\n图标参考手册\n规定列表的图标\ndata-inset\ntrue | false\n规定列表是否渲染成圆角且带外边距\ndata-split-icon\n图标参考手册\n规定分割按钮的图表。默认是 \"arrow-r\"\ndata-split-theme\n字母 (a-z)\n规定分割按钮的主题颜色。\ndata-theme\n字母 (a-z)\n规定列表的主题颜色\n列表项\n带有 data-role=\"listview\" 的 <ol> 或 <ul> 内的 <li>。\nData-属性\n值\n描述\ndata-filtertext\nsometext\n规定当过滤元素时要搜索的文本。该文本将会被过滤，而不是实际的列表项文本\ndata-icon\n图标参考手册\n规定列表项图标\ndata-role\nlist-divider\n规定列表项的分隔\ndata-theme\n字母 (a-z)\n规定列表项的主题颜色\n注意：data-icon 属性只作用于带有链接的列表项。\n导航栏\n带有 data-role=\"navbar\" 容器内部的 <li> 元素。\nData-属性\n值\n描述\ndata-icon\n图标参考手册\n规定列表项的图标\ndata-iconpos\nleft | right | top | bottom | notext\n规定图标的位置\n导航栏从他们的父容器中继承了主题样本。为导航栏设置 data-theme 属性是不可能的。可以为导航栏中的每个链接单独设置 data-theme 属性。\n页面\n带有 data-role=\"page\" 的容器。\nData-属性\n值\n描述\ndata-add-back-btn\ntrue | false\n自动添加后退按钮，仅限头部栏\ndata-back-btn-text\nsometext\n规定后退按钮的一些文本\ndata-back-btn-theme\n字母 (a-z)\n规定后退按钮的主题颜色\ndata-close-btn-text\n字母 (a-z)\n规定对话框上关闭按钮的一些文本\ndata-dom-cache\ntrue | false\n规定是否清除各个页面的 jQuery DOM 缓存（如果设置为 true，您必须自己管理 DOM 并在所有移动设备上进行测试）\ndata-overlay-theme\n字母 (a-z)\n规定对话框页面的蒙版（背景）颜色\ndata-theme\n字母 (a-z)\n规定页面的主题颜色。\ndata-title\nsometext\n规定页面标题\ndata-url\nurl\n更新 URL 的值，而不是用于请求页面的 URL\n弹窗\n带有 data-role=\"popup\" 的容器。\nData-属性\n值\n描述\ndata-corners\ntrue | false\n规定弹窗是否圆角\ndata-overlay-theme\n字母 (a-z)\n规定弹出框的蒙版（背景）颜色。默认是透明背景（无）\ndata-shadow\ntrue | false\n规定弹出框是否有阴影\ndata-theme\n字母 (a-z)\n规定弹出框的主题颜色。默认是继承的，\"none\" 设置弹窗为透明的\ndata-tolerance\n30, 15, 30, 15\n规定窗口边缘（上 top、右 right、下 bottom、左 left）的距离\n带有 data-rel=\"popup\" 的锚：\nData-属性\n值\n描述\ndata-position-to\norigin | jQuery selector | window\n>规定弹出框的位置。Origin - 默认。定位弹窗在打开它的链接上。jQuery selector - 定位弹窗在指定元素上。Window - 定位弹窗在窗口屏幕的中央。\ndata-rel\npopup\n用于打开弹出框\ndata-transition\nfade | flip | flow | pop | slide | slidedown | slidefade | slideup | turn | \nnone\n规定一个页面切换到下一个页面的效果。请查看我们的 jQuery Mobile 页面切换章节。\n单选按钮\n带有 type=\"radio\" 的成双成对的 label 和 input。它们会被自动渲染程按钮样式，data-role 不是必需的。\nData-属性\n值\n描述\ndata-mini\ntrue | false\n规定按钮是小尺寸还是常规尺寸\ndata-role\nnone\n防止 jQuery Mobile 渲染单选按钮的样式为增强状态的按钮，使元素以 HTML 原生的状态显示\ndata-theme\n字母 (a-z)\n规定单选按钮的主题颜色\n如需组合多个单选按钮，请使用带有 data-role=\"controlgroup\" 属性和 data-type=\"horizontal|vertical\" 的容器来规定是否水平或垂直组合单选按钮。\n选择\n所有的 <select> 元素。这些会被自动渲染成按钮样式，date-role 是不必需的。\nData-属性\n值\n描述\ndata-icon\n图标参考手册\n规定 select 元素的图标。默认是 \"arrow-d\"\ndata-iconpos\nleft | right | top | bottom | notext\n规定图标的位置\ndata-inline\ntrue | false\n规定 select 元素是否内联\ndata-mini\ntrue | false\n规定 select 元素是小尺寸还是常规尺寸\ndata-native-menu\ntrue | false\n当设置为 false 时，它使用 jQuery 自带的自定义的选择菜单（如果您想要让选择菜单在所有的移动设备上都显示相同，则推荐这么使用）\ndata-overlay-theme\n字母 (a-z)\n规定 jQuery 自带的自定义的选择菜单的主题颜色（与 data-native-menu=\"false\" 一起使用）\ndata-placeholder\ntrue | false\n可在一个非原生的选择菜单的 <option> 元素上设置\ndata-role\nnone\n防止 jQuery Mobile 把 select 元素渲染成按钮样式\ndata-theme\n字母 (a-z)\n规定 select 元素的主题颜色\n如需组合多个 select 元素，请使用带有 data-role=\"controlgroup\" 属性和 data-type=\"horizontal|vertical\" 的容器来规定是否水平或垂直组合 select 元素。\n滑动块\n带有 type=\"range\" 的输入框。这些会被自动渲染成按钮样式，date-role 是不必需的。\nData-属性\n值\n描述\ndata-highlight\ntrue | false\n规定滑动轨道是否高亮突出显示\ndata-mini\ntrue | false\n规定滑动块是小尺寸还是常规尺寸\ndata-role\nnone\n防止 jQuery Mobile 渲染滑动块控件为按钮样式\ndata-theme\n字母 (a-z)\n规定滑动块控件（输入框、手柄和轨道）的主题颜色\ndata-track-theme\n字母 (a-z)\n规定滑动块轨道的主题颜色\n文本输入框 & 文本输入域\n带有 type=\"text|search|etc.\" 的 input 或 textarea 元素。这些会被自动渲染成按钮样式，date-role 是不必需的。\nData-属性\n值\n描述\ndata-mini\ntrue | false\n规定输入框是小尺寸还是常规尺寸\ndata-role\nnone\n防止 jQuery Mobile 把输入框/输入域渲染成按钮样式\ndata-theme\n字母 (a-z)\n规定输入字段的主题颜色",
+    "examples": []
+   },
+   {
+    "title": "jQuery Mobile 图标",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-ref-icons.html",
+    "body": "我们可以使用图标类在 jQuery Mobile 中 <a> 和 <button> 元素上添加图标，并对图标进行定位，如下所示：\n<a href=\"#anylink\" class=\"ui-btn ui-icon-refresh ui-btn-icon-left\">刷新页面</a>\n尝试一下",
+    "examples": []
+   },
+   {
+    "title": "jQuery Mobile 表格",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-tables.html",
+    "body": "响应式表格\n响应式设计一般用于适配用户各种移动设备。\n我们只需要使用一个简单的类名，jQuery Mobile 就能根据屏幕的尺寸自动调整页面内容。\n响应式表格让页面内容在移动端和桌面设备上能够很好的适配。\n响应式表格有两种类型： reflow(回流) 与 列切换。\n回流表格\n回流模型表格在屏幕尺寸足够大时是水平显示，而在屏幕尺寸达到足够小时，所有的数据会变成垂直显示。\n创建表格，在 <table> 元素上添加 data-role=\"table\" 和 \"ui-responsive\" 类:\n实例\n尝试一下 »",
+    "examples": [
+     "<table data-role=\"table\" class=\"ui-responsive\">"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 主题",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-themes.html",
+    "body": "jQuery Mobile 提供了 2 种不同的主题样式, 从 \"a\" 到 \"b\" - 每一种主题的按钮，工具条，内容块等等颜色都不一致，每个主题的视觉效果也不一样。\n通过设置元素的data-theme属性可以自定义应用的外观:\n<a href=\"#\" class=\"ui-btn ui-btn-a|b\">按钮</a>\n值\n描述\n实例\na\n页面为灰色背景黑色文字\n头部与底部均为灰色背景黑色文字\n按钮为灰色背景黑色文字\n激活的按钮和链接为白色文本蓝色背景\ninput 输入框中 placeholder 属性值为浅灰色，value 值为黑色\n尝试一下\nb\n页面为黑色背景白色文字\n头部与底部均为黑色背景白色文字\n按钮为白色文字木炭背景\n激活的按钮和链接为白色文本蓝色背景\ninput 输入框中 placeholder 属性值为浅灰色，value 值为白色\n尝试一下\n按钮样式使用 class=\"ui-btn\",使用 \"ui-btn-a|b\" 类设置按钮为灰色（默认）或黑色：\n<a href=\"#\" class=\"ui-btn ui-btn-a|b\">按钮</a>\n\"a\" 主题的样式用于大多数元素，子元素通常继承父元素的样式。\n主题头部和底部\n实例\n尝试一下 »",
+    "examples": [
+     "<div data-role=\"header\" data-theme=\"b\"></div><div data-role=\"footer\" \n\t\tdata-theme=\"b\"></div>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 工具栏",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-toolbars.html",
+    "body": "工具栏元素通常位于头部和尾部内 - 让导航易于访问：\n头部栏\n头部栏一般包含页面标题/logo 或一两个按钮（通常是首页、选项或搜索）。\n您可以添加按钮到头部的左侧或右侧。\n下面的代码，将添加一个按钮到头部标题文本的左侧，添加一个按钮到头部标题文本的右侧：\n实例\n尝试一下 »",
+    "examples": [
+     "<div data-role=\"header\">  <a href=\"#\" \n\tclass=\"ui-btn ui-icon-home ui-btn-icon-left\">主页</a>  <h1>欢迎访问我的主页</h1>  \n\t<a href=\"#\" class=\"ui-btn ui-icon-search ui-btn-icon-left\">搜索</a></div>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 过渡",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-transitions.html",
+    "body": "jQuery Mobile 包含 CSS3 效果让您选择页面打开的方式。\njQuery Mobile 页面切换效果\njQuery Mobile 提供了各种页面切换到下一个页面的效果。\n注意：为了实现页面切换效果，浏览器必须支持 CSS3 3D 切换：\n12.0\n10.0\n16.0\n4.0\n15.0\n表格中的数字为支持 3D 旋转的最小浏览器版本号。\n页面过渡效果可被应用于任何使用 data-transition 属性的链接或表单：\n页面切换效果可被应用于任何使用 data-transition 属性的链接或表单提交：\n<a href=\"#anylink\" data-transition=\"slide\">切换到第二个页面</a>\n下面的表格显示了通过使用 data-transition 属性后可用的页面切换：\n过渡\n描述\n页面\n对话框\nfade\n默认。淡入到下一页\n尝试一下\n尝试一下\nflip\n从后向前翻转到下一页\n尝试一下\n尝试一下\nflow\n抛出当前页，进入下一页\n尝试一下\n尝试一下\npop\n像弹出窗口那样转到下一页。\n尝试一下\n尝试一下\nslide\n从右向左滑动到下一页。\n尝试一下\n尝试一下\nslidefade\n从右向左滑动并淡入到下一页。\n尝试一下\n尝试一下\nslideup\n从下到上滑动到下一页。\n尝试一下\n尝试一下\nslidedown\n从上到下滑动到下一页。\n尝试一下\n尝试一下\nturn\n转向下一页。\n尝试一下\n尝试一下\nnone\n无过渡效果。\n尝试一下\n尝试一下\n在 jQuery Mobile 的所有链接上，默认使用淡入淡出的效果（如果浏览器支持）。\n提示：上面的所有效果支持后退行为。例如，如果您想要页面从左向右滑动，而不是从右向左滑动，请使用带有 \"reverse\" 值的 data-direction 属性。在后退按钮上这是默认的。\n实例\n尝试一下 »",
+    "examples": [
+     "<a href=\"#pagetwo\" data-transition=\"slide\" \n\tdata-direction=\"reverse\">切换</a>"
+    ]
+   },
+   {
+    "title": "jQuery Mobile 教程",
+    "url": "https://www.runoob.com/jquerymobile/jquerymobile-tutorial.html",
+    "body": "jQuery Mobile 是用于创建移动 Web 应用的前端开发框架。\njQuery Mobile 可以应用于智能手机与平板电脑。\njQuery Mobile 使用 HTML5 & CSS3 最小的脚本来布局网页。",
+    "examples": []
+   }
+  ]
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "tutorial": {
+  "name": "Web Services",
+  "category": "后端开发",
+  "desc": "通过使用 Web Services，您的应用程序可以向全世界发布信息，或提供某项",
+  "url": "https://www.runoob.com/webservices/",
+  "chapters": [
+   {
+    "title": "Web Services 教程",
+    "url": "https://www.runoob.com/webservices/webservices-tutorial.html",
+    "body": "通过使用 Web Services，您的应用程序可以向全世界发布信息，或提供某项功能。\nWeb Services 脚本平台需支持 XML + HTTP。\n现在开始学习Web Services!",
+    "examples": []
+   },
+   {
+    "title": "Web Service 实例",
+    "url": "https://www.runoob.com/webservices/ws-example.html",
+    "body": "任何应用程序都可拥有 Web Service 组件。\nWeb Service 的创建与编程语言的种类无关。\n本章节我们将为大家介绍使用 PHP 的 SOAP 扩展来创建 Web Service。\nSOAP有两种操作方式，NO-WSDL 与 WSDL。\nNO-WSDL模式：使用参数来传递要使用的信息。\nWSDL模式： 使用WSDL文件名作为参数，并从WSDL中提取服务所需的信息。\n一个实例：PHP Web Service\n在开始实例前，我们需要确定PHP是否安装了 SOAP 扩展。查看 phpinfo，出现以下信息表明已经安装了 SOAP 扩展：\n在这个例子中，我们会使用 PHP SOAP 来创建一个简单的 Web Service。\n服务端 Server.php 文件代码如下：\n<?php \n// SiteInfo 类用于处理请求\nClass SiteInfo\n{\n /**\n * 返回网站名称\n * @return string \n *\n */\n public function getName(){\n return \"菜鸟教程\";\n }\n\n public function getUrl(){\n return \"www.runoob.com\";\n }\n}\n\n// 创建 SoapServer 对象\n$s = new SoapServer(null,array(\"location\"=>\"http://localhost/soap/Server.php\",\"uri\"=>\"Server.php\"));\n\n// 导出 SiteInfo 类中的全部函数\n$s->setClass(\"SiteInfo\");\n// 处理一个SOAP请求，调用必要的功能，并发送回一个响应。\n$s->handle();\n?>\n客户端 Client.php 文件代码如下：\n<?php\ntry{\n // non-wsdl方式调用web service\n // 创建 SoapClient 对象\n $soap = new SoapClient(null,array('location'=>\"http://localhost/soap/Server.php\",'uri'=>'Server.php'));\n // 调用函数 \n $result1 = $soap->getName();\n $result2 = $soap->__soapCall(\"getUrl\",array());\n echo $result1.\"<br/>\";\n echo $result2;\n} catch(SoapFault $e){\n echo $e->getMessage();\n}catch(Exception $e){\n echo $e->getMessage();\n}\n这时我们访问 http://localhost/soap/Client.php，输出结果如下所示：",
+    "examples": []
+   },
+   {
+    "title": "Web Services 简介",
+    "url": "https://www.runoob.com/webservices/ws-intro.html",
+    "body": "Web Services 可使您的应用程序成为 Web 应用程序。\nWeb Services 通过 Web 进行发布、查找和使用。\n您应当具备的基础知识\n在继续学习之前，您需要对下面的知识有基本的了解：\nHTML\nXML\n如果您希望首先学习这些项目，请在我们的首页访问这些教程。\n什么是Web Services？\nWeb Services 是应用程序组件\nWeb Services 使用开放协议进行通信\nWeb Services 是独立的（self-contained）并可自我描述\nWeb Services 可通过使用UDDI来发现\nWeb Services 可被其他应用程序使用\nXML 是 Web Services 的基础\n它如何工作？\n基础的 Web Services 平台是 XML + HTTP。\nHTTP 协议是最常用的因特网协议。\nXML 提供了一种可用于不同的平台和编程语言之间的语言。\nWeb services 平台的元素：\nSOAP (简易对象访问协议)\nUDDI (通用描述、发现及整合)\nWSDL (Web services 描述语言)\n我们会在本教程后面章节讲解这些主题。",
+    "examples": []
+   },
+   {
+    "title": "Web Services 平台元素",
+    "url": "https://www.runoob.com/webservices/ws-platform.html",
+    "body": "Web Services 拥有三种基本的元素: SOAP、WSDL 以及 UDDI。\n什么是 SOAP？\n基本的 Web services 平台是 XML + HTTP。\nSOAP 指简易对象访问协议\nSOAP 是一种通信协议\nSOAP 用于应用程序之间的通信\nSOAP 是一种用于发送消息的格式\nSOAP 被设计用来通过因特网进行通信\nSOAP 独立于平台\nSOAP 独立于语言\nSOAP 基于 XML\nSOAP 很简单并可扩展\nSOAP 允许您绕过防火墙\nSOAP 将作为 W3C 标准来发展\n如需更多有关 SOAP 的知识，请访问我们的《SOAP 教程》\n什么是 WSDL?\nWSDL 是基于 XML 的用于描述 Web Services 以及如何访问 Web Services 的语言。\nWSDL 指网络服务描述语言\nWSDL 使用 XML 编写\nWSDL 是一种 XML 文档\nWSDL 用于描述网络服务\nWSDL 也可用于定位网络服务\nWSDL 还不是 W3C 标准\n如需更多有关 WSDL 的知识，请访问我们的《WSDL 教程》\n什么是 UDDI？\nUDDI是统一描述、发现和集成（Universal Description, Discovery, and Integration）的缩写。\nUDDI 是一种目录服务，通过它，企业可注册并搜索 Web services。\n它是一个基于 XML 的跨平台的描述规范，可以使世界范围内的企业在互联网上发布自己所提供的服务。\nUDDI 指通用的描述、发现以及整合（Universal Description, Discovery and Integration）。\nUDDI 是一种用于存储有关 web services 的信息的目录。\nUDDI 是一种由 WSDL 描述的网络服务接口目录。\nUDDI 经由 SOAP 进行通迅。\nUDDI 被构建于 Microsoft .NET 平台之中。",
+    "examples": []
+   },
+   {
+    "title": "您已经学习了 Web Services, 下一步学习什么内容呢？",
+    "url": "https://www.runoob.com/webservices/ws-summary.html",
+    "body": "Web Services 概要\n本教程已经向您讲解了如何把应用程序转换为网络应用程序.\n您已经学习了如何使用 XML 在应用程序间发送消息。\n您也学习了如何从应用程序导出某项功能（创建一个 web service）。\n您已经学习了 Web Services,下一步呢？\n下一步您应当学习 WSDL 和 SOAP。\nWSDL\nWSDL 是基于 XML 的用来描述 Web services 以及如何访问它们的一种语言。\nWSDL 可描述 web service，连同用于 web service 的消息格式和协议的细节。\n如果您希望学习更多有关 WSDL 的知识，请访问我们的《WSDL 教程》。\nSOAP\nSOAP 是一种使应用程序有能力通过 HTTP 交换信息的基于 XML 的简易协议。\n或者可以更简单地说：SOAP 是一种用于访问 web service 的协议。\n如果您希望学习更多有关 SOAP 的知识，请访问我们的《SOAP 教程》。",
+    "examples": []
+   },
+   {
+    "title": "为什么使用 Web Services?",
+    "url": "https://www.runoob.com/webservices/ws-why.html",
+    "body": "几年前，Web services 的速度还没有快到让人们产生兴趣的程度。\n最重要的事情是协同工作\n由于所有主要的平台均可通过 Web 浏览器来访问 Web，不同的平台可以借此进行交互。为了让这些平台协同工作，Web 应用程序被开发了出来。\nWeb 应用程序是运行在 Web 上的简易应用程序。它们围绕 Web 浏览器标准被进行构建，几乎可被任何平台之上的任何浏览器来使用。\nWeb services 把 Web 应用程序提升到了另外一个层面\n通过使用 Web services，您的应用程序可向全世界发布功能或消息。\nWeb services 使用 XML 来编解码数据，并使用 SOAP 借由开放的协议来传输数据。\n通过 Web services，您的会计部门的 Win 2k 服务器可与 IT 供应商的 UNIX 服务器进行连接。\nWeb services 有两种类型的应用\n可重复使用的应用程序组件\n有一些功能是不同的应用程序常常会用到的。那么为什么要周而复始地开发它们呢？\nWeb services 可以把应用程序组件作为服务来提供，比如汇率转换、天气预报或者甚至是语言翻译等等。\n比较理想的情况是，每种应用程序组件只有一个最优秀的版本，这样任何人都可以在其应用程序中使用它。\n连接现有的软件\n通过为不同的应用程序提供一种链接其数据的途径，Web services有助于解决协同工作的问题。\n通过使用 Web services，您可以在不同的应用程序与平台之间来交换数据。",
+    "examples": []
+   }
+  ]
+ }
+}

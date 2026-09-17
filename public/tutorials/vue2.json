@@ -1,0 +1,184 @@
+{
+ "tutorial": {
+  "name": "Vue.js 样式绑定",
+  "category": "前端开发",
+  "desc": "Vue.js class",
+  "url": "https://www.runoob.com/vue2/",
+  "chapters": [
+   {
+    "title": "Vue.js 样式绑定",
+    "url": "https://www.runoob.com/vue2/vue-class-style.html",
+    "body": "Vue.js class\nclass 与 style 是 HTML 元素的属性，用于设置元素的样式，我们可以用 v-bind 来设置样式属性。\nVue.js v-bind 在处理 class 和 style 时， 专门增强了它。表达式的结果类型除了字符串之外，还可以是对象或数组。\nclass 属性绑定\n我们可以为 v-bind:class 设置一个对象，从而动态的切换 class:\n实例 1\n实例中将 isActive 设置为 true 显示了一个绿色的 div 块，如果设置为 false 则不显示：",
+    "examples": [
+     "<div v-bind:class=\"{ 'active': isActive }\"></div>"
+    ]
+   },
+   {
+    "title": "Vue.js 组件 - 自定义事件",
+    "url": "https://www.runoob.com/vue2/vue-component-custom-event.html",
+    "body": "父组件是使用 props 传递数据给子组件，但如果子组件要把数据传递回去，就需要使用自定义事件！\n我们可以使用 v-on 绑定自定义事件, 每个 Vue 实例都实现了事件接口(Events interface)，即：\n使用 $on(eventName) 监听事件\n使用 $emit(eventName) 触发事件\n另外，父组件可以在使用子组件的地方直接用 v-on 来监听子组件触发的事件。\n以下实例中子组件已经和它外部完全解耦了。它所做的只是触发一个父组件关心的内部事件。\n实例",
+    "examples": [
+     "<div id=\"app\">\n<div id=\"counter-event-example\">\n<p>{{ total }}</p>\n<button-counter v-on:increment=\"incrementTotal\"></button-counter>\n<button-counter v-on:increment=\"incrementTotal\"></button-counter>\n</div>\n</div>\n<script>\nVue.component('button-counter', {\n  template: '<button v-on:click=\"incrementHandler\">{{ counter }}</button>',\n  data: function () {\n    return {\n      counter: 0\n    }\n  },\n  methods: {\n    incrementHandler: function () {\n      this.counter += 1\n      this.$emit('increment')\n    }\n  },\n})\nnew Vue({\n  el: '#counter-event-example',\n  data: {\n    total: 0\n  },\n  methods: {\n    incrementTotal: function () {\n      this.total += 1\n    }\n  }\n})\n</script>"
+    ]
+   },
+   {
+    "title": "Vue.js 组件",
+    "url": "https://www.runoob.com/vue2/vue-component.html",
+    "body": "组件（Component）是 Vue.js 最强大的功能之一。\n组件可以扩展 HTML 元素，封装可重用的代码。\n组件系统让我们可以用独立可复用的小组件来构建大型应用，几乎任意类型的应用的界面都可以抽象为一个组件树：\n注册一个全局组件语法格式如下：\nVue.component(tagName, options)\ntagName 为组件名，options 为配置选项。注册后，我们可以使用以下方式来调用组件：\n<tagName></tagName>\n全局组件\n所有实例都能用全局组件。\n全局组件实例\n注册一个简单的全局组件 runoob，并使用它：",
+    "examples": [
+     "<div id=\"app\">\n<runoob></runoob>\n</div>\n<script>\n// 注册\nVue.component('runoob', {\n  template: '<h1>自定义组件!</h1>'\n})\n// 创建根实例\nnew Vue({\n  el: '#app'\n})\n</script>"
+    ]
+   },
+   {
+    "title": "Vue.js 计算属性",
+    "url": "https://www.runoob.com/vue2/vue-computed.html",
+    "body": "计算属性关键词: computed。\n计算属性在处理一些复杂逻辑时是很有用的。\n可以看下以下反转字符串的例子：\n实例 1",
+    "examples": [
+     "<div id=\"app\">\n  {{ message.split('').reverse().join('') }}\n</div>"
+    ]
+   },
+   {
+    "title": "Vue.js 自定义指令",
+    "url": "https://www.runoob.com/vue2/vue-custom-directive.html",
+    "body": "除了默认设置的核心指令( v-model 和 v-show ), Vue 也允许注册自定义指令。\n下面我们注册一个全局指令 v-focus, 该指令的功能是在页面加载时，元素获得焦点：\n实例",
+    "examples": [
+     "<div id=\"app\">\n<p>页面载入时，input 元素自动获取焦点：</p>\n<input v-focus>\n</div>\n<script>\n// 注册一个全局自定义指令 v-focus\nVue.directive('focus', {\n  // 当绑定元素插入到 DOM 中。\n  inserted: function (el) {\n    // 聚焦元素\n    el.focus()\n  }\n})\n// 创建根实例\nnew Vue({\n  el: '#app'\n})\n</script>"
+    ]
+   },
+   {
+    "title": "Vue.js 目录结构",
+    "url": "https://www.runoob.com/vue2/vue-directory-structure.html",
+    "body": "上一章节中我们使用了 npm 安装项目，我们在 IDE（Eclipse、Atom等） 中打开该目录，结构如下所示：\n目录解析\n目录/文件\n说明\nbuild\n项目构建(webpack)相关代码\nconfig\n配置目录，包括端口号等。我们初学可以使用默认的。\nnode_modules\nnpm 加载的项目依赖模块\nsrc\n这里是我们要开发的目录，基本上要做的事情都在这个目录里。里面包含了几个目录及文件：\nassets: 放置一些图片，如logo等。\ncomponents: 目录里面放了一个组件文件，可以不用。\nApp.vue: 项目入口文件，我们也可以直接将组件写这里，而不使用 components 目录。\nmain.js: 项目的核心文件。\nstatic\n静态资源目录，如图片、字体等。\ntest\n初始测试目录，可删除\n.xxxx文件\n这些是一些配置文件，包括语法配置，git配置等。\nindex.html\n首页入口文件，你可以添加一些 meta 信息或统计代码啥的。\npackage.json\n项目配置文件。\nREADME.md\n项目的说明文档，markdown 格式\n在前面我们打开 APP.vue 文件，代码如下（解释在注释中）：\nsrc/APP.vue",
+    "examples": [
+     "<!-- 展示模板 -->\n<template>\n<div id=\"app\">\n<img src=\"./assets/logo.png\">\n<hello></hello>\n</div>\n</template>\n<script>\n// 导入组件\nimport Hello from './components/Hello'\n \nexport default {\n  name: 'app',\n  components: {\n    Hello\n  }\n}\n</script>\n<!-- 样式代码 -->\n<style>\n#app {\n  font-family: 'Avenir', Helvetica, Arial, sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  text-align: center;\n  color: #2c3e50;\n  margin-top: 60px;\n}\n</style>"
+    ]
+   },
+   {
+    "title": "Vue.js 事件处理器",
+    "url": "https://www.runoob.com/vue2/vue-events.html",
+    "body": "事件监听可以使用 v-on 指令：\nv-on",
+    "examples": [
+     "<div id=\"app\">\n<button v-on:click=\"counter += 1\">增加 1</button>\n<p>这个按钮被点击了 {{ counter }} 次。</p>\n</div>\n<script>\nnew Vue({\n  el: '#app',\n  data: {\n    counter: 0\n  }\n})\n</script>"
+    ]
+   },
+   {
+    "title": "Vue.js 实例",
+    "url": "https://www.runoob.com/vue2/vue-examples.html",
+    "body": "本章节为大家介绍几个 Vue.js 实例，通过实例练习来巩固学到的知识点。\n导航菜单实例\n导航菜单\n创建一个简单的导航菜单：",
+    "examples": [
+     "<div id=\"main\">\n<!-- 激活的菜单样式为  active 类 -->\n<!-- 为了阻止链接在点击时跳转，我们使用了 \"prevent\" 修饰符 (preventDefault 的简称)。 -->\n<nav v-bind:class=\"active\" v-on:click.prevent>\n<!-- 当菜单上的链接被点击时，我们调用了 makeActive 方法, 该方法在 Vue 实例中创建。 -->\n<a href=\"#\" class=\"home\" v-on:click=\"makeActive('home')\">Home</a>\n<a href=\"#\" class=\"projects\" v-on:click=\"makeActive('projects')\">Projects</a>\n<a href=\"#\" class=\"services\" v-on:click=\"makeActive('services')\">Services</a>\n<a href=\"#\" class=\"contact\" v-on:click=\"makeActive('contact')\">Contact</a>\n</nav>\n<!-- 以下 \"active\" 变量会根据当前选中的值来自动变换 -->\n<p>您选择了 <b>{{active}} 菜单</b></p>\n</div>\n<script>\n// 创建一个新的 Vue 实例\nvar demo = new Vue({\n    // DOM 元素，挂载视图模型\n    el: '#main',\n \n    // 定义属性，并设置初始值\n    data: {\n        active: 'home'\n    },\n \n    // 点击菜单使用的函数\n    methods: {\n        makeActive: function(item){\n            // 模型改变，视图会自动更新\n            this.active = item;\n        }\n    }\n});\n</script>"
+    ]
+   },
+   {
+    "title": "Vue.js 表单",
+    "url": "https://www.runoob.com/vue2/vue-forms.html",
+    "body": "这节我们为大家介绍 Vue.js 表单上的应用。\n你可以用 v-model 指令在表单控件元素上创建双向数据绑定。\nv-model 会根据控件类型自动选取正确的方法来更新元素。\n输入框\n实例中演示了 input 和 textarea 元素中使用 v-model 实现双向数据绑定：",
+    "examples": [
+     "<div id=\"app\">\n<p>input 元素：</p>\n<input v-model=\"message\" placeholder=\"编辑我……\">\n<p>消息是: {{ message }}</p>\n<p>textarea 元素：</p>\n<p style=\"white-space: pre\">{{ message2 }}</p>\n<textarea v-model=\"message2\" placeholder=\"多行文本输入……\"></textarea>\n</div>\n<script>\nnew Vue({\n  el: '#app',\n  data: {\n    message: 'Runoob',\n    message2: '菜鸟教程\\r\\nhttp://www.runoob.com'\n  }\n})\n</script>"
+    ]
+   },
+   {
+    "title": "Vue.js 条件语句",
+    "url": "https://www.runoob.com/vue2/vue-if.html",
+    "body": "条件判断\nv-if\n条件判断使用 v-if 指令：\nv-if 指令\n在元素 和 template 中使用 v-if 指令：",
+    "examples": [
+     "<div id=\"app\">\n<p v-if=\"seen\">现在你看到我了</p>\n<template v-if=\"ok\">\n<h1>菜鸟教程</h1>\n<p>学的不仅是技术，更是梦想！</p>\n<p>哈哈哈，打字辛苦啊！！！</p>\n</template>\n</div>\n<script>\nnew Vue({\n  el: '#app',\n  data: {\n    seen: true,\n    ok: true\n  }\n})\n</script>"
+    ]
+   },
+   {
+    "title": "Vue.js 安装",
+    "url": "https://www.runoob.com/vue2/vue-install.html",
+    "body": "1、独立版本\n我们可以在 Vue.js 的官网上直接下载 vue.min.js 并用 <script> 标签引入。\n下载 Vue.js\n2、使用 CDN 方法\n以下推荐国外比较稳定的两个 CDN，国内还没发现哪一家比较好，目前还是建议下载到本地。\ncdnjs : https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js\nStaticfile CDN（国内） : https://cdn.staticfile.net/vue/2.2.2/vue.min.js\nunpkg：https://unpkg.com/vue@2.6.14/dist/vue.min.js。\n字节跳动 CDN（国内）",
+    "examples": [
+     "<div id=\"app\">\n<p>{{ message }}</p>\n</div>"
+    ]
+   },
+   {
+    "title": "vue-loop",
+    "url": "https://www.runoob.com/vue2/vue-loop.html",
+    "body": "Vue.js 循环语句\n循环使用 v-for 指令。\nv-for 指令需要以 site in sites 形式的特殊语法， sites 是源数据数组并且 site 是数组元素迭代的别名。\nv-for 可以绑定数据到数组来渲染一个列表：\nv-for 指令",
+    "examples": [
+     "<div id=\"app\">\n<ol>\n<li v-for=\"site in sites\">\n      {{ site.name }}\n    </li>\n</ol>\n</div>\n<script>\nnew Vue({\n  el: '#app',\n  data: {\n    sites: [\n      { name: 'Runoob' },\n      { name: 'Google' },\n      { name: 'Taobao' }\n    ]\n  }\n})\n</script>"
+    ]
+   },
+   {
+    "title": "Vue.js 混入",
+    "url": "https://www.runoob.com/vue2/vue-mixins.html",
+    "body": "混入 (mixins)定义了一部分可复用的方法或者计算属性。混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被混入该组件本身的选项。\n来看一个简单的实例：\n实例",
+    "examples": [
+     "var vm = new Vue({\nel: '#databinding',\n    data: {\n},\n    methods : {\n},\n});\n// 定义一个混入对象\nvar myMixin = {\ncreated: function () {\nthis.startmixin()\n},\n    methods: {\nstartmixin: function () {\ndocument.write(\"欢迎来到混入实例\");\n        }\n}\n};\nvar Component = Vue.extend({\nmixins: [myMixin]\n})\nvar component = new Component();"
+    ]
+   },
+   {
+    "title": "Vue.js 路由",
+    "url": "https://www.runoob.com/vue2/vue-routing.html",
+    "body": "本章节我们将为大家介绍 Vue.js 路由。\nVue.js 路由允许我们通过不同的 URL 访问不同的内容。\n通过 Vue.js 可以实现多视图的单页Web应用（single page web application，SPA）。\nVue.js 路由需要载入 vue-router 库\n中文文档地址：vue-router文档。\n安装\n1、直接下载 / CDN\nhttps://unpkg.com/vue-router/dist/vue-router.js\nNPM\n推荐使用淘宝镜像：\ncnpm install vue-router\n简单实例\nVue.js + vue-router 可以很简单的实现单页应用。\n<router-link> 是一个组件，该组件用于设置一个导航链接，切换不同 HTML 内容。\nto 属性为目标地址， 即要显示的内容。\n以下实例中我们将 vue-router 加进来，然后配置组件和路由映射，再告诉 vue-router 在哪里渲染它们。代码如下所示：\nHTML 代码",
+    "examples": [
+     "<script src=\"https://unpkg.com/vue/dist/vue.js\"></script>\n<script src=\"https://unpkg.com/vue-router/dist/vue-router.js\"></script>\n<div id=\"app\">\n<h1>Hello App!</h1>\n<p>\n<!-- 使用 router-link 组件来导航. -->\n<!-- 通过传入 `to` 属性指定链接. -->\n<!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->\n<router-link to=\"/foo\">Go to Foo</router-link>\n<router-link to=\"/bar\">Go to Bar</router-link>\n</p>\n<!-- 路由出口 -->\n<!-- 路由匹配到的组件将渲染在这里 -->\n<router-view></router-view>\n</div>"
+    ]
+   },
+   {
+    "title": "Vue.js 起步",
+    "url": "https://www.runoob.com/vue2/vue-start.html",
+    "body": "每个 Vue 应用都需要通过实例化 Vue 来实现。\n语法格式如下：\nvar vm = new Vue({\n // 选项\n})\n接下来让我们通过实例来看下 Vue 构造器中需要哪些内容：\n实例",
+    "examples": [
+     "<div id=\"vue_det\">\n<h1>site : {{site}}</h1>\n<h1>url : {{url}}</h1>\n<h1>{{details()}}</h1>\n</div>\n<script type=\"text/javascript\">\n    var vm = new Vue({\n        el: '#vue_det',\n        data: {\n            site: \"菜鸟教程\",\n            url: \"www.runoob.com\",\n            alexa: \"10000\"\n        },\n        methods: {\n            details: function() {\n                return  this.site + \" - 学的不仅是技术，更是梦想！\";\n            }\n        }\n    })\n</script>"
+    ]
+   },
+   {
+    "title": "Vue.js 模板语法",
+    "url": "https://www.runoob.com/vue2/vue-template-syntax.html",
+    "body": "Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。\nVue.js 的核心是一个允许你采用简洁的模板语法来声明式的将数据渲染进 DOM 的系统。\n结合响应系统，在应用状态改变时， Vue 能够智能地计算出重新渲染组件的最小代价并应用到 DOM 操作上。\n插值\n文本\n数据绑定最常见的形式就是使用 {{...}}（双大括号）的文本插值：\n文本插值",
+    "examples": [
+     "<div id=\"app\">\n<p>{{ message }}</p>\n</div>"
+    ]
+   },
+   {
+    "title": "Vue.js 过渡 & 动画",
+    "url": "https://www.runoob.com/vue2/vue-transitions.html",
+    "body": "本章节我们主要讨论 Vue.js 的过渡效果与动画效果。\n过渡\nVue 在插入、更新或者移除 DOM 时，提供多种不同方式的应用过渡效果。\nVue 提供了内置的过渡封装组件，该组件用于包裹要实现过渡效果的组件。\n语法格式\n<transition name = \"nameoftransition\">\n <div></div>\n</transition>\n我们可以通过以下实例来理解 Vue 的过渡是如何实现的：\n实例",
+    "examples": [
+     "<div id = \"databinding\">\n<button v-on:click = \"show = !show\">点我</button>\n<transition name = \"fade\">\n<p v-show = \"show\" v-bind:style = \"styleobj\">动画实例</p>\n</transition>\n</div>\n<script type = \"text/javascript\">\nvar vm = new Vue({\nel: '#databinding',\n    data: {\n        show:true,\n        styleobj :{\n            fontSize:'30px',\n            color:'red'\n        }\n    },\n    methods : {\n    }\n});\n</script>"
+    ]
+   },
+   {
+    "title": "Vue.js 教程",
+    "url": "https://www.runoob.com/vue2/vue-tutorial.html",
+    "body": "Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。\nVue 只关注视图层， 采用自底向上增量开发的设计。\nVue 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。\nVue 学习起来非常简单，本教程基于 Vue 2.1.8 版本测试，Vue3 请参阅 Vue3 教程。\nVue 2.0 在 2023 年 12 月 31 日停止更新。",
+    "examples": []
+   },
+   {
+    "title": "Vue.js 监听属性",
+    "url": "https://www.runoob.com/vue2/vue-watch.html",
+    "body": "本章节，我们将为大家介绍 Vue.js 监听属性 watch，我们可以通过 watch 来响应数据的变化。\n以下实例通过使用 watch 实现计数器：\n实例",
+    "examples": [
+     "<div id = \"app\">\n<p style = \"font-size:25px;\">计数器: {{ counter }}</p>\n<button @click = \"counter++\" style = \"font-size:25px;\">点我</button>\n</div>\n<script type = \"text/javascript\">\nvar vm = new Vue({\n    el: '#app',\n    data: {\n        counter: 1\n    }\n});\nvm.$watch('counter', function(nval, oval) {\n    alert('计数器值的变化 :' + oval + ' 变为 ' + nval + '!');\n});\n</script>"
+    ]
+   },
+   {
+    "title": "Vue.js Ajax(axios)",
+    "url": "https://www.runoob.com/vue2/vuejs-ajax-axios.html",
+    "body": "Vue.js 2.0 版本推荐使用 axios 来完成 ajax 请求。\nAxios 是一个基于 Promise 的 HTTP 库，可以用在浏览器和 node.js 中。\nGithub开源地址： https://github.com/axios/axios\n安装方法\n使用 cdn:\n<script src=\"https://unpkg.com/axios/dist/axios.min.js\"></script>\n或\n<script src=\"https://cdn.staticfile.org/axios/0.18.0/axios.min.js\"></script>\n使用 npm:\n$ npm install axios\n使用 bower:\n$ bower install axios\n使用 yarn:\n$ yarn add axios\n浏览器支持情况\nGET 方法\n我们可以简单的读取 JSON 数据：\nGET 实例",
+    "examples": [
+     "new Vue({\nel: '#app',\n  data () {\nreturn {\ninfo: null\n}\n},\n  mounted () {\naxios\n      .get('https://www.runoob.com/try/ajax/json_demo.json')\n      .then(response => (this.info = response))\n      .catch(function (error) { // 请求失败处理\nconsole.log(error);\n      });\n  }\n})"
+    ]
+   },
+   {
+    "title": "Vue.js Ajax(vue-resource)",
+    "url": "https://www.runoob.com/vue2/vuejs-ajax.html",
+    "body": "Vue 要实现异步加载需要使用到 vue-resource 库。\nVue.js 2.0 版本推荐使用 axios 来完成 ajax 请求。\n<script src=\"https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js\"></script>\nGet 请求\n以下是一个简单的 Get 请求实例，请求地址是一个简单的 txt 文本：\n实例",
+    "examples": [
+     "window.onload = function(){\nvar vm = new Vue({\nel:'#box',\n        data:{\nmsg:'Hello World!',\n        },\n        methods:{\nget:function(){\n//发送get请求\nthis.$http.get('/try/ajax/ajax_info.txt').then(function(res){\ndocument.write(res.body);    \n                },function(){\nconsole.log('请求失败处理');\n                });\n            }\n}\n});\n}"
+    ]
+   },
+   {
+    "title": "Vue.js 响应接口",
+    "url": "https://www.runoob.com/vue2/vuejs-reactive.html",
+    "body": "Vue 可以添加数据动态响应接口。\n例如以下实例，我们通过使用 $watch 属性来实现数据的监听，$watch 必须添加在 Vue 实例之外才能实现正确的响应。\n实例中通过点击按钮计数器会加 1。setTimeout 设置 10 秒后计算器的值加上 20 。\n实例",
+    "examples": [
+     "<div id = \"app\">\n<p style = \"font-size:25px;\">计数器: {{ counter }}</p>\n<button @click = \"counter++\" style = \"font-size:25px;\">点我</button>\n</div>\n<script type = \"text/javascript\">\nvar vm = new Vue({\n    el: '#app',\n    data: {\n        counter: 1\n    }\n});\nvm.$watch('counter', function(nval, oval) {\n    alert('计数器值的变化 :' + oval + ' 变为 ' + nval + '!');\n});\nsetTimeout(\n    function(){\n        vm.counter += 20;\n    },10000\n);\n</script>"
+    ]
+   }
+  ]
+ }
+}

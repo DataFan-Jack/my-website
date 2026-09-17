@@ -1,0 +1,324 @@
+{
+ "tutorial": {
+  "name": "Foundation5",
+  "category": "前端开发",
+  "desc": "Foundation 用于开发响应式的 HTML, CSS and JavaSc",
+  "url": "https://www.runoob.com/foundation/",
+  "chapters": [
+   {
+    "title": "Foundation 提醒框",
+    "url": "https://www.runoob.com/foundation/foundation-alerts.html",
+    "body": "Foundation 可以很简单的创建一个提醒框：\n提醒框可以使用 .alert-box 类创建, 可以添加可选的类： .secondary, .success, .info, .warning \n或 \n.alert:\n实例\n尝试一下 »",
+    "examples": [
+     "<div data-alert class=\"alert-box\">  This is a \n\tdefault alert box.\n</div><div data-alert \n\tclass=\"alert-box secondary\">  This is a secondary alert box.\n</div><div data-alert class=\"alert-box success\">  \n\t<strong>Success!</strong> This alert box indicates a successful or positive \n\taction.</div>\n<div data-alert class=\"alert-box info\">  <strong>Info!</strong> \n\tThis alert box indicates a neutral informative change or action.</div><div\ndata-alert class=\"alert-box warning\">  <strong>Warning!</strong> \n\tThis alert box indicates a warning that might need attention.</div>\n<div data-alert class=\"alert-box alert\">  <strong>Alert!</strong> \n\tThis alert box indicates a dangerous or potentially negative action.\n</div>"
+    ]
+   },
+   {
+    "title": "Foundation 按钮组",
+    "url": "https://www.runoob.com/foundation/foundation-button-groups.html",
+    "body": "按钮组\nFoundation 可以在同一行内创建一系列的按钮。\n可以使用 <ul> 元素并添加 .button-group 类来创建按钮组：\n实例\n尝试一下 »",
+    "examples": [
+     "<ul class=\"button-group\">  <li><button type=\"button\"\nclass=\"button\">Apple</button></li>  <li><button type=\"button\"\nclass=\"button\">Samsung</button></li>  <li><button type=\"button\"\nclass=\"button\">Sony</button></li></ul>"
+    ]
+   },
+   {
+    "title": "Foundation 按钮",
+    "url": "https://www.runoob.com/foundation/foundation-buttons.html",
+    "body": "按钮样式\nFoundation 提供了 6 种按钮样式。 .button 类创建了一个蓝色的按钮并附有内边距。不同颜色按钮类为： .secondary, .success, .info, .warning 或 .alert:\n实例\n尝试一下 »",
+    "examples": [
+     "<button type=\"button\" class=\"button\">Default</button><button\ntype=\"button\" class=\"button secondary\">Secondary</button><button\ntype=\"button\" class=\"button success\">Success</button><button\ntype=\"button\" class=\"button info\">Info</button><button type=\"button\"\nclass=\"button warning\">Warning</button><button type=\"button\"\nclass=\"button alert\">Alert</button>"
+    ]
+   },
+   {
+    "title": "Foundation 折叠列表",
+    "url": "https://www.runoob.com/foundation/foundation-collapse.html",
+    "body": "在你想隐藏部分内容的显示时，可以使用折叠列表。\n实例\n尝试一下 »",
+    "examples": [
+     "<ul class=\"accordion\" data-accordion>  <li\nclass=\"accordion-navigation\">    <a href=\"#demo\">Simple \n\tCollapsible</a>    <div id=\"demo\" class=\"content\">      \n\t菜鸟教程 -- 学的不仅是技术，更是梦想！！！    </div>  </li>\n</ul><!-- 初始化 Foundation JS --><script>\n\t$(document).ready(function() {    \n\t$(document).foundation();})\n</script>"
+    ]
+   },
+   {
+    "title": "Foundation 下拉菜单",
+    "url": "https://www.runoob.com/foundation/foundation-dropdowns.html",
+    "body": "Foundation 下拉菜单允许用户从预定义的下拉列表中选取一个值：\n实例\n尝试一下 »",
+    "examples": [
+     "<!-- Trigger the Dropdown --><a href=\"#\" data-dropdown=\"id01\" class=\"button dropdown\">Dropdown Button</a>\n<!-- Dropdown content --><ul id=\"id01\" data-dropdown-content class=\"f-dropdown\">  <li><a\nhref=\"#\">Link 1</a></li>  <li><a href=\"#\">Link 2</a></li>  \n\t<li><a href=\"#\">Link 3</a></li></ul>\n<!-- Initialize Foundation JS --><script>\n\t$(document).ready(function() {    \n\t$(document).foundation();})\n</script>"
+    ]
+   },
+   {
+    "title": "Foundation 均衡器(Equalizer)",
+    "url": "https://www.runoob.com/foundation/foundation-equalizer.html",
+    "body": "我们可以在容器元素添加 data-equalizer 属性，并为每个子元素添加 data-equalizer-watch 属性来创建一个相同高度的均衡器。最高的元素决定了其他元素的高度。\n注意: 均衡器需要使用 JavaScript，所以你需要初始化 Foundation JS:\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"row\" data-equalizer>  <div class=\"medium-4 columns \n\tpanel\" data-equalizer-watch>    Lorem ipsum...  </div>  \n\t<div class=\"medium-4 columns panel\" data-equalizer-watch>\n\t    Sed ut...  </div>  <div class=\"medium-4 columns panel\"\ndata-equalizer-watch>    Lorem ipsum...  </div></div>\n<!-- Initialize Foundation JS --><script>\n\t$(document).ready(function() {    \n\t$(document).foundation();})\n</script>"
+    ]
+   },
+   {
+    "title": "Foundation 表单",
+    "url": "https://www.runoob.com/foundation/foundation-forms.html",
+    "body": "Foundation 表单控制会自动设置为全局样式:\n所有 <textarea>, \n<select> 及 <input> 元素宽度都为 100%，且带有外边距、内边距、阴影和鼠标移动效果。\n实例\n尝试一下 »",
+    "examples": [
+     "<form> \n\tInput:  <input type=\"text\" placeholder=\"Name\">  Textarea:  <textarea\nrows=\"4\" placeholder=\"Address\"></textarea>  Select:  <select>    \n\t<option>1</option>    <option>2</option>    <option>3</option>    <option>4</option>  </select>\n</form>"
+    ]
+   },
+   {
+    "title": "Foundation 起步",
+    "url": "https://www.runoob.com/foundation/foundation-get-started.html",
+    "body": "什么是 Foundation？\nFoundation 是一个免费的前端框架，用于快速开发。\nFoundation 包含了 HTML 和 CSS 的设计模板，提供多种 Web 上的 UI 组件，如表单、按钮、Tabs 等等。同时也提供了多种 JavaScript 插件。\nFoundation 移动优先，可创建响应式网页。\nFoundation 适用于初学者和专业人士。\nFoundation 已使用在 Facebook, eBay, Samsung, Amazon, Disney等。\n什么是响应式网页设计？\n响应式Web设计(Responsive Web design)的理念是：\n页面的设计与开发应当根据用户行为以及设备环境(系统平台、屏幕尺寸、屏幕定向等)进行相应的响应和调整。\n从哪里下载 Foundation?\n你可以通过以下两种方式来获取 Foundation：\n1、从官网下载最新版本：http://foundation.zurb.com/。\n2、使用 Staticfile 提供的CDN（推荐）：\n<!-- css 文件 -->\n<link rel=\"stylesheet\" href=\"https://cdn.staticfile.net/foundation/5.5.3/css/foundation.min.css\">\n\n<!-- jQuery 库 -->\n<script src=\"https://cdn.staticfile.net/foundation/5.5.3/js/vendor/jquery.js\"></script>\n\n<!-- JavaScript 文件 -->\n<script src=\"https://cdn.staticfile.net/foundation/5.5.3/js/foundation.min.js\"></script>\n\n<!-- modernizr.js 文件 -->\n<script src=\"https://cdn.staticfile.net/foundation/5.5.3/js/vendor/modernizr.js\"></script>\n本站静态 CDN 基于阿里云服务。\nFoundation 使用 CDN 的优势:\nFoundation 使用 CDN 提高了企业站点(尤其含有大量图片和静态页面站点)的访问速度，并大大提高以上性质站点的稳定性为什么使用 modernizr?Some \nFoundation 的组件使用了比较前前沿的 HTML5 和 CSS3 特性，但不是所有浏览器都支持。 Modernizr 是一个用于检测用户浏览器HTML5和CSS3特性的JavaScript库 - 让组件能在所有浏览器上正常运行。\n使用 Foundation 创建页面\n1. 添加 HTML5 doctype\nFoundation 使用 HTML 元素和 CSS 属性，所以需要添加 HTML5 doctype 文档类型声明。\n同时我们可以设置文档的语言属性 lang 及字符编码：",
+    "examples": [
+     "<!DOCTYPE html><html lang=\"zh-cn\">  <head>    \n  <meta charset=\"utf-8\">   </head></html>"
+    ]
+   },
+   {
+    "title": "Foundation 块状网格",
+    "url": "https://www.runoob.com/foundation/foundation-grid-block.html",
+    "body": "块状网格用于均分页面内容：例如一行内要显示四张图片，不管什么屏幕下都需要均分宽度。\n可以使用 <ul> 元素加上 .small|medium|large-block-grid-num \n类来创建块状网格。num 用于指定均分是数量：\n实例\n尝试一下 »",
+    "examples": [
+     "<ul class=\"small-block-grid-3\">  <li><img src=\"newyork.jpg\"\nalt=\"New York\"></li>  <li><img src=\"paris.jpg\" alt=\"Paris\"></li>  \n\t<li><img src=\"sanfran.jpg\" alt=\"San Francisco\"></li></ul>"
+    ]
+   },
+   {
+    "title": "Foundation 网格实例",
+    "url": "https://www.runoob.com/foundation/foundation-grid-examples.html",
+    "body": "以下我们收集了一些网格常用的实例。\n三个均等列\n该实例演示了如何创建三个均等列\n(33.3%/33.3%/33.3%) ，在中型和大型设备上显示三个列，在小型设备上自动堆叠：\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"row\">  <div class=\"medium-4 columns\" style=\"background-color:yellow;\">    \n\t<p>.medium-4</p>  </div>  <div class=\"medium-4 columns\"\nstyle=\"background-color:pink;\">    \n\t<p>.medium-4</p>  </div>  <div class=\"medium-4 columns\"\nstyle=\"background-color:yellow;\">    <p>.medium-4</p>  \n\t</div></div>"
+    ]
+   },
+   {
+    "title": "Foundation 网格 - 大型设备",
+    "url": "https://www.runoob.com/foundation/foundation-grid-large.html",
+    "body": "上一章节我们介绍了中型设备和小型设备的网格布局，小型设备上使用的比例为 25%/75% (.small-3 和 .small-9)，但在中型设备上使用的比例为 50%/50% (.medium-6 和 .medium-6)：\n<div class=\"small-3 medium-6 columns\">....</div>\n<div class=\"small-9 medium-6 columns\">....</div>\n在大型设备上我们推荐的比例为 33%/66%。\n提示: 大型设备的屏幕尺寸定义大于 64.0625em。\n大型设备上使用 .large-* 类。\n现在我们在大型设备上添加两列：\n<div class=\"small-3 medium-6 large-4 columns\">....</div>\n<div class=\"small-9 medium-6 large-8 columns\">....</div>\n解析\n小型设备两个列的比例为 25%/75% (.small-3 和 .small-9)\n中型设备两个列的比例为 50%/50% (.medium-6 和 .medium-6)\n大型设备两个列的比例为 33%/66% (.large-4 和 .large-8)\n实例\n尝试一下 »",
+    "examples": [
+     "<div\nclass=\"row\">  <div class=\"small-3\n\tmedium-6 large-4 columns\" style=\"background-color:yellow;\">    <p>菜鸟教程</p>  </div>  <div class=\"small-9\n\tmedium-6 large-8 columns\" style=\"background-color:pink;\">\n\t    <p>菜鸟教程</p>  </div></div>"
+    ]
+   },
+   {
+    "title": "Foundation 网格 - 中型设备",
+    "url": "https://www.runoob.com/foundation/foundation-grid-medium.html",
+    "body": "上一章节我们介绍了小型设备上我们使用 .small-* 类来设置，网格比例为 25%/75%：\n<div class=\"small-3 columns\">....</div>\n<div class=\"small-9 columns\">....</div>\n在中型设备上我们推荐的比例为 50%/50%。\n提示: 中型设备的屏幕尺寸定义在 40.0625em 到 64.0624em 之间。\n中型设备上使用 .medium-* 类。\n现在我们在中型设备上添加两列：\n<div class=\"small-3 medium-6 columns\">....</div>\n<div class=\"small-9 medium-6 columns\">....</div>\n以上实例设置了两个列，比例为 25% 和 75% (Foundation 是移动优先: 如果没有特别说明，在大型设备上会继承 .small 类的代码):\n小型设备上使用的比例为 25%/75% (.small-3 和 .small-9)。但在中型设备上使用的比例为 50%/50% \n(.medium-6 和 .medium-6) 。\n实例\n尝试一下 »",
+    "examples": [
+     "<div\nclass=\"row\">  <div class=\"small-3\n\tmedium-6 columns\" style=\"background-color:yellow;\">    <p>菜鸟教程</p>  </div>  <div class=\"small-9\n\tmedium-6 columns\" style=\"background-color:pink;\">\n\t    <p>菜鸟教程</p>  </div></div>"
+    ]
+   },
+   {
+    "title": "Foundation 网格 - 小型设备",
+    "url": "https://www.runoob.com/foundation/foundation-grid-small.html",
+    "body": "假设我们在小型设备上有一个简单的网格布局，两列，宽度比例为 25% 和 75%。\n提示: 小型设备的定义是屏幕小于 40.0625em。\n小型设备上我们使用 .small-* 类。\n<div class=\"small-3 columns\">....</div>\n<div class=\"small-9 columns\">....</div>\n以下实例设置了两个列，比例为 25% 和 75% (Foundation 是移动优先: 如果没有特别说明，在大型设备上会继承 .small 类的代码):\n.small in them and use those\".\n实例\n尝试一下 »",
+    "examples": [
+     "<div\nclass=\"row\">  <div class=\"small-3\n\tcolumns\" style=\"background-color:yellow;\">    <p>菜鸟教程</p>  </div>  <div class=\"small-9\n\tcolumns\" style=\"background-color:pink;\">\n\t    <p>菜鸟教程</p>  </div></div>"
+    ]
+   },
+   {
+    "title": "Foundation 网格 - 水平堆叠",
+    "url": "https://www.runoob.com/foundation/foundation-grid-stacked-to-horizontal.html",
+    "body": "以下实例创建了一个基本的网格系统，在 PC 和平板设备上它是水平平铺的，在手机等小型设备上它是水平堆叠的。\n实例\n尝试一下 »",
+    "examples": [
+     "<div\nclass=\"row\">  <div class=\"medium-6\n\tcolumns\" style=\"background-color:yellow;\">    <p>菜鸟教程</p>  </div>  <div class=\"medium-6\n\tcolumns\" style=\"background-color:pink;\">\n\t    <p>菜鸟教程</p>  </div></div>"
+    ]
+   },
+   {
+    "title": "Foundation 网格系统",
+    "url": "https://www.runoob.com/foundation/foundation-grid-system.html",
+    "body": "Foundation 网格系统为 12 列。\n如果你不需要 12 列，你可以合并一些列，创建一些更大宽度的列。\nFoundation 的网格系统是响应式的。 列会根据屏幕尺寸自动调整大小。在大尺寸屏幕上，可能是三列，小屏幕尺寸就可能是三个单列，按顺序排列。\n网格列\nFoundation 网格系统有三个列：\n.small (手机端)\n.medium (平板设备)\n.large (电脑设备：笔记本，台式机)\n以上类可以结合使用，创建更灵活的布局\n基本的网格结构\n以下是基本的 Foundation 网格结构实例:\n实例",
+    "examples": [
+     "<div\nclass=\"row\">  <div class=\"small|medium|large-num \n\t\tcolumns\"></div></div><div\nclass=\"row\">  <div class=\"small|medium|large-num \n\t\tcolumns\"></div>  \n\t<div class=\"small|medium|large-num columns\"></div>  \n\t<div class=\"small|medium|large-num columns\"></div></div><div\nclass=\"row\">  ...</div>"
+    ]
+   },
+   {
+    "title": "Foundation 图标",
+    "url": "https://www.runoob.com/foundation/foundation-icons.html",
+    "body": "Foundation 提供了 283 个图标，你可以使用css来定义它的样式尺寸。\n图标可用于文本，按钮，工具条，导航栏，表单等。\n以下是 Foundation 图标的实例：\n刷新按钮:\n检测图标:\n主页图标:\n图标语法\n创建图标语法格式如下:\n<i class=\"fi-name\"></i>\nname 部分替换为图标的名字。\n要使用图标我们需要在 <head> 部分添加图标的样式文件：\n<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/foundation-icons@2.0.0/foundation-icons.min.css\">\nIcon 实例\n以下演示了使用图标的实例:\n实例\n尝试一下 »",
+    "examples": [
+     "<p>Cloud icon: <i class=\"fi-cloud\"></i></p> <p>Cloud icon as a link:\n\t \n\t<a href=\"#\"><i class=\"fi-cloud\"></i></a></p><p>Styled Cloud icon: <i\nclass=\"fi-cloud\" style=\"font-size:35px;color:red;\"></i></p> <p>Home \n\ticon: <i class=\"fi-home\"></i></p><p>Home icon on a button:  <button\ntype=\"button\" class=\"button\">    <i class=\"fi-home\"></i> Home   </button>\n</p><p>Home icon on a green button:  <button type=\"button\"\nclass=\"button success\">    <i class=\"fi-home\"></i> Home   </button>\n</p><p>Home icon on a large, light blue link button:  <a href=\"#\"\nclass=\"button info large\">    <i class=\"fi-home\"></i> Home   </a></p>"
+    ]
+   },
+   {
+    "title": "Foundation 图片",
+    "url": "https://www.runoob.com/foundation/foundation-images.html",
+    "body": "Foundation 提供了响应式的图片，可以创建缩略图和图片弹窗：\n尝试一下 »缩略图\n在 <img> 元素外添加 <a> 元素将图片作为一个锚链接。\n在 <a> 标签中添加 .th 类将图片设置为缩略图。 鼠标移动到上面会显示一个浅蓝色外框:\n实例\n尝试一下 »",
+    "examples": [
+     "<a href=\"paris.jpg\" class=\"th\"> \n\t<img src=\"paris.jpg\" alt=\"Paris\"></a>"
+    ]
+   },
+   {
+    "title": "Foundation 输入框尺寸",
+    "url": "https://www.runoob.com/foundation/foundation-input-sizing.html",
+    "body": "使用网格的列来设置输入框的大小，如 .large-6, .medium-6, 等。\n更多网格系统知识，可以点击 网格系统 教程。\n实例\n尝试一下 »",
+    "examples": [
+     "<form> \n  <div class=\"row\">    <div class=\"large-10 medium-7 columns\">\n       \n  <label>large-10 medium-7 (100% on small)        <input type=\"text\"\nplaceholder=\"Name\">      </label>    </div>  </div>  <div class=\"row\">\n      <div class=\"small-5 columns\">      <label>small-5        <input type=\"text\"\nplaceholder=\"Name\">      </label>    </div>  </div>  <div class=\"row\">\n      <div class=\"medium-3 columns\">      <label>medium-3 (100% on small)        <input\ntype=\"text\" placeholder=\"Name\">      </label>    </div>  </div>\n</form>"
+    ]
+   },
+   {
+    "title": "Foundation Joyride",
+    "url": "https://www.runoob.com/foundation/foundation-joyride.html",
+    "body": "Joyride 是一个功能向导的 JavaScript 效果，创建实例如下：\n实例\n尝试一下 »",
+    "examples": [
+     "<!-- Elements that control the tour stops --><h3 id=\"first\">First \n\tstop!</h3><h3 id=\"second\">Second stop!</h3>\n<!-- The joyride: must be placed at the bottom of your page, but inside \n\t<body> --><ol class=\"joyride-list\" data-joyride>  <li data-id=\"first\">    \n\t<p>First stop. The ride has begun!</p>  </li>  <li data-id=\"second\">    \n\t<h4>Second Stop</h4>    <p>Any valid HTML will work \n\tinside the Joyride.</p>  </li>  <li data-button=\"End\">    \n\t<h4>End Stop</h4>    <p>The tour is over. You can either \n\tgo back to the previous stop or close it.</p>  </li></ol>\n<!-- Start Joyride Upon Initialization --><script>\n\t$(document).ready(function() {    $(document).foundation('joyride', \n\t'start');})\n</script>"
+    ]
+   },
+   {
+    "title": "Foundation 标签",
+    "url": "https://www.runoob.com/foundation/foundation-labels.html",
+    "body": ".label 类用于提供一些附加信息:\n实例\n尝试一下 »",
+    "examples": [
+     "<h2>Example <span class=\"label\">New</span></h2><h3>Example <span\nclass=\"label\">New</span></h3><h4>Example <span\nclass=\"label\">New</span></h4>"
+    ]
+   },
+   {
+    "title": "Foundation 列表",
+    "url": "https://www.runoob.com/foundation/foundation-lists.html",
+    "body": "在 HTML 中，无序列表 (<ul>) 实例如下:\n结果:\nList item\nList item\nList item\nList item",
+    "examples": [
+     "<ul>  <li>List item</li>  <li>List item</li>  <li>List item</li>\n\t  <li>List item</li></ul>"
+    ]
+   },
+   {
+    "title": "Foundation 麦哲伦（Magellan）导航",
+    "url": "https://www.runoob.com/foundation/foundation-magellan.html",
+    "body": "如何创建麦哲伦导航\n麦哲伦导航就是一个导航索引，创建方式如下:\n实例\n尝试一下 »",
+    "examples": [
+     "<div data-magellan-expedition=\"fixed\">  <dl class=\"sub-nav\">    \n  <dd data-magellan-arrival=\"page1\"><a href=\"#page1\">Page 1</a></dd>    \n  <dd data-magellan-arrival=\"page2\"><a href=\"#page2\">Page 2</a></dd>  \n  </dl></div><h3 data-magellan-destination=\"page1\">Page1</h3>\n<a name=\"page1\"></a>...\n<h3 data-magellan-destination=\"page2\">Page2</h3>\n<a name=\"page2\"></a>...<!-- Initialize Foundation JS --><script>$(document).ready(function() {    \n  $(document).foundation();})</script>"
+    ]
+   },
+   {
+    "title": "Foundation 模态框",
+    "url": "https://www.runoob.com/foundation/foundation-modal.html",
+    "body": "模态框是一个显示在页面头部的弹窗。\n我们可以在容器元素上(如 <div id=\"myModal\")使用唯一 ID，并添加 .reveal-modal 类和 data-reveal 属性来添加模态框。我们可以在任何元素上使用 data-reveal-id=\"id\" 属性阿里打开模态框。 id 必须与容器 id 一致(实例为 \"myModal\")。\n如果你希望在点击模态框之外的区域来关闭模态框。你可以在模态框的关闭按钮 <a> 标签上添加 .close-reveal-modal 类来实现。\n注意: 滑块需要使用 JavaScript。所以你需要初始化\nFoundation JS:\n实例\n尝试一下 »",
+    "examples": [
+     "<!-- Trigger the Modal --><button\ntype=\"button\" class=\"button\" data-reveal-id=\"myModal\">Click To Open Modal</button>\n<!-- The Modal Content --><div id=\"myModal\" class=\"reveal-modal\" data-reveal>  <h2>Heading in \n\tModal.</h2>  <p>Some text in the modal.</p>  <p>Some text in the \n\tmodal.</p>  <a class=\"close-reveal-modal\">&times;</a></div>\n<!-- Initialize Foundation JS --><script>\n\t$(document).ready(function() {    \n\t$(document).foundation();})\n</script>"
+    ]
+   },
+   {
+    "title": "Foundation 滑动导航(Off-Canvas)",
+    "url": "https://www.runoob.com/foundation/foundation-off-canvas.html",
+    "body": "侧边栏导航\nOff-Canvas 滑动导航现在逐渐在移动页面变得越来越流行了\n(点击菜单按钮菜单从左侧滑出):\n创建滑动导航\n创建滑动导航实例如下：\n实例\n尝试一下 »",
+    "examples": [
+     "<!-- 最外层div：页面布局 --><div class=\"off-canvas-wrap\"\ndata-offcanvas>  <!-- 内部元素: \"工具栏\" 内容 (图标, 链接, \n\t描述内容等)-->  <div class=\"inner-wrap\">    \n\t<nav class=\"tab-bar\">      <section\nclass=\"left-small\">        <a\nclass=\"left-off-canvas-toggle menu-icon\" href=\"#\"><span></span></a>      \n\t</section>      <section class=\"middle \n\ttab-bar-section\">        <h1\nclass=\"title\">Off-canvas Example</h1>      \n\t</section>    </nav>    <!-- 滑动菜单 -->    <aside\nclass=\"left-off-canvas-menu\">      <!-- Add \n\tlinks or other stuff here -->      <ul\nclass=\"off-canvas-list test\">        \n\t<li><label>Heading</label></li>        \n\t<li><a href=\"#\">Link 1</a></li>        \n\t<li><a href=\"#\">Link 2</a></li>        \n\t...      </ul>    </aside>\n    <!-- 主要内容 -->    <section\nclass=\"main-section\">      <h3>Lorem Ipsum</h3>      \n\t<p>....</p>    </section>    <!-- \n\t关闭菜单 -->    <a\nclass=\"exit-off-canvas\"></a>  </div> <!-- 结束内部内容 -->\n</div> <!-- 结束滑动菜单 --><!-- 初始化 Foundation JS --><script>\n\t$(document).ready(function() {    \n\t$(document).foundation();})\n</script>"
+    ]
+   },
+   {
+    "title": "Foundation 分页",
+    "url": "https://www.runoob.com/foundation/foundation-pagination.html",
+    "body": "如果你的网页有很多内容，就需要使用分页功能。\n要创建一个基础的分页功能需要在 <ul> 元素上加上 .pagination 类:\n实例\n尝试一下 »",
+    "examples": [
+     "<ul class=\"pagination\">  <li><a href=\"#\">1</a></li>  \n\t<li><a href=\"#\">2</a></li>  <li><a href=\"#\">3</a></li>  \n\t<li><a href=\"#\">4</a></li>  <li><a href=\"#\">5</a></li></ul>"
+    ]
+   },
+   {
+    "title": "Foundation 面板",
+    "url": "https://www.runoob.com/foundation/foundation-panels.html",
+    "body": "Foundation 面板是一个灰色边框，内容含有内边距的模块。可以使用 .panel 类来创建:\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"panel\">  <h3>标题</h3>  \n\t<p>文本内容..</p></div>"
+    ]
+   },
+   {
+    "title": "Foundation 价格表",
+    "url": "https://www.runoob.com/foundation/foundation-pricing-tables.html",
+    "body": "价格表可用于展示企业产品:\n实例\n尝试一下 »",
+    "examples": [
+     "<ul class=\"pricing-table\">  <li class=\"title\">Basic</li>  \n\t<li class=\"price\">$19.99</li>  <li class=\"description\">Great \n\tfor small business</li>  <li class=\"bullet-item\">24/7 \n\tSupport</li>  \n\t<li class=\"bullet-item\">15GB Storage</li>  <li\nclass=\"bullet-item\">1GB Bandwidth</li>  <li class=\"cta-button\"><a\nclass=\"button\" href=\"#\">Buy</a></li></ul>"
+    ]
+   },
+   {
+    "title": "Foundation 进度条",
+    "url": "https://www.runoob.com/foundation/foundation-progressbars.html",
+    "body": "Foundation 进度条可以作为程序处理的程度来显示：\n我们可以在 <div> 元素中使用 .progress 类来创建进度条，\n.meter 类用于子元素(<span>)。我们可以在 <span> 元素中设置进度百分比，如下所示：\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"progress\">  <span class=\"meter\"\nstyle=\"width:70%\"></span></div>"
+    ]
+   },
+   {
+    "title": "Foundation CSS 参考手册",
+    "url": "https://www.runoob.com/foundation/foundation-ref-helpers.html",
+    "body": "Foundation 默认设置\nFoundation 使用浏览器默认字体大小 (font-size:100%)。对于大多数桌面设备的浏览器来说，字体大小默认为 16px。对于移动设备的浏览器，字体默认大小为 12px。\n默认的字体为 \"Helvetica Neue\"， line-height 默认为 1.5。\n这些设置是适用于 <body> 元素内的元素。\n此外， <p> 元素与底部的外边距(margin-bottom) 为 1.25rem , line-height 为 1.6。\n文本\n以下的 HTML 元素，Foundation 设置了独立的样式渲染它，不会采用浏览器默认样式。点击 \"尝试一下\" 查看在线实例。\n元素\n描述\n在线实例\n<h1> - <h6>\nh1 - h6 标题\n尝试一下\n<a>\n浅蓝色的链接，鼠标移动到链接会有下划线\n尝试一下\n<small>\n浅灰色的副标题文本\n尝试一下\n<blockquote>\n引用内容模块\n尝试一下\n<strong>\n加粗文本\n尝试一下\n<em>\n斜体\n尝试一下\n<abbr>\n指定单词的缩写，使用该元素文本出现虚线下划线，鼠标移动上去会有提示信息\n尝试一下\n<kbd>\n接收键盘输入指令: CTRL + P\n尝试一下\n<hr>\n水平线\n尝试一下\n<code>\n代码片段\n尝试一下\n<ul>\n无序列表\n尝试一下\n<ol>\n有序列表\n尝试一下\n<dl>\n描述性列表\n尝试一下\n文本对齐\n使用 CSS 类来修改文本的对齐方式：\n类\n描述\n实例\n.text-left\n左对齐文本\n尝试一下\n.text-right\n右对齐文本\n尝试一下\n.text-center\n居中\n尝试一下\n.text-justify\n两端对齐\n尝试一下\n不同尺寸屏幕的对齐\n使用 CSS 类来修改文本的不同尺寸屏幕的对齐方式：\n类\n描述\n实例\n左对齐\n.small-text-left\n所有尺寸屏幕左对齐\n尝试一下\n.small-only-text-left\n小尺寸屏幕左对齐(宽度小于 40em )\n尝试一下\n.medium-text-left\n宽度大于 40.0625em 尺寸屏幕左对齐\n尝试一下\n.medium-only-text-left\n宽度在 40.0625em 到 64em 尺寸的屏幕左对齐\n尝试一下\n.large-text-left\n宽度大于 64.0625em 尺寸屏幕左对齐\n尝试一下\n.large-only-text-left\n宽度在 64.0625em 到 90em 尺寸的屏幕左对齐\n尝试一下\n.xlarge-text-left\n宽度大于 90.0625em 尺寸屏幕左对齐\n尝试一下\n.xlarge-only-text-left\n宽度在 90.0625em 到 120em 尺寸的屏幕左对齐\n尝试一下\n.xxlarge-text-left\n宽度大于 120em 尺寸屏幕左对齐\n尝试一下\n右对齐\n.small-text-right\n所有尺寸屏幕右对齐\n尝试一下\n.small-only-text-right\n小尺寸屏幕右对齐(宽度小于 40em )\n尝试一下\n.medium-text-right\n宽度大于 40.0625em 尺寸屏幕右对齐\n尝试一下\n.medium-only-text-right\n宽度在 40.0625em 到 64em 尺寸的屏幕右对齐\n尝试一下\n.large-text-right\n宽度大于 64.0625em 尺寸屏幕右对齐\n尝试一下\n.large-only-text-right\n宽度在 64.0625em 到 90em 尺寸的屏幕右对齐\n尝试一下\n.xlarge-text-right\n宽度大于 90.0625em 尺寸屏幕右对齐\n尝试一下\n.xlarge-only-text-right\n宽度在 90.0625em 到 120em 尺寸的屏幕右对齐\n尝试一下\n.xxlarge-text-right\n宽度大于 120em 尺寸屏幕右对齐\n尝试一下\n居中对齐\n.small-text-center\n所有尺寸屏幕居中对齐\n尝试一下\n.small-only-text-center\n小尺寸屏幕居中对齐(宽度小于 40em )\n尝试一下\n.medium-text-center\n宽度大于 40.0625em 尺寸屏幕居中对齐\n尝试一下\n.medium-only-text-center\n宽度在 40.0625em 到 64em 尺寸的屏幕居中对齐\n尝试一下\n.large-text-center\n宽度大于 64.0625em 尺寸屏幕居中对齐\n尝试一下\n.large-only-text-center\n宽度在 64.0625em 到 90em 尺寸的屏幕居中对齐\n尝试一下\n.xlarge-text-center\n宽度大于 90.0625em 尺寸屏幕居中对齐\n尝试一下\n.xlarge-only-text-center\n宽度在 90.0625em 到 120em 尺寸的屏幕居中对齐\n尝试一下\n.xxlarge-text-center\n宽度大于 120em 尺寸屏幕居中对齐\n尝试一下\n两端对齐\n.small-text-justify\n所有尺寸屏幕都两端对齐\n尝试一下\n.small-only-text-justify\n小尺寸屏幕两端对齐(宽度小于 40em )\n尝试一下\n.medium-text-justify\n宽度大于 40.0625em 尺寸屏幕两端对齐\n尝试一下\n.medium-only-text-justify\n宽度在 40.0625em 到 64em 尺寸的屏幕两端对齐\n尝试一下\n.large-text-justify\n宽度大于 64.0625em 尺寸屏幕两端对齐\n尝试一下\n.large-only-text-justify\n宽度在 64.0625em 到 90em 尺寸的屏幕两端对齐\n尝试一下\n.xlarge-text-justify\n宽度大于 90.0625em 尺寸屏幕两端对齐\n尝试一下\n.xlarge-only-text-justify\n宽度在 90.0625em 到 120em 尺寸的屏幕两端对齐\n尝试一下\n.xxlarge-text-justify\n宽度大于 120em 尺寸屏幕两端对齐\n尝试一下\n其他\n类\n描述\n实例\n.left\n元素向左浮动\n尝试一下\n.right\n元素向右浮动\n尝试一下\n.clearfix\n清除浮动 - 必须添加在浮动元素的父元素上\n.hide\n隐藏元素 (CSS display: none)\n尝试一下\n.list-inline\n将所有元素设置在同一行\n尝试一下\n.lead\n让 <p> 元素更突出\n尝试一下\n.subheader\n设置浅色的 <h1> - <h6> 元素\n尝试一下",
+    "examples": []
+   },
+   {
+    "title": "Foundation 图标参考手册",
+    "url": "https://www.runoob.com/foundation/foundation-ref-icons.html",
+    "body": "Foundation 图标\nFoundation 提供了 283 图标，你可以使用 CSS 来渲染她们：修改大小和颜色。\n图标创建语法格式如下：\n<i class=\"fi-name\"></i>\n语法中 name 部分为图标指定的名称。\n要使用图标，你可以将图片的样式文件放置在页面头部 <head> 部分:\n<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/foundation-icons@2.0.0/foundation-icons.min.css\">\n以上是菜鸟教程使用的图标样式类，大家可以共用。\n点我在新页面中查看图标。",
+    "examples": []
+   },
+   {
+    "title": "Foundation CSS 可见性",
+    "url": "https://www.runoob.com/foundation/foundation-ref-visibility.html",
+    "body": "根据屏幕尺寸显示元素\n以下类会根据设备(屏幕尺寸)来显示元素。\n类\n描述\n.show-for-small-only\n只在小型设备上显示元素 (屏幕宽度小于 40.0625em )\n.show-for-medium-up\n在中型及以上设备上显示元素 (屏幕宽度大于 40.0625em)\n.show-for-medium-only\n只在中型设备上显示元素 (屏幕宽度在 40.0625em 到 64.0625em 之间)\n.show-for-large-up\n在大型及以上设备上显示元素 (屏幕宽度大于 64.0625em)\n.show-for-large-only\n只在大型设备上显示元素 (屏幕宽度在 64.0625em 到 90.0625em 之间)\n.show-for-xlarge-up\n在更大型及以上设备上显示元素 (屏幕宽度大于 90.0625em)\n.show-for-xlarge-only\n只在更大型及以上设备上显示元素 (屏幕宽度在 90.0625em 到 120.0625em之间)\n.show-for-xxlarge-up\n在超大型及以上设备上显示元素 (屏幕宽度大于 120.0625em)\n以下实例演示了以上所有 .show- 类的可见性。\n<p class=\"show-for-small-only\">你在小型设备上。</p>\n<p class=\"show-for-medium-up\">你在中型、大型、更大型、超大型的设备上。</p>\n<p class=\"show-for-medium-only\">你在中型设备上。</p>\n<p class=\"show-for-large-up\">你在大型、更大型、超大型的设备上</p>\n<p class=\"show-for-large-only\">你在大型设备上。</p>\n<p class=\"show-for-xlarge-up\">你在更大型、超大型的设备上。</p>\n<p class=\"show-for-xlarge-only\">你在更大型设备上。</p>\n<p class=\"show-for-xxlarge-up\">你在超大型设备上。</p>\n尝试一下 »\n根据屏幕尺寸隐藏元素\n以下类会根据设备(屏幕尺寸)来隐藏元素。\n类\n描述\n.hide-for-small-only\n只在小型设备上隐藏元素 (屏幕宽度小于 40.0625em )\n.hide-for-medium-up\n在中型及以上设备上隐藏元素 (屏幕宽度大于 40.0625em)\n.hide-for-medium-only\n只在中型设备上隐藏元素 (屏幕宽度在 40.0625em 到 64.0625em 之间)\n.hide-for-large-up\n在大型及以上设备上隐藏元素 (屏幕宽度大于 64.0625em)\n.hide-for-large-only\n只在大型设备上隐藏元素 (屏幕宽度在 64.0625em 到 90.0625em 之间)\n.hide-for-xlarge-up\n在更大型及以上设备上隐藏元素 (屏幕宽度大于 90.0625em)\n.hide-for-xlarge-only\n只在更大型及以上设备上隐藏元素 (屏幕宽度在 90.0625em 到 120.0625em之间)\n.hide-for-xxlarge-up\n在超大型及以上设备上隐藏元素 (屏幕宽度大于 120.0625em)\n<p class=\"hide-for-small-only\">你不在小型设备上。</p>\n<p class=\"hide-for-medium-up\">你不在中型、大型、更大型、超大型的设备上。</p>\n<p class=\"hide-for-medium-only\">你不在中型设备上。</p>\n<p class=\"hide-for-large-up\">你不在大型、更大型、超大型的设备上。</p>\n<p class=\"hide-for-large-only\">你不在大型设备上。</p>\n<p class=\"hide-for-xlarge-up\">你不在更大型、超大型的设备上。</p>\n<p class=\"hide-for-xlarge-only\">你不在更大型设备上。</p>\n<p class=\"hide-for-xxlarge-up\">你不在超大型设备上。</p>\n尝试一下 »\n根据屏幕方向显示元素\n以下类会根据设备(屏幕尺寸)来隐藏元素。\n我们可以设置元素在不同方向是是否显示或隐藏。笔记本等桌面设备一般是横向的，但是手机和平板设备可以是横向或纵向，我们可以根据用户手机拿的方向来设置元素隐藏与显示：\n类\n描述\n.show-for-landscape\n在横向时显示元素（纵向隐藏）\n.show-for-portrait\n在纵向时显示元素（横向隐藏）\n下面实例根据使用的方向显示文本内容：\n实例\n尝试一下 »",
+    "examples": [
+     "<p class=\"show-for-landscape\">文本只在横向显示。</p><p class=\"show-for-portrait\">文本只在纵向显示。</p>"
+    ]
+   },
+   {
+    "title": "Foundation 侧边栏",
+    "url": "https://www.runoob.com/foundation/foundation-sidenav.html",
+    "body": "侧边栏导航\nFoundation 使用 <ul class=\"side-nav\"> 创建侧边栏:\n实例\n尝试一下 »",
+    "examples": [
+     "<ul class=\"side-nav\">  <li><a href=\"#\">Link 1</a></li>  \n\t<li><a href=\"#\">Link 2</a></li>  <li><a href=\"#\">Link 3</a></li>  \n\t<li><a href=\"#\">Link 4</a></li></ul>"
+    ]
+   },
+   {
+    "title": "Foundation 滑块",
+    "url": "https://www.runoob.com/foundation/foundation-sliders.html",
+    "body": "Foundation 滑块允许用户通过拖动来选取区间值:\n滑块可以通过使用 <div class=\"range-slider\" data-slider> 创建。在\n<div> 内, 添加两个 <span> 元素: <span class=\"range-slider-handle\"> 创建矩形滑块（蓝色背景），\n<span class=\"range-slider-active-segment\"> 是在滑块后的灰色横条，是滑块拖动区域。\n注意: 滑块需要使用 JavaScript。所以你需要初始化\nFoundation JS:\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"range-slider\" data-slider>  <span\nclass=\"range-slider-handle\"></span>  <span\nclass=\"range-slider-active-segment\"></span></div>\n<!-- Initialize Foundation JS --><script>\n\t$(document).ready(function() {    \n\t$(document).foundation();})\n</script>"
+    ]
+   },
+   {
+    "title": "Foundation 开关",
+    "url": "https://www.runoob.com/foundation/foundation-switches.html",
+    "body": "开关是在鼠标点击(手指敲击)下在 \"On\" 和 \"Off\" 状态下切换：\n切换开关使用 <div class=\"switch\"> 创建。\n<div> 内添加带有唯一 id 的 <input type=\"checkbox\"> ，\n<label> 元素的 for 属性需要与 <input type=\"checkbox\"> 的 id 相匹配：\n实例\n尝试一下 »",
+    "examples": [
+     "<div class=\"switch\">  <input id=\"mySwitch\" type=\"checkbox\">  \n\t<label for=\"mySwitch\"></label></div>"
+    ]
+   },
+   {
+    "title": "Foundation 表格",
+    "url": "https://www.runoob.com/foundation/foundation-tables.html",
+    "body": "Foundation 的 <table> 元素样式为灰色斑马条纹且包含四个边框：\n实例\n尝试一下 »",
+    "examples": [
+     "<table>  <thead>    <tr>      \n\t<th>Firstname</th>      <th>Lastname</th>      \n\t<th>Email</th>    </tr>  </thead>  <tbody>    \n\t<tr>      <td>John</td>      \n\t<td>Doe</td>      <td>john@example.com</td>    \n\t</tr>    <tr>      \n\t<td>Mary</td>      <td>Moe</td>      \n\t<td>mary@example.com</td>    </tr>    \n\t<tr>      <td>July</td>      \n\t<td>Dooley</td>      <td>july@example.com</td>    \n\t</tr>  </tbody></table>"
+    ]
+   },
+   {
+    "title": "Foundation 选项卡",
+    "url": "https://www.runoob.com/foundation/foundation-tabs.html",
+    "body": "选项卡导航可以很好的展示不同的内容，并可以对内容进行切换。\n选项卡使用 <ul class=\"tabs\" data-tab> 来创建, 各个选项使用 <li> 元素并加上 .tab-title 类来创建。\n提示: 当前选中项可以使用 .active 类。\n实例\n尝试一下 »",
+    "examples": [
+     "<ul class=\"tabs\" data-tab>  <li class=\"tab-title active\"><a href=\"#\">Home</a></li>  <li class=\"tab-title\"><a href=\"#\">Menu \n\t1</a></li>  \n\t<li class=\"tab-title\"><a href=\"#\">Menu 2</a></li>  <li\nclass=\"tab-title\"><a href=\"#\">Menu 3</a></li></ul>"
+    ]
+   },
+   {
+    "title": "Foundation 提示框",
+    "url": "https://www.runoob.com/foundation/foundation-tooltips.html",
+    "body": "提示框在鼠标移动到元素上后显示：\n我们可以在任何元素上添加 data-tooltip 属性来创建提示信息。使用 title 属性来设置提示信息的文本。\n注意: 滑块需要使用 JavaScript。所以你需要初始化\nFoundation JS:\n实例\n尝试一下 »",
+    "examples": [
+     "<span data-tooltip title=\"Hooray!\">Hover over me!</span>\n<!-- Initialize Foundation JS --><script>\n\t$(document).ready(function() {    \n\t$(document).foundation();})\n</script>"
+    ]
+   },
+   {
+    "title": "Foundation 顶部导航栏",
+    "url": "https://www.runoob.com/foundation/foundation-topbar.html",
+    "body": "顶部导航栏放在页面头部：\n实例\n尝试一下 »",
+    "examples": [
+     "<nav class=\"top-bar\" data-topbar>  <ul class=\"title-area\">    \n\t<li class=\"name\">      <!-- \n\t如果你不需要标题或图标可以删掉它 -->      <h1><a href=\"#\">WebSiteName</a></h1>    \n\t</li>      <!-- 小屏幕上折叠按钮: \n\t去掉 .menu-icon 类，可以去除图标。       \n\t如果需要只显示图片，可以删除 \"Menu\" 文本 -->    <li class=\"toggle-topbar menu-icon\"><a href=\"#\"><span>Menu</span></a></li>  \n\t</ul>  <section class=\"top-bar-section\">    \n\t<ul class=\"left\">      <li\nclass=\"active\"><a href=\"#\">Home</a></li>      \n\t<li><a href=\"#\">Page 1</a></li>      <li><a\nhref=\"#\">Page 2</a></li>      <li><a href=\"#\">Page \n\t3</a></li>     </ul>  </section></nav>\n<!-- 初始化 Foundation JS -->\n<script>\n\t$(document).ready(function() {    \n\t$(document).foundation();})\n</script>"
+    ]
+   },
+   {
+    "title": "Foundation5 教程",
+    "url": "https://www.runoob.com/foundation/foundation-tutorial.html",
+    "body": "Foundation 用于开发响应式的 HTML, CSS and JavaScript 框架。\nFoundation 是一个易用、强大而且灵活的框架,用于构建基于任何设备上的 Web 应用。\nFoundation 是一个以移动优先的流行框架。",
+    "examples": []
+   },
+   {
+    "title": "Foundation 文本",
+    "url": "https://www.runoob.com/foundation/foundation-typography.html",
+    "body": "Foundation 默认设置\nFoundation 使用浏览器默认字体大小 (font-size:100%)。对于大多数桌面浏览器来说，字体默认为 16px。对于大多数移动端浏览器来说，字体默认为 12px。默认的字体为 \"Helvetica Neue\"， line-height 默认为 1.5。\n以上默认的设置均是针对 <body> 元素。\nFoundation 文字排列设计\n本章节我们将讨论 Foundation 的文字排列设计。\n以下实例的真实样式请通过点击\"尝试一下\"按钮查看。\n<h1> - <h6>\nFoundation 渲染的 HTML 标题 (<h1> 到\n<h6>) 如下所示:\n实例",
+    "examples": [
+     "<h1>h1 标题</h1>\n<h2>h2 标题</h2>\n<h3>h3 标题</h3>\n<h4>h4 标题</h4>\n<h5>h5 标题</h5>\n<h6>h6 标题</h6>"
+    ]
+   }
+  ]
+ }
+}

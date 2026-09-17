@@ -1,0 +1,94 @@
+{
+ "tutorial": {
+  "name": "SciPy",
+  "category": "人工智能",
+  "desc": "SciPy 是一个开源的 Python 算法库和数学工具包。",
+  "url": "https://www.runoob.com/scipy/",
+  "chapters": [
+   {
+    "title": "SciPy 常量模块",
+    "url": "https://www.runoob.com/scipy/scipy-constants.html",
+    "body": "SciPy 常量模块 constants 提供了许多内置的数学常数。\n圆周率是一个数学常数，为一个圆的周长和其直径的比率，近似值约等于 3.14159，常用符号 来表示。\n以下实例输出圆周率：\n实例",
+    "examples": [
+     "from scipy import constants\n\nprint(constants.pi)"
+    ]
+   },
+   {
+    "title": "SciPy 图结构",
+    "url": "https://www.runoob.com/scipy/scipy-graph.html",
+    "body": "图结构是算法学中最强大的框架之一。\n图是各种关系的节点和边的集合，节点是与对象对应的顶点，边是对象之间的连接。\nSciPy 提供了 scipy.sparse.csgraph 模块来处理图结构。\n邻接矩阵\n邻接矩阵（Adjacency Matrix）是表示顶点之间相邻关系的矩阵。\n邻接矩阵逻辑结构分为两部分：V 和 E 集合，其中，V 是顶点，E 是边，边有时会有权重，表示节点之间的连接强度。\n用一个一维数组存放图中所有顶点数据，用一个二维数组存放顶点间关系（边或弧）的数据，这个二维数组称为邻接矩阵。\n看下下图实例：\n顶点有 A、B、C，边权重有 1 和 2。\nA 与 B 是连接的，权重为 1。\nA 与 C 是连接的，权重为 2。\nC 与 B 是没有连接的。\n这个邻接矩阵可以表示为以下二维数组：\n\n A B C\n A:[0 1 2] \n B:[1 0 0]\n C:[2 0 0]\n邻接矩阵又分为有向图邻接矩阵和无向图邻接矩阵。\n无向图是双向关系，边没有方向：\n有向图的边带有方向，是单向关系：\n注：上面两个图中的 D 节点是自环，自环是指一条边的两端为同一个节点。\n连接组件\n查看所有连接组件使用 connected_components() 方法。\n实例",
+    "examples": [
+     "import numpy as np\nfrom scipy.sparse.csgraph import connected_components\nfrom scipy.sparse import csr_matrix\n\narr = np.array([\n  [0, 1, 2],\n  [1, 0, 0],\n  [2, 0, 0]\n])\n\nnewarr = csr_matrix(arr)\n\nprint(connected_components(newarr))"
+    ]
+   },
+   {
+    "title": "SciPy 安装",
+    "url": "https://www.runoob.com/scipy/scipy-install.html",
+    "body": "本章节，我们使用 pip 工具来安装 SciPy 库，如果还未安装该工具，可以参考 Python pip 安装与使用。\n升级 pip：\npython3 -m pip install -U pip\n安装 scipy 库：\npython3 -m pip install -U scipy\n安装完成后，我们就可以通过 from scipy import module 来导入 scipy 的库：\nconstants 是 scipy 的常量模块。",
+    "examples": [
+     "from scipy import constants"
+    ]
+   },
+   {
+    "title": "SciPy 插值",
+    "url": "https://www.runoob.com/scipy/scipy-interpolation.html",
+    "body": "什么是插值？\n在数学的数值分析领域中，插值（英语：interpolation）是一种通过已知的、离散的数据点，在范围内推求新数据点的过程或方法。\n简单来说插值是一种在给定的点之间生成点的方法。\n例如：对于两个点 1 和 2，我们可以插值并找到点 1.33 和 1.66。\n插值有很多用途，在机器学习中我们经常处理数据缺失的数据，插值通常可用于替换这些值。\n这种填充值的方法称为插补。\n除了插补，插值经常用于我们需要平滑数据集中离散点的地方。\n如何在 SciPy 中实现插值？\nSciPy 提供了 scipy.interpolate 模块来处理插值。\n一维插值\n一维数据的插值运算可以通过方法 interp1d() 完成。\n该方法接收两个参数 x 点和 y 点。\n返回值是可调用函数，该函数可以用新的 x 调用并返回相应的 y，y = f(x)。\n对给定的 xs 和 ys 插值，从 2.1、2.2... 到 2.9：\n实例",
+    "examples": [
+     "from scipy.interpolate import interp1d\nimport numpy as np\n\nxs = np.arange(10)\nys = 2*xs + 1\n\ninterp_func = interp1d(xs, ys)\n\nnewarr = interp_func(np.arange(2.1, 3, 0.1))\n\nprint(newarr)"
+    ]
+   },
+   {
+    "title": "SciPy Matlab 数组",
+    "url": "https://www.runoob.com/scipy/scipy-matlab-arrays.html",
+    "body": "NumPy 提供了 Python 可读格式的数据保存方法。\nSciPy 提供了与 Matlab 的交互的方法。\nSciPy 的 scipy.io 模块提供了很多函数来处理 Matlab 的数组。\n以 Matlab 格式导出数据\nsavemat() 方法可以导出 Matlab 格式的数据。\n该方法参数有：\n\nfilename - 保存数据的文件名。\nmdict - 包含数据的字典。\ndo_compression - 布尔值，指定结果数据是否压缩。默认为 False。\n将数组作为变量 \"vec\" 导出到 mat 文件：\n实例",
+    "examples": [
+     "from scipy import io\nimport numpy as np\n\narr = np.arange(10)\n\nio.savemat('arr.mat', {\"vec\": arr})"
+    ]
+   },
+   {
+    "title": "SciPy 模块列表",
+    "url": "https://www.runoob.com/scipy/scipy-module.html",
+    "body": "以下列出了 SciPy 常用的一些模块及官网 API 地址：\n模块名\n功能\n参考文档\nscipy.cluster\n向量量化\ncluster API\nscipy.constants\n数学常量\nconstants API\nscipy.fft\n快速傅里叶变换\nfft API\nscipy.integrate\n积分\nintegrate API\nscipy.interpolate\n插值\ninterpolate API\nscipy.io\n数据输入输出\nio API\nscipy.linalg\n线性代数\nlinalg API\nscipy.misc\n图像处理\nmisc API\nscipy.ndimage\nN 维图像\nndimage API\nscipy.odr\n正交距离回归\nodr API\nscipy.optimize\n优化算法\noptimize API\nscipy.signal\n信号处理\nsignal API\nscipy.sparse\n稀疏矩阵\nsparse API\nscipy.spatial\n空间数据结构和算法\nspatial API\nscipy.special\n特殊数学函数\nspecial API\nscipy.stats\n统计函数\nstats.mstats API\n更多模块内容可以参考官方文档：https://docs.scipy.org/doc/scipy/reference/",
+    "examples": []
+   },
+   {
+    "title": "SciPy 优化器",
+    "url": "https://www.runoob.com/scipy/scipy-optimize.html",
+    "body": "SciPy 的 optimize 模块提供了常用的数值优化与方程求解算法实现。\n我们可以直接调用这些函数来解决实际问题，例如查找函数的最小值、最大值，或者求解方程的根等。\nNumPy 本身主要关注数组计算和线性代数运算，它提供了用于多项式求根的工具（如 numpy.roots），\n但并未提供通用的非线性方程数值求根接口。\n当我们需要求解一般形式的非线性方程时，就需要使用 SciPy 的优化模块。\n例如下面的非线性方程：\nx + cos(x)\n对于这类问题，可以使用 scipy.optimize.root 函数来求解。\n该函数常用的两个核心参数如下：\nfun - 表示方程的函数（返回值为 0 时即表示找到方程的根）\nx0 - 根的初始猜测值\nroot 函数返回一个结果对象（OptimizeResult），\n其中包含求解状态、是否成功、函数值以及最终解等信息。\n实际求得的解保存在返回对象的 x 属性中，示例如下：\n实例\n查找 x + cos(x) = 0 方程的根：",
+    "examples": [
+     "from scipy.optimize import root\nfrom math import cos\n\ndef eqn(x):\n    return x + cos(x)\n\nmyroot = root(eqn, 0)\n\nprint(myroot.x)\n# 查看更多信息\n# print(myroot)"
+    ]
+   },
+   {
+    "title": "Scipy 显著性检验",
+    "url": "https://www.runoob.com/scipy/scipy-significance-tests.html",
+    "body": "显著性检验（significance test）就是事先对总体（随机变量）的参数或总体分布形式做出一个假设，然后利用样本信息来判断这个假设（备择假设）是否合理，即判断总体的真实情况与原假设是否有显著性差异。或者说，显著性检验要判断样本与我们对总体所做的假设之间的差异是纯属机会变异，还是由我们所做的假设与总体真实情况之间不一致所引起的。 显著性检验是针对我们对总体所做的假设做检验，其原理就是\"小概率事件实际不可能性原理\"来接受或否定假设。\n显著性检验即用于实验处理组与对照组或两种不同处理的效应之间是否有差异，以及这种差异是否显著的方法。\nSciPy 提供了 scipy.stats 的模块来执行Scipy 显著性检验的功能。\n统计假设\n统计假设是关于一个或多个随机变量的未知分布的假设。随机变量的分布形式已知，而仅涉及分布中的一个或几个未知参数的统计假设，称为参数假设。检验统计假设的过程称为假设检验，判别参数假设的检验称为参数检验。\n零假设\n零假设（null hypothesis），统计学术语，又称原假设，指进行统计检验时预先建立的假设。 零假设成立时，有关统计量应服从已知的某种概率分布。\n当统计量的计算值落入否定域时，可知发生了小概率事件，应否定原假设。\n常把一个要检验的假设记作 H0，称为原假设（或零假设） (null hypothesis) ，与 H0 对立的假设记作 H1，称为备择假设(alternative hypothesis) 。\n在原假设为真时，决定放弃原假设，称为第一类错误，其出现的概率通常记作 α；\n在原假设不真时，决定不放弃原假设，称为第二类错误，其出现的概率通常记作 β\nα+β 不一定等于 1。\n通常只限定犯第一类错误的最大概率 α， 不考虑犯第二类错误的概率 β。这样的假设 检验又称为显著性检验，概率 α 称为显著性水平。\n最常用的 α 值为 0.01、0.05、0.10 等。一般情况下，根据研究的问题，如果放弃真假设损失大，为减少这类错误，α 取值小些 ，反之，α 取值大些。\n备择假设\n备择假设(alternative hypothesis)是统计学的基本概念之一，其包含关于总体分布的一切使原假设不成立的命题。备择假设亦称对立假设、备选假设。\n备择假设可以替代零假设。\n例如我们对于学生的评估，我们将采取：\n“学生比平均水平差” -— 作为零假设\n\n“学生优于平均水平” —— 作为替代假设。\n单边检验\n单边检验(one-sided test)亦称单尾检验，又称单侧检验，在假设检验中，用检验统计量的密度曲线和二轴所围成面积中的单侧尾部面积来构造临界区域进行检验的方法称为单边检验。\n当我们的假设仅测试值的一侧时，它被称为\"单尾测试\"。\n例子：\n对于零假设：\n“均值等于 k”\n我们可以有替代假设：\n“平均值小于 k”\n或\n“平均值大于 k”\n双边检验\n边检验(two-sided test)，亦称双尾检验、双侧检验.在假设检验中，用检验统计量的密度曲线和x轴所围成的面积的左右两边的尾部面积来构造临界区域进行检验的方法。\n当我们的假设测试值的两边时。\n例子：\n对于零假设：\n“均值等于 k”\n我们可以有替代假设：\n“均值不等于k”\n在这种情况下，均值小于或大于 k，两边都要检查。\n阿尔法值\n阿尔法值是显著性水平。\n显著性水平是估计总体参数落在某一区间内，可能犯错误的概率，用 α 表示。\n数据必须有多接近极端才能拒绝零假设。\n通常取为 0.01、0.05 或 0.1。\nP 值\nP 值表明数据实际接近极端的程度。\n\n比较 P 值和阿尔法值(alpha)来确定统计显著性水平。\n如果 p 值 <= alpha，我们拒绝原假设并说数据具有统计显著性，否则我们接受原假设。\nT 检验（T-Test）\nT 检验用于确定两个变量的均值之间是否存在显著差异，并判断它们是否属于同一分布。\n这是一个双尾测试。\n函数 ttest_ind() 获取两个相同大小的样本，并生成 t 统计和 p 值的元组。\n查找给定值 v1 和 v2 是否来自相同的分布：\n实例",
+    "examples": [
+     "import numpy as np\nfrom scipy.stats import ttest_ind\n\nv1 = np.random.normal(size=100)\nv2 = np.random.normal(size=100)\n\nres = ttest_ind(v1, v2)\n\nprint(res)"
+    ]
+   },
+   {
+    "title": "SciPy 稀疏矩阵",
+    "url": "https://www.runoob.com/scipy/scipy-sparse-matrix.html",
+    "body": "稀疏矩阵（英语：sparse matrix）指的是在数值分析中绝大多数数值为零的矩阵。反之，如果大部分元素都非零，则这个矩阵是稠密的(Dense)。\n在科学与工程领域中求解线性模型时经常出现大型的稀疏矩阵。\n上图中左边就是一个稀疏矩阵，可以看到包含了很多 0 元素，右边是稠密的矩阵，大部分元素不是 0。\n看一个简单例子：\n上述稀疏矩阵仅包含 9 个非零元素，另外包含 26 个零元。其稀疏度为 74%，密度为 26%。\nSciPy 的 scipy.sparse 模块提供了处理稀疏矩阵的函数。\n我们主要使用以下两种类型的稀疏矩阵：\nCSC - 压缩稀疏列（Compressed Sparse Column），按列压缩。\nCSR - 压缩稀疏行（Compressed Sparse Row），按行压缩。\n本章节我们主要使用 CSR 矩阵。\nCSR 矩阵\n我们可以通过向 scipy.sparse.csr_matrix() 函数传递数组来创建一个 CSR 矩阵。\n实例\n创建 CSR 矩阵。",
+    "examples": [
+     "import numpy as np\nfrom scipy.sparse import csr_matrix\n\narr = np.array([0, 0, 0, 0, 0, 1, 1, 0, 2])\n\nprint(csr_matrix(arr))"
+    ]
+   },
+   {
+    "title": "SciPy 空间数据",
+    "url": "https://www.runoob.com/scipy/scipy-spatial-data.html",
+    "body": "空间数据又称几何数据，它用来表示物体的位置、形态、大小分布等各方面的信息，比如坐标上的点。\nSciPy 通过 scipy.spatial 模块处理空间数据，比如判断一个点是否在边界内、计算给定点周围距离最近点以及给定距离内的所有点。\n三角测量\n三角测量在三角学与几何学上是一借由测量目标点与固定基准线的已知端点的角度，测量目标距离的方法。\n多边形的三角测量是将多边形分成多个三角形，我们可以用这些三角形来计算多边形的面积。\n拓扑学的一个已知事实告诉我们：任何曲面都存在三角剖分。\n假设曲面上有一个三角剖分， 我们把所有三角形的顶点总个数记为 p(公共顶点只看成一个)，边数记为 a，三角形的个数记为 n，则 e=p-a+n 是曲面的拓扑不变量。 也就是说不管是什么剖分，e 总是得到相同的数值。 e 被称为称为欧拉示性数。\n对一系列的点进行三角剖分点方法是 Delaunay() 三角剖分。\n实例\n通过给定的点来创建三角形：",
+    "examples": [
+     "import numpy as np\nfrom scipy.spatial import Delaunay\nimport matplotlib.pyplot as plt\n\npoints = np.array([\n  [2, 4],\n  [3, 4],\n  [3, 0],\n  [2, 2],\n  [4, 1]\n])\n\nsimplices = Delaunay(points).simplices    # 三角形中顶点的索引\n\nplt.triplot(points[:, 0], points[:, 1], simplices)\nplt.scatter(points[:, 0], points[:, 1], color='r')\n\nplt.show()"
+    ]
+   },
+   {
+    "title": "SciPy 教程",
+    "url": "https://www.runoob.com/scipy/scipy-tutorial.html",
+    "body": "SciPy 是一个开源的 Python 算法库和数学工具包。\nScipy 是基于 Numpy 的科学计算库，用于数学、科学、工程学等领域，很多有一些高阶抽象和物理模型需要使用 Scipy。\nSciPy 包含的模块有最优化、线性代数、积分、插值、特殊函数、快速傅里叶变换、信号处理和图像处理、常微分方程求解和其他科学与工程中常用的计算。",
+    "examples": []
+   }
+  ]
+ }
+}
