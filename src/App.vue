@@ -1226,20 +1226,11 @@ onBeforeUnmount(() => {
   gap: 20px;
   margin-top: 56px;
   padding: 24px;
-  height: calc(100vh - 56px);
+  min-height: calc(100vh - 80px);
   align-items: flex-start;
-  overflow: hidden;
-  box-sizing: border-box;
 }
 
-.t-main {
-  flex: 1;
-  min-width: 0;
-  min-height: 0;
-  overflow-y: auto;
-  scroll-snap-type: y proximity;
-  scrollbar-width: thin;
-}
+.t-main { flex: 1; min-width: 0; }
 
 .t-search {
   display: flex;
@@ -1276,8 +1267,6 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  scroll-snap-align: start;
-  scroll-margin-top: 16px;
 }
 
 .t-group-title::before {
@@ -1359,7 +1348,9 @@ onBeforeUnmount(() => {
 .t-sidebar {
   width: 260px;
   flex-shrink: 0;
-  align-self: stretch;
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 104px);
   background: rgba(20, 20, 42, 0.85);
   border-radius: 14px;
   overflow: hidden;
