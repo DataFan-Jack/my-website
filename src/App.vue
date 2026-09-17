@@ -631,8 +631,8 @@ onBeforeUnmount(() => {
           <h1>个人简历</h1>
           <p class="r-target">求职意向：大数据技术助理（实习）</p>
           <div class="r-contact">
-            <span>男 · 19岁 · 大专</span>
-            <span>✉ 17745052115@163.com</span>
+            <span>男 · 20岁 · 大专</span>
+            <span>✉ yuj893165@gmail.com</span>
           </div>
         </header>
 
