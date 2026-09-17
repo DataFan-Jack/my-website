@@ -186,7 +186,8 @@ function fallbackCopy(text, done) {
 
 const categories = computed(() => {
   if (!tutorial.value) return []
-  return [...new Set(tutorial.value.tutorials.map(t => t.category))]
+  const list = [...new Set(tutorial.value.tutorials.map(t => t.category))]
+  return list.filter(c => c !== '其他').concat(list.includes('其他') ? ['其他'] : [])
 })
 
 const filteredTutorials = computed(() => {
