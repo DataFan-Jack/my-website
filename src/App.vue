@@ -1235,6 +1235,7 @@ onBeforeUnmount(() => {
 .t-main {
   flex: 1;
   min-width: 0;
+  min-height: 0;
   overflow-y: auto;
   scroll-snap-type: y proximity;
   scrollbar-width: thin;
@@ -1358,9 +1359,7 @@ onBeforeUnmount(() => {
 .t-sidebar {
   width: 260px;
   flex-shrink: 0;
-  position: sticky;
-  top: 80px;
-  max-height: calc(100vh - 104px);
+  align-self: stretch;
   background: rgba(20, 20, 42, 0.85);
   border-radius: 14px;
   overflow: hidden;
