@@ -202,7 +202,10 @@ const filteredTutorials = computed(() => {
 const filteredGroups = computed(() => {
   const map = {}
   for (const t of filteredTutorials.value) (map[t.category] ||= []).push(t)
-  return Object.entries(map).map(([cat, items]) => ({ cat, items }))
+  const order = categories.value
+  return order
+    .filter(cat => map[cat])
+    .map(cat => ({ cat, items: map[cat] }))
 })
 
 // 视图/章节切换时清除残留选区，避免旧高亮映射到新内容
@@ -1345,6 +1348,9 @@ onBeforeUnmount(() => {
 .t-sidebar {
   width: 260px;
   flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 104px);
   background: rgba(20, 20, 42, 0.85);
   border-radius: 14px;
   overflow: hidden;
