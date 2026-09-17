@@ -1226,11 +1226,19 @@ onBeforeUnmount(() => {
   gap: 20px;
   margin-top: 56px;
   padding: 24px;
-  min-height: calc(100vh - 80px);
+  height: calc(100vh - 56px);
   align-items: flex-start;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.t-main { flex: 1; min-width: 0; }
+.t-main {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
+  scrollbar-width: thin;
+}
 
 .t-search {
   display: flex;
@@ -1267,6 +1275,8 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   gap: 10px;
+  scroll-snap-align: start;
+  scroll-margin-top: 16px;
 }
 
 .t-group-title::before {
