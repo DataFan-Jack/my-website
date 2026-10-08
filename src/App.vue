@@ -65,6 +65,7 @@ const currentTutorial = ref(null) // 当前打开的教程
 const category = ref('全部教程') // 分类筛选
 const searchText = ref('') // 搜索关键词
 const activeChapter = ref(0)
+const tocOpen = ref(false) // 移动端：章节目录折叠
 
 function showTutorials() { setHash('#/tutorials'); suggestLight() }
 function goHome() { setHash('#/') }
@@ -613,11 +614,18 @@ onBeforeUnmount(() => {
 
     <!-- 全部教程列表（本地学习 demo） -->
     <main v-else-if="view === 'tutorials'" class="tutorials-view">
-      <aside class="t-sidebar">
+      <div class="t-mobile-toc" @click="tocOpen = !tocOpen">
+        <span class="t-mobile-toc-title">教程分类</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"
+          class="t-mobile-toc-arrow" :class="{ open: tocOpen }">
+          <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <aside class="t-sidebar" :class="{ 't-toc-hidden': !tocOpen }">
         <h3>全部教程</h3>
         <nav class="t-toc">
-          <button :class="{ active: category === '全部教程' }" @click="category = '全部教程'">全部教程</button>
-          <button v-for="c in categories" :key="c" :class="{ active: category === c }" @click="category = c">{{ c }}</button>
+          <button :class="{ active: category === '全部教程' }" @click="category = '全部教程'; tocOpen = false">全部教程</button>
+          <button v-for="c in categories" :key="c" :class="{ active: category === c }" @click="category = c; tocOpen = false">{{ c }}</button>
         </nav>
       </aside>
       <div class="t-main">
@@ -646,7 +654,14 @@ onBeforeUnmount(() => {
 
     <!-- 单个教程（章节 + 内容） -->
     <main v-else-if="view === 'tutorial'" class="tutorial-view">
-      <aside class="t-sidebar">
+      <div class="t-mobile-toc" @click="tocOpen = !tocOpen">
+        <span class="t-mobile-toc-title">章节目录</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"
+          class="t-mobile-toc-arrow" :class="{ open: tocOpen }">
+          <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <aside class="t-sidebar" :class="{ 't-toc-hidden': !tocOpen }">
         <button class="t-back" @click="backToTutorials">返回全部教程</button>
         <h3>{{ currentTutorial?.name }}</h3>
         <nav class="t-toc">
@@ -654,7 +669,7 @@ onBeforeUnmount(() => {
             v-for="(ch, i) in currentTutorial?.chapters || []"
             :key="i"
             :class="{ active: i === activeChapter }"
-            @click="selectChapter(i)">{{ ch.title }}</button>
+            @click="selectChapter(i); tocOpen = false">{{ ch.title }}</button>
         </nav>
       </aside>
       <div class="t-content">
@@ -1625,13 +1640,14 @@ onBeforeUnmount(() => {
   box-sizing: border-box;
 }
 
+.t-mobile-toc { display: none; } /* 移动端章节目录按钮，默认隐藏 */
+
 .t-sidebar {
   width: 260px;
   flex-shrink: 0;
   align-self: stretch;
   background: rgba(20, 20, 42, 0.85);
-  border-radius: 14px;
-  overflow: hidden;
+  border-radius: 14px;  overflow: hidden;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -2055,5 +2071,104 @@ onBeforeUnmount(() => {
     aspect-ratio: 560 / 460;
   }
   .flip-card { width: 100%; max-width: 340px; height: 72vw; max-height: 250px; }
+}
+
+/* === 卡片响应式布局（PC 保持多列，移动端单列占满） === */
+
+/* ≤1200px：Tablet 两列 */
+@media (max-width: 1200px) {
+  .t-cards {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+}
+
+/* ≤900px：教程/人生指南侧栏+主区改为上下堆叠，卡片占满 */
+@media (max-width: 900px) {
+  .tutorials-view, .tutorial-view {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - 56px);
+    padding: 16px;
+  }
+  .t-sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px;
+  }
+  .t-sidebar h3 { width: 100%; padding: 8px 12px; }
+  .t-toc {
+    flex: none;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 4px 0;
+  }
+  .t-toc button { flex: 0 0 auto; }
+  .t-content { padding-top: 16px; }
+}
+
+/* ≤768px：教程目录折叠，章节目录按钮显示，内容全宽 */
+@media (max-width: 768px) {
+  .t-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .t-card { width: 100%; box-sizing: border-box; }
+  .tutorials-view, .tutorial-view {
+    padding: 10px;
+    margin-top: 56px;
+    gap: 12px;
+  }
+  /* 章节目录折叠按钮 */
+  .t-mobile-toc {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 18px;
+    box-sizing: border-box;
+    background: rgba(20, 20, 42, 0.85);
+    border: 1px solid rgba(212, 168, 67, 0.4);
+    border-radius: 12px;
+    color: #d4a843;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .t-mobile-toc-title { color: #d4a843; }
+  .t-mobile-toc-arrow { transition: transform 0.25s; color: #d4a843; }
+  .t-mobile-toc-arrow.open { transform: rotate(180deg); }
+  .page.light-mode .t-mobile-toc {
+    background: #faf8f2;
+    border-color: #d9c08a;
+    color: #b8862e;
+  }
+  .page.light-mode .t-mobile-toc-title,
+  .page.light-mode .t-mobile-toc-arrow { color: #b8862e; }
+
+  /* 目录默认隐藏，点击展开 */
+  .t-sidebar.t-toc-hidden { display: none; }
+  .t-sidebar { max-height: none; }
+  .t-toc { max-height: 320px; }
+  .t-content { width: 100%; padding-top: 4px; }
+  .t-main { width: 100%; padding-top: 4px; }
+  .t-search { width: 100%; box-sizing: border-box; }
+  /* Markdown/正文自动换行 */
+  .t-content p { word-wrap: break-word; overflow-wrap: break-word; }
+}
+
+/* ≤480px：小屏微调 padding/间距，避免横向滚动 */
+@media (max-width: 480px) {
+  .tutorials-view, .tutorial-view { padding: 8px; }
+  .t-card { padding: 14px 12px; }
+  .t-sidebar { padding: 10px; }
+  .resume-view { padding: 90px 14px 40px; }
+  .resume-card { padding: 22px 16px; }
 }
 </style>

@@ -14,6 +14,7 @@ const currentId = ref(null)
 const articleList = ref([]) // 打开单篇时的来源列表，用于「回车查看下一条」
 const searchText = ref('')
 const expanded = reactive(new Set())
+const tocOpen = ref(false) // 移动端：章节目录折叠
 const favs = ref([])
 const ready = ref(false)
 // 卡片列表：{ id, category, index, card }
@@ -116,12 +117,14 @@ function toggleExpand(key) {
   articleList.value = buildSequence(key)
   mode.value = 'article'
   currentId.value = introId(key)
+  tocOpen.value = false
 }
 
 function showAll() {
   mode.value = 'all'
   currentId.value = null
   expanded.clear()
+  tocOpen.value = false
 }
 
 // intro 文本 → HTML：按行分块，含「（第 N 条）」的行做成分类小节（分类名突出 + 条目可点击链接）
@@ -166,6 +169,7 @@ function openCard(c) {
   articleList.value = buildSequence(c.category)
   mode.value = 'article'
   currentId.value = c.id
+  tocOpen.value = false
 }
 
 // 上下键：在来源列表中切换上一条 / 下一条
@@ -189,6 +193,7 @@ function onKeydown(e) {
 function showFavs() {
   mode.value = 'fav'
   currentId.value = null
+  tocOpen.value = false
 }
 
 function isCurrent(c) {
@@ -249,8 +254,17 @@ onUnmounted(() => {
 
 <template>
   <main class="lg-view">
+    <!-- 移动端：章节目录折叠按钮（≤768px 显示） -->
+    <div class="lg-mobile-toc" @click="tocOpen = !tocOpen">
+      <span class="lg-mobile-toc-title">章节目录</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"
+        class="lg-mobile-toc-arrow" :class="{ open: tocOpen }">
+        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
     <!-- 左侧目录 -->
-    <aside class="lg-sidebar">
+    <aside class="lg-sidebar" :class="{ 'lg-toc-hidden': !tocOpen }">
       <nav class="lg-toc">
         <button class="lg-all" :class="{ active: mode === 'all' && !searchText }" @click="showAll">
           <span>全部章节</span>
@@ -817,4 +831,100 @@ onUnmounted(() => {
 .page.light-mode .lg-item.active .lg-item-no { color: #2f6fd0; }
 .page.light-mode .lg-item.active { color: #2f6fd0; border-left-color: #2f6fd0; background: rgba(47, 111, 208, 0.1); }
 .page.light-mode .lg-cat-count { background: #f5f1e6; color: #b8862e; }
+
+/* === 人生指南卡片响应式（移动端单列占满） === */
+
+/* 移动端章节目录折叠按钮（默认隐藏，≤768px 显示） */
+.lg-mobile-toc {
+  display: none;
+}
+
+/* ≤1200px：侧栏与主区间距收紧 */
+@media (max-width: 1200px) {
+  .lg-view { padding: 20px; gap: 16px; }
+}
+
+/* ≤900px：侧栏+主区上下堆叠 */
+@media (max-width: 900px) {
+  .lg-view {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - 56px);
+    padding: 16px;
+  }
+  .lg-sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 8px;
+    padding: 12px;
+  }
+  .lg-toc {
+    flex: none;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    padding: 6px 10px;
+  }
+  .lg-all, .lg-cat-row { width: auto; }
+  .lg-main { padding-top: 16px; }
+}
+
+/* ≤768px：目录默认折叠，章节目录按钮显示，内容全宽 */
+@media (max-width: 768px) {
+  .lg-view {
+    padding: 10px;
+    margin-top: 56px;
+    gap: 12px;
+  }
+  /* 章节目录折叠按钮 */
+  .lg-mobile-toc {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 18px;
+    box-sizing: border-box;
+    background: rgba(20, 20, 42, 0.85);
+    border: 1px solid rgba(212, 168, 67, 0.4);
+    border-radius: 12px;
+    color: #d4a843;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .lg-mobile-toc-title { color: #d4a843; }
+  .lg-mobile-toc-arrow { transition: transform 0.25s; color: #d4a843; }
+  .lg-mobile-toc-arrow.open { transform: rotate(180deg); }
+  .page.light-mode .lg-mobile-toc {
+    background: #faf8f2;
+    border-color: #d9c08a;
+    color: #b8862e;
+  }
+  .page.light-mode .lg-mobile-toc-title,
+  .page.light-mode .lg-mobile-toc-arrow { color: #b8862e; }
+
+  /* 目录默认隐藏，点击按钮展开 */
+  .lg-sidebar.lg-toc-hidden { display: none; }
+  .lg-sidebar {
+    width: 100%;
+    max-height: none;
+  }
+  .lg-toc { max-height: 320px; }
+  .lg-card-wrap { width: 100%; }
+  .lg-main { width: 100%; padding-top: 4px; }
+  .lg-search { width: 100%; box-sizing: border-box; }
+  /* Markdown 内容自动换行 */
+  .lg-md-html { word-wrap: break-word; overflow-wrap: break-word; }
+}
+
+/* ≤480px：小屏收缩卡片内边距 */
+@media (max-width: 480px) {
+  .lg-view { padding: 8px; }
+  .lg-sidebar { padding: 10px; }
+  .lg-card { padding: 20px 16px; }
+}
 </style>

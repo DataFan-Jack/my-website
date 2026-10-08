@@ -184,4 +184,15 @@ const sourcesMd = computed(() =>
 .page.light-mode .lg-row + .lg-row { border-top-color: #e8dfc8; }
 .page.light-mode .lg-row b { color: #b8862e; }
 .page.light-mode .lg-row p { color: #444; }
+
+/* 移动端：卡片占满宽度、收缩内边距 */
+@media (max-width: 768px) {
+  .lg-card { width: 100%; box-sizing: border-box; padding: 22px 18px; }
+  .lg-card-title { font-size: 19px; }
+  .lg-summary { padding: 12px 14px; }
+}
+@media (max-width: 480px) {
+  .lg-card { padding: 18px 14px; }
+  .lg-card-title { font-size: 18px; }
+}
 </style>
