@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeUnmount, nextTick, watch, computed } from 'vue'
 import DotField from './components/DotField.vue'
 import LifeGuideView from './components/LifeGuideView.vue'
+import ResumeView from './components/ResumeView.vue'
 
 const cardRef = ref(null)
 const flipDir = ref('') // 'left' | 'right' | 'up' | 'down'
@@ -694,78 +695,8 @@ onBeforeUnmount(() => {
     <!-- 人生指南 -->
     <LifeGuideView v-else-if="view === 'life-guide'" />
 
-    <!-- 关于我 / 简历 -->
-    <main v-else-if="view === 'resume'" class="resume-view">
-      <div class="resume-card">
-        <header class="r-header">
-          <h1>个人简历</h1>
-          <p class="r-target">求职意向：大数据技术助理（实习）</p>
-          <div class="r-contact">
-            <span>男 · 20岁 · 大专</span>
-            <span>✉ yuj893165@gmail.com</span>
-          </div>
-        </header>
-
-        <section class="r-section">
-          <h2>教育经历</h2>
-          <div class="r-item">
-            <div class="r-item-head">
-              <b>大数据技术（专科）</b>
-              <span>2024.09 - 2027.06</span>
-            </div>
-            <p class="r-note">主修：Hadoop、数据采集、Linux、MySQL、网页设计、Excel 高级应用、人工智能应用</p>
-          </div>
-        </section>
-
-        <section class="r-section">
-          <h2>专业技能</h2>
-          <ul class="r-list">
-            <li>熟悉 Hadoop、Hive、Spark 环境部署与基础操作</li>
-            <li>掌握 MySQL 表结构设计、数据存储配置</li>
-            <li>了解 Flume、Kafka 数据传输链路基础搭建</li>
-            <li>熟练使用 Excel 数据整理/统计、Office 办公套件</li>
-          </ul>
-        </section>
-
-        <section class="r-section">
-          <h2>项目经历</h2>
-          <div class="r-item">
-            <div class="r-item-head">
-              <b>大数据基础环境部署项目 · 核心成员</b>
-              <span>2025.01 - 2025.09</span>
-            </div>
-            <ul class="r-list">
-              <li>参与 Hadoop、Hive、MySQL 环境部署，搭建数据存储与分析基础框架</li>
-              <li>编写《大数据环境部署操作手册》，梳理关键步骤与常见问题方案</li>
-              <li>配合完成 10+ 次环境测试，保障实验顺利开展，获专业课教师好评</li>
-            </ul>
-          </div>
-          <div class="r-item">
-            <div class="r-item-head">
-              <b>新能源汽车数仓构建项目 · 核心成员</b>
-              <span>2025.09 - 2026.01</span>
-            </div>
-            <ul class="r-list">
-              <li>参与数仓需求分析，梳理 12 类车辆运行指标采集维度</li>
-              <li>搭建 Flume、Kafka 采集链路，实现日志实时传输，单日处理 5000+ 条</li>
-              <li>参与 MySQL 存储模块表结构设计，完成 3 张核心业务表字段定义</li>
-            </ul>
-          </div>
-          <div class="r-item">
-            <div class="r-item-head">
-              <b>连锁超市数据可视化与高价值客户运营项目</b>
-              <span>2025.05 - 2025.06</span>
-            </div>
-            <ul class="r-list">
-              <li>用 FineBI 完成销售数据清洗，搭建可视化看板（饼图/折线图）</li>
-              <li>运用 RFM 模型将客户分为 4 类，输出高价值客户运营建议</li>
-              <li>方案被实训老师作为优秀案例展示，看板逻辑被同学复用</li>
-            </ul>
-          </div>
-        </section>
-
-      </div>
-    </main>
+    <!-- 关于我 / 简历（独立组件） -->
+    <ResumeView v-else-if="view === 'resume'" />
 
     <!-- 登录弹窗 -->
     <Transition name="modal">
@@ -1939,65 +1870,6 @@ onBeforeUnmount(() => {
 
 .type-cursor { color: #d4a843; animation: blink 0.8s infinite; }
 
-/* === 关于我 / 简历 === */
-.resume-view {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 110px 24px 60px;
-  user-select: text;
-  -webkit-user-select: text;
-}
-.resume-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(212,168,67,0.35);
-  border-radius: 16px;
-  padding: 40px 44px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-}
-.r-header { margin-bottom: 28px; }
-.r-header h1 {
-  font-size: 34px;
-  font-weight: 700;
-  color: #d4a843;
-  margin: 0 0 6px;
-}
-.r-target { margin: 0 0 12px; color: #ccc; font-size: 16px; }
-.r-contact { display: flex; flex-wrap: wrap; gap: 18px; color: #999; font-size: 14px; }
-.r-section { margin-top: 26px; }
-.r-section h2 {
-  font-size: 18px;
-  color: #d4a843;
-  margin: 0 0 14px;
-  padding-left: 12px;
-  border-left: 3px solid #d4a843;
-}
-.r-item { margin-bottom: 16px; }
-.r-item-head {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 6px;
-  font-size: 15px;
-}
-.r-item-head b { color: #f0d878; }
-.r-item-head span { color: #888; font-size: 13px; }
-.r-list { margin: 6px 0 0; padding-left: 20px; color: #ccc; font-size: 14px; line-height: 1.8; }
-.r-note { margin: 4px 0 0; color: #bbb; font-size: 14px; line-height: 1.8; }
-
-/* 浅色模式 */
-.page.light-mode .resume-card {
-  background: #faf8f2;
-  border-color: #e8e0cc;
-  box-shadow: 0 20px 60px rgba(120,100,60,0.15);
-}
-.page.light-mode .r-header h1 { color: #b8862e; }
-.page.light-mode .r-target, .page.light-mode .r-list, .page.light-mode .r-note { color: #333; }
-.page.light-mode .r-contact { color: #888; }
-.page.light-mode .r-section h2 { color: #b8862e; border-left-color: #b8862e; }
-.page.light-mode .r-item-head b { color: #8a6520; }
-.page.light-mode .r-item-head span { color: #999; }
-
 @media (max-width: 900px) {
   .hero {
     flex-direction: column;
@@ -2008,8 +1880,6 @@ onBeforeUnmount(() => {
   .subtitle { font-size: 24px; }
   .menu, .search-box { display: none; }
   .hero-left { max-width: 100%; }
-  .resume-view { padding: 90px 14px 40px; }
-  .resume-card { padding: 24px 18px; }
 }
 
 /* ≤768px：Hero 移动端优化（不改桌面端） */
@@ -2168,7 +2038,5 @@ onBeforeUnmount(() => {
   .tutorials-view, .tutorial-view { padding: 8px; }
   .t-card { padding: 14px 12px; }
   .t-sidebar { padding: 10px; }
-  .resume-view { padding: 90px 14px 40px; }
-  .resume-card { padding: 22px 16px; }
 }
 </style>
