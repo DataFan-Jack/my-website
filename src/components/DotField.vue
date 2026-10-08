@@ -43,9 +43,11 @@ let speedInterval;
 let frameCount = 0;
 let globalOffsetX = 0;
 let globalOffsetY = 0;
+let effSpacing = 0; // 实际粒子间距（移动端增大以减粒子数）
+let isMobile = false; // 移动端降耗模式
 
 function buildDots(w, h) {
-  const step = props.dotRadius + props.dotSpacing;
+  const step = props.dotRadius + (effSpacing || props.dotSpacing);
   const cols = Math.floor(w / step);
   const rows = Math.floor(h / step);
   const padX = (w % step) / 2;
@@ -77,7 +79,10 @@ function setupCanvas() {
   const ctx = canvas.value.getContext('2d', { alpha: true });
   if (!ctx) return;
 
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  // 移动端降耗：更大的间距（粒子更少）、DPR 降到 1、动画降帧
+  isMobile = window.matchMedia('(max-width: 768px)').matches;
+  effSpacing = isMobile ? props.dotSpacing * 1.8 : props.dotSpacing;
+  const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 2);
   let cachedGrad = null;
   let cachedGradKey = '';
 
@@ -129,7 +134,7 @@ function setupCanvas() {
       glowEl.value.style.opacity = String(glowOpacity);
     }
 
-    const step = props.dotRadius + props.dotSpacing;
+    const step = props.dotRadius + (effSpacing || props.dotSpacing);
     if (!frozen) {
       globalOffsetX = (globalOffsetX - 0.33) % step;
       globalOffsetY = (globalOffsetY - 0.33) % step;
@@ -210,7 +215,7 @@ function setupCanvas() {
   }
 
   function tick() {
-    render();
+    if (!isMobile || (frameCount & 1) === 0) render(); // 移动端隔帧渲染降耗
     raf = requestAnimationFrame(tick);
   }
 

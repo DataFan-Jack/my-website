@@ -1,0 +1,707 @@
+{
+  "python3": {
+    "file": "python3.png",
+    "title": "【学习 Python】",
+    "alt": "python3"
+  },
+  "python": {
+    "file": "python.png",
+    "title": "【学习 Python2.x】",
+    "alt": "python"
+  },
+  "fastapi": {
+    "file": "fastapi.png",
+    "title": "【学习 FastAPI】",
+    "alt": "fastapi"
+  },
+  "flask": {
+    "file": "flask.png",
+    "title": "【学习 Flask】",
+    "alt": "flask"
+  },
+  "django": {
+    "file": "django.png",
+    "title": "【学习 Django】",
+    "alt": "django"
+  },
+  "numpy": {
+    "file": "numpy.png",
+    "title": "【学习 NumPy】",
+    "alt": "numpy"
+  },
+  "pandas": {
+    "file": "pandas.png",
+    "title": "【学习 Pandas】",
+    "alt": "pandas"
+  },
+  "scipy": {
+    "file": "scipy.png",
+    "title": "【学习 SciPy】",
+    "alt": "scipy"
+  },
+  "matplotlib": {
+    "file": "matplotlib.png",
+    "title": "【学习 Matplotlib】",
+    "alt": "matplotlib"
+  },
+  "dash": {
+    "file": "dash.png",
+    "title": "【学习 Dash】",
+    "alt": "dash"
+  },
+  "jupyter-notebook": {
+    "file": "jupyter-notebook.png",
+    "title": "【学习 Jupyter Notebook】",
+    "alt": "jupyter-notebook"
+  },
+  "pillow": {
+    "file": "pillow.png",
+    "title": "【学习 Pillow】",
+    "alt": "pillow"
+  },
+  "qt": {
+    "file": "qt.png",
+    "title": "【量化交易】",
+    "alt": "qt"
+  },
+  "r": {
+    "file": "r.png",
+    "title": "【学习 R】",
+    "alt": "r"
+  },
+  "julia": {
+    "file": "julia.png",
+    "title": "【学习 Julia】",
+    "alt": "julia"
+  },
+  "ai-agent": {
+    "file": "ai-agent.png",
+    "title": "【AI Agent（智能体）】",
+    "alt": "ai-agent"
+  },
+  "ai": {
+    "file": "ai.png",
+    "title": "【AI（人工智能）】",
+    "alt": "ai"
+  },
+  "codex": {
+    "file": "codex.png",
+    "title": "【Codex 教程】",
+    "alt": "codex"
+  },
+  "vibe-coding": {
+    "file": "vibe-coding.png",
+    "title": "【学习 Vibe Coding】",
+    "alt": "vibe-coding"
+  },
+  "claude-code": {
+    "file": "claude-code.png",
+    "title": "【Claude Code】",
+    "alt": "claude-code"
+  },
+  "opencode": {
+    "file": "opencode.png",
+    "title": "【OpenCode】",
+    "alt": "opencode"
+  },
+  "skills": {
+    "file": "skills.png",
+    "title": "【Skills（技能）】",
+    "alt": "skills"
+  },
+  "ollama": {
+    "file": "ollama.png",
+    "title": "【学习 Ollama】",
+    "alt": "ollama"
+  },
+  "hermes-agent": {
+    "file": "hermes-agent.png",
+    "title": "【Hermes Agent】",
+    "alt": "hermes-agent"
+  },
+  "deepseek-harness": {
+    "file": "deepseek-harness.png",
+    "title": "【DeepSeek Harness】",
+    "alt": "deepseek-harness"
+  },
+  "pi-agent": {
+    "file": "pi-agent.png",
+    "title": "【Pi Agent】",
+    "alt": "pi-agent"
+  },
+  "ai-math": {
+    "file": "ai-math.png",
+    "title": "【AI 数学基础】",
+    "alt": "ai-math"
+  },
+  "tensorflow": {
+    "file": "tensorflow.png",
+    "title": "【学习 TensorFlow】",
+    "alt": "tensorflow"
+  },
+  "pytorch": {
+    "file": "pytorch.png",
+    "title": "【学习 PyTorch】",
+    "alt": "pytorch"
+  },
+  "sklearn": {
+    "file": "sklearn.png",
+    "title": "【学习 Scikit-learn】",
+    "alt": "sklearn"
+  },
+  "ml": {
+    "file": "ml.png",
+    "title": "【机器学习】",
+    "alt": "ml"
+  },
+  "langchain": {
+    "file": "langchain.png",
+    "title": "【LangChain】",
+    "alt": "langchain"
+  },
+  "nlp": {
+    "file": "nlp.png",
+    "title": "【自然语言处理 NLP】",
+    "alt": "nlp"
+  },
+  "opencv": {
+    "file": "opencv.png",
+    "title": "【学习 OpenCV】",
+    "alt": "opencv"
+  },
+  "selenium": {
+    "file": "selenium.png",
+    "title": "【学习 Selenium】",
+    "alt": "selenium"
+  },
+  "playwright": {
+    "file": "playwright.png",
+    "title": "【学习 Playwright】",
+    "alt": "playwright"
+  },
+  "html": {
+    "file": "html.png",
+    "title": "【学习 HTML5】",
+    "alt": "html5"
+  },
+  "css": {
+    "file": "css.png",
+    "title": "【学习 CSS】",
+    "alt": "css"
+  },
+  "css3": {
+    "file": "css3.png",
+    "title": "【学习 CSS3】",
+    "alt": "css3"
+  },
+  "js": {
+    "file": "js.png",
+    "title": "【学习 JavaScript】",
+    "alt": "js"
+  },
+  "htmldom": {
+    "file": "htmldom.png",
+    "title": "【学习 HTML DOM】",
+    "alt": "htmldom"
+  },
+  "typescript": {
+    "file": "typescript.png",
+    "title": "【学习 TypeScript】",
+    "alt": "typescript"
+  },
+  "ajax": {
+    "file": "ajax.png",
+    "title": "【学习 AJAX】",
+    "alt": "ajax"
+  },
+  "json": {
+    "file": "json.png",
+    "title": "【学习 JSON】",
+    "alt": "json"
+  },
+  "tailwindcss": {
+    "file": "tailwindcss.png",
+    "title": "【学习 Tailwind CSS】",
+    "alt": "tailwindcss"
+  },
+  "bootstrap4": {
+    "file": "bootstrap4.png",
+    "title": "【学习 Bootstrap4】",
+    "alt": "bootstrap4"
+  },
+  "bootstrap5": {
+    "file": "bootstrap5.png",
+    "title": "【学习 Bootstrap5】",
+    "alt": "bootstrap5"
+  },
+  "foundation": {
+    "file": "foundation.png",
+    "title": "【学习 Foundation】",
+    "alt": "foundation"
+  },
+  "vue2": {
+    "file": "vue2.png",
+    "title": "【学习 Vue.js】",
+    "alt": "vue"
+  },
+  "vue3": {
+    "file": "vue3.png",
+    "title": "【学习 Vue3】",
+    "alt": "vue3"
+  },
+  "react": {
+    "file": "react.png",
+    "title": "【学习 React】",
+    "alt": "react"
+  },
+  "nextjs": {
+    "file": "nextjs.png",
+    "title": "【学习 Next.js】",
+    "alt": "nextjs"
+  },
+  "angularjs": {
+    "file": "angularjs.png",
+    "title": "【学习 AngularJS】",
+    "alt": "angularjs"
+  },
+  "angularjs2": {
+    "file": "angularjs2.png",
+    "title": "【学习 Angular】",
+    "alt": "angularjs2"
+  },
+  "jquery": {
+    "file": "jquery.png",
+    "title": "【学习 jQuery】",
+    "alt": "jquery"
+  },
+  "jqueryui": {
+    "file": "jqueryui.png",
+    "title": "【学习 jQuery UI】",
+    "alt": "jqueryui"
+  },
+  "jeasyui": {
+    "file": "jeasyui.png",
+    "title": "【学习 jQuery EasyUI】",
+    "alt": "jeasyui"
+  },
+  "echarts": {
+    "file": "echarts.png",
+    "title": "【学习 ECharts】",
+    "alt": "echarts"
+  },
+  "chartjs": {
+    "file": "chartjs.png",
+    "title": "【学习 Chart.js】",
+    "alt": "chartjs"
+  },
+  "highcharts": {
+    "file": "highcharts.png",
+    "title": "【学习 Highcharts】",
+    "alt": "highcharts"
+  },
+  "googleapi": {
+    "file": "googleapi.png",
+    "title": "【学习 Google 地图】",
+    "alt": "googleapi"
+  },
+  "svg": {
+    "file": "svg.png",
+    "title": "【学习 SVG】",
+    "alt": "svg"
+  },
+  "font-awesome": {
+    "file": "font-awesome.png",
+    "title": "【学习 Font Awesome】",
+    "alt": "fontawesome"
+  },
+  "nodejs": {
+    "file": "nodejs.png",
+    "title": "【学习 Node.js】",
+    "alt": "nodejs"
+  },
+  "electron": {
+    "file": "electron.png",
+    "title": "【学习 Electron】",
+    "alt": "electron"
+  },
+  "php": {
+    "file": "php.png",
+    "title": "【学习 PHP】",
+    "alt": "php"
+  },
+  "java": {
+    "file": "java.png",
+    "title": "【学习 Java】",
+    "alt": "java"
+  },
+  "go": {
+    "file": "go.png",
+    "title": "【学习 Go】",
+    "alt": "go"
+  },
+  "rust": {
+    "file": "rust.png",
+    "title": "【学习 Rust】",
+    "alt": "rust"
+  },
+  "csharp": {
+    "file": "csharp.png",
+    "title": "【学习 C#】",
+    "alt": "csharp"
+  },
+  "servlet": {
+    "file": "servlet.png",
+    "title": "【学习 Servlet】",
+    "alt": "servlet"
+  },
+  "jsp": {
+    "file": "jsp.png",
+    "title": "【学习 JSP】",
+    "alt": "jsp"
+  },
+  "asp": {
+    "file": "asp.png",
+    "title": "【学习 ASP】",
+    "alt": "asp"
+  },
+  "appml": {
+    "file": "appml.png",
+    "title": "【学习 AppML】",
+    "alt": "appml"
+  },
+  "vbscript": {
+    "file": "vbscript.png",
+    "title": "【学习 VBScript】",
+    "alt": "vbscript"
+  },
+  "swagger": {
+    "file": "swagger.png",
+    "title": "【学习 Swagger】",
+    "alt": "swagger"
+  },
+  "restfulapi": {
+    "file": "restfulapi.png",
+    "title": "【学习 RESTful API】",
+    "alt": "restfulapi"
+  },
+  "docker": {
+    "file": "docker.png",
+    "title": "【学习 Docker】",
+    "alt": "docker"
+  },
+  "linux": {
+    "file": "linux.png",
+    "title": "【学习 Linux】",
+    "alt": "linux"
+  },
+  "w3cnote": {
+    "file": "w3cnote.png",
+    "title": "【学习 Verilog】",
+    "alt": "verilog"
+  },
+  "sql": {
+    "file": "sql.png",
+    "title": "【学习 SQL】",
+    "alt": "sql"
+  },
+  "mysql": {
+    "file": "mysql.png",
+    "title": "【学习 MySQL】",
+    "alt": "mysql"
+  },
+  "postgresql": {
+    "file": "postgresql.png",
+    "title": "【学习 PostgreSQL】",
+    "alt": "postgresql"
+  },
+  "sqlite": {
+    "file": "sqlite.png",
+    "title": "【学习 SQLite】",
+    "alt": "sqlite"
+  },
+  "mongodb": {
+    "file": "mongodb.png",
+    "title": "【学习 MongoDB】",
+    "alt": "mongodb"
+  },
+  "redis": {
+    "file": "redis.png",
+    "title": "【学习 Redis】",
+    "alt": "redis"
+  },
+  "Memcached": {
+    "file": "Memcached.png",
+    "title": "【学习 Memcached】",
+    "alt": "Memcached"
+  },
+  "flutter": {
+    "file": "flutter.png",
+    "title": "【学习 Flutter】",
+    "alt": "flutter"
+  },
+  "ionic": {
+    "file": "ionic.png",
+    "title": "【学习 Ionic】",
+    "alt": "ionic"
+  },
+  "jquerymobile": {
+    "file": "jquerymobile.png",
+    "title": "【学习 jQuery Mobile】",
+    "alt": "jquerymobile"
+  },
+  "swift": {
+    "file": "swift.png",
+    "title": "【学习 Swift】",
+    "alt": "swift"
+  },
+  "kotlin": {
+    "file": "kotlin.png",
+    "title": "【学习 Kotlin】",
+    "alt": "kotlin"
+  },
+  "git": {
+    "file": "git.png",
+    "title": "【学习 Git】",
+    "alt": "git"
+  },
+  "svn": {
+    "file": "svn.png",
+    "title": "【学习 SVN】",
+    "alt": "svn"
+  },
+  "cmake": {
+    "file": "cmake.png",
+    "title": "【学习 CMake】",
+    "alt": "cmake"
+  },
+  "maven": {
+    "file": "maven.png",
+    "title": "【学习 Maven】",
+    "alt": "maven"
+  },
+  "vscode": {
+    "file": "vscode.png",
+    "title": "【学习 VS Code】",
+    "alt": "vscode"
+  },
+  "obsidian": {
+    "file": "obsidian.png",
+    "title": "【学习 Obsidian】",
+    "alt": "obsidian"
+  },
+  "pycharm": {
+    "file": "pycharm.png",
+    "title": "【学习 PyCharm】",
+    "alt": "pycharm"
+  },
+  "eclipse": {
+    "file": "eclipse.png",
+    "title": "【学习 Eclipse】",
+    "alt": "eclipse"
+  },
+  "markdown": {
+    "file": "markdown.png",
+    "title": "【学习 Markdown】",
+    "alt": "markdown"
+  },
+  "latex": {
+    "file": "latex.png",
+    "title": "【学习 LaTeX】",
+    "alt": "latex"
+  },
+  "c": {
+    "file": "c.png",
+    "title": "【学习 C】",
+    "alt": "c"
+  },
+  "cplusplus": {
+    "file": "cplusplus.png",
+    "title": "【学习 C++】",
+    "alt": "cpp"
+  },
+  "zig": {
+    "file": "zig.png",
+    "title": "【学习 Zig】",
+    "alt": "zig"
+  },
+  "scala": {
+    "file": "scala.png",
+    "title": "【学习 Scala】",
+    "alt": "scala"
+  },
+  "ruby": {
+    "file": "ruby.png",
+    "title": "【学习 Ruby】",
+    "alt": "ruby"
+  },
+  "perl": {
+    "file": "perl.png",
+    "title": "【学习 Perl】",
+    "alt": "perl"
+  },
+  "lua": {
+    "file": "lua.png",
+    "title": "【学习 Lua】",
+    "alt": "lua"
+  },
+  "dart": {
+    "file": "dart.png",
+    "title": "【学习 Dart】",
+    "alt": "dart"
+  },
+  "assembly": {
+    "file": "assembly.png",
+    "title": "【学习汇编语言】",
+    "alt": "assembly"
+  },
+  "computer-organization": {
+    "file": "computer-organization.png",
+    "title": "【计算机组成原理】",
+    "alt": "computer-organization"
+  },
+  "data-structures": {
+    "file": "data-structures.png",
+    "title": "【数据结构与算法】",
+    "alt": "data-structures"
+  },
+  "c-dsa": {
+    "file": "c-dsa.png",
+    "title": "【C 语言数据结构与算法】",
+    "alt": "c-dsa"
+  },
+  "design-pattern": {
+    "file": "design-pattern.png",
+    "title": "【设计模式】",
+    "alt": "design-pattern"
+  },
+  "python-design-pattern": {
+    "file": "python-design-pattern.png",
+    "title": "【Python 设计模式】",
+    "alt": "python-design-pattern"
+  },
+  "regexp": {
+    "file": "regexp.png",
+    "title": "【正则表达式】",
+    "alt": "regexp"
+  },
+  "http": {
+    "file": "http.png",
+    "title": "【学习 HTTP】",
+    "alt": "http"
+  },
+  "tcpip": {
+    "file": "tcpip.png",
+    "title": "【学习 TCP/IP】",
+    "alt": "tcpip"
+  },
+  "np": {
+    "file": "np.png",
+    "title": "【网络协议】",
+    "alt": "np"
+  },
+  "w3c": {
+    "file": "w3c.png",
+    "title": "【学习 W3C】",
+    "alt": "w3c"
+  },
+  "xml": {
+    "file": "xml.png",
+    "title": "【学习 XML】",
+    "alt": "xml"
+  },
+  "dtd": {
+    "file": "dtd.png",
+    "title": "【学习 DTD】",
+    "alt": "dtd"
+  },
+  "dom": {
+    "file": "dom.png",
+    "title": "【学习 XML DOM】",
+    "alt": "xmldom"
+  },
+  "xsl": {
+    "file": "xsl.png",
+    "title": "【学习 XSLT】",
+    "alt": "xslt"
+  },
+  "xpath": {
+    "file": "xpath.png",
+    "title": "【学习 XPath】",
+    "alt": "xpath"
+  },
+  "xquery": {
+    "file": "xquery.png",
+    "title": "【学习 XQuery】",
+    "alt": "xquery"
+  },
+  "xlink": {
+    "file": "xlink.png",
+    "title": "【学习 XPointer】",
+    "alt": "xpointer"
+  },
+  "schema": {
+    "file": "schema.png",
+    "title": "【学习 XML Schema】",
+    "alt": "schema"
+  },
+  "xslfo": {
+    "file": "xslfo.png",
+    "title": "【学习 XSL-FO】",
+    "alt": "xslfo"
+  },
+  "webservices": {
+    "file": "webservices.png",
+    "title": "【学习 Web Service】",
+    "alt": "webservices"
+  },
+  "wsdl": {
+    "file": "wsdl.png",
+    "title": "【学习 WSDL】",
+    "alt": "wsdl"
+  },
+  "soap": {
+    "file": "soap.png",
+    "title": "【学习 SOAP】",
+    "alt": "soap"
+  },
+  "rss": {
+    "file": "rss.png",
+    "title": "【学习 RSS】",
+    "alt": "rss"
+  },
+  "rdf": {
+    "file": "rdf.png",
+    "title": "【学习 RDF】",
+    "alt": "rdf"
+  },
+  "aspnet": {
+    "file": "aspnet.png",
+    "title": "【学习 Web Pages】",
+    "alt": "webpages"
+  },
+  "powershell": {
+    "file": "powershell.png",
+    "title": "【学习 PowerShell】",
+    "alt": "powershell"
+  },
+  "web": {
+    "file": "web.png",
+    "title": "【网站建设指南】",
+    "alt": "webbuildingprimer"
+  },
+  "browsers": {
+    "file": "browsers.png",
+    "title": "【浏览器信息】",
+    "alt": "browsers"
+  },
+  "hosting": {
+    "file": "hosting.png",
+    "title": "【网站主机教程】",
+    "alt": "hosting"
+  },
+  "quality": {
+    "file": "quality.png",
+    "title": "【网站品质】",
+    "alt": "quality"
+  }
+}

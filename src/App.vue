@@ -1,11 +1,13 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, nextTick, watch, computed } from 'vue'
 import DotField from './components/DotField.vue'
+import LifeGuideView from './components/LifeGuideView.vue'
 
 const cardRef = ref(null)
 const flipDir = ref('') // 'left' | 'right' | 'up' | 'down'
 const currentFace = ref('front') // 'front' | 'back'
 const isDark = ref(true) // 深色/浅色模式
+const lightTipOpen = ref(false) // 进入人生指南/教程时的浅色护眼推荐弹窗
 let triggerTimer = null
 
 // === GitHub 登录 ===
@@ -13,6 +15,10 @@ const OAUTH_BASE = import.meta.env.VITE_OAUTH_BASE || 'http://localhost:3001'
 const user = ref(null)
 const menuOpen = ref(false)
 const loginOpen = ref(false)
+const mobileMenuOpen = ref(false) // 移动端汉堡菜单
+
+function openMobileMenu() { mobileMenuOpen.value = true }
+function closeMobileMenu() { mobileMenuOpen.value = false }
 
 function goGithub() {
   window.location.href = OAUTH_BASE + '/api/oauth/github/login'
@@ -60,9 +66,21 @@ const category = ref('全部教程') // 分类筛选
 const searchText = ref('') // 搜索关键词
 const activeChapter = ref(0)
 
-function showTutorials() { setHash('#/tutorials') }
+function showTutorials() { setHash('#/tutorials'); suggestLight() }
 function goHome() { setHash('#/') }
 function goResume() { setHash('#/resume') }
+function goLifeGuide() { setHash('#/life-guide'); suggestLight() }
+// 进入人生指南/教程时，若处于深色模式则推荐浅色（护眼）模式
+function suggestLight() {
+  if (isDark.value) lightTipOpen.value = true
+}
+function enterLight() {
+  isDark.value = false
+  lightTipOpen.value = false
+}
+function keepDark() {
+  lightTipOpen.value = false
+}
 // hash 路由：视图切换写入 location.hash，让浏览器自带后退/前进键生效
 // 节流：250ms 内只响应一次视图切换，防止导航栏快速连点反复触发重渲染导致卡死
 let lastHashSwitch = 0
@@ -91,6 +109,8 @@ function applyHash() {
     view.value = 'tutorials'
   } else if (section === 'resume') {
     view.value = 'resume'
+  } else if (section === 'life-guide') {
+    view.value = 'life-guide'
   } else {
     view.value = 'home'
   }
@@ -436,6 +456,7 @@ onBeforeUnmount(() => {
           <a href="#" @click.prevent>学习中心</a>
           <a href="#" @click.prevent>项目实战</a>
           <a href="#" @click.prevent>编程导航</a>
+          <a href="#" :class="{ active: view === 'life-guide' }" @click.prevent="goLifeGuide">人生指南</a>
           <a href="#" :class="{ active: view === 'tutorials' || view === 'tutorial' }" @click.prevent="showTutorials">教程</a>
           <a href="#" :class="{ active: view === 'resume' }" @click.prevent="goResume">关于我</a>
         </div>
@@ -497,8 +518,36 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <button v-else class="btn-login" @click="loginOpen = true">登录</button>
+        <button class="theme-toggle hamburger-btn" @click="openMobileMenu" aria-label="打开菜单">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="theme-icon">
+            <line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="4" y1="17" x2="20" y2="17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </button>
       </div>
     </nav>
+
+    <!-- 移动端抽屉菜单 -->
+    <Transition name="m-nav">
+      <div v-if="mobileMenuOpen" class="m-mask" @click.self="closeMobileMenu">
+        <div class="m-panel">
+          <div class="m-head">
+            <span class="m-title">菜单</span>
+            <button class="m-close" @click="closeMobileMenu" aria-label="关闭">✕</button>
+          </div>
+          <nav class="m-menu">
+            <a href="#" :class="{ active: view === 'home' }" @click.prevent="closeMobileMenu(); goHome()">首页</a>
+            <a href="#" @click.prevent="closeMobileMenu()">学习中心</a>
+            <a href="#" @click.prevent="closeMobileMenu()">项目实战</a>
+            <a href="#" @click.prevent="closeMobileMenu()">编程导航</a>
+            <a href="#" :class="{ active: view === 'life-guide' }" @click.prevent="closeMobileMenu(); goLifeGuide()">人生指南</a>
+            <a href="#" :class="{ active: view === 'tutorials' || view === 'tutorial' }" @click.prevent="closeMobileMenu(); showTutorials()">教程</a>
+            <a href="#" :class="{ active: view === 'resume' }" @click.prevent="closeMobileMenu(); goResume()">关于我</a>
+          </nav>
+        </div>
+      </div>
+    </Transition>
 
     <main v-if="view === 'home'" class="hero">
       <div class="hero-left">
@@ -583,8 +632,11 @@ onBeforeUnmount(() => {
           <h3 class="t-group-title">{{ g.cat }}</h3>
           <div class="t-cards">
             <button v-for="t in g.items" :key="t.name" class="t-card" @click="openTutorial(t)">
-              <b>{{ t.name }}</b>
-              <span>{{ t.desc }}</span>
+              <img v-if="t.image" class="t-card-icon" :src="t.image" alt="" loading="lazy" />
+              <span class="t-card-text">
+                <b>{{ t.name }}</b>
+                <em>{{ t.desc }}</em>
+              </span>
             </button>
           </div>
         </template>
@@ -623,6 +675,9 @@ onBeforeUnmount(() => {
         <div v-else class="t-empty">正在加载教程数据…</div>
       </div>
     </main>
+
+    <!-- 人生指南 -->
+    <LifeGuideView v-else-if="view === 'life-guide'" />
 
     <!-- 关于我 / 简历 -->
     <main v-else-if="view === 'resume'" class="resume-view">
@@ -718,6 +773,39 @@ onBeforeUnmount(() => {
             <p class="modal-desc">登录后保存你的导航配置与偏好</p>
             <button class="oauth-btn github" @click="goGithub">GitHub 登录</button>
             <button class="oauth-btn gitee" disabled title="即将上线">Gitee 登录</button>
+          </div>
+        </div>
+      </div>
+    </Transition>
+
+    <!-- 浅色护眼模式推荐弹窗 -->
+    <Transition name="modal">
+      <div v-if="lightTipOpen" class="modal-mask" @click.self="keepDark">
+        <div class="light-tip">
+          <button class="modal-close" @click="keepDark" aria-label="关闭">✕</button>
+          <h3 class="light-tip-title">推荐使用浅色（护眼）模式</h3>
+          <p class="light-tip-desc">该页面内容较多，长时间阅读建议切换为浅色模式，减轻眼部疲劳。</p>
+          <div class="light-tip-btns">
+            <button class="light-tip-yes" @click="enterLight">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                <line x1="12" y1="1.5" x2="12" y2="4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="12" y1="19.5" x2="12" y2="22.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="1.5" y1="12" x2="4.5" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="19.5" y1="12" x2="22.5" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4.2" y1="4.2" x2="6.3" y2="6.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="17.7" y1="17.7" x2="19.8" y2="19.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4.2" y1="19.8" x2="6.3" y2="17.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="17.7" y1="6.3" x2="19.8" y2="4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              进入浅色模式
+            </button>
+            <button class="light-tip-no" @click="keepDark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              保持深色模式
+            </button>
           </div>
         </div>
       </div>
@@ -819,7 +907,7 @@ onBeforeUnmount(() => {
   border-radius: 50%;
   border: 1.5px solid rgba(212,168,67,0.4);
   background: transparent;
-  cursor: pointer;
+
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -971,11 +1059,113 @@ onBeforeUnmount(() => {
   background: transparent;
   font-family: inherit;
   font-size: 14px;
-  cursor: pointer;
+
   transition: all 0.2s;
 }
 
 .btn-login:hover { background: #d4a843; color: #000; }
+
+/* === 移动端导航 === */
+.hamburger-btn { display: none; }
+
+/* 抽屉遮罩 */
+.m-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+/* 抽屉面板：黑色背景 + 金色边框 + 圆角 */
+.m-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 82vw;
+  max-width: 340px;
+  height: 100%;
+  background: #0d0d18;
+  border-left: 1.5px solid rgba(212, 168, 67, 0.45);
+  border-radius: 18px 0 0 18px;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.5);
+  padding: 18px 14px 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.page.light-mode .m-panel {
+  background: #faf8f2;
+  border-left-color: #d9c08a;
+  box-shadow: -12px 0 40px rgba(120, 100, 60, 0.25);
+}
+.m-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 10px 14px;
+  border-bottom: 1px solid rgba(212, 168, 67, 0.2);
+}
+.m-title {
+  color: #d4a843;
+  font-size: 18px;
+  font-weight: 700;
+}
+.page.light-mode .m-title { color: #b8862e; }
+.m-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #999;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.m-close:hover { background: rgba(212, 168, 67, 0.12); color: #d4a843; }
+.m-menu {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 4px 0;
+}
+.m-menu a {
+  display: block;
+  padding: 13px 18px;
+  border-radius: 12px;
+  color: #bbb;
+  text-decoration: none;
+  font-size: 16px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+.m-menu a:hover { color: #d4a843; background: rgba(212, 168, 67, 0.1); }
+.m-menu a.active {
+  color: #d4a843;
+  border-color: rgba(212, 168, 67, 0.35);
+  background: rgba(212, 168, 67, 0.12);
+}
+.page.light-mode .m-menu a { color: #666; }
+.page.light-mode .m-menu a:hover,
+.page.light-mode .m-menu a.active { color: #b8862e; background: rgba(184, 134, 46, 0.1); }
+
+/* 抽屉滑入动画 */
+.m-nav-enter-active, .m-nav-leave-active { transition: opacity 0.25s; }
+.m-nav-enter-active .m-panel, .m-nav-leave-active .m-panel { transition: transform 0.28s cubic-bezier(0.4, 0.0, 0.2, 1); }
+.m-nav-enter-from, .m-nav-leave-to { opacity: 0; }
+.m-nav-enter-from .m-panel, .m-nav-leave-to .m-panel { transform: translateX(100%); }
+
+/* ≤768px：隐藏桌面导航项，显示汉堡按钮 */
+@media (max-width: 768px) {
+  .nav { padding: 8px 16px; }
+  .menu, .search-box, .dots-toggle { display: none !important; }
+  .hamburger-btn { display: flex; }
+}
 
 /* GitHub 登录用户区 */
 .user-box { position: relative; }
@@ -986,7 +1176,7 @@ onBeforeUnmount(() => {
   gap: 8px;
   padding: 4px 10px;
   border-radius: 10px;
-  cursor: pointer;
+
   color: #d4a843;
   transition: background 0.2s;
 }
@@ -1031,7 +1221,7 @@ onBeforeUnmount(() => {
   color: #999;
   font-size: 14px;
   text-align: left;
-  cursor: pointer;
+
 }
 
 .user-menu button:hover {
@@ -1084,7 +1274,7 @@ onBeforeUnmount(() => {
   background: transparent;
   color: inherit;
   font-size: 15px;
-  cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1187,7 +1377,7 @@ onBeforeUnmount(() => {
   border: 1.5px solid transparent;
   font-size: 15px;
   font-weight: 600;
-  cursor: pointer;
+
   transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
 }
 
@@ -1214,9 +1404,64 @@ onBeforeUnmount(() => {
 
 /* 弹窗过渡 */
 .modal-enter-active, .modal-leave-active { transition: opacity 0.25s; }
-.modal-enter-active .login-modal, .modal-leave-active .login-modal { transition: transform 0.25s; }
+.modal-enter-active .login-modal, .modal-leave-active .login-modal,
+.modal-enter-active .light-tip, .modal-leave-active .light-tip { transition: transform 0.25s; }
 .modal-enter-from, .modal-leave-to { opacity: 0; }
-.modal-enter-from .login-modal, .modal-leave-to .login-modal { transform: scale(0.94) translateY(10px); }
+.modal-enter-from .login-modal, .modal-leave-to .login-modal,
+.modal-enter-from .light-tip, .modal-leave-to .light-tip { transform: scale(0.94) translateY(10px); }
+
+/* 浅色护眼模式推荐弹窗（卡片用浅色模式背景色） */
+.light-tip {
+  position: relative;
+  width: 420px;
+  max-width: 90vw;
+  border-radius: 16px;
+  background: #F7F4EC;
+  color: #1a1a1a;
+  box-shadow: 0 24px 80px rgba(120, 100, 60, 0.35);
+  padding: 40px 36px 32px;
+  text-align: center;
+}
+.light-tip .modal-close:hover { background: rgba(0, 0, 0, 0.08); }
+.light-tip-title {
+  margin: 0 0 12px;
+  color: #b8862e;
+  font-size: 20px;
+}
+.light-tip-desc {
+  margin: 0 0 24px;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.light-tip-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.light-tip-btns button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+.light-tip-yes {
+  background: #b8862e;
+  border: 1px solid #b8862e;
+  color: #fff;
+  font-weight: 600;
+}
+.light-tip-yes:hover { background: #a67828; }
+.light-tip-no {
+  background: #14142a;
+  border: 1px solid rgba(212, 168, 67, 0.35);
+  color: #e6edf3;
+}
+.light-tip-no:hover { background: #1e1e38; }
 
 /* 教程列表视图（全部教程） */
 .tutorials-view {
@@ -1297,9 +1542,9 @@ onBeforeUnmount(() => {
 
 .t-card {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 18px 20px;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
   background: rgba(20, 20, 42, 0.85);
   border: 1px solid rgba(212, 168, 67, 0.15);
   border-radius: 12px;
@@ -1308,7 +1553,7 @@ onBeforeUnmount(() => {
   cursor: pointer;
   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
   content-visibility: auto;
-  contain-intrinsic-size: 120px;
+  contain-intrinsic-size: 96px;
 }
 
 .t-card:hover {
@@ -1317,8 +1562,31 @@ onBeforeUnmount(() => {
   box-shadow: 0 8px 24px rgba(212, 168, 67, 0.15);
 }
 
-.t-card b { font-size: 15px; color: #d4a843; font-weight: 600; }
-.t-card span { font-size: 13px; color: #999; line-height: 1.6; }
+.t-card-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.t-card-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.t-card-text b { font-size: 15px; color: #d4a843; font-weight: 600; }
+.t-card-text em {
+  font-size: 13px;
+  color: #999;
+  line-height: 1.6;
+  font-style: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 
 .t-back {
   width: 100%;
@@ -1329,7 +1597,7 @@ onBeforeUnmount(() => {
   color: #d4a843;
   font-size: 15px;
   font-weight: 600;
-  cursor: pointer;
+
   text-align: left;
   transition: all 0.2s;
 }
@@ -1342,7 +1610,7 @@ onBeforeUnmount(() => {
 .page.light-mode .t-card { background: #fff; border-color: #e8e0cc; color: #1a1a1a; }
 .page.light-mode .t-card:hover { border-color: #b8862e; box-shadow: 0 8px 24px rgba(120, 100, 60, 0.15); }
 .page.light-mode .t-card b { color: #b8862e; }
-.page.light-mode .t-card span { color: #888; }
+.page.light-mode .t-card em { color: #888; }
 
 /* 教程视图（站内切换） */
 .tutorial-view {
@@ -1396,7 +1664,7 @@ onBeforeUnmount(() => {
   color: #999;
   font-size: 14px;
   text-align: left;
-  cursor: pointer;
+
   transition: all 0.2s;
 }
 
@@ -1426,7 +1694,7 @@ onBeforeUnmount(() => {
 
 .t-example { margin: 18px 0; border: 1px solid rgba(212, 168, 67, 0.25); border-radius: 10px; overflow: hidden; }
 .t-example-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 8px 8px 16px; background: #1c1c34; color: #d4a843; font-size: 13px; border-bottom: 1px solid rgba(212, 168, 67, 0.15); }
-.t-copy { position: relative; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0; background: rgba(20, 20, 42, 0.8); border: 1px solid rgba(212, 168, 67, 0.65); border-radius: 8px; color: rgba(212, 168, 67, 0.65); cursor: pointer; transition: all 0.2s; }
+.t-copy { position: relative; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0; background: rgba(20, 20, 42, 0.8); border: 1px solid rgba(212, 168, 67, 0.65); border-radius: 8px; color: rgba(212, 168, 67, 0.65);  transition: all 0.2s; }
 .t-copy-icon { display: block; width: 14px; height: 14px; }
 .t-copy:hover { border-color: #ffd97a; background: rgba(212, 168, 67, 0.08); box-shadow: 0 0 6px rgba(212, 168, 67, 0.2); }
 .t-copy:hover .t-copy-icon { color: #ffe1a0; filter: drop-shadow(0 0 2px rgba(212, 168, 67, 0.4)); }
@@ -1726,5 +1994,66 @@ onBeforeUnmount(() => {
   .hero-left { max-width: 100%; }
   .resume-view { padding: 90px 14px 40px; }
   .resume-card { padding: 24px 18px; }
+}
+
+/* ≤768px：Hero 移动端优化（不改桌面端） */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    padding: 24px 16px 48px;
+    text-align: center;
+    gap: 32px;
+    min-height: calc(100vh - 64px);
+    margin-top: 64px;
+  }
+  .hero-left {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  /* 主标题：缩小，禁止换行溢出 */
+  .title {
+    font-size: 38px;
+    gap: 10px;
+    letter-spacing: 1px;
+    line-height: 1.15;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  /* 中间 Logo：缩小 */
+  .title-icon { width: 38px; height: 38px; }
+  /* 副标题：自动换行、禁止横向溢出 */
+  .subtitle {
+    font-size: 22px;
+    line-height: 1.5;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    margin: 0 0 14px;
+  }
+  .desc { font-size: 16px; line-height: 1.5; margin: 0 0 24px; }
+  /* 按钮：占合适宽度、上下排列、居中 */
+  .cta-btn {
+    width: 100%;
+    max-width: 320px;
+    flex-direction: column;
+    gap: 6px;
+    justify-content: center;
+    padding: 14px 24px;
+    font-size: 17px;
+    margin: 0 auto;
+  }
+  /* 翻转卡：缩放避免溢出 */
+  .hero-right { width: 100%; }
+  .flip-scene, .flip-trigger {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    aspect-ratio: 560 / 460;
+  }
+  .flip-card { width: 100%; max-width: 340px; height: 72vw; max-height: 250px; }
 }
 </style>
