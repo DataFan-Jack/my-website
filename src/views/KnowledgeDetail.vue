@@ -48,6 +48,7 @@ const contentRef = ref(null)
 const activeToc = ref('')
 const progress = ref(0)
 const showTop = ref(false)
+const navOpen = ref(false) // 移动端左侧导航折叠开关
 
 async function refreshToc() {
   // 等子组件 NoteMarkdown 完成 v-html 渲染后再收集锚点（双重 nextTick 保证时序）
@@ -107,50 +108,33 @@ function toTop() {
       <div class="kd-progress" :style="{ width: progress + '%' }"></div>
 
       <div class="kd-body">
-        <!-- 左栏：返回 + 篇章导航 + 本文目录 -->
-        <aside class="kd-side">
-          <a class="kd-back" href="#/knowledge">返回学习中心</a>
-          <h3 class="kd-side-title">篇章导航</h3>
+        <!-- 左栏：单一导航面板（返回 + 篇章导航） -->
+        <aside class="kd-side" :class="{ open: navOpen }">
+          <a class="kd-back" href="#/knowledge">返回知识中心</a>
+          <div class="kd-ch-group">{{ topic?.title || name }}学习笔记</div>
           <button
             v-for="a in articles"
             :key="a.id"
             class="kd-ch"
             :class="{ active: a.id === activeId }"
-            @click="selectArticle(a.id)"
+            @click="navOpen = false; selectArticle(a.id)"
           >
             <span class="kd-ch-label">{{ a.label }}</span>
             <span class="kd-ch-title">{{ a.title }}</span>
           </button>
-
-          <h3 class="kd-side-title kd-toc-title">本文目录</h3>
-          <nav class="kd-toc">
-            <button
-              v-for="t in toc"
-              :key="t.id"
-              class="kd-toc-item"
-              :class="{ active: t.id === activeToc, sub: t.level === 3 }"
-              @click="scrollToToc(t.id)"
-            >
-              {{ t.text }}
-            </button>
-            <p v-if="!toc.length" class="kd-side-tip">目录生成中…</p>
-          </nav>
         </aside>
+
+        <!-- 移动端折叠导航开关 -->
+        <button
+          class="kd-nav-toggle"
+          :class="{ open: navOpen }"
+          @click="navOpen = !navOpen"
+          aria-label="切换导航"
+        >☰</button>
 
         <!-- 中栏：文章正文 -->
         <section ref="contentRef" class="kd-content" @scroll="onScroll">
           <div class="kd-inner">
-            <header class="kd-head">
-              <h1 class="kd-title">{{ current.icon }} {{ current.title }}</h1>
-              <p class="kd-sub">{{ current.description }}</p>
-              <div class="kd-meta-line">
-                <span class="kd-badge">分类 · {{ current.category }}</span>
-                <span class="kd-badge">难度 · {{ current.level }}</span>
-                <span class="kd-badge">阅读 · 约 {{ current.readMinutes }} 分钟</span>
-                <span class="kd-badge">更新 · {{ current.updatedAt }}</span>
-              </div>
-            </header>
-
             <NoteMarkdown :markdown="current.content" />
 
             <!-- 上一篇 / 下一篇 -->
@@ -175,7 +159,7 @@ function toTop() {
           </div>
         </section>
 
-        <!-- 右栏：文章信息 -->
+        <!-- 右栏：文章信息 + 本文目录 -->
         <aside class="kd-meta">
           <div class="kd-meta-card">
             <div class="kd-meta-icon">{{ current.icon }}</div>
@@ -202,7 +186,22 @@ function toTop() {
               <span v-for="tag in current.tags" :key="tag" class="kd-meta-tag">{{ tag }}</span>
             </div>
           </div>
-          <p class="kd-side-tip">当前共 {{ articles.length }} 篇文章</p>
+
+          <div class="kd-toc-card">
+            <h3 class="kd-side-title">本文目录</h3>
+            <nav class="kd-toc">
+              <button
+                v-for="t in toc"
+                :key="t.id"
+                class="kd-toc-item"
+                :class="{ active: t.id === activeToc, sub: t.level === 3 }"
+                @click="scrollToToc(t.id)"
+              >
+                {{ t.text }}
+              </button>
+              <p v-if="!toc.length" class="kd-side-tip">目录生成中…</p>
+            </nav>
+          </div>
         </aside>
       </div>
 
@@ -252,26 +251,31 @@ function toTop() {
   display: inline-block;
   margin-top: 18px;
   width: auto;
+  padding: 10px 22px;
+  background: rgba(20, 20, 42, 0.5);
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  border-radius: 14px;
 }
 
-/* 返回按钮：金边方框（保持原样式） */
+/* 返回按钮：与左侧导航面板融合（仅底部金边分隔线） */
 .kd-back {
   flex-shrink: 0;
   width: 100%;
   box-sizing: border-box;
-  padding: 12px 22px;
-  background: rgba(20, 20, 42, 0.5);
-  border: 1.5px solid rgba(212, 175, 55, 0.4);
-  border-radius: 14px;
+  padding: 12px 14px 13px;
   color: var(--accent-color);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   text-align: left;
   text-decoration: none;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0;
   transition: all 0.2s ease;
 }
 .kd-back:hover {
-  background: rgba(212, 175, 55, 0.12);
+  color: var(--accent-strong);
+  background: rgba(212, 175, 55, 0.06);
 }
 
 /* 三栏主体 */
@@ -284,43 +288,53 @@ function toTop() {
   gap: 28px;
 }
 
-/* ===== 左栏：篇章导航 + 本文目录 ===== */
+/* ===== 左栏：篇章导航面板（返回 + 篇章导航 单一边框） ===== */
 .kd-side {
   width: 240px;
   flex-shrink: 0;
-  padding: 12px;
+  padding: 12px 12px 14px;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 14px;
   overflow: hidden auto;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 2px;
   box-sizing: border-box;
 }
 .kd-side::-webkit-scrollbar,
-.kd-content::-webkit-scrollbar {
-  width: 6px;
+.kd-content::-webkit-scrollbar,
+.kd-meta::-webkit-scrollbar,
+.kd-toc::-webkit-scrollbar {
+  width: 5px;
 }
 .kd-side::-webkit-scrollbar-thumb,
-.kd-content::-webkit-scrollbar-thumb {
-  background: rgba(212, 175, 55, 0.35);
+.kd-content::-webkit-scrollbar-thumb,
+.kd-meta::-webkit-scrollbar-thumb,
+.kd-toc::-webkit-scrollbar-thumb {
+  background: var(--border-color);
   border-radius: 3px;
 }
 .kd-side::-webkit-scrollbar-track,
-.kd-content::-webkit-scrollbar-track {
+.kd-content::-webkit-scrollbar-track,
+.kd-meta::-webkit-scrollbar-track,
+.kd-toc::-webkit-scrollbar-track {
   background: transparent;
 }
-.kd-side-title {
+.kd-side,
+.kd-content,
+.kd-meta,
+.kd-toc {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+.kd-ch-group {
   margin: 8px 12px 4px;
   padding-bottom: 8px;
   font-size: 13px;
   color: var(--accent-color);
   letter-spacing: 1px;
   border-bottom: 1px solid var(--border-color);
-}
-.kd-toc-title {
-  margin-top: 14px;
 }
 .kd-ch {
   display: flex;
@@ -358,13 +372,28 @@ function toTop() {
   color: var(--text-primary);
 }
 
-/* 本文目录 */
+/* 本文目录（右栏卡片内） */
+.kd-toc-card {
+  padding: 14px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+}
+.kd-side-title {
+  margin: 0 10px 8px;
+  padding-bottom: 8px;
+  font-size: 13px;
+  color: var(--accent-color);
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border-color);
+}
 .kd-toc {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  max-height: 260px;
+  max-height: 340px;
   overflow-y: auto;
+  padding-right: 4px;
 }
 .kd-toc-item {
   padding: 7px 14px 7px 20px;
@@ -412,31 +441,6 @@ function toTop() {
   max-width: 850px;
   margin: 0 auto;
 }
-.kd-head {
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-color);
-}
-.kd-sub {
-  margin: 0 0 14px;
-  font-size: 14px;
-  line-height: 1.8;
-  color: var(--text-muted);
-}
-.kd-meta-line {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.kd-badge {
-  padding: 4px 12px;
-  font-size: 12px;
-  color: var(--accent-color);
-  background: rgba(212, 175, 55, 0.08);
-  border: 1px solid var(--border-color);
-  border-radius: 999px;
-  white-space: nowrap;
-}
 
 /* 上一篇 / 下一篇 */
 .kd-pager {
@@ -476,13 +480,18 @@ function toTop() {
   color: var(--text-primary);
 }
 
-/* ===== 右栏：文章信息 ===== */
+/* ===== 右栏：文章信息 + 本文目录 ===== */
 .kd-meta {
   width: 220px;
   flex-shrink: 0;
+  position: sticky;
+  top: 84px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding-right: 2px;
 }
 .kd-meta-card {
   padding: 22px 18px;
@@ -559,6 +568,30 @@ function toTop() {
   background: rgba(212, 175, 55, 0.12);
 }
 
+/* 移动端折叠导航开关（仅小屏显示） */
+.kd-nav-toggle {
+  display: none;
+  position: fixed;
+  left: 16px;
+  top: 84px;
+  z-index: 96;
+  width: 38px;
+  height: 38px;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--accent-color);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+.kd-nav-toggle.open {
+  color: var(--bg-primary);
+  background: var(--accent-color);
+}
+
 /* ===== 响应式 ===== */
 @media (max-width: 1100px) {
   .kd-meta {
@@ -580,38 +613,25 @@ function toTop() {
     align-items: stretch;
     gap: 16px;
   }
+  /* 左侧导航：折叠为抽屉，☰ 按钮展开 */
   .kd-side {
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    overflow: visible;
+    position: fixed;
+    left: 0;
+    top: 64px;
+    bottom: 0;
+    width: 260px;
+    height: auto;
+    transform: translateX(-105%);
+    transition: transform 0.25s ease;
+    z-index: 95;
+    overflow: hidden auto;
+    border-radius: 0 14px 14px 0;
   }
-  .kd-side-title {
-    width: 100%;
+  .kd-side.open {
+    transform: translateX(0);
   }
-  .kd-ch {
-    flex: 1 1 auto;
-    min-width: 120px;
-  }
-  .kd-toc {
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-height: none;
-    overflow: visible;
-  }
-  .kd-toc-item {
-    flex: 0 1 auto;
-    padding: 6px 10px;
-    border-left: none;
-    border-radius: 8px;
-  }
-  .kd-toc-item.sub {
-    padding-left: 10px;
-  }
-  .kd-toc-item.active {
-    background: rgba(212, 175, 55, 0.12);
+  .kd-nav-toggle {
+    display: block;
   }
   .kd-content {
     width: 100%;
