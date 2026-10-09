@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="use-iframe" content="true">
+<meta name="html-box-height-mode" content="auto">
+<meta name="description" content="三种Linux安装方式对比：物理机、虚拟机、云服务器，各自工作原理、优缺点与适合场景，其中虚拟机标注为学习推荐">
+<title></title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#FFFFFF;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#1F2329;padding:16px 0}
+  .wrap{width:100%;max-width:100%}
+  .head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+  .head .t{font-size:19px;font-weight:700}
+  .head .s{font-size:14px;color:#646A73}
+  .grid{display:flex;gap:14px}
+  .card{flex:1;border:1px solid #DEE3E8;border-radius:10px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:8px}
+  .card .name{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+  .card .tag{margin-left:auto;font-size:13px;font-weight:600;padding:2px 8px;border-radius:10px;background:#F2F3F5;color:#4E5969}
+  .card.rec{border-color:#2B5FD9;background:#F5F8FF}
+  .card.rec .tag{background:#2B5FD9;color:#FFFFFF}
+  .card .desc{font-size:14px;color:#1F2329;line-height:1.55}
+  .card .row{font-size:14px;color:#646A73;line-height:1.5}
+  .card .row b{color:#1F2329;font-weight:600}
+  .card .fit{font-size:14px;color:#4E5969;background:#F2F3F5;border-radius:6px;padding:5px 8px;line-height:1.45}
+  .badge{font-size:13px;font-weight:600;color:#F5A623;border:1px solid #F5C86E;background:#FFF8EC;padding:1px 7px;border-radius:10px;margin-left:6px}
+  @media(max-width:640px){.grid{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head"><span class="t">三种 Linux 安装方式</span><span class="s">按学习阶段选择，初学推荐虚拟机</span></div>
+  <div class="grid">
+    <div class="card">
+      <div class="name">物理机安装</div>
+      <div class="desc">直接把 Linux 装进电脑硬盘，独占整台机器运行。</div>
+      <div class="row"><b>优点：</b>性能最高、环境完整</div>
+      <div class="row"><b>缺点：</b>切换系统麻烦、学习成本高</div>
+      <div class="fit">适合：企业服务器、专用 Linux 电脑</div>
+    </div>
+    <div class="card rec">
+      <div class="name">虚拟机安装<span class="badge">学习推荐</span></div>
+      <div class="desc">在 Windows 中用 VMware 模拟一台虚拟电脑，再在虚拟电脑里装 Linux。</div>
+      <div class="row"><b>优点：</b>不影响 Windows、可建多个环境、支持快照恢复</div>
+      <div class="row"><b>缺点：</b>性能略低于物理机</div>
+      <div class="fit">适合：学习与开发（本知识库采用此方式）</div>
+    </div>
+    <div class="card">
+      <div class="name">云服务器</div>
+      <div class="desc">购买阿里云、腾讯云、AWS 等云厂商直接提供的 Linux 服务器。</div>
+      <div class="row"><b>优点：</b>免安装、随时访问、生产级环境</div>
+      <div class="row"><b>缺点：</b>按量付费</div>
+      <div class="fit">适合：网站部署、后端服务、生产环境</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560" role="img" aria-label="Swift 类型转换的三个运算符：is 返回 Bool 只判断，as? 失败返回 nil，as! 失败直接崩溃；左侧为 MediaItem、Movie、Song 类层次，底部标注 Any 与 AnyObject">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+  <!-- 标题 -->
+  <text x="48" y="56" fill="#1c1917" font-size="24" font-family="'Instrument Serif',Georgia,'Times New Roman',serif">类型转换的三个运算符</text>
+  <text x="48" y="80" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">is · as? · as!</text>
+
+  <!-- 区标签 -->
+  <text x="48" y="152" fill="#78716c" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">类层次</text>
+  <text x="420" y="120" fill="#78716c" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">三种运算符</text>
+
+  <!-- 类层次连接线 -->
+  <path d="M224 240 V264" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M108 264 H308" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M108 264 V288" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M308 264 V288" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- 类层次节点 -->
+  <rect x="152" y="192" width="144" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="224" y="218" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">MediaItem</text>
+  <text x="224" y="234" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">基类</text>
+
+  <rect x="48" y="288" width="120" height="48" rx="6" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/>
+  <text x="108" y="314" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">Movie</text>
+  <text x="108" y="330" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">director</text>
+
+  <rect x="248" y="288" width="120" height="48" rx="6" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/>
+  <text x="308" y="314" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">Song</text>
+  <text x="308" y="330" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">artist</text>
+
+  <!-- 运算符卡片一：is -->
+  <rect x="420" y="144" width="492" height="88" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="452" y="196" fill="#1c1917" font-size="20" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">is</text>
+  <text x="536" y="180" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">只判断类型，不取出实例</text>
+  <text x="536" y="204" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">item is Movie</text>
+  <text x="888" y="196" fill="#57534e" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="end">Bool</text>
+
+  <!-- 运算符卡片二：as? -->
+  <rect x="420" y="256" width="492" height="88" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="452" y="308" fill="#1c1917" font-size="20" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">as?</text>
+  <text x="536" y="292" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">安全转型，失败返回 nil</text>
+  <text x="536" y="316" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">if let movie = item as? Movie</text>
+  <text x="888" y="308" fill="#57534e" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="end">Movie?</text>
+
+  <!-- 运算符卡片三：as!（焦点） -->
+  <rect x="420" y="368" width="492" height="112" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="452" y="432" fill="#b5523a" font-size="20" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">as!</text>
+  <text x="536" y="412" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">强制转型，失败直接崩溃</text>
+  <text x="536" y="436" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">let movie = item as! Movie</text>
+  <text x="536" y="456" fill="#78716c" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">Could not cast value of type 'Song' to 'Movie'.</text>
+  <text x="888" y="432" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="end">崩溃</text>
+
+  <!-- 底部标注：Any 与 AnyObject -->
+  <rect x="48" y="384" width="312" height="128" rx="6" fill="#f2ede4" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="72" y="424" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">Any 与 AnyObject</text>
+  <text x="72" y="452" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">Any：任意类型，含结构体、枚举、函数</text>
+  <text x="72" y="476" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">AnyObject：只容纳类实例（引用类型）</text>
+</svg>

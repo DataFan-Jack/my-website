@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" font-family="'Geist', -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#57534e"/></marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#b5523a"/></marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.55"/>
+
+  <text x="32" y="44" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.18em">RUNNING EXTERNAL PROGRAMS</text>
+  <text x="32" y="84" fill="#1c1917" font-size="24" font-weight="400" font-family="'Instrument Serif', Georgia, serif">反引号创建命令，pipeline 连接命令</text>
+  <text x="32" y="108" fill="#78716c" font-size="10">对应 run(pipeline(`echo hello`, `sort`))</text>
+
+  <!-- ===== Julia 进程边界 ===== -->
+  <rect x="64" y="152" width="832" height="232" rx="8" fill="rgba(28,25,23,0.03)" stroke="rgba(28,25,23,0.3)" stroke-width="0.8" stroke-dasharray="4,3"/>
+  <text x="88" y="184" fill="#78716c" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.14em">JULIA 进程（不经过 shell，直接 fork/exec）</text>
+
+  <!-- Cmd 对象 1 -->
+  <rect x="112" y="216" width="200" height="112" rx="6" fill="#ffffff" stroke="#57534e" stroke-width="1"/>
+  <rect x="120" y="224" width="44" height="14" rx="2" fill="transparent" stroke="rgba(87,83,78,0.4)" stroke-width="0.8"/>
+  <text x="142" y="234" fill="#57534e" font-size="7" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.08em">CMD</text>
+  <text x="212" y="266" fill="#1c1917" font-size="13" font-weight="600" text-anchor="middle" font-family="'Geist Mono', ui-monospace, Menlo, monospace">`echo hello`</text>
+  <text x="212" y="290" fill="#57534e" font-size="9" text-anchor="middle">子进程 1</text>
+  <text x="212" y="308" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">stdout 写入管道</text>
+
+  <!-- 管道 -->
+  <line x1="312" y1="272" x2="400" y2="272" stroke="#b5523a" stroke-width="1.6" marker-end="url(#arrow-accent)"/>
+  <rect x="316" y="250" width="80" height="14" rx="2" fill="#faf7f2"/>
+  <text x="356" y="261" fill="#b5523a" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.08em">PIPE 管道</text>
+
+  <!-- Cmd 对象 2 -->
+  <rect x="400" y="216" width="200" height="112" rx="6" fill="#ffffff" stroke="#57534e" stroke-width="1"/>
+  <rect x="408" y="224" width="44" height="14" rx="2" fill="transparent" stroke="rgba(87,83,78,0.4)" stroke-width="0.8"/>
+  <text x="430" y="234" fill="#57534e" font-size="7" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.08em">CMD</text>
+  <text x="500" y="266" fill="#1c1917" font-size="13" font-weight="600" text-anchor="middle" font-family="'Geist Mono', ui-monospace, Menlo, monospace">`sort`</text>
+  <text x="500" y="290" fill="#57534e" font-size="9" text-anchor="middle">子进程 2</text>
+  <text x="500" y="308" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">从 stdin 读取</text>
+
+  <!-- 输出 -->
+  <line x1="600" y1="272" x2="688" y2="272" stroke="#57534e" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <rect x="608" y="250" width="64" height="14" rx="2" fill="#faf7f2"/>
+  <text x="640" y="261" fill="#65655c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.06em">STDOUT</text>
+
+  <rect x="688" y="236" width="176" height="72" rx="6" fill="rgba(28,25,23,0.05)" stroke="#a8a29e" stroke-width="1"/>
+  <text x="776" y="266" fill="#1c1917" font-size="11" font-weight="600" text-anchor="middle" font-family="'Geist Mono', ui-monospace, Menlo, monospace">hello</text>
+  <text x="776" y="290" fill="#78716c" font-size="8" text-anchor="middle">输出到终端或文件</text>
+
+  <!-- ===== 底部对比 ===== -->
+  <line x1="32" y1="408" x2="928" y2="408" stroke="rgba(28,25,23,0.10)" stroke-width="0.8"/>
+  <g font-size="10">
+    <text x="32" y="436" fill="#78716c" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.12em">与 shell 的区别</text>
+    <text x="32" y="464" fill="#57534e">没有通配符展开（ls *.txt 无效）　没有 shell 变量　管道要用 pipeline() 而不是 |　</text>
+    <text x="32" y="486" fill="#57534e">$ 插值由 Julia 处理转义，路径带空格也安全：`sort $file`</text>
+  </g>
+</svg>

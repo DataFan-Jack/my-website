@@ -9,24 +9,59 @@ const skills = [
 ]
 const projects = [
   {
+    name: '新能源汽车数据仓库系统',
+    tags: ['大数据开发', '比赛项目'],
+    tech: ['Hadoop', 'HDFS', 'Hive', 'Spark', 'DataX', 'MySQL', 'Linux'],
+    desc: '面向新能源汽车业务场景，设计并实现离线数据仓库系统，对车辆销售、用户信息、交易行为等业务数据进行统一管理和分析。',
+    features: [
+      '负责 Hadoop 集群环境搭建与基础组件配置，完成 HDFS 分布式存储环境部署',
+      '参与数据仓库分层设计，按照 ODS → DWD → DWS → ADS 架构完成业务数据加工',
+      '使用 DataX 实现业务数据库与 Hive 数仓之间的数据同步',
+      '编写 Hive SQL 完成销售统计、用户分析、业务指标计算等任务',
+      '使用 Spark SQL 优化部分数据处理流程，提高离线计算效率',
+    ],
+  },
+  {
     name: '基于大数据的新闻推荐系统',
     tags: ['毕业设计', '大数据', '推荐算法'],
     tech: ['Vue3', 'Spring Boot', 'MySQL', 'Hadoop', 'Spark', 'Kafka'],
-    desc: '基于用户行为数据分析，设计并实现新闻智能推荐系统。',
-    features: ['用户行为采集', '用户兴趣模型构建', '内容推荐算法', '热门推荐', '推荐结果分析'],
+    desc: '面向新闻资讯场景，设计并实现基于用户行为分析的智能新闻推荐系统，通过采集用户浏览、点赞、收藏等行为数据，构建用户兴趣模型，结合推荐算法实现个性化内容推荐。',
+    features: [
+      '负责系统整体架构设计，采用 Vue3 + Spring Boot 实现前后端分离开发，完成用户端与管理端功能模块开发',
+      '设计用户行为采集模块，记录用户浏览、点赞、收藏等行为数据，为推荐模型提供数据支撑',
+      '基于用户历史行为构建用户兴趣标签模型，通过 TF-IDF 内容分析、兴趣匹配等方式计算用户偏好',
+      '实现多策略推荐算法，包括热门推荐、兴趣推荐、内容相似推荐，并通过加权融合生成最终推荐结果',
+      '使用 Kafka 构建用户行为消息传输流程，结合 Hadoop/HDFS 存储用户行为数据，为后续大数据分析提供基础',
+      '利用 Spark 对用户行为数据进行离线计算与分析，生成用户兴趣画像及推荐结果',
+      '完成推荐效果分析模块，实现推荐数量、点击率、用户兴趣分布等数据可视化展示',
+    ],
     result: '完成前后端分离系统开发，实现个性化新闻推荐流程。',
   },
   {
-    name: 'Hadoop大数据环境搭建',
+    name: '大数据计算平台搭建与部署',
     tags: ['大数据平台'],
-    tech: ['Linux', 'Hadoop', 'Hive', 'Spark'],
-    desc: '完成多节点大数据环境部署，实现分布式存储和计算测试。',
+    tech: ['Linux', 'Hadoop', 'HDFS', 'Hive', 'Spark', 'ZooKeeper'],
+    desc: '基于 Linux 环境搭建 Hadoop 分布式计算平台，完成多节点集群部署与大数据组件配置，为数据存储、计算分析及大数据应用提供基础运行环境。',
+    features: [
+      '完成 Hadoop 集群环境搭建，配置 NameNode、DataNode 等核心节点，实现 HDFS 分布式文件存储',
+      '完成 YARN 资源调度环境配置，实现集群计算资源统一管理',
+      '部署 Hive、Spark 等大数据组件，搭建离线数据分析环境',
+      '配置节点间 SSH 通信及集群参数优化，完成 MapReduce 分布式计算测试',
+    ],
   },
   {
     name: '码上启程个人技术网站',
     tags: ['个人项目'],
+    site: 'https://mycoden.cn/',
     tech: ['Vue3', 'Vite'],
-    desc: '独立开发个人技术展示网站，实现：技术导航、项目展示、在线简历、教程系统。',
+    desc: '基于 Vue3 开发的个人技术展示与知识管理平台，实现个人简历、项目案例、学习笔记及技术导航等功能。',
+    features: [
+      '使用 Vue3 Composition API 进行页面组件设计，实现模块化开发',
+      '基于 Vite 构建前端开发环境，优化项目构建与开发效率',
+      '设计通用 Card 组件，实现项目展示、知识卡片等模块复用',
+      '引入 Markdown 内容管理方式，实现技术文档动态渲染',
+      '实现响应式布局与主题切换，提高网站交互体验',
+    ],
   },
 ]
 const contact = {
@@ -34,7 +69,16 @@ const contact = {
   github: 'https://github.com/yu-jintian',
   site: 'https://mycoden.cn',
 }
-const eduCourses = ['Hadoop', 'Spark', 'Linux', 'MySQL', '数据分析', 'Web开发']
+const eduList = [
+  {
+    name: '西南石油大学 · 信息管理与信息系统（本科）',
+    courses: ['数据库原理', '信息系统分析与设计', '管理信息系统', '软件工程', '数据分析', 'Web应用开发'],
+  },
+  {
+    name: '大数据技术（专科）',
+    courses: ['Hadoop', 'Spark', 'Linux', 'Hive', 'Kafka', 'MySQL', '数据分析', '大数据技术基础'],
+  },
+]
 
 function downloadPdf() { window.print() }
 function goProjects() { location.hash = '#/tutorials' }
@@ -45,7 +89,7 @@ function goProjects() { location.hash = '#/tutorials' }
     <!-- 顶部 Hero -->
     <section class="rs-hero">
       <h1 class="rs-name">DataFan-Jack</h1>
-      <p class="rs-role">大数据开发工程师（实习）</p>
+      <p class="rs-role">大数据开发工程师</p>
       <div class="rs-tech">
         <span v-for="t in heroTech" :key="t" class="rs-chip">{{ t }}</span>
       </div>
@@ -64,7 +108,7 @@ function goProjects() { location.hash = '#/tutorials' }
     <section class="rs-section">
       <h2 class="rs-title">关于我</h2>
       <p class="rs-desc">
-        一名专注于大数据开发方向的学生，具备数据采集、数据存储、数据分析以及 Web 应用开发能力。
+        具备信息系统分析与大数据技术开发背景，专注于大数据开发方向，掌握数据采集、数据存储、数据分析及 Web 应用开发能力。
       </p>
       <div class="rs-dirs">
         <span v-for="d in aboutDirs" :key="d" class="rs-tag">{{ d }}</span>
@@ -93,6 +137,7 @@ function goProjects() { location.hash = '#/tutorials' }
             <h3 class="rs-project-name">{{ p.name }}</h3>
             <div class="rs-project-tags">
               <span v-for="t in p.tags" :key="t" class="rs-tag">{{ t }}</span>
+              <a v-if="p.site" class="rs-project-site" :href="p.site" target="_blank" rel="noopener">mycoden.cn</a>
             </div>
           </div>
           <div class="rs-project-tech">
@@ -111,42 +156,28 @@ function goProjects() { location.hash = '#/tutorials' }
     <!-- 教育经历 -->
     <section class="rs-section rs-edu">
       <h2 class="rs-title">教育经历</h2>
-      <div class="rs-edu-head">
-        <b>XX职业技术学院 · 大数据技术（专科）</b>
-        <span>2024.09 - 2027.06</span>
-      </div>
-      <p class="rs-edu-label">核心课程：</p>
-      <div class="rs-tech">
-        <span v-for="c in eduCourses" :key="c" class="rs-chip">{{ c }}</span>
+      <div v-for="e in eduList" :key="e.name" class="rs-edu-item">
+        <div class="rs-edu-head">
+          <b>{{ e.name }}</b>
+        </div>
+        <p class="rs-edu-label">核心课程：</p>
+        <div class="rs-tech">
+          <span v-for="c in e.courses" :key="c" class="rs-chip">{{ c }}</span>
+        </div>
       </div>
     </section>
   </main>
 </template>
 
 <style scoped>
-/* ===== 黑金主题变量 ===== */
+/* ===== 黑金主题变量（统一使用全局变量系统） ===== */
 .rs-page {
-  --gold: #d4a843;
-  --gold-strong: #f0d878;
-  --text: #e6e6e6;
-  --muted: #9aa0a6;
-  --bg: transparent;
-  --card-bg: rgba(255, 255, 255, 0.03);
-  --line: rgba(212, 168, 67, 0.3);
   max-width: 920px;
   margin: 0 auto;
   padding: 65px 24px 60px;
-  color: var(--text);
+  color: var(--text-primary);
   user-select: text;
   -webkit-user-select: text;
-}
-:global(.page.light-mode) .rs-page {
-  --gold: #b8862e;
-  --gold-strong: #8a6520;
-  --text: #2b2b2b;
-  --muted: #6b6b6b;
-  --card-bg: #ffffff;
-  --line: #e8e0cc;
 }
 
 /* ===== Hero ===== */
@@ -154,20 +185,20 @@ function goProjects() { location.hash = '#/tutorials' }
 .rs-name {
   font-size: 46px;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--accent-color);
   margin: 0 0 12px;
   letter-spacing: 2px;
 }
-.rs-role { font-size: 22px; color: var(--muted); margin: 0 0 18px; }
+.rs-role { font-size: 22px; color: var(--text-secondary); margin: 0 0 18px; }
 .rs-chip {
   display: inline-block;
   padding: 5px 14px;
   margin: 4px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-color);
   border-radius: 20px;
-  color: var(--gold-strong);
+  color: var(--accent-strong);
   font-size: 14px;
-  background: var(--card-bg);
+  background: var(--bg-card);
 }
 .rs-chip-sm { font-size: 12px; padding: 3px 10px; }
 .rs-contact {
@@ -177,12 +208,12 @@ function goProjects() { location.hash = '#/tutorials' }
   gap: 22px;
   margin: 16px 0 24px;
 }
-.rs-contact a { color: var(--muted); font-size: 18px; text-decoration: none; transition: color 0.2s; }
-.rs-contact a:hover { color: var(--gold); }
+.rs-contact a { color: var(--text-secondary); font-size: 18px; text-decoration: none; transition: color 0.2s; }
+.rs-contact a:hover { color: var(--accent-color); }
 .rs-actions { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; width: 100%; }
 .rs-btn {
   padding: 15px 32px;
-  border: 1px solid var(--gold);
+  border: 1px solid var(--accent-color);
   border-radius: 8px;
   background: linear-gradient(135deg, #d4a843, #b8862e);
   color: #0b0b12;
@@ -192,27 +223,36 @@ function goProjects() { location.hash = '#/tutorials' }
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .rs-btn:hover { transform: translateY(-2px); box-shadow: 0 0 14px rgba(212, 168, 67, 0.5); }
-.rs-btn-ghost { background: transparent; color: var(--gold); text-shadow: 0 0 14px rgba(212, 168, 67, 0.5); }
+.rs-btn-ghost { background: transparent; color: var(--accent-color); text-shadow: 0 0 14px rgba(212, 168, 67, 0.5); }
 
 /* ===== 通用区块 ===== */
-.rs-section { padding: 28px 0; border-top: 1px solid var(--line); }
+.rs-section { padding: 28px 0; border-top: 1px solid var(--border-color); }
 .rs-title {
   font-size: 22px;
-  color: var(--gold);
+  color: var(--accent-color);
   margin: 0 0 18px;
   padding-left: 12px;
-  border-left: 3px solid var(--gold);
+  border-left: 3px solid var(--accent-color);
 }
-.rs-desc { color: var(--text); font-size: 15px; line-height: 1.9; margin: 0 0 14px; }
+.rs-desc { color: var(--text-primary); font-size: 15px; line-height: 1.9; margin: 0 0 14px; }
 .rs-tag {
   display: inline-block;
   padding: 4px 12px;
   margin: 3px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
-  color: var(--gold);
+  color: var(--accent-color);
   font-size: 13px;
 }
+.rs-project-site {
+  color: var(--accent-strong);
+  font-size: 13px;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(212, 175, 55, 0.5);
+  padding: 4px 2px;
+  margin: 3px;
+}
+.rs-project-site:hover { color: var(--accent-color); }
 
 /* ===== 技能卡片 ===== */
 .rs-skills {
@@ -221,8 +261,8 @@ function goProjects() { location.hash = '#/tutorials' }
   gap: 20px;
 }
 .rs-skill {
-  background: var(--card-bg);
-  border: 1px solid var(--line);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 22px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
@@ -230,37 +270,39 @@ function goProjects() { location.hash = '#/tutorials' }
 }
 .rs-skill:hover {
   transform: translateY(-6px);
-  border-color: var(--gold);
+  border-color: var(--accent-color);
   box-shadow: 0 0 22px rgba(212, 168, 67, 0.45), 0 14px 34px rgba(0, 0, 0, 0.45);
 }
-.rs-skill-title { color: var(--gold-strong); font-size: 17px; margin: 0 0 14px; }
+.rs-skill-title { color: var(--accent-strong); font-size: 17px; margin: 0 0 14px; }
 .rs-skill-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .rs-skill-list li {
   padding: 5px 12px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   font-size: 13px;
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 /* ===== 项目经历 ===== */
 .rs-projects { display: flex; flex-direction: column; gap: 10px; }
 .rs-project { padding: 6px 0; }
 .rs-project-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
-.rs-project-name { color: var(--gold-strong); font-size: 17px; margin: 0; }
+.rs-project-name { color: var(--accent-strong); font-size: 17px; margin: 0; }
 .rs-project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 .rs-project-tech { margin: 12px 0 8px; }
-.rs-project-desc { color: var(--muted); font-size: 14px; margin: 0 0 10px; }
-.rs-list { margin: 0; padding-left: 20px; color: var(--text); font-size: 14px; line-height: 1.9; }
-.rs-project-result { color: var(--gold); font-size: 14px; margin: 10px 0 0; }
-.rs-divider { height: 1px; background: var(--line); margin: 22px 0; }
+.rs-project-desc { color: var(--text-secondary); font-size: 14px; margin: 0 0 10px; }
+.rs-list { margin: 0; padding-left: 20px; color: var(--text-primary); font-size: 14px; line-height: 1.9; }
+.rs-project-result { color: var(--accent-color); font-size: 14px; margin: 10px 0 0; }
+.rs-divider { height: 1px; background: var(--border-color); margin: 22px 0; }
 
 /* ===== 教育经历 ===== */
-.rs-edu { border-top: 1px solid var(--line); }
+.rs-edu { border-top: 1px solid var(--border-color); }
+.rs-edu-item { margin-bottom: 18px; }
+.rs-edu-item:last-child { margin-bottom: 0; }
 .rs-edu-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
-.rs-edu-head b { color: var(--gold-strong); font-size: 16px; }
-.rs-edu-head span { color: var(--muted); font-size: 13px; }
-.rs-edu-label { color: var(--muted); font-size: 14px; margin: 0 0 8px; }
+.rs-edu-head b { color: var(--accent-strong); font-size: 16px; }
+.rs-edu-head span { color: var(--text-secondary); font-size: 13px; }
+.rs-edu-label { color: var(--text-secondary); font-size: 14px; margin: 0 0 8px; }
 
 /* ===== 移动端 ≤768px ===== */
 @media (max-width: 768px) {

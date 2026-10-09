@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="use-iframe" content="true">
+<meta name="html-box-height-mode" content="auto">
+<meta name="description" content="创建虚拟机的完整流程：安装VMware、新建虚拟机、选择ISO镜像、设置CPU内存、设置硬盘、启动安装、进入Linux桌面共7步">
+<title></title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#FFFFFF;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#1F2329;padding:14px 0}
+  .wrap{width:100%;max-width:100%}
+  .head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+  .head .t{font-size:19px;font-weight:700}
+  .head .s{font-size:14px;color:#646A73}
+  .flow{display:flex;flex-wrap:wrap;gap:8px 0;align-items:stretch}
+  .step{flex:1;min-width:108px;display:flex;align-items:center;gap:8px}
+  .box{flex:1;border:1px solid #DEE3E8;border-radius:10px;padding:10px 8px;text-align:center;background:#FFFFFF}
+  .box .n{font-size:13px;font-weight:700;color:#2B5FD9;margin-bottom:4px}
+  .box .x{font-size:14px;line-height:1.4;font-weight:600}
+  .box .d{font-size:13px;color:#646A73;margin-top:3px;line-height:1.4}
+  .box.hot{border-color:#2B5FD9;background:#F5F8FF}
+  .arr{width:22px;color:#C0C6CE;font-size:16px;font-weight:700;flex-shrink:0;text-align:center}
+  .note{margin-top:12px;font-size:14px;color:#646A73;background:#F7F8FA;border-radius:8px;padding:9px 12px;line-height:1.6}
+  .note b{color:#1F2329}
+  @media(max-width:640px){.arr{display:none}.step{flex-wrap:wrap}.step .box{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head"><span class="t">创建虚拟机流程</span><span class="s">从安装 VMware 到进入 Linux 桌面</span></div>
+  <div class="flow">
+    <div class="step"><div class="box"><div class="n">第 1 步</div><div class="x">安装 VMware</div><div class="d">下载并安装 Workstation</div></div><div class="arr">→</div></div>
+    <div class="step"><div class="box"><div class="n">第 2 步</div><div class="x">新建虚拟机</div><div class="d">选择“自定义/典型”向导</div></div><div class="arr">→</div></div>
+    <div class="step"><div class="box"><div class="n">第 3 步</div><div class="x">选择 ISO 镜像</div><div class="d">指定 Ubuntu 安装文件</div></div><div class="arr">→</div></div>
+    <div class="step"><div class="box hot"><div class="n">第 4 步</div><div class="x">设置 CPU / 内存</div><div class="d">按硬件推荐表分配</div></div><div class="arr">→</div></div>
+    <div class="step"><div class="box"><div class="n">第 5 步</div><div class="x">设置硬盘</div><div class="d">建议 40GB 以上</div></div><div class="arr">→</div></div>
+    <div class="step"><div class="box"><div class="n">第 6 步</div><div class="x">启动安装</div><div class="d">虚拟机从 ISO 引导</div></div><div class="arr">→</div></div>
+    <div class="step"><div class="box"><div class="n">第 7 步</div><div class="x">进入 Linux 桌面</div><div class="d">完成系统安装向导</div></div></div>
+  </div>
+  <div class="note"><b>提示：</b>第 4、5 步的硬件配置直接决定后续学习体验，推荐先看第 5 节《虚拟机硬件配置推荐》再动手。</div>
+</div>
+</body>
+</html>

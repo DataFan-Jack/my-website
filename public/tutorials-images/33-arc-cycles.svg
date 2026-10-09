@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560" role="img" aria-label="循环强引用与弱引用：上半部分 Person 与 Apartment 互相强引用形成环，引用计数永不归零，deinit 不执行；下半部分把 Apartment 的 tenant 改成 weak，环被打断，对象可以释放">
+<defs>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+</pattern>
+<marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+</marker>
+<marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+</marker>
+<marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+</marker>
+</defs>
+
+<rect width="100%" height="100%" fill="#faf7f2"/>
+<rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+<text x="40" y="36" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" letter-spacing="0.18em">SWIFT · ARC</text>
+<text x="40" y="60" fill="#1c1917" font-size="20" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif">强引用成环 vs weak 打断环</text>
+<line x1="40" y1="76" x2="760" y2="76" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+
+<!-- upper: retain cycle -->
+<text x="40" y="100" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" letter-spacing="0.18em">RETAIN CYCLE · 循环强引用</text>
+
+<path d="M 320 168 C 360 124, 440 124, 480 168" fill="none" stroke="#b5523a" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+<path d="M 480 208 C 440 252, 360 252, 320 208" fill="none" stroke="#b5523a" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+<rect x="376" y="116" width="48" height="16" fill="#faf7f2"/>
+<text x="400" y="126" fill="#b5523a" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">STRONG</text>
+<rect x="376" y="244" width="48" height="16" fill="#faf7f2"/>
+<text x="400" y="256" fill="#b5523a" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">STRONG</text>
+
+<rect x="120" y="148" width="200" height="80" rx="6" fill="#faf7f2"/>
+<rect x="120" y="148" width="200" height="80" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="220" y="180" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">Person</text>
+<text x="220" y="198" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">apartment: Apartment?</text>
+
+<rect x="480" y="148" width="200" height="80" rx="6" fill="#faf7f2"/>
+<rect x="480" y="148" width="200" height="80" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="580" y="180" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">Apartment</text>
+<text x="580" y="198" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">tenant: Person?</text>
+
+<rect x="280" y="280" width="240" height="32" rx="6" fill="#faf7f2"/>
+<rect x="280" y="280" width="240" height="32" rx="6" fill="#f2ede4" stroke="#57534e" stroke-width="1"/>
+<text x="400" y="300" fill="#1c1917" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">引用计数永不归零，deinit 不执行</text>
+
+<!-- lower: weak breaks the cycle -->
+<line x1="40" y1="344" x2="760" y2="344" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+<text x="40" y="368" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" letter-spacing="0.18em">WEAK · 打断环</text>
+
+<line x1="320" y1="424" x2="476" y2="424" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="480" y1="452" x2="324" y2="452" stroke="#57534e" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+<rect x="376" y="404" width="48" height="16" fill="#faf7f2"/>
+<text x="400" y="416" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">STRONG</text>
+<rect x="376" y="432" width="48" height="16" fill="#faf7f2"/>
+<text x="400" y="444" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">WEAK</text>
+
+<rect x="120" y="396" width="200" height="80" rx="6" fill="#faf7f2"/>
+<rect x="120" y="396" width="200" height="80" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="220" y="428" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">Person</text>
+<text x="220" y="446" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">apartment: Apartment?</text>
+
+<rect x="480" y="396" width="200" height="80" rx="6" fill="#faf7f2"/>
+<rect x="480" y="396" width="200" height="80" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="580" y="428" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">Apartment</text>
+<text x="580" y="446" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">weak tenant: Person?</text>
+
+<text x="400" y="512" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">weak 不增加引用计数，目标释放后自动置 nil，环被打破</text>
+<text x="400" y="536" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">unowned 不会置 nil，访问已释放对象会 trap</text>
+</svg>

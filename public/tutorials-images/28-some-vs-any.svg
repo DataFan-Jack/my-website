@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 504" width="800" height="504" role="img" aria-label="some 与 any 对比：some 在编译期确定唯一具体类型、无装箱，调用方按具体类型使用；any 用存在类型容器在运行时存放任意遵循者，由缓冲区、元数据和 witness table 组成，带来间接开销">
+<defs>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+</pattern>
+<marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+</marker>
+<marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+</marker>
+<marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+</marker>
+</defs>
+
+<rect width="100%" height="100%" fill="#faf7f2"/>
+<rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+<text x="40" y="36" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" letter-spacing="0.18em">SWIFT · OPAQUE TYPES</text>
+<text x="40" y="60" fill="#1c1917" font-size="20" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif">some 与 any：静态类型 vs 存在类型容器</text>
+<line x1="40" y1="76" x2="760" y2="76" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+
+<!-- connectors -->
+<line x1="200" y1="168" x2="200" y2="188" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="200" y1="328" x2="200" y2="364" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="600" y1="168" x2="600" y2="188" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="600" y1="328" x2="600" y2="364" stroke="#b5523a" stroke-width="1" marker-end="url(#arrow-accent)"/>
+
+<!-- left column: some P -->
+<rect x="40" y="104" width="320" height="64" rx="6" fill="#faf7f2"/>
+<rect x="40" y="104" width="320" height="64" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<rect x="48" y="112" width="56" height="12" rx="2" fill="transparent" stroke="rgba(28,25,23,0.40)" stroke-width="0.8"/>
+<text x="76" y="121" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">SOME P</text>
+<text x="200" y="144" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist', -apple-system, 'Helvetica Neue', Arial, sans-serif" text-anchor="middle">编译期确定唯一类型</text>
+<text x="200" y="160" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">编译器知道底层类型是哪一个</text>
+
+<rect x="40" y="192" width="320" height="136" rx="6" fill="#faf7f2"/>
+<rect x="40" y="192" width="320" height="136" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<rect x="48" y="200" width="64" height="12" rx="2" fill="transparent" stroke="rgba(28,25,23,0.40)" stroke-width="0.8"/>
+<text x="80" y="209" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">NO BOXING</text>
+<text x="200" y="232" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist', -apple-system, 'Helvetica Neue', Arial, sans-serif" text-anchor="middle">无装箱</text>
+<text x="200" y="258" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">值直接返回，不做包装</text>
+<text x="200" y="286" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">静态派发，无查表</text>
+<text x="200" y="314" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">type(of:) 仍是真实类型</text>
+
+<rect x="40" y="368" width="320" height="72" rx="6" fill="#faf7f2"/>
+<rect x="40" y="368" width="320" height="72" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<rect x="48" y="376" width="64" height="12" rx="2" fill="transparent" stroke="rgba(28,25,23,0.40)" stroke-width="0.8"/>
+<text x="80" y="385" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">CALL SITE</text>
+<text x="200" y="412" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist', -apple-system, 'Helvetica Neue', Arial, sans-serif" text-anchor="middle">调用方当具体类型使用</text>
+<text x="200" y="430" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">没有间接层，直接拿到值</text>
+
+<!-- right column: any P -->
+<rect x="440" y="104" width="320" height="64" rx="6" fill="#faf7f2"/>
+<rect x="440" y="104" width="320" height="64" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<rect x="448" y="112" width="48" height="12" rx="2" fill="transparent" stroke="rgba(28,25,23,0.40)" stroke-width="0.8"/>
+<text x="472" y="121" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">ANY P</text>
+<text x="600" y="144" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist', -apple-system, 'Helvetica Neue', Arial, sans-serif" text-anchor="middle">运行时才知道类型</text>
+<text x="600" y="160" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">具体类型信息被擦除</text>
+
+<rect x="440" y="192" width="320" height="136" rx="6" fill="#faf7f2"/>
+<rect x="440" y="192" width="320" height="136" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+<rect x="448" y="200" width="88" height="12" rx="2" fill="transparent" stroke="rgba(181,82,58,0.50)" stroke-width="0.8"/>
+<text x="492" y="209" fill="#b5523a" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">EXISTENTIAL</text>
+<text x="600" y="232" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist', -apple-system, 'Helvetica Neue', Arial, sans-serif" text-anchor="middle">存在类型容器</text>
+<rect x="480" y="244" width="240" height="20" rx="4" fill="#faf7f2"/>
+<rect x="480" y="244" width="240" height="20" rx="4" fill="rgba(28,25,23,0.05)" stroke="rgba(28,25,23,0.30)" stroke-width="1"/>
+<text x="600" y="258" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">缓冲区：存放具体的值</text>
+<rect x="480" y="272" width="240" height="20" rx="4" fill="#faf7f2"/>
+<rect x="480" y="272" width="240" height="20" rx="4" fill="rgba(28,25,23,0.05)" stroke="rgba(28,25,23,0.30)" stroke-width="1"/>
+<text x="600" y="286" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">元数据：记录类型信息</text>
+<rect x="480" y="300" width="240" height="20" rx="4" fill="#faf7f2"/>
+<rect x="480" y="300" width="240" height="20" rx="4" fill="rgba(28,25,23,0.05)" stroke="rgba(28,25,23,0.30)" stroke-width="1"/>
+<text x="600" y="314" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">witness table：协议方法表</text>
+
+<rect x="440" y="368" width="320" height="72" rx="6" fill="#faf7f2"/>
+<rect x="440" y="368" width="320" height="72" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<rect x="448" y="376" width="64" height="12" rx="2" fill="transparent" stroke="rgba(28,25,23,0.40)" stroke-width="0.8"/>
+<text x="480" y="385" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">DISPATCH</text>
+<text x="600" y="412" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist', -apple-system, 'Helvetica Neue', Arial, sans-serif" text-anchor="middle">动态派发，间接开销</text>
+<text x="600" y="430" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">每次调用都要穿过容器</text>
+
+<text x="400" y="480" fill="#1c1917" font-size="12" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" font-style="italic" text-anchor="middle">能用 some 就用 some，any 只在需要异构集合时用</text>
+</svg>

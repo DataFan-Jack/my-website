@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="use-iframe" content="true">
+<meta name="html-box-height-mode" content="auto">
+<meta name="description" content="VMware三种网络模式对比：NAT模式、桥接模式、仅主机模式的结构、外网访问能力和适用场景">
+<title></title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#FFFFFF;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#1F2329;padding:14px 0}
+  .wrap{width:100%;max-width:100%}
+  .head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+  .head .t{font-size:19px;font-weight:700}
+  .head .s{font-size:14px;color:#646A73}
+  .grid{display:flex;gap:14px}
+  .card{flex:1;border:1px solid #DEE3E8;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:9px}
+  .card.rec{border-color:#2B5FD9;background:#F5F8FF}
+  .card .name{display:flex;align-items:center;gap:6px;font-size:16px;font-weight:700}
+  .card .tag{margin-left:auto;font-size:13px;font-weight:600;padding:2px 8px;border-radius:10px;background:#F2F3F5;color:#4E5969}
+  .card.rec .tag{background:#2B5FD9;color:#FFFFFF}
+  .topo{border:1px solid #E3E7EE;border-radius:8px;background:#FAFBFC;padding:8px;display:flex;flex-direction:column;gap:4px;font-size:13px;color:#4E5969}
+  .topo .ln{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+  .topo .nd{border:1px solid #DEE3E8;background:#FFFFFF;border-radius:6px;padding:2px 7px;white-space:nowrap}
+  .topo .nd.hl{border-color:#2B5FD9;color:#2B5FD9;font-weight:600}
+  .topo .lk{color:#C0C6CE;font-weight:700}
+  .rows{font-size:14px;color:#646A73;line-height:1.6}
+  .rows b{color:#1F2329}
+  .rows .ok{color:#23A55A;font-weight:700}
+  .rows .no{color:#E5484D;font-weight:700}
+  @media(max-width:640px){.grid{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head"><span class="t">VMware 网络模式对比</span><span class="s">按“是否上外网、能否被外部访问”选择</span></div>
+  <div class="grid">
+    <div class="card rec">
+      <div class="name">NAT 模式<span class="tag">学习推荐</span></div>
+      <div class="topo">
+        <div class="ln"><span class="nd hl">Linux 虚拟机</span><span class="lk">→</span><span class="nd">VMware 虚拟网络</span><span class="lk">→</span><span class="nd">Windows 主机</span><span class="lk">→</span><span class="nd">互联网</span></div>
+      </div>
+      <div class="rows">虚拟机<b>共享主机网络</b>上网，配置最简单，适合学习环境。</div>
+      <div class="rows">互联网：<span class="ok">✓ 可上网</span></div>
+      <div class="rows">外部访问：较复杂，需配置端口转发</div>
+    </div>
+    <div class="card">
+      <div class="name">桥接模式</div>
+      <div class="topo">
+        <div class="ln"><span class="nd">路由器 / 交换机</span></div>
+        <div class="ln" style="padding-left:14px"><span class="lk">├─</span><span class="nd">Windows 主机</span><span class="lk">├─</span><span class="nd hl">Linux 虚拟机</span></div>
+      </div>
+      <div class="rows">虚拟机在局域网中拥有<b>独立 IP</b>，像一台真实服务器。</div>
+      <div class="rows">互联网：<span class="ok">✓ 可上网</span></div>
+      <div class="rows">外部访问：可直接访问；网络环境变化容易断</div>
+    </div>
+    <div class="card">
+      <div class="name">仅主机模式</div>
+      <div class="topo">
+        <div class="ln"><span class="nd hl">Linux 虚拟机</span><span class="lk">↔</span><span class="nd">VMware 虚拟网络</span><span class="lk">↔</span><span class="nd">Windows 主机</span></div>
+      </div>
+      <div class="rows">只能与主机和虚拟机之间通信，<b>不能访问互联网</b>。</div>
+      <div class="rows">互联网：<span class="no">✗ 不可上网</span></div>
+      <div class="rows">用途：内部测试、隔离环境</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 696" width="960" height="696" role="img" aria-label="Swift 错误处理流程图：throw 抛出错误后沿调用栈向上传播，遇到 do-catch 就地捕获，否则继续向上，到达顶层未捕获则程序终止；右侧为 try? 与 try! 的简化写法，底部标注 defer 的执行规则">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+  <!-- 标题 -->
+  <text x="48" y="56" fill="#1c1917" font-size="24" font-family="'Instrument Serif',Georgia,'Times New Roman',serif">错误的传播与捕获</text>
+  <text x="48" y="80" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">throw → 调用栈 → do-catch / try? / try!</text>
+
+  <!-- 箭头 -->
+  <path d="M320 160 V192" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M320 248 V280" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M416 328 H480" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M568 352 V384" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M320 376 V408" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M320 464 V496" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- 箭头文字（带遮罩） -->
+  <rect x="432" y="308" width="32" height="16" fill="#faf7f2"/>
+  <text x="448" y="320" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">是</text>
+  <rect x="320" y="384" width="32" height="16" fill="#faf7f2"/>
+  <text x="336" y="396" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">否</text>
+
+  <!-- 主流程节点 -->
+  <rect x="240" y="120" width="160" height="40" rx="20" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="320" y="144" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">throw 抛出错误</text>
+
+  <rect x="240" y="192" width="160" height="56" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="320" y="222" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">沿调用栈向上传播</text>
+  <text x="320" y="238" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">propagate</text>
+
+  <polygon points="320,280 416,328 320,376 224,328" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="320" y="332" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">遇到 do-catch？</text>
+
+  <rect x="480" y="304" width="176" height="48" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="568" y="330" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">catch 捕获，就地处理</text>
+  <text x="568" y="346" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">错误不再向上传播</text>
+
+  <rect x="480" y="384" width="176" height="48" rx="24" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="568" y="412" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">恢复正常流程</text>
+
+  <rect x="240" y="408" width="160" height="56" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="320" y="438" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">继续向上传播</text>
+  <text x="320" y="454" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">本层没有 catch</text>
+
+  <rect x="208" y="496" width="224" height="48" rx="24" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/>
+  <text x="320" y="524" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">顶层未捕获，程序终止</text>
+
+  <!-- 右侧分支：try? 与 try! -->
+  <rect x="680" y="192" width="232" height="296" rx="6" fill="#f2ede4" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="704" y="232" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">简化写法</text>
+  <line x1="704" y1="248" x2="888" y2="248" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="704" y="292" fill="#1c1917" font-size="16" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">try?</text>
+  <text x="704" y="316" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">失败 → 返回 nil</text>
+  <text x="704" y="336" fill="#78716c" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">错误信息被丢弃</text>
+  <line x1="704" y1="364" x2="888" y2="364" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="704" y="408" fill="#1c1917" font-size="16" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">try!</text>
+  <text x="704" y="432" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">失败 → 运行时崩溃</text>
+  <text x="704" y="452" fill="#78716c" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">只用于不可能失败的场合</text>
+
+  <!-- 底部标注：defer -->
+  <line x1="48" y1="592" x2="912" y2="592" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="48" y="628" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">defer</text>
+  <text x="124" y="628" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">离开当前作用域前一定执行，正常返回或抛错都会执行</text>
+  <text x="48" y="656" fill="#78716c" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">同一作用域内多个 defer 逆序执行：defer A、B、C 声明 → 执行顺序 C、B、A</text>
+</svg>

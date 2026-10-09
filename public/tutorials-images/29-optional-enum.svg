@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 432" width="800" height="432" role="img" aria-label="可选类型展开为 Optional 泛型枚举：String? 就是 Optional String，只有 .some(String) 与 .none 两个 case；可选链只在 .some 上继续，空合运算符在 .none 时给默认值，强制解包遇到 .none 会 trap">
+<defs>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+</pattern>
+<marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+</marker>
+<marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+</marker>
+<marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+</marker>
+</defs>
+
+<rect width="100%" height="100%" fill="#faf7f2"/>
+<rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+<text x="40" y="36" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" letter-spacing="0.18em">SWIFT · OPTIONAL</text>
+<text x="40" y="60" fill="#1c1917" font-size="20" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif">Optional&lt;T&gt; 的两种取值</text>
+<line x1="40" y1="76" x2="760" y2="76" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+
+<!-- connectors: orthogonal elbow -->
+<line x1="240" y1="180" x2="280" y2="180" stroke="#57534e" stroke-width="1"/>
+<line x1="280" y1="148" x2="280" y2="292" stroke="#57534e" stroke-width="1"/>
+<line x1="280" y1="148" x2="316" y2="148" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="280" y1="292" x2="316" y2="292" stroke="#b5523a" stroke-width="1" marker-end="url(#arrow-accent)"/>
+<line x1="520" y1="148" x2="556" y2="148" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="520" y1="292" x2="556" y2="292" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+
+<!-- root -->
+<rect x="40" y="144" width="200" height="72" rx="6" fill="#faf7f2"/>
+<rect x="40" y="144" width="200" height="72" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<rect x="48" y="152" width="32" height="12" rx="2" fill="transparent" stroke="rgba(28,25,23,0.40)" stroke-width="0.8"/>
+<text x="64" y="161" fill="#57534e" font-size="8" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" letter-spacing="0.08em">T?</text>
+<text x="140" y="186" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">Optional&lt;String&gt;</text>
+<text x="140" y="204" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">String? 是它的简写</text>
+
+<!-- case: some -->
+<rect x="320" y="112" width="200" height="72" rx="6" fill="#faf7f2"/>
+<rect x="320" y="112" width="200" height="72" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="420" y="146" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">.some(String)</text>
+<text x="420" y="164" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">有值：包着一个 String</text>
+
+<!-- case: none (focal) -->
+<rect x="320" y="256" width="200" height="72" rx="6" fill="#faf7f2"/>
+<rect x="320" y="256" width="200" height="72" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+<text x="420" y="290" fill="#b5523a" font-size="12" font-weight="600" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">.none</text>
+<text x="420" y="308" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle">无值：就是 nil</text>
+
+<!-- annotation: optional chaining -->
+<rect x="560" y="120" width="200" height="56" rx="6" fill="#faf7f2"/>
+<rect x="560" y="120" width="200" height="56" rx="6" fill="rgba(28,25,23,0.03)" stroke="rgba(28,25,23,0.30)" stroke-width="1"/>
+<text x="576" y="152" fill="#1c1917" font-size="9" font-weight="600" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace">?.</text>
+<text x="608" y="152" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace">只在 .some 上继续</text>
+
+<!-- annotation: nil-coalescing and force unwrap -->
+<rect x="560" y="252" width="200" height="80" rx="6" fill="#faf7f2"/>
+<rect x="560" y="252" width="200" height="80" rx="6" fill="rgba(28,25,23,0.03)" stroke="rgba(28,25,23,0.30)" stroke-width="1"/>
+<text x="576" y="280" fill="#1c1917" font-size="9" font-weight="600" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace">??</text>
+<text x="608" y="280" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace">在 .none 时给默认值</text>
+<text x="576" y="308" fill="#1c1917" font-size="9" font-weight="600" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace">!</text>
+<text x="608" y="308" fill="#57534e" font-size="9" font-family="'Geist Mono', 'SFMono-Regular', Menlo, Consolas, monospace">对 .none 会 trap</text>
+
+<text x="400" y="392" fill="#57534e" font-size="12" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" font-style="italic" text-anchor="middle">可选值不是特殊类型，只是一个普通的泛型枚举</text>
+</svg>

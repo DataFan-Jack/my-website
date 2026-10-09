@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" font-family="'Geist', -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#57534e"/></marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#b5523a"/></marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.55"/>
+
+  <text x="32" y="44" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.18em">COLUMN-MAJOR MEMORY LAYOUT</text>
+  <text x="32" y="84" fill="#1c1917" font-size="24" font-weight="400" font-family="'Instrument Serif', Georgia, serif">Julia 数组按列优先存储</text>
+  <text x="32" y="108" fill="#78716c" font-size="10">矩阵 A = [1 2 3; 4 5 6] 在内存中的真实排列：先存第 1 列，再存第 2 列……</text>
+
+  <!-- ===== 左：逻辑视图（2×3 矩阵） ===== -->
+  <text x="96" y="168" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.12em">逻辑视图  2×3</text>
+  <g font-family="'Geist Mono', ui-monospace, Menlo, monospace" font-size="18" text-anchor="middle">
+    <rect x="96" y="192" width="80" height="72" fill="#ffffff" stroke="#57534e" stroke-width="1"/><text x="136" y="235" fill="#1c1917">1</text>
+    <rect x="176" y="192" width="80" height="72" fill="#ffffff" stroke="#57534e" stroke-width="1"/><text x="216" y="235" fill="#1c1917">2</text>
+    <rect x="256" y="192" width="80" height="72" fill="#ffffff" stroke="#57534e" stroke-width="1"/><text x="296" y="235" fill="#1c1917">3</text>
+    <rect x="96" y="264" width="80" height="72" fill="#ffffff" stroke="#57534e" stroke-width="1"/><text x="136" y="307" fill="#1c1917">4</text>
+    <rect x="176" y="264" width="80" height="72" fill="#ffffff" stroke="#57534e" stroke-width="1"/><text x="216" y="307" fill="#1c1917">5</text>
+    <rect x="256" y="264" width="80" height="72" fill="#ffffff" stroke="#57534e" stroke-width="1"/><text x="296" y="307" fill="#1c1917">6</text>
+  </g>
+  <text x="136" y="384" fill="#78716c" font-size="9" text-anchor="middle">A[1,1]</text>
+  <text x="216" y="384" fill="#78716c" font-size="9" text-anchor="middle">A[1,2]</text>
+  <text x="296" y="384" fill="#78716c" font-size="9" text-anchor="middle">A[1,3]</text>
+
+  <!-- ===== 中间箭头 ===== -->
+  <line x1="384" y1="264" x2="456" y2="264" stroke="#b5523a" stroke-width="1.2" marker-end="url(#arrow-accent)"/>
+  <text x="420" y="248" fill="#b5523a" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.06em">vec(A)</text>
+
+  <!-- ===== 右：内存视图（6 格线性） ===== -->
+  <text x="496" y="168" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.12em">内存视图（线性）</text>
+  <g font-family="'Geist Mono', ui-monospace, Menlo, monospace" font-size="18" text-anchor="middle">
+    <rect x="496" y="192" width="72" height="72" fill="#f6e8e3" stroke="#b5523a" stroke-width="1"/><text x="532" y="235" fill="#b5523a" font-weight="600">1</text>
+    <rect x="568" y="192" width="72" height="72" fill="#f6e8e3" stroke="#b5523a" stroke-width="1"/><text x="604" y="235" fill="#b5523a" font-weight="600">4</text>
+    <rect x="640" y="192" width="72" height="72" fill="#ffffff" stroke="#57534e" stroke-width="1"/><text x="676" y="235" fill="#1c1917">2</text>
+    <rect x="712" y="192" width="72" height="72" fill="#ffffff" stroke="#57534e" stroke-width="1"/><text x="748" y="235" fill="#1c1917">5</text>
+    <rect x="784" y="192" width="72" height="72" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/><text x="820" y="235" fill="#1c1917">3</text>
+    <rect x="856" y="192" width="72" height="72" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/><text x="892" y="235" fill="#1c1917">6</text>
+  </g>
+  <!-- 列分组括注 -->
+  <line x1="496" y1="280" x2="640" y2="280" stroke="#b5523a" stroke-width="1.2"/>
+  <text x="568" y="300" fill="#b5523a" font-size="9" text-anchor="middle">第 1 列</text>
+  <line x1="640" y1="280" x2="784" y2="280" stroke="#57534e" stroke-width="1"/>
+  <text x="712" y="300" fill="#57534e" font-size="9" text-anchor="middle">第 2 列</text>
+  <line x1="784" y1="280" x2="928" y2="280" stroke="#57534e" stroke-width="1"/>
+  <text x="856" y="300" fill="#57534e" font-size="9" text-anchor="middle">第 3 列</text>
+
+  <text x="496" y="336" fill="#78716c" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace">线性索引:  1  2  3  4  5  6</text>
+
+  <!-- ===== 性能建议 ===== -->
+  <rect x="64" y="404" width="832" height="132" rx="6" fill="rgba(28,25,23,0.04)" stroke="rgba(28,25,23,0.3)" stroke-width="0.8" stroke-dasharray="4,3"/>
+  <text x="96" y="440" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.12em">对循环顺序的影响</text>
+  <g font-size="11">
+    <text x="96" y="472" fill="#1c1917" font-family="'Geist Mono', ui-monospace, Menlo, monospace">好</text>
+    <text x="140" y="472" fill="#57534e" font-family="'Geist Mono', ui-monospace, Menlo, monospace">for col in axes(A,2), row in axes(A,1)</text>
+    <text x="500" y="472" fill="#78716c">内层走第一维（行），沿内存顺序访问</text>
+    <text x="96" y="504" fill="#1c1917" font-family="'Geist Mono', ui-monospace, Menlo, monospace">慢</text>
+    <text x="140" y="504" fill="#57534e" font-family="'Geist Mono', ui-monospace, Menlo, monospace">for row in axes(A,1), col in axes(A,2)</text>
+    <text x="500" y="504" fill="#78716c">内层跳列访问，缓存不友好</text>
+  </g>
+
+  <!-- ===== 底部 ===== -->
+  <line x1="32" y1="568" x2="928" y2="568" stroke="rgba(28,25,23,0.10)" stroke-width="0.8"/>
+  <text x="32" y="592" fill="#78716c" font-size="9">与 C/Python (NumPy) 的行优先相反；从 MATLAB/R/Fortran 转来的开发者会感到熟悉</text>
+</svg>

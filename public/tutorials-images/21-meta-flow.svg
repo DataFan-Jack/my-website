@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" font-family="'Geist', -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#57534e"/></marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#b5523a"/></marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.55"/>
+
+  <text x="32" y="44" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.18em">METAPROGRAMMING PIPELINE</text>
+  <text x="32" y="84" fill="#1c1917" font-size="24" font-weight="400" font-family="'Instrument Serif', Georgia, serif">代码在执行前是数据</text>
+  <text x="32" y="108" fill="#78716c" font-size="10">元编程工具工作在解析之后、执行之前</text>
+
+  <!-- ===== 四个阶段 ===== -->
+  <!-- 1 源码字符串 -->
+  <rect x="48" y="176" width="184" height="128" rx="6" fill="rgba(28,25,23,0.05)" stroke="#a8a29e" stroke-width="1"/>
+  <rect x="56" y="184" width="68" height="14" rx="2" fill="transparent" stroke="rgba(87,83,78,0.4)" stroke-width="0.8"/>
+  <text x="90" y="194" fill="#57534e" font-size="7" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.08em">STRING</text>
+  <text x="140" y="226" fill="#1c1917" font-size="11" font-weight="600" text-anchor="middle">源码字符串</text>
+  <rect x="76" y="244" width="128" height="28" rx="4" fill="#ffffff" stroke="rgba(28,25,23,0.2)" stroke-width="0.8"/>
+  <text x="140" y="263" fill="#1c1917" font-size="11" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">"1 + 1"</text>
+
+  <!-- 2 Meta.parse -->
+  <rect x="296" y="176" width="184" height="128" rx="6" fill="#ffffff" stroke="#57534e" stroke-width="1"/>
+  <rect x="304" y="184" width="72" height="14" rx="2" fill="transparent" stroke="rgba(87,83,78,0.4)" stroke-width="0.8"/>
+  <text x="340" y="194" fill="#57534e" font-size="7" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.08em">PARSE</text>
+  <text x="388" y="226" fill="#1c1917" font-size="11" font-weight="600" text-anchor="middle">解析</text>
+  <rect x="316" y="244" width="144" height="28" rx="4" fill="#faf7f2" stroke="rgba(28,25,23,0.2)" stroke-width="0.8"/>
+  <text x="388" y="263" fill="#1c1917" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">Meta.parse(str)</text>
+
+  <!-- 3 Expr AST（焦点） -->
+  <rect x="544" y="176" width="184" height="128" rx="6" fill="#f6e8e3" stroke="#b5523a" stroke-width="1.2"/>
+  <rect x="552" y="184" width="44" height="14" rx="2" fill="transparent" stroke="rgba(181,82,58,0.4)" stroke-width="0.8"/>
+  <text x="574" y="194" fill="rgba(181,82,58,0.85)" font-size="7" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.08em">EXPR</text>
+  <text x="636" y="226" fill="#b5523a" font-size="11" font-weight="600" text-anchor="middle">表达式对象 (AST)</text>
+  <rect x="560" y="240" width="152" height="48" rx="4" fill="#ffffff" stroke="rgba(181,82,58,0.3)" stroke-width="0.8"/>
+  <text x="636" y="260" fill="#b5523a" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">:(1 + 1)</text>
+  <text x="636" y="278" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">head=:call  args=[:+,1,1]</text>
+
+  <!-- 4 eval 执行 -->
+  <rect x="792" y="176" width="136" height="128" rx="6" fill="rgba(28,25,23,0.05)" stroke="#a8a29e" stroke-width="1"/>
+  <rect x="800" y="184" width="44" height="14" rx="2" fill="transparent" stroke="rgba(87,83,78,0.4)" stroke-width="0.8"/>
+  <text x="822" y="194" fill="#57534e" font-size="7" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.08em">EVAL</text>
+  <text x="860" y="226" fill="#1c1917" font-size="11" font-weight="600" text-anchor="middle">执行</text>
+  <rect x="808" y="244" width="104" height="28" rx="4" fill="#ffffff" stroke="rgba(28,25,23,0.2)" stroke-width="0.8"/>
+  <text x="860" y="263" fill="#1c1917" font-size="12" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">结果 2</text>
+
+  <!-- 阶段间箭头 -->
+  <line x1="232" y1="240" x2="296" y2="240" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="480" y1="240" x2="544" y2="240" stroke="#b5523a" stroke-width="1.2" marker-end="url(#arrow-accent)"/>
+  <line x1="728" y1="240" x2="792" y2="240" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- ===== 下方：宏的作用位置 ===== -->
+  <line x1="64" y1="360" x2="896" y2="360" stroke="rgba(28,25,23,0.10)" stroke-width="0.8" stroke-dasharray="4,3"/>
+  <text x="64" y="384" fill="#78716c" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.14em">宏 @m 工作在这里</text>
+
+  <rect x="64" y="404" width="416" height="88" rx="6" fill="rgba(28,25,23,0.04)" stroke="rgba(28,25,23,0.3)" stroke-width="0.8"/>
+  <text x="96" y="436" fill="#1c1917" font-size="11" font-weight="600">宏：接收表达式，返回新表达式</text>
+  <text x="96" y="460" fill="#57534e" font-size="10">在解析期展开，零运行时开销</text>
+  <text x="96" y="480" fill="#78716c" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace">@macroexpand @sayhello("hi") 查看展开结果</text>
+
+  <rect x="512" y="404" width="416" height="88" rx="6" fill="rgba(28,25,23,0.04)" stroke="rgba(28,25,23,0.3)" stroke-width="0.8"/>
+  <text x="544" y="436" fill="#1c1917" font-size="11" font-weight="600">函数：接收值，返回值</text>
+  <text x="544" y="460" fill="#57534e" font-size="10">在运行期执行，拿到的是计算后的结果</text>
+  <text x="544" y="480" fill="#78716c" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace">优先用函数，宏是最后手段</text>
+
+  <!-- ===== 底部 ===== -->
+  <line x1="32" y1="512" x2="928" y2="512" stroke="rgba(28,25,23,0.10)" stroke-width="0.8"/>
+  <text x="32" y="536" fill="#78716c" font-size="9">dump(ex) 查看 AST 层次结构   ·   eval(ex) 在全局作用域执行表达式</text>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 416" width="960" height="416" role="img" aria-label="同一个家庭 emoji 字符串在 Character、unicodeScalars、utf8 三种视图下的计数分别为 1、7、25">
+<defs>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+</pattern>
+</defs>
+<rect width="100%" height="100%" fill="#faf7f2"/>
+<rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+<text x="32" y="44" fill="#1c1917" font-size="24" font-family="'Instrument Serif',Georgia,'Times New Roman',serif">String 的三种 Unicode 视图</text>
+<text x="32" y="68" fill="#57534e" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">let family = "👨‍👩‍👧‍👦"</text>
+
+<line x1="480" y1="152" x2="480" y2="208" stroke="#57534e" stroke-width="1"/>
+<line x1="232" y1="208" x2="728" y2="208" stroke="#57534e" stroke-width="1"/>
+<line x1="232" y1="208" x2="232" y2="264" stroke="#57534e" stroke-width="1"/>
+<line x1="480" y1="208" x2="480" y2="264" stroke="#57534e" stroke-width="1"/>
+<line x1="728" y1="208" x2="728" y2="264" stroke="#57534e" stroke-width="1"/>
+
+<rect x="360" y="96" width="240" height="56" rx="6" fill="#faf7f2"/>
+<rect x="360" y="96" width="240" height="56" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="480" y="126" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">String</text>
+<text x="480" y="142" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">"👨‍👩‍👧‍👦"</text>
+
+<rect x="132" y="264" width="200" height="88" rx="6" fill="#faf7f2"/>
+<rect x="132" y="264" width="200" height="88" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+<text x="232" y="300" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">Character</text>
+<text x="232" y="320" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">扩展字素簇</text>
+<text x="232" y="342" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">count = 1</text>
+
+<rect x="380" y="264" width="200" height="88" rx="6" fill="#faf7f2"/>
+<rect x="380" y="264" width="200" height="88" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="480" y="300" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">unicodeScalars</text>
+<text x="480" y="320" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">Unicode 标量</text>
+<text x="480" y="342" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">count = 7</text>
+
+<rect x="628" y="264" width="200" height="88" rx="6" fill="#faf7f2"/>
+<rect x="628" y="264" width="200" height="88" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="728" y="300" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">utf8</text>
+<text x="728" y="320" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">UTF-8 字节</text>
+<text x="728" y="342" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">count = 25</text>
+
+<line x1="232" y1="352" x2="232" y2="376" stroke="#57534e" stroke-width="1"/>
+<text x="232" y="396" fill="#b5523a" font-size="16" font-style="italic" font-family="'Instrument Serif',Georgia,'Times New Roman',serif" text-anchor="middle">日常遍历的单位</text>
+</svg>

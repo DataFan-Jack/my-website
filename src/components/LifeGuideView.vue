@@ -663,7 +663,7 @@ onUnmounted(() => {
 }
 .lg-fav:hover { background: rgba(212, 168, 67, 0.12); }
 .lg-fav.on { background: rgba(212, 168, 67, 0.15); border-color: #d4a843; }
-.page.light-mode .lg-fav { color: #b8862e; border-color: #d9c08a; }
+.page.light-mode .lg-fav { color: var(--accent-color); border-color: var(--border-color); }
 
 .lg-next-hint {
   margin: 16px 0 0;
@@ -733,13 +733,9 @@ onUnmounted(() => {
   cursor: pointer;
 }
 :deep(.lg-intro-link:hover) { color: #d4a843; }
-.page.light-mode .lg-intro { background: #faf8f2; border-color: #e8e0cc; border-left-color: #b8862e; }
-.page.light-mode .lg-intro-title { color: #b8862e; }
-.page.light-mode .lg-intro-text { color: #444; }
-.page.light-mode :deep(.lg-intro-cat) { color: #b8862e; }
-.page.light-mode :deep(.lg-intro-note) { color: #444; }
-.page.light-mode :deep(.lg-intro-link) { color: inherit; }
-.page.light-mode :deep(.lg-intro-link:hover) { color: #b8862e; }
+.page.light-mode .lg-intro { background: var(--bg-card); border-color: var(--border-color); border-left-color: var(--accent-color); }
+.page.light-mode .lg-intro-title { color: var(--accent-color); }
+.page.light-mode .lg-intro-text { color: var(--text-primary); }
 
 /* 取消收藏确认弹窗 */
 .lg-mask {
@@ -808,29 +804,29 @@ onUnmounted(() => {
   border-color: #d9c08a;
   box-shadow: 0 20px 60px rgba(120, 100, 60, 0.3);
 }
-.page.light-mode .lg-modal h3 { color: #b8862e; }
-.page.light-mode .lg-modal p { color: #444; }
+.page.light-mode .lg-modal h3 { color: var(--accent-color); }
+.page.light-mode .lg-modal p { color: var(--text-secondary); }
 
 /* 浅色模式 */
-.page.light-mode .lg-view { background: #faf8f2; }
+.page.light-mode .lg-view { background: var(--bg-card); }
 .page.light-mode .lg-sidebar { background: rgba(255, 255, 255, 0.9); }
 .page.light-mode .lg-toc::-webkit-scrollbar-thumb { background: #d4a843; }
 .page.light-mode .lg-toc { scrollbar-color: #d4a843 transparent; }
 .page.light-mode .lg-search { background: rgba(0, 0, 0, 0.02); border-color: rgba(0, 0, 0, 0.05); }
-.page.light-mode .lg-search input { color: #b8862e; }
-.page.light-mode .lg-search input::placeholder { color: #999; }
+.page.light-mode .lg-search input { color: var(--accent-color); }
+.page.light-mode .lg-search input::placeholder { color: var(--text-muted); }
 .page.light-mode .lg-main::-webkit-scrollbar-thumb { background: #d4a843; }
 .page.light-mode .lg-main { scrollbar-color: #d4a843 transparent; }
-.page.light-mode .lg-all, .page.light-mode .lg-cat-row { color: #888; }
+.page.light-mode .lg-all, .page.light-mode .lg-cat-row { color: var(--text-muted); }
 .page.light-mode .lg-all:hover, .page.light-mode .lg-cat-row:hover,
-.page.light-mode .lg-item:hover { color: #b8862e; }
-.page.light-mode .lg-all.active { color: #b8862e; border-left-color: #b8862e; }
+.page.light-mode .lg-item:hover { color: var(--accent-color); }
+.page.light-mode .lg-all.active { color: var(--accent-color); border-left-color: var(--accent-color); }
 .page.light-mode .lg-cat-title { color: #aaa; }
-.page.light-mode .lg-item { color: #666; }
-.page.light-mode .lg-item-no { color: #b8862e; }
+.page.light-mode .lg-item { color: var(--text-secondary); }
+.page.light-mode .lg-item-no { color: var(--accent-color); }
 .page.light-mode .lg-item.active .lg-item-no { color: #2f6fd0; }
 .page.light-mode .lg-item.active { color: #2f6fd0; border-left-color: #2f6fd0; background: rgba(47, 111, 208, 0.1); }
-.page.light-mode .lg-cat-count { background: #f5f1e6; color: #b8862e; }
+.page.light-mode .lg-cat-count { background: #f5f1e6; color: var(--accent-color); }
 
 /* === 人生指南卡片响应式（移动端单列占满） === */
 
@@ -905,7 +901,7 @@ onUnmounted(() => {
     color: #b8862e;
   }
   .page.light-mode .lg-mobile-toc-title,
-  .page.light-mode .lg-mobile-toc-arrow { color: #b8862e; }
+  .page.light-mode .lg-mobile-toc-arrow { color: var(--accent-color); }
 
   /* 目录默认隐藏，点击按钮展开 */
   .lg-sidebar.lg-toc-hidden { display: none; }
@@ -927,4 +923,12 @@ onUnmounted(() => {
   .lg-sidebar { padding: 10px; }
   .lg-card { padding: 20px 16px; }
 }
+</style>
+
+<style>
+/* 浅色模式：v-html 动态内容（无 data-v）用全局规则覆盖 */
+.page.light-mode .lg-intro-cat { color: var(--accent-color); }
+.page.light-mode .lg-intro-note { color: var(--text-primary); }
+.page.light-mode .lg-intro-link { color: inherit; }
+.page.light-mode .lg-intro-link:hover { color: var(--accent-color); }
 </style>

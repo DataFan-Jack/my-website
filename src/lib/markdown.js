@@ -1,8 +1,9 @@
 // 轻量 Markdown → 节点树转换器（本地内容，仍做基础转义防 XSS）
 // 支持：标题 / 列表 / 表格 / 引用 / 代码块 / 链接 / 加粗 / 斜体 / 行内代码 / 分隔线
-// 自定义块（由 LifeGuideMarkdown 渲染为组件）：
+// 自定义块（由渲染组件承接）：
 //   :::article → { type:'article', data:{title,tags,summary,cost,benefit,remark,sources} }
 //   :::collapse → { type:'collapse', data:{title,content} }
+//   :::diagram → { type:'diagram', data:{kind} }（由 NoteMarkdown 渲染为黑金图解）
 
 function escapeHtml(s) {
   return String(s)
@@ -100,6 +101,7 @@ export function parseMarkdown(md) {
   let openList = null
   let para = []
   let i = 0
+  let sec = 0 // 标题锚点计数
 
   const flushHtml = () => {
     if (htmlBuf.length) nodes.push({ type: 'html', html: htmlBuf.join('') })
@@ -138,6 +140,8 @@ export function parseMarkdown(md) {
         nodes.push({ type: 'article', data: parseCustomBlock(buf) })
       } else if (type === 'collapse') {
         nodes.push({ type: 'collapse', data: parseCustomBlock(buf) })
+      } else if (type === 'diagram') {
+        nodes.push({ type: 'diagram', data: { kind: buf.join('\n').trim() } })
       } else {
         // 未知块：按普通文本回退
         htmlBuf.push(`<pre><code>${escapeHtml(buf.join('\n'))}</code></pre>`)
@@ -176,7 +180,8 @@ export function parseMarkdown(md) {
     const h = line.match(/^\s*(#{1,4})\s+(.*)$/)
     if (h) {
       beginBlock()
-      htmlBuf.push(`<h${h[1].length}>${inline(h[2])}</h${h[1].length}>`)
+      sec++
+      htmlBuf.push(`<h${h[1].length} id="sec-${sec}">${inline(h[2])}</h${h[1].length}>`)
       i++
       continue
     }
@@ -246,9 +251,9 @@ export function parseMarkdown(md) {
   return nodes
 }
 
-// 纯 HTML 渲染（供引用块递归等场景）
+// 纯 HTML 渲染（供引用块递归等场景；组件型节点输出空串）
 export function renderHtml(md) {
-  return parseMarkdown(md).map((n) => (n.type === 'html' ? n.html : '')).join('')
+  return parseMarkdown(md).map((n) => (n.html || '')).join('')
 }
 
 // 从整篇 Markdown 中提取第一张 :::article 卡片数据（供文章列表/搜索）

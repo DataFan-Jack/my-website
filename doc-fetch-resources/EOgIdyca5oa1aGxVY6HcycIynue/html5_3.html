@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="use-iframe" content="true">
+<meta name="html-box-height-mode" content="auto">
+<meta name="description" content="虚拟机分层架构：真实电脑、VMware虚拟化层、虚拟硬件、Ubuntu系统四层结构，说明虚拟机如何在不影响Windows的情况下运行Linux">
+<title></title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#FFFFFF;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#1F2329;padding:14px 0}
+  .wrap{width:100%;max-width:100%}
+  .head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+  .head .t{font-size:19px;font-weight:700}
+  .head .s{font-size:14px;color:#646A73}
+  .layer{border:1px solid #DEE3E8;border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:14px}
+  .layer .lt{width:130px;font-size:16px;font-weight:700;flex-shrink:0}
+  .layer .ld{font-size:14px;color:#646A73;line-height:1.5}
+  .layer .ld b{color:#1F2329}
+  .layer .lb{margin-left:auto;font-size:13px;color:#4E5969;background:#F2F3F5;border-radius:6px;padding:2px 8px;white-space:nowrap;flex-shrink:0}
+  .layer.hw{background:#F5F8FF;border-color:#B8C6F2}
+  .layer.hw .lt{color:#2B5FD9}
+  .layer.vm{background:#F7F8FA}
+  .layer.vm .lt{color:#2B5FD9}
+  .layer.guest{border-color:#F2C879;background:#FFFBF2}
+  .layer.guest .lt{color:#B87614}
+  .arrow{height:26px;display:flex;align-items:center;justify-content:center;color:#2B5FD9;font-size:18px;font-weight:700}
+  .notes{margin-top:12px;font-size:14px;color:#646A73;background:#F7F8FA;border-radius:8px;padding:9px 12px;line-height:1.6}
+  .notes b{color:#1F2329}
+  @media(max-width:640px){.layer{flex-wrap:wrap}.layer .lt{width:100%}.layer .lb{margin-left:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head"><span class="t">虚拟机分层架构</span><span class="s">Windows 里模拟一台完整的“虚拟电脑”</span></div>
+  <div class="layer hw"><span class="lt">真实电脑</span><span class="ld">你的 Windows 11，提供 <b>CPU、内存、硬盘</b> 等物理资源</span><span class="lb">硬件层</span></div>
+  <div class="arrow">↓</div>
+  <div class="layer vm"><span class="lt">VMware</span><span class="ld">虚拟机软件，把物理资源划分成一块独立的 <b>虚拟硬件</b></span><span class="lb">虚拟化层</span></div>
+  <div class="arrow">↓</div>
+  <div class="layer"><span class="lt">虚拟电脑</span><span class="ld">拥有自己的 <b>虚拟 CPU、虚拟内存、虚拟硬盘</b>，像一台独立电脑</span><span class="lb">虚拟硬件</span></div>
+  <div class="arrow">↓</div>
+  <div class="layer guest"><span class="lt">Ubuntu Linux</span><span class="ld">操作系统安装在虚拟电脑里，与 Windows 互不影响</span><span class="lb">客户系统</span></div>
+  <div class="notes"><b>要点：</b>Linux 运行在虚拟电脑中，占用的只是 Windows 划出的资源；对 Linux 的任意操作都不会影响 Windows，还能随时<b>快照恢复</b>——这是学习阶段推荐虚拟机的原因。</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 632" width="960" height="632" role="img" aria-label="协议要求走动态派发，协议扩展成员走静态派发；同一个对象通过协议变量调用与通过具体类型调用结果不同">
+<defs>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+</pattern>
+<marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+</marker>
+<marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+</marker>
+<marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+</marker>
+</defs>
+<rect width="100%" height="100%" fill="#faf7f2"/>
+<rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+<text x="32" y="44" fill="#1c1917" font-size="24" font-family="'Instrument Serif',Georgia,'Times New Roman',serif">协议要求与协议扩展：两种派发</text>
+<text x="32" y="68" fill="#57534e" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">同一个对象，两种静态类型，两种结果</text>
+
+<line x1="480" y1="96" x2="480" y2="360" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+
+<line x1="192" y1="168" x2="192" y2="200" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="192" y1="264" x2="192" y2="296" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="768" y1="168" x2="768" y2="200" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="768" y1="264" x2="768" y2="296" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+
+<rect x="32" y="96" width="320" height="72" rx="6" fill="#faf7f2"/>
+<rect x="32" y="96" width="320" height="72" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="192" y="134" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">协议要求</text>
+<text x="192" y="152" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">func run() 写进协议本体</text>
+
+<rect x="32" y="200" width="320" height="64" rx="6" fill="#faf7f2"/>
+<rect x="32" y="200" width="320" height="64" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="192" y="234" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">动态派发</text>
+<text x="192" y="252" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">走 witness table（见证表）</text>
+
+<rect x="32" y="296" width="320" height="64" rx="6" fill="#faf7f2"/>
+<rect x="32" y="296" width="320" height="64" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="192" y="330" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">按实例真实类型调用</text>
+<text x="192" y="348" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">调用遵循者自己的实现</text>
+
+<rect x="608" y="96" width="320" height="72" rx="6" fill="#faf7f2"/>
+<rect x="608" y="96" width="320" height="72" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="768" y="134" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">协议扩展实现</text>
+<text x="768" y="152" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">只在 extension 里声明并实现</text>
+
+<rect x="608" y="200" width="320" height="64" rx="6" fill="#faf7f2"/>
+<rect x="608" y="200" width="320" height="64" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+<text x="768" y="234" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">静态派发</text>
+<text x="768" y="252" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">见证表里没有它的条目</text>
+
+<rect x="608" y="296" width="320" height="64" rx="6" fill="#faf7f2"/>
+<rect x="608" y="296" width="320" height="64" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+<text x="768" y="330" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">按变量的静态类型调用</text>
+<text x="768" y="348" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">总是调用扩展里的实现</text>
+
+<text x="32" y="408" fill="#78716c" font-size="8" letter-spacing="0.08em" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">同一个对象 · 两种结果</text>
+<line x1="32" y1="416" x2="928" y2="416" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+
+<rect x="32" y="440" width="896" height="160" rx="8" fill="rgba(28,25,23,0.03)" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+<text x="64" y="480" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">let athlete = RunoobAthlete(name: "小明")</text>
+<text x="64" y="504" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">let runner: any RunoobRunner = athlete</text>
+<text x="64" y="536" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">athlete.run()  →  "小明 在冲刺"    ← 静态类型 RunoobAthlete</text>
+<text x="64" y="560" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">runner.run()   →  "小明 在慢跑"    ← 静态类型 any RunoobRunner</text>
+</svg>

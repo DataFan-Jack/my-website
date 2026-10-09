@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="use-iframe" content="true">
+<meta name="html-box-height-mode" content="auto">
+<meta name="description" content="Linux系统组成架构图：硬件、Linux内核、Shell、文件系统、系统服务、应用程序">
+<title>Linux系统组成</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: #ffffff; color: #1F2329; }
+  .wrap { width: 100%; max-width: 100%; padding: 8px 2px; }
+  .title { font-size: 16px; font-weight: 600; color: #1F2329; margin-bottom: 16px; }
+  .root { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #C89B3C; color: #ffffff; font-size: 16px; font-weight: 600; border-radius: 8px; }
+  .connector { width: 2px; height: 18px; background: #DEE3E8; margin-left: 22px; }
+  .grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .node { flex: 1 1 200px; min-width: 200px; display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border: 1px solid #DEE3E8; border-radius: 8px; background: #ffffff; }
+  .node .name { font-size: 15px; font-weight: 600; color: #1F2329; }
+  .node .desc { font-size: 13px; color: #646A73; }
+  .node.kernel { border-color: #C89B3C; background: #FBF6EC; }
+  .kernel .name { color: #9A6A1F; }
+  .badge { display: inline-block; align-self: flex-start; font-size: 12px; color: #9A6A1F; border: 1px solid #C89B3C; border-radius: 999px; padding: 1px 8px; margin-bottom: 2px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="title">Linux 系统由六部分协同组成</div>
+  <div class="root">Linux 系统</div>
+  <div class="connector"></div>
+  <div class="grid">
+    <div class="node"><span class="name">硬件</span><span class="desc">CPU · 内存 · 磁盘 · 网卡</span></div>
+    <div class="node kernel"><span class="badge">核心</span><span class="name">Linux Kernel 内核</span><span class="desc">管理硬件、进程、内存、文件系统、网络</span></div>
+    <div class="node"><span class="name">Shell 命令解释器</span><span class="desc">用户与系统交互的桥梁</span></div>
+    <div class="node"><span class="name">文件系统</span><span class="desc">管理文件的组织与存取</span></div>
+    <div class="node"><span class="name">系统服务</span><span class="desc">后台运行的守护进程</span></div>
+    <div class="node"><span class="name">应用程序</span><span class="desc">用户实际使用的软件</span></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680" width="960" height="680" role="img" aria-label="Swift 属性分类树：属性分为存储属性与计算属性，存储属性包含普通存储、lazy 延迟存储与属性观察器，计算属性包含只读与读写；右侧标注类型属性 static 与 class，底部标注两条规则">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+  <!-- 标题 -->
+  <text x="48" y="56" fill="#1c1917" font-size="24" font-family="'Instrument Serif',Georgia,'Times New Roman',serif">Swift 属性的分类</text>
+  <text x="48" y="80" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">存储属性 · 计算属性 · 类型属性</text>
+
+  <!-- 连接线：根 → 两支 -->
+  <path d="M160 332 H196" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M196 240 V424" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M196 240 H232" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M196 424 H232" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- 连接线：存储属性 → 三个子节点 -->
+  <path d="M376 240 H400" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M400 168 V312" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M400 168 H424" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M400 240 H424" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M400 312 H424" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- 连接线：计算属性 → 两个子节点 -->
+  <path d="M376 424 H400" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M400 388 V460" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M400 388 H424" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M400 460 H424" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- 节点：根 -->
+  <rect x="48" y="308" width="112" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="104" y="334" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">属性</text>
+  <text x="104" y="350" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">property</text>
+
+  <!-- 节点：两支 -->
+  <rect x="232" y="216" width="144" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="304" y="242" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">存储属性</text>
+  <text x="304" y="258" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">stored</text>
+
+  <rect x="232" y="400" width="144" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="304" y="426" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">计算属性</text>
+  <text x="304" y="442" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">computed</text>
+
+  <!-- 节点：存储属性的子类 -->
+  <rect x="424" y="144" width="176" height="48" rx="6" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/>
+  <text x="512" y="170" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">普通存储属性</text>
+  <text x="512" y="186" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">var / let</text>
+
+  <rect x="424" y="216" width="176" height="48" rx="6" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/>
+  <text x="512" y="242" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">lazy 延迟存储</text>
+  <text x="512" y="258" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">首次访问才求值</text>
+
+  <rect x="424" y="288" width="176" height="48" rx="6" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/>
+  <text x="512" y="314" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">属性观察器</text>
+  <text x="512" y="330" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">willSet / didSet</text>
+
+  <!-- 节点：计算属性的子类 -->
+  <rect x="424" y="364" width="176" height="48" rx="6" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/>
+  <text x="512" y="390" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">只读计算属性</text>
+  <text x="512" y="406" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">只有 get</text>
+
+  <rect x="424" y="436" width="176" height="48" rx="6" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/>
+  <text x="512" y="462" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">读写计算属性</text>
+  <text x="512" y="478" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">get + set</text>
+
+  <!-- 侧栏：类型属性 -->
+  <rect x="680" y="216" width="240" height="232" rx="6" fill="#f2ede4" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="704" y="256" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">类型属性</text>
+  <text x="704" y="276" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">static / class</text>
+  <line x1="704" y1="292" x2="896" y2="292" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="704" y="324" fill="#1c1917" font-size="9" font-weight="600" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">static</text>
+  <text x="704" y="342" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">存储型必须用 static</text>
+  <text x="704" y="380" fill="#1c1917" font-size="9" font-weight="600" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">class</text>
+  <text x="704" y="398" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">仅可重写的计算型</text>
+  <text x="704" y="428" fill="#78716c" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">属于类型本身，不属于实例</text>
+
+  <!-- 焦点：两条规则 -->
+  <rect x="48" y="552" width="424" height="88" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="72" y="588" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">计算属性不能有观察器</text>
+  <text x="72" y="612" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">willSet / didSet 只能加在存储属性上</text>
+
+  <rect x="512" y="552" width="400" height="88" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="536" y="588" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">观察器在初始化时不触发</text>
+  <text x="536" y="612" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">init 里赋初值不会调用 willSet / didSet</text>
+</svg>

@@ -29,6 +29,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,svg,ico,json,md}'],
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // tutorials-html 数据包最大 2.59MB，默认 2MiB 会阻断构建
         navigateFallback: 'index.html',
         // 缓存首页与核心资源，但绝不缓存 OAuth / 登录相关请求
         runtimeCaching: [

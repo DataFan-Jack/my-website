@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" font-family="'Geist', -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.55"/>
+
+  <text x="32" y="44" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.18em">JULIA NUMBER TYPE HIERARCHY</text>
+  <text x="32" y="84" fill="#1c1917" font-size="24" font-weight="400" font-family="'Instrument Serif', Georgia, serif">Julia 数值类型层级</text>
+  <text x="32" y="108" fill="#78716c" font-size="10">方角为抽象类型，圆角为具体类型；所有类型都是 Any 的子类型</text>
+
+  <!-- ===== 连线（先画） ===== -->
+  <!-- Number -> 子级 -->
+  <line x1="480" y1="184" x2="200" y2="240" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+  <line x1="480" y1="184" x2="480" y2="240" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+  <!-- Real -> 4 个子级 -->
+  <line x1="480" y1="296" x2="152" y2="352" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+  <line x1="480" y1="296" x2="368" y2="352" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+  <line x1="480" y1="296" x2="632" y2="352" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+  <line x1="480" y1="296" x2="856" y2="352" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+  <!-- AbstractFloat -> 4 个子级 -->
+  <line x1="152" y1="408" x2="72" y2="464" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+  <line x1="152" y1="408" x2="144" y2="464" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+  <line x1="152" y1="408" x2="216" y2="464" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+  <line x1="152" y1="408" x2="288" y2="464" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+  <!-- Integer -> 3 个子级 -->
+  <line x1="368" y1="408" x2="368" y2="464" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+  <line x1="368" y1="408" x2="456" y2="464" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+  <line x1="368" y1="408" x2="544" y2="464" stroke="rgba(28,25,23,0.25)" stroke-width="1"/>
+
+  <!-- ===== L1: Number（焦点） ===== -->
+  <rect x="416" y="136" width="128" height="48" rx="6" fill="#f6e8e3" stroke="#b5523a" stroke-width="1.2"/>
+  <text x="480" y="166" fill="#b5523a" font-size="13" font-weight="600" text-anchor="middle">Number</text>
+
+  <!-- ===== L2 ===== -->
+  <rect x="144" y="240" width="112" height="56" rx="0" fill="rgba(28,25,23,0.05)" stroke="#a8a29e" stroke-width="1"/>
+  <text x="200" y="264" fill="#1c1917" font-size="12" font-weight="600" text-anchor="middle">Complex</text>
+  <text x="200" y="282" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">具体类型</text>
+
+  <rect x="416" y="240" width="128" height="56" rx="0" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/>
+  <text x="480" y="264" fill="#1c1917" font-size="12" font-weight="600" text-anchor="middle">Real</text>
+  <text x="480" y="282" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">抽象类型</text>
+
+  <!-- ===== L3: Real 的子类型 ===== -->
+  <rect x="96" y="352" width="112" height="56" rx="0" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/>
+  <text x="152" y="376" fill="#1c1917" font-size="11" font-weight="600" text-anchor="middle">AbstractFloat</text>
+  <text x="152" y="394" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">抽象类型</text>
+
+  <rect x="312" y="352" width="112" height="56" rx="0" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="1"/>
+  <text x="368" y="376" fill="#1c1917" font-size="11" font-weight="600" text-anchor="middle">Integer</text>
+  <text x="368" y="394" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">抽象类型</text>
+
+  <rect x="576" y="352" width="112" height="56" rx="6" fill="rgba(28,25,23,0.05)" stroke="#a8a29e" stroke-width="1"/>
+  <text x="632" y="376" fill="#1c1917" font-size="12" font-weight="600" text-anchor="middle">Rational</text>
+  <text x="632" y="394" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">有理数 3//4</text>
+
+  <rect x="800" y="352" width="112" height="56" rx="6" fill="rgba(28,25,23,0.05)" stroke="#a8a29e" stroke-width="1"/>
+  <text x="856" y="376" fill="#1c1917" font-size="12" font-weight="600" text-anchor="middle">Irrational</text>
+  <text x="856" y="394" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">π、ℯ</text>
+
+  <!-- ===== L4: 浮点具体类型 ===== -->
+  <g font-size="11" text-anchor="middle">
+    <rect x="48" y="464" width="48" height="40" rx="6" fill="#ffffff" stroke="#a8a29e" stroke-width="1"/>
+    <text x="72" y="489" fill="#1c1917" font-weight="600">F16</text>
+    <rect x="120" y="464" width="48" height="40" rx="6" fill="#ffffff" stroke="#a8a29e" stroke-width="1"/>
+    <text x="144" y="489" fill="#1c1917" font-weight="600">F32</text>
+    <rect x="192" y="464" width="48" height="40" rx="6" fill="#ffffff" stroke="#a8a29e" stroke-width="1"/>
+    <text x="216" y="489" fill="#1c1917" font-weight="600">F64</text>
+    <rect x="264" y="464" width="48" height="40" rx="6" fill="#ffffff" stroke="#a8a29e" stroke-width="1"/>
+    <text x="288" y="489" fill="#1c1917" font-weight="600">Big</text>
+  </g>
+  <text x="72" y="520" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">Float16</text>
+  <text x="144" y="520" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">Float32</text>
+  <text x="216" y="520" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">Float64</text>
+  <text x="288" y="520" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">BigFloat</text>
+
+  <!-- ===== L4: 整数具体类型 ===== -->
+  <g font-size="11" text-anchor="middle">
+    <rect x="344" y="464" width="48" height="40" rx="6" fill="#ffffff" stroke="#a8a29e" stroke-width="1"/>
+    <text x="368" y="489" fill="#1c1917" font-weight="600">Bool</text>
+    <rect x="432" y="464" width="48" height="40" rx="6" fill="#ffffff" stroke="#a8a29e" stroke-width="1"/>
+    <text x="456" y="489" fill="#1c1917" font-weight="600">Int</text>
+    <rect x="520" y="464" width="48" height="40" rx="6" fill="#ffffff" stroke="#a8a29e" stroke-width="1"/>
+    <text x="544" y="489" fill="#1c1917" font-weight="600">UInt</text>
+  </g>
+  <text x="368" y="520" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">布尔</text>
+  <text x="456" y="520" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">Int8...128</text>
+  <text x="544" y="520" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">BigInt 也在</text>
+
+  <!-- ===== 底部图例 ===== -->
+  <line x1="32" y1="560" x2="928" y2="560" stroke="rgba(28,25,23,0.10)" stroke-width="0.8"/>
+  <text x="32" y="584" fill="#57534e" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.14em">LEGEND</text>
+  <rect x="120" y="576" width="16" height="12" rx="0" fill="rgba(28,25,23,0.05)" stroke="#57534e" stroke-width="0.8"/>
+  <text x="144" y="586" fill="#57534e" font-size="9">抽象类型（不可实例化）</text>
+  <rect x="304" y="576" width="16" height="12" rx="3" fill="#ffffff" stroke="#a8a29e" stroke-width="0.8"/>
+  <text x="328" y="586" fill="#57534e" font-size="9">具体类型（可创建值）</text>
+  <rect x="488" y="576" width="16" height="12" rx="3" fill="#f6e8e3" stroke="#b5523a" stroke-width="1"/>
+  <text x="512" y="586" fill="#57534e" font-size="9">类型树的根</text>
+  <text x="640" y="586" fill="#78716c" font-size="9">typeof(1) == Int64,  Int &lt;: Real &lt;: Number</text>
+</svg>

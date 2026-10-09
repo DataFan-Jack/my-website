@@ -3,6 +3,8 @@ import { ref, onMounted, onBeforeUnmount, nextTick, watch, computed } from 'vue'
 import DotField from './components/DotField.vue'
 import LifeGuideView from './components/LifeGuideView.vue'
 import ResumeView from './components/ResumeView.vue'
+import KnowledgeCenterView from './views/KnowledgeCenter.vue'
+import KnowledgeDetailView from './views/KnowledgeDetail.vue'
 
 const cardRef = ref(null)
 const flipDir = ref('') // 'left' | 'right' | 'up' | 'down'
@@ -67,11 +69,14 @@ const category = ref('全部教程') // 分类筛选
 const searchText = ref('') // 搜索关键词
 const activeChapter = ref(0)
 const tocOpen = ref(false) // 移动端：章节目录折叠
+const currentKnowledge = ref('') // 当前知识主题（知识中心详情页）
+const currentKnowledgeChapter = ref('') // 当前知识章节（Linux 笔记篇章）
 
 function showTutorials() { setHash('#/tutorials'); suggestLight() }
 function goHome() { setHash('#/') }
 function goResume() { setHash('#/resume') }
 function goLifeGuide() { setHash('#/life-guide'); suggestLight() }
+function goKnowledge() { setHash('#/knowledge') }
 // 进入人生指南/教程时，若处于深色模式则推荐浅色（护眼）模式
 function suggestLight() {
   if (isDark.value) lightTipOpen.value = true
@@ -113,6 +118,16 @@ function applyHash() {
     view.value = 'resume'
   } else if (section === 'life-guide') {
     view.value = 'life-guide'
+  } else if (section === 'knowledge') {
+    const name = segs[1]
+    if (name) {
+      view.value = 'knowledge-detail'
+      currentKnowledge.value = decodeURIComponent(name)
+      // 第三段为章节 id（如 linux-1），缺省由详情页取第一篇
+      currentKnowledgeChapter.value = segs[2] ? decodeURIComponent(segs[2]) : ''
+    } else {
+      view.value = 'knowledge'
+    }
   } else {
     view.value = 'home'
   }
@@ -139,7 +154,7 @@ async function loadTutorialDetail(t, ref) {
   }
   currentTutorial.value = null
   try {
-    const r = await fetch('/tutorials/' + t.file)
+    const r = await fetch('/tutorials-html/' + t.file)
     const d = (await r.json()).tutorial
     currentTutorial.value = d
     applyChapter(d, ref)
@@ -231,8 +246,11 @@ const filteredGroups = computed(() => {
 })
 
 // 视图/章节切换时清除残留选区，避免旧高亮映射到新内容
-watch([view, activeChapter], () => {
+watch([view, activeChapter], async () => {
   window.getSelection()?.removeAllRanges()
+  // 富文本正文渲染完成后触发代码高亮
+  await nextTick()
+  window.PR?.prettyPrint()
 })
 
 // 正面代码 developer.js
@@ -255,7 +273,7 @@ const website = {
   type: '个人编程学习网站',
   mode: '🌙浅色模式/☀️深色模式',
   search: '回车进行全网搜索',
-  url: '你的网站地址',
+  url: 'mycoden.cn',
   year: 2026
 };
 
@@ -455,11 +473,11 @@ onBeforeUnmount(() => {
         </div>
         <div class="menu">
           <a href="#" :class="{ active: view === 'home' }" @click.prevent="goHome">首页</a>
-          <a href="#" @click.prevent>学习中心</a>
+          <a href="#" :class="{ active: view === 'knowledge' || view === 'knowledge-detail' }" @click.prevent="goKnowledge">知识库</a>
           <a href="#" @click.prevent>项目实战</a>
           <a href="#" @click.prevent>编程导航</a>
+          <a href="#" :class="{ active: view === 'tutorials' || view === 'tutorial' }" @click.prevent="showTutorials">学习资源</a>
           <a href="#" :class="{ active: view === 'life-guide' }" @click.prevent="goLifeGuide">人生指南</a>
-          <a href="#" :class="{ active: view === 'tutorials' || view === 'tutorial' }" @click.prevent="showTutorials">教程</a>
           <a href="#" :class="{ active: view === 'resume' }" @click.prevent="goResume">关于我</a>
         </div>
       </div>
@@ -540,11 +558,11 @@ onBeforeUnmount(() => {
           </div>
           <nav class="m-menu">
             <a href="#" :class="{ active: view === 'home' }" @click.prevent="closeMobileMenu(); goHome()">首页</a>
-            <a href="#" @click.prevent="closeMobileMenu()">学习中心</a>
+            <a href="#" :class="{ active: view === 'knowledge' || view === 'knowledge-detail' }" @click.prevent="closeMobileMenu(); goKnowledge()">知识库</a>
             <a href="#" @click.prevent="closeMobileMenu()">项目实战</a>
             <a href="#" @click.prevent="closeMobileMenu()">编程导航</a>
+            <a href="#" :class="{ active: view === 'tutorials' || view === 'tutorial' }" @click.prevent="closeMobileMenu(); showTutorials()">学习资源</a>
             <a href="#" :class="{ active: view === 'life-guide' }" @click.prevent="closeMobileMenu(); goLifeGuide()">人生指南</a>
-            <a href="#" :class="{ active: view === 'tutorials' || view === 'tutorial' }" @click.prevent="closeMobileMenu(); showTutorials()">教程</a>
             <a href="#" :class="{ active: view === 'resume' }" @click.prevent="closeMobileMenu(); goResume()">关于我</a>
           </nav>
         </div>
@@ -561,7 +579,7 @@ onBeforeUnmount(() => {
           {{ subtitleDisplay }}<span class="cursor">|</span>
         </h2>
         <p class="desc">码上出发，即刻启程</p>
-        <a href="#" class="cta-btn">
+        <a href="#" class="cta-btn" @click.prevent="showTutorials">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-left: -12px; margin-top: 3px;">
             <path d="M8 6 L3 12 L8 18 M16 6 L21 12 L16 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -675,18 +693,9 @@ onBeforeUnmount(() => {
       </aside>
       <div class="t-content">
         <template v-if="currentTutorial">
-          <h2>{{ currentTutorial.chapters[activeChapter].title }}</h2>
-          <p v-for="(p, i) in currentTutorial.chapters[activeChapter].body.split('\n')" :key="i">{{ p }}</p>
-          <div v-for="(code, k) in currentTutorial.chapters[activeChapter].examples" :key="k" class="t-example">
-            <div class="t-example-title">
-              <span>实例 {{ k + 1 }}</span>
-              <button class="t-copy" @click="copyCode(code, $event)" aria-label="复制代码">
-                <svg class="t-copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                <span class="t-copy-tip">复制代码</span>
-              </button>
-            </div>
-            <pre>{{ code }}</pre>
-          </div>
+          <h2 class="t-title">{{ currentTutorial.chapters[activeChapter].title }}</h2>
+          <!-- 富文本正文：表格/列表/引用/加粗/图片/代码（v-html 渲染） -->
+          <div class="t-rich" v-html="currentTutorial.chapters[activeChapter].html"></div>
         </template>
         <div v-else class="t-empty">正在加载教程数据…</div>
       </div>
@@ -697,6 +706,12 @@ onBeforeUnmount(() => {
 
     <!-- 关于我 / 简历（独立组件） -->
     <ResumeView v-else-if="view === 'resume'" />
+
+    <!-- 知识中心 -->
+    <KnowledgeCenterView v-else-if="view === 'knowledge'" />
+
+    <!-- 知识详情（Linux 笔记 / 其他主题占位） -->
+    <KnowledgeDetailView v-else-if="view === 'knowledge-detail'" :name="currentKnowledge" :chapter="currentKnowledgeChapter" />
 
     <!-- 登录弹窗 -->
     <Transition name="modal">
@@ -764,7 +779,7 @@ onBeforeUnmount(() => {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: #0a0a0a;
+  background: var(--bg-primary);
   overflow: hidden;
   color: #fff;
   font-family: system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -775,7 +790,7 @@ onBeforeUnmount(() => {
 
 /* 浅色模式 */
 .page.light-mode {
-  background: #F7F4EC;
+  background: var(--bg-primary);
   color: #1a1a1a;
 }
 
@@ -787,16 +802,16 @@ onBeforeUnmount(() => {
   background: rgba(247,244,236,0.8);
 }
 
-.page.light-mode .menu a { color: #888; }
+.page.light-mode .menu a { color: var(--text-muted); }
 .page.light-mode .menu a:hover,
-.page.light-mode .menu a.active { color: #b8862e; }
+.page.light-mode .menu a.active { color: var(--accent-color); }
 
 .page.light-mode .search-box {
   background: rgba(0,0,0,0.02);
   border: 1px solid rgba(0,0,0,0.05);
   color: #999;
 }
-.page.light-mode .search-box input { color: #b8862e; }
+.page.light-mode .search-box input { color: var(--accent-color); }
 
 .page.light-mode .btn-login {
   border-color: #b8862e;
@@ -807,7 +822,7 @@ onBeforeUnmount(() => {
   color: #fff;
 }
 
-.page.light-mode .user-info { color: #b8862e; }
+.page.light-mode .user-info { color: var(--accent-color); }
 .page.light-mode .user-info:hover { background: rgba(184,134,46,0.1); }
 .page.light-mode .user-menu {
   background: #fff;
@@ -819,9 +834,9 @@ onBeforeUnmount(() => {
   background: rgba(184,134,46,0.08);
 }
 
-.page.light-mode .title { color: #b8862e; }
-.page.light-mode .subtitle { color: #1a1a1a; }
-.page.light-mode .desc { color: #888; }
+.page.light-mode .title { color: var(--accent-color); }
+.page.light-mode .subtitle { color: var(--text-primary); }
+.page.light-mode .desc { color: var(--text-muted); }
 
 .page.light-mode .cta-btn {
   background: linear-gradient(135deg, #c9a038, #a67c26);
@@ -834,7 +849,7 @@ onBeforeUnmount(() => {
   box-shadow: 0 20px 60px rgba(120, 100, 60, 0.15);
 }
 
-.page.light-mode .code-back { background: #faf8f2; }
+.page.light-mode .code-back { background: var(--bg-card); }
 
 .page.light-mode .code-titlebar {
   background: #f5f1e6;
@@ -843,9 +858,9 @@ onBeforeUnmount(() => {
 
 .page.light-mode .code-back .code-titlebar { background: #f5f1e6; }
 
-.page.light-mode .code-filename { color: #999; }
+.page.light-mode .code-filename { color: var(--text-muted); }
 
-.page.light-mode .code-body pre { color: #2d2d2d; }
+.page.light-mode .code-body pre { color: var(--text-primary); }
 
 .theme-toggle {
   width: 38px;
@@ -1057,7 +1072,7 @@ onBeforeUnmount(() => {
   font-size: 18px;
   font-weight: 700;
 }
-.page.light-mode .m-title { color: #b8862e; }
+.page.light-mode .m-title { color: var(--accent-color); }
 .m-close {
   width: 32px;
   height: 32px;
@@ -1096,9 +1111,9 @@ onBeforeUnmount(() => {
   border-color: rgba(212, 168, 67, 0.35);
   background: rgba(212, 168, 67, 0.12);
 }
-.page.light-mode .m-menu a { color: #666; }
+.page.light-mode .m-menu a { color: var(--text-secondary); }
 .page.light-mode .m-menu a:hover,
-.page.light-mode .m-menu a.active { color: #b8862e; background: rgba(184, 134, 46, 0.1); }
+.page.light-mode .m-menu a.active { color: var(--accent-color); background: rgba(184, 134, 46, 0.1); }
 
 /* 抽屉滑入动画 */
 .m-nav-enter-active, .m-nav-leave-active { transition: opacity 0.25s; }
@@ -1251,7 +1266,7 @@ onBeforeUnmount(() => {
   color: #d4a843;
 }
 
-.page.light-mode .modal-logo { color: #a67c26; }
+.page.light-mode .modal-logo { color: var(--accent-color); }
 
 .modal-logo-icon { width: 40px; height: 40px; }
 
@@ -1272,7 +1287,7 @@ onBeforeUnmount(() => {
   color: #aab;
 }
 
-.page.light-mode .modal-features li { color: #444; }
+.page.light-mode .modal-features li { color: var(--text-secondary); }
 
 .modal-features li::before {
   content: '';
@@ -1282,7 +1297,7 @@ onBeforeUnmount(() => {
   background: #d4a843;
 }
 
-.page.light-mode .modal-features li::before { background: #a67c26; }
+.page.light-mode .modal-features li::before { background: var(--accent-color); }
 
 .modal-right {
   flex: 1;
@@ -1302,7 +1317,7 @@ onBeforeUnmount(() => {
   color: #d4a843;
 }
 
-.page.light-mode .modal-title { color: #a67c26; }
+.page.light-mode .modal-title { color: var(--accent-color); }
 
 .modal-desc {
   margin: -4px 0 8px;
@@ -1311,7 +1326,7 @@ onBeforeUnmount(() => {
   color: #8a8aa0;
 }
 
-.page.light-mode .modal-desc { color: #888; }
+.page.light-mode .modal-desc { color: var(--text-muted); }
 
 .oauth-btn {
   display: flex;
@@ -1333,8 +1348,8 @@ onBeforeUnmount(() => {
   color: #1a1a1a;
 }
 
-.page.light-mode .oauth-btn.github { background: #1a1a2e; border-color: #b8862e; color: #e6edf3; }
-.page.light-mode .oauth-btn.gitee { background: #1a1a2e; border-color: #b8862e; color: #e6edf3; }
+.page.light-mode .oauth-btn.github { background: #1a1a2e; border-color: var(--accent-color); color: #e6edf3; }
+.page.light-mode .oauth-btn.gitee { background: #1a1a2e; border-color: var(--accent-color); color: #e6edf3; }
 
 .oauth-btn.github:hover {
   transform: translateY(-1px);
@@ -1551,12 +1566,12 @@ onBeforeUnmount(() => {
 .t-back:hover { background: rgba(212, 168, 67, 0.12); }
 
 .page.light-mode .t-search { background: rgba(0, 0, 0, 0.02); border-color: rgba(0, 0, 0, 0.05); }
-.page.light-mode .t-search input { color: #b8862e; }
-.page.light-mode .t-search input::placeholder { color: #999; }
-.page.light-mode .t-card { background: #fff; border-color: #e8e0cc; color: #1a1a1a; }
-.page.light-mode .t-card:hover { border-color: #b8862e; box-shadow: 0 8px 24px rgba(120, 100, 60, 0.15); }
-.page.light-mode .t-card b { color: #b8862e; }
-.page.light-mode .t-card em { color: #888; }
+.page.light-mode .t-search input { color: var(--accent-color); }
+.page.light-mode .t-search input::placeholder { color: var(--text-muted); }
+.page.light-mode .t-card { background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary); }
+.page.light-mode .t-card:hover { border-color: var(--accent-color); box-shadow: 0 8px 24px rgba(120, 100, 60, 0.15); }
+.page.light-mode .t-card b { color: var(--accent-color); }
+.page.light-mode .t-card em { color: var(--text-muted); }
 
 /* 教程视图（站内切换） */
 .tutorial-view {
@@ -1636,41 +1651,101 @@ onBeforeUnmount(() => {
 .t-content::-webkit-scrollbar-thumb { background: rgba(212, 168, 67, 0.55); border-radius: 3px; }
 .t-content::-webkit-scrollbar-thumb:hover { background: rgba(212, 168, 67, 0.5); }
 
-.t-content h2 { margin: 0 0 20px; font-size: 24px; color: #d4a843; }
-.t-content p { margin: 0 0 14px; font-size: 15px; line-height: 1.9; color: #c9d1d9; }
+.t-content h2.t-title { margin: 0 0 20px; font-size: 24px; color: #d4a843; }
 
-.t-example { margin: 18px 0; border: 1px solid rgba(212, 168, 67, 0.25); border-radius: 10px; overflow: hidden; }
-.t-example-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 8px 8px 16px; background: #1c1c34; color: #d4a843; font-size: 13px; border-bottom: 1px solid rgba(212, 168, 67, 0.15); }
-.t-copy { position: relative; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0; background: rgba(20, 20, 42, 0.8); border: 1px solid rgba(212, 168, 67, 0.65); border-radius: 8px; color: rgba(212, 168, 67, 0.65);  transition: all 0.2s; }
-.t-copy-icon { display: block; width: 14px; height: 14px; }
-.t-copy:hover { border-color: #ffd97a; background: rgba(212, 168, 67, 0.08); box-shadow: 0 0 6px rgba(212, 168, 67, 0.2); }
-.t-copy:hover .t-copy-icon { color: #ffe1a0; filter: drop-shadow(0 0 2px rgba(212, 168, 67, 0.4)); }
-.t-copy.copied { border-color: #ffd97a; background: rgba(212, 168, 67, 0.15); }
-.t-copy-tip { position: absolute; top: calc(100% + 8px); right: 0; padding: 5px 10px; background: rgba(20, 20, 42, 0.95); border: 1.5px solid #d4a843; border-radius: 8px; color: #d4a843; font-size: 12px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.2s ease; z-index: 20; }
-.t-copy:hover .t-copy-tip { opacity: 1; transition-delay: 0.5s; }
-.t-copy.copied .t-copy-tip { opacity: 1; transition-delay: 0s; }
-.t-example pre { margin: 0; padding: 16px; font-family: Consolas, Monaco, monospace; font-size: 13px; line-height: 1.7; color: #a5d6ff; white-space: pre-wrap; word-break: break-all; overflow-x: auto; }
+/* === 富文本正文（黑金深色适配） === */
+.t-rich { font-size: 15px; line-height: 1.9; color: #c9d1d9; word-break: break-word; }
+.t-rich h1, .t-rich h2, .t-rich h3, .t-rich h4 {
+  color: #d4a843; font-weight: 700; margin: 28px 0 14px; line-height: 1.4;
+}
+.t-rich h1 { font-size: 26px; margin-top: 8px; }
+.t-rich h2 { font-size: 22px; }
+.t-rich h3 { font-size: 19px; }
+.t-rich h4 { font-size: 16px; }
+.t-rich p { margin: 0 0 14px; }
+.t-rich ul, .t-rich ol { margin: 0 0 14px; padding-left: 24px; color: #c9d1d9; }
+.t-rich li { margin: 4px 0; }
+.t-rich hr { border: none; border-top: 1px solid rgba(212, 168, 67, 0.2); margin: 22px 0; }
+.t-rich strong, .t-rich b { color: #ffd97a; font-weight: 700; }
+.t-rich em, .t-rich i { color: #d4b887; }
+.t-rich blockquote {
+  margin: 16px 0; padding: 12px 18px;
+  border-left: 4px solid #d4a843;
+  background: rgba(212, 168, 67, 0.08);
+  border-radius: 0 10px 10px 0;
+  color: #d4b887;
+}
+.t-rich a { color: #7fb3ff; text-decoration: none; }
+.t-rich code {
+  font-family: Consolas, Monaco, monospace; font-size: 0.9em;
+  background: rgba(212, 168, 67, 0.12); color: #ffd97a;
+  padding: 2px 6px; border-radius: 4px;
+}
+.t-rich pre {
+  margin: 16px 0; padding: 16px 18px;
+  background: #0d0d18;
+  border: 1px solid rgba(212, 168, 67, 0.25);
+  border-radius: 10px;
+  font-family: Consolas, Monaco, monospace; font-size: 13px; line-height: 1.7;
+  overflow-x: auto;
+}
+.t-rich pre code { background: none; padding: 0; color: inherit; }
+.t-rich table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.t-rich th { background: rgba(212, 168, 67, 0.12); color: #ffd97a; font-weight: 600; text-align: left; }
+.t-rich th, .t-rich td { border: 1px solid rgba(212, 168, 67, 0.2); padding: 9px 14px; }
+.t-rich tr:nth-child(even) td { background: rgba(255, 255, 255, 0.02); }
+.t-rich img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; border: 1px solid rgba(212, 168, 67, 0.15); }
+
+/* prettify 代码高亮配色（深底可读） */
+.t-rich pre .kwd { color: #e6c07a; }
+.t-rich pre .str { color: #98c379; }
+.t-rich pre .com { color: #8a8a99; }
+.t-rich pre .pun { color: #d4d4d4; }
+.t-rich pre .pln { color: #e6edf3; }
+.t-rich pre .typ { color: #56b6c2; }
+.t-rich pre .lit { color: #d19a66; }
+.t-rich pre .tag { color: #e06c75; }
+.t-rich pre .atn { color: #e6c07a; }
+.t-rich pre .atv { color: #98c379; }
+
+/* 浅色模式适配 */
+.page.light-mode .t-rich { color: var(--text-primary); }
+.page.light-mode .t-rich ul, .page.light-mode .t-rich ol, .page.light-mode .t-rich li { color: var(--text-primary); }
+.page.light-mode .t-rich h1, .page.light-mode .t-rich h2,
+.page.light-mode .t-rich h3, .page.light-mode .t-rich h4 { color: var(--accent-color); }
+.page.light-mode .t-rich strong, .page.light-mode .t-rich b { color: var(--accent-color); }
+.page.light-mode .t-rich em, .page.light-mode .t-rich i { color: var(--accent-color); }
+.page.light-mode .t-rich blockquote { background: rgba(184, 134, 46, 0.08); color: #6b5a2e; }
+.page.light-mode .t-rich a { color: #2a6ac9; }
+.page.light-mode .t-rich code { background: rgba(184, 134, 46, 0.1); color: var(--accent-color); }
+.page.light-mode .t-rich pre { background: #f5f1e6; border-color: rgba(184, 134, 46, 0.3); }
+.page.light-mode .t-rich th { background: rgba(184, 134, 46, 0.1); color: var(--accent-color); }
+.page.light-mode .t-rich th, .page.light-mode .t-rich td { border-color: rgba(184, 134, 46, 0.25); }
+.page.light-mode .t-rich tr:nth-child(even) td { background: rgba(0, 0, 0, 0.02); }
+.page.light-mode .t-rich pre .kwd { color: #9a6b00; }
+.page.light-mode .t-rich pre .str { color: #2e7d32; }
+.page.light-mode .t-rich pre .com { color: var(--text-muted); }
+.page.light-mode .t-rich pre .pun { color: var(--text-primary); }
+.page.light-mode .t-rich pre .pln { color: #222; }
+.page.light-mode .t-rich pre .typ { color: #00707a; }
+.page.light-mode .t-rich pre .lit { color: #b35400; }
+.page.light-mode .t-rich pre .tag { color: #c62828; }
+.page.light-mode .t-rich pre .atn { color: #9a6b00; }
+.page.light-mode .t-rich pre .atv { color: #2e7d32; }
 
 .t-empty { padding: 60px; text-align: center; color: #666; font-size: 15px; }
 
 .page.light-mode .t-sidebar { background: rgba(255, 255, 255, 0.9); }
-.page.light-mode .t-sidebar .t-back { background: #f5f1e6; border-color: rgba(184, 134, 46, 0.5); color: #b8862e; }
+.page.light-mode .t-sidebar .t-back { background: #f5f1e6; border-color: rgba(184, 134, 46, 0.5); color: var(--accent-color); }
 .page.light-mode .t-sidebar .t-back:hover { background: #eee7d2; }
 .page.light-mode .t-toc::-webkit-scrollbar-thumb { background: #d4a843; }
 .page.light-mode .t-toc { scrollbar-color: #d4a843 transparent; }
 .page.light-mode .t-content::-webkit-scrollbar-thumb { background: #d4a843; }
 .page.light-mode .t-content { scrollbar-color: #d4a843 transparent; }
-.page.light-mode .t-content { background: #faf8f2; }
-.page.light-mode .t-content p { color: #444; }
-.page.light-mode .t-example-title { background: #f5f1e6; }
-.page.light-mode .t-copy { color: rgba(184, 134, 46, 0.65); border-color: rgba(184, 134, 46, 0.65); background: rgba(255, 255, 255, 0.9); }
-.page.light-mode .t-copy:hover, .page.light-mode .t-copy.copied { border-color: #b8862e; background: rgba(184, 134, 46, 0.06); box-shadow: 0 0 6px rgba(184, 134, 46, 0.18); }
-.page.light-mode .t-copy:hover .t-copy-icon { color: #b8862e; filter: drop-shadow(0 0 2px rgba(184, 134, 46, 0.35)); }
-.page.light-mode .t-copy-tip { background: #fff; border-color: #b8862e; color: #b8862e; }
-.page.light-mode .t-example pre { color: #3b4a63; }
-.page.light-mode .t-toc button { color: #888; }
+.page.light-mode .t-content { background: var(--bg-card); }
+.page.light-mode .t-toc button { color: var(--text-muted); }
 .page.light-mode .t-toc button:hover,
-.page.light-mode .t-toc button.active { color: #b8862e; }
+.page.light-mode .t-toc button.active { color: var(--accent-color); }
 
 .hero {
   position: relative;
@@ -2020,7 +2095,7 @@ onBeforeUnmount(() => {
     color: #b8862e;
   }
   .page.light-mode .t-mobile-toc-title,
-  .page.light-mode .t-mobile-toc-arrow { color: #b8862e; }
+  .page.light-mode .t-mobile-toc-arrow { color: var(--accent-color); }
 
   /* 目录默认隐藏，点击展开 */
   .t-sidebar.t-toc-hidden { display: none; }
@@ -2038,5 +2113,53 @@ onBeforeUnmount(() => {
   .tutorials-view, .tutorial-view { padding: 8px; }
   .t-card { padding: 14px 12px; }
   .t-sidebar { padding: 10px; }
+}
+
+/* 打印简历时隐藏导航栏 */
+@media print {
+  .nav { display: none !important; }
+}
+</style>
+
+<style>
+/* ===== 全局双主题变量系统 =====
+   深色（:root 默认）+ 浅色（.light-mode 覆盖）
+   统一变量供全站组件使用，禁止组件内硬编码颜色 */
+:root {
+  --bg-primary: #080808;
+  --bg-secondary: #111111;
+  --bg-card: #151515;
+  --text-primary: #ffffff;
+  --text-secondary: #c8c8c8;
+  --text-muted: #888888;
+  --border-color: rgba(212, 168, 60, 0.35);
+  --accent-color: #d4a83c;
+  --accent-strong: #f0d878;
+  /* 兼容别名（旧组件沿用） */
+  --gold: #d4a843;
+  --gold-strong: #f0d878;
+  --text: #e6e6e6;
+  --muted: #9aa0a6;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --line: rgba(212, 168, 67, 0.3);
+}
+
+.light-mode {
+  --bg-primary: #f7f4ec;
+  --bg-secondary: #ffffff;
+  --bg-card: #faf8f2;
+  --text-primary: #222222;
+  --text-secondary: #555555;
+  --text-muted: #777777;
+  --border-color: #dfc982;
+  --accent-color: #b8860b;
+  --accent-strong: #8a6520;
+  /* 兼容别名 */
+  --gold: #b8862e;
+  --gold-strong: #8a6520;
+  --text: #2b2b2b;
+  --muted: #6b6b6b;
+  --card-bg: #ffffff;
+  --line: #e8e0cc;
 }
 </style>

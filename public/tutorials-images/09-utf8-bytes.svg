@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" font-family="'Geist', -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;600&amp;family=Geist+Mono&amp;family=Instrument+Serif&amp;display=swap');
+    </style>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#1c1917" fill-opacity="0.10" />
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2" />
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.55" />
+
+  <text x="32" y="44" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.18em">UTF-8 BYTE INDEXING</text>
+  <text x="32" y="84" fill="#1c1917" font-size="24" font-weight="400" font-family="'Instrument Serif', Georgia, serif">字符串索引是字节索引</text>
+  <text x="32" y="108" fill="#78716c" font-size="10">以 s = &quot;RUNOOB教程&quot; 为例：ASCII 字符占 1 字节，汉字占 3 字节</text>
+
+  <!-- ===== 字节格子：12 字节 ===== -->
+  <!-- ASCII: R U N O O B (1-6)，教(7-9)，程(10-12) -->
+  <g>
+    <!-- R -->
+    <rect x="64" y="192" width="64" height="64" fill="#ffffff" stroke="#57534e" stroke-width="1" />
+    <text x="96" y="232" fill="#1c1917" font-size="22" font-weight="600" text-anchor="middle">R</text>
+    <text x="96" y="276" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">1</text>
+    <!-- U -->
+    <rect x="128" y="192" width="64" height="64" fill="#ffffff" stroke="#57534e" stroke-width="1" />
+    <text x="160" y="232" fill="#1c1917" font-size="22" font-weight="600" text-anchor="middle">U</text>
+    <text x="160" y="276" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">2</text>
+    <!-- N -->
+    <rect x="192" y="192" width="64" height="64" fill="#ffffff" stroke="#57534e" stroke-width="1" />
+    <text x="224" y="232" fill="#1c1917" font-size="22" font-weight="600" text-anchor="middle">N</text>
+    <text x="224" y="276" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">3</text>
+    <!-- O -->
+    <rect x="256" y="192" width="64" height="64" fill="#ffffff" stroke="#57534e" stroke-width="1" />
+    <text x="288" y="232" fill="#1c1917" font-size="22" font-weight="600" text-anchor="middle">O</text>
+    <text x="288" y="276" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">4</text>
+    <!-- O -->
+    <rect x="320" y="192" width="64" height="64" fill="#ffffff" stroke="#57534e" stroke-width="1" />
+    <text x="352" y="232" fill="#1c1917" font-size="22" font-weight="600" text-anchor="middle">O</text>
+    <text x="352" y="276" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">5</text>
+    <!-- B -->
+    <rect x="384" y="192" width="64" height="64" fill="#ffffff" stroke="#57534e" stroke-width="1" />
+    <text x="416" y="232" fill="#1c1917" font-size="22" font-weight="600" text-anchor="middle">B</text>
+    <text x="416" y="276" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">6</text>
+
+    <!-- 教（3 字节，焦点） -->
+    <rect x="448" y="192" width="192" height="64" fill="#f6e8e3" stroke="#b5523a" stroke-width="1.2" />
+    <text x="544" y="232" fill="#b5523a" font-size="22" font-weight="600" text-anchor="middle">教</text>
+    <text x="496" y="276" fill="#b5523a" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">7</text>
+    <text x="544" y="276" fill="#b5523a" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">8</text>
+    <text x="592" y="276" fill="#b5523a" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">9</text>
+
+    <!-- 程（3 字节） -->
+    <rect x="640" y="192" width="192" height="64" fill="#1c1917" fill-opacity="0.05" stroke="#57534e" stroke-width="1" />
+    <text x="736" y="232" fill="#1c1917" font-size="22" font-weight="600" text-anchor="middle">程</text>
+    <text x="688" y="276" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">10</text>
+    <text x="736" y="276" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">11</text>
+    <text x="784" y="276" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">12</text>
+  </g>
+
+  <text x="64" y="312" fill="#78716c" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace">字节索引 →</text>
+
+  <!-- ===== 无效索引标注 ===== -->
+  <text x="64" y="368" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.12em">无效索引</text>
+  <text x="64" y="396" fill="#57534e" font-size="10">s[8]、s[9] 落在 &quot;教&quot; 字的中间字节上，会抛出 StringIndexError：</text>
+  <rect x="64" y="412" width="480" height="36" rx="4" fill="#1c1917" fill-opacity="0.05" />
+  <text x="80" y="435" fill="#1c1917" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace">StringIndexError: invalid index [8], valid nearby indices [7]=>'教'</text>
+
+  <!-- ===== 有效索引特征 ===== -->
+  <text x="640" y="368" fill="#78716c" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.12em">有效索引 = 每个字符的首字节</text>
+  <text x="640" y="396" fill="#57534e" font-size="10">1, 2, 3, 4, 5, 6, 7, 10</text>
+
+  <!-- ===== 底部对比 ===== -->
+  <line x1="32" y1="472" x2="928" y2="472" stroke="#1c1917" stroke-opacity="0.10" stroke-width="0.8" />
+  <g font-size="10">
+    <text x="32" y="500" fill="#57534e" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.14em">对比</text>
+    <text x="104" y="500" fill="#1c1917">length(s) = 8      字符数</text>
+    <text x="304" y="500" fill="#1c1917">ncodeunits(s) = 12      字节数</text>
+    <text x="544" y="500" fill="#1c1917">for c in s      按字符遍历，无需关心索引</text>
+  </g>
+  <text x="32" y="526" fill="#78716c" font-size="9">nextind(s, i) / prevind(s, i) 用于在有效索引之间移动</text>
+</svg>

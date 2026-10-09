@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 616" width="960" height="616" role="img" aria-label="Swift 两段式构造过程：第一阶段自下而上完成属性初始化，第二阶段自上而下定制实例，右侧标注三条安全检查">
+<defs>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+</pattern>
+<marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+</marker>
+<marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+</marker>
+<marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+<polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+</marker>
+</defs>
+<rect width="100%" height="100%" fill="#faf7f2"/>
+<rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+<text x="32" y="44" fill="#1c1917" font-size="24" font-family="'Instrument Serif',Georgia,'Times New Roman',serif">两段式构造过程</text>
+<text x="32" y="68" fill="#57534e" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">第一阶段自下而上初始化，第二阶段自上而下定制</text>
+
+<line x1="48" y1="104" x2="48" y2="360" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+<line x1="48" y1="424" x2="48" y2="584" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+
+<line x1="704" y1="216" x2="640" y2="216" stroke="rgba(28,25,23,0.30)" stroke-width="1"/>
+<line x1="704" y1="320" x2="640" y2="320" stroke="rgba(28,25,23,0.30)" stroke-width="1"/>
+<line x1="704" y1="520" x2="640" y2="520" stroke="rgba(28,25,23,0.30)" stroke-width="1"/>
+
+<line x1="480" y1="168" x2="480" y2="200" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="480" y1="264" x2="480" y2="296" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+<line x1="480" y1="360" x2="480" y2="424" stroke="#b5523a" stroke-width="1" marker-end="url(#arrow-accent)"/>
+<line x1="480" y1="488" x2="480" y2="520" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+
+<rect x="416" y="384" width="128" height="16" fill="#faf7f2"/>
+<text x="480" y="396" fill="#b5523a" font-size="8" letter-spacing="0.08em" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">转折点 · 第一阶段完成</text>
+
+<text x="64" y="228" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">第一阶段 · 自下而上</text>
+<text x="64" y="246" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">调用链沿继承链向上</text>
+
+<text x="64" y="500" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">第二阶段 · 自上而下</text>
+<text x="64" y="518" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">从根类逐层向下定制</text>
+
+<text x="704" y="216" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">① 子类存储属性全部初始化</text>
+<text x="704" y="234" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">完毕，才能调用 super.init</text>
+<text x="704" y="320" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">② 第一阶段完成前不能访问</text>
+<text x="704" y="338" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">self，也不能调用实例方法</text>
+<text x="704" y="520" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">③ 先调用父类构造器，</text>
+<text x="704" y="538" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">才能修改继承来的属性</text>
+
+<rect x="320" y="104" width="320" height="64" rx="6" fill="#faf7f2"/>
+<rect x="320" y="104" width="320" height="64" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="480" y="138" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">Dog.init</text>
+<text x="480" y="154" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">子类先初始化自己的存储属性 breed</text>
+
+<rect x="320" y="200" width="320" height="64" rx="6" fill="#faf7f2"/>
+<rect x="320" y="200" width="320" height="64" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="480" y="234" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">super.init(name:)</text>
+<text x="480" y="250" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">向上代理给父类构造器</text>
+
+<rect x="320" y="296" width="320" height="64" rx="6" fill="#faf7f2"/>
+<rect x="320" y="296" width="320" height="64" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="480" y="330" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">Animal.init</text>
+<text x="480" y="346" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">根类完成 name 初始化，第一阶段结束</text>
+
+<rect x="320" y="424" width="320" height="64" rx="6" fill="#faf7f2"/>
+<rect x="320" y="424" width="320" height="64" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="480" y="458" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">Dog.init 继续</text>
+<text x="480" y="474" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">可访问 self.description、调用实例方法</text>
+
+<rect x="320" y="520" width="320" height="64" rx="6" fill="#faf7f2"/>
+<rect x="320" y="520" width="320" height="64" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+<text x="480" y="554" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">Dog.init 结束</text>
+<text x="480" y="570" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">第二阶段才能修改继承来的属性 name</text>
+</svg>

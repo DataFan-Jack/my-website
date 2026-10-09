@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 408" width="880" height="408" role="img" aria-label="数组赋值的写时复制时间线：创建时引用计数为 1，赋值时共享缓冲区不复制，写入时才复制出独立缓冲区">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+  <text x="440" y="44" fill="#1c1917" font-size="24" font-family="'Instrument Serif',Georgia,'Times New Roman',serif" text-anchor="middle">数组赋值：写时复制（COW）</text>
+  <text x="440" y="68" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">赋值不复制，写入才复制</text>
+
+  <!-- 时间线箭头 -->
+  <line x1="276" y1="200" x2="316" y2="200" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="280" y="184" width="32" height="12" fill="#faf7f2"/>
+  <text x="296" y="192" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">赋值</text>
+
+  <line x1="564" y1="200" x2="604" y2="200" stroke="#b5523a" stroke-width="1" marker-end="url(#arrow-accent)"/>
+  <rect x="568" y="184" width="32" height="12" fill="#faf7f2"/>
+  <text x="584" y="192" fill="#b5523a" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">写入</text>
+
+  <!-- STEP 1 -->
+  <text x="32" y="104" fill="#78716c" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" letter-spacing="0.08em">STEP 1 · 创建</text>
+  <text x="32" y="128" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600">var a = [1, 2, 3]</text>
+  <text x="152" y="168" fill="#78716c" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">a</text>
+  <rect x="52" y="176" width="200" height="48" rx="6" fill="#faf7f2"/>
+  <rect x="52" y="176" width="200" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="152" y="205" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">1   2   3</text>
+  <text x="152" y="248" fill="#78716c" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">rc = 1</text>
+  <text x="152" y="280" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">a 指向新建的缓冲区</text>
+
+  <!-- STEP 2 -->
+  <text x="320" y="104" fill="#78716c" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" letter-spacing="0.08em">STEP 2 · 赋值</text>
+  <text x="320" y="128" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600">var b = a</text>
+  <text x="400" y="168" fill="#78716c" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">a</text>
+  <text x="480" y="168" fill="#78716c" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">b</text>
+  <rect x="340" y="176" width="200" height="48" rx="6" fill="#faf7f2"/>
+  <rect x="340" y="176" width="200" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="440" y="205" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">1   2   3</text>
+  <text x="440" y="248" fill="#78716c" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">rc = 2 · 不复制</text>
+  <text x="440" y="280" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">a 与 b 共享同一缓冲区</text>
+
+  <!-- STEP 3（焦点） -->
+  <text x="608" y="104" fill="#78716c" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" letter-spacing="0.08em">STEP 3 · 写入</text>
+  <text x="608" y="128" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600">b.append(4)</text>
+  <text x="676" y="168" fill="#78716c" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">a</text>
+  <text x="780" y="168" fill="#78716c" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">b</text>
+  <rect x="628" y="176" width="96" height="48" rx="6" fill="#faf7f2"/>
+  <rect x="628" y="176" width="96" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="676" y="205" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">1  2  3</text>
+  <rect x="732" y="176" width="96" height="48" rx="6" fill="#faf7f2"/>
+  <rect x="732" y="176" width="96" height="48" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="780" y="205" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">1  2  3  4</text>
+  <text x="728" y="248" fill="#78716c" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">rc = 2 且结构修改 → 复制</text>
+  <text x="728" y="280" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">写入触发复制，a 不受影响</text>
+
+  <!-- note -->
+  <rect x="32" y="328" width="816" height="56" rx="6" fill="#f2ede4" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="48" y="352" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">COW 判据：引用计数 &gt; 1 且发生结构修改时才复制（如 append、下标赋值）</text>
+  <text x="48" y="372" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">只读访问（读取、遍历、传参）不会复制，仍然共享同一缓冲区</text>
+</svg>

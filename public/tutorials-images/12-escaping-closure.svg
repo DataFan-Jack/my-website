@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 456" width="800" height="456" role="img" aria-label="逃逸闭包与非逃逸闭包对比：非逃逸闭包在函数返回前执行完并释放，逃逸闭包被存入属性、函数返回后才调用">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+  <text x="400" y="44" fill="#1c1917" font-size="24" font-family="'Instrument Serif',Georgia,'Times New Roman',serif" text-anchor="middle">逃逸闭包与非逃逸闭包</text>
+  <text x="400" y="68" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">参数默认非逃逸；要活过函数调用，必须显式标注 @escaping</text>
+
+  <text x="216" y="96" fill="#78716c" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle" letter-spacing="0.08em">非逃逸 · 默认</text>
+  <text x="584" y="96" fill="#78716c" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle" letter-spacing="0.08em">逃逸 · @escaping</text>
+
+  <!-- 左：非逃逸 -->
+  <line x1="216" y1="168" x2="216" y2="196" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="168" y="176" width="96" height="12" fill="#faf7f2"/>
+  <text x="216" y="184" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">函数体内调用</text>
+
+  <line x1="216" y1="256" x2="216" y2="284" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="168" y="264" width="96" height="12" fill="#faf7f2"/>
+  <text x="216" y="272" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">返回前结束</text>
+
+  <rect x="56" y="112" width="320" height="56" rx="6" fill="#faf7f2"/>
+  <rect x="56" y="112" width="320" height="56" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="216" y="140" fill="#1c1917" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" font-weight="600" text-anchor="middle">非逃逸（默认）</text>
+  <text x="216" y="158" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">func perform(_ action: () -&gt; Void)</text>
+
+  <rect x="56" y="200" width="320" height="56" rx="6" fill="#faf7f2"/>
+  <rect x="56" y="200" width="320" height="56" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="216" y="228" fill="#1c1917" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" font-weight="600" text-anchor="middle">立即执行</text>
+  <text x="216" y="246" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">action()</text>
+
+  <rect x="56" y="288" width="320" height="56" rx="6" fill="#faf7f2"/>
+  <rect x="56" y="288" width="320" height="56" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="216" y="316" fill="#1c1917" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" font-weight="600" text-anchor="middle">用完即释放</text>
+  <text x="216" y="334" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">无需 self.，编译器可优化</text>
+
+  <!-- 右：逃逸（焦点） -->
+  <line x1="584" y1="168" x2="584" y2="196" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="536" y="176" width="96" height="12" fill="#faf7f2"/>
+  <text x="584" y="184" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">存入属性</text>
+
+  <line x1="584" y1="256" x2="584" y2="284" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="536" y="264" width="96" height="12" fill="#faf7f2"/>
+  <text x="584" y="272" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">返回后触发</text>
+
+  <rect x="424" y="112" width="320" height="56" rx="6" fill="#faf7f2"/>
+  <rect x="424" y="112" width="320" height="56" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="584" y="140" fill="#1c1917" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" font-weight="600" text-anchor="middle">逃逸（@escaping）</text>
+  <text x="584" y="158" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">func save(_ action: @escaping () -&gt; Void)</text>
+
+  <rect x="424" y="200" width="320" height="56" rx="6" fill="#faf7f2"/>
+  <rect x="424" y="200" width="320" height="56" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="584" y="228" fill="#1c1917" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" font-weight="600" text-anchor="middle">存入属性</text>
+  <text x="584" y="246" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">stored = action</text>
+
+  <rect x="424" y="288" width="320" height="56" rx="6" fill="#faf7f2"/>
+  <rect x="424" y="288" width="320" height="56" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="584" y="316" fill="#1c1917" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" font-weight="600" text-anchor="middle">返回后才调用</text>
+  <text x="584" y="334" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">store.stored?() · 必须显式写 self.</text>
+
+  <!-- note -->
+  <rect x="48" y="376" width="704" height="56" rx="6" fill="#f2ede4" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="64" y="400" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">闭包被存进属性、或在函数返回之后才调用 → 必须标 @escaping</text>
+  <text x="64" y="420" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">逃逸闭包会强引用 self，容易循环引用；用 [weak self] 捕获列表打破它</text>
+</svg>

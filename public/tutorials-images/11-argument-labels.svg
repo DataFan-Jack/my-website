@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 704 432" width="704" height="432" role="img" aria-label="Swift 参数标签的三种写法对照：下划线省略标签、自定义标签、标签与参数名同名">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+  <text x="352" y="44" fill="#1c1917" font-size="24" font-family="'Instrument Serif',Georgia,'Times New Roman',serif" text-anchor="middle">参数标签：外部名与内部名分离</text>
+  <text x="352" y="68" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">同一份声明，三种标签写法，调用处必须与声明一致</text>
+
+  <text x="196" y="88" fill="#78716c" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle" letter-spacing="0.08em">声明</text>
+  <text x="508" y="88" fill="#78716c" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle" letter-spacing="0.08em">调用</text>
+
+  <!-- row 1: 下划线省略标签 -->
+  <line x1="320" y1="124" x2="384" y2="124" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="328" y="108" width="48" height="12" fill="#faf7f2"/>
+  <text x="352" y="116" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">无标签</text>
+
+  <rect x="76" y="96" width="240" height="56" rx="6" fill="#faf7f2"/>
+  <rect x="76" y="96" width="240" height="56" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="196" y="124" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">func f(_ name: String)</text>
+  <text x="196" y="142" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">外部：无 · 内部：name</text>
+
+  <rect x="388" y="96" width="240" height="56" rx="6" fill="#faf7f2"/>
+  <rect x="388" y="96" width="240" height="56" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="508" y="124" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">f("RUNOOB")</text>
+  <text x="508" y="142" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">调用不写标签</text>
+
+  <!-- row 2: 自定义标签 -->
+  <line x1="320" y1="204" x2="384" y2="204" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="320" y="188" width="64" height="12" fill="#faf7f2"/>
+  <text x="352" y="196" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">自定义标签</text>
+
+  <rect x="76" y="176" width="240" height="56" rx="6" fill="#faf7f2"/>
+  <rect x="76" y="176" width="240" height="56" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="196" y="204" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">func f(label name: String)</text>
+  <text x="196" y="222" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">外部：label · 内部：name</text>
+
+  <rect x="388" y="176" width="240" height="56" rx="6" fill="#faf7f2"/>
+  <rect x="388" y="176" width="240" height="56" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="508" y="204" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">f(label: "RUNOOB")</text>
+  <text x="508" y="222" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">调用必须写 label:</text>
+
+  <!-- row 3: 标签与参数名同名（焦点） -->
+  <line x1="320" y1="284" x2="384" y2="284" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="328" y="268" width="48" height="12" fill="#faf7f2"/>
+  <text x="352" y="276" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">同名标签</text>
+
+  <rect x="76" y="256" width="240" height="56" rx="6" fill="#faf7f2"/>
+  <rect x="76" y="256" width="240" height="56" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="196" y="284" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">func f(name: String)</text>
+  <text x="196" y="302" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">外部：name · 内部：name</text>
+
+  <rect x="388" y="256" width="240" height="56" rx="6" fill="#faf7f2"/>
+  <rect x="388" y="256" width="240" height="56" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="508" y="284" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">f(name: "RUNOOB")</text>
+  <text x="508" y="302" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">最容易与旧写法混淆</text>
+
+  <!-- note -->
+  <rect x="48" y="344" width="608" height="56" rx="6" fill="#f2ede4" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="64" y="368" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">Swift 3 起，第一个参数也默认带外部标签；旧教程里的 f("RUNOOB") 写法已编译不过。</text>
+  <text x="64" y="388" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">想让它像第 1 行那样省略标签，必须在声明处显式写 _。</text>
+</svg>

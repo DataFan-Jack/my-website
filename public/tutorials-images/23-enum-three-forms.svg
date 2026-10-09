@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 592" width="960" height="592" role="img" aria-label="Swift 枚举的三种形态对比：纯枚举、带原始值、带关联值，底部标注 CaseIterable 与 indirect">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+  <!-- 标题 -->
+  <text x="40" y="56" fill="#1c1917" font-size="24" font-family="'Instrument Serif',Georgia,'Times New Roman',serif">枚举的三种形态</text>
+  <text x="40" y="80" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">纯枚举 · 带原始值 · 带关联值</text>
+
+  <!-- 连接线 -->
+  <path d="M452 152 V184" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M152 184 H752" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M152 184 V216" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M424 184 V216" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <path d="M752 184 V216" fill="none" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- 根节点 -->
+  <rect x="396" y="104" width="112" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="452" y="130" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">枚举</text>
+  <text x="452" y="146" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">enum</text>
+
+  <!-- 一：纯枚举 -->
+  <rect x="40" y="216" width="224" height="248" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="64" y="256" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">纯枚举</text>
+  <text x="64" y="276" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">no payload</text>
+  <rect x="56" y="292" width="192" height="76" rx="4" fill="rgba(28,25,23,0.05)" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="72" y="316" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">enum Direction {</text>
+  <text x="72" y="334" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">    case north, south</text>
+  <text x="72" y="352" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">}</text>
+  <text x="64" y="404" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">不携带任何附加数据</text>
+  <text x="64" y="424" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">只表示一种取值</text>
+
+  <!-- 二：带原始值 -->
+  <rect x="296" y="216" width="256" height="248" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="320" y="256" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">带原始值</text>
+  <text x="320" y="276" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">RawRepresentable</text>
+  <rect x="312" y="292" width="224" height="76" rx="4" fill="rgba(28,25,23,0.05)" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="328" y="316" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">enum Status: String {</text>
+  <text x="328" y="334" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">    case ok = "OK"</text>
+  <text x="328" y="352" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">}</text>
+  <text x="320" y="404" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">每个 case 对应一个固定值</text>
+  <text x="320" y="424" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">rawValue / init?(rawValue:)</text>
+
+  <!-- 三：带关联值（焦点） -->
+  <rect x="584" y="216" width="336" height="248" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="608" y="256" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">带关联值</text>
+  <text x="608" y="276" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">associated value</text>
+  <rect x="816" y="236" width="80" height="24" rx="4" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="856" y="252" fill="#1c1917" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">最易混淆</text>
+  <rect x="600" y="292" width="304" height="100" rx="4" fill="rgba(28,25,23,0.05)" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="616" y="316" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">enum Result {</text>
+  <text x="616" y="334" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">    case success(String)</text>
+  <text x="616" y="352" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">    case failure(Error)</text>
+  <text x="616" y="370" fill="#1c1917" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace">}</text>
+  <text x="608" y="416" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">每个 case 携带不同类型的数据</text>
+  <text x="608" y="436" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">用 switch 绑定关联值取出</text>
+
+  <!-- 底部标注 -->
+  <line x1="40" y1="504" x2="920" y2="504" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="40" y="536" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">CaseIterable：遵循后自动合成 allCases，顺序与声明顺序一致</text>
+  <text x="40" y="560" fill="#57534e" font-size="9" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">indirect：让 case 间接存储，支持递归枚举</text>
+</svg>

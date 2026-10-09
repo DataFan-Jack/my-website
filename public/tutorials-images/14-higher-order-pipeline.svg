@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 352" width="880" height="352" role="img" aria-label="高阶函数流水线：数组经过 map、filter、reduce 逐步处理，每一步下方标注该步的输出集合">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+  <text x="440" y="44" fill="#1c1917" font-size="24" font-family="'Instrument Serif',Georgia,'Times New Roman',serif" text-anchor="middle">高阶函数流水线</text>
+  <text x="440" y="68" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">每一步只关心上一步的输出，原数组始终不变</text>
+
+  <!-- 箭头 -->
+  <line x1="184" y1="168" x2="208" y2="168" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="180" y="152" width="32" height="12" fill="#faf7f2"/>
+  <text x="196" y="160" fill="#57534e" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">转换</text>
+
+  <line x1="368" y1="168" x2="392" y2="168" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="364" y="152" width="32" height="12" fill="#faf7f2"/>
+  <text x="380" y="160" fill="#57534e" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">筛选</text>
+
+  <line x1="552" y1="168" x2="576" y2="168" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="548" y="152" width="32" height="12" fill="#faf7f2"/>
+  <text x="564" y="160" fill="#57534e" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">聚合</text>
+
+  <line x1="736" y1="168" x2="760" y2="168" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="732" y="152" width="32" height="12" fill="#faf7f2"/>
+  <text x="748" y="160" fill="#57534e" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">结果</text>
+
+  <!-- 输入 -->
+  <rect x="24" y="136" width="160" height="64" rx="6" fill="#faf7f2"/>
+  <rect x="24" y="136" width="160" height="64" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <rect x="32" y="144" width="40" height="12" rx="2" fill="transparent" stroke="rgba(28,25,23,0.40)" stroke-width="0.8"/>
+  <text x="52" y="153" fill="#57534e" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle" letter-spacing="0.08em">INPUT</text>
+  <text x="104" y="180" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">[1, 2, 3, 4, 5]</text>
+  <text x="104" y="232" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">5 个元素</text>
+
+  <!-- map -->
+  <rect x="208" y="136" width="160" height="64" rx="6" fill="#faf7f2"/>
+  <rect x="208" y="136" width="160" height="64" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <rect x="216" y="144" width="40" height="12" rx="2" fill="transparent" stroke="rgba(28,25,23,0.40)" stroke-width="0.8"/>
+  <text x="236" y="153" fill="#57534e" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle" letter-spacing="0.08em">MAP</text>
+  <text x="288" y="180" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">map { $0 * 2 }</text>
+  <text x="288" y="232" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">[2, 4, 6, 8, 10]</text>
+
+  <!-- filter -->
+  <rect x="392" y="136" width="160" height="64" rx="6" fill="#faf7f2"/>
+  <rect x="392" y="136" width="160" height="64" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <rect x="400" y="144" width="40" height="12" rx="2" fill="transparent" stroke="rgba(28,25,23,0.40)" stroke-width="0.8"/>
+  <text x="420" y="153" fill="#57534e" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle" letter-spacing="0.08em">FILTER</text>
+  <text x="472" y="180" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">filter { $0 &gt; 5 }</text>
+  <text x="472" y="232" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">[6, 8, 10]</text>
+
+  <!-- reduce（焦点） -->
+  <rect x="576" y="136" width="160" height="64" rx="6" fill="#faf7f2"/>
+  <rect x="576" y="136" width="160" height="64" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <rect x="584" y="144" width="40" height="12" rx="2" fill="transparent" stroke="rgba(28,25,23,0.40)" stroke-width="0.8"/>
+  <text x="604" y="153" fill="#57534e" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle" letter-spacing="0.08em">REDUCE</text>
+  <text x="656" y="180" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">reduce(0, +)</text>
+  <text x="656" y="232" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">24</text>
+
+  <!-- 结果 -->
+  <rect x="760" y="136" width="96" height="64" rx="6" fill="#faf7f2"/>
+  <rect x="760" y="136" width="96" height="64" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <rect x="768" y="144" width="40" height="12" rx="2" fill="transparent" stroke="rgba(28,25,23,0.40)" stroke-width="0.8"/>
+  <text x="788" y="153" fill="#57534e" font-size="8" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle" letter-spacing="0.08em">OUT</text>
+  <text x="808" y="181" fill="#1c1917" font-size="16" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" font-weight="600" text-anchor="middle">24</text>
+  <text x="808" y="232" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">单个值</text>
+
+  <!-- note -->
+  <rect x="24" y="264" width="832" height="56" rx="6" fill="#f2ede4" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="40" y="288" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">compactMap 会丢弃转换后为 nil 的元素，flatMap 会把嵌套结构展平一层</text>
+  <text x="40" y="308" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">链式调用每一步都返回新的集合，不会修改原数组</text>
+</svg>

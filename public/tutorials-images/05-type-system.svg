@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" role="img" aria-label="Swift 类型体系总览：值类型与引用类型的分叉">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#57534e"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#b5523a"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.6"/>
+
+  <text x="480" y="36" fill="#1c1917" font-size="20" font-family="'Instrument Serif',Georgia,'Times New Roman',serif" text-anchor="middle">Swift 类型体系总览</text>
+
+  <!-- connectors -->
+  <path d="M492 112 V128 H256 V144" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M492 128 H728 V144" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M256 192 V208 H96 V232" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M256 208 H416 V232" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M728 192 V208 H648 V232" fill="none" stroke="#57534e" stroke-width="1"/>
+  <path d="M728 208 H808 V232" fill="none" stroke="#57534e" stroke-width="1"/>
+
+  <!-- root -->
+  <rect x="412" y="64" width="160" height="48" rx="6" fill="#faf7f2"/>
+  <rect x="412" y="64" width="160" height="48" rx="6" fill="#f2ede4" stroke="#1c1917" stroke-width="1"/>
+  <text x="492" y="86" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">Swift 类型体系</text>
+  <text x="492" y="102" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">两大类</text>
+
+  <!-- fork focus -->
+  <rect x="184" y="144" width="160" height="48" rx="6" fill="#faf7f2"/>
+  <rect x="184" y="144" width="160" height="48" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="256" y="166" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">值类型</text>
+  <text x="256" y="182" fill="#b5523a" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">赋值即拷贝</text>
+
+  <rect x="656" y="144" width="160" height="48" rx="6" fill="#faf7f2"/>
+  <rect x="656" y="144" width="160" height="48" rx="6" fill="rgba(181,82,58,0.08)" stroke="#b5523a" stroke-width="1"/>
+  <text x="728" y="166" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">引用类型</text>
+  <text x="728" y="182" fill="#b5523a" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">共享同一实例</text>
+
+  <!-- value type leaves -->
+  <rect x="24" y="232" width="144" height="48" rx="6" fill="#faf7f2"/>
+  <rect x="24" y="232" width="144" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="96" y="254" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">基础类型</text>
+  <text x="96" y="270" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">Int Double Bool String</text>
+
+  <rect x="184" y="232" width="144" height="48" rx="6" fill="#faf7f2"/>
+  <rect x="184" y="232" width="144" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="256" y="254" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">集合类型</text>
+  <text x="256" y="270" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">Array Dictionary Set</text>
+
+  <rect x="344" y="232" width="144" height="48" rx="6" fill="#faf7f2"/>
+  <rect x="344" y="232" width="144" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="416" y="254" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">自定义类型</text>
+  <text x="416" y="270" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">struct enum 元组</text>
+
+  <!-- reference type leaves -->
+  <rect x="576" y="232" width="144" height="48" rx="6" fill="#faf7f2"/>
+  <rect x="576" y="232" width="144" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="648" y="254" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">class</text>
+  <text x="648" y="270" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">引用语义</text>
+
+  <rect x="736" y="232" width="144" height="48" rx="6" fill="#faf7f2"/>
+  <rect x="736" y="232" width="144" height="48" rx="6" fill="#ffffff" stroke="#1c1917" stroke-width="1"/>
+  <text x="808" y="254" fill="#1c1917" font-size="12" font-weight="600" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif" text-anchor="middle">闭包</text>
+  <text x="808" y="270" fill="#57534e" font-size="9" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="middle">捕获上下文</text>
+
+  <!-- notes -->
+  <line x1="32" y1="320" x2="928" y2="320" stroke="rgba(28,25,23,0.12)" stroke-width="1"/>
+  <text x="120" y="352" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="end">Any</text>
+  <text x="136" y="352" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">可容纳值类型与引用类型</text>
+  <text x="120" y="380" fill="#1c1917" font-size="12" font-family="'Geist Mono','SFMono-Regular',Menlo,Consolas,monospace" text-anchor="end">AnyObject</text>
+  <text x="136" y="380" fill="#57534e" font-size="12" font-family="'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif">只容纳引用类型（class / 闭包）</text>
+</svg>

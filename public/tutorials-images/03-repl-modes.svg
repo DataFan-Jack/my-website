@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" font-family="'Geist', -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(28,25,23,0.10)"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#57534e"/></marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#b5523a"/></marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#faf7f2"/>
+  <rect width="100%" height="100%" fill="url(#dots)" opacity="0.55"/>
+
+  <text x="32" y="44" fill="#78716c" font-size="8" font-family="'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace" letter-spacing="0.18em">JULIA REPL · FOUR MODES</text>
+  <text x="32" y="84" fill="#1c1917" font-size="24" font-weight="400" font-family="'Instrument Serif', Georgia, serif">四种命令模式的切换</text>
+
+  <!-- ===== 中心：Julia 模式（焦点） ===== -->
+  <rect x="352" y="152" width="256" height="96" rx="8" fill="#f6e8e3" stroke="#b5523a" stroke-width="1.2"/>
+  <rect x="360" y="158" width="52" height="14" rx="2" fill="transparent" stroke="rgba(181,82,58,0.4)" stroke-width="0.8"/>
+  <text x="386" y="168" fill="rgba(181,82,58,0.85)" font-size="7" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.08em">DEFAULT</text>
+  <text x="480" y="200" fill="#1c1917" font-size="14" font-weight="600" text-anchor="middle">Julia 模式</text>
+  <text x="480" y="222" fill="#57534e" font-size="10" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">julia&gt;  执行 Julia 代码</text>
+
+  <!-- ===== 三个子模式 ===== -->
+  <!-- 帮助模式 -->
+  <rect x="64" y="352" width="240" height="96" rx="6" fill="rgba(28,25,23,0.05)" stroke="#a8a29e" stroke-width="1"/>
+  <text x="184" y="392" fill="#1c1917" font-size="12" font-weight="600" text-anchor="middle">帮助模式</text>
+  <text x="184" y="414" fill="#57534e" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">help?&gt;  ?println</text>
+  <text x="184" y="432" fill="#78716c" font-size="9" text-anchor="middle">查询函数与类型的文档</text>
+
+  <!-- Shell 模式 -->
+  <rect x="360" y="352" width="240" height="96" rx="6" fill="rgba(28,25,23,0.05)" stroke="#a8a29e" stroke-width="1"/>
+  <text x="480" y="392" fill="#1c1917" font-size="12" font-weight="600" text-anchor="middle">Shell 模式</text>
+  <text x="480" y="414" fill="#57534e" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">shell&gt;  ls  cd  cat</text>
+  <text x="480" y="432" fill="#78716c" font-size="9" text-anchor="middle">执行系统命令</text>
+
+  <!-- 包管理模式 -->
+  <rect x="656" y="352" width="240" height="96" rx="6" fill="rgba(28,25,23,0.05)" stroke="#a8a29e" stroke-width="1"/>
+  <text x="776" y="392" fill="#1c1917" font-size="12" font-weight="600" text-anchor="middle">包管理模式</text>
+  <text x="776" y="414" fill="#57534e" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle">pkg&gt;  add  rm  status</text>
+  <text x="776" y="432" fill="#78716c" font-size="9" text-anchor="middle">安装与管理软件包</text>
+
+  <!-- ===== 进入箭头（先画线后画遮罩） ===== -->
+  <line x1="392" y1="248" x2="220" y2="352" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="480" y1="248" x2="480" y2="352" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="568" y1="248" x2="740" y2="352" stroke="#57534e" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- 箭头标签遮罩 -->
+  <rect x="264" y="284" width="88" height="14" rx="2" fill="#faf7f2"/>
+  <text x="308" y="295" fill="#65655c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.06em">按 ? 键</text>
+  <rect x="452" y="288" width="56" height="14" rx="2" fill="#faf7f2"/>
+  <text x="480" y="299" fill="#65655c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.06em">按 ; 键</text>
+  <rect x="608" y="284" width="88" height="14" rx="2" fill="#faf7f2"/>
+  <text x="652" y="295" fill="#65655c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.06em">按 ] 键</text>
+
+  <!-- ===== 返回箭头（Backspace / Ctrl-C） ===== -->
+  <line x1="140" y1="352" x2="332" y2="256" stroke="#57534e" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+  <line x1="608" y1="424" x2="700" y2="288" stroke="transparent" stroke-width="1"/>
+  <rect x="128" y="296" width="140" height="14" rx="2" fill="#faf7f2"/>
+  <text x="198" y="307" fill="#65655c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.06em">BACKSPACE 返回</text>
+
+  <line x1="480" y1="352" x2="480" y2="264" stroke="#57534e" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+  <rect x="424" y="300" width="112" height="14" rx="2" fill="#faf7f2"/>
+  <text x="480" y="311" fill="#65655c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.06em">CTRL-C 返回</text>
+
+  <line x1="820" y1="352" x2="628" y2="256" stroke="#57534e" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+  <rect x="692" y="296" width="140" height="14" rx="2" fill="#faf7f2"/>
+  <text x="762" y="307" fill="#65655c" font-size="8" font-family="'Geist Mono', ui-monospace, Menlo, monospace" text-anchor="middle" letter-spacing="0.06em">BACKSPACE 返回</text>
+
+  <!-- ===== 底部说明 ===== -->
+  <line x1="32" y1="492" x2="928" y2="492" stroke="rgba(28,25,23,0.10)" stroke-width="0.8"/>
+  <text x="32" y="516" fill="#57534e" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace" letter-spacing="0.14em">提示符</text>
+  <text x="120" y="516" fill="#b5523a" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace">julia&gt;</text>
+  <text x="200" y="516" fill="#57534e" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace">help?&gt;</text>
+  <text x="288" y="516" fill="#57534e" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace">shell&gt;</text>
+  <text x="376" y="516" fill="#57534e" font-size="9" font-family="'Geist Mono', ui-monospace, Menlo, monospace">pkg&gt;</text>
+  <text x="472" y="516" fill="#78716c" font-size="9">在任意模式下按退格键或 Ctrl-C 都可回到 Julia 模式</text>
+</svg>
