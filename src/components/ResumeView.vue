@@ -71,11 +71,11 @@ const contact = {
 }
 const eduList = [
   {
-    name: '西南石油大学 · 信息管理与信息系统（本科）',
+    name: '西南石油大学 · 信息管理与信息系统',
     courses: ['数据库原理', '信息系统分析与设计', '管理信息系统', '软件工程', '数据分析', 'Web应用开发'],
   },
   {
-    name: '大数据技术（专科）',
+    name: '大数据技术',
     courses: ['Hadoop', 'Spark', 'Linux', 'Hive', 'Kafka', 'MySQL', '数据分析', '大数据技术基础'],
   },
 ]
