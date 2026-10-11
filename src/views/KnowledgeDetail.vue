@@ -45,8 +45,8 @@ function selectArticle(id) {
 // ===== 本文目录（h2/h3 锚点）=====
 const toc = ref([])
 const contentRef = ref(null)
+const tocListRef = ref(null) // 右栏目录列表容器（滚动跟随）
 const activeToc = ref('')
-const progress = ref(0)
 const showTop = ref(false)
 const navOpen = ref(false) // 移动端左侧导航折叠开关
 
@@ -63,7 +63,6 @@ async function refreshToc() {
       }))
     : []
   activeToc.value = ''
-  progress.value = 0
 }
 watch(activeId, refreshToc, { immediate: true })
 
@@ -71,21 +70,36 @@ function onScroll() {
   const box = contentRef.value
   if (!box) return
   const st = box.scrollTop
-  const total = box.scrollHeight - box.clientHeight
-  progress.value = total > 0 ? Math.min(100, Math.round((st / total) * 100)) : 0
   showTop.value = st > 300
+  // 用 getBoundingClientRect 定位（offsetTop 会受不同定位祖先影响，导致定位漂移）
   let cur = ''
   for (const t of toc.value) {
     const el = box.querySelector('#' + t.id)
-    if (el && el.offsetTop - 90 <= st) cur = t.id
+    if (el && el.getBoundingClientRect().top - box.getBoundingClientRect().top <= 90) cur = t.id
   }
-  if (cur) activeToc.value = cur
+  // 当前章节变化时：目录平滑滚动，让当前章节在目录底部位置显示出来
+  if (cur && cur !== activeToc.value) {
+    activeToc.value = cur
+    nextTick(() => {
+      const list = tocListRef.value
+      const act = list?.querySelector('.kd-toc-item.active')
+      if (!list || !act) return
+      const relTop = act.getBoundingClientRect().top - list.getBoundingClientRect().top
+      // 目标：当前章节底部对齐目录容器底部（在底部可见）
+      const target = relTop - list.clientHeight + act.clientHeight
+      const max = Math.max(0, list.scrollHeight - list.clientHeight)
+      // CSS scroll-behavior:smooth 使其平滑滚动，这里直接赋目标值
+      list.scrollTop = Math.min(max, Math.max(0, target))
+    })
+  }
 }
 
 function scrollToToc(id) {
   const box = contentRef.value
   const el = box?.querySelector('#' + id)
-  if (el) box.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' })
+  if (!box || !el) return
+  const top = el.getBoundingClientRect().top - box.getBoundingClientRect().top + box.scrollTop
+  box.scrollTo({ top: top - 70, behavior: 'smooth' })
 }
 
 function toTop() {
@@ -104,9 +118,6 @@ function toTop() {
 
     <!-- 文章详情：三栏布局 -->
     <template v-else>
-      <!-- 顶部阅读进度条 -->
-      <div class="kd-progress" :style="{ width: progress + '%' }"></div>
-
       <div class="kd-body">
         <!-- 左栏：单一导航面板（返回 + 篇章导航） -->
         <aside class="kd-side" :class="{ open: navOpen }">
@@ -189,7 +200,7 @@ function toTop() {
 
           <div class="kd-toc-card">
             <h3 class="kd-side-title">本文目录</h3>
-            <nav class="kd-toc">
+            <nav ref="tocListRef" class="kd-toc">
               <button
                 v-for="t in toc"
                 :key="t.id"
@@ -224,17 +235,6 @@ function toTop() {
   flex-direction: column;
   color: var(--text-primary);
   box-sizing: border-box;
-}
-
-/* 顶部阅读进度条 */
-.kd-progress {
-  position: fixed;
-  top: 64px;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-color), var(--accent-strong));
-  z-index: 100;
-  transition: width 0.15s ease;
 }
 
 /* 占位标题 */
@@ -393,7 +393,11 @@ function toTop() {
   gap: 2px;
   max-height: 340px;
   overflow-y: auto;
-  padding-right: 4px;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox：隐藏滚动条（保留滚动功能） */
+}
+.kd-toc::-webkit-scrollbar {
+  display: none; /* Chrome/Safari：隐藏滚动条（保留滚动功能） */
 }
 .kd-toc-item {
   padding: 7px 14px 7px 20px;
@@ -603,9 +607,6 @@ function toTop() {
     height: auto;
     overflow: visible;
     padding: 84px 16px 40px;
-  }
-  .kd-progress {
-    display: none;
   }
   .kd-body {
     flex-direction: column;

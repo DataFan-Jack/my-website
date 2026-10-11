@@ -322,4 +322,5 @@ function goProjects() { location.hash = '#/tutorials' }
   .rs-actions { display: none; }
   .rs-skill { background: #fff; box-shadow: none; }
 }
+
 </style>
